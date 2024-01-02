@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -351,9 +352,15 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         public SecretBackendConnectionCouchbaseArgs build() {
-            $.hosts = Objects.requireNonNull($.hosts, "expected parameter 'hosts' to be non-null");
-            $.password = Objects.requireNonNull($.password, "expected parameter 'password' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.hosts == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionCouchbaseArgs", "hosts");
+            }
+            if ($.password == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionCouchbaseArgs", "password");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionCouchbaseArgs", "username");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -146,17 +147,22 @@ public final class SecretBackendConnectionCouchbase {
 
         @CustomType.Setter
         public Builder base64Pem(@Nullable String base64Pem) {
+
             this.base64Pem = base64Pem;
             return this;
         }
         @CustomType.Setter
         public Builder bucketName(@Nullable String bucketName) {
+
             this.bucketName = bucketName;
             return this;
         }
         @CustomType.Setter
         public Builder hosts(List<String> hosts) {
-            this.hosts = Objects.requireNonNull(hosts);
+            if (hosts == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionCouchbase", "hosts");
+            }
+            this.hosts = hosts;
             return this;
         }
         public Builder hosts(String... hosts) {
@@ -164,26 +170,35 @@ public final class SecretBackendConnectionCouchbase {
         }
         @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
+
             this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionCouchbase", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
+
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionCouchbase", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
             this.usernameTemplate = usernameTemplate;
             return this;
         }

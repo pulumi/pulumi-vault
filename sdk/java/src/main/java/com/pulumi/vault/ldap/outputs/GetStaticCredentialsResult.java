@@ -4,6 +4,7 @@
 package com.pulumi.vault.ldap.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -105,57 +106,88 @@ public final class GetStaticCredentialsResult {
 
         @CustomType.Setter
         public Builder dn(String dn) {
-            this.dn = Objects.requireNonNull(dn);
+            if (dn == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "dn");
+            }
+            this.dn = dn;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastPassword(String lastPassword) {
-            this.lastPassword = Objects.requireNonNull(lastPassword);
+            if (lastPassword == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "lastPassword");
+            }
+            this.lastPassword = lastPassword;
             return this;
         }
         @CustomType.Setter
         public Builder lastVaultRotation(String lastVaultRotation) {
-            this.lastVaultRotation = Objects.requireNonNull(lastVaultRotation);
+            if (lastVaultRotation == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "lastVaultRotation");
+            }
+            this.lastVaultRotation = lastVaultRotation;
             return this;
         }
         @CustomType.Setter
         public Builder mount(String mount) {
-            this.mount = Objects.requireNonNull(mount);
+            if (mount == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "mount");
+            }
+            this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         @CustomType.Setter
         public Builder rotationPeriod(Integer rotationPeriod) {
-            this.rotationPeriod = Objects.requireNonNull(rotationPeriod);
+            if (rotationPeriod == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "rotationPeriod");
+            }
+            this.rotationPeriod = rotationPeriod;
             return this;
         }
         @CustomType.Setter
         public Builder ttl(Integer ttl) {
-            this.ttl = Objects.requireNonNull(ttl);
+            if (ttl == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "ttl");
+            }
+            this.ttl = ttl;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetStaticCredentialsResult build() {

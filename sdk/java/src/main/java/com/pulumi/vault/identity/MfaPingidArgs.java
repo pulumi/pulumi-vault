@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -150,7 +151,9 @@ public final class MfaPingidArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public MfaPingidArgs build() {
-            $.settingsFileBase64 = Objects.requireNonNull($.settingsFileBase64, "expected parameter 'settingsFileBase64' to be non-null");
+            if ($.settingsFileBase64 == null) {
+                throw new MissingRequiredPropertyException("MfaPingidArgs", "settingsFileBase64");
+            }
             return $;
         }
     }

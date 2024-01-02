@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -1261,9 +1262,15 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         public RaftSnapshotAgentConfigArgs build() {
-            $.intervalSeconds = Objects.requireNonNull($.intervalSeconds, "expected parameter 'intervalSeconds' to be non-null");
-            $.pathPrefix = Objects.requireNonNull($.pathPrefix, "expected parameter 'pathPrefix' to be non-null");
-            $.storageType = Objects.requireNonNull($.storageType, "expected parameter 'storageType' to be non-null");
+            if ($.intervalSeconds == null) {
+                throw new MissingRequiredPropertyException("RaftSnapshotAgentConfigArgs", "intervalSeconds");
+            }
+            if ($.pathPrefix == null) {
+                throw new MissingRequiredPropertyException("RaftSnapshotAgentConfigArgs", "pathPrefix");
+            }
+            if ($.storageType == null) {
+                throw new MissingRequiredPropertyException("RaftSnapshotAgentConfigArgs", "storageType");
+            }
             return $;
         }
     }

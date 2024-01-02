@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
@@ -340,7 +341,9 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public QuotaRateLimitArgs build() {
-            $.rate = Objects.requireNonNull($.rate, "expected parameter 'rate' to be non-null");
+            if ($.rate == null) {
+                throw new MissingRequiredPropertyException("QuotaRateLimitArgs", "rate");
+            }
             return $;
         }
     }

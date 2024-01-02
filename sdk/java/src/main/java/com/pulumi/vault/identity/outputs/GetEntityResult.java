@@ -4,6 +4,7 @@
 package com.pulumi.vault.identity.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.identity.outputs.GetEntityAlias;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -255,22 +256,34 @@ public final class GetEntityResult {
 
         @CustomType.Setter
         public Builder aliasId(String aliasId) {
-            this.aliasId = Objects.requireNonNull(aliasId);
+            if (aliasId == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "aliasId");
+            }
+            this.aliasId = aliasId;
             return this;
         }
         @CustomType.Setter
         public Builder aliasMountAccessor(String aliasMountAccessor) {
-            this.aliasMountAccessor = Objects.requireNonNull(aliasMountAccessor);
+            if (aliasMountAccessor == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "aliasMountAccessor");
+            }
+            this.aliasMountAccessor = aliasMountAccessor;
             return this;
         }
         @CustomType.Setter
         public Builder aliasName(String aliasName) {
-            this.aliasName = Objects.requireNonNull(aliasName);
+            if (aliasName == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "aliasName");
+            }
+            this.aliasName = aliasName;
             return this;
         }
         @CustomType.Setter
         public Builder aliases(List<GetEntityAlias> aliases) {
-            this.aliases = Objects.requireNonNull(aliases);
+            if (aliases == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "aliases");
+            }
+            this.aliases = aliases;
             return this;
         }
         public Builder aliases(GetEntityAlias... aliases) {
@@ -278,17 +291,26 @@ public final class GetEntityResult {
         }
         @CustomType.Setter
         public Builder creationTime(String creationTime) {
-            this.creationTime = Objects.requireNonNull(creationTime);
+            if (creationTime == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "creationTime");
+            }
+            this.creationTime = creationTime;
             return this;
         }
         @CustomType.Setter
         public Builder dataJson(String dataJson) {
-            this.dataJson = Objects.requireNonNull(dataJson);
+            if (dataJson == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "dataJson");
+            }
+            this.dataJson = dataJson;
             return this;
         }
         @CustomType.Setter
         public Builder directGroupIds(List<String> directGroupIds) {
-            this.directGroupIds = Objects.requireNonNull(directGroupIds);
+            if (directGroupIds == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "directGroupIds");
+            }
+            this.directGroupIds = directGroupIds;
             return this;
         }
         public Builder directGroupIds(String... directGroupIds) {
@@ -296,22 +318,34 @@ public final class GetEntityResult {
         }
         @CustomType.Setter
         public Builder disabled(Boolean disabled) {
-            this.disabled = Objects.requireNonNull(disabled);
+            if (disabled == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "disabled");
+            }
+            this.disabled = disabled;
             return this;
         }
         @CustomType.Setter
         public Builder entityId(String entityId) {
-            this.entityId = Objects.requireNonNull(entityId);
+            if (entityId == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "entityId");
+            }
+            this.entityId = entityId;
             return this;
         }
         @CustomType.Setter
         public Builder entityName(String entityName) {
-            this.entityName = Objects.requireNonNull(entityName);
+            if (entityName == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "entityName");
+            }
+            this.entityName = entityName;
             return this;
         }
         @CustomType.Setter
         public Builder groupIds(List<String> groupIds) {
-            this.groupIds = Objects.requireNonNull(groupIds);
+            if (groupIds == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "groupIds");
+            }
+            this.groupIds = groupIds;
             return this;
         }
         public Builder groupIds(String... groupIds) {
@@ -319,12 +353,18 @@ public final class GetEntityResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder inheritedGroupIds(List<String> inheritedGroupIds) {
-            this.inheritedGroupIds = Objects.requireNonNull(inheritedGroupIds);
+            if (inheritedGroupIds == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "inheritedGroupIds");
+            }
+            this.inheritedGroupIds = inheritedGroupIds;
             return this;
         }
         public Builder inheritedGroupIds(String... inheritedGroupIds) {
@@ -332,12 +372,18 @@ public final class GetEntityResult {
         }
         @CustomType.Setter
         public Builder lastUpdateTime(String lastUpdateTime) {
-            this.lastUpdateTime = Objects.requireNonNull(lastUpdateTime);
+            if (lastUpdateTime == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "lastUpdateTime");
+            }
+            this.lastUpdateTime = lastUpdateTime;
             return this;
         }
         @CustomType.Setter
         public Builder mergedEntityIds(List<String> mergedEntityIds) {
-            this.mergedEntityIds = Objects.requireNonNull(mergedEntityIds);
+            if (mergedEntityIds == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "mergedEntityIds");
+            }
+            this.mergedEntityIds = mergedEntityIds;
             return this;
         }
         public Builder mergedEntityIds(String... mergedEntityIds) {
@@ -345,22 +391,32 @@ public final class GetEntityResult {
         }
         @CustomType.Setter
         public Builder metadata(Map<String,Object> metadata) {
-            this.metadata = Objects.requireNonNull(metadata);
+            if (metadata == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "metadata");
+            }
+            this.metadata = metadata;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder namespaceId(String namespaceId) {
-            this.namespaceId = Objects.requireNonNull(namespaceId);
+            if (namespaceId == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "namespaceId");
+            }
+            this.namespaceId = namespaceId;
             return this;
         }
         @CustomType.Setter
         public Builder policies(List<String> policies) {
-            this.policies = Objects.requireNonNull(policies);
+            if (policies == null) {
+              throw new MissingRequiredPropertyException("GetEntityResult", "policies");
+            }
+            this.policies = policies;
             return this;
         }
         public Builder policies(String... policies) {

@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -625,7 +626,9 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         }
 
         public SecretsMountPostgresqlArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("SecretsMountPostgresqlArgs", "name");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.okta;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -210,8 +211,12 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         public AuthBackendGroupArgs build() {
-            $.groupName = Objects.requireNonNull($.groupName, "expected parameter 'groupName' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.groupName == null) {
+                throw new MissingRequiredPropertyException("AuthBackendGroupArgs", "groupName");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("AuthBackendGroupArgs", "path");
+            }
             return $;
         }
     }

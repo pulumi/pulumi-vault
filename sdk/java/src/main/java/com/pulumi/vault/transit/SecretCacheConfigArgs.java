@@ -5,6 +5,7 @@ package com.pulumi.vault.transit;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -163,8 +164,12 @@ public final class SecretCacheConfigArgs extends com.pulumi.resources.ResourceAr
         }
 
         public SecretCacheConfigArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.size = Objects.requireNonNull($.size, "expected parameter 'size' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretCacheConfigArgs", "backend");
+            }
+            if ($.size == null) {
+                throw new MissingRequiredPropertyException("SecretCacheConfigArgs", "size");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -239,7 +240,9 @@ public final class GroupMemberGroupIdsArgs extends com.pulumi.resources.Resource
         }
 
         public GroupMemberGroupIdsArgs build() {
-            $.groupId = Objects.requireNonNull($.groupId, "expected parameter 'groupId' to be non-null");
+            if ($.groupId == null) {
+                throw new MissingRequiredPropertyException("GroupMemberGroupIdsArgs", "groupId");
+            }
             return $;
         }
     }

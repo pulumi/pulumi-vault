@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -134,37 +135,50 @@ public final class SecretBackendConnectionRedis {
 
         @CustomType.Setter
         public Builder caCert(@Nullable String caCert) {
+
             this.caCert = caCert;
             return this;
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionRedis", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
+
             this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionRedis", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
+
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionRedis", "username");
+            }
+            this.username = username;
             return this;
         }
         public SecretBackendConnectionRedis build() {

@@ -4,6 +4,7 @@
 package com.pulumi.vault.aws.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -174,76 +175,111 @@ public final class GetAccessCredentialsResult {
 
         @CustomType.Setter
         public Builder accessKey(String accessKey) {
-            this.accessKey = Objects.requireNonNull(accessKey);
+            if (accessKey == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "accessKey");
+            }
+            this.accessKey = accessKey;
             return this;
         }
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
-            this.leaseDuration = Objects.requireNonNull(leaseDuration);
+            if (leaseDuration == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseDuration");
+            }
+            this.leaseDuration = leaseDuration;
             return this;
         }
         @CustomType.Setter
         public Builder leaseId(String leaseId) {
-            this.leaseId = Objects.requireNonNull(leaseId);
+            if (leaseId == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseId");
+            }
+            this.leaseId = leaseId;
             return this;
         }
         @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
-            this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
+            if (leaseRenewable == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseRenewable");
+            }
+            this.leaseRenewable = leaseRenewable;
             return this;
         }
         @CustomType.Setter
         public Builder leaseStartTime(String leaseStartTime) {
-            this.leaseStartTime = Objects.requireNonNull(leaseStartTime);
+            if (leaseStartTime == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseStartTime");
+            }
+            this.leaseStartTime = leaseStartTime;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder roleArn(@Nullable String roleArn) {
+
             this.roleArn = roleArn;
             return this;
         }
         @CustomType.Setter
         public Builder secretKey(String secretKey) {
-            this.secretKey = Objects.requireNonNull(secretKey);
+            if (secretKey == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "secretKey");
+            }
+            this.secretKey = secretKey;
             return this;
         }
         @CustomType.Setter
         public Builder securityToken(String securityToken) {
-            this.securityToken = Objects.requireNonNull(securityToken);
+            if (securityToken == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "securityToken");
+            }
+            this.securityToken = securityToken;
             return this;
         }
         @CustomType.Setter
         public Builder ttl(@Nullable String ttl) {
+
             this.ttl = ttl;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

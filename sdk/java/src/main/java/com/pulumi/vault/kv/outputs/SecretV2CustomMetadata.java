@@ -72,21 +72,25 @@ public final class SecretV2CustomMetadata {
 
         @CustomType.Setter
         public Builder casRequired(@Nullable Boolean casRequired) {
+
             this.casRequired = casRequired;
             return this;
         }
         @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
+
             this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder deleteVersionAfter(@Nullable Integer deleteVersionAfter) {
+
             this.deleteVersionAfter = deleteVersionAfter;
             return this;
         }
         @CustomType.Setter
         public Builder maxVersions(@Nullable Integer maxVersions) {
+
             this.maxVersions = maxVersions;
             return this;
         }

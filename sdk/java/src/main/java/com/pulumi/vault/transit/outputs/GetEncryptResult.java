@@ -4,6 +4,7 @@
 package com.pulumi.vault.transit.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -95,42 +96,60 @@ public final class GetEncryptResult {
 
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetEncryptResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder ciphertext(String ciphertext) {
-            this.ciphertext = Objects.requireNonNull(ciphertext);
+            if (ciphertext == null) {
+              throw new MissingRequiredPropertyException("GetEncryptResult", "ciphertext");
+            }
+            this.ciphertext = ciphertext;
             return this;
         }
         @CustomType.Setter
         public Builder context(@Nullable String context) {
+
             this.context = context;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetEncryptResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder key(String key) {
-            this.key = Objects.requireNonNull(key);
+            if (key == null) {
+              throw new MissingRequiredPropertyException("GetEncryptResult", "key");
+            }
+            this.key = key;
             return this;
         }
         @CustomType.Setter
         public Builder keyVersion(@Nullable Integer keyVersion) {
+
             this.keyVersion = keyVersion;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder plaintext(String plaintext) {
-            this.plaintext = Objects.requireNonNull(plaintext);
+            if (plaintext == null) {
+              throw new MissingRequiredPropertyException("GetEncryptResult", "plaintext");
+            }
+            this.plaintext = plaintext;
             return this;
         }
         public GetEncryptResult build() {

@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.pkiSecret.inputs.SecretBackendRolePolicyIdentifierArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -1906,7 +1907,9 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         public SecretBackendRoleArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRoleArgs", "backend");
+            }
             return $;
         }
     }

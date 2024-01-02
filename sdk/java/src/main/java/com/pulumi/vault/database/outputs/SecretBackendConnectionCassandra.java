@@ -181,11 +181,13 @@ public final class SecretBackendConnectionCassandra {
 
         @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
+
             this.connectTimeout = connectTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder hosts(@Nullable List<String> hosts) {
+
             this.hosts = hosts;
             return this;
         }
@@ -194,41 +196,49 @@ public final class SecretBackendConnectionCassandra {
         }
         @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
+
             this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
         public Builder password(@Nullable String password) {
+
             this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pemBundle(@Nullable String pemBundle) {
+
             this.pemBundle = pemBundle;
             return this;
         }
         @CustomType.Setter
         public Builder pemJson(@Nullable String pemJson) {
+
             this.pemJson = pemJson;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder protocolVersion(@Nullable Integer protocolVersion) {
+
             this.protocolVersion = protocolVersion;
             return this;
         }
         @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
+
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }

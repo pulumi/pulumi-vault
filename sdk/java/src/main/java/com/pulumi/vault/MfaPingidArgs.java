@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -268,8 +269,12 @@ public final class MfaPingidArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public MfaPingidArgs build() {
-            $.mountAccessor = Objects.requireNonNull($.mountAccessor, "expected parameter 'mountAccessor' to be non-null");
-            $.settingsFileBase64 = Objects.requireNonNull($.settingsFileBase64, "expected parameter 'settingsFileBase64' to be non-null");
+            if ($.mountAccessor == null) {
+                throw new MissingRequiredPropertyException("MfaPingidArgs", "mountAccessor");
+            }
+            if ($.settingsFileBase64 == null) {
+                throw new MissingRequiredPropertyException("MfaPingidArgs", "settingsFileBase64");
+            }
             return $;
         }
     }

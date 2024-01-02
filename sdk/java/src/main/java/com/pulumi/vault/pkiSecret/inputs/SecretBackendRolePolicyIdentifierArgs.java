@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -374,7 +375,9 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
         }
 
         public SecretBackendRolePolicyIdentifierArgs build() {
-            $.oid = Objects.requireNonNull($.oid, "expected parameter 'oid' to be non-null");
+            if ($.oid == null) {
+                throw new MissingRequiredPropertyException("SecretBackendRolePolicyIdentifierArgs", "oid");
+            }
             return $;
         }
     }

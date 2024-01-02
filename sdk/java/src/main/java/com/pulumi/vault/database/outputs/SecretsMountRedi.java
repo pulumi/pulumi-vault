@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -221,6 +222,7 @@ public final class SecretsMountRedi {
 
         @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
+
             this.allowedRoles = allowedRoles;
             return this;
         }
@@ -229,46 +231,61 @@ public final class SecretsMountRedi {
         }
         @CustomType.Setter
         public Builder caCert(@Nullable String caCert) {
+
             this.caCert = caCert;
             return this;
         }
         @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
+
             this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("SecretsMountRedi", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
+
             this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("SecretsMountRedi", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretsMountRedi", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
+
             this.pluginName = pluginName;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
+
             this.rootRotationStatements = rootRotationStatements;
             return this;
         }
@@ -277,16 +294,21 @@ public final class SecretsMountRedi {
         }
         @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
+
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretsMountRedi", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
+
             this.verifyConnection = verifyConnection;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.vault.kubernetes.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -126,47 +127,70 @@ public final class GetAuthBackendConfigResult {
 
         @CustomType.Setter
         public Builder backend(@Nullable String backend) {
+
             this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder disableIssValidation(Boolean disableIssValidation) {
-            this.disableIssValidation = Objects.requireNonNull(disableIssValidation);
+            if (disableIssValidation == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "disableIssValidation");
+            }
+            this.disableIssValidation = disableIssValidation;
             return this;
         }
         @CustomType.Setter
         public Builder disableLocalCaJwt(Boolean disableLocalCaJwt) {
-            this.disableLocalCaJwt = Objects.requireNonNull(disableLocalCaJwt);
+            if (disableLocalCaJwt == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "disableLocalCaJwt");
+            }
+            this.disableLocalCaJwt = disableLocalCaJwt;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder issuer(String issuer) {
-            this.issuer = Objects.requireNonNull(issuer);
+            if (issuer == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "issuer");
+            }
+            this.issuer = issuer;
             return this;
         }
         @CustomType.Setter
         public Builder kubernetesCaCert(String kubernetesCaCert) {
-            this.kubernetesCaCert = Objects.requireNonNull(kubernetesCaCert);
+            if (kubernetesCaCert == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "kubernetesCaCert");
+            }
+            this.kubernetesCaCert = kubernetesCaCert;
             return this;
         }
         @CustomType.Setter
         public Builder kubernetesHost(String kubernetesHost) {
-            this.kubernetesHost = Objects.requireNonNull(kubernetesHost);
+            if (kubernetesHost == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "kubernetesHost");
+            }
+            this.kubernetesHost = kubernetesHost;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder pemKeys(List<String> pemKeys) {
-            this.pemKeys = Objects.requireNonNull(pemKeys);
+            if (pemKeys == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "pemKeys");
+            }
+            this.pemKeys = pemKeys;
             return this;
         }
         public Builder pemKeys(String... pemKeys) {

@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -173,51 +174,67 @@ public final class SecretBackendConnectionElasticsearch {
 
         @CustomType.Setter
         public Builder caCert(@Nullable String caCert) {
+
             this.caCert = caCert;
             return this;
         }
         @CustomType.Setter
         public Builder caPath(@Nullable String caPath) {
+
             this.caPath = caPath;
             return this;
         }
         @CustomType.Setter
         public Builder clientCert(@Nullable String clientCert) {
+
             this.clientCert = clientCert;
             return this;
         }
         @CustomType.Setter
         public Builder clientKey(@Nullable String clientKey) {
+
             this.clientKey = clientKey;
             return this;
         }
         @CustomType.Setter
         public Builder insecure(@Nullable Boolean insecure) {
+
             this.insecure = insecure;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionElasticsearch", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder tlsServerName(@Nullable String tlsServerName) {
+
             this.tlsServerName = tlsServerName;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionElasticsearch", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionElasticsearch", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
             this.usernameTemplate = usernameTemplate;
             return this;
         }

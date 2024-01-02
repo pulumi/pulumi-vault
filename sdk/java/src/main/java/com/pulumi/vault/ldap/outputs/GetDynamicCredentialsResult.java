@@ -4,6 +4,7 @@
 package com.pulumi.vault.ldap.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -101,7 +102,10 @@ public final class GetDynamicCredentialsResult {
 
         @CustomType.Setter
         public Builder distinguishedNames(List<String> distinguishedNames) {
-            this.distinguishedNames = Objects.requireNonNull(distinguishedNames);
+            if (distinguishedNames == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "distinguishedNames");
+            }
+            this.distinguishedNames = distinguishedNames;
             return this;
         }
         public Builder distinguishedNames(String... distinguishedNames) {
@@ -109,47 +113,72 @@ public final class GetDynamicCredentialsResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
-            this.leaseDuration = Objects.requireNonNull(leaseDuration);
+            if (leaseDuration == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "leaseDuration");
+            }
+            this.leaseDuration = leaseDuration;
             return this;
         }
         @CustomType.Setter
         public Builder leaseId(String leaseId) {
-            this.leaseId = Objects.requireNonNull(leaseId);
+            if (leaseId == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "leaseId");
+            }
+            this.leaseId = leaseId;
             return this;
         }
         @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
-            this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
+            if (leaseRenewable == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "leaseRenewable");
+            }
+            this.leaseRenewable = leaseRenewable;
             return this;
         }
         @CustomType.Setter
         public Builder mount(String mount) {
-            this.mount = Objects.requireNonNull(mount);
+            if (mount == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "mount");
+            }
+            this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetDynamicCredentialsResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetDynamicCredentialsResult build() {

@@ -4,6 +4,7 @@
 package com.pulumi.vault.azure.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -178,86 +179,121 @@ public final class GetAccessCredentialsResult {
 
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(String clientId) {
-            this.clientId = Objects.requireNonNull(clientId);
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "clientId");
+            }
+            this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder clientSecret(String clientSecret) {
-            this.clientSecret = Objects.requireNonNull(clientSecret);
+            if (clientSecret == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "clientSecret");
+            }
+            this.clientSecret = clientSecret;
             return this;
         }
         @CustomType.Setter
         public Builder environment(@Nullable String environment) {
+
             this.environment = environment;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
-            this.leaseDuration = Objects.requireNonNull(leaseDuration);
+            if (leaseDuration == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseDuration");
+            }
+            this.leaseDuration = leaseDuration;
             return this;
         }
         @CustomType.Setter
         public Builder leaseId(String leaseId) {
-            this.leaseId = Objects.requireNonNull(leaseId);
+            if (leaseId == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseId");
+            }
+            this.leaseId = leaseId;
             return this;
         }
         @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
-            this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
+            if (leaseRenewable == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseRenewable");
+            }
+            this.leaseRenewable = leaseRenewable;
             return this;
         }
         @CustomType.Setter
         public Builder leaseStartTime(String leaseStartTime) {
-            this.leaseStartTime = Objects.requireNonNull(leaseStartTime);
+            if (leaseStartTime == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "leaseStartTime");
+            }
+            this.leaseStartTime = leaseStartTime;
             return this;
         }
         @CustomType.Setter
         public Builder maxCredValidationSeconds(@Nullable Integer maxCredValidationSeconds) {
+
             this.maxCredValidationSeconds = maxCredValidationSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder numSecondsBetweenTests(@Nullable Integer numSecondsBetweenTests) {
+
             this.numSecondsBetweenTests = numSecondsBetweenTests;
             return this;
         }
         @CustomType.Setter
         public Builder numSequentialSuccesses(@Nullable Integer numSequentialSuccesses) {
+
             this.numSequentialSuccesses = numSequentialSuccesses;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("GetAccessCredentialsResult", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder subscriptionId(@Nullable String subscriptionId) {
+
             this.subscriptionId = subscriptionId;
             return this;
         }
         @CustomType.Setter
         public Builder tenantId(@Nullable String tenantId) {
+
             this.tenantId = tenantId;
             return this;
         }
         @CustomType.Setter
         public Builder validateCreds(@Nullable Boolean validateCreds) {
+
             this.validateCreds = validateCreds;
             return this;
         }

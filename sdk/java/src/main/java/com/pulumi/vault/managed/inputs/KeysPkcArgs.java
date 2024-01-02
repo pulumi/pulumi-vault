@@ -5,6 +5,7 @@ package com.pulumi.vault.managed.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -656,12 +657,24 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public KeysPkcArgs build() {
-            $.keyId = Objects.requireNonNull($.keyId, "expected parameter 'keyId' to be non-null");
-            $.keyLabel = Objects.requireNonNull($.keyLabel, "expected parameter 'keyLabel' to be non-null");
-            $.library = Objects.requireNonNull($.library, "expected parameter 'library' to be non-null");
-            $.mechanism = Objects.requireNonNull($.mechanism, "expected parameter 'mechanism' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.pin = Objects.requireNonNull($.pin, "expected parameter 'pin' to be non-null");
+            if ($.keyId == null) {
+                throw new MissingRequiredPropertyException("KeysPkcArgs", "keyId");
+            }
+            if ($.keyLabel == null) {
+                throw new MissingRequiredPropertyException("KeysPkcArgs", "keyLabel");
+            }
+            if ($.library == null) {
+                throw new MissingRequiredPropertyException("KeysPkcArgs", "library");
+            }
+            if ($.mechanism == null) {
+                throw new MissingRequiredPropertyException("KeysPkcArgs", "mechanism");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("KeysPkcArgs", "name");
+            }
+            if ($.pin == null) {
+                throw new MissingRequiredPropertyException("KeysPkcArgs", "pin");
+            }
             return $;
         }
     }

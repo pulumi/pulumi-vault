@@ -5,6 +5,7 @@ package com.pulumi.vault.aws;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -260,8 +261,12 @@ public final class AuthBackendCertArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AuthBackendCertArgs build() {
-            $.awsPublicCert = Objects.requireNonNull($.awsPublicCert, "expected parameter 'awsPublicCert' to be non-null");
-            $.certName = Objects.requireNonNull($.certName, "expected parameter 'certName' to be non-null");
+            if ($.awsPublicCert == null) {
+                throw new MissingRequiredPropertyException("AuthBackendCertArgs", "awsPublicCert");
+            }
+            if ($.certName == null) {
+                throw new MissingRequiredPropertyException("AuthBackendCertArgs", "certName");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -393,10 +394,18 @@ public final class SecretsMountMongodbatlaArgs extends com.pulumi.resources.Reso
         }
 
         public SecretsMountMongodbatlaArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.privateKey = Objects.requireNonNull($.privateKey, "expected parameter 'privateKey' to be non-null");
-            $.projectId = Objects.requireNonNull($.projectId, "expected parameter 'projectId' to be non-null");
-            $.publicKey = Objects.requireNonNull($.publicKey, "expected parameter 'publicKey' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("SecretsMountMongodbatlaArgs", "name");
+            }
+            if ($.privateKey == null) {
+                throw new MissingRequiredPropertyException("SecretsMountMongodbatlaArgs", "privateKey");
+            }
+            if ($.projectId == null) {
+                throw new MissingRequiredPropertyException("SecretsMountMongodbatlaArgs", "projectId");
+            }
+            if ($.publicKey == null) {
+                throw new MissingRequiredPropertyException("SecretsMountMongodbatlaArgs", "publicKey");
+            }
             return $;
         }
     }

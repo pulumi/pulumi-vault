@@ -5,6 +5,7 @@ package com.pulumi.vault.kubernetes;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -773,9 +774,15 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AuthBackendRoleArgs build() {
-            $.boundServiceAccountNames = Objects.requireNonNull($.boundServiceAccountNames, "expected parameter 'boundServiceAccountNames' to be non-null");
-            $.boundServiceAccountNamespaces = Objects.requireNonNull($.boundServiceAccountNamespaces, "expected parameter 'boundServiceAccountNamespaces' to be non-null");
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
+            if ($.boundServiceAccountNames == null) {
+                throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "boundServiceAccountNames");
+            }
+            if ($.boundServiceAccountNamespaces == null) {
+                throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "boundServiceAccountNamespaces");
+            }
+            if ($.roleName == null) {
+                throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "roleName");
+            }
             return $;
         }
     }

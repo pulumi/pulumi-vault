@@ -4,6 +4,7 @@
 package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.outputs.GetPolicyDocumentRuleAllowedParameter;
 import com.pulumi.vault.outputs.GetPolicyDocumentRuleDeniedParameter;
 import java.lang.String;
@@ -145,6 +146,7 @@ public final class GetPolicyDocumentRule {
 
         @CustomType.Setter
         public Builder allowedParameters(@Nullable List<GetPolicyDocumentRuleAllowedParameter> allowedParameters) {
+
             this.allowedParameters = allowedParameters;
             return this;
         }
@@ -153,7 +155,10 @@ public final class GetPolicyDocumentRule {
         }
         @CustomType.Setter
         public Builder capabilities(List<String> capabilities) {
-            this.capabilities = Objects.requireNonNull(capabilities);
+            if (capabilities == null) {
+              throw new MissingRequiredPropertyException("GetPolicyDocumentRule", "capabilities");
+            }
+            this.capabilities = capabilities;
             return this;
         }
         public Builder capabilities(String... capabilities) {
@@ -161,6 +166,7 @@ public final class GetPolicyDocumentRule {
         }
         @CustomType.Setter
         public Builder deniedParameters(@Nullable List<GetPolicyDocumentRuleDeniedParameter> deniedParameters) {
+
             this.deniedParameters = deniedParameters;
             return this;
         }
@@ -169,26 +175,33 @@ public final class GetPolicyDocumentRule {
         }
         @CustomType.Setter
         public Builder description(@Nullable String description) {
+
             this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder maxWrappingTtl(@Nullable String maxWrappingTtl) {
+
             this.maxWrappingTtl = maxWrappingTtl;
             return this;
         }
         @CustomType.Setter
         public Builder minWrappingTtl(@Nullable String minWrappingTtl) {
+
             this.minWrappingTtl = minWrappingTtl;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetPolicyDocumentRule", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder requiredParameters(@Nullable List<String> requiredParameters) {
+
             this.requiredParameters = requiredParameters;
             return this;
         }

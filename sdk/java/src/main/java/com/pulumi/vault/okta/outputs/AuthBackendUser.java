@@ -4,6 +4,7 @@
 package com.pulumi.vault.okta.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -72,6 +73,7 @@ public final class AuthBackendUser {
 
         @CustomType.Setter
         public Builder groups(@Nullable List<String> groups) {
+
             this.groups = groups;
             return this;
         }
@@ -80,6 +82,7 @@ public final class AuthBackendUser {
         }
         @CustomType.Setter
         public Builder policies(@Nullable List<String> policies) {
+
             this.policies = policies;
             return this;
         }
@@ -88,7 +91,10 @@ public final class AuthBackendUser {
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("AuthBackendUser", "username");
+            }
+            this.username = username;
             return this;
         }
         public AuthBackendUser build() {

@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -260,6 +261,7 @@ public final class SecretsMountElasticsearch {
 
         @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
+
             this.allowedRoles = allowedRoles;
             return this;
         }
@@ -268,51 +270,65 @@ public final class SecretsMountElasticsearch {
         }
         @CustomType.Setter
         public Builder caCert(@Nullable String caCert) {
+
             this.caCert = caCert;
             return this;
         }
         @CustomType.Setter
         public Builder caPath(@Nullable String caPath) {
+
             this.caPath = caPath;
             return this;
         }
         @CustomType.Setter
         public Builder clientCert(@Nullable String clientCert) {
+
             this.clientCert = clientCert;
             return this;
         }
         @CustomType.Setter
         public Builder clientKey(@Nullable String clientKey) {
+
             this.clientKey = clientKey;
             return this;
         }
         @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
+
             this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder insecure(@Nullable Boolean insecure) {
+
             this.insecure = insecure;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("SecretsMountElasticsearch", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretsMountElasticsearch", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
+
             this.pluginName = pluginName;
             return this;
         }
         @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
+
             this.rootRotationStatements = rootRotationStatements;
             return this;
         }
@@ -321,26 +337,35 @@ public final class SecretsMountElasticsearch {
         }
         @CustomType.Setter
         public Builder tlsServerName(@Nullable String tlsServerName) {
+
             this.tlsServerName = tlsServerName;
             return this;
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("SecretsMountElasticsearch", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretsMountElasticsearch", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
             this.usernameTemplate = usernameTemplate;
             return this;
         }
         @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
+
             this.verifyConnection = verifyConnection;
             return this;
         }

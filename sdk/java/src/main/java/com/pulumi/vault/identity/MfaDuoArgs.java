@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -299,9 +300,15 @@ public final class MfaDuoArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public MfaDuoArgs build() {
-            $.apiHostname = Objects.requireNonNull($.apiHostname, "expected parameter 'apiHostname' to be non-null");
-            $.integrationKey = Objects.requireNonNull($.integrationKey, "expected parameter 'integrationKey' to be non-null");
-            $.secretKey = Objects.requireNonNull($.secretKey, "expected parameter 'secretKey' to be non-null");
+            if ($.apiHostname == null) {
+                throw new MissingRequiredPropertyException("MfaDuoArgs", "apiHostname");
+            }
+            if ($.integrationKey == null) {
+                throw new MissingRequiredPropertyException("MfaDuoArgs", "integrationKey");
+            }
+            if ($.secretKey == null) {
+                throw new MissingRequiredPropertyException("MfaDuoArgs", "secretKey");
+            }
             return $;
         }
     }

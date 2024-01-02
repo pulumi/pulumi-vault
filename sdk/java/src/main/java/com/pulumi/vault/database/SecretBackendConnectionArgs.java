@@ -5,6 +5,7 @@ package com.pulumi.vault.database;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionCassandraArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionCouchbaseArgs;
 import com.pulumi.vault.database.inputs.SecretBackendConnectionElasticsearchArgs;
@@ -1072,7 +1073,9 @@ public final class SecretBackendConnectionArgs extends com.pulumi.resources.Reso
         }
 
         public SecretBackendConnectionArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionArgs", "backend");
+            }
             return $;
         }
     }

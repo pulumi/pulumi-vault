@@ -4,6 +4,7 @@
 package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,32 +93,48 @@ public final class GetNomadAccessTokenResult {
 
         @CustomType.Setter
         public Builder accessorId(String accessorId) {
-            this.accessorId = Objects.requireNonNull(accessorId);
+            if (accessorId == null) {
+              throw new MissingRequiredPropertyException("GetNomadAccessTokenResult", "accessorId");
+            }
+            this.accessorId = accessorId;
             return this;
         }
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetNomadAccessTokenResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNomadAccessTokenResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("GetNomadAccessTokenResult", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder secretId(String secretId) {
-            this.secretId = Objects.requireNonNull(secretId);
+            if (secretId == null) {
+              throw new MissingRequiredPropertyException("GetNomadAccessTokenResult", "secretId");
+            }
+            this.secretId = secretId;
             return this;
         }
         public GetNomadAccessTokenResult build() {

@@ -4,6 +4,7 @@
 package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.outputs.GetPolicyDocumentRule;
 import java.lang.String;
 import java.util.List;
@@ -72,22 +73,32 @@ public final class GetPolicyDocumentResult {
 
         @CustomType.Setter
         public Builder hcl(String hcl) {
-            this.hcl = Objects.requireNonNull(hcl);
+            if (hcl == null) {
+              throw new MissingRequiredPropertyException("GetPolicyDocumentResult", "hcl");
+            }
+            this.hcl = hcl;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetPolicyDocumentResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder rules(List<GetPolicyDocumentRule> rules) {
-            this.rules = Objects.requireNonNull(rules);
+            if (rules == null) {
+              throw new MissingRequiredPropertyException("GetPolicyDocumentResult", "rules");
+            }
+            this.rules = rules;
             return this;
         }
         public Builder rules(GetPolicyDocumentRule... rules) {

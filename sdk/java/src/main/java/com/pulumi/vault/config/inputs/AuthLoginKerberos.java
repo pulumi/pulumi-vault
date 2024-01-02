@@ -97,56 +97,67 @@ public final class AuthLoginKerberos {
 
         @CustomType.Setter
         public Builder disableFastNegotiation(@Nullable Boolean disableFastNegotiation) {
+
             this.disableFastNegotiation = disableFastNegotiation;
             return this;
         }
         @CustomType.Setter
         public Builder keytabPath(@Nullable String keytabPath) {
+
             this.keytabPath = keytabPath;
             return this;
         }
         @CustomType.Setter
         public Builder krb5confPath(@Nullable String krb5confPath) {
+
             this.krb5confPath = krb5confPath;
             return this;
         }
         @CustomType.Setter
         public Builder mount(@Nullable String mount) {
+
             this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder realm(@Nullable String realm) {
+
             this.realm = realm;
             return this;
         }
         @CustomType.Setter
         public Builder removeInstanceName(@Nullable Boolean removeInstanceName) {
+
             this.removeInstanceName = removeInstanceName;
             return this;
         }
         @CustomType.Setter
         public Builder service(@Nullable String service) {
+
             this.service = service;
             return this;
         }
         @CustomType.Setter
         public Builder token(@Nullable String token) {
+
             this.token = token;
             return this;
         }
         @CustomType.Setter
         public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+
             this.useRootNamespace = useRootNamespace;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }

@@ -5,6 +5,7 @@ package com.pulumi.vault.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -343,7 +344,9 @@ public final class SecretBackendLibrarySetArgs extends com.pulumi.resources.Reso
         }
 
         public SecretBackendLibrarySetArgs build() {
-            $.serviceAccountNames = Objects.requireNonNull($.serviceAccountNames, "expected parameter 'serviceAccountNames' to be non-null");
+            if ($.serviceAccountNames == null) {
+                throw new MissingRequiredPropertyException("SecretBackendLibrarySetArgs", "serviceAccountNames");
+            }
             return $;
         }
     }

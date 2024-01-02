@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -180,51 +181,67 @@ public final class SecretBackendConnectionInfluxdb {
 
         @CustomType.Setter
         public Builder connectTimeout(@Nullable Integer connectTimeout) {
+
             this.connectTimeout = connectTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionInfluxdb", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder insecureTls(@Nullable Boolean insecureTls) {
+
             this.insecureTls = insecureTls;
             return this;
         }
         @CustomType.Setter
         public Builder password(String password) {
-            this.password = Objects.requireNonNull(password);
+            if (password == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionInfluxdb", "password");
+            }
+            this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pemBundle(@Nullable String pemBundle) {
+
             this.pemBundle = pemBundle;
             return this;
         }
         @CustomType.Setter
         public Builder pemJson(@Nullable String pemJson) {
+
             this.pemJson = pemJson;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable Integer port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
+
             this.tls = tls;
             return this;
         }
         @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("SecretBackendConnectionInfluxdb", "username");
+            }
+            this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder usernameTemplate(@Nullable String usernameTemplate) {
+
             this.usernameTemplate = usernameTemplate;
             return this;
         }

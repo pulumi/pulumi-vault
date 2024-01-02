@@ -4,6 +4,7 @@
 package com.pulumi.vault.identity.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -230,12 +231,18 @@ public final class GetOidcOpenidConfigResult {
 
         @CustomType.Setter
         public Builder authorizationEndpoint(String authorizationEndpoint) {
-            this.authorizationEndpoint = Objects.requireNonNull(authorizationEndpoint);
+            if (authorizationEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "authorizationEndpoint");
+            }
+            this.authorizationEndpoint = authorizationEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder grantTypesSupporteds(List<String> grantTypesSupporteds) {
-            this.grantTypesSupporteds = Objects.requireNonNull(grantTypesSupporteds);
+            if (grantTypesSupporteds == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "grantTypesSupporteds");
+            }
+            this.grantTypesSupporteds = grantTypesSupporteds;
             return this;
         }
         public Builder grantTypesSupporteds(String... grantTypesSupporteds) {
@@ -243,12 +250,18 @@ public final class GetOidcOpenidConfigResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder idTokenSigningAlgValuesSupporteds(List<String> idTokenSigningAlgValuesSupporteds) {
-            this.idTokenSigningAlgValuesSupporteds = Objects.requireNonNull(idTokenSigningAlgValuesSupporteds);
+            if (idTokenSigningAlgValuesSupporteds == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "idTokenSigningAlgValuesSupporteds");
+            }
+            this.idTokenSigningAlgValuesSupporteds = idTokenSigningAlgValuesSupporteds;
             return this;
         }
         public Builder idTokenSigningAlgValuesSupporteds(String... idTokenSigningAlgValuesSupporteds) {
@@ -256,32 +269,48 @@ public final class GetOidcOpenidConfigResult {
         }
         @CustomType.Setter
         public Builder issuer(String issuer) {
-            this.issuer = Objects.requireNonNull(issuer);
+            if (issuer == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "issuer");
+            }
+            this.issuer = issuer;
             return this;
         }
         @CustomType.Setter
         public Builder jwksUri(String jwksUri) {
-            this.jwksUri = Objects.requireNonNull(jwksUri);
+            if (jwksUri == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "jwksUri");
+            }
+            this.jwksUri = jwksUri;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder requestUriParameterSupported(Boolean requestUriParameterSupported) {
-            this.requestUriParameterSupported = Objects.requireNonNull(requestUriParameterSupported);
+            if (requestUriParameterSupported == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "requestUriParameterSupported");
+            }
+            this.requestUriParameterSupported = requestUriParameterSupported;
             return this;
         }
         @CustomType.Setter
         public Builder responseTypesSupporteds(List<String> responseTypesSupporteds) {
-            this.responseTypesSupporteds = Objects.requireNonNull(responseTypesSupporteds);
+            if (responseTypesSupporteds == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "responseTypesSupporteds");
+            }
+            this.responseTypesSupporteds = responseTypesSupporteds;
             return this;
         }
         public Builder responseTypesSupporteds(String... responseTypesSupporteds) {
@@ -289,7 +318,10 @@ public final class GetOidcOpenidConfigResult {
         }
         @CustomType.Setter
         public Builder scopesSupporteds(List<String> scopesSupporteds) {
-            this.scopesSupporteds = Objects.requireNonNull(scopesSupporteds);
+            if (scopesSupporteds == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "scopesSupporteds");
+            }
+            this.scopesSupporteds = scopesSupporteds;
             return this;
         }
         public Builder scopesSupporteds(String... scopesSupporteds) {
@@ -297,7 +329,10 @@ public final class GetOidcOpenidConfigResult {
         }
         @CustomType.Setter
         public Builder subjectTypesSupporteds(List<String> subjectTypesSupporteds) {
-            this.subjectTypesSupporteds = Objects.requireNonNull(subjectTypesSupporteds);
+            if (subjectTypesSupporteds == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "subjectTypesSupporteds");
+            }
+            this.subjectTypesSupporteds = subjectTypesSupporteds;
             return this;
         }
         public Builder subjectTypesSupporteds(String... subjectTypesSupporteds) {
@@ -305,12 +340,18 @@ public final class GetOidcOpenidConfigResult {
         }
         @CustomType.Setter
         public Builder tokenEndpoint(String tokenEndpoint) {
-            this.tokenEndpoint = Objects.requireNonNull(tokenEndpoint);
+            if (tokenEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "tokenEndpoint");
+            }
+            this.tokenEndpoint = tokenEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder tokenEndpointAuthMethodsSupporteds(List<String> tokenEndpointAuthMethodsSupporteds) {
-            this.tokenEndpointAuthMethodsSupporteds = Objects.requireNonNull(tokenEndpointAuthMethodsSupporteds);
+            if (tokenEndpointAuthMethodsSupporteds == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "tokenEndpointAuthMethodsSupporteds");
+            }
+            this.tokenEndpointAuthMethodsSupporteds = tokenEndpointAuthMethodsSupporteds;
             return this;
         }
         public Builder tokenEndpointAuthMethodsSupporteds(String... tokenEndpointAuthMethodsSupporteds) {
@@ -318,7 +359,10 @@ public final class GetOidcOpenidConfigResult {
         }
         @CustomType.Setter
         public Builder userinfoEndpoint(String userinfoEndpoint) {
-            this.userinfoEndpoint = Objects.requireNonNull(userinfoEndpoint);
+            if (userinfoEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetOidcOpenidConfigResult", "userinfoEndpoint");
+            }
+            this.userinfoEndpoint = userinfoEndpoint;
             return this;
         }
         public GetOidcOpenidConfigResult build() {

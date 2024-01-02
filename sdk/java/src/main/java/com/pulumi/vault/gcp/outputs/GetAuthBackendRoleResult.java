@@ -4,6 +4,7 @@
 package com.pulumi.vault.gcp.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -339,12 +340,16 @@ public final class GetAuthBackendRoleResult {
 
         @CustomType.Setter
         public Builder backend(@Nullable String backend) {
+
             this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder boundInstanceGroups(List<String> boundInstanceGroups) {
-            this.boundInstanceGroups = Objects.requireNonNull(boundInstanceGroups);
+            if (boundInstanceGroups == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundInstanceGroups");
+            }
+            this.boundInstanceGroups = boundInstanceGroups;
             return this;
         }
         public Builder boundInstanceGroups(String... boundInstanceGroups) {
@@ -352,7 +357,10 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder boundLabels(List<String> boundLabels) {
-            this.boundLabels = Objects.requireNonNull(boundLabels);
+            if (boundLabels == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundLabels");
+            }
+            this.boundLabels = boundLabels;
             return this;
         }
         public Builder boundLabels(String... boundLabels) {
@@ -360,7 +368,10 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder boundProjects(List<String> boundProjects) {
-            this.boundProjects = Objects.requireNonNull(boundProjects);
+            if (boundProjects == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundProjects");
+            }
+            this.boundProjects = boundProjects;
             return this;
         }
         public Builder boundProjects(String... boundProjects) {
@@ -368,7 +379,10 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder boundRegions(List<String> boundRegions) {
-            this.boundRegions = Objects.requireNonNull(boundRegions);
+            if (boundRegions == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundRegions");
+            }
+            this.boundRegions = boundRegions;
             return this;
         }
         public Builder boundRegions(String... boundRegions) {
@@ -376,7 +390,10 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder boundServiceAccounts(List<String> boundServiceAccounts) {
-            this.boundServiceAccounts = Objects.requireNonNull(boundServiceAccounts);
+            if (boundServiceAccounts == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundServiceAccounts");
+            }
+            this.boundServiceAccounts = boundServiceAccounts;
             return this;
         }
         public Builder boundServiceAccounts(String... boundServiceAccounts) {
@@ -384,7 +401,10 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder boundZones(List<String> boundZones) {
-            this.boundZones = Objects.requireNonNull(boundZones);
+            if (boundZones == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundZones");
+            }
+            this.boundZones = boundZones;
             return this;
         }
         public Builder boundZones(String... boundZones) {
@@ -392,26 +412,37 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder roleId(String roleId) {
-            this.roleId = Objects.requireNonNull(roleId);
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "roleId");
+            }
+            this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         @CustomType.Setter
         public Builder tokenBoundCidrs(@Nullable List<String> tokenBoundCidrs) {
+
             this.tokenBoundCidrs = tokenBoundCidrs;
             return this;
         }
@@ -420,31 +451,37 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder tokenExplicitMaxTtl(@Nullable Integer tokenExplicitMaxTtl) {
+
             this.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
             return this;
         }
         @CustomType.Setter
         public Builder tokenMaxTtl(@Nullable Integer tokenMaxTtl) {
+
             this.tokenMaxTtl = tokenMaxTtl;
             return this;
         }
         @CustomType.Setter
         public Builder tokenNoDefaultPolicy(@Nullable Boolean tokenNoDefaultPolicy) {
+
             this.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder tokenNumUses(@Nullable Integer tokenNumUses) {
+
             this.tokenNumUses = tokenNumUses;
             return this;
         }
         @CustomType.Setter
         public Builder tokenPeriod(@Nullable Integer tokenPeriod) {
+
             this.tokenPeriod = tokenPeriod;
             return this;
         }
         @CustomType.Setter
         public Builder tokenPolicies(@Nullable List<String> tokenPolicies) {
+
             this.tokenPolicies = tokenPolicies;
             return this;
         }
@@ -453,17 +490,22 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder tokenTtl(@Nullable Integer tokenTtl) {
+
             this.tokenTtl = tokenTtl;
             return this;
         }
         @CustomType.Setter
         public Builder tokenType(@Nullable String tokenType) {
+
             this.tokenType = tokenType;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetAuthBackendRoleResult build() {

@@ -5,6 +5,7 @@ package com.pulumi.vault.gcp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -235,9 +236,15 @@ public final class SecretImpersonatedAccountArgs extends com.pulumi.resources.Re
         }
 
         public SecretImpersonatedAccountArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.impersonatedAccount = Objects.requireNonNull($.impersonatedAccount, "expected parameter 'impersonatedAccount' to be non-null");
-            $.serviceAccountEmail = Objects.requireNonNull($.serviceAccountEmail, "expected parameter 'serviceAccountEmail' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretImpersonatedAccountArgs", "backend");
+            }
+            if ($.impersonatedAccount == null) {
+                throw new MissingRequiredPropertyException("SecretImpersonatedAccountArgs", "impersonatedAccount");
+            }
+            if ($.serviceAccountEmail == null) {
+                throw new MissingRequiredPropertyException("SecretImpersonatedAccountArgs", "serviceAccountEmail");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.vault.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.inputs.GetPolicyDocumentRuleAllowedParameter;
 import com.pulumi.vault.inputs.GetPolicyDocumentRuleDeniedParameter;
 import java.lang.String;
@@ -297,8 +298,12 @@ public final class GetPolicyDocumentRule extends com.pulumi.resources.InvokeArgs
         }
 
         public GetPolicyDocumentRule build() {
-            $.capabilities = Objects.requireNonNull($.capabilities, "expected parameter 'capabilities' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.capabilities == null) {
+                throw new MissingRequiredPropertyException("GetPolicyDocumentRule", "capabilities");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("GetPolicyDocumentRule", "path");
+            }
             return $;
         }
     }

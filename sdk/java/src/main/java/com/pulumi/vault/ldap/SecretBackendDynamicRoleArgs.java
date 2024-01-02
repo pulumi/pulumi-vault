@@ -5,6 +5,7 @@ package com.pulumi.vault.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -465,9 +466,15 @@ public final class SecretBackendDynamicRoleArgs extends com.pulumi.resources.Res
         }
 
         public SecretBackendDynamicRoleArgs build() {
-            $.creationLdif = Objects.requireNonNull($.creationLdif, "expected parameter 'creationLdif' to be non-null");
-            $.deletionLdif = Objects.requireNonNull($.deletionLdif, "expected parameter 'deletionLdif' to be non-null");
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
+            if ($.creationLdif == null) {
+                throw new MissingRequiredPropertyException("SecretBackendDynamicRoleArgs", "creationLdif");
+            }
+            if ($.deletionLdif == null) {
+                throw new MissingRequiredPropertyException("SecretBackendDynamicRoleArgs", "deletionLdif");
+            }
+            if ($.roleName == null) {
+                throw new MissingRequiredPropertyException("SecretBackendDynamicRoleArgs", "roleName");
+            }
             return $;
         }
     }

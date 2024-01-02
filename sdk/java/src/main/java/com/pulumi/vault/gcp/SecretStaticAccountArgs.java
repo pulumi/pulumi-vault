@@ -5,6 +5,7 @@ package com.pulumi.vault.gcp;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.gcp.inputs.SecretStaticAccountBindingArgs;
 import java.lang.String;
 import java.util.List;
@@ -332,9 +333,15 @@ public final class SecretStaticAccountArgs extends com.pulumi.resources.Resource
         }
 
         public SecretStaticAccountArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.serviceAccountEmail = Objects.requireNonNull($.serviceAccountEmail, "expected parameter 'serviceAccountEmail' to be non-null");
-            $.staticAccount = Objects.requireNonNull($.staticAccount, "expected parameter 'staticAccount' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretStaticAccountArgs", "backend");
+            }
+            if ($.serviceAccountEmail == null) {
+                throw new MissingRequiredPropertyException("SecretStaticAccountArgs", "serviceAccountEmail");
+            }
+            if ($.staticAccount == null) {
+                throw new MissingRequiredPropertyException("SecretStaticAccountArgs", "staticAccount");
+            }
             return $;
         }
     }

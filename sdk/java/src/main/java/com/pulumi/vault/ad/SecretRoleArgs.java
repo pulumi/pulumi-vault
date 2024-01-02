@@ -5,6 +5,7 @@ package com.pulumi.vault.ad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -253,9 +254,15 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretRoleArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
-            $.serviceAccountName = Objects.requireNonNull($.serviceAccountName, "expected parameter 'serviceAccountName' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretRoleArgs", "backend");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("SecretRoleArgs", "role");
+            }
+            if ($.serviceAccountName == null) {
+                throw new MissingRequiredPropertyException("SecretRoleArgs", "serviceAccountName");
+            }
             return $;
         }
     }

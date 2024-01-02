@@ -5,6 +5,7 @@ package com.pulumi.vault.rabbitMq;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -517,9 +518,15 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretBackendArgs build() {
-            $.connectionUri = Objects.requireNonNull($.connectionUri, "expected parameter 'connectionUri' to be non-null");
-            $.password = Objects.requireNonNull($.password, "expected parameter 'password' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.connectionUri == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "connectionUri");
+            }
+            if ($.password == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "password");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "username");
+            }
             return $;
         }
     }

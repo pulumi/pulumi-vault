@@ -6,6 +6,7 @@ package com.pulumi.vault;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.inputs.ProviderAuthLoginArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginAwsArgs;
 import com.pulumi.vault.inputs.ProviderAuthLoginAzureArgs;
@@ -1197,11 +1198,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
+            if ($.address == null) {
+                throw new MissingRequiredPropertyException("ProviderArgs", "address");
+            }
             $.maxLeaseTtlSeconds = Codegen.integerProp("maxLeaseTtlSeconds").output().arg($.maxLeaseTtlSeconds).env("TERRAFORM_VAULT_MAX_TTL").def(1200).getNullable();
             $.maxRetries = Codegen.integerProp("maxRetries").output().arg($.maxRetries).env("VAULT_MAX_RETRIES").def(2).getNullable();
             $.skipTlsVerify = Codegen.booleanProp("skipTlsVerify").output().arg($.skipTlsVerify).env("VAULT_SKIP_VERIFY").getNullable();
-            $.token = Objects.requireNonNull($.token, "expected parameter 'token' to be non-null");
+            if ($.token == null) {
+                throw new MissingRequiredPropertyException("ProviderArgs", "token");
+            }
             return $;
         }
     }

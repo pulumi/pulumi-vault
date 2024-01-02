@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -414,9 +415,15 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         public SecretBackendConnectionElasticsearchArgs build() {
-            $.password = Objects.requireNonNull($.password, "expected parameter 'password' to be non-null");
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.password == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionElasticsearchArgs", "password");
+            }
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionElasticsearchArgs", "url");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("SecretBackendConnectionElasticsearchArgs", "username");
+            }
             return $;
         }
     }

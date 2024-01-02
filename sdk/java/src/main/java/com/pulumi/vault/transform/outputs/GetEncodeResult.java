@@ -4,6 +4,7 @@
 package com.pulumi.vault.transform.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -101,51 +102,71 @@ public final class GetEncodeResult {
 
         @CustomType.Setter
         public Builder batchInputs(@Nullable List<Map<String,Object>> batchInputs) {
+
             this.batchInputs = batchInputs;
             return this;
         }
         @CustomType.Setter
         public Builder batchResults(List<Map<String,Object>> batchResults) {
-            this.batchResults = Objects.requireNonNull(batchResults);
+            if (batchResults == null) {
+              throw new MissingRequiredPropertyException("GetEncodeResult", "batchResults");
+            }
+            this.batchResults = batchResults;
             return this;
         }
         @CustomType.Setter
         public Builder encodedValue(String encodedValue) {
-            this.encodedValue = Objects.requireNonNull(encodedValue);
+            if (encodedValue == null) {
+              throw new MissingRequiredPropertyException("GetEncodeResult", "encodedValue");
+            }
+            this.encodedValue = encodedValue;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetEncodeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetEncodeResult", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetEncodeResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         @CustomType.Setter
         public Builder transformation(@Nullable String transformation) {
+
             this.transformation = transformation;
             return this;
         }
         @CustomType.Setter
         public Builder tweak(@Nullable String tweak) {
+
             this.tweak = tweak;
             return this;
         }
         @CustomType.Setter
         public Builder value(@Nullable String value) {
+
             this.value = value;
             return this;
         }

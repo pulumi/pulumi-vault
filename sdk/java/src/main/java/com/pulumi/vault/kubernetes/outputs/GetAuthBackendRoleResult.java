@@ -4,6 +4,7 @@
 package com.pulumi.vault.kubernetes.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -283,22 +284,30 @@ public final class GetAuthBackendRoleResult {
 
         @CustomType.Setter
         public Builder aliasNameSource(String aliasNameSource) {
-            this.aliasNameSource = Objects.requireNonNull(aliasNameSource);
+            if (aliasNameSource == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "aliasNameSource");
+            }
+            this.aliasNameSource = aliasNameSource;
             return this;
         }
         @CustomType.Setter
         public Builder audience(@Nullable String audience) {
+
             this.audience = audience;
             return this;
         }
         @CustomType.Setter
         public Builder backend(@Nullable String backend) {
+
             this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder boundServiceAccountNames(List<String> boundServiceAccountNames) {
-            this.boundServiceAccountNames = Objects.requireNonNull(boundServiceAccountNames);
+            if (boundServiceAccountNames == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundServiceAccountNames");
+            }
+            this.boundServiceAccountNames = boundServiceAccountNames;
             return this;
         }
         public Builder boundServiceAccountNames(String... boundServiceAccountNames) {
@@ -306,7 +315,10 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder boundServiceAccountNamespaces(List<String> boundServiceAccountNamespaces) {
-            this.boundServiceAccountNamespaces = Objects.requireNonNull(boundServiceAccountNamespaces);
+            if (boundServiceAccountNamespaces == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "boundServiceAccountNamespaces");
+            }
+            this.boundServiceAccountNamespaces = boundServiceAccountNamespaces;
             return this;
         }
         public Builder boundServiceAccountNamespaces(String... boundServiceAccountNamespaces) {
@@ -314,21 +326,29 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(String roleName) {
-            this.roleName = Objects.requireNonNull(roleName);
+            if (roleName == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendRoleResult", "roleName");
+            }
+            this.roleName = roleName;
             return this;
         }
         @CustomType.Setter
         public Builder tokenBoundCidrs(@Nullable List<String> tokenBoundCidrs) {
+
             this.tokenBoundCidrs = tokenBoundCidrs;
             return this;
         }
@@ -337,31 +357,37 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder tokenExplicitMaxTtl(@Nullable Integer tokenExplicitMaxTtl) {
+
             this.tokenExplicitMaxTtl = tokenExplicitMaxTtl;
             return this;
         }
         @CustomType.Setter
         public Builder tokenMaxTtl(@Nullable Integer tokenMaxTtl) {
+
             this.tokenMaxTtl = tokenMaxTtl;
             return this;
         }
         @CustomType.Setter
         public Builder tokenNoDefaultPolicy(@Nullable Boolean tokenNoDefaultPolicy) {
+
             this.tokenNoDefaultPolicy = tokenNoDefaultPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder tokenNumUses(@Nullable Integer tokenNumUses) {
+
             this.tokenNumUses = tokenNumUses;
             return this;
         }
         @CustomType.Setter
         public Builder tokenPeriod(@Nullable Integer tokenPeriod) {
+
             this.tokenPeriod = tokenPeriod;
             return this;
         }
         @CustomType.Setter
         public Builder tokenPolicies(@Nullable List<String> tokenPolicies) {
+
             this.tokenPolicies = tokenPolicies;
             return this;
         }
@@ -370,11 +396,13 @@ public final class GetAuthBackendRoleResult {
         }
         @CustomType.Setter
         public Builder tokenTtl(@Nullable Integer tokenTtl) {
+
             this.tokenTtl = tokenTtl;
             return this;
         }
         @CustomType.Setter
         public Builder tokenType(@Nullable String tokenType) {
+
             this.tokenType = tokenType;
             return this;
         }
