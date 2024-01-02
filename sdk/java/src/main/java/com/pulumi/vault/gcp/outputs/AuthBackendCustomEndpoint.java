@@ -96,21 +96,25 @@ public final class AuthBackendCustomEndpoint {
 
         @CustomType.Setter
         public Builder api(@Nullable String api) {
+
             this.api = api;
             return this;
         }
         @CustomType.Setter
         public Builder compute(@Nullable String compute) {
+
             this.compute = compute;
             return this;
         }
         @CustomType.Setter
         public Builder crm(@Nullable String crm) {
+
             this.crm = crm;
             return this;
         }
         @CustomType.Setter
         public Builder iam(@Nullable String iam) {
+
             this.iam = iam;
             return this;
         }

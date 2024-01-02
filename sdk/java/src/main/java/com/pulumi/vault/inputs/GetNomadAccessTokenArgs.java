@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -170,8 +171,12 @@ public final class GetNomadAccessTokenArgs extends com.pulumi.resources.InvokeAr
         }
 
         public GetNomadAccessTokenArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetNomadAccessTokenArgs", "backend");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("GetNomadAccessTokenArgs", "role");
+            }
             return $;
         }
     }

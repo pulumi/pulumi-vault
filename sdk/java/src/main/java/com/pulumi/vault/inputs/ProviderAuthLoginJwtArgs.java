@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -125,8 +126,12 @@ public final class ProviderAuthLoginJwtArgs extends com.pulumi.resources.Resourc
         }
 
         public ProviderAuthLoginJwtArgs build() {
-            $.jwt = Objects.requireNonNull($.jwt, "expected parameter 'jwt' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.jwt == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginJwtArgs", "jwt");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginJwtArgs", "role");
+            }
             return $;
         }
     }

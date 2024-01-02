@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -550,10 +551,18 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         public SecretsMountRediArgs build() {
-            $.host = Objects.requireNonNull($.host, "expected parameter 'host' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.password = Objects.requireNonNull($.password, "expected parameter 'password' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.host == null) {
+                throw new MissingRequiredPropertyException("SecretsMountRediArgs", "host");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("SecretsMountRediArgs", "name");
+            }
+            if ($.password == null) {
+                throw new MissingRequiredPropertyException("SecretsMountRediArgs", "password");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("SecretsMountRediArgs", "username");
+            }
             return $;
         }
     }

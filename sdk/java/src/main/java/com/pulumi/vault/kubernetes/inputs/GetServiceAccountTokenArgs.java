@@ -5,6 +5,7 @@ package com.pulumi.vault.kubernetes.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -294,9 +295,15 @@ public final class GetServiceAccountTokenArgs extends com.pulumi.resources.Invok
         }
 
         public GetServiceAccountTokenArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.kubernetesNamespace = Objects.requireNonNull($.kubernetesNamespace, "expected parameter 'kubernetesNamespace' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("GetServiceAccountTokenArgs", "backend");
+            }
+            if ($.kubernetesNamespace == null) {
+                throw new MissingRequiredPropertyException("GetServiceAccountTokenArgs", "kubernetesNamespace");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("GetServiceAccountTokenArgs", "role");
+            }
             return $;
         }
     }

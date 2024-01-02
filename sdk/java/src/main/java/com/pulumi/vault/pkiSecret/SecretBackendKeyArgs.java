@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -364,8 +365,12 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         public SecretBackendKeyArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretBackendKeyArgs", "backend");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("SecretBackendKeyArgs", "type");
+            }
             return $;
         }
     }

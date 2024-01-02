@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -142,7 +143,9 @@ public final class ProviderAuthLoginUserpassArgs extends com.pulumi.resources.Re
         }
 
         public ProviderAuthLoginUserpassArgs build() {
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("ProviderAuthLoginUserpassArgs", "username");
+            }
             return $;
         }
     }

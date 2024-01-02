@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -227,8 +228,12 @@ public final class GroupPoliciesArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public GroupPoliciesArgs build() {
-            $.groupId = Objects.requireNonNull($.groupId, "expected parameter 'groupId' to be non-null");
-            $.policies = Objects.requireNonNull($.policies, "expected parameter 'policies' to be non-null");
+            if ($.groupId == null) {
+                throw new MissingRequiredPropertyException("GroupPoliciesArgs", "groupId");
+            }
+            if ($.policies == null) {
+                throw new MissingRequiredPropertyException("GroupPoliciesArgs", "policies");
+            }
             return $;
         }
     }

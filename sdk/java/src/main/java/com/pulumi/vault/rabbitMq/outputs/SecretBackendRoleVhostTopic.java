@@ -4,6 +4,7 @@
 package com.pulumi.vault.rabbitMq.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.rabbitMq.outputs.SecretBackendRoleVhostTopicVhost;
 import java.lang.String;
 import java.util.List;
@@ -51,11 +52,15 @@ public final class SecretBackendRoleVhostTopic {
 
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRoleVhostTopic", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder vhosts(@Nullable List<SecretBackendRoleVhostTopicVhost> vhosts) {
+
             this.vhosts = vhosts;
             return this;
         }

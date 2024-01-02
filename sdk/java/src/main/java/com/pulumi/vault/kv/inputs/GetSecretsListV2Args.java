@@ -5,6 +5,7 @@ package com.pulumi.vault.kv.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -174,7 +175,9 @@ public final class GetSecretsListV2Args extends com.pulumi.resources.InvokeArgs 
         }
 
         public GetSecretsListV2Args build() {
-            $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
+            if ($.mount == null) {
+                throw new MissingRequiredPropertyException("GetSecretsListV2Args", "mount");
+            }
             return $;
         }
     }

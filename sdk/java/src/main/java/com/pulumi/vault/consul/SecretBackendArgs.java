@@ -5,6 +5,7 @@ package com.pulumi.vault.consul;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -607,7 +608,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretBackendArgs build() {
-            $.address = Objects.requireNonNull($.address, "expected parameter 'address' to be non-null");
+            if ($.address == null) {
+                throw new MissingRequiredPropertyException("SecretBackendArgs", "address");
+            }
             return $;
         }
     }

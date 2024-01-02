@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -262,8 +263,12 @@ public final class MfaOktaArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public MfaOktaArgs build() {
-            $.apiToken = Objects.requireNonNull($.apiToken, "expected parameter 'apiToken' to be non-null");
-            $.orgName = Objects.requireNonNull($.orgName, "expected parameter 'orgName' to be non-null");
+            if ($.apiToken == null) {
+                throw new MissingRequiredPropertyException("MfaOktaArgs", "apiToken");
+            }
+            if ($.orgName == null) {
+                throw new MissingRequiredPropertyException("MfaOktaArgs", "orgName");
+            }
             return $;
         }
     }

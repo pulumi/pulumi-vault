@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -67,31 +68,41 @@ public final class AuthLoginCert {
 
         @CustomType.Setter
         public Builder certFile(String certFile) {
-            this.certFile = Objects.requireNonNull(certFile);
+            if (certFile == null) {
+              throw new MissingRequiredPropertyException("AuthLoginCert", "certFile");
+            }
+            this.certFile = certFile;
             return this;
         }
         @CustomType.Setter
         public Builder keyFile(String keyFile) {
-            this.keyFile = Objects.requireNonNull(keyFile);
+            if (keyFile == null) {
+              throw new MissingRequiredPropertyException("AuthLoginCert", "keyFile");
+            }
+            this.keyFile = keyFile;
             return this;
         }
         @CustomType.Setter
         public Builder mount(@Nullable String mount) {
+
             this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+
             this.useRootNamespace = useRootNamespace;
             return this;
         }

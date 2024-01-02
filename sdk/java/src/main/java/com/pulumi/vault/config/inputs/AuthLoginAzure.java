@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -103,61 +104,79 @@ public final class AuthLoginAzure {
 
         @CustomType.Setter
         public Builder clientId(@Nullable String clientId) {
+
             this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder jwt(@Nullable String jwt) {
+
             this.jwt = jwt;
             return this;
         }
         @CustomType.Setter
         public Builder mount(@Nullable String mount) {
+
             this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder resourceGroupName(String resourceGroupName) {
-            this.resourceGroupName = Objects.requireNonNull(resourceGroupName);
+            if (resourceGroupName == null) {
+              throw new MissingRequiredPropertyException("AuthLoginAzure", "resourceGroupName");
+            }
+            this.resourceGroupName = resourceGroupName;
             return this;
         }
         @CustomType.Setter
         public Builder role(String role) {
-            this.role = Objects.requireNonNull(role);
+            if (role == null) {
+              throw new MissingRequiredPropertyException("AuthLoginAzure", "role");
+            }
+            this.role = role;
             return this;
         }
         @CustomType.Setter
         public Builder scope(@Nullable String scope) {
+
             this.scope = scope;
             return this;
         }
         @CustomType.Setter
         public Builder subscriptionId(String subscriptionId) {
-            this.subscriptionId = Objects.requireNonNull(subscriptionId);
+            if (subscriptionId == null) {
+              throw new MissingRequiredPropertyException("AuthLoginAzure", "subscriptionId");
+            }
+            this.subscriptionId = subscriptionId;
             return this;
         }
         @CustomType.Setter
         public Builder tenantId(@Nullable String tenantId) {
+
             this.tenantId = tenantId;
             return this;
         }
         @CustomType.Setter
         public Builder useRootNamespace(@Nullable Boolean useRootNamespace) {
+
             this.useRootNamespace = useRootNamespace;
             return this;
         }
         @CustomType.Setter
         public Builder vmName(@Nullable String vmName) {
+
             this.vmName = vmName;
             return this;
         }
         @CustomType.Setter
         public Builder vmssName(@Nullable String vmssName) {
+
             this.vmssName = vmssName;
             return this;
         }

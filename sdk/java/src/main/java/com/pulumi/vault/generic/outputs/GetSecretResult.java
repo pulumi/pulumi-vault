@@ -4,6 +4,7 @@
 package com.pulumi.vault.generic.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -152,56 +153,83 @@ public final class GetSecretResult {
 
         @CustomType.Setter
         public Builder data(Map<String,Object> data) {
-            this.data = Objects.requireNonNull(data);
+            if (data == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "data");
+            }
+            this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder dataJson(String dataJson) {
-            this.dataJson = Objects.requireNonNull(dataJson);
+            if (dataJson == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "dataJson");
+            }
+            this.dataJson = dataJson;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder leaseDuration(Integer leaseDuration) {
-            this.leaseDuration = Objects.requireNonNull(leaseDuration);
+            if (leaseDuration == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "leaseDuration");
+            }
+            this.leaseDuration = leaseDuration;
             return this;
         }
         @CustomType.Setter
         public Builder leaseId(String leaseId) {
-            this.leaseId = Objects.requireNonNull(leaseId);
+            if (leaseId == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "leaseId");
+            }
+            this.leaseId = leaseId;
             return this;
         }
         @CustomType.Setter
         public Builder leaseRenewable(Boolean leaseRenewable) {
-            this.leaseRenewable = Objects.requireNonNull(leaseRenewable);
+            if (leaseRenewable == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "leaseRenewable");
+            }
+            this.leaseRenewable = leaseRenewable;
             return this;
         }
         @CustomType.Setter
         public Builder leaseStartTime(String leaseStartTime) {
-            this.leaseStartTime = Objects.requireNonNull(leaseStartTime);
+            if (leaseStartTime == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "leaseStartTime");
+            }
+            this.leaseStartTime = leaseStartTime;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetSecretResult", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder version(@Nullable Integer version) {
+
             this.version = version;
             return this;
         }
         @CustomType.Setter
         public Builder withLeaseStartTime(@Nullable Boolean withLeaseStartTime) {
+
             this.withLeaseStartTime = withLeaseStartTime;
             return this;
         }

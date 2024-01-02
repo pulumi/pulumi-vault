@@ -4,6 +4,7 @@
 package com.pulumi.vault.kv.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -119,46 +120,67 @@ public final class GetSecretSubkeysV2Result {
 
         @CustomType.Setter
         public Builder data(Map<String,Object> data) {
-            this.data = Objects.requireNonNull(data);
+            if (data == null) {
+              throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "data");
+            }
+            this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder dataJson(String dataJson) {
-            this.dataJson = Objects.requireNonNull(dataJson);
+            if (dataJson == null) {
+              throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "dataJson");
+            }
+            this.dataJson = dataJson;
             return this;
         }
         @CustomType.Setter
         public Builder depth(@Nullable Integer depth) {
+
             this.depth = depth;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder mount(String mount) {
-            this.mount = Objects.requireNonNull(mount);
+            if (mount == null) {
+              throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "mount");
+            }
+            this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder version(@Nullable Integer version) {
+
             this.version = version;
             return this;
         }

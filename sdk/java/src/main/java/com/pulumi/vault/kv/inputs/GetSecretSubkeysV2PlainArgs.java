@@ -4,6 +4,7 @@
 package com.pulumi.vault.kv.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -204,8 +205,12 @@ public final class GetSecretSubkeysV2PlainArgs extends com.pulumi.resources.Invo
         }
 
         public GetSecretSubkeysV2PlainArgs build() {
-            $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.mount == null) {
+                throw new MissingRequiredPropertyException("GetSecretSubkeysV2PlainArgs", "mount");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetSecretSubkeysV2PlainArgs", "name");
+            }
             return $;
         }
     }

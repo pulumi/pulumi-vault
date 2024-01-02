@@ -5,6 +5,7 @@ package com.pulumi.vault.ldap.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -90,8 +91,12 @@ public final class GetStaticCredentialsArgs extends com.pulumi.resources.InvokeA
         }
 
         public GetStaticCredentialsArgs build() {
-            $.mount = Objects.requireNonNull($.mount, "expected parameter 'mount' to be non-null");
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
+            if ($.mount == null) {
+                throw new MissingRequiredPropertyException("GetStaticCredentialsArgs", "mount");
+            }
+            if ($.roleName == null) {
+                throw new MissingRequiredPropertyException("GetStaticCredentialsArgs", "roleName");
+            }
             return $;
         }
     }

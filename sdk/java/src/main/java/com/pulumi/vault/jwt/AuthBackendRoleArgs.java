@@ -5,6 +5,7 @@ package com.pulumi.vault.jwt;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -1366,8 +1367,12 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AuthBackendRoleArgs build() {
-            $.roleName = Objects.requireNonNull($.roleName, "expected parameter 'roleName' to be non-null");
-            $.userClaim = Objects.requireNonNull($.userClaim, "expected parameter 'userClaim' to be non-null");
+            if ($.roleName == null) {
+                throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "roleName");
+            }
+            if ($.userClaim == null) {
+                throw new MissingRequiredPropertyException("AuthBackendRoleArgs", "userClaim");
+            }
             return $;
         }
     }

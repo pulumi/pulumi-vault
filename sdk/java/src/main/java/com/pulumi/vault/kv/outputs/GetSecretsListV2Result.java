@@ -4,6 +4,7 @@
 package com.pulumi.vault.kv.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -91,22 +92,32 @@ public final class GetSecretsListV2Result {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSecretsListV2Result", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder mount(String mount) {
-            this.mount = Objects.requireNonNull(mount);
+            if (mount == null) {
+              throw new MissingRequiredPropertyException("GetSecretsListV2Result", "mount");
+            }
+            this.mount = mount;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder names(List<String> names) {
-            this.names = Objects.requireNonNull(names);
+            if (names == null) {
+              throw new MissingRequiredPropertyException("GetSecretsListV2Result", "names");
+            }
+            this.names = names;
             return this;
         }
         public Builder names(String... names) {
@@ -114,12 +125,16 @@ public final class GetSecretsListV2Result {
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetSecretsListV2Result", "path");
+            }
+            this.path = path;
             return this;
         }
         public GetSecretsListV2Result build() {

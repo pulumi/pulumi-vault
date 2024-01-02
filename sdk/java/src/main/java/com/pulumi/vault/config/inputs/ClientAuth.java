@@ -4,6 +4,7 @@
 package com.pulumi.vault.config.inputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -40,12 +41,18 @@ public final class ClientAuth {
 
         @CustomType.Setter
         public Builder certFile(String certFile) {
-            this.certFile = Objects.requireNonNull(certFile);
+            if (certFile == null) {
+              throw new MissingRequiredPropertyException("ClientAuth", "certFile");
+            }
+            this.certFile = certFile;
             return this;
         }
         @CustomType.Setter
         public Builder keyFile(String keyFile) {
-            this.keyFile = Objects.requireNonNull(keyFile);
+            if (keyFile == null) {
+              throw new MissingRequiredPropertyException("ClientAuth", "keyFile");
+            }
+            this.keyFile = keyFile;
             return this;
         }
         public ClientAuth build() {

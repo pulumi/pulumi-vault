@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -237,8 +238,12 @@ public final class EntityAliasArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public EntityAliasArgs build() {
-            $.canonicalId = Objects.requireNonNull($.canonicalId, "expected parameter 'canonicalId' to be non-null");
-            $.mountAccessor = Objects.requireNonNull($.mountAccessor, "expected parameter 'mountAccessor' to be non-null");
+            if ($.canonicalId == null) {
+                throw new MissingRequiredPropertyException("EntityAliasArgs", "canonicalId");
+            }
+            if ($.mountAccessor == null) {
+                throw new MissingRequiredPropertyException("EntityAliasArgs", "mountAccessor");
+            }
             return $;
         }
     }

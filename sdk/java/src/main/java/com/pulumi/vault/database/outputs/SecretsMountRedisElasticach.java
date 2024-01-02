@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -178,6 +179,7 @@ public final class SecretsMountRedisElasticach {
 
         @CustomType.Setter
         public Builder allowedRoles(@Nullable List<String> allowedRoles) {
+
             this.allowedRoles = allowedRoles;
             return this;
         }
@@ -186,31 +188,39 @@ public final class SecretsMountRedisElasticach {
         }
         @CustomType.Setter
         public Builder data(@Nullable Map<String,Object> data) {
+
             this.data = data;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("SecretsMountRedisElasticach", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder password(@Nullable String password) {
+
             this.password = password;
             return this;
         }
         @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
+
             this.pluginName = pluginName;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder rootRotationStatements(@Nullable List<String> rootRotationStatements) {
+
             this.rootRotationStatements = rootRotationStatements;
             return this;
         }
@@ -219,16 +229,21 @@ public final class SecretsMountRedisElasticach {
         }
         @CustomType.Setter
         public Builder url(String url) {
-            this.url = Objects.requireNonNull(url);
+            if (url == null) {
+              throw new MissingRequiredPropertyException("SecretsMountRedisElasticach", "url");
+            }
+            this.url = url;
             return this;
         }
         @CustomType.Setter
         public Builder username(@Nullable String username) {
+
             this.username = username;
             return this;
         }
         @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
+
             this.verifyConnection = verifyConnection;
             return this;
         }

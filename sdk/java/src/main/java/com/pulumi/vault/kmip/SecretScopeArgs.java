@@ -5,6 +5,7 @@ package com.pulumi.vault.kmip;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -204,8 +205,12 @@ public final class SecretScopeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretScopeArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
-            $.scope = Objects.requireNonNull($.scope, "expected parameter 'scope' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("SecretScopeArgs", "path");
+            }
+            if ($.scope == null) {
+                throw new MissingRequiredPropertyException("SecretScopeArgs", "scope");
+            }
             return $;
         }
     }

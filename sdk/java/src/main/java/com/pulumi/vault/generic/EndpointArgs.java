@@ -5,6 +5,7 @@ package com.pulumi.vault.generic;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -416,8 +417,12 @@ public final class EndpointArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public EndpointArgs build() {
-            $.dataJson = Objects.requireNonNull($.dataJson, "expected parameter 'dataJson' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.dataJson == null) {
+                throw new MissingRequiredPropertyException("EndpointArgs", "dataJson");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("EndpointArgs", "path");
+            }
             return $;
         }
     }

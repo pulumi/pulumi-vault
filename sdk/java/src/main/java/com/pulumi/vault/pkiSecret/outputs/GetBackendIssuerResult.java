@@ -4,6 +4,7 @@
 package com.pulumi.vault.pkiSecret.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -177,12 +178,18 @@ public final class GetBackendIssuerResult {
 
         @CustomType.Setter
         public Builder backend(String backend) {
-            this.backend = Objects.requireNonNull(backend);
+            if (backend == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "backend");
+            }
+            this.backend = backend;
             return this;
         }
         @CustomType.Setter
         public Builder caChains(List<String> caChains) {
-            this.caChains = Objects.requireNonNull(caChains);
+            if (caChains == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "caChains");
+            }
+            this.caChains = caChains;
             return this;
         }
         public Builder caChains(String... caChains) {
@@ -190,42 +197,66 @@ public final class GetBackendIssuerResult {
         }
         @CustomType.Setter
         public Builder certificate(String certificate) {
-            this.certificate = Objects.requireNonNull(certificate);
+            if (certificate == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "certificate");
+            }
+            this.certificate = certificate;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder issuerId(String issuerId) {
-            this.issuerId = Objects.requireNonNull(issuerId);
+            if (issuerId == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "issuerId");
+            }
+            this.issuerId = issuerId;
             return this;
         }
         @CustomType.Setter
         public Builder issuerName(String issuerName) {
-            this.issuerName = Objects.requireNonNull(issuerName);
+            if (issuerName == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "issuerName");
+            }
+            this.issuerName = issuerName;
             return this;
         }
         @CustomType.Setter
         public Builder issuerRef(String issuerRef) {
-            this.issuerRef = Objects.requireNonNull(issuerRef);
+            if (issuerRef == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "issuerRef");
+            }
+            this.issuerRef = issuerRef;
             return this;
         }
         @CustomType.Setter
         public Builder keyId(String keyId) {
-            this.keyId = Objects.requireNonNull(keyId);
+            if (keyId == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "keyId");
+            }
+            this.keyId = keyId;
             return this;
         }
         @CustomType.Setter
         public Builder leafNotAfterBehavior(String leafNotAfterBehavior) {
-            this.leafNotAfterBehavior = Objects.requireNonNull(leafNotAfterBehavior);
+            if (leafNotAfterBehavior == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "leafNotAfterBehavior");
+            }
+            this.leafNotAfterBehavior = leafNotAfterBehavior;
             return this;
         }
         @CustomType.Setter
         public Builder manualChains(List<String> manualChains) {
-            this.manualChains = Objects.requireNonNull(manualChains);
+            if (manualChains == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "manualChains");
+            }
+            this.manualChains = manualChains;
             return this;
         }
         public Builder manualChains(String... manualChains) {
@@ -233,12 +264,16 @@ public final class GetBackendIssuerResult {
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder usage(String usage) {
-            this.usage = Objects.requireNonNull(usage);
+            if (usage == null) {
+              throw new MissingRequiredPropertyException("GetBackendIssuerResult", "usage");
+            }
+            this.usage = usage;
             return this;
         }
         public GetBackendIssuerResult build() {

@@ -5,6 +5,7 @@ package com.pulumi.vault.database;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.database.inputs.SecretsMountCassandraArgs;
 import com.pulumi.vault.database.inputs.SecretsMountCouchbaseArgs;
 import com.pulumi.vault.database.inputs.SecretsMountElasticsearchArgs;
@@ -1482,7 +1483,9 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretsMountArgs build() {
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("SecretsMountArgs", "path");
+            }
             return $;
         }
     }

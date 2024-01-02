@@ -5,6 +5,7 @@ package com.pulumi.vault.managed.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -566,12 +567,24 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public KeysAwArgs build() {
-            $.accessKey = Objects.requireNonNull($.accessKey, "expected parameter 'accessKey' to be non-null");
-            $.keyBits = Objects.requireNonNull($.keyBits, "expected parameter 'keyBits' to be non-null");
-            $.keyType = Objects.requireNonNull($.keyType, "expected parameter 'keyType' to be non-null");
-            $.kmsKey = Objects.requireNonNull($.kmsKey, "expected parameter 'kmsKey' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.secretKey = Objects.requireNonNull($.secretKey, "expected parameter 'secretKey' to be non-null");
+            if ($.accessKey == null) {
+                throw new MissingRequiredPropertyException("KeysAwArgs", "accessKey");
+            }
+            if ($.keyBits == null) {
+                throw new MissingRequiredPropertyException("KeysAwArgs", "keyBits");
+            }
+            if ($.keyType == null) {
+                throw new MissingRequiredPropertyException("KeysAwArgs", "keyType");
+            }
+            if ($.kmsKey == null) {
+                throw new MissingRequiredPropertyException("KeysAwArgs", "kmsKey");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("KeysAwArgs", "name");
+            }
+            if ($.secretKey == null) {
+                throw new MissingRequiredPropertyException("KeysAwArgs", "secretKey");
+            }
             return $;
         }
     }

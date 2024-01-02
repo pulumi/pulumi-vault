@@ -5,6 +5,7 @@ package com.pulumi.vault.identity;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -199,9 +200,15 @@ public final class GroupAliasArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public GroupAliasArgs build() {
-            $.canonicalId = Objects.requireNonNull($.canonicalId, "expected parameter 'canonicalId' to be non-null");
-            $.mountAccessor = Objects.requireNonNull($.mountAccessor, "expected parameter 'mountAccessor' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.canonicalId == null) {
+                throw new MissingRequiredPropertyException("GroupAliasArgs", "canonicalId");
+            }
+            if ($.mountAccessor == null) {
+                throw new MissingRequiredPropertyException("GroupAliasArgs", "mountAccessor");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GroupAliasArgs", "name");
+            }
             return $;
         }
     }

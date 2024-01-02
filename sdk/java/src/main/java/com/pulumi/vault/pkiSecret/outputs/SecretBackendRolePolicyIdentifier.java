@@ -4,6 +4,7 @@
 package com.pulumi.vault.pkiSecret.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -184,17 +185,22 @@ public final class SecretBackendRolePolicyIdentifier {
 
         @CustomType.Setter
         public Builder cps(@Nullable String cps) {
+
             this.cps = cps;
             return this;
         }
         @CustomType.Setter
         public Builder notice(@Nullable String notice) {
+
             this.notice = notice;
             return this;
         }
         @CustomType.Setter
         public Builder oid(String oid) {
-            this.oid = Objects.requireNonNull(oid);
+            if (oid == null) {
+              throw new MissingRequiredPropertyException("SecretBackendRolePolicyIdentifier", "oid");
+            }
+            this.oid = oid;
             return this;
         }
         public SecretBackendRolePolicyIdentifier build() {

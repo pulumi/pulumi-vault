@@ -4,6 +4,7 @@
 package com.pulumi.vault.azure.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -48,17 +49,22 @@ public final class BackendRoleAzureRole {
 
         @CustomType.Setter
         public Builder roleId(@Nullable String roleId) {
+
             this.roleId = roleId;
             return this;
         }
         @CustomType.Setter
         public Builder roleName(@Nullable String roleName) {
+
             this.roleName = roleName;
             return this;
         }
         @CustomType.Setter
         public Builder scope(String scope) {
-            this.scope = Objects.requireNonNull(scope);
+            if (scope == null) {
+              throw new MissingRequiredPropertyException("BackendRoleAzureRole", "scope");
+            }
+            this.scope = scope;
             return this;
         }
         public BackendRoleAzureRole build() {

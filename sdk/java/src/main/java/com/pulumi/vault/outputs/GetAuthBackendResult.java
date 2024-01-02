@@ -4,6 +4,7 @@
 package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -156,52 +157,80 @@ public final class GetAuthBackendResult {
 
         @CustomType.Setter
         public Builder accessor(String accessor) {
-            this.accessor = Objects.requireNonNull(accessor);
+            if (accessor == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "accessor");
+            }
+            this.accessor = accessor;
             return this;
         }
         @CustomType.Setter
         public Builder defaultLeaseTtlSeconds(Integer defaultLeaseTtlSeconds) {
-            this.defaultLeaseTtlSeconds = Objects.requireNonNull(defaultLeaseTtlSeconds);
+            if (defaultLeaseTtlSeconds == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "defaultLeaseTtlSeconds");
+            }
+            this.defaultLeaseTtlSeconds = defaultLeaseTtlSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder listingVisibility(String listingVisibility) {
-            this.listingVisibility = Objects.requireNonNull(listingVisibility);
+            if (listingVisibility == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "listingVisibility");
+            }
+            this.listingVisibility = listingVisibility;
             return this;
         }
         @CustomType.Setter
         public Builder local(Boolean local) {
-            this.local = Objects.requireNonNull(local);
+            if (local == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "local");
+            }
+            this.local = local;
             return this;
         }
         @CustomType.Setter
         public Builder maxLeaseTtlSeconds(Integer maxLeaseTtlSeconds) {
-            this.maxLeaseTtlSeconds = Objects.requireNonNull(maxLeaseTtlSeconds);
+            if (maxLeaseTtlSeconds == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "maxLeaseTtlSeconds");
+            }
+            this.maxLeaseTtlSeconds = maxLeaseTtlSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendResult", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetAuthBackendResult build() {

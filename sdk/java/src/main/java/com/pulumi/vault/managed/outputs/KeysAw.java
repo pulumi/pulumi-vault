@@ -4,6 +4,7 @@
 package com.pulumi.vault.managed.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -233,71 +234,97 @@ public final class KeysAw {
 
         @CustomType.Setter
         public Builder accessKey(String accessKey) {
-            this.accessKey = Objects.requireNonNull(accessKey);
+            if (accessKey == null) {
+              throw new MissingRequiredPropertyException("KeysAw", "accessKey");
+            }
+            this.accessKey = accessKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowGenerateKey(@Nullable Boolean allowGenerateKey) {
+
             this.allowGenerateKey = allowGenerateKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowReplaceKey(@Nullable Boolean allowReplaceKey) {
+
             this.allowReplaceKey = allowReplaceKey;
             return this;
         }
         @CustomType.Setter
         public Builder allowStoreKey(@Nullable Boolean allowStoreKey) {
+
             this.allowStoreKey = allowStoreKey;
             return this;
         }
         @CustomType.Setter
         public Builder anyMount(@Nullable Boolean anyMount) {
+
             this.anyMount = anyMount;
             return this;
         }
         @CustomType.Setter
         public Builder curve(@Nullable String curve) {
+
             this.curve = curve;
             return this;
         }
         @CustomType.Setter
         public Builder endpoint(@Nullable String endpoint) {
+
             this.endpoint = endpoint;
             return this;
         }
         @CustomType.Setter
         public Builder keyBits(String keyBits) {
-            this.keyBits = Objects.requireNonNull(keyBits);
+            if (keyBits == null) {
+              throw new MissingRequiredPropertyException("KeysAw", "keyBits");
+            }
+            this.keyBits = keyBits;
             return this;
         }
         @CustomType.Setter
         public Builder keyType(String keyType) {
-            this.keyType = Objects.requireNonNull(keyType);
+            if (keyType == null) {
+              throw new MissingRequiredPropertyException("KeysAw", "keyType");
+            }
+            this.keyType = keyType;
             return this;
         }
         @CustomType.Setter
         public Builder kmsKey(String kmsKey) {
-            this.kmsKey = Objects.requireNonNull(kmsKey);
+            if (kmsKey == null) {
+              throw new MissingRequiredPropertyException("KeysAw", "kmsKey");
+            }
+            this.kmsKey = kmsKey;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("KeysAw", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder secretKey(String secretKey) {
-            this.secretKey = Objects.requireNonNull(secretKey);
+            if (secretKey == null) {
+              throw new MissingRequiredPropertyException("KeysAw", "secretKey");
+            }
+            this.secretKey = secretKey;
             return this;
         }
         @CustomType.Setter
         public Builder uuid(@Nullable String uuid) {
+
             this.uuid = uuid;
             return this;
         }

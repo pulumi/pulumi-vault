@@ -4,6 +4,7 @@
 package com.pulumi.vault.identity.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
@@ -338,27 +339,42 @@ public final class GetGroupResult {
 
         @CustomType.Setter
         public Builder aliasCanonicalId(String aliasCanonicalId) {
-            this.aliasCanonicalId = Objects.requireNonNull(aliasCanonicalId);
+            if (aliasCanonicalId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasCanonicalId");
+            }
+            this.aliasCanonicalId = aliasCanonicalId;
             return this;
         }
         @CustomType.Setter
         public Builder aliasCreationTime(String aliasCreationTime) {
-            this.aliasCreationTime = Objects.requireNonNull(aliasCreationTime);
+            if (aliasCreationTime == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasCreationTime");
+            }
+            this.aliasCreationTime = aliasCreationTime;
             return this;
         }
         @CustomType.Setter
         public Builder aliasId(String aliasId) {
-            this.aliasId = Objects.requireNonNull(aliasId);
+            if (aliasId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasId");
+            }
+            this.aliasId = aliasId;
             return this;
         }
         @CustomType.Setter
         public Builder aliasLastUpdateTime(String aliasLastUpdateTime) {
-            this.aliasLastUpdateTime = Objects.requireNonNull(aliasLastUpdateTime);
+            if (aliasLastUpdateTime == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasLastUpdateTime");
+            }
+            this.aliasLastUpdateTime = aliasLastUpdateTime;
             return this;
         }
         @CustomType.Setter
         public Builder aliasMergedFromCanonicalIds(List<String> aliasMergedFromCanonicalIds) {
-            this.aliasMergedFromCanonicalIds = Objects.requireNonNull(aliasMergedFromCanonicalIds);
+            if (aliasMergedFromCanonicalIds == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasMergedFromCanonicalIds");
+            }
+            this.aliasMergedFromCanonicalIds = aliasMergedFromCanonicalIds;
             return this;
         }
         public Builder aliasMergedFromCanonicalIds(String... aliasMergedFromCanonicalIds) {
@@ -366,62 +382,98 @@ public final class GetGroupResult {
         }
         @CustomType.Setter
         public Builder aliasMetadata(Map<String,Object> aliasMetadata) {
-            this.aliasMetadata = Objects.requireNonNull(aliasMetadata);
+            if (aliasMetadata == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasMetadata");
+            }
+            this.aliasMetadata = aliasMetadata;
             return this;
         }
         @CustomType.Setter
         public Builder aliasMountAccessor(String aliasMountAccessor) {
-            this.aliasMountAccessor = Objects.requireNonNull(aliasMountAccessor);
+            if (aliasMountAccessor == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasMountAccessor");
+            }
+            this.aliasMountAccessor = aliasMountAccessor;
             return this;
         }
         @CustomType.Setter
         public Builder aliasMountPath(String aliasMountPath) {
-            this.aliasMountPath = Objects.requireNonNull(aliasMountPath);
+            if (aliasMountPath == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasMountPath");
+            }
+            this.aliasMountPath = aliasMountPath;
             return this;
         }
         @CustomType.Setter
         public Builder aliasMountType(String aliasMountType) {
-            this.aliasMountType = Objects.requireNonNull(aliasMountType);
+            if (aliasMountType == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasMountType");
+            }
+            this.aliasMountType = aliasMountType;
             return this;
         }
         @CustomType.Setter
         public Builder aliasName(String aliasName) {
-            this.aliasName = Objects.requireNonNull(aliasName);
+            if (aliasName == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "aliasName");
+            }
+            this.aliasName = aliasName;
             return this;
         }
         @CustomType.Setter
         public Builder creationTime(String creationTime) {
-            this.creationTime = Objects.requireNonNull(creationTime);
+            if (creationTime == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "creationTime");
+            }
+            this.creationTime = creationTime;
             return this;
         }
         @CustomType.Setter
         public Builder dataJson(String dataJson) {
-            this.dataJson = Objects.requireNonNull(dataJson);
+            if (dataJson == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "dataJson");
+            }
+            this.dataJson = dataJson;
             return this;
         }
         @CustomType.Setter
         public Builder groupId(String groupId) {
-            this.groupId = Objects.requireNonNull(groupId);
+            if (groupId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "groupId");
+            }
+            this.groupId = groupId;
             return this;
         }
         @CustomType.Setter
         public Builder groupName(String groupName) {
-            this.groupName = Objects.requireNonNull(groupName);
+            if (groupName == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "groupName");
+            }
+            this.groupName = groupName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastUpdateTime(String lastUpdateTime) {
-            this.lastUpdateTime = Objects.requireNonNull(lastUpdateTime);
+            if (lastUpdateTime == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "lastUpdateTime");
+            }
+            this.lastUpdateTime = lastUpdateTime;
             return this;
         }
         @CustomType.Setter
         public Builder memberEntityIds(List<String> memberEntityIds) {
-            this.memberEntityIds = Objects.requireNonNull(memberEntityIds);
+            if (memberEntityIds == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "memberEntityIds");
+            }
+            this.memberEntityIds = memberEntityIds;
             return this;
         }
         public Builder memberEntityIds(String... memberEntityIds) {
@@ -429,7 +481,10 @@ public final class GetGroupResult {
         }
         @CustomType.Setter
         public Builder memberGroupIds(List<String> memberGroupIds) {
-            this.memberGroupIds = Objects.requireNonNull(memberGroupIds);
+            if (memberGroupIds == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "memberGroupIds");
+            }
+            this.memberGroupIds = memberGroupIds;
             return this;
         }
         public Builder memberGroupIds(String... memberGroupIds) {
@@ -437,27 +492,40 @@ public final class GetGroupResult {
         }
         @CustomType.Setter
         public Builder metadata(Map<String,Object> metadata) {
-            this.metadata = Objects.requireNonNull(metadata);
+            if (metadata == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "metadata");
+            }
+            this.metadata = metadata;
             return this;
         }
         @CustomType.Setter
         public Builder modifyIndex(Integer modifyIndex) {
-            this.modifyIndex = Objects.requireNonNull(modifyIndex);
+            if (modifyIndex == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "modifyIndex");
+            }
+            this.modifyIndex = modifyIndex;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder namespaceId(String namespaceId) {
-            this.namespaceId = Objects.requireNonNull(namespaceId);
+            if (namespaceId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "namespaceId");
+            }
+            this.namespaceId = namespaceId;
             return this;
         }
         @CustomType.Setter
         public Builder parentGroupIds(List<String> parentGroupIds) {
-            this.parentGroupIds = Objects.requireNonNull(parentGroupIds);
+            if (parentGroupIds == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "parentGroupIds");
+            }
+            this.parentGroupIds = parentGroupIds;
             return this;
         }
         public Builder parentGroupIds(String... parentGroupIds) {
@@ -465,7 +533,10 @@ public final class GetGroupResult {
         }
         @CustomType.Setter
         public Builder policies(List<String> policies) {
-            this.policies = Objects.requireNonNull(policies);
+            if (policies == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "policies");
+            }
+            this.policies = policies;
             return this;
         }
         public Builder policies(String... policies) {
@@ -473,7 +544,10 @@ public final class GetGroupResult {
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetGroupResult build() {

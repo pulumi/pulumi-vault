@@ -5,6 +5,7 @@ package com.pulumi.vault;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -261,7 +262,9 @@ public final class QuotaLeaseCountArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public QuotaLeaseCountArgs build() {
-            $.maxLeases = Objects.requireNonNull($.maxLeases, "expected parameter 'maxLeases' to be non-null");
+            if ($.maxLeases == null) {
+                throw new MissingRequiredPropertyException("QuotaLeaseCountArgs", "maxLeases");
+            }
             return $;
         }
     }

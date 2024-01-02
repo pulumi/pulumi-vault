@@ -5,6 +5,7 @@ package com.pulumi.vault.database;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -420,9 +421,15 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         public SecretBackendStaticRoleArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.dbName = Objects.requireNonNull($.dbName, "expected parameter 'dbName' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "backend");
+            }
+            if ($.dbName == null) {
+                throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "dbName");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "username");
+            }
             return $;
         }
     }

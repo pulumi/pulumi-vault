@@ -5,6 +5,7 @@ package com.pulumi.vault.appRole;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -203,7 +204,9 @@ public final class AuthBackendLoginArgs extends com.pulumi.resources.ResourceArg
         }
 
         public AuthBackendLoginArgs build() {
-            $.roleId = Objects.requireNonNull($.roleId, "expected parameter 'roleId' to be non-null");
+            if ($.roleId == null) {
+                throw new MissingRequiredPropertyException("AuthBackendLoginArgs", "roleId");
+            }
             return $;
         }
     }

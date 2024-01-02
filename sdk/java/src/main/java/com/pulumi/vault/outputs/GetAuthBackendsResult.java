@@ -4,6 +4,7 @@
 package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -85,7 +86,10 @@ public final class GetAuthBackendsResult {
 
         @CustomType.Setter
         public Builder accessors(List<String> accessors) {
-            this.accessors = Objects.requireNonNull(accessors);
+            if (accessors == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendsResult", "accessors");
+            }
+            this.accessors = accessors;
             return this;
         }
         public Builder accessors(String... accessors) {
@@ -93,17 +97,24 @@ public final class GetAuthBackendsResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder paths(List<String> paths) {
-            this.paths = Objects.requireNonNull(paths);
+            if (paths == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendsResult", "paths");
+            }
+            this.paths = paths;
             return this;
         }
         public Builder paths(String... paths) {
@@ -111,6 +122,7 @@ public final class GetAuthBackendsResult {
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

@@ -5,6 +5,7 @@ package com.pulumi.vault.ad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -339,8 +340,12 @@ public final class SecretLibraryArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SecretLibraryArgs build() {
-            $.backend = Objects.requireNonNull($.backend, "expected parameter 'backend' to be non-null");
-            $.serviceAccountNames = Objects.requireNonNull($.serviceAccountNames, "expected parameter 'serviceAccountNames' to be non-null");
+            if ($.backend == null) {
+                throw new MissingRequiredPropertyException("SecretLibraryArgs", "backend");
+            }
+            if ($.serviceAccountNames == null) {
+                throw new MissingRequiredPropertyException("SecretLibraryArgs", "serviceAccountNames");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.vault.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -71,8 +72,12 @@ public final class ProviderClientAuthArgs extends com.pulumi.resources.ResourceA
         }
 
         public ProviderClientAuthArgs build() {
-            $.certFile = Objects.requireNonNull($.certFile, "expected parameter 'certFile' to be non-null");
-            $.keyFile = Objects.requireNonNull($.keyFile, "expected parameter 'keyFile' to be non-null");
+            if ($.certFile == null) {
+                throw new MissingRequiredPropertyException("ProviderClientAuthArgs", "certFile");
+            }
+            if ($.keyFile == null) {
+                throw new MissingRequiredPropertyException("ProviderClientAuthArgs", "keyFile");
+            }
             return $;
         }
     }
