@@ -83,7 +83,7 @@ require (
 	github.com/cheggaaa/pb v1.0.29 // indirect
 	github.com/circonus-labs/circonus-gometrics v2.3.1+incompatible // indirect
 	github.com/circonus-labs/circonusllhist v0.1.3 // indirect
-	github.com/cloudflare/circl v1.3.3 // indirect
+	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/coreos/go-oidc/v3 v3.5.0 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
