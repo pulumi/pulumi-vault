@@ -19,16 +19,19 @@ import (
 	"path/filepath"
 	"strings"
 	"unicode"
+
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
 
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
+
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+
+	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
 )
 
 // all of the token components used below.
