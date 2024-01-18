@@ -38,6 +38,13 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.allowedRoles);
     }
 
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
     /**
      * Specifies the Redshift DSN.
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -175,6 +182,43 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.rootRotationStatements);
     }
 
+    @Import(name="serviceAccountJson")
+    private @Nullable Output<String> serviceAccountJson;
+
+    public Optional<Output<String>> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+
+    /**
+     * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCa")
+    private @Nullable Output<String> tlsCa;
+
+    /**
+     * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+
+    /**
+     * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    @Import(name="tlsCertificateKey")
+    private @Nullable Output<String> tlsCertificateKey;
+
+    /**
+     * @return x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    public Optional<Output<String>> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+
     /**
      * The root credential username used in the connection URL.
      * 
@@ -226,6 +270,7 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
 
     private SecretsMountMysqlRdArgs(SecretsMountMysqlRdArgs $) {
         this.allowedRoles = $.allowedRoles;
+        this.authType = $.authType;
         this.connectionUrl = $.connectionUrl;
         this.data = $.data;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
@@ -235,6 +280,9 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
         this.password = $.password;
         this.pluginName = $.pluginName;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.serviceAccountJson = $.serviceAccountJson;
+        this.tlsCa = $.tlsCa;
+        this.tlsCertificateKey = $.tlsCertificateKey;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
@@ -290,6 +338,15 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
          */
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**
@@ -487,6 +544,57 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
          */
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
+        }
+
+        public Builder serviceAccountJson(@Nullable Output<String> serviceAccountJson) {
+            $.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+
+        public Builder serviceAccountJson(String serviceAccountJson) {
+            return serviceAccountJson(Output.of(serviceAccountJson));
+        }
+
+        /**
+         * @param tlsCa x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(@Nullable Output<String> tlsCa) {
+            $.tlsCa = tlsCa;
+            return this;
+        }
+
+        /**
+         * @param tlsCa x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(String tlsCa) {
+            return tlsCa(Output.of(tlsCa));
+        }
+
+        /**
+         * @param tlsCertificateKey x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(@Nullable Output<String> tlsCertificateKey) {
+            $.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+
+        /**
+         * @param tlsCertificateKey x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(String tlsCertificateKey) {
+            return tlsCertificateKey(Output.of(tlsCertificateKey));
         }
 
         /**

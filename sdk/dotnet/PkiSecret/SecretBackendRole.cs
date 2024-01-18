@@ -186,6 +186,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> EnforceHostnames { get; private set; } = null!;
 
         /// <summary>
+        /// Specify the allowed extended key usage OIDs constraint on issued certificates
+        /// </summary>
+        [Output("extKeyUsageOids")]
+        public Output<ImmutableArray<string>> ExtKeyUsageOids { get; private set; } = null!;
+
+        /// <summary>
         /// Specify the allowed extended key usage constraint on issued certificates
         /// </summary>
         [Output("extKeyUsages")]
@@ -545,6 +551,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("enforceHostnames")]
         public Input<bool>? EnforceHostnames { get; set; }
+
+        [Input("extKeyUsageOids")]
+        private InputList<string>? _extKeyUsageOids;
+
+        /// <summary>
+        /// Specify the allowed extended key usage OIDs constraint on issued certificates
+        /// </summary>
+        public InputList<string> ExtKeyUsageOids
+        {
+            get => _extKeyUsageOids ?? (_extKeyUsageOids = new InputList<string>());
+            set => _extKeyUsageOids = value;
+        }
 
         [Input("extKeyUsages")]
         private InputList<string>? _extKeyUsages;
@@ -928,6 +946,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("enforceHostnames")]
         public Input<bool>? EnforceHostnames { get; set; }
+
+        [Input("extKeyUsageOids")]
+        private InputList<string>? _extKeyUsageOids;
+
+        /// <summary>
+        /// Specify the allowed extended key usage OIDs constraint on issued certificates
+        /// </summary>
+        public InputList<string> ExtKeyUsageOids
+        {
+            get => _extKeyUsageOids ?? (_extKeyUsageOids = new InputList<string>());
+            set => _extKeyUsageOids = value;
+        }
 
         [Input("extKeyUsages")]
         private InputList<string>? _extKeyUsages;

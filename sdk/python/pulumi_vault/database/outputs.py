@@ -1311,7 +1311,9 @@ class SecretBackendConnectionMysqlAurora(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "connectionUrl":
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
@@ -1319,6 +1321,12 @@ class SecretBackendConnectionMysqlAurora(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -1334,14 +1342,19 @@ class SecretBackendConnectionMysqlAurora(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
+        :param str auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
         :param str connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -1353,9 +1366,14 @@ class SecretBackendConnectionMysqlAurora(dict):
         :param int max_open_connections: The maximum number of open connections to
                use.
         :param str password: The password to authenticate with.
+        :param str service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The username to authenticate with.
         :param str username_template: Template describing how dynamic usernames are generated.
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if max_connection_lifetime is not None:
@@ -1366,10 +1384,24 @@ class SecretBackendConnectionMysqlAurora(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        """
+        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        """
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1416,6 +1448,30 @@ class SecretBackendConnectionMysqlAurora(dict):
         The password to authenticate with.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        """
+        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        """
+        return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
 
     @property
     @pulumi.getter
@@ -1439,7 +1495,9 @@ class SecretBackendConnectionMysqlLegacy(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "connectionUrl":
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
@@ -1447,6 +1505,12 @@ class SecretBackendConnectionMysqlLegacy(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -1462,14 +1526,19 @@ class SecretBackendConnectionMysqlLegacy(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
+        :param str auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
         :param str connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -1481,9 +1550,14 @@ class SecretBackendConnectionMysqlLegacy(dict):
         :param int max_open_connections: The maximum number of open connections to
                use.
         :param str password: The password to authenticate with.
+        :param str service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The username to authenticate with.
         :param str username_template: Template describing how dynamic usernames are generated.
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if max_connection_lifetime is not None:
@@ -1494,10 +1568,24 @@ class SecretBackendConnectionMysqlLegacy(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        """
+        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        """
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1544,6 +1632,30 @@ class SecretBackendConnectionMysqlLegacy(dict):
         The password to authenticate with.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        """
+        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        """
+        return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
 
     @property
     @pulumi.getter
@@ -1567,7 +1679,9 @@ class SecretBackendConnectionMysqlRds(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "connectionUrl":
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
@@ -1575,6 +1689,12 @@ class SecretBackendConnectionMysqlRds(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -1590,14 +1710,19 @@ class SecretBackendConnectionMysqlRds(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
+        :param str auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
         :param str connection_url: A URL containing connection information. See
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -1609,9 +1734,14 @@ class SecretBackendConnectionMysqlRds(dict):
         :param int max_open_connections: The maximum number of open connections to
                use.
         :param str password: The password to authenticate with.
+        :param str service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The username to authenticate with.
         :param str username_template: Template describing how dynamic usernames are generated.
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if max_connection_lifetime is not None:
@@ -1622,10 +1752,24 @@ class SecretBackendConnectionMysqlRds(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
             pulumi.set(__self__, "username_template", username_template)
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        """
+        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        """
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -1672,6 +1816,30 @@ class SecretBackendConnectionMysqlRds(dict):
         The password to authenticate with.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        """
+        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        """
+        return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
 
     @property
     @pulumi.getter
@@ -4403,6 +4571,8 @@ class SecretsMountMysqlAurora(dict):
         suggest = None
         if key == "allowedRoles":
             suggest = "allowed_roles"
+        elif key == "authType":
+            suggest = "auth_type"
         elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
@@ -4415,6 +4585,12 @@ class SecretsMountMysqlAurora(dict):
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
         elif key == "usernameTemplate":
             suggest = "username_template"
         elif key == "verifyConnection":
@@ -4434,6 +4610,7 @@ class SecretsMountMysqlAurora(dict):
     def __init__(__self__, *,
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  data: Optional[Mapping[str, Any]] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -4442,6 +4619,9 @@ class SecretsMountMysqlAurora(dict):
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -4461,6 +4641,8 @@ class SecretsMountMysqlAurora(dict):
         :param str password: The root credential password used in the connection URL.
         :param str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The root credential username used in the connection URL.
         :param str username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param bool verify_connection: Whether the connection should be verified on
@@ -4469,6 +4651,8 @@ class SecretsMountMysqlAurora(dict):
         pulumi.set(__self__, "name", name)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
@@ -4485,6 +4669,12 @@ class SecretsMountMysqlAurora(dict):
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -4505,6 +4695,11 @@ class SecretsMountMysqlAurora(dict):
         connection.
         """
         return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -4574,6 +4769,27 @@ class SecretsMountMysqlAurora(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
 
     @property
     @pulumi.getter
@@ -4608,6 +4824,8 @@ class SecretsMountMysqlLegacy(dict):
         suggest = None
         if key == "allowedRoles":
             suggest = "allowed_roles"
+        elif key == "authType":
+            suggest = "auth_type"
         elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
@@ -4620,6 +4838,12 @@ class SecretsMountMysqlLegacy(dict):
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
         elif key == "usernameTemplate":
             suggest = "username_template"
         elif key == "verifyConnection":
@@ -4639,6 +4863,7 @@ class SecretsMountMysqlLegacy(dict):
     def __init__(__self__, *,
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  data: Optional[Mapping[str, Any]] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -4647,6 +4872,9 @@ class SecretsMountMysqlLegacy(dict):
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -4666,6 +4894,8 @@ class SecretsMountMysqlLegacy(dict):
         :param str password: The root credential password used in the connection URL.
         :param str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The root credential username used in the connection URL.
         :param str username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param bool verify_connection: Whether the connection should be verified on
@@ -4674,6 +4904,8 @@ class SecretsMountMysqlLegacy(dict):
         pulumi.set(__self__, "name", name)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
@@ -4690,6 +4922,12 @@ class SecretsMountMysqlLegacy(dict):
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -4710,6 +4948,11 @@ class SecretsMountMysqlLegacy(dict):
         connection.
         """
         return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -4779,6 +5022,27 @@ class SecretsMountMysqlLegacy(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
 
     @property
     @pulumi.getter
@@ -4813,6 +5077,8 @@ class SecretsMountMysqlRd(dict):
         suggest = None
         if key == "allowedRoles":
             suggest = "allowed_roles"
+        elif key == "authType":
+            suggest = "auth_type"
         elif key == "connectionUrl":
             suggest = "connection_url"
         elif key == "maxConnectionLifetime":
@@ -4825,6 +5091,12 @@ class SecretsMountMysqlRd(dict):
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "serviceAccountJson":
+            suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificateKey":
+            suggest = "tls_certificate_key"
         elif key == "usernameTemplate":
             suggest = "username_template"
         elif key == "verifyConnection":
@@ -4844,6 +5116,7 @@ class SecretsMountMysqlRd(dict):
     def __init__(__self__, *,
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
+                 auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
                  data: Optional[Mapping[str, Any]] = None,
                  max_connection_lifetime: Optional[int] = None,
@@ -4852,6 +5125,9 @@ class SecretsMountMysqlRd(dict):
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate_key: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -4871,6 +5147,8 @@ class SecretsMountMysqlRd(dict):
         :param str password: The root credential password used in the connection URL.
         :param str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param str tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        :param str tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param str username: The root credential username used in the connection URL.
         :param str username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param bool verify_connection: Whether the connection should be verified on
@@ -4879,6 +5157,8 @@ class SecretsMountMysqlRd(dict):
         pulumi.set(__self__, "name", name)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
@@ -4895,6 +5175,12 @@ class SecretsMountMysqlRd(dict):
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if service_account_json is not None:
+            pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate_key is not None:
+            pulumi.set(__self__, "tls_certificate_key", tls_certificate_key)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -4915,6 +5201,11 @@ class SecretsMountMysqlRd(dict):
         connection.
         """
         return pulumi.get(self, "allowed_roles")
+
+    @property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[str]:
+        return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter(name="connectionUrl")
@@ -4984,6 +5275,27 @@ class SecretsMountMysqlRd(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="serviceAccountJson")
+    def service_account_json(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificateKey")
+    def tls_certificate_key(self) -> Optional[str]:
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        return pulumi.get(self, "tls_certificate_key")
 
     @property
     @pulumi.getter

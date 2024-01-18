@@ -32,6 +32,12 @@ namespace Pulumi.Vault.Azure
     ///     {
     ///         Backend = azure.Path,
     ///         Role = "generated_role",
+    ///         SignInAudience = "AzureADMyOrg",
+    ///         Tags = new[]
+    ///         {
+    ///             "team:engineering",
+    ///             "environment:development",
+    ///         },
     ///         Ttl = "300",
     ///         MaxTtl = "600",
     ///         AzureRoles = new[]
@@ -118,6 +124,19 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the security principal types that are allowed to sign in to the application.
+        /// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        /// </summary>
+        [Output("signInAudience")]
+        public Output<string?> SignInAudience { get; private set; } = null!;
+
+        /// <summary>
+        /// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the default TTL for service principals generated using this role.
@@ -245,6 +264,25 @@ namespace Pulumi.Vault.Azure
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
+        /// Specifies the security principal types that are allowed to sign in to the application.
+        /// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        /// </summary>
+        [Input("signInAudience")]
+        public Input<string>? SignInAudience { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// Specifies the default TTL for service principals generated using this role.
         /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         /// </summary>
@@ -330,6 +368,25 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
+
+        /// <summary>
+        /// Specifies the security principal types that are allowed to sign in to the application.
+        /// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        /// </summary>
+        [Input("signInAudience")]
+        public Input<string>? SignInAudience { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Specifies the default TTL for service principals generated using this role.

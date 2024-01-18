@@ -22,8 +22,6 @@ public final class AuthBackendCustomEndpoint {
      * The endpoint value provided for a given key has the form of `scheme://host:port`.
      * The `scheme://` and `:port` portions of the endpoint value are optional.
      * 
-     * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
-     * 
      */
     private @Nullable String compute;
     /**
@@ -50,8 +48,6 @@ public final class AuthBackendCustomEndpoint {
      * 
      * The endpoint value provided for a given key has the form of `scheme://host:port`.
      * The `scheme://` and `:port` portions of the endpoint value are optional.
-     * 
-     * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
      * 
      */
     public Optional<String> compute() {

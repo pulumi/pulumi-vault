@@ -2649,6 +2649,8 @@ func (o SecretBackendConnectionMysqlPtrOutput) UsernameTemplate() pulumi.StringP
 }
 
 type SecretBackendConnectionMysqlAurora struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType *string `pulumi:"authType"`
 	// A URL containing connection information. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -2665,6 +2667,12 @@ type SecretBackendConnectionMysqlAurora struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password *string `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The username to authenticate with.
 	Username *string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -2683,6 +2691,8 @@ type SecretBackendConnectionMysqlAuroraInput interface {
 }
 
 type SecretBackendConnectionMysqlAuroraArgs struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// A URL containing connection information. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -2699,6 +2709,12 @@ type SecretBackendConnectionMysqlAuroraArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The username to authenticate with.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -2782,6 +2798,11 @@ func (o SecretBackendConnectionMysqlAuroraOutput) ToSecretBackendConnectionMysql
 	}).(SecretBackendConnectionMysqlAuroraPtrOutput)
 }
 
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlAuroraOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -2811,6 +2832,21 @@ func (o SecretBackendConnectionMysqlAuroraOutput) MaxOpenConnections() pulumi.In
 // The password to authenticate with.
 func (o SecretBackendConnectionMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlAuroraOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlAuroraOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlAuroraOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
 // The username to authenticate with.
@@ -2845,6 +2881,16 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Elem() SecretBackendConnect
 		var ret SecretBackendConnectionMysqlAurora
 		return ret
 	}).(SecretBackendConnectionMysqlAuroraOutput)
+}
+
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
 }
 
 // A URL containing connection information. See
@@ -2903,6 +2949,36 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlAuroraPtrOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCertificateKey
+	}).(pulumi.StringPtrOutput)
+}
+
 // The username to authenticate with.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
@@ -2924,6 +3000,8 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) UsernameTemplate() pulumi.S
 }
 
 type SecretBackendConnectionMysqlLegacy struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType *string `pulumi:"authType"`
 	// A URL containing connection information. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -2940,6 +3018,12 @@ type SecretBackendConnectionMysqlLegacy struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password *string `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The username to authenticate with.
 	Username *string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -2958,6 +3042,8 @@ type SecretBackendConnectionMysqlLegacyInput interface {
 }
 
 type SecretBackendConnectionMysqlLegacyArgs struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// A URL containing connection information. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -2974,6 +3060,12 @@ type SecretBackendConnectionMysqlLegacyArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The username to authenticate with.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -3057,6 +3149,11 @@ func (o SecretBackendConnectionMysqlLegacyOutput) ToSecretBackendConnectionMysql
 	}).(SecretBackendConnectionMysqlLegacyPtrOutput)
 }
 
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlLegacyOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -3086,6 +3183,21 @@ func (o SecretBackendConnectionMysqlLegacyOutput) MaxOpenConnections() pulumi.In
 // The password to authenticate with.
 func (o SecretBackendConnectionMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlLegacyOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlLegacyOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlLegacyOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
 // The username to authenticate with.
@@ -3120,6 +3232,16 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Elem() SecretBackendConnect
 		var ret SecretBackendConnectionMysqlLegacy
 		return ret
 	}).(SecretBackendConnectionMysqlLegacyOutput)
+}
+
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
 }
 
 // A URL containing connection information. See
@@ -3178,6 +3300,36 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlLegacyPtrOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCertificateKey
+	}).(pulumi.StringPtrOutput)
+}
+
 // The username to authenticate with.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
@@ -3199,6 +3351,8 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) UsernameTemplate() pulumi.S
 }
 
 type SecretBackendConnectionMysqlRds struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType *string `pulumi:"authType"`
 	// A URL containing connection information. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -3215,6 +3369,12 @@ type SecretBackendConnectionMysqlRds struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password *string `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The username to authenticate with.
 	Username *string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -3233,6 +3393,8 @@ type SecretBackendConnectionMysqlRdsInput interface {
 }
 
 type SecretBackendConnectionMysqlRdsArgs struct {
+	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// A URL containing connection information. See
 	// the [Vault
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -3249,6 +3411,12 @@ type SecretBackendConnectionMysqlRdsArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The username to authenticate with.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -3332,6 +3500,11 @@ func (o SecretBackendConnectionMysqlRdsOutput) ToSecretBackendConnectionMysqlRds
 	}).(SecretBackendConnectionMysqlRdsPtrOutput)
 }
 
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlRdsOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // A URL containing connection information. See
 // the [Vault
 // docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -3361,6 +3534,21 @@ func (o SecretBackendConnectionMysqlRdsOutput) MaxOpenConnections() pulumi.IntPt
 // The password to authenticate with.
 func (o SecretBackendConnectionMysqlRdsOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlRdsOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlRdsOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlRdsOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
 // The username to authenticate with.
@@ -3395,6 +3583,16 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Elem() SecretBackendConnection
 		var ret SecretBackendConnectionMysqlRds
 		return ret
 	}).(SecretBackendConnectionMysqlRdsOutput)
+}
+
+// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+func (o SecretBackendConnectionMysqlRdsPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
 }
 
 // A URL containing connection information. See
@@ -3450,6 +3648,36 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Password() pulumi.StringPtrOut
 			return nil
 		}
 		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+func (o SecretBackendConnectionMysqlRdsPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceAccountJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretBackendConnectionMysqlRdsPtrOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretBackendConnectionMysqlRdsPtrOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCertificateKey
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7210,6 +7438,7 @@ type SecretsMountMysqlAurora struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	AuthType     *string  `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7232,6 +7461,11 @@ type SecretsMountMysqlAurora struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7256,6 +7490,7 @@ type SecretsMountMysqlAuroraArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7278,6 +7513,11 @@ type SecretsMountMysqlAuroraArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7344,6 +7584,10 @@ func (o SecretsMountMysqlAuroraOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountMysqlAuroraOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the Redshift DSN.
 // See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 func (o SecretsMountMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
@@ -7393,6 +7637,20 @@ func (o SecretsMountMysqlAuroraOutput) RootRotationStatements() pulumi.StringArr
 	return o.ApplyT(func(v SecretsMountMysqlAurora) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountMysqlAuroraOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretsMountMysqlAuroraOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretsMountMysqlAuroraOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
 // The root credential username used in the connection URL.
 func (o SecretsMountMysqlAuroraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -7433,6 +7691,7 @@ type SecretsMountMysqlLegacy struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	AuthType     *string  `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7455,6 +7714,11 @@ type SecretsMountMysqlLegacy struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7479,6 +7743,7 @@ type SecretsMountMysqlLegacyArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7501,6 +7766,11 @@ type SecretsMountMysqlLegacyArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7567,6 +7837,10 @@ func (o SecretsMountMysqlLegacyOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountMysqlLegacyOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the Redshift DSN.
 // See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 func (o SecretsMountMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
@@ -7616,6 +7890,20 @@ func (o SecretsMountMysqlLegacyOutput) RootRotationStatements() pulumi.StringArr
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountMysqlLegacyOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretsMountMysqlLegacyOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretsMountMysqlLegacyOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
+}
+
 // The root credential username used in the connection URL.
 func (o SecretsMountMysqlLegacyOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Username }).(pulumi.StringPtrOutput)
@@ -7656,6 +7944,7 @@ type SecretsMountMysqlRd struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	AuthType     *string  `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7678,6 +7967,11 @@ type SecretsMountMysqlRd struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7702,6 +7996,7 @@ type SecretsMountMysqlRdArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
+	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7724,6 +8019,11 @@ type SecretsMountMysqlRdArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -7790,6 +8090,10 @@ func (o SecretsMountMysqlRdOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+func (o SecretsMountMysqlRdOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
 // Specifies the Redshift DSN.
 // See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 func (o SecretsMountMysqlRdOutput) ConnectionUrl() pulumi.StringPtrOutput {
@@ -7837,6 +8141,20 @@ func (o SecretsMountMysqlRdOutput) PluginName() pulumi.StringPtrOutput {
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretsMountMysqlRdOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+func (o SecretsMountMysqlRdOutput) ServiceAccountJson() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+func (o SecretsMountMysqlRdOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+func (o SecretsMountMysqlRdOutput) TlsCertificateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
 // The root credential username used in the connection URL.

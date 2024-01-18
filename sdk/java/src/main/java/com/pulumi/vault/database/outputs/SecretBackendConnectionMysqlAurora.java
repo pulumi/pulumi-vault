@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionMysqlAurora {
     /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    private @Nullable String authType;
+    /**
      * @return A URL containing connection information. See
      * the [Vault
      * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -44,6 +49,21 @@ public final class SecretBackendConnectionMysqlAurora {
      */
     private @Nullable String password;
     /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    private @Nullable String serviceAccountJson;
+    /**
+     * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCa;
+    /**
+     * @return x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    private @Nullable String tlsCertificateKey;
+    /**
      * @return The username to authenticate with.
      * 
      */
@@ -55,6 +75,13 @@ public final class SecretBackendConnectionMysqlAurora {
     private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionMysqlAurora() {}
+    /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    public Optional<String> authType() {
+        return Optional.ofNullable(this.authType);
+    }
     /**
      * @return A URL containing connection information. See
      * the [Vault
@@ -97,6 +124,27 @@ public final class SecretBackendConnectionMysqlAurora {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    public Optional<String> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+    /**
+     * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+    /**
+     * @return x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    public Optional<String> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+    /**
      * @return The username to authenticate with.
      * 
      */
@@ -120,25 +168,39 @@ public final class SecretBackendConnectionMysqlAurora {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String authType;
         private @Nullable String connectionUrl;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable String serviceAccountJson;
+        private @Nullable String tlsCa;
+        private @Nullable String tlsCertificateKey;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         public Builder() {}
         public Builder(SecretBackendConnectionMysqlAurora defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.authType = defaults.authType;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.serviceAccountJson = defaults.serviceAccountJson;
+    	      this.tlsCa = defaults.tlsCa;
+    	      this.tlsCertificateKey = defaults.tlsCertificateKey;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
 
+        @CustomType.Setter
+        public Builder authType(@Nullable String authType) {
+
+            this.authType = authType;
+            return this;
+        }
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
 
@@ -170,6 +232,24 @@ public final class SecretBackendConnectionMysqlAurora {
             return this;
         }
         @CustomType.Setter
+        public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
+
+            this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCa(@Nullable String tlsCa) {
+
+            this.tlsCa = tlsCa;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCertificateKey(@Nullable String tlsCertificateKey) {
+
+            this.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -183,11 +263,15 @@ public final class SecretBackendConnectionMysqlAurora {
         }
         public SecretBackendConnectionMysqlAurora build() {
             final var _resultValue = new SecretBackendConnectionMysqlAurora();
+            _resultValue.authType = authType;
             _resultValue.connectionUrl = connectionUrl;
             _resultValue.maxConnectionLifetime = maxConnectionLifetime;
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificateKey = tlsCertificateKey;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             return _resultValue;

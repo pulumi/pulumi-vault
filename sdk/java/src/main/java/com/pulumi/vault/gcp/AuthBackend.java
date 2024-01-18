@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.gcp.AuthBackendArgs;
 import com.pulumi.vault.gcp.inputs.AuthBackendState;
 import com.pulumi.vault.gcp.outputs.AuthBackendCustomEndpoint;
+import com.pulumi.vault.gcp.outputs.AuthBackendTune;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -255,6 +256,24 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    /**
+     * Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Export(name="tune", refs={AuthBackendTune.class}, tree="[0]")
+    private Output<AuthBackendTune> tune;
+
+    /**
+     * @return Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Output<AuthBackendTune> tune() {
+        return this.tune;
     }
 
     /**

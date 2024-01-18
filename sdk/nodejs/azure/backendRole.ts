@@ -22,6 +22,11 @@ import * as utilities from "../utilities";
  * const generatedRole = new vault.azure.BackendRole("generatedRole", {
  *     backend: azure.path,
  *     role: "generated_role",
+ *     signInAudience: "AzureADMyOrg",
+ *     tags: [
+ *         "team:engineering",
+ *         "environment:development",
+ *     ],
  *     ttl: "300",
  *     maxTtl: "600",
  *     azureRoles: [{
@@ -109,6 +114,15 @@ export class BackendRole extends pulumi.CustomResource {
      */
     public readonly role!: pulumi.Output<string>;
     /**
+     * Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     */
+    public readonly signInAudience!: pulumi.Output<string | undefined>;
+    /**
+     * A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     */
+    public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
@@ -136,6 +150,8 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["permanentlyDelete"] = state ? state.permanentlyDelete : undefined;
             resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["signInAudience"] = state ? state.signInAudience : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as BackendRoleArgs | undefined;
@@ -151,6 +167,8 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["permanentlyDelete"] = args ? args.permanentlyDelete : undefined;
             resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["signInAudience"] = args ? args.signInAudience : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -205,6 +223,15 @@ export interface BackendRoleState {
      */
     role?: pulumi.Input<string>;
     /**
+     * Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     */
+    signInAudience?: pulumi.Input<string>;
+    /**
+     * A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
@@ -257,6 +284,15 @@ export interface BackendRoleArgs {
      * Name of the Azure role
      */
     role: pulumi.Input<string>;
+    /**
+     * Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     */
+    signInAudience?: pulumi.Input<string>;
+    /**
+     * A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.

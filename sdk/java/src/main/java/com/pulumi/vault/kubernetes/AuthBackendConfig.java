@@ -195,14 +195,14 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.pemKeys);
     }
     /**
-     * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      * 
      */
     @Export(name="tokenReviewerJwt", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenReviewerJwt;
 
     /**
-     * @return A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * @return A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      * 
      */
     public Output<Optional<String>> tokenReviewerJwt() {

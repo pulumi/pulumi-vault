@@ -25,6 +25,8 @@ class BackendRoleArgs:
                  max_ttl: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  permanently_delete: Optional[pulumi.Input[bool]] = None,
+                 sign_in_audience: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackendRole resource.
@@ -43,6 +45,9 @@ class BackendRoleArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
+        :param pulumi.Input[str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
+               Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of Azure tags to attach to an application. Requires Vault 1.16+.
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
@@ -63,6 +68,10 @@ class BackendRoleArgs:
             pulumi.set(__self__, "namespace", namespace)
         if permanently_delete is not None:
             pulumi.set(__self__, "permanently_delete", permanently_delete)
+        if sign_in_audience is not None:
+            pulumi.set(__self__, "sign_in_audience", sign_in_audience)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -181,6 +190,31 @@ class BackendRoleArgs:
         pulumi.set(self, "permanently_delete", value)
 
     @property
+    @pulumi.getter(name="signInAudience")
+    def sign_in_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the security principal types that are allowed to sign in to the application.
+        Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "sign_in_audience")
+
+    @sign_in_audience.setter
+    def sign_in_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sign_in_audience", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of Azure tags to attach to an application. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -206,6 +240,8 @@ class _BackendRoleState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  permanently_delete: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
+                 sign_in_audience: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BackendRole resources.
@@ -224,6 +260,9 @@ class _BackendRoleState:
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] role: Name of the Azure role
+        :param pulumi.Input[str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
+               Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of Azure tags to attach to an application. Requires Vault 1.16+.
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
@@ -245,6 +284,10 @@ class _BackendRoleState:
             pulumi.set(__self__, "permanently_delete", permanently_delete)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if sign_in_audience is not None:
+            pulumi.set(__self__, "sign_in_audience", sign_in_audience)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -363,6 +406,31 @@ class _BackendRoleState:
         pulumi.set(self, "role", value)
 
     @property
+    @pulumi.getter(name="signInAudience")
+    def sign_in_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the security principal types that are allowed to sign in to the application.
+        Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "sign_in_audience")
+
+    @sign_in_audience.setter
+    def sign_in_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sign_in_audience", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of Azure tags to attach to an application. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -390,6 +458,8 @@ class BackendRole(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  permanently_delete: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
+                 sign_in_audience: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -407,6 +477,11 @@ class BackendRole(pulumi.CustomResource):
         generated_role = vault.azure.BackendRole("generatedRole",
             backend=azure.path,
             role="generated_role",
+            sign_in_audience="AzureADMyOrg",
+            tags=[
+                "team:engineering",
+                "environment:development",
+            ],
             ttl="300",
             max_ttl="600",
             azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
@@ -438,6 +513,9 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] role: Name of the Azure role
+        :param pulumi.Input[str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
+               Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of Azure tags to attach to an application. Requires Vault 1.16+.
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
@@ -462,6 +540,11 @@ class BackendRole(pulumi.CustomResource):
         generated_role = vault.azure.BackendRole("generatedRole",
             backend=azure.path,
             role="generated_role",
+            sign_in_audience="AzureADMyOrg",
+            tags=[
+                "team:engineering",
+                "environment:development",
+            ],
             ttl="300",
             max_ttl="600",
             azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
@@ -500,6 +583,8 @@ class BackendRole(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  permanently_delete: Optional[pulumi.Input[bool]] = None,
                  role: Optional[pulumi.Input[str]] = None,
+                 sign_in_audience: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -521,6 +606,8 @@ class BackendRole(pulumi.CustomResource):
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
+            __props__.__dict__["sign_in_audience"] = sign_in_audience
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["ttl"] = ttl
         super(BackendRole, __self__).__init__(
             'vault:azure/backendRole:BackendRole',
@@ -541,6 +628,8 @@ class BackendRole(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             permanently_delete: Optional[pulumi.Input[bool]] = None,
             role: Optional[pulumi.Input[str]] = None,
+            sign_in_audience: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ttl: Optional[pulumi.Input[str]] = None) -> 'BackendRole':
         """
         Get an existing BackendRole resource's state with the given name, id, and optional extra
@@ -564,6 +653,9 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
         :param pulumi.Input[str] role: Name of the Azure role
+        :param pulumi.Input[str] sign_in_audience: Specifies the security principal types that are allowed to sign in to the application.
+               Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of Azure tags to attach to an application. Requires Vault 1.16+.
         :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
                Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
@@ -580,6 +672,8 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["permanently_delete"] = permanently_delete
         __props__.__dict__["role"] = role
+        __props__.__dict__["sign_in_audience"] = sign_in_audience
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["ttl"] = ttl
         return BackendRole(resource_name, opts=opts, __props__=__props__)
 
@@ -660,6 +754,23 @@ class BackendRole(pulumi.CustomResource):
         Name of the Azure role
         """
         return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="signInAudience")
+    def sign_in_audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the security principal types that are allowed to sign in to the application.
+        Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "sign_in_audience")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of Azure tags to attach to an application. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter

@@ -107,7 +107,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<ImmutableArray<string>> PemKeys { get; private set; } = null!;
 
         /// <summary>
-        /// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         /// </summary>
         [Output("tokenReviewerJwt")]
         public Output<string?> TokenReviewerJwt { get; private set; } = null!;
@@ -223,7 +223,7 @@ namespace Pulumi.Vault.Kubernetes
         private Input<string>? _tokenReviewerJwt;
 
         /// <summary>
-        /// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         /// </summary>
         public Input<string>? TokenReviewerJwt
         {
@@ -304,7 +304,7 @@ namespace Pulumi.Vault.Kubernetes
         private Input<string>? _tokenReviewerJwt;
 
         /// <summary>
-        /// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        /// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         /// </summary>
         public Input<string>? TokenReviewerJwt
         {

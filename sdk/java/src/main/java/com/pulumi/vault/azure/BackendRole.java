@@ -54,6 +54,10 @@ import javax.annotation.Nullable;
  *         var generatedRole = new BackendRole(&#34;generatedRole&#34;, BackendRoleArgs.builder()        
  *             .backend(azure.path())
  *             .role(&#34;generated_role&#34;)
+ *             .signInAudience(&#34;AzureADMyOrg&#34;)
+ *             .tags(            
+ *                 &#34;team:engineering&#34;,
+ *                 &#34;environment:development&#34;)
  *             .ttl(300)
  *             .maxTtl(600)
  *             .azureRoles(BackendRoleAzureRoleArgs.builder()
@@ -214,6 +218,36 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<String> role() {
         return this.role;
+    }
+    /**
+     * Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="signInAudience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> signInAudience;
+
+    /**
+     * @return Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Optional<String>> signInAudience() {
+        return Codegen.optional(this.signInAudience);
+    }
+    /**
+     * A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tags;
+
+    /**
+     * @return A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Optional<List<String>>> tags() {
+        return Codegen.optional(this.tags);
     }
     /**
      * Specifies the default TTL for service principals generated using this role.

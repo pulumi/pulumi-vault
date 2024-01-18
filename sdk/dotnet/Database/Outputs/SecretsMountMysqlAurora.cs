@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// connection.
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
+        public readonly string? AuthType;
         /// <summary>
         /// Specifies the Redshift DSN. 
         /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -56,6 +57,15 @@ namespace Pulumi.Vault.Database.Outputs
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
+        public readonly string? ServiceAccountJson;
+        /// <summary>
+        /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCa;
+        /// <summary>
+        /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        /// </summary>
+        public readonly string? TlsCertificateKey;
         /// <summary>
         /// The root credential username used in the connection URL.
         /// </summary>
@@ -73,6 +83,8 @@ namespace Pulumi.Vault.Database.Outputs
         [OutputConstructor]
         private SecretsMountMysqlAurora(
             ImmutableArray<string> allowedRoles,
+
+            string? authType,
 
             string? connectionUrl,
 
@@ -92,6 +104,12 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            string? serviceAccountJson,
+
+            string? tlsCa,
+
+            string? tlsCertificateKey,
+
             string? username,
 
             string? usernameTemplate,
@@ -99,6 +117,7 @@ namespace Pulumi.Vault.Database.Outputs
             bool? verifyConnection)
         {
             AllowedRoles = allowedRoles;
+            AuthType = authType;
             ConnectionUrl = connectionUrl;
             Data = data;
             MaxConnectionLifetime = maxConnectionLifetime;
@@ -108,6 +127,9 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
+            ServiceAccountJson = serviceAccountJson;
+            TlsCa = tlsCa;
+            TlsCertificateKey = tlsCertificateKey;
             Username = username;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;

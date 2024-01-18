@@ -1127,6 +1127,10 @@
         },
         "vault:database/SecretBackendConnectionMysqlAurora:SecretBackendConnectionMysqlAurora": {
             "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`\n"
+                },
                 "connectionUrl": {
                     "type": "string",
                     "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)\nfor an example.\n"
@@ -1146,6 +1150,20 @@
                 "password": {
                     "type": "string",
                     "description": "The password to authenticate with.\n",
+                    "secret": true
+                },
+                "serviceAccountJson": {
+                    "type": "string",
+                    "description": "JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.\n",
+                    "secret": true
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n"
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
                     "secret": true
                 },
                 "username": {
@@ -1161,6 +1179,10 @@
         },
         "vault:database/SecretBackendConnectionMysqlLegacy:SecretBackendConnectionMysqlLegacy": {
             "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`\n"
+                },
                 "connectionUrl": {
                     "type": "string",
                     "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)\nfor an example.\n"
@@ -1182,6 +1204,20 @@
                     "description": "The password to authenticate with.\n",
                     "secret": true
                 },
+                "serviceAccountJson": {
+                    "type": "string",
+                    "description": "JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.\n",
+                    "secret": true
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n"
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
+                    "secret": true
+                },
                 "username": {
                     "type": "string",
                     "description": "The username to authenticate with.\n"
@@ -1195,6 +1231,10 @@
         },
         "vault:database/SecretBackendConnectionMysqlRds:SecretBackendConnectionMysqlRds": {
             "properties": {
+                "authType": {
+                    "type": "string",
+                    "description": "Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`\n"
+                },
                 "connectionUrl": {
                     "type": "string",
                     "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)\nfor an example.\n"
@@ -1214,6 +1254,20 @@
                 "password": {
                     "type": "string",
                     "description": "The password to authenticate with.\n",
+                    "secret": true
+                },
+                "serviceAccountJson": {
+                    "type": "string",
+                    "description": "JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.\n",
+                    "secret": true
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n"
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
                     "secret": true
                 },
                 "username": {
@@ -2230,6 +2284,9 @@
                     },
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
+                "authType": {
+                    "type": "string"
+                },
                 "connectionUrl": {
                     "type": "string",
                     "description": "Specifies the Redshift DSN. \nSee [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)\n"
@@ -2271,6 +2328,19 @@
                         "type": "string"
                     },
                     "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
+                },
+                "serviceAccountJson": {
+                    "type": "string",
+                    "secret": true
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n"
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
+                    "secret": true
                 },
                 "username": {
                     "type": "string",
@@ -2307,6 +2377,9 @@
                     },
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
+                "authType": {
+                    "type": "string"
+                },
                 "connectionUrl": {
                     "type": "string",
                     "description": "Specifies the Redshift DSN. \nSee [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)\n"
@@ -2348,6 +2421,19 @@
                         "type": "string"
                     },
                     "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
+                },
+                "serviceAccountJson": {
+                    "type": "string",
+                    "secret": true
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n"
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
+                    "secret": true
                 },
                 "username": {
                     "type": "string",
@@ -2384,6 +2470,9 @@
                     },
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
+                "authType": {
+                    "type": "string"
+                },
                 "connectionUrl": {
                     "type": "string",
                     "description": "Specifies the Redshift DSN. \nSee [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)\n"
@@ -2425,6 +2514,19 @@
                         "type": "string"
                     },
                     "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
+                },
+                "serviceAccountJson": {
+                    "type": "string",
+                    "secret": true
+                },
+                "tlsCa": {
+                    "type": "string",
+                    "description": "x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.\n"
+                },
+                "tlsCertificateKey": {
+                    "type": "string",
+                    "description": "x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.\n",
+                    "secret": true
                 },
                 "username": {
                     "type": "string",
@@ -2934,7 +3036,7 @@
                 },
                 "compute": {
                     "type": "string",
-                    "description": "Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.\n\nThe endpoint value provided for a given key has the form of `scheme://host:port`.\nThe `scheme://` and `:port` portions of the endpoint value are optional.\n\nFor more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).\n"
+                    "description": "Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.\n\nThe endpoint value provided for a given key has the form of `scheme://host:port`.\nThe `scheme://` and `:port` portions of the endpoint value are optional.\n"
                 },
                 "crm": {
                     "type": "string",
@@ -2943,6 +3045,55 @@
                 "iam": {
                     "type": "string",
                     "description": "Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.\n"
+                }
+            },
+            "type": "object"
+        },
+        "vault:gcp/AuthBackendTune:AuthBackendTune": {
+            "properties": {
+                "allowedResponseHeaders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of headers to whitelist and allowing\na plugin to include them in the response.\n"
+                },
+                "auditNonHmacRequestKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will\nnot be HMAC'd by audit devices in the request data object.\n"
+                },
+                "auditNonHmacResponseKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies the list of keys that will\nnot be HMAC'd by audit devices in the response data object.\n"
+                },
+                "defaultLeaseTtl": {
+                    "type": "string",
+                    "description": "Specifies the default time-to-live.\nIf set, this overrides the global default.\nMust be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)\n"
+                },
+                "listingVisibility": {
+                    "type": "string",
+                    "description": "Specifies whether to show this mount in\nthe UI-specific listing endpoint. Valid values are \"unauth\" or \"hidden\".\n"
+                },
+                "maxLeaseTtl": {
+                    "type": "string",
+                    "description": "Specifies the maximum time-to-live.\nIf set, this overrides the global default.\nMust be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)\n"
+                },
+                "passthroughRequestHeaders": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of headers to whitelist and\npass from the request to the backend.\n"
+                },
+                "tokenType": {
+                    "type": "string",
+                    "description": "Specifies the type of tokens that should be returned by\nthe mount. Valid values are \"default-service\", \"default-batch\", \"service\", \"batch\".\n\n\nFor more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).\n"
                 }
             },
             "type": "object"
@@ -8487,7 +8638,7 @@
             }
         },
         "vault:azure/backendRole:BackendRole": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst azure = new vault.azure.Backend(\"azure\", {\n    subscriptionId: _var.subscription_id,\n    tenantId: _var.tenant_id,\n    clientSecret: _var.client_secret,\n    clientId: _var.client_id,\n});\nconst generatedRole = new vault.azure.BackendRole(\"generatedRole\", {\n    backend: azure.path,\n    role: \"generated_role\",\n    ttl: \"300\",\n    maxTtl: \"600\",\n    azureRoles: [{\n        roleName: \"Reader\",\n        scope: `/subscriptions/${_var.subscription_id}/resourceGroups/azure-vault-group`,\n    }],\n});\nconst existingObjectId = new vault.azure.BackendRole(\"existingObjectId\", {\n    backend: azure.path,\n    role: \"existing_object_id\",\n    applicationObjectId: \"11111111-2222-3333-4444-44444444444\",\n    ttl: \"300\",\n    maxTtl: \"600\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nazure = vault.azure.Backend(\"azure\",\n    subscription_id=var[\"subscription_id\"],\n    tenant_id=var[\"tenant_id\"],\n    client_secret=var[\"client_secret\"],\n    client_id=var[\"client_id\"])\ngenerated_role = vault.azure.BackendRole(\"generatedRole\",\n    backend=azure.path,\n    role=\"generated_role\",\n    ttl=\"300\",\n    max_ttl=\"600\",\n    azure_roles=[vault.azure.BackendRoleAzureRoleArgs(\n        role_name=\"Reader\",\n        scope=f\"/subscriptions/{var['subscription_id']}/resourceGroups/azure-vault-group\",\n    )])\nexisting_object_id = vault.azure.BackendRole(\"existingObjectId\",\n    backend=azure.path,\n    role=\"existing_object_id\",\n    application_object_id=\"11111111-2222-3333-4444-44444444444\",\n    ttl=\"300\",\n    max_ttl=\"600\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var azure = new Vault.Azure.Backend(\"azure\", new()\n    {\n        SubscriptionId = @var.Subscription_id,\n        TenantId = @var.Tenant_id,\n        ClientSecret = @var.Client_secret,\n        ClientId = @var.Client_id,\n    });\n\n    var generatedRole = new Vault.Azure.BackendRole(\"generatedRole\", new()\n    {\n        Backend = azure.Path,\n        Role = \"generated_role\",\n        Ttl = \"300\",\n        MaxTtl = \"600\",\n        AzureRoles = new[]\n        {\n            new Vault.Azure.Inputs.BackendRoleAzureRoleArgs\n            {\n                RoleName = \"Reader\",\n                Scope = $\"/subscriptions/{@var.Subscription_id}/resourceGroups/azure-vault-group\",\n            },\n        },\n    });\n\n    var existingObjectId = new Vault.Azure.BackendRole(\"existingObjectId\", new()\n    {\n        Backend = azure.Path,\n        Role = \"existing_object_id\",\n        ApplicationObjectId = \"11111111-2222-3333-4444-44444444444\",\n        Ttl = \"300\",\n        MaxTtl = \"600\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tazure, err := azure.NewBackend(ctx, \"azure\", \u0026azure.BackendArgs{\n\t\t\tSubscriptionId: pulumi.Any(_var.Subscription_id),\n\t\t\tTenantId:       pulumi.Any(_var.Tenant_id),\n\t\t\tClientSecret:   pulumi.Any(_var.Client_secret),\n\t\t\tClientId:       pulumi.Any(_var.Client_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = azure.NewBackendRole(ctx, \"generatedRole\", \u0026azure.BackendRoleArgs{\n\t\t\tBackend: azure.Path,\n\t\t\tRole:    pulumi.String(\"generated_role\"),\n\t\t\tTtl:     pulumi.String(\"300\"),\n\t\t\tMaxTtl:  pulumi.String(\"600\"),\n\t\t\tAzureRoles: azure.BackendRoleAzureRoleArray{\n\t\t\t\t\u0026azure.BackendRoleAzureRoleArgs{\n\t\t\t\t\tRoleName: pulumi.String(\"Reader\"),\n\t\t\t\t\tScope:    pulumi.String(fmt.Sprintf(\"/subscriptions/%v/resourceGroups/azure-vault-group\", _var.Subscription_id)),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = azure.NewBackendRole(ctx, \"existingObjectId\", \u0026azure.BackendRoleArgs{\n\t\t\tBackend:             azure.Path,\n\t\t\tRole:                pulumi.String(\"existing_object_id\"),\n\t\t\tApplicationObjectId: pulumi.String(\"11111111-2222-3333-4444-44444444444\"),\n\t\t\tTtl:                 pulumi.String(\"300\"),\n\t\t\tMaxTtl:              pulumi.String(\"600\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.azure.Backend;\nimport com.pulumi.vault.azure.BackendArgs;\nimport com.pulumi.vault.azure.BackendRole;\nimport com.pulumi.vault.azure.BackendRoleArgs;\nimport com.pulumi.vault.azure.inputs.BackendRoleAzureRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var azure = new Backend(\"azure\", BackendArgs.builder()        \n            .subscriptionId(var_.subscription_id())\n            .tenantId(var_.tenant_id())\n            .clientSecret(var_.client_secret())\n            .clientId(var_.client_id())\n            .build());\n\n        var generatedRole = new BackendRole(\"generatedRole\", BackendRoleArgs.builder()        \n            .backend(azure.path())\n            .role(\"generated_role\")\n            .ttl(300)\n            .maxTtl(600)\n            .azureRoles(BackendRoleAzureRoleArgs.builder()\n                .roleName(\"Reader\")\n                .scope(String.format(\"/subscriptions/%s/resourceGroups/azure-vault-group\", var_.subscription_id()))\n                .build())\n            .build());\n\n        var existingObjectId = new BackendRole(\"existingObjectId\", BackendRoleArgs.builder()        \n            .backend(azure.path())\n            .role(\"existing_object_id\")\n            .applicationObjectId(\"11111111-2222-3333-4444-44444444444\")\n            .ttl(300)\n            .maxTtl(600)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  azure:\n    type: vault:azure:Backend\n    properties:\n      subscriptionId: ${var.subscription_id}\n      tenantId: ${var.tenant_id}\n      clientSecret: ${var.client_secret}\n      clientId: ${var.client_id}\n  generatedRole:\n    type: vault:azure:BackendRole\n    properties:\n      backend: ${azure.path}\n      role: generated_role\n      ttl: 300\n      maxTtl: 600\n      azureRoles:\n        - roleName: Reader\n          scope: /subscriptions/${var.subscription_id}/resourceGroups/azure-vault-group\n  existingObjectId:\n    type: vault:azure:BackendRole\n    properties:\n      backend: ${azure.path}\n      role: existing_object_id\n      applicationObjectId: 11111111-2222-3333-4444-44444444444\n      ttl: 300\n      maxTtl: 600\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst azure = new vault.azure.Backend(\"azure\", {\n    subscriptionId: _var.subscription_id,\n    tenantId: _var.tenant_id,\n    clientSecret: _var.client_secret,\n    clientId: _var.client_id,\n});\nconst generatedRole = new vault.azure.BackendRole(\"generatedRole\", {\n    backend: azure.path,\n    role: \"generated_role\",\n    signInAudience: \"AzureADMyOrg\",\n    tags: [\n        \"team:engineering\",\n        \"environment:development\",\n    ],\n    ttl: \"300\",\n    maxTtl: \"600\",\n    azureRoles: [{\n        roleName: \"Reader\",\n        scope: `/subscriptions/${_var.subscription_id}/resourceGroups/azure-vault-group`,\n    }],\n});\nconst existingObjectId = new vault.azure.BackendRole(\"existingObjectId\", {\n    backend: azure.path,\n    role: \"existing_object_id\",\n    applicationObjectId: \"11111111-2222-3333-4444-44444444444\",\n    ttl: \"300\",\n    maxTtl: \"600\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nazure = vault.azure.Backend(\"azure\",\n    subscription_id=var[\"subscription_id\"],\n    tenant_id=var[\"tenant_id\"],\n    client_secret=var[\"client_secret\"],\n    client_id=var[\"client_id\"])\ngenerated_role = vault.azure.BackendRole(\"generatedRole\",\n    backend=azure.path,\n    role=\"generated_role\",\n    sign_in_audience=\"AzureADMyOrg\",\n    tags=[\n        \"team:engineering\",\n        \"environment:development\",\n    ],\n    ttl=\"300\",\n    max_ttl=\"600\",\n    azure_roles=[vault.azure.BackendRoleAzureRoleArgs(\n        role_name=\"Reader\",\n        scope=f\"/subscriptions/{var['subscription_id']}/resourceGroups/azure-vault-group\",\n    )])\nexisting_object_id = vault.azure.BackendRole(\"existingObjectId\",\n    backend=azure.path,\n    role=\"existing_object_id\",\n    application_object_id=\"11111111-2222-3333-4444-44444444444\",\n    ttl=\"300\",\n    max_ttl=\"600\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var azure = new Vault.Azure.Backend(\"azure\", new()\n    {\n        SubscriptionId = @var.Subscription_id,\n        TenantId = @var.Tenant_id,\n        ClientSecret = @var.Client_secret,\n        ClientId = @var.Client_id,\n    });\n\n    var generatedRole = new Vault.Azure.BackendRole(\"generatedRole\", new()\n    {\n        Backend = azure.Path,\n        Role = \"generated_role\",\n        SignInAudience = \"AzureADMyOrg\",\n        Tags = new[]\n        {\n            \"team:engineering\",\n            \"environment:development\",\n        },\n        Ttl = \"300\",\n        MaxTtl = \"600\",\n        AzureRoles = new[]\n        {\n            new Vault.Azure.Inputs.BackendRoleAzureRoleArgs\n            {\n                RoleName = \"Reader\",\n                Scope = $\"/subscriptions/{@var.Subscription_id}/resourceGroups/azure-vault-group\",\n            },\n        },\n    });\n\n    var existingObjectId = new Vault.Azure.BackendRole(\"existingObjectId\", new()\n    {\n        Backend = azure.Path,\n        Role = \"existing_object_id\",\n        ApplicationObjectId = \"11111111-2222-3333-4444-44444444444\",\n        Ttl = \"300\",\n        MaxTtl = \"600\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/azure\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tazure, err := azure.NewBackend(ctx, \"azure\", \u0026azure.BackendArgs{\n\t\t\tSubscriptionId: pulumi.Any(_var.Subscription_id),\n\t\t\tTenantId:       pulumi.Any(_var.Tenant_id),\n\t\t\tClientSecret:   pulumi.Any(_var.Client_secret),\n\t\t\tClientId:       pulumi.Any(_var.Client_id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = azure.NewBackendRole(ctx, \"generatedRole\", \u0026azure.BackendRoleArgs{\n\t\t\tBackend:        azure.Path,\n\t\t\tRole:           pulumi.String(\"generated_role\"),\n\t\t\tSignInAudience: pulumi.String(\"AzureADMyOrg\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"team:engineering\"),\n\t\t\t\tpulumi.String(\"environment:development\"),\n\t\t\t},\n\t\t\tTtl:    pulumi.String(\"300\"),\n\t\t\tMaxTtl: pulumi.String(\"600\"),\n\t\t\tAzureRoles: azure.BackendRoleAzureRoleArray{\n\t\t\t\t\u0026azure.BackendRoleAzureRoleArgs{\n\t\t\t\t\tRoleName: pulumi.String(\"Reader\"),\n\t\t\t\t\tScope:    pulumi.String(fmt.Sprintf(\"/subscriptions/%v/resourceGroups/azure-vault-group\", _var.Subscription_id)),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = azure.NewBackendRole(ctx, \"existingObjectId\", \u0026azure.BackendRoleArgs{\n\t\t\tBackend:             azure.Path,\n\t\t\tRole:                pulumi.String(\"existing_object_id\"),\n\t\t\tApplicationObjectId: pulumi.String(\"11111111-2222-3333-4444-44444444444\"),\n\t\t\tTtl:                 pulumi.String(\"300\"),\n\t\t\tMaxTtl:              pulumi.String(\"600\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.azure.Backend;\nimport com.pulumi.vault.azure.BackendArgs;\nimport com.pulumi.vault.azure.BackendRole;\nimport com.pulumi.vault.azure.BackendRoleArgs;\nimport com.pulumi.vault.azure.inputs.BackendRoleAzureRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var azure = new Backend(\"azure\", BackendArgs.builder()        \n            .subscriptionId(var_.subscription_id())\n            .tenantId(var_.tenant_id())\n            .clientSecret(var_.client_secret())\n            .clientId(var_.client_id())\n            .build());\n\n        var generatedRole = new BackendRole(\"generatedRole\", BackendRoleArgs.builder()        \n            .backend(azure.path())\n            .role(\"generated_role\")\n            .signInAudience(\"AzureADMyOrg\")\n            .tags(            \n                \"team:engineering\",\n                \"environment:development\")\n            .ttl(300)\n            .maxTtl(600)\n            .azureRoles(BackendRoleAzureRoleArgs.builder()\n                .roleName(\"Reader\")\n                .scope(String.format(\"/subscriptions/%s/resourceGroups/azure-vault-group\", var_.subscription_id()))\n                .build())\n            .build());\n\n        var existingObjectId = new BackendRole(\"existingObjectId\", BackendRoleArgs.builder()        \n            .backend(azure.path())\n            .role(\"existing_object_id\")\n            .applicationObjectId(\"11111111-2222-3333-4444-44444444444\")\n            .ttl(300)\n            .maxTtl(600)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  azure:\n    type: vault:azure:Backend\n    properties:\n      subscriptionId: ${var.subscription_id}\n      tenantId: ${var.tenant_id}\n      clientSecret: ${var.client_secret}\n      clientId: ${var.client_id}\n  generatedRole:\n    type: vault:azure:BackendRole\n    properties:\n      backend: ${azure.path}\n      role: generated_role\n      signInAudience: AzureADMyOrg\n      tags:\n        - team:engineering\n        - environment:development\n      ttl: 300\n      maxTtl: 600\n      azureRoles:\n        - roleName: Reader\n          scope: /subscriptions/${var.subscription_id}/resourceGroups/azure-vault-group\n  existingObjectId:\n    type: vault:azure:BackendRole\n    properties:\n      backend: ${azure.path}\n      role: existing_object_id\n      applicationObjectId: 11111111-2222-3333-4444-44444444444\n      ttl: 300\n      maxTtl: 600\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "applicationObjectId": {
                     "type": "string",
@@ -8530,6 +8681,17 @@
                 "role": {
                     "type": "string",
                     "description": "Name of the Azure role\n"
+                },
+                "signInAudience": {
+                    "type": "string",
+                    "description": "Specifies the security principal types that are allowed to sign in to the application.\nValid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of Azure tags to attach to an application. Requires Vault 1.16+.\n"
                 },
                 "ttl": {
                     "type": "string",
@@ -8586,6 +8748,17 @@
                     "description": "Name of the Azure role\n",
                     "willReplaceOnChanges": true
                 },
+                "signInAudience": {
+                    "type": "string",
+                    "description": "Specifies the security principal types that are allowed to sign in to the application.\nValid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of Azure tags to attach to an application. Requires Vault 1.16+.\n"
+                },
                 "ttl": {
                     "type": "string",
                     "description": "Specifies the default TTL for service principals generated using this role.\nAccepts time suffixed strings (\"1h\") or an integer number of seconds. Defaults to the system/engine default TTL time.\n"
@@ -8641,6 +8814,17 @@
                         "type": "string",
                         "description": "Name of the Azure role\n",
                         "willReplaceOnChanges": true
+                    },
+                    "signInAudience": {
+                        "type": "string",
+                        "description": "Specifies the security principal types that are allowed to sign in to the application.\nValid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of Azure tags to attach to an application. Requires Vault 1.16+.\n"
                     },
                     "ttl": {
                         "type": "string",
@@ -10488,6 +10672,10 @@
                 "projectId": {
                     "type": "string",
                     "description": "The GCP Project ID\n"
+                },
+                "tune": {
+                    "$ref": "#/types/vault:gcp/AuthBackendTune:AuthBackendTune",
+                    "description": "Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
                 }
             },
             "required": [
@@ -10495,7 +10683,8 @@
                 "clientEmail",
                 "clientId",
                 "privateKeyId",
-                "projectId"
+                "projectId",
+                "tune"
             ],
             "inputProperties": {
                 "clientEmail": {
@@ -10544,6 +10733,10 @@
                 "projectId": {
                     "type": "string",
                     "description": "The GCP Project ID\n"
+                },
+                "tune": {
+                    "$ref": "#/types/vault:gcp/AuthBackendTune:AuthBackendTune",
+                    "description": "Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
                 }
             },
             "stateInputs": {
@@ -10599,6 +10792,10 @@
                     "projectId": {
                         "type": "string",
                         "description": "The GCP Project ID\n"
+                    },
+                    "tune": {
+                        "$ref": "#/types/vault:gcp/AuthBackendTune:AuthBackendTune",
+                        "description": "Extra configuration block. Structure is documented below.\n\nThe `tune` block is used to tune the auth backend:\n"
                     }
                 },
                 "type": "object"
@@ -19253,7 +19450,7 @@
                 },
                 "tokenReviewerJwt": {
                     "type": "string",
-                    "description": "A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.\n",
+                    "description": "A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.\n",
                     "secret": true
                 }
             },
@@ -19303,7 +19500,7 @@
                 },
                 "tokenReviewerJwt": {
                     "type": "string",
-                    "description": "A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.\n",
+                    "description": "A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.\n",
                     "secret": true
                 }
             },
@@ -19352,7 +19549,7 @@
                     },
                     "tokenReviewerJwt": {
                         "type": "string",
-                        "description": "A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.\n",
+                        "description": "A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.\n",
                         "secret": true
                     }
                 },
@@ -24520,6 +24717,13 @@
                     "type": "boolean",
                     "description": "Flag to allow only valid host names\n"
                 },
+                "extKeyUsageOids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specify the allowed extended key usage OIDs constraint on issued certificates\n"
+                },
                 "extKeyUsages": {
                     "type": "array",
                     "items": {
@@ -24761,6 +24965,13 @@
                     "type": "boolean",
                     "description": "Flag to allow only valid host names\n"
                 },
+                "extKeyUsageOids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specify the allowed extended key usage OIDs constraint on issued certificates\n"
+                },
                 "extKeyUsages": {
                     "type": "array",
                     "items": {
@@ -24998,6 +25209,13 @@
                     "enforceHostnames": {
                         "type": "boolean",
                         "description": "Flag to allow only valid host names\n"
+                    },
+                    "extKeyUsageOids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specify the allowed extended key usage OIDs constraint on issued certificates\n"
                     },
                     "extKeyUsages": {
                         "type": "array",

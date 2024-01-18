@@ -38,10 +38,15 @@ import (
 //				return err
 //			}
 //			_, err = azure.NewBackendRole(ctx, "generatedRole", &azure.BackendRoleArgs{
-//				Backend: azure.Path,
-//				Role:    pulumi.String("generated_role"),
-//				Ttl:     pulumi.String("300"),
-//				MaxTtl:  pulumi.String("600"),
+//				Backend:        azure.Path,
+//				Role:           pulumi.String("generated_role"),
+//				SignInAudience: pulumi.String("AzureADMyOrg"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("team:engineering"),
+//					pulumi.String("environment:development"),
+//				},
+//				Ttl:    pulumi.String("300"),
+//				MaxTtl: pulumi.String("600"),
 //				AzureRoles: azure.BackendRoleAzureRoleArray{
 //					&azure.BackendRoleAzureRoleArgs{
 //						RoleName: pulumi.String("Reader"),
@@ -94,6 +99,11 @@ type BackendRole struct {
 	PermanentlyDelete pulumi.BoolOutput `pulumi:"permanentlyDelete"`
 	// Name of the Azure role
 	Role pulumi.StringOutput `pulumi:"role"`
+	// Specifies the security principal types that are allowed to sign in to the application.
+	// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+	SignInAudience pulumi.StringPtrOutput `pulumi:"signInAudience"`
+	// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Specifies the default TTL for service principals generated using this role.
 	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
@@ -156,6 +166,11 @@ type backendRoleState struct {
 	PermanentlyDelete *bool `pulumi:"permanentlyDelete"`
 	// Name of the Azure role
 	Role *string `pulumi:"role"`
+	// Specifies the security principal types that are allowed to sign in to the application.
+	// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+	SignInAudience *string `pulumi:"signInAudience"`
+	// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+	Tags []string `pulumi:"tags"`
 	// Specifies the default TTL for service principals generated using this role.
 	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
 	Ttl *string `pulumi:"ttl"`
@@ -186,6 +201,11 @@ type BackendRoleState struct {
 	PermanentlyDelete pulumi.BoolPtrInput
 	// Name of the Azure role
 	Role pulumi.StringPtrInput
+	// Specifies the security principal types that are allowed to sign in to the application.
+	// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+	SignInAudience pulumi.StringPtrInput
+	// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+	Tags pulumi.StringArrayInput
 	// Specifies the default TTL for service principals generated using this role.
 	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
 	Ttl pulumi.StringPtrInput
@@ -220,6 +240,11 @@ type backendRoleArgs struct {
 	PermanentlyDelete *bool `pulumi:"permanentlyDelete"`
 	// Name of the Azure role
 	Role string `pulumi:"role"`
+	// Specifies the security principal types that are allowed to sign in to the application.
+	// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+	SignInAudience *string `pulumi:"signInAudience"`
+	// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+	Tags []string `pulumi:"tags"`
 	// Specifies the default TTL for service principals generated using this role.
 	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
 	Ttl *string `pulumi:"ttl"`
@@ -251,6 +276,11 @@ type BackendRoleArgs struct {
 	PermanentlyDelete pulumi.BoolPtrInput
 	// Name of the Azure role
 	Role pulumi.StringInput
+	// Specifies the security principal types that are allowed to sign in to the application.
+	// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+	SignInAudience pulumi.StringPtrInput
+	// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+	Tags pulumi.StringArrayInput
 	// Specifies the default TTL for service principals generated using this role.
 	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
 	Ttl pulumi.StringPtrInput
@@ -392,6 +422,17 @@ func (o BackendRoleOutput) PermanentlyDelete() pulumi.BoolOutput {
 // Name of the Azure role
 func (o BackendRoleOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
+}
+
+// Specifies the security principal types that are allowed to sign in to the application.
+// Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+func (o BackendRoleOutput) SignInAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.SignInAudience }).(pulumi.StringPtrOutput)
+}
+
+// A list of Azure tags to attach to an application. Requires Vault 1.16+.
+func (o BackendRoleOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
 // Specifies the default TTL for service principals generated using this role.
