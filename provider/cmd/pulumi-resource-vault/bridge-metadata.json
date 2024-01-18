@@ -255,6 +255,9 @@
                     },
                     "azure_roles": {
                         "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -699,6 +702,25 @@
                 "fields": {
                     "custom_endpoint": {
                         "maxItemsOne": true
+                    },
+                    "tune": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed_response_headers": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_request_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "audit_non_hmac_response_keys": {
+                                    "maxItemsOne": false
+                                },
+                                "passthrough_request_headers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -1484,6 +1506,9 @@
                         "maxItemsOne": false
                     },
                     "ext_key_usage": {
+                        "maxItemsOne": false
+                    },
+                    "ext_key_usage_oids": {
                         "maxItemsOne": false
                     },
                     "key_usage": {
@@ -2535,7 +2560,8 @@
                 "azureGroups": "azure_groups",
                 "azureRoles": "azure_roles",
                 "maxTtl": "max_ttl",
-                "permanentlyDelete": "permanently_delete"
+                "permanentlyDelete": "permanently_delete",
+                "signInAudience": "sign_in_audience"
             },
             "vault:azure/getAccessCredentials:getAccessCredentials": {
                 "clientId": "client_id",
@@ -2705,24 +2731,36 @@
                 "usernameTemplate": "username_template"
             },
             "vault:database/SecretBackendConnectionMysqlAurora:SecretBackendConnectionMysqlAurora": {
+                "authType": "auth_type",
                 "connectionUrl": "connection_url",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
+                "serviceAccountJson": "service_account_json",
+                "tlsCa": "tls_ca",
+                "tlsCertificateKey": "tls_certificate_key",
                 "usernameTemplate": "username_template"
             },
             "vault:database/SecretBackendConnectionMysqlLegacy:SecretBackendConnectionMysqlLegacy": {
+                "authType": "auth_type",
                 "connectionUrl": "connection_url",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
+                "serviceAccountJson": "service_account_json",
+                "tlsCa": "tls_ca",
+                "tlsCertificateKey": "tls_certificate_key",
                 "usernameTemplate": "username_template"
             },
             "vault:database/SecretBackendConnectionMysqlRds:SecretBackendConnectionMysqlRds": {
+                "authType": "auth_type",
                 "connectionUrl": "connection_url",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
+                "serviceAccountJson": "service_account_json",
+                "tlsCa": "tls_ca",
+                "tlsCertificateKey": "tls_certificate_key",
                 "usernameTemplate": "username_template"
             },
             "vault:database/SecretBackendConnectionOracle:SecretBackendConnectionOracle": {
@@ -2866,34 +2904,46 @@
             },
             "vault:database/SecretsMountMysqlAurora:SecretsMountMysqlAurora": {
                 "allowedRoles": "allowed_roles",
+                "authType": "auth_type",
                 "connectionUrl": "connection_url",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
                 "pluginName": "plugin_name",
                 "rootRotationStatements": "root_rotation_statements",
+                "serviceAccountJson": "service_account_json",
+                "tlsCa": "tls_ca",
+                "tlsCertificateKey": "tls_certificate_key",
                 "usernameTemplate": "username_template",
                 "verifyConnection": "verify_connection"
             },
             "vault:database/SecretsMountMysqlLegacy:SecretsMountMysqlLegacy": {
                 "allowedRoles": "allowed_roles",
+                "authType": "auth_type",
                 "connectionUrl": "connection_url",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
                 "pluginName": "plugin_name",
                 "rootRotationStatements": "root_rotation_statements",
+                "serviceAccountJson": "service_account_json",
+                "tlsCa": "tls_ca",
+                "tlsCertificateKey": "tls_certificate_key",
                 "usernameTemplate": "username_template",
                 "verifyConnection": "verify_connection"
             },
             "vault:database/SecretsMountMysqlRd:SecretsMountMysqlRd": {
                 "allowedRoles": "allowed_roles",
+                "authType": "auth_type",
                 "connectionUrl": "connection_url",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
                 "pluginName": "plugin_name",
                 "rootRotationStatements": "root_rotation_statements",
+                "serviceAccountJson": "service_account_json",
+                "tlsCa": "tls_ca",
+                "tlsCertificateKey": "tls_certificate_key",
                 "usernameTemplate": "username_template",
                 "verifyConnection": "verify_connection"
             },
@@ -3012,6 +3062,16 @@
                 "redshifts": "redshift",
                 "sealWrap": "seal_wrap",
                 "snowflakes": "snowflake"
+            },
+            "vault:gcp/AuthBackendTune:AuthBackendTune": {
+                "allowedResponseHeaders": "allowed_response_headers",
+                "auditNonHmacRequestKeys": "audit_non_hmac_request_keys",
+                "auditNonHmacResponseKeys": "audit_non_hmac_response_keys",
+                "defaultLeaseTtl": "default_lease_ttl",
+                "listingVisibility": "listing_visibility",
+                "maxLeaseTtl": "max_lease_ttl",
+                "passthroughRequestHeaders": "passthrough_request_headers",
+                "tokenType": "token_type"
             },
             "vault:gcp/authBackend:AuthBackend": {
                 "clientEmail": "client_email",
@@ -4066,6 +4126,7 @@
                 "countries": "country",
                 "emailProtectionFlag": "email_protection_flag",
                 "enforceHostnames": "enforce_hostnames",
+                "extKeyUsageOids": "ext_key_usage_oids",
                 "extKeyUsages": "ext_key_usage",
                 "generateLease": "generate_lease",
                 "issuerRef": "issuer_ref",
