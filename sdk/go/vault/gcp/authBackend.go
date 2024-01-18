@@ -101,6 +101,10 @@ type AuthBackend struct {
 	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
 	// The GCP Project ID
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTuneOutput `pulumi:"tune"`
 }
 
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
@@ -174,6 +178,10 @@ type authBackendState struct {
 	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The GCP Project ID
 	ProjectId *string `pulumi:"projectId"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
 type AuthBackendState struct {
@@ -211,6 +219,10 @@ type AuthBackendState struct {
 	PrivateKeyId pulumi.StringPtrInput
 	// The GCP Project ID
 	ProjectId pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTunePtrInput
 }
 
 func (AuthBackendState) ElementType() reflect.Type {
@@ -250,6 +262,10 @@ type authBackendArgs struct {
 	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The GCP Project ID
 	ProjectId *string `pulumi:"projectId"`
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune *AuthBackendTune `pulumi:"tune"`
 }
 
 // The set of arguments for constructing a AuthBackend resource.
@@ -286,6 +302,10 @@ type AuthBackendArgs struct {
 	PrivateKeyId pulumi.StringPtrInput
 	// The GCP Project ID
 	ProjectId pulumi.StringPtrInput
+	// Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	Tune AuthBackendTunePtrInput
 }
 
 func (AuthBackendArgs) ElementType() reflect.Type {
@@ -443,6 +463,13 @@ func (o AuthBackendOutput) PrivateKeyId() pulumi.StringOutput {
 // The GCP Project ID
 func (o AuthBackendOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Extra configuration block. Structure is documented below.
+//
+// The `tune` block is used to tune the auth backend:
+func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
+	return o.ApplyT(func(v *AuthBackend) AuthBackendTuneOutput { return v.Tune }).(AuthBackendTuneOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

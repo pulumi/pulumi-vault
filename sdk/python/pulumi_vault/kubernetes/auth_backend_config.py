@@ -36,7 +36,7 @@ class AuthBackendConfigArgs:
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         pulumi.set(__self__, "kubernetes_host", kubernetes_host)
         if backend is not None:
@@ -159,7 +159,7 @@ class AuthBackendConfigArgs:
     @pulumi.getter(name="tokenReviewerJwt")
     def token_reviewer_jwt(self) -> Optional[pulumi.Input[str]]:
         """
-        A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 
@@ -193,7 +193,7 @@ class _AuthBackendConfigState:
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -317,7 +317,7 @@ class _AuthBackendConfigState:
     @pulumi.getter(name="tokenReviewerJwt")
     def token_reviewer_jwt(self) -> Optional[pulumi.Input[str]]:
         """
-        A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 
@@ -385,7 +385,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         ...
     @overload
@@ -507,7 +507,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -595,7 +595,7 @@ class AuthBackendConfig(pulumi.CustomResource):
     @pulumi.getter(name="tokenReviewerJwt")
     def token_reviewer_jwt(self) -> pulumi.Output[Optional[str]]:
         """
-        A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 

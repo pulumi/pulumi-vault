@@ -36,8 +36,6 @@ public final class AuthBackendCustomEndpointArgs extends com.pulumi.resources.Re
      * The endpoint value provided for a given key has the form of `scheme://host:port`.
      * The `scheme://` and `:port` portions of the endpoint value are optional.
      * 
-     * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
-     * 
      */
     @Import(name="compute")
     private @Nullable Output<String> compute;
@@ -47,8 +45,6 @@ public final class AuthBackendCustomEndpointArgs extends com.pulumi.resources.Re
      * 
      * The endpoint value provided for a given key has the form of `scheme://host:port`.
      * The `scheme://` and `:port` portions of the endpoint value are optional.
-     * 
-     * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
      * 
      */
     public Optional<Output<String>> compute() {
@@ -139,8 +135,6 @@ public final class AuthBackendCustomEndpointArgs extends com.pulumi.resources.Re
          * The endpoint value provided for a given key has the form of `scheme://host:port`.
          * The `scheme://` and `:port` portions of the endpoint value are optional.
          * 
-         * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
-         * 
          * @return builder
          * 
          */
@@ -154,8 +148,6 @@ public final class AuthBackendCustomEndpointArgs extends com.pulumi.resources.Re
          * 
          * The endpoint value provided for a given key has the form of `scheme://host:port`.
          * The `scheme://` and `:port` portions of the endpoint value are optional.
-         * 
-         * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
          * 
          * @return builder
          * 

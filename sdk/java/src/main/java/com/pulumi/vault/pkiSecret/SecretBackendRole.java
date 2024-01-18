@@ -374,6 +374,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.enforceHostnames);
     }
     /**
+     * Specify the allowed extended key usage OIDs constraint on issued certificates
+     * 
+     */
+    @Export(name="extKeyUsageOids", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> extKeyUsageOids;
+
+    /**
+     * @return Specify the allowed extended key usage OIDs constraint on issued certificates
+     * 
+     */
+    public Output<Optional<List<String>>> extKeyUsageOids() {
+        return Codegen.optional(this.extKeyUsageOids);
+    }
+    /**
      * Specify the allowed extended key usage constraint on issued certificates
      * 
      */

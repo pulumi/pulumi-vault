@@ -85,7 +85,7 @@ type AuthBackendConfig struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayOutput `pulumi:"pemKeys"`
-	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt pulumi.StringPtrOutput `pulumi:"tokenReviewerJwt"`
 }
 
@@ -148,7 +148,7 @@ type authBackendConfigState struct {
 	Namespace *string `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
-	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt *string `pulumi:"tokenReviewerJwt"`
 }
 
@@ -172,7 +172,7 @@ type AuthBackendConfigState struct {
 	Namespace pulumi.StringPtrInput
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput
-	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt pulumi.StringPtrInput
 }
 
@@ -200,7 +200,7 @@ type authBackendConfigArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
-	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt *string `pulumi:"tokenReviewerJwt"`
 }
 
@@ -225,7 +225,7 @@ type AuthBackendConfigArgs struct {
 	Namespace pulumi.StringPtrInput
 	// List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput
-	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt pulumi.StringPtrInput
 }
 
@@ -359,7 +359,7 @@ func (o AuthBackendConfigOutput) PemKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringArrayOutput { return v.PemKeys }).(pulumi.StringArrayOutput)
 }
 
-// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 func (o AuthBackendConfigOutput) TokenReviewerJwt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.TokenReviewerJwt }).(pulumi.StringPtrOutput)
 }

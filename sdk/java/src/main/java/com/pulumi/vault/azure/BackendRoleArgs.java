@@ -168,6 +168,38 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="signInAudience")
+    private @Nullable Output<String> signInAudience;
+
+    /**
+     * @return Specifies the security principal types that are allowed to sign in to the application.
+     * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<String>> signInAudience() {
+        return Optional.ofNullable(this.signInAudience);
+    }
+
+    /**
+     * A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="tags")
+    private @Nullable Output<List<String>> tags;
+
+    /**
+     * @return A list of Azure tags to attach to an application. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<List<String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
+    /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
      * 
@@ -196,6 +228,8 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
         this.namespace = $.namespace;
         this.permanentlyDelete = $.permanentlyDelete;
         this.role = $.role;
+        this.signInAudience = $.signInAudience;
+        this.tags = $.tags;
         this.ttl = $.ttl;
     }
 
@@ -436,6 +470,60 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder role(String role) {
             return role(Output.of(role));
+        }
+
+        /**
+         * @param signInAudience Specifies the security principal types that are allowed to sign in to the application.
+         * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signInAudience(@Nullable Output<String> signInAudience) {
+            $.signInAudience = signInAudience;
+            return this;
+        }
+
+        /**
+         * @param signInAudience Specifies the security principal types that are allowed to sign in to the application.
+         * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signInAudience(String signInAudience) {
+            return signInAudience(Output.of(signInAudience));
+        }
+
+        /**
+         * @param tags A list of Azure tags to attach to an application. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(@Nullable Output<List<String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        /**
+         * @param tags A list of Azure tags to attach to an application. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(List<String> tags) {
+            return tags(Output.of(tags));
+        }
+
+        /**
+         * @param tags A list of Azure tags to attach to an application. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tags(String... tags) {
+            return tags(List.of(tags));
         }
 
         /**

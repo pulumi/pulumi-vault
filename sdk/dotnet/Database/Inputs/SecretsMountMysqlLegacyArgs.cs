@@ -25,6 +25,9 @@ namespace Pulumi.Vault.Database.Inputs
             set => _allowedRoles = value;
         }
 
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
         /// <summary>
         /// Specifies the Redshift DSN. 
         /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -101,6 +104,40 @@ namespace Pulumi.Vault.Database.Inputs
         {
             get => _rootRotationStatements ?? (_rootRotationStatements = new InputList<string>());
             set => _rootRotationStatements = value;
+        }
+
+        [Input("serviceAccountJson")]
+        private Input<string>? _serviceAccountJson;
+        public Input<string>? ServiceAccountJson
+        {
+            get => _serviceAccountJson;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        /// </summary>
+        [Input("tlsCa")]
+        public Input<string>? TlsCa { get; set; }
+
+        [Input("tlsCertificateKey")]
+        private Input<string>? _tlsCertificateKey;
+
+        /// <summary>
+        /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        /// </summary>
+        public Input<string>? TlsCertificateKey
+        {
+            get => _tlsCertificateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _tlsCertificateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
         }
 
         /// <summary>

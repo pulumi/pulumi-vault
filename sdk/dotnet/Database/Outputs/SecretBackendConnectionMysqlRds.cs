@@ -14,6 +14,10 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionMysqlRds
     {
         /// <summary>
+        /// Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        /// </summary>
+        public readonly string? AuthType;
+        /// <summary>
         /// A URL containing connection information. See
         /// the [Vault
         /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -40,6 +44,18 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        /// </summary>
+        public readonly string? ServiceAccountJson;
+        /// <summary>
+        /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCa;
+        /// <summary>
+        /// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        /// </summary>
+        public readonly string? TlsCertificateKey;
+        /// <summary>
         /// The username to authenticate with.
         /// </summary>
         public readonly string? Username;
@@ -50,6 +66,8 @@ namespace Pulumi.Vault.Database.Outputs
 
         [OutputConstructor]
         private SecretBackendConnectionMysqlRds(
+            string? authType,
+
             string? connectionUrl,
 
             int? maxConnectionLifetime,
@@ -60,15 +78,25 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? serviceAccountJson,
+
+            string? tlsCa,
+
+            string? tlsCertificateKey,
+
             string? username,
 
             string? usernameTemplate)
         {
+            AuthType = authType;
             ConnectionUrl = connectionUrl;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            ServiceAccountJson = serviceAccountJson;
+            TlsCa = tlsCa;
+            TlsCertificateKey = tlsCertificateKey;
             Username = username;
             UsernameTemplate = usernameTemplate;
         }

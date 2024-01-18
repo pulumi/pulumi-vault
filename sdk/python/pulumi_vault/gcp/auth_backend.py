@@ -26,7 +26,8 @@ class AuthBackendArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  private_key_id: Optional[pulumi.Input[str]] = None,
-                 project_id: Optional[pulumi.Input[str]] = None):
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
@@ -50,6 +51,9 @@ class AuthBackendArgs:
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         if client_email is not None:
             pulumi.set(__self__, "client_email", client_email)
@@ -73,6 +77,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
 
     @property
     @pulumi.getter(name="clientEmail")
@@ -216,6 +222,20 @@ class AuthBackendArgs:
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
 
+    @property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
 
 @pulumi.input_type
 class _AuthBackendState:
@@ -231,7 +251,8 @@ class _AuthBackendState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  private_key_id: Optional[pulumi.Input[str]] = None,
-                 project_id: Optional[pulumi.Input[str]] = None):
+                 project_id: Optional[pulumi.Input[str]] = None,
+                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
         :param pulumi.Input[str] accessor: The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
@@ -256,6 +277,9 @@ class _AuthBackendState:
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
+        :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -281,6 +305,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "private_key_id", private_key_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if tune is not None:
+            pulumi.set(__self__, "tune", tune)
 
     @property
     @pulumi.getter
@@ -436,6 +462,20 @@ class _AuthBackendState:
     def project_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_id", value)
 
+    @property
+    @pulumi.getter
+    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
+
+    @tune.setter
+    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+        pulumi.set(self, "tune", value)
+
 
 class AuthBackend(pulumi.CustomResource):
     @overload
@@ -453,6 +493,7 @@ class AuthBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  __props__=None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
@@ -504,6 +545,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
+        :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         ...
     @overload
@@ -564,6 +608,7 @@ class AuthBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
+                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -584,6 +629,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["path"] = path
             __props__.__dict__["private_key_id"] = private_key_id
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["tune"] = tune
             __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -608,7 +654,8 @@ class AuthBackend(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             private_key_id: Optional[pulumi.Input[str]] = None,
-            project_id: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
+            project_id: Optional[pulumi.Input[str]] = None,
+            tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -638,6 +685,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The path to mount the auth method — this defaults to 'gcp'.
         :param pulumi.Input[str] private_key_id: The ID of the private key from the credentials
         :param pulumi.Input[str] project_id: The GCP Project ID
+        :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -655,6 +705,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["private_key_id"] = private_key_id
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["tune"] = tune
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -762,4 +813,14 @@ class AuthBackend(pulumi.CustomResource):
         The GCP Project ID
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def tune(self) -> pulumi.Output['outputs.AuthBackendTune']:
+        """
+        Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "tune")
 

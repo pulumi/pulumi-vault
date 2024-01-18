@@ -144,14 +144,14 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      * 
      */
     @Import(name="tokenReviewerJwt")
     private @Nullable Output<String> tokenReviewerJwt;
 
     /**
-     * @return A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * @return A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      * 
      */
     public Optional<Output<String>> tokenReviewerJwt() {
@@ -375,7 +375,7 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tokenReviewerJwt A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+         * @param tokenReviewerJwt A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
          * 
          * @return builder
          * 
@@ -386,7 +386,7 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param tokenReviewerJwt A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+         * @param tokenReviewerJwt A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
          * 
          * @return builder
          * 

@@ -156,6 +156,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly enforceHostnames!: pulumi.Output<boolean | undefined>;
     /**
+     * Specify the allowed extended key usage OIDs constraint on issued certificates
+     */
+    public readonly extKeyUsageOids!: pulumi.Output<string[] | undefined>;
+    /**
      * Specify the allowed extended key usage constraint on issued certificates
      */
     public readonly extKeyUsages!: pulumi.Output<string[] | undefined>;
@@ -295,6 +299,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["countries"] = state ? state.countries : undefined;
             resourceInputs["emailProtectionFlag"] = state ? state.emailProtectionFlag : undefined;
             resourceInputs["enforceHostnames"] = state ? state.enforceHostnames : undefined;
+            resourceInputs["extKeyUsageOids"] = state ? state.extKeyUsageOids : undefined;
             resourceInputs["extKeyUsages"] = state ? state.extKeyUsages : undefined;
             resourceInputs["generateLease"] = state ? state.generateLease : undefined;
             resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
@@ -345,6 +350,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["countries"] = args ? args.countries : undefined;
             resourceInputs["emailProtectionFlag"] = args ? args.emailProtectionFlag : undefined;
             resourceInputs["enforceHostnames"] = args ? args.enforceHostnames : undefined;
+            resourceInputs["extKeyUsageOids"] = args ? args.extKeyUsageOids : undefined;
             resourceInputs["extKeyUsages"] = args ? args.extKeyUsages : undefined;
             resourceInputs["generateLease"] = args ? args.generateLease : undefined;
             resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
@@ -463,6 +469,10 @@ export interface SecretBackendRoleState {
      * Flag to allow only valid host names
      */
     enforceHostnames?: pulumi.Input<boolean>;
+    /**
+     * Specify the allowed extended key usage OIDs constraint on issued certificates
+     */
+    extKeyUsageOids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specify the allowed extended key usage constraint on issued certificates
      */
@@ -658,6 +668,10 @@ export interface SecretBackendRoleArgs {
      * Flag to allow only valid host names
      */
     enforceHostnames?: pulumi.Input<boolean>;
+    /**
+     * Specify the allowed extended key usage OIDs constraint on issued certificates
+     */
+    extKeyUsageOids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specify the allowed extended key usage constraint on issued certificates
      */

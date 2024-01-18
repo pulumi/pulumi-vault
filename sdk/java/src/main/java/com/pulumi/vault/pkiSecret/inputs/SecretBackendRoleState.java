@@ -335,6 +335,21 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Specify the allowed extended key usage OIDs constraint on issued certificates
+     * 
+     */
+    @Import(name="extKeyUsageOids")
+    private @Nullable Output<List<String>> extKeyUsageOids;
+
+    /**
+     * @return Specify the allowed extended key usage OIDs constraint on issued certificates
+     * 
+     */
+    public Optional<Output<List<String>>> extKeyUsageOids() {
+        return Optional.ofNullable(this.extKeyUsageOids);
+    }
+
+    /**
      * Specify the allowed extended key usage constraint on issued certificates
      * 
      */
@@ -736,6 +751,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.countries = $.countries;
         this.emailProtectionFlag = $.emailProtectionFlag;
         this.enforceHostnames = $.enforceHostnames;
+        this.extKeyUsageOids = $.extKeyUsageOids;
         this.extKeyUsages = $.extKeyUsages;
         this.generateLease = $.generateLease;
         this.issuerRef = $.issuerRef;
@@ -1279,6 +1295,37 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder enforceHostnames(Boolean enforceHostnames) {
             return enforceHostnames(Output.of(enforceHostnames));
+        }
+
+        /**
+         * @param extKeyUsageOids Specify the allowed extended key usage OIDs constraint on issued certificates
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extKeyUsageOids(@Nullable Output<List<String>> extKeyUsageOids) {
+            $.extKeyUsageOids = extKeyUsageOids;
+            return this;
+        }
+
+        /**
+         * @param extKeyUsageOids Specify the allowed extended key usage OIDs constraint on issued certificates
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extKeyUsageOids(List<String> extKeyUsageOids) {
+            return extKeyUsageOids(Output.of(extKeyUsageOids));
+        }
+
+        /**
+         * @param extKeyUsageOids Specify the allowed extended key usage OIDs constraint on issued certificates
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extKeyUsageOids(String... extKeyUsageOids) {
+            return extKeyUsageOids(List.of(extKeyUsageOids));
         }
 
         /**

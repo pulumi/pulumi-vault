@@ -37,6 +37,7 @@ class SecretBackendRoleArgs:
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
+                 ext_key_usage_oids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -84,6 +85,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usage_oids: Specify the allowed extended key usage OIDs constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -159,6 +161,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "email_protection_flag", email_protection_flag)
         if enforce_hostnames is not None:
             pulumi.set(__self__, "enforce_hostnames", enforce_hostnames)
+        if ext_key_usage_oids is not None:
+            pulumi.set(__self__, "ext_key_usage_oids", ext_key_usage_oids)
         if ext_key_usages is not None:
             pulumi.set(__self__, "ext_key_usages", ext_key_usages)
         if generate_lease is not None:
@@ -459,6 +463,18 @@ class SecretBackendRoleArgs:
     @enforce_hostnames.setter
     def enforce_hostnames(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enforce_hostnames", value)
+
+    @property
+    @pulumi.getter(name="extKeyUsageOids")
+    def ext_key_usage_oids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specify the allowed extended key usage OIDs constraint on issued certificates
+        """
+        return pulumi.get(self, "ext_key_usage_oids")
+
+    @ext_key_usage_oids.setter
+    def ext_key_usage_oids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ext_key_usage_oids", value)
 
     @property
     @pulumi.getter(name="extKeyUsages")
@@ -782,6 +798,7 @@ class _SecretBackendRoleState:
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
+                 ext_key_usage_oids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -829,6 +846,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usage_oids: Specify the allowed extended key usage OIDs constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -905,6 +923,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "email_protection_flag", email_protection_flag)
         if enforce_hostnames is not None:
             pulumi.set(__self__, "enforce_hostnames", enforce_hostnames)
+        if ext_key_usage_oids is not None:
+            pulumi.set(__self__, "ext_key_usage_oids", ext_key_usage_oids)
         if ext_key_usages is not None:
             pulumi.set(__self__, "ext_key_usages", ext_key_usages)
         if generate_lease is not None:
@@ -1205,6 +1225,18 @@ class _SecretBackendRoleState:
     @enforce_hostnames.setter
     def enforce_hostnames(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "enforce_hostnames", value)
+
+    @property
+    @pulumi.getter(name="extKeyUsageOids")
+    def ext_key_usage_oids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specify the allowed extended key usage OIDs constraint on issued certificates
+        """
+        return pulumi.get(self, "ext_key_usage_oids")
+
+    @ext_key_usage_oids.setter
+    def ext_key_usage_oids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ext_key_usage_oids", value)
 
     @property
     @pulumi.getter(name="extKeyUsages")
@@ -1530,6 +1562,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
+                 ext_key_usage_oids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -1613,6 +1646,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usage_oids: Specify the allowed extended key usage OIDs constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -1724,6 +1758,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
                  enforce_hostnames: Optional[pulumi.Input[bool]] = None,
+                 ext_key_usage_oids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  generate_lease: Optional[pulumi.Input[bool]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -1780,6 +1815,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["countries"] = countries
             __props__.__dict__["email_protection_flag"] = email_protection_flag
             __props__.__dict__["enforce_hostnames"] = enforce_hostnames
+            __props__.__dict__["ext_key_usage_oids"] = ext_key_usage_oids
             __props__.__dict__["ext_key_usages"] = ext_key_usages
             __props__.__dict__["generate_lease"] = generate_lease
             __props__.__dict__["issuer_ref"] = issuer_ref
@@ -1835,6 +1871,7 @@ class SecretBackendRole(pulumi.CustomResource):
             countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             email_protection_flag: Optional[pulumi.Input[bool]] = None,
             enforce_hostnames: Optional[pulumi.Input[bool]] = None,
+            ext_key_usage_oids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ext_key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             generate_lease: Optional[pulumi.Input[bool]] = None,
             issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -1887,6 +1924,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
         :param pulumi.Input[bool] enforce_hostnames: Flag to allow only valid host names
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usage_oids: Specify the allowed extended key usage OIDs constraint on issued certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ext_key_usages: Specify the allowed extended key usage constraint on issued certificates
         :param pulumi.Input[bool] generate_lease: Flag to generate leases with certificates
         :param pulumi.Input[str] issuer_ref: Specifies the default issuer of this request. May
@@ -1946,6 +1984,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["countries"] = countries
         __props__.__dict__["email_protection_flag"] = email_protection_flag
         __props__.__dict__["enforce_hostnames"] = enforce_hostnames
+        __props__.__dict__["ext_key_usage_oids"] = ext_key_usage_oids
         __props__.__dict__["ext_key_usages"] = ext_key_usages
         __props__.__dict__["generate_lease"] = generate_lease
         __props__.__dict__["issuer_ref"] = issuer_ref
@@ -2139,6 +2178,14 @@ class SecretBackendRole(pulumi.CustomResource):
         Flag to allow only valid host names
         """
         return pulumi.get(self, "enforce_hostnames")
+
+    @property
+    @pulumi.getter(name="extKeyUsageOids")
+    def ext_key_usage_oids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Specify the allowed extended key usage OIDs constraint on issued certificates
+        """
+        return pulumi.get(self, "ext_key_usage_oids")
 
     @property
     @pulumi.getter(name="extKeyUsages")

@@ -100,7 +100,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly pemKeys!: pulumi.Output<string[] | undefined>;
     /**
-     * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
     public readonly tokenReviewerJwt!: pulumi.Output<string | undefined>;
 
@@ -188,7 +188,7 @@ export interface AuthBackendConfigState {
      */
     pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
     tokenReviewerJwt?: pulumi.Input<string>;
 }
@@ -233,7 +233,7 @@ export interface AuthBackendConfigArgs {
      */
     pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+     * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
     tokenReviewerJwt?: pulumi.Input<string>;
 }

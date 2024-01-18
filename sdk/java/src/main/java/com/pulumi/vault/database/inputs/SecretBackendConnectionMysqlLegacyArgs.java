@@ -17,6 +17,21 @@ public final class SecretBackendConnectionMysqlLegacyArgs extends com.pulumi.res
     public static final SecretBackendConnectionMysqlLegacyArgs Empty = new SecretBackendConnectionMysqlLegacyArgs();
 
     /**
+     * Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    /**
+     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * 
+     */
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
+    /**
      * A URL containing connection information. See
      * the [Vault
      * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -104,6 +119,51 @@ public final class SecretBackendConnectionMysqlLegacyArgs extends com.pulumi.res
     }
 
     /**
+     * JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    @Import(name="serviceAccountJson")
+    private @Nullable Output<String> serviceAccountJson;
+
+    /**
+     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * 
+     */
+    public Optional<Output<String>> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+
+    /**
+     * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCa")
+    private @Nullable Output<String> tlsCa;
+
+    /**
+     * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+
+    /**
+     * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    @Import(name="tlsCertificateKey")
+    private @Nullable Output<String> tlsCertificateKey;
+
+    /**
+     * @return x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    public Optional<Output<String>> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
+
+    /**
      * The username to authenticate with.
      * 
      */
@@ -136,11 +196,15 @@ public final class SecretBackendConnectionMysqlLegacyArgs extends com.pulumi.res
     private SecretBackendConnectionMysqlLegacyArgs() {}
 
     private SecretBackendConnectionMysqlLegacyArgs(SecretBackendConnectionMysqlLegacyArgs $) {
+        this.authType = $.authType;
         this.connectionUrl = $.connectionUrl;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
+        this.serviceAccountJson = $.serviceAccountJson;
+        this.tlsCa = $.tlsCa;
+        this.tlsCertificateKey = $.tlsCertificateKey;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
     }
@@ -161,6 +225,27 @@ public final class SecretBackendConnectionMysqlLegacyArgs extends com.pulumi.res
 
         public Builder(SecretBackendConnectionMysqlLegacyArgs defaults) {
             $ = new SecretBackendConnectionMysqlLegacyArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param authType Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        /**
+         * @param authType Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**
@@ -278,6 +363,69 @@ public final class SecretBackendConnectionMysqlLegacyArgs extends com.pulumi.res
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param serviceAccountJson JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJson(@Nullable Output<String> serviceAccountJson) {
+            $.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountJson JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountJson(String serviceAccountJson) {
+            return serviceAccountJson(Output.of(serviceAccountJson));
+        }
+
+        /**
+         * @param tlsCa x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(@Nullable Output<String> tlsCa) {
+            $.tlsCa = tlsCa;
+            return this;
+        }
+
+        /**
+         * @param tlsCa x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(String tlsCa) {
+            return tlsCa(Output.of(tlsCa));
+        }
+
+        /**
+         * @param tlsCertificateKey x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(@Nullable Output<String> tlsCertificateKey) {
+            $.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+
+        /**
+         * @param tlsCertificateKey x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificateKey(String tlsCertificateKey) {
+            return tlsCertificateKey(Output.of(tlsCertificateKey));
         }
 
         /**

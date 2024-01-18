@@ -131,6 +131,14 @@ namespace Pulumi.Vault.Gcp
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
+        /// </summary>
+        [Output("tune")]
+        public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -267,6 +275,14 @@ namespace Pulumi.Vault.Gcp
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
+        /// </summary>
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
+
         public AuthBackendArgs()
         {
         }
@@ -366,6 +382,14 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Extra configuration block. Structure is documented below.
+        /// 
+        /// The `tune` block is used to tune the auth backend:
+        /// </summary>
+        [Input("tune")]
+        public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         public AuthBackendState()
         {

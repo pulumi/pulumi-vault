@@ -23,6 +23,7 @@ public final class SecretsMountMysqlAurora {
      * 
      */
     private @Nullable List<String> allowedRoles;
+    private @Nullable String authType;
     /**
      * @return Specifies the Redshift DSN.
      * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -69,6 +70,17 @@ public final class SecretsMountMysqlAurora {
      * 
      */
     private @Nullable List<String> rootRotationStatements;
+    private @Nullable String serviceAccountJson;
+    /**
+     * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCa;
+    /**
+     * @return x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    private @Nullable String tlsCertificateKey;
     /**
      * @return The root credential username used in the connection URL.
      * 
@@ -94,6 +106,9 @@ public final class SecretsMountMysqlAurora {
      */
     public List<String> allowedRoles() {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
+    }
+    public Optional<String> authType() {
+        return Optional.ofNullable(this.authType);
     }
     /**
      * @return Specifies the Redshift DSN.
@@ -159,6 +174,23 @@ public final class SecretsMountMysqlAurora {
     public List<String> rootRotationStatements() {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
+    public Optional<String> serviceAccountJson() {
+        return Optional.ofNullable(this.serviceAccountJson);
+    }
+    /**
+     * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+    /**
+     * @return x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+     * 
+     */
+    public Optional<String> tlsCertificateKey() {
+        return Optional.ofNullable(this.tlsCertificateKey);
+    }
     /**
      * @return The root credential username used in the connection URL.
      * 
@@ -192,6 +224,7 @@ public final class SecretsMountMysqlAurora {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
+        private @Nullable String authType;
         private @Nullable String connectionUrl;
         private @Nullable Map<String,Object> data;
         private @Nullable Integer maxConnectionLifetime;
@@ -201,6 +234,9 @@ public final class SecretsMountMysqlAurora {
         private @Nullable String password;
         private @Nullable String pluginName;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable String serviceAccountJson;
+        private @Nullable String tlsCa;
+        private @Nullable String tlsCertificateKey;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
@@ -208,6 +244,7 @@ public final class SecretsMountMysqlAurora {
         public Builder(SecretsMountMysqlAurora defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
+    	      this.authType = defaults.authType;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.data = defaults.data;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
@@ -217,6 +254,9 @@ public final class SecretsMountMysqlAurora {
     	      this.password = defaults.password;
     	      this.pluginName = defaults.pluginName;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.serviceAccountJson = defaults.serviceAccountJson;
+    	      this.tlsCa = defaults.tlsCa;
+    	      this.tlsCertificateKey = defaults.tlsCertificateKey;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
@@ -230,6 +270,12 @@ public final class SecretsMountMysqlAurora {
         }
         public Builder allowedRoles(String... allowedRoles) {
             return allowedRoles(List.of(allowedRoles));
+        }
+        @CustomType.Setter
+        public Builder authType(@Nullable String authType) {
+
+            this.authType = authType;
+            return this;
         }
         @CustomType.Setter
         public Builder connectionUrl(@Nullable String connectionUrl) {
@@ -291,6 +337,24 @@ public final class SecretsMountMysqlAurora {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
+
+            this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCa(@Nullable String tlsCa) {
+
+            this.tlsCa = tlsCa;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCertificateKey(@Nullable String tlsCertificateKey) {
+
+            this.tlsCertificateKey = tlsCertificateKey;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -311,6 +375,7 @@ public final class SecretsMountMysqlAurora {
         public SecretsMountMysqlAurora build() {
             final var _resultValue = new SecretsMountMysqlAurora();
             _resultValue.allowedRoles = allowedRoles;
+            _resultValue.authType = authType;
             _resultValue.connectionUrl = connectionUrl;
             _resultValue.data = data;
             _resultValue.maxConnectionLifetime = maxConnectionLifetime;
@@ -320,6 +385,9 @@ public final class SecretsMountMysqlAurora {
             _resultValue.password = password;
             _resultValue.pluginName = pluginName;
             _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificateKey = tlsCertificateKey;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;

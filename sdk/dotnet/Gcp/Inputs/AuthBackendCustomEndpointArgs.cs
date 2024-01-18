@@ -23,8 +23,6 @@ namespace Pulumi.Vault.Gcp.Inputs
         /// 
         /// The endpoint value provided for a given key has the form of `scheme://host:port`.
         /// The `scheme://` and `:port` portions of the endpoint value are optional.
-        /// 
-        /// For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
         /// </summary>
         [Input("compute")]
         public Input<string>? Compute { get; set; }

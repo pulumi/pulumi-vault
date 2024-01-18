@@ -624,6 +624,10 @@ export namespace database {
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
+         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         */
+        authType?: string;
+        /**
          * A URL containing connection information. See
          * the [Vault
          * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -649,6 +653,18 @@ export namespace database {
          * The password to authenticate with.
          */
         password?: string;
+        /**
+         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         */
+        serviceAccountJson?: string;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
         /**
          * The username to authenticate with.
          */
@@ -661,6 +677,10 @@ export namespace database {
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
+         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         */
+        authType?: string;
+        /**
          * A URL containing connection information. See
          * the [Vault
          * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -686,6 +706,18 @@ export namespace database {
          * The password to authenticate with.
          */
         password?: string;
+        /**
+         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         */
+        serviceAccountJson?: string;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
         /**
          * The username to authenticate with.
          */
@@ -698,6 +730,10 @@ export namespace database {
 
     export interface SecretBackendConnectionMysqlRds {
         /**
+         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         */
+        authType?: string;
+        /**
          * A URL containing connection information. See
          * the [Vault
          * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
@@ -723,6 +759,18 @@ export namespace database {
          * The password to authenticate with.
          */
         password?: string;
+        /**
+         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         */
+        serviceAccountJson?: string;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
         /**
          * The username to authenticate with.
          */
@@ -1526,6 +1574,7 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        authType?: string;
         /**
          * Specifies the Redshift DSN. 
          * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -1564,6 +1613,15 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        serviceAccountJson?: string;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
         /**
          * The root credential username used in the connection URL.
          */
@@ -1585,6 +1643,7 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        authType?: string;
         /**
          * Specifies the Redshift DSN. 
          * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -1623,6 +1682,15 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        serviceAccountJson?: string;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
         /**
          * The root credential username used in the connection URL.
          */
@@ -1644,6 +1712,7 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        authType?: string;
         /**
          * Specifies the Redshift DSN. 
          * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
@@ -1682,6 +1751,15 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        serviceAccountJson?: string;
+        /**
+         * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+         */
+        tlsCertificateKey?: string;
         /**
          * The root credential username used in the connection URL.
          */
@@ -2060,8 +2138,6 @@ export namespace gcp {
          *
          * The endpoint value provided for a given key has the form of `scheme://host:port`.
          * The `scheme://` and `:port` portions of the endpoint value are optional.
-         *
-         * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
          */
         compute?: string;
         /**
@@ -2072,6 +2148,54 @@ export namespace gcp {
          * Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
          */
         iam?: string;
+    }
+
+    export interface AuthBackendTune {
+        /**
+         * List of headers to whitelist and allowing
+         * a plugin to include them in the response.
+         */
+        allowedResponseHeaders?: string[];
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the request data object.
+         */
+        auditNonHmacRequestKeys?: string[];
+        /**
+         * Specifies the list of keys that will
+         * not be HMAC'd by audit devices in the response data object.
+         */
+        auditNonHmacResponseKeys?: string[];
+        /**
+         * Specifies the default time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
+        defaultLeaseTtl?: string;
+        /**
+         * Specifies whether to show this mount in
+         * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+         */
+        listingVisibility?: string;
+        /**
+         * Specifies the maximum time-to-live.
+         * If set, this overrides the global default.
+         * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+         */
+        maxLeaseTtl?: string;
+        /**
+         * List of headers to whitelist and
+         * pass from the request to the backend.
+         */
+        passthroughRequestHeaders?: string[];
+        /**
+         * Specifies the type of tokens that should be returned by
+         * the mount. Valid values are "default-service", "default-batch", "service", "batch".
+         *
+         *
+         * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
+         */
+        tokenType?: string;
     }
 
     export interface SecretRolesetBinding {

@@ -113,6 +113,8 @@ type SecretBackendRole struct {
 	EmailProtectionFlag pulumi.BoolPtrOutput `pulumi:"emailProtectionFlag"`
 	// Flag to allow only valid host names
 	EnforceHostnames pulumi.BoolPtrOutput `pulumi:"enforceHostnames"`
+	// Specify the allowed extended key usage OIDs constraint on issued certificates
+	ExtKeyUsageOids pulumi.StringArrayOutput `pulumi:"extKeyUsageOids"`
 	// Specify the allowed extended key usage constraint on issued certificates
 	ExtKeyUsages pulumi.StringArrayOutput `pulumi:"extKeyUsages"`
 	// Flag to generate leases with certificates
@@ -247,6 +249,8 @@ type secretBackendRoleState struct {
 	EmailProtectionFlag *bool `pulumi:"emailProtectionFlag"`
 	// Flag to allow only valid host names
 	EnforceHostnames *bool `pulumi:"enforceHostnames"`
+	// Specify the allowed extended key usage OIDs constraint on issued certificates
+	ExtKeyUsageOids []string `pulumi:"extKeyUsageOids"`
 	// Specify the allowed extended key usage constraint on issued certificates
 	ExtKeyUsages []string `pulumi:"extKeyUsages"`
 	// Flag to generate leases with certificates
@@ -349,6 +353,8 @@ type SecretBackendRoleState struct {
 	EmailProtectionFlag pulumi.BoolPtrInput
 	// Flag to allow only valid host names
 	EnforceHostnames pulumi.BoolPtrInput
+	// Specify the allowed extended key usage OIDs constraint on issued certificates
+	ExtKeyUsageOids pulumi.StringArrayInput
 	// Specify the allowed extended key usage constraint on issued certificates
 	ExtKeyUsages pulumi.StringArrayInput
 	// Flag to generate leases with certificates
@@ -455,6 +461,8 @@ type secretBackendRoleArgs struct {
 	EmailProtectionFlag *bool `pulumi:"emailProtectionFlag"`
 	// Flag to allow only valid host names
 	EnforceHostnames *bool `pulumi:"enforceHostnames"`
+	// Specify the allowed extended key usage OIDs constraint on issued certificates
+	ExtKeyUsageOids []string `pulumi:"extKeyUsageOids"`
 	// Specify the allowed extended key usage constraint on issued certificates
 	ExtKeyUsages []string `pulumi:"extKeyUsages"`
 	// Flag to generate leases with certificates
@@ -558,6 +566,8 @@ type SecretBackendRoleArgs struct {
 	EmailProtectionFlag pulumi.BoolPtrInput
 	// Flag to allow only valid host names
 	EnforceHostnames pulumi.BoolPtrInput
+	// Specify the allowed extended key usage OIDs constraint on issued certificates
+	ExtKeyUsageOids pulumi.StringArrayInput
 	// Specify the allowed extended key usage constraint on issued certificates
 	ExtKeyUsages pulumi.StringArrayInput
 	// Flag to generate leases with certificates
@@ -807,6 +817,11 @@ func (o SecretBackendRoleOutput) EmailProtectionFlag() pulumi.BoolPtrOutput {
 // Flag to allow only valid host names
 func (o SecretBackendRoleOutput) EnforceHostnames() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.EnforceHostnames }).(pulumi.BoolPtrOutput)
+}
+
+// Specify the allowed extended key usage OIDs constraint on issued certificates
+func (o SecretBackendRoleOutput) ExtKeyUsageOids() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.ExtKeyUsageOids }).(pulumi.StringArrayOutput)
 }
 
 // Specify the allowed extended key usage constraint on issued certificates

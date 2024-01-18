@@ -121,6 +121,12 @@ export class AuthBackend extends pulumi.CustomResource {
      * The GCP Project ID
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    public readonly tune!: pulumi.Output<outputs.gcp.AuthBackendTune>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -147,6 +153,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["tune"] = state ? state.tune : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
             resourceInputs["clientEmail"] = args ? args.clientEmail : undefined;
@@ -160,6 +167,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["privateKeyId"] = args ? args.privateKeyId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["tune"] = args ? args.tune : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -231,6 +239,12 @@ export interface AuthBackendState {
      * The GCP Project ID
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    tune?: pulumi.Input<inputs.gcp.AuthBackendTune>;
 }
 
 /**
@@ -291,4 +305,10 @@ export interface AuthBackendArgs {
      * The GCP Project ID
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    tune?: pulumi.Input<inputs.gcp.AuthBackendTune>;
 }
