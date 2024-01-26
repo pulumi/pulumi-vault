@@ -22163,7 +22163,7 @@
             }
         },
         "vault:managed/keys:Keys": {
-            "description": "\n\n\n## Import\n\nMounts can be imported using the `id` of `default`, e.g.\n\n```sh\n $ pulumi import vault:managed/keys:Keys keys default\n```\n ",
+            "description": "A resource that manages the lifecycle of all [Managed Keys](https://www.vaultproject.io/docs/enterprise/managed-keys) in Vault.\n\n**Note** this feature is available only with Vault Enterprise.\n\n## Caveats\n\nThis single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.\nThere can only be one such resource in the TF state, and if there are already provisioned managed\nkeys in Vault, we recommend using `pulumi import` instead.\n\n\n## Import\n\nMounts can be imported using the `id` of `default`, e.g.\n\n```sh\n $ pulumi import vault:managed/keys:Keys keys default\n```\n ",
             "properties": {
                 "aws": {
                     "type": "array",
