@@ -16,9 +16,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows setting the value of the default issuer. For more information, see the
- * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
- * 
  * ## Example Usage
  * ```java
  * package generated_program;

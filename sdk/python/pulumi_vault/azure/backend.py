@@ -39,9 +39,7 @@ class BackendArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
-        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
-               the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-               For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        :param pulumi.Input[bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         pulumi.set(__self__, "subscription_id", subscription_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -178,9 +176,7 @@ class BackendArgs:
     @pulumi.getter(name="useMicrosoftGraphApi")
     def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether the secrets engine should use 
-        the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-        For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         return pulumi.get(self, "use_microsoft_graph_api")
 
@@ -217,9 +213,7 @@ class _BackendState:
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
-        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
-               the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-               For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        :param pulumi.Input[bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -358,9 +352,7 @@ class _BackendState:
     @pulumi.getter(name="useMicrosoftGraphApi")
     def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether the secrets engine should use 
-        the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-        For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         return pulumi.get(self, "use_microsoft_graph_api")
 
@@ -431,9 +423,7 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
-        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
-               the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-               For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        :param pulumi.Input[bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         ...
     @overload
@@ -562,9 +552,7 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Defaults to `azure`.
         :param pulumi.Input[str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[str] tenant_id: The tenant id for the Azure Active Directory.
-        :param pulumi.Input[bool] use_microsoft_graph_api: Indicates whether the secrets engine should use 
-               the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-               For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        :param pulumi.Input[bool] use_microsoft_graph_api: Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -662,9 +650,7 @@ class Backend(pulumi.CustomResource):
     @pulumi.getter(name="useMicrosoftGraphApi")
     def use_microsoft_graph_api(self) -> pulumi.Output[bool]:
         """
-        Indicates whether the secrets engine should use 
-        the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-        For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+        Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
         return pulumi.get(self, "use_microsoft_graph_api")
 

@@ -124,134 +124,398 @@ export namespace azure {
 export namespace config {
     export interface AuthLogin {
         method?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
         parameters?: {[key: string]: string};
         path: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginAws {
+        /**
+         * The AWS access key ID.
+         */
         awsAccessKeyId?: string;
+        /**
+         * The IAM endpoint URL.
+         */
         awsIamEndpoint?: string;
+        /**
+         * The name of the AWS profile.
+         */
         awsProfile?: string;
+        /**
+         * The AWS region.
+         */
         awsRegion?: string;
+        /**
+         * The ARN of the AWS Role to assume.Used during STS AssumeRole
+         */
         awsRoleArn?: string;
+        /**
+         * Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+         */
         awsRoleSessionName?: string;
+        /**
+         * The AWS secret access key.
+         */
         awsSecretAccessKey?: string;
+        /**
+         * The AWS session token.
+         */
         awsSessionToken?: string;
+        /**
+         * Path to the AWS shared credentials file.
+         */
         awsSharedCredentialsFile?: string;
+        /**
+         * The STS endpoint URL.
+         */
         awsStsEndpoint?: string;
+        /**
+         * Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+         */
         awsWebIdentityTokenFile?: string;
+        /**
+         * The Vault header value to include in the STS signing request.
+         */
         headerValue?: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * The Vault role to use when logging into Vault.
+         */
         role: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginAzure {
+        /**
+         * The identity's client ID.
+         */
         clientId?: string;
+        /**
+         * A signed JSON Web Token. If not specified on will be created automatically
+         */
         jwt?: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+         */
         resourceGroupName: string;
+        /**
+         * Name of the login role.
+         */
         role: string;
+        /**
+         * The scopes to include in the token request.
+         */
         scope?: string;
+        /**
+         * The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+         */
         subscriptionId: string;
+        /**
+         * Provides the tenant ID to use in a multi-tenant authentication scenario.
+         */
         tenantId?: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
+        /**
+         * The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+         */
         vmName?: string;
+        /**
+         * The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+         */
         vmssName?: string;
     }
 
     export interface AuthLoginCert {
+        /**
+         * Path to a file containing the client certificate.
+         */
         certFile: string;
+        /**
+         * Path to a file containing the private key that the certificate was issued for.
+         */
         keyFile: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * Name of the certificate's role
+         */
         name?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginGcp {
+        /**
+         * Path to the Google Cloud credentials file.
+         */
         credentials?: string;
+        /**
+         * A signed JSON Web Token.
+         */
         jwt?: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Name of the login role.
+         */
         role: string;
+        /**
+         * IAM service account.
+         */
         serviceAccount?: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginJwt {
+        /**
+         * A signed JSON Web Token.
+         */
         jwt: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Name of the login role.
+         */
         role: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginKerberos {
+        /**
+         * Disable the Kerberos FAST negotiation.
+         */
         disableFastNegotiation?: boolean;
+        /**
+         * The Kerberos keytab file containing the entry of the login entity.
+         */
         keytabPath?: string;
+        /**
+         * A valid Kerberos configuration file e.g. /etc/krb5.conf.
+         */
         krb5confPath?: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * The Kerberos server's authoritative authentication domain
+         */
         realm?: string;
+        /**
+         * Strip the host from the username found in the keytab.
+         */
         removeInstanceName?: boolean;
+        /**
+         * The service principle name.
+         */
         service?: string;
+        /**
+         * Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+         */
         token?: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
+        /**
+         * The username to login into Kerberos with.
+         */
         username?: string;
     }
 
     export interface AuthLoginOci {
+        /**
+         * Authentication type to use when getting OCI credentials.
+         */
         authType: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Name of the login role.
+         */
         role: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginOidc {
+        /**
+         * The callback address. Must be a valid URI without the path.
+         */
         callbackAddress?: string;
+        /**
+         * The callback listener's address. Must be a valid URI without the path.
+         */
         callbackListenerAddress?: string;
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Name of the login role.
+         */
         role: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginRadius {
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * The Radius password for username.
+         */
         password: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
+        /**
+         * The Radius username.
+         */
         username: string;
     }
 
     export interface AuthLoginTokenFile {
+        /**
+         * The name of a file containing a single line that is a valid Vault token
+         */
         filename: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
     }
 
     export interface AuthLoginUserpass {
+        /**
+         * The path where the authentication engine is mounted.
+         */
         mount?: string;
+        /**
+         * The authentication engine's namespace. Conflicts with use_root_namespace
+         */
         namespace?: string;
+        /**
+         * Login with password
+         */
         password?: string;
+        /**
+         * Login with password from a file
+         */
         passwordFile?: string;
+        /**
+         * Authenticate to the root Vault namespace. Conflicts with namespace
+         */
         useRootNamespace?: boolean;
+        /**
+         * Login with username
+         */
         username: string;
     }
 
     export interface ClientAuth {
+        /**
+         * Path to a file containing the client certificate.
+         */
         certFile: string;
+        /**
+         * Path to a file containing the private key that the certificate was issued for.
+         */
         keyFile: string;
     }
 
     export interface Headers {
+        /**
+         * The header name
+         */
         name: string;
+        /**
+         * The header value
+         */
         value: string;
     }
 
@@ -1024,6 +1288,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: boolean;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1099,6 +1366,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: boolean;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1163,6 +1433,9 @@ export namespace database {
          * Whether to disable certificate verification.
          */
         insecure?: boolean;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1235,6 +1508,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1285,6 +1561,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: boolean;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1362,6 +1641,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1402,6 +1684,9 @@ export namespace database {
          * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * Specifies the name of the plugin to use.
@@ -1471,6 +1756,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1505,6 +1793,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: string;
         /**
          * Specifies the Redshift DSN. 
@@ -1531,6 +1822,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1544,6 +1838,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: string;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1574,6 +1871,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: string;
         /**
          * Specifies the Redshift DSN. 
@@ -1600,6 +1900,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1613,6 +1916,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: string;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1643,6 +1949,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: string;
         /**
          * Specifies the Redshift DSN. 
@@ -1669,6 +1978,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1682,6 +1994,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: string;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1712,6 +2027,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: string;
         /**
          * Specifies the Redshift DSN. 
@@ -1738,6 +2056,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1751,6 +2072,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: string;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1806,6 +2130,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1840,6 +2167,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: string[];
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: string;
         /**
          * Specifies the Redshift DSN. 
@@ -1870,6 +2200,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1883,6 +2216,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: string;
         /**
          * The root credential username used in the connection URL.
@@ -1924,6 +2260,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: boolean;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -1969,6 +2308,9 @@ export namespace database {
          * Supported list of database secrets engines that can be configured:
          */
         data?: {[key: string]: any};
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -2038,6 +2380,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -2097,6 +2442,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: number;
+        /**
+         * Name of the database connection.
+         */
         name: string;
         /**
          * The root credential password used in the connection URL.
@@ -2366,6 +2714,9 @@ export namespace jwt {
 
 export namespace kv {
     export interface SecretV2CustomMetadata {
+        /**
+         * If true, all keys will require the cas parameter to be set on all write requests.
+         */
         casRequired?: boolean;
         /**
          * A mapping whose keys are the top-level data keys returned from
@@ -2374,7 +2725,13 @@ export namespace kv {
          * serialized as JSON.
          */
         data?: {[key: string]: any};
+        /**
+         * If set, specifies the length of time before a version is deleted.
+         */
         deleteVersionAfter?: number;
+        /**
+         * The number of versions to keep per key.
+         */
         maxVersions?: number;
     }
 
@@ -2441,6 +2798,9 @@ export namespace managed {
          * The AWS access key to use.
          */
         secretKey: string;
+        /**
+         * ID of the managed key read from Vault
+         */
         uuid: string;
     }
 
@@ -2503,6 +2863,9 @@ export namespace managed {
          * The tenant id for the Azure Active Directory organization.
          */
         tenantId: string;
+        /**
+         * ID of the managed key read from Vault
+         */
         uuid: string;
         /**
          * The Key Vault vault to use for encryption and decryption.
@@ -2582,6 +2945,9 @@ export namespace managed {
          * The slot token label to use.
          */
         tokenLabel?: string;
+        /**
+         * ID of the managed key read from Vault
+         */
         uuid: string;
     }
 
@@ -2638,13 +3004,28 @@ export namespace pkiSecret {
 
 export namespace rabbitMq {
     export interface SecretBackendRoleVhost {
+        /**
+         * The configure permissions for this vhost.
+         */
         configure: string;
+        /**
+         * The vhost to set permissions for.
+         */
         host: string;
+        /**
+         * The read permissions for this vhost.
+         */
         read: string;
+        /**
+         * The write permissions for this vhost.
+         */
         write: string;
     }
 
     export interface SecretBackendRoleVhostTopic {
+        /**
+         * The vhost to set permissions for.
+         */
         host: string;
         /**
          * Specifies a map of virtual hosts to permissions.
@@ -2653,8 +3034,17 @@ export namespace rabbitMq {
     }
 
     export interface SecretBackendRoleVhostTopicVhost {
+        /**
+         * The read permissions for this vhost.
+         */
         read: string;
+        /**
+         * The vhost to set permissions for.
+         */
         topic: string;
+        /**
+         * The write permissions for this vhost.
+         */
         write: string;
     }
 

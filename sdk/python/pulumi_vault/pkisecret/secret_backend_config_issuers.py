@@ -185,9 +185,6 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Allows setting the value of the default issuer. For more information, see the
-        [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
-
         ## Example Usage
 
         ```python
@@ -241,9 +238,6 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
                  args: SecretBackendConfigIssuersArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Allows setting the value of the default issuer. For more information, see the
-        [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
-
         ## Example Usage
 
         ```python

@@ -264,9 +264,17 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tokenLabel);
     }
 
+    /**
+     * ID of the managed key read from Vault
+     * 
+     */
     @Import(name="uuid")
     private @Nullable Output<String> uuid;
 
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     public Optional<Output<String>> uuid() {
         return Optional.ofNullable(this.uuid);
     }
@@ -647,11 +655,23 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
             return tokenLabel(Output.of(tokenLabel));
         }
 
+        /**
+         * @param uuid ID of the managed key read from Vault
+         * 
+         * @return builder
+         * 
+         */
         public Builder uuid(@Nullable Output<String> uuid) {
             $.uuid = uuid;
             return this;
         }
 
+        /**
+         * @param uuid ID of the managed key read from Vault
+         * 
+         * @return builder
+         * 
+         */
         public Builder uuid(String uuid) {
             return uuid(Output.of(uuid));
         }

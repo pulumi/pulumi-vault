@@ -275,16 +275,14 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tokenNoDefaultPolicy);
     }
     /**
-     * The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
-     * @return The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     public Output<Optional<Integer>> tokenNumUses() {

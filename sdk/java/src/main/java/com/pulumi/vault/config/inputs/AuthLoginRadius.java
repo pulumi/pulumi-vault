@@ -13,25 +13,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginRadius {
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     private @Nullable String mount;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return The Radius password for username.
+     * 
+     */
     private String password;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
+    /**
+     * @return The Radius username.
+     * 
+     */
     private String username;
 
     private AuthLoginRadius() {}
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<String> mount() {
         return Optional.ofNullable(this.mount);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return The Radius password for username.
+     * 
+     */
     public String password() {
         return this.password;
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
+    /**
+     * @return The Radius username.
+     * 
+     */
     public String username() {
         return this.username;
     }

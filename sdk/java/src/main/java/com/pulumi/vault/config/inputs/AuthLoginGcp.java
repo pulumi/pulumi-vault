@@ -13,33 +13,89 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginGcp {
+    /**
+     * @return Path to the Google Cloud credentials file.
+     * 
+     */
     private @Nullable String credentials;
+    /**
+     * @return A signed JSON Web Token.
+     * 
+     */
     private @Nullable String jwt;
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     private @Nullable String mount;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return Name of the login role.
+     * 
+     */
     private String role;
+    /**
+     * @return IAM service account.
+     * 
+     */
     private @Nullable String serviceAccount;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
 
     private AuthLoginGcp() {}
+    /**
+     * @return Path to the Google Cloud credentials file.
+     * 
+     */
     public Optional<String> credentials() {
         return Optional.ofNullable(this.credentials);
     }
+    /**
+     * @return A signed JSON Web Token.
+     * 
+     */
     public Optional<String> jwt() {
         return Optional.ofNullable(this.jwt);
     }
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<String> mount() {
         return Optional.ofNullable(this.mount);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return Name of the login role.
+     * 
+     */
     public String role() {
         return this.role;
     }
+    /**
+     * @return IAM service account.
+     * 
+     */
     public Optional<String> serviceAccount() {
         return Optional.ofNullable(this.serviceAccount);
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }

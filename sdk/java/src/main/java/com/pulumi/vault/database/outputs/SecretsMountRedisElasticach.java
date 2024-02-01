@@ -29,6 +29,10 @@ public final class SecretsMountRedisElasticach {
      * 
      */
     private @Nullable Map<String,Object> data;
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     private String name;
     /**
      * @return The root credential password used in the connection URL.
@@ -87,6 +91,10 @@ public final class SecretsMountRedisElasticach {
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
     }
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public String name() {
         return this.name;
     }

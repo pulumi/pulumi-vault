@@ -17,23 +17,47 @@ public final class ProviderAuthLoginTokenFileArgs extends com.pulumi.resources.R
 
     public static final ProviderAuthLoginTokenFileArgs Empty = new ProviderAuthLoginTokenFileArgs();
 
+    /**
+     * The name of a file containing a single line that is a valid Vault token
+     * 
+     */
     @Import(name="filename", required=true)
     private Output<String> filename;
 
+    /**
+     * @return The name of a file containing a single line that is a valid Vault token
+     * 
+     */
     public Output<String> filename() {
         return this.filename;
     }
 
+    /**
+     * The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     @Import(name="useRootNamespace")
     private @Nullable Output<Boolean> useRootNamespace;
 
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Output<Boolean>> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
@@ -64,29 +88,65 @@ public final class ProviderAuthLoginTokenFileArgs extends com.pulumi.resources.R
             $ = new ProviderAuthLoginTokenFileArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filename The name of a file containing a single line that is a valid Vault token
+         * 
+         * @return builder
+         * 
+         */
         public Builder filename(Output<String> filename) {
             $.filename = filename;
             return this;
         }
 
+        /**
+         * @param filename The name of a file containing a single line that is a valid Vault token
+         * 
+         * @return builder
+         * 
+         */
         public Builder filename(String filename) {
             return filename(Output.of(filename));
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable Output<String> namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
             $.useRootNamespace = useRootNamespace;
             return this;
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(Boolean useRootNamespace) {
             return useRootNamespace(Output.of(useRootNamespace));
         }

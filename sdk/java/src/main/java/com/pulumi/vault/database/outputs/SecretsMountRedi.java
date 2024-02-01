@@ -46,6 +46,10 @@ public final class SecretsMountRedi {
      * 
      */
     private @Nullable Boolean insecureTls;
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     private String name;
     /**
      * @return The root credential password used in the connection URL.
@@ -125,6 +129,10 @@ public final class SecretsMountRedi {
     public Optional<Boolean> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
     }
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public String name() {
         return this.name;
     }

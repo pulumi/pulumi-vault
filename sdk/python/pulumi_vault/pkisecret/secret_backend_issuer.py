@@ -484,11 +484,6 @@ class SecretBackendIssuer(pulumi.CustomResource):
                  usage: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not
-        create issuers. It instead tracks and performs updates made to an existing issuer that was
-        created by one of the PKI generate endpoints. For more information, see the
-        [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#managing-keys-and-issuers)
-
         ## Example Usage
 
         ```python
@@ -551,11 +546,6 @@ class SecretBackendIssuer(pulumi.CustomResource):
                  args: SecretBackendIssuerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not
-        create issuers. It instead tracks and performs updates made to an existing issuer that was
-        created by one of the PKI generate endpoints. For more information, see the
-        [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#managing-keys-and-issuers)
-
         ## Example Usage
 
         ```python

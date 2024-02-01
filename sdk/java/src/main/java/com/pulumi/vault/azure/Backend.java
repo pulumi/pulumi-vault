@@ -225,18 +225,14 @@ public class Backend extends com.pulumi.resources.CustomResource {
         return this.tenantId;
     }
     /**
-     * Indicates whether the secrets engine should use
-     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-     * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+     * Use the Microsoft Graph API. Should be set to true on vault-1.10+
      * 
      */
     @Export(name="useMicrosoftGraphApi", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useMicrosoftGraphApi;
 
     /**
-     * @return Indicates whether the secrets engine should use
-     * the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-     * For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+     * @return Use the Microsoft Graph API. Should be set to true on vault-1.10+
      * 
      */
     public Output<Boolean> useMicrosoftGraphApi() {

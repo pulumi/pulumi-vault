@@ -85,6 +85,10 @@ public final class KeysAw {
      * 
      */
     private String secretKey;
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     private @Nullable String uuid;
 
     private KeysAw() {}
@@ -186,6 +190,10 @@ public final class KeysAw {
     public String secretKey() {
         return this.secretKey;
     }
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     public Optional<String> uuid() {
         return Optional.ofNullable(this.uuid);
     }

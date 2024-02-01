@@ -44,6 +44,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// Whether to disable certificate verification.
         /// </summary>
         public readonly bool? Insecure;
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// The root credential password used in the connection URL.

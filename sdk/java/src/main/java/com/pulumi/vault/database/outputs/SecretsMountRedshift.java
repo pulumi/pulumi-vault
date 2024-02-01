@@ -58,6 +58,10 @@ public final class SecretsMountRedshift {
      * 
      */
     private @Nullable Integer maxOpenConnections;
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     private String name;
     /**
      * @return The root credential password used in the connection URL.
@@ -147,6 +151,10 @@ public final class SecretsMountRedshift {
     public Optional<Integer> maxOpenConnections() {
         return Optional.ofNullable(this.maxOpenConnections);
     }
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public String name() {
         return this.name;
     }

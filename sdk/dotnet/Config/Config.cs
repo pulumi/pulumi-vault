@@ -33,9 +33,6 @@ namespace Pulumi.Vault
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("vault");
 
         private static readonly __Value<string?> _addAddressToEnv = new __Value<string?>(() => __config.Get("addAddressToEnv"));
-        /// <summary>
-        /// If true, adds the value of the `address` argument to the Terraform process environment.
-        /// </summary>
         public static string? AddAddressToEnv
         {
             get => _addAddressToEnv.Get();
@@ -339,147 +336,411 @@ namespace Pulumi.Vault
              public class AuthLogin
              {
                 public string? Method { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
                 public ImmutableDictionary<string, string>? Parameters { get; set; } = null!;
                 public string Path { get; set; }
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginAws
              {
+            /// <summary>
+            /// The AWS access key ID.
+            /// </summary>
                 public string? AwsAccessKeyId { get; set; } = null!;
+            /// <summary>
+            /// The IAM endpoint URL.
+            /// </summary>
                 public string? AwsIamEndpoint { get; set; } = null!;
+            /// <summary>
+            /// The name of the AWS profile.
+            /// </summary>
                 public string? AwsProfile { get; set; } = null!;
+            /// <summary>
+            /// The AWS region.
+            /// </summary>
                 public string? AwsRegion { get; set; } = null!;
+            /// <summary>
+            /// The ARN of the AWS Role to assume.Used during STS AssumeRole
+            /// </summary>
                 public string? AwsRoleArn { get; set; } = null!;
+            /// <summary>
+            /// Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+            /// </summary>
                 public string? AwsRoleSessionName { get; set; } = null!;
+            /// <summary>
+            /// The AWS secret access key.
+            /// </summary>
                 public string? AwsSecretAccessKey { get; set; } = null!;
+            /// <summary>
+            /// The AWS session token.
+            /// </summary>
                 public string? AwsSessionToken { get; set; } = null!;
+            /// <summary>
+            /// Path to the AWS shared credentials file.
+            /// </summary>
                 public string? AwsSharedCredentialsFile { get; set; } = null!;
+            /// <summary>
+            /// The STS endpoint URL.
+            /// </summary>
                 public string? AwsStsEndpoint { get; set; } = null!;
+            /// <summary>
+            /// Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+            /// </summary>
                 public string? AwsWebIdentityTokenFile { get; set; } = null!;
+            /// <summary>
+            /// The Vault header value to include in the STS signing request.
+            /// </summary>
                 public string? HeaderValue { get; set; } = null!;
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// The Vault role to use when logging into Vault.
+            /// </summary>
                 public string Role { get; set; }
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginAzure
              {
+            /// <summary>
+            /// The identity's client ID.
+            /// </summary>
                 public string? ClientId { get; set; } = null!;
+            /// <summary>
+            /// A signed JSON Web Token. If not specified on will be created automatically
+            /// </summary>
                 public string? Jwt { get; set; } = null!;
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+            /// </summary>
                 public string ResourceGroupName { get; set; }
+            /// <summary>
+            /// Name of the login role.
+            /// </summary>
                 public string Role { get; set; }
+            /// <summary>
+            /// The scopes to include in the token request.
+            /// </summary>
                 public string? Scope { get; set; } = null!;
+            /// <summary>
+            /// The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+            /// </summary>
                 public string SubscriptionId { get; set; }
+            /// <summary>
+            /// Provides the tenant ID to use in a multi-tenant authentication scenario.
+            /// </summary>
                 public string? TenantId { get; set; } = null!;
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
+            /// <summary>
+            /// The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+            /// </summary>
                 public string? VmName { get; set; } = null!;
+            /// <summary>
+            /// The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+            /// </summary>
                 public string? VmssName { get; set; } = null!;
             }
 
              public class AuthLoginCert
              {
+            /// <summary>
+            /// Path to a file containing the client certificate.
+            /// </summary>
                 public string CertFile { get; set; }
+            /// <summary>
+            /// Path to a file containing the private key that the certificate was issued for.
+            /// </summary>
                 public string KeyFile { get; set; }
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// Name of the certificate's role
+            /// </summary>
                 public string? Name { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginGcp
              {
+            /// <summary>
+            /// Path to the Google Cloud credentials file.
+            /// </summary>
                 public string? Credentials { get; set; } = null!;
+            /// <summary>
+            /// A signed JSON Web Token.
+            /// </summary>
                 public string? Jwt { get; set; } = null!;
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Name of the login role.
+            /// </summary>
                 public string Role { get; set; }
+            /// <summary>
+            /// IAM service account.
+            /// </summary>
                 public string? ServiceAccount { get; set; } = null!;
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginJwt
              {
+            /// <summary>
+            /// A signed JSON Web Token.
+            /// </summary>
                 public string Jwt { get; set; }
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Name of the login role.
+            /// </summary>
                 public string Role { get; set; }
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginKerberos
              {
+            /// <summary>
+            /// Disable the Kerberos FAST negotiation.
+            /// </summary>
                 public bool? DisableFastNegotiation { get; set; }
+            /// <summary>
+            /// The Kerberos keytab file containing the entry of the login entity.
+            /// </summary>
                 public string? KeytabPath { get; set; } = null!;
+            /// <summary>
+            /// A valid Kerberos configuration file e.g. /etc/krb5.conf.
+            /// </summary>
                 public string? Krb5confPath { get; set; } = null!;
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// The Kerberos server's authoritative authentication domain
+            /// </summary>
                 public string? Realm { get; set; } = null!;
+            /// <summary>
+            /// Strip the host from the username found in the keytab.
+            /// </summary>
                 public bool? RemoveInstanceName { get; set; }
+            /// <summary>
+            /// The service principle name.
+            /// </summary>
                 public string? Service { get; set; } = null!;
+            /// <summary>
+            /// Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+            /// </summary>
                 public string? Token { get; set; } = null!;
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
+            /// <summary>
+            /// The username to login into Kerberos with.
+            /// </summary>
                 public string? Username { get; set; } = null!;
             }
 
              public class AuthLoginOci
              {
+            /// <summary>
+            /// Authentication type to use when getting OCI credentials.
+            /// </summary>
                 public string AuthType { get; set; }
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Name of the login role.
+            /// </summary>
                 public string Role { get; set; }
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginOidc
              {
+            /// <summary>
+            /// The callback address. Must be a valid URI without the path.
+            /// </summary>
                 public string? CallbackAddress { get; set; } = null!;
+            /// <summary>
+            /// The callback listener's address. Must be a valid URI without the path.
+            /// </summary>
                 public string? CallbackListenerAddress { get; set; } = null!;
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Name of the login role.
+            /// </summary>
                 public string Role { get; set; }
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginRadius
              {
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// The Radius password for username.
+            /// </summary>
                 public string Password { get; set; }
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
+            /// <summary>
+            /// The Radius username.
+            /// </summary>
                 public string Username { get; set; }
             }
 
              public class AuthLoginTokenFile
              {
+            /// <summary>
+            /// The name of a file containing a single line that is a valid Vault token
+            /// </summary>
                 public string Filename { get; set; }
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
             }
 
              public class AuthLoginUserpass
              {
+            /// <summary>
+            /// The path where the authentication engine is mounted.
+            /// </summary>
                 public string? Mount { get; set; } = null!;
+            /// <summary>
+            /// The authentication engine's namespace. Conflicts with use_root_namespace
+            /// </summary>
                 public string? Namespace { get; set; } = null!;
+            /// <summary>
+            /// Login with password
+            /// </summary>
                 public string? Password { get; set; } = null!;
+            /// <summary>
+            /// Login with password from a file
+            /// </summary>
                 public string? PasswordFile { get; set; } = null!;
+            /// <summary>
+            /// Authenticate to the root Vault namespace. Conflicts with namespace
+            /// </summary>
                 public bool? UseRootNamespace { get; set; }
+            /// <summary>
+            /// Login with username
+            /// </summary>
                 public string Username { get; set; }
             }
 
              public class ClientAuth
              {
+            /// <summary>
+            /// Path to a file containing the client certificate.
+            /// </summary>
                 public string CertFile { get; set; }
+            /// <summary>
+            /// Path to a file containing the private key that the certificate was issued for.
+            /// </summary>
                 public string KeyFile { get; set; }
             }
 
              public class Headers
              {
+            /// <summary>
+            /// The header name
+            /// </summary>
                 public string Name { get; set; }
+            /// <summary>
+            /// The header value
+            /// </summary>
                 public string Value { get; set; }
             }
         }

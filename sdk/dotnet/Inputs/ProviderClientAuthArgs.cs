@@ -12,9 +12,15 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderClientAuthArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Path to a file containing the client certificate.
+        /// </summary>
         [Input("certFile", required: true)]
         public Input<string> CertFile { get; set; } = null!;
 
+        /// <summary>
+        /// Path to a file containing the private key that the certificate was issued for.
+        /// </summary>
         [Input("keyFile", required: true)]
         public Input<string> KeyFile { get; set; } = null!;
 

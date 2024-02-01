@@ -24,6 +24,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// Specifies the name of the plugin to use.

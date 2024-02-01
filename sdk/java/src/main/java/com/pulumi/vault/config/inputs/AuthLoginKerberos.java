@@ -12,49 +12,137 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginKerberos {
+    /**
+     * @return Disable the Kerberos FAST negotiation.
+     * 
+     */
     private @Nullable Boolean disableFastNegotiation;
+    /**
+     * @return The Kerberos keytab file containing the entry of the login entity.
+     * 
+     */
     private @Nullable String keytabPath;
+    /**
+     * @return A valid Kerberos configuration file e.g. /etc/krb5.conf.
+     * 
+     */
     private @Nullable String krb5confPath;
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     private @Nullable String mount;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return The Kerberos server&#39;s authoritative authentication domain
+     * 
+     */
     private @Nullable String realm;
+    /**
+     * @return Strip the host from the username found in the keytab.
+     * 
+     */
     private @Nullable Boolean removeInstanceName;
+    /**
+     * @return The service principle name.
+     * 
+     */
     private @Nullable String service;
+    /**
+     * @return Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+     * 
+     */
     private @Nullable String token;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
+    /**
+     * @return The username to login into Kerberos with.
+     * 
+     */
     private @Nullable String username;
 
     private AuthLoginKerberos() {}
+    /**
+     * @return Disable the Kerberos FAST negotiation.
+     * 
+     */
     public Optional<Boolean> disableFastNegotiation() {
         return Optional.ofNullable(this.disableFastNegotiation);
     }
+    /**
+     * @return The Kerberos keytab file containing the entry of the login entity.
+     * 
+     */
     public Optional<String> keytabPath() {
         return Optional.ofNullable(this.keytabPath);
     }
+    /**
+     * @return A valid Kerberos configuration file e.g. /etc/krb5.conf.
+     * 
+     */
     public Optional<String> krb5confPath() {
         return Optional.ofNullable(this.krb5confPath);
     }
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<String> mount() {
         return Optional.ofNullable(this.mount);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return The Kerberos server&#39;s authoritative authentication domain
+     * 
+     */
     public Optional<String> realm() {
         return Optional.ofNullable(this.realm);
     }
+    /**
+     * @return Strip the host from the username found in the keytab.
+     * 
+     */
     public Optional<Boolean> removeInstanceName() {
         return Optional.ofNullable(this.removeInstanceName);
     }
+    /**
+     * @return The service principle name.
+     * 
+     */
     public Optional<String> service() {
         return Optional.ofNullable(this.service);
     }
+    /**
+     * @return Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+     * 
+     */
     public Optional<String> token() {
         return Optional.ofNullable(this.token);
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
+    /**
+     * @return The username to login into Kerberos with.
+     * 
+     */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }

@@ -84,6 +84,10 @@ public final class KeysAzure {
      * 
      */
     private String tenantId;
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     private @Nullable String uuid;
     /**
      * @return The Key Vault vault to use for encryption and decryption.
@@ -189,6 +193,10 @@ public final class KeysAzure {
     public String tenantId() {
         return this.tenantId;
     }
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     public Optional<String> uuid() {
         return Optional.ofNullable(this.uuid);
     }

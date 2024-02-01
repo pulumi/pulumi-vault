@@ -25,9 +25,17 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.method);
     }
 
+    /**
+     * The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
     }
@@ -46,9 +54,17 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
         return this.path;
     }
 
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     @Import(name="useRootNamespace")
     private @Nullable Output<Boolean> useRootNamespace;
 
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Output<Boolean>> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
@@ -90,11 +106,23 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
             return method(Output.of(method));
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable Output<String> namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
         }
@@ -117,11 +145,23 @@ public final class ProviderAuthLoginArgs extends com.pulumi.resources.ResourceAr
             return path(Output.of(path));
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
             $.useRootNamespace = useRootNamespace;
             return this;
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(Boolean useRootNamespace) {
             return useRootNamespace(Output.of(useRootNamespace));
         }

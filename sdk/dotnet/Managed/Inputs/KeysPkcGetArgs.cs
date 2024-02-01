@@ -113,6 +113,9 @@ namespace Pulumi.Vault.Managed.Inputs
         [Input("tokenLabel")]
         public Input<string>? TokenLabel { get; set; }
 
+        /// <summary>
+        /// ID of the managed key read from Vault
+        /// </summary>
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
 

@@ -72,6 +72,9 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
 
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

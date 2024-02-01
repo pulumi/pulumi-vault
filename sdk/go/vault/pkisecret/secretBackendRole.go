@@ -146,7 +146,7 @@ type SecretBackendRole struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrOutput `pulumi:"noStore"`
-	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringOutput `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayOutput `pulumi:"organizationUnit"`
@@ -282,7 +282,7 @@ type secretBackendRoleState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
-	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit []string `pulumi:"organizationUnit"`
@@ -386,7 +386,7 @@ type SecretBackendRoleState struct {
 	Namespace pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
-	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayInput
@@ -494,7 +494,7 @@ type secretBackendRoleArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Flag to not store certificates in the storage backend
 	NoStore *bool `pulumi:"noStore"`
-	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization unit of generated certificates
 	OrganizationUnit []string `pulumi:"organizationUnit"`
@@ -599,7 +599,7 @@ type SecretBackendRoleArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Flag to not store certificates in the storage backend
 	NoStore pulumi.BoolPtrInput
-	// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+	// Specifies the duration by which to backdate the NotBefore property.
 	NotBeforeDuration pulumi.StringPtrInput
 	// The organization unit of generated certificates
 	OrganizationUnit pulumi.StringArrayInput
@@ -888,7 +888,7 @@ func (o SecretBackendRoleOutput) NoStore() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.NoStore }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+// Specifies the duration by which to backdate the NotBefore property.
 func (o SecretBackendRoleOutput) NotBeforeDuration() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.NotBeforeDuration }).(pulumi.StringOutput)
 }

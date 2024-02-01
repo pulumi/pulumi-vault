@@ -19,9 +19,17 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
 
     public static final SecretV2CustomMetadataArgs Empty = new SecretV2CustomMetadataArgs();
 
+    /**
+     * If true, all keys will require the cas parameter to be set on all write requests.
+     * 
+     */
     @Import(name="casRequired")
     private @Nullable Output<Boolean> casRequired;
 
+    /**
+     * @return If true, all keys will require the cas parameter to be set on all write requests.
+     * 
+     */
     public Optional<Output<Boolean>> casRequired() {
         return Optional.ofNullable(this.casRequired);
     }
@@ -47,16 +55,32 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.data);
     }
 
+    /**
+     * If set, specifies the length of time before a version is deleted.
+     * 
+     */
     @Import(name="deleteVersionAfter")
     private @Nullable Output<Integer> deleteVersionAfter;
 
+    /**
+     * @return If set, specifies the length of time before a version is deleted.
+     * 
+     */
     public Optional<Output<Integer>> deleteVersionAfter() {
         return Optional.ofNullable(this.deleteVersionAfter);
     }
 
+    /**
+     * The number of versions to keep per key.
+     * 
+     */
     @Import(name="maxVersions")
     private @Nullable Output<Integer> maxVersions;
 
+    /**
+     * @return The number of versions to keep per key.
+     * 
+     */
     public Optional<Output<Integer>> maxVersions() {
         return Optional.ofNullable(this.maxVersions);
     }
@@ -88,11 +112,23 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
             $ = new SecretV2CustomMetadataArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param casRequired If true, all keys will require the cas parameter to be set on all write requests.
+         * 
+         * @return builder
+         * 
+         */
         public Builder casRequired(@Nullable Output<Boolean> casRequired) {
             $.casRequired = casRequired;
             return this;
         }
 
+        /**
+         * @param casRequired If true, all keys will require the cas parameter to be set on all write requests.
+         * 
+         * @return builder
+         * 
+         */
         public Builder casRequired(Boolean casRequired) {
             return casRequired(Output.of(casRequired));
         }
@@ -124,20 +160,44 @@ public final class SecretV2CustomMetadataArgs extends com.pulumi.resources.Resou
             return data(Output.of(data));
         }
 
+        /**
+         * @param deleteVersionAfter If set, specifies the length of time before a version is deleted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder deleteVersionAfter(@Nullable Output<Integer> deleteVersionAfter) {
             $.deleteVersionAfter = deleteVersionAfter;
             return this;
         }
 
+        /**
+         * @param deleteVersionAfter If set, specifies the length of time before a version is deleted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder deleteVersionAfter(Integer deleteVersionAfter) {
             return deleteVersionAfter(Output.of(deleteVersionAfter));
         }
 
+        /**
+         * @param maxVersions The number of versions to keep per key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxVersions(@Nullable Output<Integer> maxVersions) {
             $.maxVersions = maxVersions;
             return this;
         }
 
+        /**
+         * @param maxVersions The number of versions to keep per key.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxVersions(Integer maxVersions) {
             return maxVersions(Output.of(maxVersions));
         }

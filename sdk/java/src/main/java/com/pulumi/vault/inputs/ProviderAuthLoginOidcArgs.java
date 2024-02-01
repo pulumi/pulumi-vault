@@ -17,44 +17,92 @@ public final class ProviderAuthLoginOidcArgs extends com.pulumi.resources.Resour
 
     public static final ProviderAuthLoginOidcArgs Empty = new ProviderAuthLoginOidcArgs();
 
+    /**
+     * The callback address. Must be a valid URI without the path.
+     * 
+     */
     @Import(name="callbackAddress")
     private @Nullable Output<String> callbackAddress;
 
+    /**
+     * @return The callback address. Must be a valid URI without the path.
+     * 
+     */
     public Optional<Output<String>> callbackAddress() {
         return Optional.ofNullable(this.callbackAddress);
     }
 
+    /**
+     * The callback listener&#39;s address. Must be a valid URI without the path.
+     * 
+     */
     @Import(name="callbackListenerAddress")
     private @Nullable Output<String> callbackListenerAddress;
 
+    /**
+     * @return The callback listener&#39;s address. Must be a valid URI without the path.
+     * 
+     */
     public Optional<Output<String>> callbackListenerAddress() {
         return Optional.ofNullable(this.callbackListenerAddress);
     }
 
+    /**
+     * The path where the authentication engine is mounted.
+     * 
+     */
     @Import(name="mount")
     private @Nullable Output<String> mount;
 
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<Output<String>> mount() {
         return Optional.ofNullable(this.mount);
     }
 
+    /**
+     * The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * Name of the login role.
+     * 
+     */
     @Import(name="role", required=true)
     private Output<String> role;
 
+    /**
+     * @return Name of the login role.
+     * 
+     */
     public Output<String> role() {
         return this.role;
     }
 
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     @Import(name="useRootNamespace")
     private @Nullable Output<Boolean> useRootNamespace;
 
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Output<Boolean>> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
@@ -88,56 +136,128 @@ public final class ProviderAuthLoginOidcArgs extends com.pulumi.resources.Resour
             $ = new ProviderAuthLoginOidcArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param callbackAddress The callback address. Must be a valid URI without the path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder callbackAddress(@Nullable Output<String> callbackAddress) {
             $.callbackAddress = callbackAddress;
             return this;
         }
 
+        /**
+         * @param callbackAddress The callback address. Must be a valid URI without the path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder callbackAddress(String callbackAddress) {
             return callbackAddress(Output.of(callbackAddress));
         }
 
+        /**
+         * @param callbackListenerAddress The callback listener&#39;s address. Must be a valid URI without the path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder callbackListenerAddress(@Nullable Output<String> callbackListenerAddress) {
             $.callbackListenerAddress = callbackListenerAddress;
             return this;
         }
 
+        /**
+         * @param callbackListenerAddress The callback listener&#39;s address. Must be a valid URI without the path.
+         * 
+         * @return builder
+         * 
+         */
         public Builder callbackListenerAddress(String callbackListenerAddress) {
             return callbackListenerAddress(Output.of(callbackListenerAddress));
         }
 
+        /**
+         * @param mount The path where the authentication engine is mounted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mount(@Nullable Output<String> mount) {
             $.mount = mount;
             return this;
         }
 
+        /**
+         * @param mount The path where the authentication engine is mounted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mount(String mount) {
             return mount(Output.of(mount));
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable Output<String> namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
         }
 
+        /**
+         * @param role Name of the login role.
+         * 
+         * @return builder
+         * 
+         */
         public Builder role(Output<String> role) {
             $.role = role;
             return this;
         }
 
+        /**
+         * @param role Name of the login role.
+         * 
+         * @return builder
+         * 
+         */
         public Builder role(String role) {
             return role(Output.of(role));
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
             $.useRootNamespace = useRootNamespace;
             return this;
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(Boolean useRootNamespace) {
             return useRootNamespace(Output.of(useRootNamespace));
         }

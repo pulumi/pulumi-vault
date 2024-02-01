@@ -69,6 +69,9 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("insecure")]
         public Input<bool>? Insecure { get; set; }
 
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

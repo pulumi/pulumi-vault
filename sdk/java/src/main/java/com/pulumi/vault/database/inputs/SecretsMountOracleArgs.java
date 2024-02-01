@@ -123,9 +123,17 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.maxOpenConnections);
     }
 
+    /**
+     * Name of the database connection.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -407,11 +415,23 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
             return maxOpenConnections(Output.of(maxOpenConnections));
         }
 
+        /**
+         * @param name Name of the database connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the database connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

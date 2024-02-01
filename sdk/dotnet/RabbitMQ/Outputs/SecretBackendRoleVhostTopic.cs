@@ -13,6 +13,9 @@ namespace Pulumi.Vault.RabbitMQ.Outputs
     [OutputType]
     public sealed class SecretBackendRoleVhostTopic
     {
+        /// <summary>
+        /// The vhost to set permissions for.
+        /// </summary>
         public readonly string Host;
         /// <summary>
         /// Specifies a map of virtual hosts to permissions.
