@@ -15,6 +15,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SecretV2CustomMetadata {
+    /**
+     * @return If true, all keys will require the cas parameter to be set on all write requests.
+     * 
+     */
     private @Nullable Boolean casRequired;
     /**
      * @return A mapping whose keys are the top-level data keys returned from
@@ -24,10 +28,22 @@ public final class SecretV2CustomMetadata {
      * 
      */
     private @Nullable Map<String,Object> data;
+    /**
+     * @return If set, specifies the length of time before a version is deleted.
+     * 
+     */
     private @Nullable Integer deleteVersionAfter;
+    /**
+     * @return The number of versions to keep per key.
+     * 
+     */
     private @Nullable Integer maxVersions;
 
     private SecretV2CustomMetadata() {}
+    /**
+     * @return If true, all keys will require the cas parameter to be set on all write requests.
+     * 
+     */
     public Optional<Boolean> casRequired() {
         return Optional.ofNullable(this.casRequired);
     }
@@ -41,9 +57,17 @@ public final class SecretV2CustomMetadata {
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
     }
+    /**
+     * @return If set, specifies the length of time before a version is deleted.
+     * 
+     */
     public Optional<Integer> deleteVersionAfter() {
         return Optional.ofNullable(this.deleteVersionAfter);
     }
+    /**
+     * @return The number of versions to keep per key.
+     * 
+     */
     public Optional<Integer> maxVersions() {
         return Optional.ofNullable(this.maxVersions);
     }

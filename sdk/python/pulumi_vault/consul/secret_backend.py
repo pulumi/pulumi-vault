@@ -31,11 +31,7 @@ class SecretBackendArgs:
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-        :param pulumi.Input[bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
-               
-               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        :param pulumi.Input[bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
@@ -101,11 +97,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def bootstrap(self) -> Optional[pulumi.Input[bool]]:
         """
-        Denotes that the resource is used to bootstrap the Consul ACL system.
-
-        > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-        this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-        and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         """
         return pulumi.get(self, "bootstrap")
 
@@ -286,11 +278,7 @@ class _SecretBackendState:
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-        :param pulumi.Input[bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
-               
-               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        :param pulumi.Input[bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
@@ -357,11 +345,7 @@ class _SecretBackendState:
     @pulumi.getter
     def bootstrap(self) -> Optional[pulumi.Input[bool]]:
         """
-        Denotes that the resource is used to bootstrap the Consul ACL system.
-
-        > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-        this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-        and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         """
         return pulumi.get(self, "bootstrap")
 
@@ -578,11 +562,7 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-        :param pulumi.Input[bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
-               
-               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        :param pulumi.Input[bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
@@ -731,11 +711,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
-        :param pulumi.Input[bool] bootstrap: Denotes that the resource is used to bootstrap the Consul ACL system.
-               
-               > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-               this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-               and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        :param pulumi.Input[bool] bootstrap: Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         :param pulumi.Input[str] ca_cert: CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
         :param pulumi.Input[str] client_cert: Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
                this is set you need to also set client_key.
@@ -789,11 +765,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def bootstrap(self) -> pulumi.Output[Optional[bool]]:
         """
-        Denotes that the resource is used to bootstrap the Consul ACL system.
-
-        > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-        this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-        and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         """
         return pulumi.get(self, "bootstrap")
 

@@ -224,9 +224,17 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         return this.tenantId;
     }
 
+    /**
+     * ID of the managed key read from Vault
+     * 
+     */
     @Import(name="uuid")
     private @Nullable Output<String> uuid;
 
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     public Optional<Output<String>> uuid() {
         return Optional.ofNullable(this.uuid);
     }
@@ -569,11 +577,23 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
             return tenantId(Output.of(tenantId));
         }
 
+        /**
+         * @param uuid ID of the managed key read from Vault
+         * 
+         * @return builder
+         * 
+         */
         public Builder uuid(@Nullable Output<String> uuid) {
             $.uuid = uuid;
             return this;
         }
 
+        /**
+         * @param uuid ID of the managed key read from Vault
+         * 
+         * @return builder
+         * 
+         */
         public Builder uuid(String uuid) {
             return uuid(Output.of(uuid));
         }

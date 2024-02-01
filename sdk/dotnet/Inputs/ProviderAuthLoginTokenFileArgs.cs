@@ -12,12 +12,21 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderAuthLoginTokenFileArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of a file containing a single line that is a valid Vault token
+        /// </summary>
         [Input("filename", required: true)]
         public Input<string> Filename { get; set; } = null!;
 
+        /// <summary>
+        /// The authentication engine's namespace. Conflicts with use_root_namespace
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// Authenticate to the root Vault namespace. Conflicts with namespace
+        /// </summary>
         [Input("useRootNamespace")]
         public Input<bool>? UseRootNamespace { get; set; }
 

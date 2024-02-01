@@ -83,8 +83,7 @@
     "config": {
         "variables": {
             "addAddressToEnv": {
-                "type": "string",
-                "description": "If true, adds the value of the `address` argument to the Terraform process environment.\n"
+                "type": "string"
             },
             "address": {
                 "type": "string",
@@ -285,7 +284,8 @@
                     "type": "string"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "parameters": {
                     "type": "object",
@@ -298,7 +298,8 @@
                     "type": "string"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -314,52 +315,68 @@
         "vault:config/authLoginAws:authLoginAws": {
             "properties": {
                 "awsAccessKeyId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS access key ID.\n"
                 },
                 "awsIamEndpoint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The IAM endpoint URL.\n"
                 },
                 "awsProfile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the AWS profile.\n"
                 },
                 "awsRegion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS region.\n"
                 },
                 "awsRoleArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ARN of the AWS Role to assume.Used during STS AssumeRole\n"
                 },
                 "awsRoleSessionName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specifies the name to attach to the AWS role session. Used during STS AssumeRole\n"
                 },
                 "awsSecretAccessKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS secret access key.\n"
                 },
                 "awsSessionToken": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS session token.\n"
                 },
                 "awsSharedCredentialsFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the AWS shared credentials file.\n"
                 },
                 "awsStsEndpoint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The STS endpoint URL.\n"
                 },
                 "awsWebIdentityTokenFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.\n"
                 },
                 "headerValue": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Vault header value to include in the STS signing request.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Vault role to use when logging into Vault.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -375,40 +392,52 @@
         "vault:config/authLoginAzure:authLoginAzure": {
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The identity's client ID.\n"
                 },
                 "jwt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A signed JSON Web Token. If not specified on will be created automatically\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "resourceGroupName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "scope": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The scopes to include in the token request.\n"
                 },
                 "subscriptionId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 },
                 "tenantId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Provides the tenant ID to use in a multi-tenant authentication scenario.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "vmName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 },
                 "vmssName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 }
             },
             "type": "object",
@@ -426,22 +455,28 @@
         "vault:config/authLoginCert:authLoginCert": {
             "properties": {
                 "certFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the client certificate.\n"
                 },
                 "keyFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the private key that the certificate was issued for.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the certificate's role\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -458,25 +493,32 @@
         "vault:config/authLoginGcp:authLoginGcp": {
             "properties": {
                 "credentials": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the Google Cloud credentials file.\n"
                 },
                 "jwt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A signed JSON Web Token.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "serviceAccount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "IAM service account.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -492,19 +534,24 @@
         "vault:config/authLoginJwt:authLoginJwt": {
             "properties": {
                 "jwt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A signed JSON Web Token.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -521,37 +568,48 @@
         "vault:config/authLoginKerberos:authLoginKerberos": {
             "properties": {
                 "disableFastNegotiation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Disable the Kerberos FAST negotiation.\n"
                 },
                 "keytabPath": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Kerberos keytab file containing the entry of the login entity.\n"
                 },
                 "krb5confPath": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A valid Kerberos configuration file e.g. /etc/krb5.conf.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "realm": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Kerberos server's authoritative authentication domain\n"
                 },
                 "removeInstanceName": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Strip the host from the username found in the keytab.\n"
                 },
                 "service": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The service principle name.\n"
                 },
                 "token": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The username to login into Kerberos with.\n"
                 }
             },
             "type": "object"
@@ -559,19 +617,24 @@
         "vault:config/authLoginOci:authLoginOci": {
             "properties": {
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Authentication type to use when getting OCI credentials.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -588,22 +651,28 @@
         "vault:config/authLoginOidc:authLoginOidc": {
             "properties": {
                 "callbackAddress": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The callback address. Must be a valid URI without the path.\n"
                 },
                 "callbackListenerAddress": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The callback listener's address. Must be a valid URI without the path.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -619,19 +688,24 @@
         "vault:config/authLoginRadius:authLoginRadius": {
             "properties": {
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Radius password for username.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Radius username.\n"
                 }
             },
             "type": "object",
@@ -648,13 +722,16 @@
         "vault:config/authLoginTokenFile:authLoginTokenFile": {
             "properties": {
                 "filename": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of a file containing a single line that is a valid Vault token\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -670,22 +747,28 @@
         "vault:config/authLoginUserpass:authLoginUserpass": {
             "properties": {
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Login with password\n"
                 },
                 "passwordFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Login with password from a file\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Login with username\n"
                 }
             },
             "type": "object",
@@ -701,10 +784,12 @@
         "vault:config/clientAuth:clientAuth": {
             "properties": {
                 "certFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the client certificate.\n"
                 },
                 "keyFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the private key that the certificate was issued for.\n"
                 }
             },
             "type": "object",
@@ -721,10 +806,12 @@
         "vault:config/headers:headers": {
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header name\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header value\n"
                 }
             },
             "type": "object",
@@ -1531,7 +1618,8 @@
                     "description": "Whether to skip verification of the server\ncertificate when using TLS.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -1630,7 +1718,8 @@
                     "description": "Whether to skip verification of the server\ncertificate when using TLS.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -1721,7 +1810,8 @@
                     "description": "Whether to disable certificate verification.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -1816,7 +1906,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -1885,7 +1976,8 @@
                     "description": "Whether to skip verification of the server\ncertificate when using TLS.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -1986,7 +2078,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2047,7 +2140,8 @@
                     "description": "A map of sensitive data to pass to the endpoint. Useful for templated connection strings.\n\nSupported list of database secrets engines that can be configured:\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "pluginName": {
                     "type": "string",
@@ -2138,7 +2232,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2192,7 +2287,8 @@
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specify alternative authorization type. (Only 'gcp_iam' is valid currently)\n"
                 },
                 "connectionUrl": {
                     "type": "string",
@@ -2218,7 +2314,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2238,6 +2335,7 @@
                 },
                 "serviceAccountJson": {
                     "type": "string",
+                    "description": "A JSON encoded credential for use with IAM authorization\n",
                     "secret": true
                 },
                 "tlsCa": {
@@ -2285,7 +2383,8 @@
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specify alternative authorization type. (Only 'gcp_iam' is valid currently)\n"
                 },
                 "connectionUrl": {
                     "type": "string",
@@ -2311,7 +2410,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2331,6 +2431,7 @@
                 },
                 "serviceAccountJson": {
                     "type": "string",
+                    "description": "A JSON encoded credential for use with IAM authorization\n",
                     "secret": true
                 },
                 "tlsCa": {
@@ -2378,7 +2479,8 @@
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specify alternative authorization type. (Only 'gcp_iam' is valid currently)\n"
                 },
                 "connectionUrl": {
                     "type": "string",
@@ -2404,7 +2506,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2424,6 +2527,7 @@
                 },
                 "serviceAccountJson": {
                     "type": "string",
+                    "description": "A JSON encoded credential for use with IAM authorization\n",
                     "secret": true
                 },
                 "tlsCa": {
@@ -2471,7 +2575,8 @@
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specify alternative authorization type. (Only 'gcp_iam' is valid currently)\n"
                 },
                 "connectionUrl": {
                     "type": "string",
@@ -2497,7 +2602,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2517,6 +2623,7 @@
                 },
                 "serviceAccountJson": {
                     "type": "string",
+                    "description": "A JSON encoded credential for use with IAM authorization\n",
                     "secret": true
                 },
                 "tlsCa": {
@@ -2587,7 +2694,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2641,7 +2749,8 @@
                     "description": "A list of roles that are allowed to use this\nconnection.\n"
                 },
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specify alternative authorization type. (Only 'gcp_iam' is valid currently)\n"
                 },
                 "connectionUrl": {
                     "type": "string",
@@ -2671,7 +2780,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2691,6 +2801,7 @@
                 },
                 "serviceAccountJson": {
                     "type": "string",
+                    "description": "A JSON encoded credential for use with IAM authorization\n",
                     "secret": true
                 },
                 "username": {
@@ -2748,7 +2859,8 @@
                     "description": "Whether to skip verification of the server\ncertificate when using TLS.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2819,7 +2931,8 @@
                     "description": "A map of sensitive data to pass to the endpoint. Useful for templated connection strings.\n\nSupported list of database secrets engines that can be configured:\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2907,7 +3020,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -2984,7 +3098,8 @@
                     "description": "The maximum number of open connections to\nthe database.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the database connection.\n"
                 },
                 "password": {
                     "type": "string",
@@ -3310,7 +3425,8 @@
                     "type": "string"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "parameters": {
                     "type": "object",
@@ -3323,7 +3439,8 @@
                     "type": "string"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3339,52 +3456,68 @@
         "vault:index/ProviderAuthLoginAws:ProviderAuthLoginAws": {
             "properties": {
                 "awsAccessKeyId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS access key ID.\n"
                 },
                 "awsIamEndpoint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The IAM endpoint URL.\n"
                 },
                 "awsProfile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the AWS profile.\n"
                 },
                 "awsRegion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS region.\n"
                 },
                 "awsRoleArn": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ARN of the AWS Role to assume.Used during STS AssumeRole\n"
                 },
                 "awsRoleSessionName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Specifies the name to attach to the AWS role session. Used during STS AssumeRole\n"
                 },
                 "awsSecretAccessKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS secret access key.\n"
                 },
                 "awsSessionToken": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The AWS session token.\n"
                 },
                 "awsSharedCredentialsFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the AWS shared credentials file.\n"
                 },
                 "awsStsEndpoint": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The STS endpoint URL.\n"
                 },
                 "awsWebIdentityTokenFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.\n"
                 },
                 "headerValue": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Vault header value to include in the STS signing request.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Vault role to use when logging into Vault.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3400,40 +3533,52 @@
         "vault:index/ProviderAuthLoginAzure:ProviderAuthLoginAzure": {
             "properties": {
                 "clientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The identity's client ID.\n"
                 },
                 "jwt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A signed JSON Web Token. If not specified on will be created automatically\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "resourceGroupName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "scope": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The scopes to include in the token request.\n"
                 },
                 "subscriptionId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 },
                 "tenantId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Provides the tenant ID to use in a multi-tenant authentication scenario.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "vmName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 },
                 "vmssName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.\n"
                 }
             },
             "type": "object",
@@ -3451,22 +3596,28 @@
         "vault:index/ProviderAuthLoginCert:ProviderAuthLoginCert": {
             "properties": {
                 "certFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the client certificate.\n"
                 },
                 "keyFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the private key that the certificate was issued for.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the certificate's role\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3483,25 +3634,32 @@
         "vault:index/ProviderAuthLoginGcp:ProviderAuthLoginGcp": {
             "properties": {
                 "credentials": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to the Google Cloud credentials file.\n"
                 },
                 "jwt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A signed JSON Web Token.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "serviceAccount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "IAM service account.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3517,19 +3675,24 @@
         "vault:index/ProviderAuthLoginJwt:ProviderAuthLoginJwt": {
             "properties": {
                 "jwt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A signed JSON Web Token.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3546,37 +3709,48 @@
         "vault:index/ProviderAuthLoginKerberos:ProviderAuthLoginKerberos": {
             "properties": {
                 "disableFastNegotiation": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Disable the Kerberos FAST negotiation.\n"
                 },
                 "keytabPath": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Kerberos keytab file containing the entry of the login entity.\n"
                 },
                 "krb5confPath": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A valid Kerberos configuration file e.g. /etc/krb5.conf.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "realm": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Kerberos server's authoritative authentication domain\n"
                 },
                 "removeInstanceName": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Strip the host from the username found in the keytab.\n"
                 },
                 "service": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The service principle name.\n"
                 },
                 "token": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The username to login into Kerberos with.\n"
                 }
             },
             "type": "object"
@@ -3584,19 +3758,24 @@
         "vault:index/ProviderAuthLoginOci:ProviderAuthLoginOci": {
             "properties": {
                 "authType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Authentication type to use when getting OCI credentials.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3613,22 +3792,28 @@
         "vault:index/ProviderAuthLoginOidc:ProviderAuthLoginOidc": {
             "properties": {
                 "callbackAddress": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The callback address. Must be a valid URI without the path.\n"
                 },
                 "callbackListenerAddress": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The callback listener's address. Must be a valid URI without the path.\n"
                 },
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "role": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the login role.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3644,19 +3829,24 @@
         "vault:index/ProviderAuthLoginRadius:ProviderAuthLoginRadius": {
             "properties": {
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Radius password for username.\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The Radius username.\n"
                 }
             },
             "type": "object",
@@ -3673,13 +3863,16 @@
         "vault:index/ProviderAuthLoginTokenFile:ProviderAuthLoginTokenFile": {
             "properties": {
                 "filename": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of a file containing a single line that is a valid Vault token\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 }
             },
             "type": "object",
@@ -3695,22 +3888,28 @@
         "vault:index/ProviderAuthLoginUserpass:ProviderAuthLoginUserpass": {
             "properties": {
                 "mount": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The path where the authentication engine is mounted.\n"
                 },
                 "namespace": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The authentication engine's namespace. Conflicts with use_root_namespace\n"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Login with password\n"
                 },
                 "passwordFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Login with password from a file\n"
                 },
                 "useRootNamespace": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Authenticate to the root Vault namespace. Conflicts with namespace\n"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Login with username\n"
                 }
             },
             "type": "object",
@@ -3726,10 +3925,12 @@
         "vault:index/ProviderClientAuth:ProviderClientAuth": {
             "properties": {
                 "certFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the client certificate.\n"
                 },
                 "keyFile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Path to a file containing the private key that the certificate was issued for.\n"
                 }
             },
             "type": "object",
@@ -3746,10 +3947,12 @@
         "vault:index/ProviderHeader:ProviderHeader": {
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header name\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header value\n"
                 }
             },
             "type": "object",
@@ -3908,7 +4111,8 @@
         "vault:kv/SecretV2CustomMetadata:SecretV2CustomMetadata": {
             "properties": {
                 "casRequired": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "If true, all keys will require the cas parameter to be set on all write requests.\n"
                 },
                 "data": {
                     "type": "object",
@@ -3918,10 +4122,12 @@
                     "description": "A mapping whose keys are the top-level data keys returned from\nVault and whose values are the corresponding values. This map can only\nrepresent string data, so any non-string values returned from Vault are\nserialized as JSON.\n"
                 },
                 "deleteVersionAfter": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "If set, specifies the length of time before a version is deleted.\n"
                 },
                 "maxVersions": {
-                    "type": "integer"
+                    "type": "integer",
+                    "description": "The number of versions to keep per key.\n"
                 }
             },
             "type": "object"
@@ -3981,7 +4187,8 @@
                     "description": "The AWS access key to use.\n"
                 },
                 "uuid": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of the managed key read from Vault\n"
                 }
             },
             "type": "object",
@@ -4067,7 +4274,8 @@
                     "description": "The tenant id for the Azure Active Directory organization.\n"
                 },
                 "uuid": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of the managed key read from Vault\n"
                 },
                 "vaultName": {
                     "type": "string",
@@ -4168,7 +4376,8 @@
                     "description": "The slot token label to use.\n"
                 },
                 "uuid": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID of the managed key read from Vault\n"
                 }
             },
             "type": "object",
@@ -4267,16 +4476,20 @@
         "vault:rabbitMq/SecretBackendRoleVhost:SecretBackendRoleVhost": {
             "properties": {
                 "configure": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The configure permissions for this vhost.\n"
                 },
                 "host": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The vhost to set permissions for.\n"
                 },
                 "read": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The read permissions for this vhost.\n"
                 },
                 "write": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The write permissions for this vhost.\n"
                 }
             },
             "type": "object",
@@ -4290,7 +4503,8 @@
         "vault:rabbitMq/SecretBackendRoleVhostTopic:SecretBackendRoleVhostTopic": {
             "properties": {
                 "host": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The vhost to set permissions for.\n"
                 },
                 "vhosts": {
                     "type": "array",
@@ -4308,13 +4522,16 @@
         "vault:rabbitMq/SecretBackendRoleVhostTopicVhost:SecretBackendRoleVhostTopicVhost": {
             "properties": {
                 "read": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The read permissions for this vhost.\n"
                 },
                 "topic": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The vhost to set permissions for.\n"
                 },
                 "write": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The write permissions for this vhost.\n"
                 }
             },
             "type": "object",
@@ -8524,7 +8741,7 @@
                 },
                 "useMicrosoftGraphApi": {
                     "type": "boolean",
-                    "description": "Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
+                    "description": "Use the Microsoft Graph API. Should be set to true on vault-1.10+\n"
                 }
             },
             "required": [
@@ -8577,7 +8794,7 @@
                 },
                 "useMicrosoftGraphApi": {
                     "type": "boolean",
-                    "description": "Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
+                    "description": "Use the Microsoft Graph API. Should be set to true on vault-1.10+\n"
                 }
             },
             "requiredInputs": [
@@ -8631,7 +8848,7 @@
                     },
                     "useMicrosoftGraphApi": {
                         "type": "boolean",
-                        "description": "Indicates whether the secrets engine should use \nthe Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.\nFor more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)\n"
+                        "description": "Use the Microsoft Graph API. Should be set to true on vault-1.10+\n"
                     }
                 },
                 "type": "object"
@@ -8843,7 +9060,7 @@
                 },
                 "bootstrap": {
                     "type": "boolean",
-                    "description": "Denotes that the resource is used to bootstrap the Consul ACL system.\n\n\u003e **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from\nthis operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost\nand a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)\n"
+                    "description": "Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.\n"
                 },
                 "caCert": {
                     "type": "string",
@@ -8907,7 +9124,7 @@
                 },
                 "bootstrap": {
                     "type": "boolean",
-                    "description": "Denotes that the resource is used to bootstrap the Consul ACL system.\n\n\u003e **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from\nthis operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost\nand a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)\n"
+                    "description": "Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.\n"
                 },
                 "caCert": {
                     "type": "string",
@@ -8975,7 +9192,7 @@
                     },
                     "bootstrap": {
                         "type": "boolean",
-                        "description": "Denotes that the resource is used to bootstrap the Consul ACL system.\n\n\u003e **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from\nthis operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost\nand a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)\n"
+                        "description": "Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.\n"
                     },
                     "caCert": {
                         "type": "string",
@@ -23350,7 +23567,7 @@
             }
         },
         "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers": {
-            "description": "Allows setting the value of the default issuer. For more information, see the\n[Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst root = new vault.pkisecret.SecretBackendRootCert(\"root\", {\n    backend: pki.path,\n    type: \"internal\",\n    commonName: \"test\",\n    ttl: \"86400\",\n});\nconst example = new vault.pkisecret.SecretBackendIssuer(\"example\", {\n    backend: root.backend,\n    issuerRef: root.issuerId,\n    issuerName: \"example-issuer\",\n});\nconst config = new vault.pkisecret.SecretBackendConfigIssuers(\"config\", {\n    backend: pki.path,\n    \"default\": example.issuerId,\n    defaultFollowsLatestIssuer: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\nroot = vault.pki_secret.SecretBackendRootCert(\"root\",\n    backend=pki.path,\n    type=\"internal\",\n    common_name=\"test\",\n    ttl=\"86400\")\nexample = vault.pki_secret.SecretBackendIssuer(\"example\",\n    backend=root.backend,\n    issuer_ref=root.issuer_id,\n    issuer_name=\"example-issuer\")\nconfig = vault.pki_secret.SecretBackendConfigIssuers(\"config\",\n    backend=pki.path,\n    default=example.issuer_id,\n    default_follows_latest_issuer=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var root = new Vault.PkiSecret.SecretBackendRootCert(\"root\", new()\n    {\n        Backend = pki.Path,\n        Type = \"internal\",\n        CommonName = \"test\",\n        Ttl = \"86400\",\n    });\n\n    var example = new Vault.PkiSecret.SecretBackendIssuer(\"example\", new()\n    {\n        Backend = root.Backend,\n        IssuerRef = root.IssuerId,\n        IssuerName = \"example-issuer\",\n    });\n\n    var config = new Vault.PkiSecret.SecretBackendConfigIssuers(\"config\", new()\n    {\n        Backend = pki.Path,\n        Default = example.IssuerId,\n        DefaultFollowsLatestIssuer = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\troot, err := pkiSecret.NewSecretBackendRootCert(ctx, \"root\", \u0026pkiSecret.SecretBackendRootCertArgs{\n\t\t\tBackend:    pki.Path,\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"test\"),\n\t\t\tTtl:        pulumi.String(\"86400\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := pkiSecret.NewSecretBackendIssuer(ctx, \"example\", \u0026pkiSecret.SecretBackendIssuerArgs{\n\t\t\tBackend:    root.Backend,\n\t\t\tIssuerRef:  root.IssuerId,\n\t\t\tIssuerName: pulumi.String(\"example-issuer\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkiSecret.NewSecretBackendConfigIssuers(ctx, \"config\", \u0026pkiSecret.SecretBackendConfigIssuersArgs{\n\t\t\tBackend:                    pki.Path,\n\t\t\tDefault:                    example.IssuerId,\n\t\t\tDefaultFollowsLatestIssuer: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuer;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuerArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendConfigIssuers;\nimport com.pulumi.vault.pkiSecret.SecretBackendConfigIssuersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var root = new SecretBackendRootCert(\"root\", SecretBackendRootCertArgs.builder()        \n            .backend(pki.path())\n            .type(\"internal\")\n            .commonName(\"test\")\n            .ttl(\"86400\")\n            .build());\n\n        var example = new SecretBackendIssuer(\"example\", SecretBackendIssuerArgs.builder()        \n            .backend(root.backend())\n            .issuerRef(root.issuerId())\n            .issuerName(\"example-issuer\")\n            .build());\n\n        var config = new SecretBackendConfigIssuers(\"config\", SecretBackendConfigIssuersArgs.builder()        \n            .backend(pki.path())\n            .default_(example.issuerId())\n            .defaultFollowsLatestIssuer(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  root:\n    type: vault:pkiSecret:SecretBackendRootCert\n    properties:\n      backend: ${pki.path}\n      type: internal\n      commonName: test\n      ttl: '86400'\n  example:\n    type: vault:pkiSecret:SecretBackendIssuer\n    properties:\n      backend: ${root.backend}\n      issuerRef: ${root.issuerId}\n      issuerName: example-issuer\n  config:\n    type: vault:pkiSecret:SecretBackendConfigIssuers\n    properties:\n      backend: ${pki.path}\n      default: ${example.issuerId}\n      defaultFollowsLatestIssuer: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPKI secret backend config issuers can be imported using the path, e.g.\n\n```sh\n $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers\n```\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst root = new vault.pkisecret.SecretBackendRootCert(\"root\", {\n    backend: pki.path,\n    type: \"internal\",\n    commonName: \"test\",\n    ttl: \"86400\",\n});\nconst example = new vault.pkisecret.SecretBackendIssuer(\"example\", {\n    backend: root.backend,\n    issuerRef: root.issuerId,\n    issuerName: \"example-issuer\",\n});\nconst config = new vault.pkisecret.SecretBackendConfigIssuers(\"config\", {\n    backend: pki.path,\n    \"default\": example.issuerId,\n    defaultFollowsLatestIssuer: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\nroot = vault.pki_secret.SecretBackendRootCert(\"root\",\n    backend=pki.path,\n    type=\"internal\",\n    common_name=\"test\",\n    ttl=\"86400\")\nexample = vault.pki_secret.SecretBackendIssuer(\"example\",\n    backend=root.backend,\n    issuer_ref=root.issuer_id,\n    issuer_name=\"example-issuer\")\nconfig = vault.pki_secret.SecretBackendConfigIssuers(\"config\",\n    backend=pki.path,\n    default=example.issuer_id,\n    default_follows_latest_issuer=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var root = new Vault.PkiSecret.SecretBackendRootCert(\"root\", new()\n    {\n        Backend = pki.Path,\n        Type = \"internal\",\n        CommonName = \"test\",\n        Ttl = \"86400\",\n    });\n\n    var example = new Vault.PkiSecret.SecretBackendIssuer(\"example\", new()\n    {\n        Backend = root.Backend,\n        IssuerRef = root.IssuerId,\n        IssuerName = \"example-issuer\",\n    });\n\n    var config = new Vault.PkiSecret.SecretBackendConfigIssuers(\"config\", new()\n    {\n        Backend = pki.Path,\n        Default = example.IssuerId,\n        DefaultFollowsLatestIssuer = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\troot, err := pkiSecret.NewSecretBackendRootCert(ctx, \"root\", \u0026pkiSecret.SecretBackendRootCertArgs{\n\t\t\tBackend:    pki.Path,\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"test\"),\n\t\t\tTtl:        pulumi.String(\"86400\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := pkiSecret.NewSecretBackendIssuer(ctx, \"example\", \u0026pkiSecret.SecretBackendIssuerArgs{\n\t\t\tBackend:    root.Backend,\n\t\t\tIssuerRef:  root.IssuerId,\n\t\t\tIssuerName: pulumi.String(\"example-issuer\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkiSecret.NewSecretBackendConfigIssuers(ctx, \"config\", \u0026pkiSecret.SecretBackendConfigIssuersArgs{\n\t\t\tBackend:                    pki.Path,\n\t\t\tDefault:                    example.IssuerId,\n\t\t\tDefaultFollowsLatestIssuer: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuer;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuerArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendConfigIssuers;\nimport com.pulumi.vault.pkiSecret.SecretBackendConfigIssuersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var root = new SecretBackendRootCert(\"root\", SecretBackendRootCertArgs.builder()        \n            .backend(pki.path())\n            .type(\"internal\")\n            .commonName(\"test\")\n            .ttl(\"86400\")\n            .build());\n\n        var example = new SecretBackendIssuer(\"example\", SecretBackendIssuerArgs.builder()        \n            .backend(root.backend())\n            .issuerRef(root.issuerId())\n            .issuerName(\"example-issuer\")\n            .build());\n\n        var config = new SecretBackendConfigIssuers(\"config\", SecretBackendConfigIssuersArgs.builder()        \n            .backend(pki.path())\n            .default_(example.issuerId())\n            .defaultFollowsLatestIssuer(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  root:\n    type: vault:pkiSecret:SecretBackendRootCert\n    properties:\n      backend: ${pki.path}\n      type: internal\n      commonName: test\n      ttl: '86400'\n  example:\n    type: vault:pkiSecret:SecretBackendIssuer\n    properties:\n      backend: ${root.backend}\n      issuerRef: ${root.issuerId}\n      issuerName: example-issuer\n  config:\n    type: vault:pkiSecret:SecretBackendConfigIssuers\n    properties:\n      backend: ${pki.path}\n      default: ${example.issuerId}\n      defaultFollowsLatestIssuer: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPKI secret backend config issuers can be imported using the path, e.g.\n\n```sh\n $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers\n```\n ",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -24258,7 +24475,7 @@
             }
         },
         "vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer": {
-            "description": "Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not\ncreate issuers. It instead tracks and performs updates made to an existing issuer that was\ncreated by one of the PKI generate endpoints. For more information, see the \n[Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#managing-keys-and-issuers)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst root = new vault.pkisecret.SecretBackendRootCert(\"root\", {\n    backend: pki.path,\n    type: \"internal\",\n    commonName: \"test\",\n    ttl: \"86400\",\n});\nconst example = new vault.pkisecret.SecretBackendIssuer(\"example\", {\n    backend: root.backend,\n    issuerRef: root.issuerId,\n    issuerName: \"example-issuer\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\nroot = vault.pki_secret.SecretBackendRootCert(\"root\",\n    backend=pki.path,\n    type=\"internal\",\n    common_name=\"test\",\n    ttl=\"86400\")\nexample = vault.pki_secret.SecretBackendIssuer(\"example\",\n    backend=root.backend,\n    issuer_ref=root.issuer_id,\n    issuer_name=\"example-issuer\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var root = new Vault.PkiSecret.SecretBackendRootCert(\"root\", new()\n    {\n        Backend = pki.Path,\n        Type = \"internal\",\n        CommonName = \"test\",\n        Ttl = \"86400\",\n    });\n\n    var example = new Vault.PkiSecret.SecretBackendIssuer(\"example\", new()\n    {\n        Backend = root.Backend,\n        IssuerRef = root.IssuerId,\n        IssuerName = \"example-issuer\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\troot, err := pkiSecret.NewSecretBackendRootCert(ctx, \"root\", \u0026pkiSecret.SecretBackendRootCertArgs{\n\t\t\tBackend:    pki.Path,\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"test\"),\n\t\t\tTtl:        pulumi.String(\"86400\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkiSecret.NewSecretBackendIssuer(ctx, \"example\", \u0026pkiSecret.SecretBackendIssuerArgs{\n\t\t\tBackend:    root.Backend,\n\t\t\tIssuerRef:  root.IssuerId,\n\t\t\tIssuerName: pulumi.String(\"example-issuer\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuer;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var root = new SecretBackendRootCert(\"root\", SecretBackendRootCertArgs.builder()        \n            .backend(pki.path())\n            .type(\"internal\")\n            .commonName(\"test\")\n            .ttl(\"86400\")\n            .build());\n\n        var example = new SecretBackendIssuer(\"example\", SecretBackendIssuerArgs.builder()        \n            .backend(root.backend())\n            .issuerRef(root.issuerId())\n            .issuerName(\"example-issuer\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  root:\n    type: vault:pkiSecret:SecretBackendRootCert\n    properties:\n      backend: ${pki.path}\n      type: internal\n      commonName: test\n      ttl: '86400'\n  example:\n    type: vault:pkiSecret:SecretBackendIssuer\n    properties:\n      backend: ${root.backend}\n      issuerRef: ${root.issuerId}\n      issuerName: example-issuer\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPKI secret backend issuer can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d\n```\n ",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst root = new vault.pkisecret.SecretBackendRootCert(\"root\", {\n    backend: pki.path,\n    type: \"internal\",\n    commonName: \"test\",\n    ttl: \"86400\",\n});\nconst example = new vault.pkisecret.SecretBackendIssuer(\"example\", {\n    backend: root.backend,\n    issuerRef: root.issuerId,\n    issuerName: \"example-issuer\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\nroot = vault.pki_secret.SecretBackendRootCert(\"root\",\n    backend=pki.path,\n    type=\"internal\",\n    common_name=\"test\",\n    ttl=\"86400\")\nexample = vault.pki_secret.SecretBackendIssuer(\"example\",\n    backend=root.backend,\n    issuer_ref=root.issuer_id,\n    issuer_name=\"example-issuer\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var root = new Vault.PkiSecret.SecretBackendRootCert(\"root\", new()\n    {\n        Backend = pki.Path,\n        Type = \"internal\",\n        CommonName = \"test\",\n        Ttl = \"86400\",\n    });\n\n    var example = new Vault.PkiSecret.SecretBackendIssuer(\"example\", new()\n    {\n        Backend = root.Backend,\n        IssuerRef = root.IssuerId,\n        IssuerName = \"example-issuer\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\troot, err := pkiSecret.NewSecretBackendRootCert(ctx, \"root\", \u0026pkiSecret.SecretBackendRootCertArgs{\n\t\t\tBackend:    pki.Path,\n\t\t\tType:       pulumi.String(\"internal\"),\n\t\t\tCommonName: pulumi.String(\"test\"),\n\t\t\tTtl:        pulumi.String(\"86400\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkiSecret.NewSecretBackendIssuer(ctx, \"example\", \u0026pkiSecret.SecretBackendIssuerArgs{\n\t\t\tBackend:    root.Backend,\n\t\t\tIssuerRef:  root.IssuerId,\n\t\t\tIssuerName: pulumi.String(\"example-issuer\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCert;\nimport com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuer;\nimport com.pulumi.vault.pkiSecret.SecretBackendIssuerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()        \n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var root = new SecretBackendRootCert(\"root\", SecretBackendRootCertArgs.builder()        \n            .backend(pki.path())\n            .type(\"internal\")\n            .commonName(\"test\")\n            .ttl(\"86400\")\n            .build());\n\n        var example = new SecretBackendIssuer(\"example\", SecretBackendIssuerArgs.builder()        \n            .backend(root.backend())\n            .issuerRef(root.issuerId())\n            .issuerName(\"example-issuer\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  root:\n    type: vault:pkiSecret:SecretBackendRootCert\n    properties:\n      backend: ${pki.path}\n      type: internal\n      commonName: test\n      ttl: '86400'\n  example:\n    type: vault:pkiSecret:SecretBackendIssuer\n    properties:\n      backend: ${root.backend}\n      issuerRef: ${root.issuerId}\n      issuerName: example-issuer\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPKI secret backend issuer can be imported using the `id`, e.g.\n\n```sh\n $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d\n```\n ",
             "properties": {
                 "backend": {
                     "type": "string",
@@ -24779,7 +24996,7 @@
                 },
                 "notBeforeDuration": {
                     "type": "string",
-                    "description": "Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.\n"
+                    "description": "Specifies the duration by which to backdate the NotBefore property.\n"
                 },
                 "organizationUnit": {
                     "type": "array",
@@ -25029,7 +25246,7 @@
                 },
                 "notBeforeDuration": {
                     "type": "string",
-                    "description": "Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.\n"
+                    "description": "Specifies the duration by which to backdate the NotBefore property.\n"
                 },
                 "organizationUnit": {
                     "type": "array",
@@ -25274,7 +25491,7 @@
                     },
                     "notBeforeDuration": {
                         "type": "string",
-                        "description": "Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.\n"
+                        "description": "Specifies the duration by which to backdate the NotBefore property.\n"
                     },
                     "organizationUnit": {
                         "type": "array",
@@ -27171,7 +27388,7 @@
                 },
                 "tokenNumUses": {
                     "type": "integer",
-                    "description": "The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)\nof times a generated token may be used (within its lifetime); 0 means unlimited.\n"
+                    "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
                 },
                 "tokenPeriod": {
                     "type": "integer",
@@ -27262,7 +27479,7 @@
                 },
                 "tokenNumUses": {
                     "type": "integer",
-                    "description": "The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)\nof times a generated token may be used (within its lifetime); 0 means unlimited.\n"
+                    "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
                 },
                 "tokenPeriod": {
                     "type": "integer",
@@ -27352,7 +27569,7 @@
                     },
                     "tokenNumUses": {
                         "type": "integer",
-                        "description": "The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)\nof times a generated token may be used (within its lifetime); 0 means unlimited.\n"
+                        "description": "The maximum number of times a token may be used, a value of zero means unlimited\n"
                     },
                     "tokenPeriod": {
                         "type": "integer",
@@ -27585,7 +27802,7 @@
                 },
                 "notBeforeDuration": {
                     "type": "string",
-                    "description": "Specifies the duration by which to backdate the ValidAfter property.\nUses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).\n"
+                    "description": "Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.\n"
                 },
                 "ttl": {
                     "type": "string",
@@ -27721,7 +27938,7 @@
                 },
                 "notBeforeDuration": {
                     "type": "string",
-                    "description": "Specifies the duration by which to backdate the ValidAfter property.\nUses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).\n"
+                    "description": "Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.\n"
                 },
                 "ttl": {
                     "type": "string",
@@ -27853,7 +28070,7 @@
                     },
                     "notBeforeDuration": {
                         "type": "string",
-                        "description": "Specifies the duration by which to backdate the ValidAfter property.\nUses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).\n"
+                        "description": "Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.\n"
                     },
                     "ttl": {
                         "type": "string",
@@ -30835,7 +31052,7 @@
             }
         },
         "vault:index/getRaftAutopilotState:getRaftAutopilotState": {
-            "description": "Displays the state of the raft cluster under integrated storage as seen by\nautopilot. It shows whether autopilot thinks the cluster is healthy or not, and\nhow many nodes could fail before the cluster becomes unhealthy (\"Failure\nTolerance\"). For more information, please refer to the\n[Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nexport = async () =\u003e {\n    const main = await vault.getRaftAutopilotState({});\n    return {\n        \"failure-tolerance\": main.failureTolerance,\n    };\n}\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmain = vault.get_raft_autopilot_state()\npulumi.export(\"failure-tolerance\", main.failure_tolerance)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Vault.GetRaftAutopilotState.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"failure-tolerance\"] = main.Apply(getRaftAutopilotStateResult =\u003e getRaftAutopilotStateResult.FailureTolerance),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := vault.GetRaftAutopilotState(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"failure-tolerance\", main.FailureTolerance)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = VaultFunctions.getRaftAutopilotState();\n\n        ctx.export(\"failure-tolerance\", main.applyValue(getRaftAutopilotStateResult -\u003e getRaftAutopilotStateResult.failureTolerance()));\n    }\n}\n```\n```yaml\nvariables:\n  main:\n    fn::invoke:\n      Function: vault:getRaftAutopilotState\n      Arguments: {}\noutputs:\n  failure-tolerance: ${main.failureTolerance}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nexport = async () =\u003e {\n    const main = await vault.getRaftAutopilotState({});\n    return {\n        \"failure-tolerance\": main.failureTolerance,\n    };\n}\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmain = vault.get_raft_autopilot_state()\npulumi.export(\"failure-tolerance\", main.failure_tolerance)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = Vault.GetRaftAutopilotState.Invoke();\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"failure-tolerance\"] = main.Apply(getRaftAutopilotStateResult =\u003e getRaftAutopilotStateResult.FailureTolerance),\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := vault.GetRaftAutopilotState(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"failure-tolerance\", main.FailureTolerance)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var main = VaultFunctions.getRaftAutopilotState();\n\n        ctx.export(\"failure-tolerance\", main.applyValue(getRaftAutopilotStateResult -\u003e getRaftAutopilotStateResult.failureTolerance()));\n    }\n}\n```\n```yaml\nvariables:\n  main:\n    fn::invoke:\n      Function: vault:getRaftAutopilotState\n      Arguments: {}\noutputs:\n  failure-tolerance: ${main.failureTolerance}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getRaftAutopilotState.\n",
                 "properties": {

@@ -14,10 +14,14 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type SecretBackendRoleVhost struct {
+	// The configure permissions for this vhost.
 	Configure string `pulumi:"configure"`
-	Host      string `pulumi:"host"`
-	Read      string `pulumi:"read"`
-	Write     string `pulumi:"write"`
+	// The vhost to set permissions for.
+	Host string `pulumi:"host"`
+	// The read permissions for this vhost.
+	Read string `pulumi:"read"`
+	// The write permissions for this vhost.
+	Write string `pulumi:"write"`
 }
 
 // SecretBackendRoleVhostInput is an input type that accepts SecretBackendRoleVhostArgs and SecretBackendRoleVhostOutput values.
@@ -32,10 +36,14 @@ type SecretBackendRoleVhostInput interface {
 }
 
 type SecretBackendRoleVhostArgs struct {
+	// The configure permissions for this vhost.
 	Configure pulumi.StringInput `pulumi:"configure"`
-	Host      pulumi.StringInput `pulumi:"host"`
-	Read      pulumi.StringInput `pulumi:"read"`
-	Write     pulumi.StringInput `pulumi:"write"`
+	// The vhost to set permissions for.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The read permissions for this vhost.
+	Read pulumi.StringInput `pulumi:"read"`
+	// The write permissions for this vhost.
+	Write pulumi.StringInput `pulumi:"write"`
 }
 
 func (SecretBackendRoleVhostArgs) ElementType() reflect.Type {
@@ -89,18 +97,22 @@ func (o SecretBackendRoleVhostOutput) ToSecretBackendRoleVhostOutputWithContext(
 	return o
 }
 
+// The configure permissions for this vhost.
 func (o SecretBackendRoleVhostOutput) Configure() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Configure }).(pulumi.StringOutput)
 }
 
+// The vhost to set permissions for.
 func (o SecretBackendRoleVhostOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// The read permissions for this vhost.
 func (o SecretBackendRoleVhostOutput) Read() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Read }).(pulumi.StringOutput)
 }
 
+// The write permissions for this vhost.
 func (o SecretBackendRoleVhostOutput) Write() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhost) string { return v.Write }).(pulumi.StringOutput)
 }
@@ -126,6 +138,7 @@ func (o SecretBackendRoleVhostArrayOutput) Index(i pulumi.IntInput) SecretBacken
 }
 
 type SecretBackendRoleVhostTopic struct {
+	// The vhost to set permissions for.
 	Host string `pulumi:"host"`
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts []SecretBackendRoleVhostTopicVhost `pulumi:"vhosts"`
@@ -143,6 +156,7 @@ type SecretBackendRoleVhostTopicInput interface {
 }
 
 type SecretBackendRoleVhostTopicArgs struct {
+	// The vhost to set permissions for.
 	Host pulumi.StringInput `pulumi:"host"`
 	// Specifies a map of virtual hosts to permissions.
 	Vhosts SecretBackendRoleVhostTopicVhostArrayInput `pulumi:"vhosts"`
@@ -199,6 +213,7 @@ func (o SecretBackendRoleVhostTopicOutput) ToSecretBackendRoleVhostTopicOutputWi
 	return o
 }
 
+// The vhost to set permissions for.
 func (o SecretBackendRoleVhostTopicOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhostTopic) string { return v.Host }).(pulumi.StringOutput)
 }
@@ -229,8 +244,11 @@ func (o SecretBackendRoleVhostTopicArrayOutput) Index(i pulumi.IntInput) SecretB
 }
 
 type SecretBackendRoleVhostTopicVhost struct {
-	Read  string `pulumi:"read"`
+	// The read permissions for this vhost.
+	Read string `pulumi:"read"`
+	// The vhost to set permissions for.
 	Topic string `pulumi:"topic"`
+	// The write permissions for this vhost.
 	Write string `pulumi:"write"`
 }
 
@@ -246,8 +264,11 @@ type SecretBackendRoleVhostTopicVhostInput interface {
 }
 
 type SecretBackendRoleVhostTopicVhostArgs struct {
-	Read  pulumi.StringInput `pulumi:"read"`
+	// The read permissions for this vhost.
+	Read pulumi.StringInput `pulumi:"read"`
+	// The vhost to set permissions for.
 	Topic pulumi.StringInput `pulumi:"topic"`
+	// The write permissions for this vhost.
 	Write pulumi.StringInput `pulumi:"write"`
 }
 
@@ -302,14 +323,17 @@ func (o SecretBackendRoleVhostTopicVhostOutput) ToSecretBackendRoleVhostTopicVho
 	return o
 }
 
+// The read permissions for this vhost.
 func (o SecretBackendRoleVhostTopicVhostOutput) Read() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhostTopicVhost) string { return v.Read }).(pulumi.StringOutput)
 }
 
+// The vhost to set permissions for.
 func (o SecretBackendRoleVhostTopicVhostOutput) Topic() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhostTopicVhost) string { return v.Topic }).(pulumi.StringOutput)
 }
 
+// The write permissions for this vhost.
 func (o SecretBackendRoleVhostTopicVhostOutput) Write() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleVhostTopicVhost) string { return v.Write }).(pulumi.StringOutput)
 }

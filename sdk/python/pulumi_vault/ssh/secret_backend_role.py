@@ -78,8 +78,7 @@ class SecretBackendRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
-               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         pulumi.set(__self__, "backend", backend)
@@ -453,8 +452,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the duration by which to backdate the ValidAfter property.
-        Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -540,8 +538,7 @@ class _SecretBackendRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
-               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         if algorithm_signer is not None:
@@ -917,8 +914,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the duration by which to backdate the ValidAfter property.
-        Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         """
         return pulumi.get(self, "not_before_duration")
 
@@ -1038,8 +1034,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
-               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         ...
@@ -1238,8 +1233,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property.
-               Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1490,8 +1484,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> pulumi.Output[str]:
         """
-        Specifies the duration by which to backdate the ValidAfter property.
-        Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+        Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         """
         return pulumi.get(self, "not_before_duration")
 

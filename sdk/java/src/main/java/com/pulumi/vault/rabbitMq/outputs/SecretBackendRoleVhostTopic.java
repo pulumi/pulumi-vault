@@ -13,6 +13,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class SecretBackendRoleVhostTopic {
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     private String host;
     /**
      * @return Specifies a map of virtual hosts to permissions.
@@ -21,6 +25,10 @@ public final class SecretBackendRoleVhostTopic {
     private @Nullable List<SecretBackendRoleVhostTopicVhost> vhosts;
 
     private SecretBackendRoleVhostTopic() {}
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     public String host() {
         return this.host;
     }

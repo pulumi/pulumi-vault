@@ -28,10 +28,6 @@ import java.util.Optional;
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("vault");
-/**
- * If true, adds the value of the `address` argument to the Terraform process environment.
- * 
- */
     public Optional<String> addAddressToEnv() {
         return Codegen.stringProp("addAddressToEnv").config(config).get();
     }

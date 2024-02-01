@@ -17,44 +17,92 @@ public final class ProviderAuthLoginCertArgs extends com.pulumi.resources.Resour
 
     public static final ProviderAuthLoginCertArgs Empty = new ProviderAuthLoginCertArgs();
 
+    /**
+     * Path to a file containing the client certificate.
+     * 
+     */
     @Import(name="certFile", required=true)
     private Output<String> certFile;
 
+    /**
+     * @return Path to a file containing the client certificate.
+     * 
+     */
     public Output<String> certFile() {
         return this.certFile;
     }
 
+    /**
+     * Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     @Import(name="keyFile", required=true)
     private Output<String> keyFile;
 
+    /**
+     * @return Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     public Output<String> keyFile() {
         return this.keyFile;
     }
 
+    /**
+     * The path where the authentication engine is mounted.
+     * 
+     */
     @Import(name="mount")
     private @Nullable Output<String> mount;
 
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<Output<String>> mount() {
         return Optional.ofNullable(this.mount);
     }
 
+    /**
+     * Name of the certificate&#39;s role
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Name of the certificate&#39;s role
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     @Import(name="useRootNamespace")
     private @Nullable Output<Boolean> useRootNamespace;
 
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Output<Boolean>> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
@@ -88,56 +136,128 @@ public final class ProviderAuthLoginCertArgs extends com.pulumi.resources.Resour
             $ = new ProviderAuthLoginCertArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param certFile Path to a file containing the client certificate.
+         * 
+         * @return builder
+         * 
+         */
         public Builder certFile(Output<String> certFile) {
             $.certFile = certFile;
             return this;
         }
 
+        /**
+         * @param certFile Path to a file containing the client certificate.
+         * 
+         * @return builder
+         * 
+         */
         public Builder certFile(String certFile) {
             return certFile(Output.of(certFile));
         }
 
+        /**
+         * @param keyFile Path to a file containing the private key that the certificate was issued for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keyFile(Output<String> keyFile) {
             $.keyFile = keyFile;
             return this;
         }
 
+        /**
+         * @param keyFile Path to a file containing the private key that the certificate was issued for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keyFile(String keyFile) {
             return keyFile(Output.of(keyFile));
         }
 
+        /**
+         * @param mount The path where the authentication engine is mounted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mount(@Nullable Output<String> mount) {
             $.mount = mount;
             return this;
         }
 
+        /**
+         * @param mount The path where the authentication engine is mounted.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mount(String mount) {
             return mount(Output.of(mount));
         }
 
+        /**
+         * @param name Name of the certificate&#39;s role
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the certificate&#39;s role
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable Output<String> namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param namespace The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(@Nullable Output<Boolean> useRootNamespace) {
             $.useRootNamespace = useRootNamespace;
             return this;
         }
 
+        /**
+         * @param useRootNamespace Authenticate to the root Vault namespace. Conflicts with namespace
+         * 
+         * @return builder
+         * 
+         */
         public Builder useRootNamespace(Boolean useRootNamespace) {
             return useRootNamespace(Output.of(useRootNamespace));
         }

@@ -13,17 +13,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginTokenFile {
+    /**
+     * @return The name of a file containing a single line that is a valid Vault token
+     * 
+     */
     private String filename;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
 
     private AuthLoginTokenFile() {}
+    /**
+     * @return The name of a file containing a single line that is a valid Vault token
+     * 
+     */
     public String filename() {
         return this.filename;
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }

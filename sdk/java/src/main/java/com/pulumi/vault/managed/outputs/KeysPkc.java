@@ -99,6 +99,10 @@ public final class KeysPkc {
      * 
      */
     private @Nullable String tokenLabel;
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     private @Nullable String uuid;
 
     private KeysPkc() {}
@@ -218,6 +222,10 @@ public final class KeysPkc {
     public Optional<String> tokenLabel() {
         return Optional.ofNullable(this.tokenLabel);
     }
+    /**
+     * @return ID of the managed key read from Vault
+     * 
+     */
     public Optional<String> uuid() {
         return Optional.ofNullable(this.uuid);
     }

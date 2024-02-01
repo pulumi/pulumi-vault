@@ -12,9 +12,15 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderHeaderArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The header name
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The header value
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 

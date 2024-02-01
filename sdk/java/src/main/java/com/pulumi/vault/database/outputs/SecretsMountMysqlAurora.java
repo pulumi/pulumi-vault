@@ -23,6 +23,10 @@ public final class SecretsMountMysqlAurora {
      * 
      */
     private @Nullable List<String> allowedRoles;
+    /**
+     * @return Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
+     * 
+     */
     private @Nullable String authType;
     /**
      * @return Specifies the Redshift DSN.
@@ -54,6 +58,10 @@ public final class SecretsMountMysqlAurora {
      * 
      */
     private @Nullable Integer maxOpenConnections;
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     private String name;
     /**
      * @return The root credential password used in the connection URL.
@@ -70,6 +78,10 @@ public final class SecretsMountMysqlAurora {
      * 
      */
     private @Nullable List<String> rootRotationStatements;
+    /**
+     * @return A JSON encoded credential for use with IAM authorization
+     * 
+     */
     private @Nullable String serviceAccountJson;
     /**
      * @return x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -107,6 +119,10 @@ public final class SecretsMountMysqlAurora {
     public List<String> allowedRoles() {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
+    /**
+     * @return Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
+     * 
+     */
     public Optional<String> authType() {
         return Optional.ofNullable(this.authType);
     }
@@ -150,6 +166,10 @@ public final class SecretsMountMysqlAurora {
     public Optional<Integer> maxOpenConnections() {
         return Optional.ofNullable(this.maxOpenConnections);
     }
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public String name() {
         return this.name;
     }
@@ -174,6 +194,10 @@ public final class SecretsMountMysqlAurora {
     public List<String> rootRotationStatements() {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
+    /**
+     * @return A JSON encoded credential for use with IAM authorization
+     * 
+     */
     public Optional<String> serviceAccountJson() {
         return Optional.ofNullable(this.serviceAccountJson);
     }

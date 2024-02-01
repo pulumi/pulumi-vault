@@ -42,10 +42,13 @@ class SecretV2CustomMetadata(dict):
                  delete_version_after: Optional[int] = None,
                  max_versions: Optional[int] = None):
         """
+        :param bool cas_required: If true, all keys will require the cas parameter to be set on all write requests.
         :param Mapping[str, Any] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
+        :param int delete_version_after: If set, specifies the length of time before a version is deleted.
+        :param int max_versions: The number of versions to keep per key.
         """
         if cas_required is not None:
             pulumi.set(__self__, "cas_required", cas_required)
@@ -59,6 +62,9 @@ class SecretV2CustomMetadata(dict):
     @property
     @pulumi.getter(name="casRequired")
     def cas_required(self) -> Optional[bool]:
+        """
+        If true, all keys will require the cas parameter to be set on all write requests.
+        """
         return pulumi.get(self, "cas_required")
 
     @property
@@ -75,11 +81,17 @@ class SecretV2CustomMetadata(dict):
     @property
     @pulumi.getter(name="deleteVersionAfter")
     def delete_version_after(self) -> Optional[int]:
+        """
+        If set, specifies the length of time before a version is deleted.
+        """
         return pulumi.get(self, "delete_version_after")
 
     @property
     @pulumi.getter(name="maxVersions")
     def max_versions(self) -> Optional[int]:
+        """
+        The number of versions to keep per key.
+        """
         return pulumi.get(self, "max_versions")
 
 

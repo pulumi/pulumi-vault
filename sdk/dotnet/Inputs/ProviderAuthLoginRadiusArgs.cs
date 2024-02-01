@@ -12,18 +12,33 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderAuthLoginRadiusArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The path where the authentication engine is mounted.
+        /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
 
+        /// <summary>
+        /// The authentication engine's namespace. Conflicts with use_root_namespace
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// The Radius password for username.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// Authenticate to the root Vault namespace. Conflicts with namespace
+        /// </summary>
         [Input("useRootNamespace")]
         public Input<bool>? UseRootNamespace { get; set; }
 
+        /// <summary>
+        /// The Radius username.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
