@@ -21,10 +21,13 @@ class SecretV2CustomMetadataArgs:
                  delete_version_after: Optional[pulumi.Input[int]] = None,
                  max_versions: Optional[pulumi.Input[int]] = None):
         """
+        :param pulumi.Input[bool] cas_required: If true, all keys will require the cas parameter to be set on all write requests.
         :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
+        :param pulumi.Input[int] delete_version_after: If set, specifies the length of time before a version is deleted.
+        :param pulumi.Input[int] max_versions: The number of versions to keep per key.
         """
         if cas_required is not None:
             pulumi.set(__self__, "cas_required", cas_required)
@@ -38,6 +41,9 @@ class SecretV2CustomMetadataArgs:
     @property
     @pulumi.getter(name="casRequired")
     def cas_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, all keys will require the cas parameter to be set on all write requests.
+        """
         return pulumi.get(self, "cas_required")
 
     @cas_required.setter
@@ -62,6 +68,9 @@ class SecretV2CustomMetadataArgs:
     @property
     @pulumi.getter(name="deleteVersionAfter")
     def delete_version_after(self) -> Optional[pulumi.Input[int]]:
+        """
+        If set, specifies the length of time before a version is deleted.
+        """
         return pulumi.get(self, "delete_version_after")
 
     @delete_version_after.setter
@@ -71,6 +80,9 @@ class SecretV2CustomMetadataArgs:
     @property
     @pulumi.getter(name="maxVersions")
     def max_versions(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of versions to keep per key.
+        """
         return pulumi.get(self, "max_versions")
 
     @max_versions.setter

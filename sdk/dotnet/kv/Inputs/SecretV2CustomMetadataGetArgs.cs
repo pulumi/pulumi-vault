@@ -12,6 +12,9 @@ namespace Pulumi.Vault.kv.Inputs
 
     public sealed class SecretV2CustomMetadataGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true, all keys will require the cas parameter to be set on all write requests.
+        /// </summary>
         [Input("casRequired")]
         public Input<bool>? CasRequired { get; set; }
 
@@ -30,9 +33,15 @@ namespace Pulumi.Vault.kv.Inputs
             set => _data = value;
         }
 
+        /// <summary>
+        /// If set, specifies the length of time before a version is deleted.
+        /// </summary>
         [Input("deleteVersionAfter")]
         public Input<int>? DeleteVersionAfter { get; set; }
 
+        /// <summary>
+        /// The number of versions to keep per key.
+        /// </summary>
         [Input("maxVersions")]
         public Input<int>? MaxVersions { get; set; }
 

@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class SecretBackendRoleVhostTopicVhost {
+    /**
+     * @return The read permissions for this vhost.
+     * 
+     */
     private String read;
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     private String topic;
+    /**
+     * @return The write permissions for this vhost.
+     * 
+     */
     private String write;
 
     private SecretBackendRoleVhostTopicVhost() {}
+    /**
+     * @return The read permissions for this vhost.
+     * 
+     */
     public String read() {
         return this.read;
     }
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     public String topic() {
         return this.topic;
     }
+    /**
+     * @return The write permissions for this vhost.
+     * 
+     */
     public String write() {
         return this.write;
     }

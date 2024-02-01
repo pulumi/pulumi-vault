@@ -53,6 +53,7 @@ class KeysAwArgs:
                is `ECDSA`. Required if `allow_generate_key` is `true`.
         :param pulumi.Input[str] endpoint: Used to specify a custom AWS endpoint.
         :param pulumi.Input[str] region: The AWS region where the keys are stored (or will be stored).
+        :param pulumi.Input[str] uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "key_bits", key_bits)
@@ -243,6 +244,9 @@ class KeysAwArgs:
     @property
     @pulumi.getter
     def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the managed key read from Vault
+        """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
@@ -289,6 +293,7 @@ class KeysAzureArgs:
         :param pulumi.Input[str] environment: The Azure Cloud environment API endpoints to use.
         :param pulumi.Input[str] key_bits: The size in bits for an RSA key.
         :param pulumi.Input[str] resource: The Azure Key Vault resource's DNS Suffix to connect to.
+        :param pulumi.Input[str] uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -491,6 +496,9 @@ class KeysAzureArgs:
     @property
     @pulumi.getter
     def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the managed key read from Vault
+        """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
@@ -544,6 +552,7 @@ class KeysPkcArgs:
         :param pulumi.Input[str] slot: The slot number to use, specified as a string in a decimal format
                (e.g. `2305843009213693953`).
         :param pulumi.Input[str] token_label: The slot token label to use.
+        :param pulumi.Input[str] uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "key_id", key_id)
         pulumi.set(__self__, "key_label", key_label)
@@ -766,6 +775,9 @@ class KeysPkcArgs:
     @property
     @pulumi.getter
     def uuid(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the managed key read from Vault
+        """
         return pulumi.get(self, "uuid")
 
     @uuid.setter

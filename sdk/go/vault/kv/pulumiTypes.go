@@ -14,14 +14,17 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type SecretV2CustomMetadata struct {
+	// If true, all keys will require the cas parameter to be set on all write requests.
 	CasRequired *bool `pulumi:"casRequired"`
 	// A mapping whose keys are the top-level data keys returned from
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data               map[string]interface{} `pulumi:"data"`
-	DeleteVersionAfter *int                   `pulumi:"deleteVersionAfter"`
-	MaxVersions        *int                   `pulumi:"maxVersions"`
+	Data map[string]interface{} `pulumi:"data"`
+	// If set, specifies the length of time before a version is deleted.
+	DeleteVersionAfter *int `pulumi:"deleteVersionAfter"`
+	// The number of versions to keep per key.
+	MaxVersions *int `pulumi:"maxVersions"`
 }
 
 // SecretV2CustomMetadataInput is an input type that accepts SecretV2CustomMetadataArgs and SecretV2CustomMetadataOutput values.
@@ -36,14 +39,17 @@ type SecretV2CustomMetadataInput interface {
 }
 
 type SecretV2CustomMetadataArgs struct {
+	// If true, all keys will require the cas parameter to be set on all write requests.
 	CasRequired pulumi.BoolPtrInput `pulumi:"casRequired"`
 	// A mapping whose keys are the top-level data keys returned from
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data               pulumi.MapInput    `pulumi:"data"`
+	Data pulumi.MapInput `pulumi:"data"`
+	// If set, specifies the length of time before a version is deleted.
 	DeleteVersionAfter pulumi.IntPtrInput `pulumi:"deleteVersionAfter"`
-	MaxVersions        pulumi.IntPtrInput `pulumi:"maxVersions"`
+	// The number of versions to keep per key.
+	MaxVersions pulumi.IntPtrInput `pulumi:"maxVersions"`
 }
 
 func (SecretV2CustomMetadataArgs) ElementType() reflect.Type {
@@ -123,6 +129,7 @@ func (o SecretV2CustomMetadataOutput) ToSecretV2CustomMetadataPtrOutputWithConte
 	}).(SecretV2CustomMetadataPtrOutput)
 }
 
+// If true, all keys will require the cas parameter to be set on all write requests.
 func (o SecretV2CustomMetadataOutput) CasRequired() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretV2CustomMetadata) *bool { return v.CasRequired }).(pulumi.BoolPtrOutput)
 }
@@ -135,10 +142,12 @@ func (o SecretV2CustomMetadataOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretV2CustomMetadata) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
+// If set, specifies the length of time before a version is deleted.
 func (o SecretV2CustomMetadataOutput) DeleteVersionAfter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretV2CustomMetadata) *int { return v.DeleteVersionAfter }).(pulumi.IntPtrOutput)
 }
 
+// The number of versions to keep per key.
 func (o SecretV2CustomMetadataOutput) MaxVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretV2CustomMetadata) *int { return v.MaxVersions }).(pulumi.IntPtrOutput)
 }
@@ -167,6 +176,7 @@ func (o SecretV2CustomMetadataPtrOutput) Elem() SecretV2CustomMetadataOutput {
 	}).(SecretV2CustomMetadataOutput)
 }
 
+// If true, all keys will require the cas parameter to be set on all write requests.
 func (o SecretV2CustomMetadataPtrOutput) CasRequired() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretV2CustomMetadata) *bool {
 		if v == nil {
@@ -189,6 +199,7 @@ func (o SecretV2CustomMetadataPtrOutput) Data() pulumi.MapOutput {
 	}).(pulumi.MapOutput)
 }
 
+// If set, specifies the length of time before a version is deleted.
 func (o SecretV2CustomMetadataPtrOutput) DeleteVersionAfter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretV2CustomMetadata) *int {
 		if v == nil {
@@ -198,6 +209,7 @@ func (o SecretV2CustomMetadataPtrOutput) DeleteVersionAfter() pulumi.IntPtrOutpu
 	}).(pulumi.IntPtrOutput)
 }
 
+// The number of versions to keep per key.
 func (o SecretV2CustomMetadataPtrOutput) MaxVersions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretV2CustomMetadata) *int {
 		if v == nil {

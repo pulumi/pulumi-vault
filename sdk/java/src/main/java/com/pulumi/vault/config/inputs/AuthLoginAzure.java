@@ -13,53 +13,149 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginAzure {
+    /**
+     * @return The identity&#39;s client ID.
+     * 
+     */
     private @Nullable String clientId;
+    /**
+     * @return A signed JSON Web Token. If not specified on will be created automatically
+     * 
+     */
     private @Nullable String jwt;
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     private @Nullable String mount;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     private String resourceGroupName;
+    /**
+     * @return Name of the login role.
+     * 
+     */
     private String role;
+    /**
+     * @return The scopes to include in the token request.
+     * 
+     */
     private @Nullable String scope;
+    /**
+     * @return The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     private String subscriptionId;
+    /**
+     * @return Provides the tenant ID to use in a multi-tenant authentication scenario.
+     * 
+     */
     private @Nullable String tenantId;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
+    /**
+     * @return The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     private @Nullable String vmName;
+    /**
+     * @return The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     private @Nullable String vmssName;
 
     private AuthLoginAzure() {}
+    /**
+     * @return The identity&#39;s client ID.
+     * 
+     */
     public Optional<String> clientId() {
         return Optional.ofNullable(this.clientId);
     }
+    /**
+     * @return A signed JSON Web Token. If not specified on will be created automatically
+     * 
+     */
     public Optional<String> jwt() {
         return Optional.ofNullable(this.jwt);
     }
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<String> mount() {
         return Optional.ofNullable(this.mount);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     public String resourceGroupName() {
         return this.resourceGroupName;
     }
+    /**
+     * @return Name of the login role.
+     * 
+     */
     public String role() {
         return this.role;
     }
+    /**
+     * @return The scopes to include in the token request.
+     * 
+     */
     public Optional<String> scope() {
         return Optional.ofNullable(this.scope);
     }
+    /**
+     * @return The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     public String subscriptionId() {
         return this.subscriptionId;
     }
+    /**
+     * @return Provides the tenant ID to use in a multi-tenant authentication scenario.
+     * 
+     */
     public Optional<String> tenantId() {
         return Optional.ofNullable(this.tenantId);
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
+    /**
+     * @return The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     public Optional<String> vmName() {
         return Optional.ofNullable(this.vmName);
     }
+    /**
+     * @return The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     * 
+     */
     public Optional<String> vmssName() {
         return Optional.ofNullable(this.vmssName);
     }

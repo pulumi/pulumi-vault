@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class ClientAuth {
+    /**
+     * @return Path to a file containing the client certificate.
+     * 
+     */
     private String certFile;
+    /**
+     * @return Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     private String keyFile;
 
     private ClientAuth() {}
+    /**
+     * @return Path to a file containing the client certificate.
+     * 
+     */
     public String certFile() {
         return this.certFile;
     }
+    /**
+     * @return Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     public String keyFile() {
         return this.keyFile;
     }

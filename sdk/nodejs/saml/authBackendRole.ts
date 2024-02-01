@@ -132,8 +132,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
     /**
-     * The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      */
     public readonly tokenNumUses!: pulumi.Output<number | undefined>;
     /**
@@ -286,8 +285,7 @@ export interface AuthBackendRoleState {
      */
     tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
-     * The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      */
     tokenNumUses?: pulumi.Input<number>;
     /**
@@ -383,8 +381,7 @@ export interface AuthBackendRoleArgs {
      */
     tokenNoDefaultPolicy?: pulumi.Input<boolean>;
     /**
-     * The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      */
     tokenNumUses?: pulumi.Input<number>;
     /**

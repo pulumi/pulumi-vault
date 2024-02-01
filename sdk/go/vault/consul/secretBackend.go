@@ -82,11 +82,7 @@ type SecretBackend struct {
 
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringOutput `pulumi:"address"`
-	// Denotes that the resource is used to bootstrap the Consul ACL system.
-	//
-	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+	// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
 	Bootstrap pulumi.BoolPtrOutput `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrOutput `pulumi:"caCert"`
@@ -172,11 +168,7 @@ func GetSecretBackend(ctx *pulumi.Context,
 type secretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address *string `pulumi:"address"`
-	// Denotes that the resource is used to bootstrap the Consul ACL system.
-	//
-	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+	// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
 	Bootstrap *bool `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert *string `pulumi:"caCert"`
@@ -215,11 +207,7 @@ type secretBackendState struct {
 type SecretBackendState struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringPtrInput
-	// Denotes that the resource is used to bootstrap the Consul ACL system.
-	//
-	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+	// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
 	Bootstrap pulumi.BoolPtrInput
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrInput
@@ -262,11 +250,7 @@ func (SecretBackendState) ElementType() reflect.Type {
 type secretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address string `pulumi:"address"`
-	// Denotes that the resource is used to bootstrap the Consul ACL system.
-	//
-	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+	// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
 	Bootstrap *bool `pulumi:"bootstrap"`
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert *string `pulumi:"caCert"`
@@ -306,11 +290,7 @@ type secretBackendArgs struct {
 type SecretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address pulumi.StringInput
-	// Denotes that the resource is used to bootstrap the Consul ACL system.
-	//
-	// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-	// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-	// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+	// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
 	Bootstrap pulumi.BoolPtrInput
 	// CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
 	CaCert pulumi.StringPtrInput
@@ -438,11 +418,7 @@ func (o SecretBackendOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
 }
 
-// Denotes that the resource is used to bootstrap the Consul ACL system.
-//
-// > **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
 func (o SecretBackendOutput) Bootstrap() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Bootstrap }).(pulumi.BoolPtrOutput)
 }

@@ -54,6 +54,10 @@ public final class SecretsMountElasticsearch {
      * 
      */
     private @Nullable Boolean insecure;
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     private String name;
     /**
      * @return The root credential password used in the connection URL.
@@ -151,6 +155,10 @@ public final class SecretsMountElasticsearch {
     public Optional<Boolean> insecure() {
         return Optional.ofNullable(this.insecure);
     }
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public String name() {
         return this.name;
     }

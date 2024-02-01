@@ -68,11 +68,7 @@ namespace Pulumi.Vault.Consul
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
-        /// Denotes that the resource is used to bootstrap the Consul ACL system.
-        /// 
-        /// &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-        /// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-        /// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        /// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         /// </summary>
         [Output("bootstrap")]
         public Output<bool?> Bootstrap { get; private set; } = null!;
@@ -216,11 +212,7 @@ namespace Pulumi.Vault.Consul
         public Input<string> Address { get; set; } = null!;
 
         /// <summary>
-        /// Denotes that the resource is used to bootstrap the Consul ACL system.
-        /// 
-        /// &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-        /// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-        /// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        /// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         /// </summary>
         [Input("bootstrap")]
         public Input<bool>? Bootstrap { get; set; }
@@ -350,11 +342,7 @@ namespace Pulumi.Vault.Consul
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// Denotes that the resource is used to bootstrap the Consul ACL system.
-        /// 
-        /// &gt; **Important** When `bootstrap` is true, Vault will attempt to bootstrap the Consul server. The token returned from
-        /// this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
-        /// and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
+        /// Denotes a backend resource that is used to bootstrap the Consul ACL system. Only one resource may be used to bootstrap.
         /// </summary>
         [Input("bootstrap")]
         public Input<bool>? Bootstrap { get; set; }

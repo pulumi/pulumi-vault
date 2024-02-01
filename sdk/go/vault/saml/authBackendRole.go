@@ -114,8 +114,7 @@ type AuthBackendRole struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"tokenNoDefaultPolicy"`
-	// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-	// of times a generated token may be used (within its lifetime); 0 means unlimited.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses pulumi.IntPtrOutput `pulumi:"tokenNumUses"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -206,8 +205,7 @@ type authBackendRoleState struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-	// of times a generated token may be used (within its lifetime); 0 means unlimited.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -266,8 +264,7 @@ type AuthBackendRoleState struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-	// of times a generated token may be used (within its lifetime); 0 means unlimited.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses pulumi.IntPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -330,8 +327,7 @@ type authBackendRoleArgs struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
-	// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-	// of times a generated token may be used (within its lifetime); 0 means unlimited.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses *int `pulumi:"tokenNumUses"`
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -391,8 +387,7 @@ type AuthBackendRoleArgs struct {
 	// If set, the default policy will not be set on
 	// generated tokens; otherwise it will be added to the policies set in token_policies.
 	TokenNoDefaultPolicy pulumi.BoolPtrInput
-	// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-	// of times a generated token may be used (within its lifetime); 0 means unlimited.
+	// The maximum number of times a token may be used, a value of zero means unlimited
 	TokenNumUses pulumi.IntPtrInput
 	// If set, indicates that the
 	// token generated using this role should never expire. The token should be renewed within the
@@ -573,8 +568,7 @@ func (o AuthBackendRoleOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
 }
 
-// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-// of times a generated token may be used (within its lifetime); 0 means unlimited.
+// The maximum number of times a token may be used, a value of zero means unlimited
 func (o AuthBackendRoleOutput) TokenNumUses() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
 }

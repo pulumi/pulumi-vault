@@ -2758,6 +2758,7 @@ class SecretsMountCassandraArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
@@ -2817,6 +2818,9 @@ class SecretsMountCassandraArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -3031,6 +3035,7 @@ class SecretsMountCouchbaseArgs:
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The hosts to connect to.
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
@@ -3089,6 +3094,9 @@ class SecretsMountCouchbaseArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -3265,6 +3273,7 @@ class SecretsMountElasticsearchArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
                by trusted CA if used.
@@ -3318,6 +3327,9 @@ class SecretsMountElasticsearchArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -3527,6 +3539,7 @@ class SecretsMountHanaArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
@@ -3576,6 +3589,9 @@ class SecretsMountHanaArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -3755,6 +3771,7 @@ class SecretsMountInfluxdbArgs:
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] host: The host to connect to.
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
@@ -3822,6 +3839,9 @@ class SecretsMountInfluxdbArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4022,6 +4042,7 @@ class SecretsMountMongodbArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
@@ -4071,6 +4092,9 @@ class SecretsMountMongodbArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4242,6 +4266,7 @@ class SecretsMountMongodbatlaArgs:
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API.
         :param pulumi.Input[str] project_id: The Project ID the Database User should be created within.
         :param pulumi.Input[str] public_key: The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
@@ -4273,6 +4298,9 @@ class SecretsMountMongodbatlaArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4399,6 +4427,7 @@ class SecretsMountMssqlArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
@@ -4456,6 +4485,9 @@ class SecretsMountMssqlArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4661,8 +4693,10 @@ class SecretsMountMysqlArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -4676,6 +4710,7 @@ class SecretsMountMysqlArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
@@ -4720,6 +4755,9 @@ class SecretsMountMysqlArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4742,6 +4780,9 @@ class SecretsMountMysqlArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -4852,6 +4893,9 @@ class SecretsMountMysqlArgs:
     @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
@@ -4941,8 +4985,10 @@ class SecretsMountMysqlAuroraArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -4956,6 +5002,7 @@ class SecretsMountMysqlAuroraArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
@@ -5000,6 +5047,9 @@ class SecretsMountMysqlAuroraArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -5022,6 +5072,9 @@ class SecretsMountMysqlAuroraArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -5132,6 +5185,9 @@ class SecretsMountMysqlAuroraArgs:
     @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
@@ -5221,8 +5277,10 @@ class SecretsMountMysqlLegacyArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -5236,6 +5294,7 @@ class SecretsMountMysqlLegacyArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
@@ -5280,6 +5339,9 @@ class SecretsMountMysqlLegacyArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -5302,6 +5364,9 @@ class SecretsMountMysqlLegacyArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -5412,6 +5477,9 @@ class SecretsMountMysqlLegacyArgs:
     @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
@@ -5501,8 +5569,10 @@ class SecretsMountMysqlRdArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -5516,6 +5586,7 @@ class SecretsMountMysqlRdArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
@@ -5560,6 +5631,9 @@ class SecretsMountMysqlRdArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -5582,6 +5656,9 @@ class SecretsMountMysqlRdArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -5692,6 +5769,9 @@ class SecretsMountMysqlRdArgs:
     @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
@@ -5777,6 +5857,7 @@ class SecretsMountOracleArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
@@ -5826,6 +5907,9 @@ class SecretsMountOracleArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -6004,8 +6088,10 @@ class SecretsMountPostgresqlArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
                See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -6020,6 +6106,7 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -6060,6 +6147,9 @@ class SecretsMountPostgresqlArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -6082,6 +6172,9 @@ class SecretsMountPostgresqlArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -6204,6 +6297,9 @@ class SecretsMountPostgresqlArgs:
     @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
@@ -6266,6 +6362,7 @@ class SecretsMountRediArgs:
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] host: The host to connect to.
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[str] password: The root credential password used in the connection URL.
         :param pulumi.Input[str] username: The root credential username used in the connection URL.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
@@ -6322,6 +6419,9 @@ class SecretsMountRediArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -6481,6 +6581,7 @@ class SecretsMountRedisElasticachArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
                by trusted CA if used.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
@@ -6519,6 +6620,9 @@ class SecretsMountRedisElasticachArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -6658,6 +6762,7 @@ class SecretsMountRedshiftArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
@@ -6710,6 +6815,9 @@ class SecretsMountRedshiftArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -6897,6 +7005,7 @@ class SecretsMountSnowflakeArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
+        :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
@@ -6946,6 +7055,9 @@ class SecretsMountSnowflakeArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database connection.
+        """
         return pulumi.get(self, "name")
 
     @name.setter

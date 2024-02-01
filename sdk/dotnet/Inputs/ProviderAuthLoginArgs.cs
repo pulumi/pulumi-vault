@@ -15,6 +15,9 @@ namespace Pulumi.Vault.Inputs
         [Input("method")]
         public Input<string>? Method { get; set; }
 
+        /// <summary>
+        /// The authentication engine's namespace. Conflicts with use_root_namespace
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
@@ -33,6 +36,9 @@ namespace Pulumi.Vault.Inputs
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// Authenticate to the root Vault namespace. Conflicts with namespace
+        /// </summary>
         [Input("useRootNamespace")]
         public Input<bool>? UseRootNamespace { get; set; }
 

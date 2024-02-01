@@ -12,6 +12,9 @@ namespace Pulumi.Vault.RabbitMQ.Inputs
 
     public sealed class SecretBackendRoleVhostTopicGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The vhost to set permissions for.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 

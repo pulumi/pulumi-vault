@@ -193,6 +193,10 @@ class ProviderAuthLoginArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "path", path)
         if method is not None:
             pulumi.set(__self__, "method", method)
@@ -224,6 +228,9 @@ class ProviderAuthLoginArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -242,6 +249,9 @@ class ProviderAuthLoginArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -268,6 +278,24 @@ class ProviderAuthLoginAwsArgs:
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] role: The Vault role to use when logging into Vault.
+        :param pulumi.Input[str] aws_access_key_id: The AWS access key ID.
+        :param pulumi.Input[str] aws_iam_endpoint: The IAM endpoint URL.
+        :param pulumi.Input[str] aws_profile: The name of the AWS profile.
+        :param pulumi.Input[str] aws_region: The AWS region.
+        :param pulumi.Input[str] aws_role_arn: The ARN of the AWS Role to assume.Used during STS AssumeRole
+        :param pulumi.Input[str] aws_role_session_name: Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+        :param pulumi.Input[str] aws_secret_access_key: The AWS secret access key.
+        :param pulumi.Input[str] aws_session_token: The AWS session token.
+        :param pulumi.Input[str] aws_shared_credentials_file: Path to the AWS shared credentials file.
+        :param pulumi.Input[str] aws_sts_endpoint: The STS endpoint URL.
+        :param pulumi.Input[str] aws_web_identity_token_file: Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+        :param pulumi.Input[str] header_value: The Vault header value to include in the STS signing request.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "role", role)
         if aws_access_key_id is not None:
             pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
@@ -303,6 +331,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The Vault role to use when logging into Vault.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -312,6 +343,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS access key ID.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
@@ -321,6 +355,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsIamEndpoint")
     def aws_iam_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IAM endpoint URL.
+        """
         return pulumi.get(self, "aws_iam_endpoint")
 
     @aws_iam_endpoint.setter
@@ -330,6 +367,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsProfile")
     def aws_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the AWS profile.
+        """
         return pulumi.get(self, "aws_profile")
 
     @aws_profile.setter
@@ -339,6 +379,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsRegion")
     def aws_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS region.
+        """
         return pulumi.get(self, "aws_region")
 
     @aws_region.setter
@@ -348,6 +391,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsRoleArn")
     def aws_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ARN of the AWS Role to assume.Used during STS AssumeRole
+        """
         return pulumi.get(self, "aws_role_arn")
 
     @aws_role_arn.setter
@@ -357,6 +403,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsRoleSessionName")
     def aws_role_session_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+        """
         return pulumi.get(self, "aws_role_session_name")
 
     @aws_role_session_name.setter
@@ -366,6 +415,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS secret access key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
@@ -375,6 +427,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsSessionToken")
     def aws_session_token(self) -> Optional[pulumi.Input[str]]:
+        """
+        The AWS session token.
+        """
         return pulumi.get(self, "aws_session_token")
 
     @aws_session_token.setter
@@ -384,6 +439,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsSharedCredentialsFile")
     def aws_shared_credentials_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the AWS shared credentials file.
+        """
         return pulumi.get(self, "aws_shared_credentials_file")
 
     @aws_shared_credentials_file.setter
@@ -393,6 +451,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsStsEndpoint")
     def aws_sts_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The STS endpoint URL.
+        """
         return pulumi.get(self, "aws_sts_endpoint")
 
     @aws_sts_endpoint.setter
@@ -402,6 +463,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="awsWebIdentityTokenFile")
     def aws_web_identity_token_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+        """
         return pulumi.get(self, "aws_web_identity_token_file")
 
     @aws_web_identity_token_file.setter
@@ -411,6 +475,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="headerValue")
     def header_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Vault header value to include in the STS signing request.
+        """
         return pulumi.get(self, "header_value")
 
     @header_value.setter
@@ -420,6 +487,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -429,6 +499,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -438,6 +511,9 @@ class ProviderAuthLoginAwsArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -460,6 +536,20 @@ class ProviderAuthLoginAzureArgs:
                  use_root_namespace: Optional[pulumi.Input[bool]] = None,
                  vm_name: Optional[pulumi.Input[str]] = None,
                  vmss_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] resource_group_name: The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        :param pulumi.Input[str] role: Name of the login role.
+        :param pulumi.Input[str] subscription_id: The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        :param pulumi.Input[str] client_id: The identity's client ID.
+        :param pulumi.Input[str] jwt: A signed JSON Web Token. If not specified on will be created automatically
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[str] scope: The scopes to include in the token request.
+        :param pulumi.Input[str] tenant_id: Provides the tenant ID to use in a multi-tenant authentication scenario.
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param pulumi.Input[str] vm_name: The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        :param pulumi.Input[str] vmss_name: The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         pulumi.set(__self__, "resource_group_name", resource_group_name)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "subscription_id", subscription_id)
@@ -485,6 +575,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="resourceGroupName")
     def resource_group_name(self) -> pulumi.Input[str]:
+        """
+        The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "resource_group_name")
 
     @resource_group_name.setter
@@ -494,6 +587,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -503,6 +599,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> pulumi.Input[str]:
+        """
+        The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "subscription_id")
 
     @subscription_id.setter
@@ -512,6 +611,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The identity's client ID.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -521,6 +623,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter
     def jwt(self) -> Optional[pulumi.Input[str]]:
+        """
+        A signed JSON Web Token. If not specified on will be created automatically
+        """
         return pulumi.get(self, "jwt")
 
     @jwt.setter
@@ -530,6 +635,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -539,6 +647,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -548,6 +659,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter
     def scope(self) -> Optional[pulumi.Input[str]]:
+        """
+        The scopes to include in the token request.
+        """
         return pulumi.get(self, "scope")
 
     @scope.setter
@@ -557,6 +671,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provides the tenant ID to use in a multi-tenant authentication scenario.
+        """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
@@ -566,6 +683,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -575,6 +695,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="vmName")
     def vm_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "vm_name")
 
     @vm_name.setter
@@ -584,6 +707,9 @@ class ProviderAuthLoginAzureArgs:
     @property
     @pulumi.getter(name="vmssName")
     def vmss_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "vmss_name")
 
     @vmss_name.setter
@@ -600,6 +726,14 @@ class ProviderAuthLoginCertArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] cert_file: Path to a file containing the client certificate.
+        :param pulumi.Input[str] key_file: Path to a file containing the private key that the certificate was issued for.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] name: Name of the certificate's role
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "cert_file", cert_file)
         pulumi.set(__self__, "key_file", key_file)
         if mount is not None:
@@ -614,6 +748,9 @@ class ProviderAuthLoginCertArgs:
     @property
     @pulumi.getter(name="certFile")
     def cert_file(self) -> pulumi.Input[str]:
+        """
+        Path to a file containing the client certificate.
+        """
         return pulumi.get(self, "cert_file")
 
     @cert_file.setter
@@ -623,6 +760,9 @@ class ProviderAuthLoginCertArgs:
     @property
     @pulumi.getter(name="keyFile")
     def key_file(self) -> pulumi.Input[str]:
+        """
+        Path to a file containing the private key that the certificate was issued for.
+        """
         return pulumi.get(self, "key_file")
 
     @key_file.setter
@@ -632,6 +772,9 @@ class ProviderAuthLoginCertArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -641,6 +784,9 @@ class ProviderAuthLoginCertArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the certificate's role
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -650,6 +796,9 @@ class ProviderAuthLoginCertArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -659,6 +808,9 @@ class ProviderAuthLoginCertArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -676,6 +828,15 @@ class ProviderAuthLoginGcpArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] role: Name of the login role.
+        :param pulumi.Input[str] credentials: Path to the Google Cloud credentials file.
+        :param pulumi.Input[str] jwt: A signed JSON Web Token.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[str] service_account: IAM service account.
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "role", role)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -693,6 +854,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -702,6 +866,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter
     def credentials(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the Google Cloud credentials file.
+        """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
@@ -711,6 +878,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter
     def jwt(self) -> Optional[pulumi.Input[str]]:
+        """
+        A signed JSON Web Token.
+        """
         return pulumi.get(self, "jwt")
 
     @jwt.setter
@@ -720,6 +890,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -729,6 +902,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -738,6 +914,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter(name="serviceAccount")
     def service_account(self) -> Optional[pulumi.Input[str]]:
+        """
+        IAM service account.
+        """
         return pulumi.get(self, "service_account")
 
     @service_account.setter
@@ -747,6 +926,9 @@ class ProviderAuthLoginGcpArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -762,6 +944,13 @@ class ProviderAuthLoginJwtArgs:
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] jwt: A signed JSON Web Token.
+        :param pulumi.Input[str] role: Name of the login role.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "jwt", jwt)
         pulumi.set(__self__, "role", role)
         if mount is not None:
@@ -774,6 +963,9 @@ class ProviderAuthLoginJwtArgs:
     @property
     @pulumi.getter
     def jwt(self) -> pulumi.Input[str]:
+        """
+        A signed JSON Web Token.
+        """
         return pulumi.get(self, "jwt")
 
     @jwt.setter
@@ -783,6 +975,9 @@ class ProviderAuthLoginJwtArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -792,6 +987,9 @@ class ProviderAuthLoginJwtArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -801,6 +999,9 @@ class ProviderAuthLoginJwtArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -810,6 +1011,9 @@ class ProviderAuthLoginJwtArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -831,6 +1035,19 @@ class ProviderAuthLoginKerberosArgs:
                  token: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] disable_fast_negotiation: Disable the Kerberos FAST negotiation.
+        :param pulumi.Input[str] keytab_path: The Kerberos keytab file containing the entry of the login entity.
+        :param pulumi.Input[str] krb5conf_path: A valid Kerberos configuration file e.g. /etc/krb5.conf.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[str] realm: The Kerberos server's authoritative authentication domain
+        :param pulumi.Input[bool] remove_instance_name: Strip the host from the username found in the keytab.
+        :param pulumi.Input[str] service: The service principle name.
+        :param pulumi.Input[str] token: Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param pulumi.Input[str] username: The username to login into Kerberos with.
+        """
         if disable_fast_negotiation is not None:
             pulumi.set(__self__, "disable_fast_negotiation", disable_fast_negotiation)
         if keytab_path is not None:
@@ -857,6 +1074,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter(name="disableFastNegotiation")
     def disable_fast_negotiation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable the Kerberos FAST negotiation.
+        """
         return pulumi.get(self, "disable_fast_negotiation")
 
     @disable_fast_negotiation.setter
@@ -866,6 +1086,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter(name="keytabPath")
     def keytab_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Kerberos keytab file containing the entry of the login entity.
+        """
         return pulumi.get(self, "keytab_path")
 
     @keytab_path.setter
@@ -875,6 +1098,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter(name="krb5confPath")
     def krb5conf_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        A valid Kerberos configuration file e.g. /etc/krb5.conf.
+        """
         return pulumi.get(self, "krb5conf_path")
 
     @krb5conf_path.setter
@@ -884,6 +1110,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -893,6 +1122,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -902,6 +1134,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Kerberos server's authoritative authentication domain
+        """
         return pulumi.get(self, "realm")
 
     @realm.setter
@@ -911,6 +1146,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter(name="removeInstanceName")
     def remove_instance_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Strip the host from the username found in the keytab.
+        """
         return pulumi.get(self, "remove_instance_name")
 
     @remove_instance_name.setter
@@ -920,6 +1158,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter
     def service(self) -> Optional[pulumi.Input[str]]:
+        """
+        The service principle name.
+        """
         return pulumi.get(self, "service")
 
     @service.setter
@@ -929,6 +1170,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -938,6 +1182,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -947,6 +1194,9 @@ class ProviderAuthLoginKerberosArgs:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username to login into Kerberos with.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -962,6 +1212,13 @@ class ProviderAuthLoginOciArgs:
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] auth_type: Authentication type to use when getting OCI credentials.
+        :param pulumi.Input[str] role: Name of the login role.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "role", role)
         if mount is not None:
@@ -974,6 +1231,9 @@ class ProviderAuthLoginOciArgs:
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Input[str]:
+        """
+        Authentication type to use when getting OCI credentials.
+        """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
@@ -983,6 +1243,9 @@ class ProviderAuthLoginOciArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -992,6 +1255,9 @@ class ProviderAuthLoginOciArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -1001,6 +1267,9 @@ class ProviderAuthLoginOciArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -1010,6 +1279,9 @@ class ProviderAuthLoginOciArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -1026,6 +1298,14 @@ class ProviderAuthLoginOidcArgs:
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] role: Name of the login role.
+        :param pulumi.Input[str] callback_address: The callback address. Must be a valid URI without the path.
+        :param pulumi.Input[str] callback_listener_address: The callback listener's address. Must be a valid URI without the path.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "role", role)
         if callback_address is not None:
             pulumi.set(__self__, "callback_address", callback_address)
@@ -1041,6 +1321,9 @@ class ProviderAuthLoginOidcArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -1050,6 +1333,9 @@ class ProviderAuthLoginOidcArgs:
     @property
     @pulumi.getter(name="callbackAddress")
     def callback_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The callback address. Must be a valid URI without the path.
+        """
         return pulumi.get(self, "callback_address")
 
     @callback_address.setter
@@ -1059,6 +1345,9 @@ class ProviderAuthLoginOidcArgs:
     @property
     @pulumi.getter(name="callbackListenerAddress")
     def callback_listener_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The callback listener's address. Must be a valid URI without the path.
+        """
         return pulumi.get(self, "callback_listener_address")
 
     @callback_listener_address.setter
@@ -1068,6 +1357,9 @@ class ProviderAuthLoginOidcArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -1077,6 +1369,9 @@ class ProviderAuthLoginOidcArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -1086,6 +1381,9 @@ class ProviderAuthLoginOidcArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -1101,6 +1399,13 @@ class ProviderAuthLoginRadiusArgs:
                  mount: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] password: The Radius password for username.
+        :param pulumi.Input[str] username: The Radius username.
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
         if mount is not None:
@@ -1113,6 +1418,9 @@ class ProviderAuthLoginRadiusArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The Radius password for username.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -1122,6 +1430,9 @@ class ProviderAuthLoginRadiusArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        The Radius username.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -1131,6 +1442,9 @@ class ProviderAuthLoginRadiusArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -1140,6 +1454,9 @@ class ProviderAuthLoginRadiusArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -1149,6 +1466,9 @@ class ProviderAuthLoginRadiusArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -1162,6 +1482,11 @@ class ProviderAuthLoginTokenFileArgs:
                  filename: pulumi.Input[str],
                  namespace: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] filename: The name of a file containing a single line that is a valid Vault token
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "filename", filename)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
@@ -1171,6 +1496,9 @@ class ProviderAuthLoginTokenFileArgs:
     @property
     @pulumi.getter
     def filename(self) -> pulumi.Input[str]:
+        """
+        The name of a file containing a single line that is a valid Vault token
+        """
         return pulumi.get(self, "filename")
 
     @filename.setter
@@ -1180,6 +1508,9 @@ class ProviderAuthLoginTokenFileArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -1189,6 +1520,9 @@ class ProviderAuthLoginTokenFileArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -1205,6 +1539,14 @@ class ProviderAuthLoginUserpassArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  password_file: Optional[pulumi.Input[str]] = None,
                  use_root_namespace: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] username: Login with username
+        :param pulumi.Input[str] mount: The path where the authentication engine is mounted.
+        :param pulumi.Input[str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param pulumi.Input[str] password: Login with password
+        :param pulumi.Input[str] password_file: Login with password from a file
+        :param pulumi.Input[bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
@@ -1220,6 +1562,9 @@ class ProviderAuthLoginUserpassArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
+        """
+        Login with username
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -1229,6 +1574,9 @@ class ProviderAuthLoginUserpassArgs:
     @property
     @pulumi.getter
     def mount(self) -> Optional[pulumi.Input[str]]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @mount.setter
@@ -1238,6 +1586,9 @@ class ProviderAuthLoginUserpassArgs:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
@@ -1247,6 +1598,9 @@ class ProviderAuthLoginUserpassArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Login with password
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -1256,6 +1610,9 @@ class ProviderAuthLoginUserpassArgs:
     @property
     @pulumi.getter(name="passwordFile")
     def password_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Login with password from a file
+        """
         return pulumi.get(self, "password_file")
 
     @password_file.setter
@@ -1265,6 +1622,9 @@ class ProviderAuthLoginUserpassArgs:
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
@@ -1277,12 +1637,19 @@ class ProviderClientAuthArgs:
     def __init__(__self__, *,
                  cert_file: pulumi.Input[str],
                  key_file: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] cert_file: Path to a file containing the client certificate.
+        :param pulumi.Input[str] key_file: Path to a file containing the private key that the certificate was issued for.
+        """
         pulumi.set(__self__, "cert_file", cert_file)
         pulumi.set(__self__, "key_file", key_file)
 
     @property
     @pulumi.getter(name="certFile")
     def cert_file(self) -> pulumi.Input[str]:
+        """
+        Path to a file containing the client certificate.
+        """
         return pulumi.get(self, "cert_file")
 
     @cert_file.setter
@@ -1292,6 +1659,9 @@ class ProviderClientAuthArgs:
     @property
     @pulumi.getter(name="keyFile")
     def key_file(self) -> pulumi.Input[str]:
+        """
+        Path to a file containing the private key that the certificate was issued for.
+        """
         return pulumi.get(self, "key_file")
 
     @key_file.setter
@@ -1304,12 +1674,19 @@ class ProviderHeaderArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: The header name
+        :param pulumi.Input[str] value: The header value
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The header name
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1319,6 +1696,9 @@ class ProviderHeaderArgs:
     @property
     @pulumi.getter
     def value(self) -> pulumi.Input[str]:
+        """
+        The header value
+        """
         return pulumi.get(self, "value")
 
     @value.setter

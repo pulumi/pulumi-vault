@@ -71,6 +71,9 @@ namespace Pulumi.Vault.Managed.Outputs
         /// The tenant id for the Azure Active Directory organization.
         /// </summary>
         public readonly string TenantId;
+        /// <summary>
+        /// ID of the managed key read from Vault
+        /// </summary>
         public readonly string? Uuid;
         /// <summary>
         /// The Key Vault vault to use for encryption and decryption.

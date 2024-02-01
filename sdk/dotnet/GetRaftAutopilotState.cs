@@ -12,12 +12,6 @@ namespace Pulumi.Vault
     public static class GetRaftAutopilotState
     {
         /// <summary>
-        /// Displays the state of the raft cluster under integrated storage as seen by
-        /// autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-        /// how many nodes could fail before the cluster becomes unhealthy ("Failure
-        /// Tolerance"). For more information, please refer to the
-        /// [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -45,12 +39,6 @@ namespace Pulumi.Vault
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRaftAutopilotStateResult>("vault:index/getRaftAutopilotState:getRaftAutopilotState", args ?? new GetRaftAutopilotStateArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Displays the state of the raft cluster under integrated storage as seen by
-        /// autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-        /// how many nodes could fail before the cluster becomes unhealthy ("Failure
-        /// Tolerance"). For more information, please refer to the
-        /// [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}

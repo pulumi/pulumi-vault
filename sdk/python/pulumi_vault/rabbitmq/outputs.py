@@ -23,6 +23,12 @@ class SecretBackendRoleVhost(dict):
                  host: str,
                  read: str,
                  write: str):
+        """
+        :param str configure: The configure permissions for this vhost.
+        :param str host: The vhost to set permissions for.
+        :param str read: The read permissions for this vhost.
+        :param str write: The write permissions for this vhost.
+        """
         pulumi.set(__self__, "configure", configure)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "read", read)
@@ -31,21 +37,33 @@ class SecretBackendRoleVhost(dict):
     @property
     @pulumi.getter
     def configure(self) -> str:
+        """
+        The configure permissions for this vhost.
+        """
         return pulumi.get(self, "configure")
 
     @property
     @pulumi.getter
     def host(self) -> str:
+        """
+        The vhost to set permissions for.
+        """
         return pulumi.get(self, "host")
 
     @property
     @pulumi.getter
     def read(self) -> str:
+        """
+        The read permissions for this vhost.
+        """
         return pulumi.get(self, "read")
 
     @property
     @pulumi.getter
     def write(self) -> str:
+        """
+        The write permissions for this vhost.
+        """
         return pulumi.get(self, "write")
 
 
@@ -55,6 +73,7 @@ class SecretBackendRoleVhostTopic(dict):
                  host: str,
                  vhosts: Optional[Sequence['outputs.SecretBackendRoleVhostTopicVhost']] = None):
         """
+        :param str host: The vhost to set permissions for.
         :param Sequence['SecretBackendRoleVhostTopicVhostArgs'] vhosts: Specifies a map of virtual hosts to permissions.
         """
         pulumi.set(__self__, "host", host)
@@ -64,6 +83,9 @@ class SecretBackendRoleVhostTopic(dict):
     @property
     @pulumi.getter
     def host(self) -> str:
+        """
+        The vhost to set permissions for.
+        """
         return pulumi.get(self, "host")
 
     @property
@@ -81,6 +103,11 @@ class SecretBackendRoleVhostTopicVhost(dict):
                  read: str,
                  topic: str,
                  write: str):
+        """
+        :param str read: The read permissions for this vhost.
+        :param str topic: The vhost to set permissions for.
+        :param str write: The write permissions for this vhost.
+        """
         pulumi.set(__self__, "read", read)
         pulumi.set(__self__, "topic", topic)
         pulumi.set(__self__, "write", write)
@@ -88,16 +115,25 @@ class SecretBackendRoleVhostTopicVhost(dict):
     @property
     @pulumi.getter
     def read(self) -> str:
+        """
+        The read permissions for this vhost.
+        """
         return pulumi.get(self, "read")
 
     @property
     @pulumi.getter
     def topic(self) -> str:
+        """
+        The vhost to set permissions for.
+        """
         return pulumi.get(self, "topic")
 
     @property
     @pulumi.getter
     def write(self) -> str:
+        """
+        The write permissions for this vhost.
+        """
         return pulumi.get(self, "write")
 
 

@@ -5349,8 +5349,9 @@ type SecretsMountCassandra struct {
 	Hosts []string `pulumi:"hosts"`
 	// Whether to skip verification of the server
 	// certificate when using TLS.
-	InsecureTls *bool  `pulumi:"insecureTls"`
-	Name        string `pulumi:"name"`
+	InsecureTls *bool `pulumi:"insecureTls"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Concatenated PEM blocks configuring the certificate
@@ -5403,7 +5404,8 @@ type SecretsMountCassandraArgs struct {
 	// Whether to skip verification of the server
 	// certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	Name        pulumi.StringInput  `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Concatenated PEM blocks configuring the certificate
@@ -5510,6 +5512,7 @@ func (o SecretsMountCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountCassandraOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -5603,8 +5606,9 @@ type SecretsMountCouchbase struct {
 	Hosts []string `pulumi:"hosts"`
 	// Whether to skip verification of the server
 	// certificate when using TLS.
-	InsecureTls *bool  `pulumi:"insecureTls"`
-	Name        string `pulumi:"name"`
+	InsecureTls *bool `pulumi:"insecureTls"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -5650,7 +5654,8 @@ type SecretsMountCouchbaseArgs struct {
 	// Whether to skip verification of the server
 	// certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	Name        pulumi.StringInput  `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -5753,6 +5758,7 @@ func (o SecretsMountCouchbaseOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountCouchbaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -5830,8 +5836,9 @@ type SecretsMountElasticsearch struct {
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
 	// Whether to disable certificate verification.
-	Insecure *bool  `pulumi:"insecure"`
-	Name     string `pulumi:"name"`
+	Insecure *bool `pulumi:"insecure"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -5881,7 +5888,8 @@ type SecretsMountElasticsearchArgs struct {
 	Data pulumi.MapInput `pulumi:"data"`
 	// Whether to disable certificate verification.
 	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
-	Name     pulumi.StringInput  `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -5991,6 +5999,7 @@ func (o SecretsMountElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountElasticsearchOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6077,8 +6086,9 @@ type SecretsMountHana struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -6124,7 +6134,8 @@ type SecretsMountHanaArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -6230,6 +6241,7 @@ func (o SecretsMountHanaOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountHanaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountHana) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6295,8 +6307,9 @@ type SecretsMountInfluxdb struct {
 	Host string `pulumi:"host"`
 	// Whether to skip verification of the server
 	// certificate when using TLS.
-	InsecureTls *bool  `pulumi:"insecureTls"`
-	Name        string `pulumi:"name"`
+	InsecureTls *bool `pulumi:"insecureTls"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password string `pulumi:"password"`
 	// Concatenated PEM blocks configuring the certificate
@@ -6349,7 +6362,8 @@ type SecretsMountInfluxdbArgs struct {
 	// Whether to skip verification of the server
 	// certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	Name        pulumi.StringInput  `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Concatenated PEM blocks configuring the certificate
@@ -6456,6 +6470,7 @@ func (o SecretsMountInfluxdbOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountInfluxdbOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6551,8 +6566,9 @@ type SecretsMountMongodb struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -6598,7 +6614,8 @@ type SecretsMountMongodbArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -6701,6 +6718,7 @@ func (o SecretsMountMongodbOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMongodbOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6764,7 +6782,8 @@ type SecretsMountMongodbatla struct {
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	Name string                 `pulumi:"name"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// The Private Programmatic API Key used to connect with MongoDB Atlas API.
@@ -6798,7 +6817,8 @@ type SecretsMountMongodbatlaArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput    `pulumi:"data"`
+	Data pulumi.MapInput `pulumi:"data"`
+	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -6879,6 +6899,7 @@ func (o SecretsMountMongodbatlaOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMongodbatla) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMongodbatlaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMongodbatla) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -6958,8 +6979,9 @@ type SecretsMountMssql struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -7011,7 +7033,8 @@ type SecretsMountMssqlArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -7126,6 +7149,7 @@ func (o SecretsMountMssqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMssqlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMssql) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -7185,7 +7209,8 @@ type SecretsMountMysql struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	AuthType     *string  `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7200,15 +7225,17 @@ type SecretsMountMysql struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7237,7 +7264,8 @@ type SecretsMountMysqlArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7253,14 +7281,16 @@ type SecretsMountMysqlArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7331,6 +7361,7 @@ func (o SecretsMountMysqlOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretsMountMysqlOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
@@ -7365,6 +7396,7 @@ func (o SecretsMountMysqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMysqlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysql) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -7384,6 +7416,7 @@ func (o SecretsMountMysqlOutput) RootRotationStatements() pulumi.StringArrayOutp
 	return o.ApplyT(func(v SecretsMountMysql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+// A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -7438,7 +7471,8 @@ type SecretsMountMysqlAurora struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	AuthType     *string  `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7453,15 +7487,17 @@ type SecretsMountMysqlAurora struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7490,7 +7526,8 @@ type SecretsMountMysqlAuroraArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7506,14 +7543,16 @@ type SecretsMountMysqlAuroraArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7584,6 +7623,7 @@ func (o SecretsMountMysqlAuroraOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretsMountMysqlAuroraOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
@@ -7618,6 +7658,7 @@ func (o SecretsMountMysqlAuroraOutput) MaxOpenConnections() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMysqlAuroraOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -7637,6 +7678,7 @@ func (o SecretsMountMysqlAuroraOutput) RootRotationStatements() pulumi.StringArr
 	return o.ApplyT(func(v SecretsMountMysqlAurora) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+// A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlAuroraOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -7691,7 +7733,8 @@ type SecretsMountMysqlLegacy struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	AuthType     *string  `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7706,15 +7749,17 @@ type SecretsMountMysqlLegacy struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7743,7 +7788,8 @@ type SecretsMountMysqlLegacyArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -7759,14 +7805,16 @@ type SecretsMountMysqlLegacyArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7837,6 +7885,7 @@ func (o SecretsMountMysqlLegacyOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretsMountMysqlLegacyOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
@@ -7871,6 +7920,7 @@ func (o SecretsMountMysqlLegacyOutput) MaxOpenConnections() pulumi.IntPtrOutput 
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMysqlLegacyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -7890,6 +7940,7 @@ func (o SecretsMountMysqlLegacyOutput) RootRotationStatements() pulumi.StringArr
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+// A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlLegacyOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -7944,7 +7995,8 @@ type SecretsMountMysqlRd struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	AuthType     *string  `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -7959,15 +8011,17 @@ type SecretsMountMysqlRd struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7996,7 +8050,8 @@ type SecretsMountMysqlRdArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -8012,14 +8067,16 @@ type SecretsMountMysqlRdArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -8090,6 +8147,7 @@ func (o SecretsMountMysqlRdOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretsMountMysqlRdOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
@@ -8124,6 +8182,7 @@ func (o SecretsMountMysqlRdOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountMysqlRdOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -8143,6 +8202,7 @@ func (o SecretsMountMysqlRdOutput) RootRotationStatements() pulumi.StringArrayOu
 	return o.ApplyT(func(v SecretsMountMysqlRd) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+// A JSON encoded credential for use with IAM authorization
 func (o SecretsMountMysqlRdOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -8211,8 +8271,9 @@ type SecretsMountOracle struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -8258,7 +8319,8 @@ type SecretsMountOracleArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -8361,6 +8423,7 @@ func (o SecretsMountOracleOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountOracleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountOracle) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -8420,7 +8483,8 @@ type SecretsMountPostgresql struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	AuthType     *string  `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType *string `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl *string `pulumi:"connectionUrl"`
@@ -8437,15 +8501,17 @@ type SecretsMountPostgresql struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     *string  `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -8470,7 +8536,8 @@ type SecretsMountPostgresqlArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	AuthType     pulumi.StringPtrInput   `pulumi:"authType"`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
 	// Specifies the Redshift DSN.
 	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
@@ -8488,14 +8555,16 @@ type SecretsMountPostgresqlArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	ServiceAccountJson     pulumi.StringPtrInput   `pulumi:"serviceAccountJson"`
+	// A JSON encoded credential for use with IAM authorization
+	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -8562,6 +8631,7 @@ func (o SecretsMountPostgresqlOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretsMountPostgresqlOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
@@ -8601,6 +8671,7 @@ func (o SecretsMountPostgresqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountPostgresqlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -8620,6 +8691,7 @@ func (o SecretsMountPostgresqlOutput) RootRotationStatements() pulumi.StringArra
 	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+// A JSON encoded credential for use with IAM authorization
 func (o SecretsMountPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -8674,8 +8746,9 @@ type SecretsMountRedi struct {
 	Host string `pulumi:"host"`
 	// Whether to skip verification of the server
 	// certificate when using TLS.
-	InsecureTls *bool  `pulumi:"insecureTls"`
-	Name        string `pulumi:"name"`
+	InsecureTls *bool `pulumi:"insecureTls"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -8720,7 +8793,8 @@ type SecretsMountRediArgs struct {
 	// Whether to skip verification of the server
 	// certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	Name        pulumi.StringInput  `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -8819,6 +8893,7 @@ func (o SecretsMountRediOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountRediOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedi) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -8888,7 +8963,8 @@ type SecretsMountRedisElasticach struct {
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	Name string                 `pulumi:"name"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -8926,7 +9002,8 @@ type SecretsMountRedisElasticachArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput    `pulumi:"data"`
+	Data pulumi.MapInput `pulumi:"data"`
+	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
@@ -9011,6 +9088,7 @@ func (o SecretsMountRedisElasticachOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountRedisElasticachOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9093,8 +9171,9 @@ type SecretsMountRedshift struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -9142,7 +9221,8 @@ type SecretsMountRedshiftArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -9250,6 +9330,7 @@ func (o SecretsMountRedshiftOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountRedshiftOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -9323,8 +9404,9 @@ type SecretsMountSnowflake struct {
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
 	// The maximum number of open connections to
 	// the database.
-	MaxOpenConnections *int   `pulumi:"maxOpenConnections"`
-	Name               string `pulumi:"name"`
+	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
+	// Name of the database connection.
+	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -9370,7 +9452,8 @@ type SecretsMountSnowflakeArgs struct {
 	// The maximum number of open connections to
 	// the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	Name               pulumi.StringInput `pulumi:"name"`
+	// Name of the database connection.
+	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
@@ -9473,6 +9556,7 @@ func (o SecretsMountSnowflakeOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
+// Name of the database connection.
 func (o SecretsMountSnowflakeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) string { return v.Name }).(pulumi.StringOutput)
 }

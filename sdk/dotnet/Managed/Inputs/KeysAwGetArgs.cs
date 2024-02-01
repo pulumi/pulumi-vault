@@ -97,6 +97,9 @@ namespace Pulumi.Vault.Managed.Inputs
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the managed key read from Vault
+        /// </summary>
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
 

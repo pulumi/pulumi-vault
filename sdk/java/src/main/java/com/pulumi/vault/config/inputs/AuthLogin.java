@@ -15,15 +15,27 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AuthLogin {
     private @Nullable String method;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
     private @Nullable Map<String,String> parameters;
     private String path;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
 
     private AuthLogin() {}
     public Optional<String> method() {
         return Optional.ofNullable(this.method);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
@@ -33,6 +45,10 @@ public final class AuthLogin {
     public String path() {
         return this.path;
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }

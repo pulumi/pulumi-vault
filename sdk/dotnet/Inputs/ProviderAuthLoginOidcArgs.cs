@@ -12,21 +12,39 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderAuthLoginOidcArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The callback address. Must be a valid URI without the path.
+        /// </summary>
         [Input("callbackAddress")]
         public Input<string>? CallbackAddress { get; set; }
 
+        /// <summary>
+        /// The callback listener's address. Must be a valid URI without the path.
+        /// </summary>
         [Input("callbackListenerAddress")]
         public Input<string>? CallbackListenerAddress { get; set; }
 
+        /// <summary>
+        /// The path where the authentication engine is mounted.
+        /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
 
+        /// <summary>
+        /// The authentication engine's namespace. Conflicts with use_root_namespace
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// Name of the login role.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// Authenticate to the root Vault namespace. Conflicts with namespace
+        /// </summary>
         [Input("useRootNamespace")]
         public Input<bool>? UseRootNamespace { get; set; }
 

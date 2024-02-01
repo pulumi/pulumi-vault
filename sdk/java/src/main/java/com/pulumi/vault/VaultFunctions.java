@@ -721,12 +721,6 @@ public final class VaultFunctions {
         return Deployment.getInstance().invokeAsync("vault:index/getPolicyDocument:getPolicyDocument", TypeShape.of(GetPolicyDocumentResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Displays the state of the raft cluster under integrated storage as seen by
-     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
-     * Tolerance&#34;). For more information, please refer to the
-     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -761,12 +755,6 @@ public final class VaultFunctions {
         return getRaftAutopilotState(GetRaftAutopilotStateArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Displays the state of the raft cluster under integrated storage as seen by
-     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
-     * Tolerance&#34;). For more information, please refer to the
-     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -801,12 +789,6 @@ public final class VaultFunctions {
         return getRaftAutopilotStatePlain(GetRaftAutopilotStatePlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
-     * Displays the state of the raft cluster under integrated storage as seen by
-     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
-     * Tolerance&#34;). For more information, please refer to the
-     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -841,12 +823,6 @@ public final class VaultFunctions {
         return getRaftAutopilotState(args, InvokeOptions.Empty);
     }
     /**
-     * Displays the state of the raft cluster under integrated storage as seen by
-     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
-     * Tolerance&#34;). For more information, please refer to the
-     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -881,12 +857,6 @@ public final class VaultFunctions {
         return getRaftAutopilotStatePlain(args, InvokeOptions.Empty);
     }
     /**
-     * Displays the state of the raft cluster under integrated storage as seen by
-     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
-     * Tolerance&#34;). For more information, please refer to the
-     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;
@@ -921,12 +891,6 @@ public final class VaultFunctions {
         return Deployment.getInstance().invoke("vault:index/getRaftAutopilotState:getRaftAutopilotState", TypeShape.of(GetRaftAutopilotStateResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Displays the state of the raft cluster under integrated storage as seen by
-     * autopilot. It shows whether autopilot thinks the cluster is healthy or not, and
-     * how many nodes could fail before the cluster becomes unhealthy (&#34;Failure
-     * Tolerance&#34;). For more information, please refer to the
-     * [Vault documentation](https://developer.hashicorp.com/vault/api-docs/system/storage/raftautopilot#get-cluster-state).
-     * 
      * ## Example Usage
      * ```java
      * package generated_program;

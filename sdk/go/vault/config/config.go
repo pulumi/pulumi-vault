@@ -11,7 +11,6 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-// If true, adds the value of the `address` argument to the Terraform process environment.
 func GetAddAddressToEnv(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:addAddressToEnv")
 }

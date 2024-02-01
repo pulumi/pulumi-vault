@@ -34,6 +34,10 @@ class AuthLogin(dict):
                  namespace: Optional[str] = None,
                  parameters: Optional[Mapping[str, str]] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "path", path)
         if method is not None:
             pulumi.set(__self__, "method", method)
@@ -57,6 +61,9 @@ class AuthLogin(dict):
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
@@ -67,6 +74,9 @@ class AuthLogin(dict):
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -89,6 +99,24 @@ class AuthLoginAws(dict):
                  mount: Optional[str] = None,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str role: The Vault role to use when logging into Vault.
+        :param str aws_access_key_id: The AWS access key ID.
+        :param str aws_iam_endpoint: The IAM endpoint URL.
+        :param str aws_profile: The name of the AWS profile.
+        :param str aws_region: The AWS region.
+        :param str aws_role_arn: The ARN of the AWS Role to assume.Used during STS AssumeRole
+        :param str aws_role_session_name: Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+        :param str aws_secret_access_key: The AWS secret access key.
+        :param str aws_session_token: The AWS session token.
+        :param str aws_shared_credentials_file: Path to the AWS shared credentials file.
+        :param str aws_sts_endpoint: The STS endpoint URL.
+        :param str aws_web_identity_token_file: Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+        :param str header_value: The Vault header value to include in the STS signing request.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "role", role)
         if aws_access_key_id is not None:
             pulumi.set(__self__, "aws_access_key_id", aws_access_key_id)
@@ -124,81 +152,129 @@ class AuthLoginAws(dict):
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        The Vault role to use when logging into Vault.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="awsAccessKeyId")
     def aws_access_key_id(self) -> Optional[str]:
+        """
+        The AWS access key ID.
+        """
         return pulumi.get(self, "aws_access_key_id")
 
     @property
     @pulumi.getter(name="awsIamEndpoint")
     def aws_iam_endpoint(self) -> Optional[str]:
+        """
+        The IAM endpoint URL.
+        """
         return pulumi.get(self, "aws_iam_endpoint")
 
     @property
     @pulumi.getter(name="awsProfile")
     def aws_profile(self) -> Optional[str]:
+        """
+        The name of the AWS profile.
+        """
         return pulumi.get(self, "aws_profile")
 
     @property
     @pulumi.getter(name="awsRegion")
     def aws_region(self) -> Optional[str]:
+        """
+        The AWS region.
+        """
         return pulumi.get(self, "aws_region")
 
     @property
     @pulumi.getter(name="awsRoleArn")
     def aws_role_arn(self) -> Optional[str]:
+        """
+        The ARN of the AWS Role to assume.Used during STS AssumeRole
+        """
         return pulumi.get(self, "aws_role_arn")
 
     @property
     @pulumi.getter(name="awsRoleSessionName")
     def aws_role_session_name(self) -> Optional[str]:
+        """
+        Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+        """
         return pulumi.get(self, "aws_role_session_name")
 
     @property
     @pulumi.getter(name="awsSecretAccessKey")
     def aws_secret_access_key(self) -> Optional[str]:
+        """
+        The AWS secret access key.
+        """
         return pulumi.get(self, "aws_secret_access_key")
 
     @property
     @pulumi.getter(name="awsSessionToken")
     def aws_session_token(self) -> Optional[str]:
+        """
+        The AWS session token.
+        """
         return pulumi.get(self, "aws_session_token")
 
     @property
     @pulumi.getter(name="awsSharedCredentialsFile")
     def aws_shared_credentials_file(self) -> Optional[str]:
+        """
+        Path to the AWS shared credentials file.
+        """
         return pulumi.get(self, "aws_shared_credentials_file")
 
     @property
     @pulumi.getter(name="awsStsEndpoint")
     def aws_sts_endpoint(self) -> Optional[str]:
+        """
+        The STS endpoint URL.
+        """
         return pulumi.get(self, "aws_sts_endpoint")
 
     @property
     @pulumi.getter(name="awsWebIdentityTokenFile")
     def aws_web_identity_token_file(self) -> Optional[str]:
+        """
+        Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+        """
         return pulumi.get(self, "aws_web_identity_token_file")
 
     @property
     @pulumi.getter(name="headerValue")
     def header_value(self) -> Optional[str]:
+        """
+        The Vault header value to include in the STS signing request.
+        """
         return pulumi.get(self, "header_value")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -217,6 +293,20 @@ class AuthLoginAzure(dict):
                  use_root_namespace: Optional[bool] = None,
                  vm_name: Optional[str] = None,
                  vmss_name: Optional[str] = None):
+        """
+        :param str resource_group_name: The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        :param str role: Name of the login role.
+        :param str subscription_id: The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        :param str client_id: The identity's client ID.
+        :param str jwt: A signed JSON Web Token. If not specified on will be created automatically
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param str scope: The scopes to include in the token request.
+        :param str tenant_id: Provides the tenant ID to use in a multi-tenant authentication scenario.
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param str vm_name: The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        :param str vmss_name: The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         pulumi.set(__self__, "resource_group_name", resource_group_name)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "subscription_id", subscription_id)
@@ -242,61 +332,97 @@ class AuthLoginAzure(dict):
     @property
     @pulumi.getter(name="resourceGroupName")
     def resource_group_name(self) -> str:
+        """
+        The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "resource_group_name")
 
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> str:
+        """
+        The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "subscription_id")
 
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[str]:
+        """
+        The identity's client ID.
+        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter
     def jwt(self) -> Optional[str]:
+        """
+        A signed JSON Web Token. If not specified on will be created automatically
+        """
         return pulumi.get(self, "jwt")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
     def scope(self) -> Optional[str]:
+        """
+        The scopes to include in the token request.
+        """
         return pulumi.get(self, "scope")
 
     @property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> Optional[str]:
+        """
+        Provides the tenant ID to use in a multi-tenant authentication scenario.
+        """
         return pulumi.get(self, "tenant_id")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @property
     @pulumi.getter(name="vmName")
     def vm_name(self) -> Optional[str]:
+        """
+        The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "vm_name")
 
     @property
     @pulumi.getter(name="vmssName")
     def vmss_name(self) -> Optional[str]:
+        """
+        The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+        """
         return pulumi.get(self, "vmss_name")
 
 
@@ -309,6 +435,14 @@ class AuthLoginCert(dict):
                  name: Optional[str] = None,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str cert_file: Path to a file containing the client certificate.
+        :param str key_file: Path to a file containing the private key that the certificate was issued for.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str name: Name of the certificate's role
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "cert_file", cert_file)
         pulumi.set(__self__, "key_file", key_file)
         if mount is not None:
@@ -323,31 +457,49 @@ class AuthLoginCert(dict):
     @property
     @pulumi.getter(name="certFile")
     def cert_file(self) -> str:
+        """
+        Path to a file containing the client certificate.
+        """
         return pulumi.get(self, "cert_file")
 
     @property
     @pulumi.getter(name="keyFile")
     def key_file(self) -> str:
+        """
+        Path to a file containing the private key that the certificate was issued for.
+        """
         return pulumi.get(self, "key_file")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name of the certificate's role
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -361,6 +513,15 @@ class AuthLoginGcp(dict):
                  namespace: Optional[str] = None,
                  service_account: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str role: Name of the login role.
+        :param str credentials: Path to the Google Cloud credentials file.
+        :param str jwt: A signed JSON Web Token.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param str service_account: IAM service account.
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "role", role)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -378,36 +539,57 @@ class AuthLoginGcp(dict):
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
     def credentials(self) -> Optional[str]:
+        """
+        Path to the Google Cloud credentials file.
+        """
         return pulumi.get(self, "credentials")
 
     @property
     @pulumi.getter
     def jwt(self) -> Optional[str]:
+        """
+        A signed JSON Web Token.
+        """
         return pulumi.get(self, "jwt")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="serviceAccount")
     def service_account(self) -> Optional[str]:
+        """
+        IAM service account.
+        """
         return pulumi.get(self, "service_account")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -419,6 +601,13 @@ class AuthLoginJwt(dict):
                  mount: Optional[str] = None,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str jwt: A signed JSON Web Token.
+        :param str role: Name of the login role.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "jwt", jwt)
         pulumi.set(__self__, "role", role)
         if mount is not None:
@@ -431,26 +620,41 @@ class AuthLoginJwt(dict):
     @property
     @pulumi.getter
     def jwt(self) -> str:
+        """
+        A signed JSON Web Token.
+        """
         return pulumi.get(self, "jwt")
 
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -468,6 +672,19 @@ class AuthLoginKerberos(dict):
                  token: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None,
                  username: Optional[str] = None):
+        """
+        :param bool disable_fast_negotiation: Disable the Kerberos FAST negotiation.
+        :param str keytab_path: The Kerberos keytab file containing the entry of the login entity.
+        :param str krb5conf_path: A valid Kerberos configuration file e.g. /etc/krb5.conf.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param str realm: The Kerberos server's authoritative authentication domain
+        :param bool remove_instance_name: Strip the host from the username found in the keytab.
+        :param str service: The service principle name.
+        :param str token: Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        :param str username: The username to login into Kerberos with.
+        """
         if disable_fast_negotiation is not None:
             pulumi.set(__self__, "disable_fast_negotiation", disable_fast_negotiation)
         if keytab_path is not None:
@@ -494,56 +711,89 @@ class AuthLoginKerberos(dict):
     @property
     @pulumi.getter(name="disableFastNegotiation")
     def disable_fast_negotiation(self) -> Optional[bool]:
+        """
+        Disable the Kerberos FAST negotiation.
+        """
         return pulumi.get(self, "disable_fast_negotiation")
 
     @property
     @pulumi.getter(name="keytabPath")
     def keytab_path(self) -> Optional[str]:
+        """
+        The Kerberos keytab file containing the entry of the login entity.
+        """
         return pulumi.get(self, "keytab_path")
 
     @property
     @pulumi.getter(name="krb5confPath")
     def krb5conf_path(self) -> Optional[str]:
+        """
+        A valid Kerberos configuration file e.g. /etc/krb5.conf.
+        """
         return pulumi.get(self, "krb5conf_path")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
     def realm(self) -> Optional[str]:
+        """
+        The Kerberos server's authoritative authentication domain
+        """
         return pulumi.get(self, "realm")
 
     @property
     @pulumi.getter(name="removeInstanceName")
     def remove_instance_name(self) -> Optional[bool]:
+        """
+        Strip the host from the username found in the keytab.
+        """
         return pulumi.get(self, "remove_instance_name")
 
     @property
     @pulumi.getter
     def service(self) -> Optional[str]:
+        """
+        The service principle name.
+        """
         return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
     def token(self) -> Optional[str]:
+        """
+        Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+        """
         return pulumi.get(self, "token")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
     @property
     @pulumi.getter
     def username(self) -> Optional[str]:
+        """
+        The username to login into Kerberos with.
+        """
         return pulumi.get(self, "username")
 
 
@@ -555,6 +805,13 @@ class AuthLoginOci(dict):
                  mount: Optional[str] = None,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str auth_type: Authentication type to use when getting OCI credentials.
+        :param str role: Name of the login role.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "auth_type", auth_type)
         pulumi.set(__self__, "role", role)
         if mount is not None:
@@ -567,26 +824,41 @@ class AuthLoginOci(dict):
     @property
     @pulumi.getter(name="authType")
     def auth_type(self) -> str:
+        """
+        Authentication type to use when getting OCI credentials.
+        """
         return pulumi.get(self, "auth_type")
 
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -599,6 +871,14 @@ class AuthLoginOidc(dict):
                  mount: Optional[str] = None,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str role: Name of the login role.
+        :param str callback_address: The callback address. Must be a valid URI without the path.
+        :param str callback_listener_address: The callback listener's address. Must be a valid URI without the path.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "role", role)
         if callback_address is not None:
             pulumi.set(__self__, "callback_address", callback_address)
@@ -614,31 +894,49 @@ class AuthLoginOidc(dict):
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        Name of the login role.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="callbackAddress")
     def callback_address(self) -> Optional[str]:
+        """
+        The callback address. Must be a valid URI without the path.
+        """
         return pulumi.get(self, "callback_address")
 
     @property
     @pulumi.getter(name="callbackListenerAddress")
     def callback_listener_address(self) -> Optional[str]:
+        """
+        The callback listener's address. Must be a valid URI without the path.
+        """
         return pulumi.get(self, "callback_listener_address")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -650,6 +948,13 @@ class AuthLoginRadius(dict):
                  mount: Optional[str] = None,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str password: The Radius password for username.
+        :param str username: The Radius username.
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
         if mount is not None:
@@ -662,26 +967,41 @@ class AuthLoginRadius(dict):
     @property
     @pulumi.getter
     def password(self) -> str:
+        """
+        The Radius password for username.
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        The Radius username.
+        """
         return pulumi.get(self, "username")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -691,6 +1011,11 @@ class AuthLoginTokenFile(dict):
                  filename: str,
                  namespace: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str filename: The name of a file containing a single line that is a valid Vault token
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "filename", filename)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
@@ -700,16 +1025,25 @@ class AuthLoginTokenFile(dict):
     @property
     @pulumi.getter
     def filename(self) -> str:
+        """
+        The name of a file containing a single line that is a valid Vault token
+        """
         return pulumi.get(self, "filename")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -722,6 +1056,14 @@ class AuthLoginUserpass(dict):
                  password: Optional[str] = None,
                  password_file: Optional[str] = None,
                  use_root_namespace: Optional[bool] = None):
+        """
+        :param str username: Login with username
+        :param str mount: The path where the authentication engine is mounted.
+        :param str namespace: The authentication engine's namespace. Conflicts with use_root_namespace
+        :param str password: Login with password
+        :param str password_file: Login with password from a file
+        :param bool use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         pulumi.set(__self__, "username", username)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
@@ -737,31 +1079,49 @@ class AuthLoginUserpass(dict):
     @property
     @pulumi.getter
     def username(self) -> str:
+        """
+        Login with username
+        """
         return pulumi.get(self, "username")
 
     @property
     @pulumi.getter
     def mount(self) -> Optional[str]:
+        """
+        The path where the authentication engine is mounted.
+        """
         return pulumi.get(self, "mount")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        The authentication engine's namespace. Conflicts with use_root_namespace
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
     def password(self) -> Optional[str]:
+        """
+        Login with password
+        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter(name="passwordFile")
     def password_file(self) -> Optional[str]:
+        """
+        Login with password from a file
+        """
         return pulumi.get(self, "password_file")
 
     @property
     @pulumi.getter(name="useRootNamespace")
     def use_root_namespace(self) -> Optional[bool]:
+        """
+        Authenticate to the root Vault namespace. Conflicts with namespace
+        """
         return pulumi.get(self, "use_root_namespace")
 
 
@@ -770,17 +1130,27 @@ class ClientAuth(dict):
     def __init__(__self__, *,
                  cert_file: str,
                  key_file: str):
+        """
+        :param str cert_file: Path to a file containing the client certificate.
+        :param str key_file: Path to a file containing the private key that the certificate was issued for.
+        """
         pulumi.set(__self__, "cert_file", cert_file)
         pulumi.set(__self__, "key_file", key_file)
 
     @property
     @pulumi.getter(name="certFile")
     def cert_file(self) -> str:
+        """
+        Path to a file containing the client certificate.
+        """
         return pulumi.get(self, "cert_file")
 
     @property
     @pulumi.getter(name="keyFile")
     def key_file(self) -> str:
+        """
+        Path to a file containing the private key that the certificate was issued for.
+        """
         return pulumi.get(self, "key_file")
 
 
@@ -789,17 +1159,27 @@ class Headers(dict):
     def __init__(__self__, *,
                  name: str,
                  value: str):
+        """
+        :param str name: The header name
+        :param str value: The header value
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The header name
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        The header value
+        """
         return pulumi.get(self, "value")
 
 

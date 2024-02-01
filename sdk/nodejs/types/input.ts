@@ -166,134 +166,398 @@ export interface GetPolicyDocumentRuleDeniedParameterArgs {
 
 export interface ProviderAuthLogin {
     method?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     path: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginAws {
+    /**
+     * The AWS access key ID.
+     */
     awsAccessKeyId?: pulumi.Input<string>;
+    /**
+     * The IAM endpoint URL.
+     */
     awsIamEndpoint?: pulumi.Input<string>;
+    /**
+     * The name of the AWS profile.
+     */
     awsProfile?: pulumi.Input<string>;
+    /**
+     * The AWS region.
+     */
     awsRegion?: pulumi.Input<string>;
+    /**
+     * The ARN of the AWS Role to assume.Used during STS AssumeRole
+     */
     awsRoleArn?: pulumi.Input<string>;
+    /**
+     * Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+     */
     awsRoleSessionName?: pulumi.Input<string>;
+    /**
+     * The AWS secret access key.
+     */
     awsSecretAccessKey?: pulumi.Input<string>;
+    /**
+     * The AWS session token.
+     */
     awsSessionToken?: pulumi.Input<string>;
+    /**
+     * Path to the AWS shared credentials file.
+     */
     awsSharedCredentialsFile?: pulumi.Input<string>;
+    /**
+     * The STS endpoint URL.
+     */
     awsStsEndpoint?: pulumi.Input<string>;
+    /**
+     * Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+     */
     awsWebIdentityTokenFile?: pulumi.Input<string>;
+    /**
+     * The Vault header value to include in the STS signing request.
+     */
     headerValue?: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * The Vault role to use when logging into Vault.
+     */
     role: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginAzure {
+    /**
+     * The identity's client ID.
+     */
     clientId?: pulumi.Input<string>;
+    /**
+     * A signed JSON Web Token. If not specified on will be created automatically
+     */
     jwt?: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     */
     resourceGroupName: pulumi.Input<string>;
+    /**
+     * Name of the login role.
+     */
     role: pulumi.Input<string>;
+    /**
+     * The scopes to include in the token request.
+     */
     scope?: pulumi.Input<string>;
+    /**
+     * The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     */
     subscriptionId: pulumi.Input<string>;
+    /**
+     * Provides the tenant ID to use in a multi-tenant authentication scenario.
+     */
     tenantId?: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
+    /**
+     * The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     */
     vmName?: pulumi.Input<string>;
+    /**
+     * The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
+     */
     vmssName?: pulumi.Input<string>;
 }
 
 export interface ProviderAuthLoginCert {
+    /**
+     * Path to a file containing the client certificate.
+     */
     certFile: pulumi.Input<string>;
+    /**
+     * Path to a file containing the private key that the certificate was issued for.
+     */
     keyFile: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * Name of the certificate's role
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginGcp {
+    /**
+     * Path to the Google Cloud credentials file.
+     */
     credentials?: pulumi.Input<string>;
+    /**
+     * A signed JSON Web Token.
+     */
     jwt?: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Name of the login role.
+     */
     role: pulumi.Input<string>;
+    /**
+     * IAM service account.
+     */
     serviceAccount?: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginJwt {
+    /**
+     * A signed JSON Web Token.
+     */
     jwt: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Name of the login role.
+     */
     role: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginKerberos {
+    /**
+     * Disable the Kerberos FAST negotiation.
+     */
     disableFastNegotiation?: pulumi.Input<boolean>;
+    /**
+     * The Kerberos keytab file containing the entry of the login entity.
+     */
     keytabPath?: pulumi.Input<string>;
+    /**
+     * A valid Kerberos configuration file e.g. /etc/krb5.conf.
+     */
     krb5confPath?: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * The Kerberos server's authoritative authentication domain
+     */
     realm?: pulumi.Input<string>;
+    /**
+     * Strip the host from the username found in the keytab.
+     */
     removeInstanceName?: pulumi.Input<boolean>;
+    /**
+     * The service principle name.
+     */
     service?: pulumi.Input<string>;
+    /**
+     * Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
+     */
     token?: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
+    /**
+     * The username to login into Kerberos with.
+     */
     username?: pulumi.Input<string>;
 }
 
 export interface ProviderAuthLoginOci {
+    /**
+     * Authentication type to use when getting OCI credentials.
+     */
     authType: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Name of the login role.
+     */
     role: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginOidc {
+    /**
+     * The callback address. Must be a valid URI without the path.
+     */
     callbackAddress?: pulumi.Input<string>;
+    /**
+     * The callback listener's address. Must be a valid URI without the path.
+     */
     callbackListenerAddress?: pulumi.Input<string>;
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Name of the login role.
+     */
     role: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginRadius {
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * The Radius password for username.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
+    /**
+     * The Radius username.
+     */
     username: pulumi.Input<string>;
 }
 
 export interface ProviderAuthLoginTokenFile {
+    /**
+     * The name of a file containing a single line that is a valid Vault token
+     */
     filename: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
 }
 
 export interface ProviderAuthLoginUserpass {
+    /**
+     * The path where the authentication engine is mounted.
+     */
     mount?: pulumi.Input<string>;
+    /**
+     * The authentication engine's namespace. Conflicts with use_root_namespace
+     */
     namespace?: pulumi.Input<string>;
+    /**
+     * Login with password
+     */
     password?: pulumi.Input<string>;
+    /**
+     * Login with password from a file
+     */
     passwordFile?: pulumi.Input<string>;
+    /**
+     * Authenticate to the root Vault namespace. Conflicts with namespace
+     */
     useRootNamespace?: pulumi.Input<boolean>;
+    /**
+     * Login with username
+     */
     username: pulumi.Input<string>;
 }
 
 export interface ProviderClientAuth {
+    /**
+     * Path to a file containing the client certificate.
+     */
     certFile: pulumi.Input<string>;
+    /**
+     * Path to a file containing the private key that the certificate was issued for.
+     */
     keyFile: pulumi.Input<string>;
 }
 
 export interface ProviderHeader {
+    /**
+     * The header name
+     */
     name: pulumi.Input<string>;
+    /**
+     * The header value
+     */
     value: pulumi.Input<string>;
 }
 export namespace azure {
@@ -1079,6 +1343,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1154,6 +1421,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1218,6 +1488,9 @@ export namespace database {
          * Whether to disable certificate verification.
          */
         insecure?: pulumi.Input<boolean>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1290,6 +1563,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1340,6 +1616,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1417,6 +1696,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1457,6 +1739,9 @@ export namespace database {
          * Supported list of database secrets engines that can be configured:
          */
         data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * Specifies the name of the plugin to use.
@@ -1526,6 +1811,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1560,6 +1848,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: pulumi.Input<string>;
         /**
          * Specifies the Redshift DSN. 
@@ -1586,6 +1877,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1599,6 +1893,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: pulumi.Input<string>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1629,6 +1926,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: pulumi.Input<string>;
         /**
          * Specifies the Redshift DSN. 
@@ -1655,6 +1955,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1668,6 +1971,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: pulumi.Input<string>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1698,6 +2004,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: pulumi.Input<string>;
         /**
          * Specifies the Redshift DSN. 
@@ -1724,6 +2033,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1737,6 +2049,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: pulumi.Input<string>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1767,6 +2082,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: pulumi.Input<string>;
         /**
          * Specifies the Redshift DSN. 
@@ -1793,6 +2111,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1806,6 +2127,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: pulumi.Input<string>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
@@ -1861,6 +2185,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1895,6 +2222,9 @@ export namespace database {
          * connection.
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+         */
         authType?: pulumi.Input<string>;
         /**
          * Specifies the Redshift DSN. 
@@ -1925,6 +2255,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -1938,6 +2271,9 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * A JSON encoded credential for use with IAM authorization
+         */
         serviceAccountJson?: pulumi.Input<string>;
         /**
          * The root credential username used in the connection URL.
@@ -1979,6 +2315,9 @@ export namespace database {
          * certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -2024,6 +2363,9 @@ export namespace database {
          * Supported list of database secrets engines that can be configured:
          */
         data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -2093,6 +2435,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -2152,6 +2497,9 @@ export namespace database {
          * the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
+        /**
+         * Name of the database connection.
+         */
         name: pulumi.Input<string>;
         /**
          * The root credential password used in the connection URL.
@@ -2374,6 +2722,9 @@ export namespace jwt {
 
 export namespace kv {
     export interface SecretV2CustomMetadata {
+        /**
+         * If true, all keys will require the cas parameter to be set on all write requests.
+         */
         casRequired?: pulumi.Input<boolean>;
         /**
          * A mapping whose keys are the top-level data keys returned from
@@ -2382,7 +2733,13 @@ export namespace kv {
          * serialized as JSON.
          */
         data?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * If set, specifies the length of time before a version is deleted.
+         */
         deleteVersionAfter?: pulumi.Input<number>;
+        /**
+         * The number of versions to keep per key.
+         */
         maxVersions?: pulumi.Input<number>;
     }
 }
@@ -2448,6 +2805,9 @@ export namespace managed {
          * The AWS access key to use.
          */
         secretKey: pulumi.Input<string>;
+        /**
+         * ID of the managed key read from Vault
+         */
         uuid?: pulumi.Input<string>;
     }
 
@@ -2510,6 +2870,9 @@ export namespace managed {
          * The tenant id for the Azure Active Directory organization.
          */
         tenantId: pulumi.Input<string>;
+        /**
+         * ID of the managed key read from Vault
+         */
         uuid?: pulumi.Input<string>;
         /**
          * The Key Vault vault to use for encryption and decryption.
@@ -2589,6 +2952,9 @@ export namespace managed {
          * The slot token label to use.
          */
         tokenLabel?: pulumi.Input<string>;
+        /**
+         * ID of the managed key read from Vault
+         */
         uuid?: pulumi.Input<string>;
     }
 }
@@ -2642,13 +3008,28 @@ export namespace pkiSecret {
 
 export namespace rabbitMq {
     export interface SecretBackendRoleVhost {
+        /**
+         * The configure permissions for this vhost.
+         */
         configure: pulumi.Input<string>;
+        /**
+         * The vhost to set permissions for.
+         */
         host: pulumi.Input<string>;
+        /**
+         * The read permissions for this vhost.
+         */
         read: pulumi.Input<string>;
+        /**
+         * The write permissions for this vhost.
+         */
         write: pulumi.Input<string>;
     }
 
     export interface SecretBackendRoleVhostTopic {
+        /**
+         * The vhost to set permissions for.
+         */
         host: pulumi.Input<string>;
         /**
          * Specifies a map of virtual hosts to permissions.
@@ -2657,8 +3038,17 @@ export namespace rabbitMq {
     }
 
     export interface SecretBackendRoleVhostTopicVhost {
+        /**
+         * The read permissions for this vhost.
+         */
         read: pulumi.Input<string>;
+        /**
+         * The vhost to set permissions for.
+         */
         topic: pulumi.Input<string>;
+        /**
+         * The write permissions for this vhost.
+         */
         write: pulumi.Input<string>;
     }
 }

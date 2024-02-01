@@ -18,9 +18,17 @@ public final class SecretBackendRoleVhostTopicArgs extends com.pulumi.resources.
 
     public static final SecretBackendRoleVhostTopicArgs Empty = new SecretBackendRoleVhostTopicArgs();
 
+    /**
+     * The vhost to set permissions for.
+     * 
+     */
     @Import(name="host", required=true)
     private Output<String> host;
 
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     public Output<String> host() {
         return this.host;
     }
@@ -65,11 +73,23 @@ public final class SecretBackendRoleVhostTopicArgs extends com.pulumi.resources.
             $ = new SecretBackendRoleVhostTopicArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param host The vhost to set permissions for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder host(Output<String> host) {
             $.host = host;
             return this;
         }
 
+        /**
+         * @param host The vhost to set permissions for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder host(String host) {
             return host(Output.of(host));
         }

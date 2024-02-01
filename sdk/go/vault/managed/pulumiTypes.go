@@ -46,8 +46,9 @@ type KeysAw struct {
 	// The AWS region where the keys are stored (or will be stored).
 	Region *string `pulumi:"region"`
 	// The AWS access key to use.
-	SecretKey string  `pulumi:"secretKey"`
-	Uuid      *string `pulumi:"uuid"`
+	SecretKey string `pulumi:"secretKey"`
+	// ID of the managed key read from Vault
+	Uuid *string `pulumi:"uuid"`
 }
 
 // KeysAwInput is an input type that accepts KeysAwArgs and KeysAwOutput values.
@@ -94,8 +95,9 @@ type KeysAwArgs struct {
 	// The AWS region where the keys are stored (or will be stored).
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The AWS access key to use.
-	SecretKey pulumi.StringInput    `pulumi:"secretKey"`
-	Uuid      pulumi.StringPtrInput `pulumi:"uuid"`
+	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// ID of the managed key read from Vault
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 }
 
 func (KeysAwArgs) ElementType() reflect.Type {
@@ -221,6 +223,7 @@ func (o KeysAwOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
+// ID of the managed key read from Vault
 func (o KeysAwOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Uuid }).(pulumi.StringPtrOutput)
 }
@@ -277,8 +280,9 @@ type KeysAzure struct {
 	// The Azure Key Vault resource's DNS Suffix to connect to.
 	Resource *string `pulumi:"resource"`
 	// The tenant id for the Azure Active Directory organization.
-	TenantId string  `pulumi:"tenantId"`
-	Uuid     *string `pulumi:"uuid"`
+	TenantId string `pulumi:"tenantId"`
+	// ID of the managed key read from Vault
+	Uuid *string `pulumi:"uuid"`
 	// The Key Vault vault to use for encryption and decryption.
 	VaultName string `pulumi:"vaultName"`
 }
@@ -326,8 +330,9 @@ type KeysAzureArgs struct {
 	// The Azure Key Vault resource's DNS Suffix to connect to.
 	Resource pulumi.StringPtrInput `pulumi:"resource"`
 	// The tenant id for the Azure Active Directory organization.
-	TenantId pulumi.StringInput    `pulumi:"tenantId"`
-	Uuid     pulumi.StringPtrInput `pulumi:"uuid"`
+	TenantId pulumi.StringInput `pulumi:"tenantId"`
+	// ID of the managed key read from Vault
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 	// The Key Vault vault to use for encryption and decryption.
 	VaultName pulumi.StringInput `pulumi:"vaultName"`
 }
@@ -454,6 +459,7 @@ func (o KeysAzureOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
+// ID of the managed key read from Vault
 func (o KeysAzureOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.Uuid }).(pulumi.StringPtrOutput)
 }
@@ -525,7 +531,8 @@ type KeysPkc struct {
 	Slot *string `pulumi:"slot"`
 	// The slot token label to use.
 	TokenLabel *string `pulumi:"tokenLabel"`
-	Uuid       *string `pulumi:"uuid"`
+	// ID of the managed key read from Vault
+	Uuid *string `pulumi:"uuid"`
 }
 
 // KeysPkcInput is an input type that accepts KeysPkcArgs and KeysPkcOutput values.
@@ -581,7 +588,8 @@ type KeysPkcArgs struct {
 	Slot pulumi.StringPtrInput `pulumi:"slot"`
 	// The slot token label to use.
 	TokenLabel pulumi.StringPtrInput `pulumi:"tokenLabel"`
-	Uuid       pulumi.StringPtrInput `pulumi:"uuid"`
+	// ID of the managed key read from Vault
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 }
 
 func (KeysPkcArgs) ElementType() reflect.Type {
@@ -721,6 +729,7 @@ func (o KeysPkcOutput) TokenLabel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.TokenLabel }).(pulumi.StringPtrOutput)
 }
 
+// ID of the managed key read from Vault
 func (o KeysPkcOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.Uuid }).(pulumi.StringPtrOutput)
 }

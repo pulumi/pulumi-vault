@@ -25,6 +25,9 @@ namespace Pulumi.Vault.Database.Inputs
             set => _allowedRoles = value;
         }
 
+        /// <summary>
+        /// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        /// </summary>
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
 
@@ -75,6 +78,9 @@ namespace Pulumi.Vault.Database.Inputs
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
 
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -114,6 +120,10 @@ namespace Pulumi.Vault.Database.Inputs
 
         [Input("serviceAccountJson")]
         private Input<string>? _serviceAccountJson;
+
+        /// <summary>
+        /// A JSON encoded credential for use with IAM authorization
+        /// </summary>
         public Input<string>? ServiceAccountJson
         {
             get => _serviceAccountJson;

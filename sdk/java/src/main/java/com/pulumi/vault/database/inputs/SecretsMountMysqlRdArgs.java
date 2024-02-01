@@ -38,9 +38,17 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.allowedRoles);
     }
 
+    /**
+     * Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
+     * 
+     */
     @Import(name="authType")
     private @Nullable Output<String> authType;
 
+    /**
+     * @return Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
+     * 
+     */
     public Optional<Output<String>> authType() {
         return Optional.ofNullable(this.authType);
     }
@@ -130,9 +138,17 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.maxOpenConnections);
     }
 
+    /**
+     * Name of the database connection.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -182,9 +198,17 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.rootRotationStatements);
     }
 
+    /**
+     * A JSON encoded credential for use with IAM authorization
+     * 
+     */
     @Import(name="serviceAccountJson")
     private @Nullable Output<String> serviceAccountJson;
 
+    /**
+     * @return A JSON encoded credential for use with IAM authorization
+     * 
+     */
     public Optional<Output<String>> serviceAccountJson() {
         return Optional.ofNullable(this.serviceAccountJson);
     }
@@ -340,11 +364,23 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
             return allowedRoles(List.of(allowedRoles));
         }
 
+        /**
+         * @param authType Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
+         * 
+         * @return builder
+         * 
+         */
         public Builder authType(@Nullable Output<String> authType) {
             $.authType = authType;
             return this;
         }
 
+        /**
+         * @param authType Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
+         * 
+         * @return builder
+         * 
+         */
         public Builder authType(String authType) {
             return authType(Output.of(authType));
         }
@@ -464,11 +500,23 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
             return maxOpenConnections(Output.of(maxOpenConnections));
         }
 
+        /**
+         * @param name Name of the database connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the database connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
@@ -546,11 +594,23 @@ public final class SecretsMountMysqlRdArgs extends com.pulumi.resources.Resource
             return rootRotationStatements(List.of(rootRotationStatements));
         }
 
+        /**
+         * @param serviceAccountJson A JSON encoded credential for use with IAM authorization
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccountJson(@Nullable Output<String> serviceAccountJson) {
             $.serviceAccountJson = serviceAccountJson;
             return this;
         }
 
+        /**
+         * @param serviceAccountJson A JSON encoded credential for use with IAM authorization
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccountJson(String serviceAccountJson) {
             return serviceAccountJson(Output.of(serviceAccountJson));
         }

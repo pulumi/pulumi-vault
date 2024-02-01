@@ -84,6 +84,9 @@ namespace Pulumi.Vault.Managed.Outputs
         /// The slot token label to use.
         /// </summary>
         public readonly string? TokenLabel;
+        /// <summary>
+        /// ID of the managed key read from Vault
+        /// </summary>
         public readonly string? Uuid;
 
         [OutputConstructor]

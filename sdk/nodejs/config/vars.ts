@@ -9,9 +9,6 @@ import * as utilities from "../utilities";
 declare var exports: any;
 const __config = new pulumi.Config("vault");
 
-/**
- * If true, adds the value of the `address` argument to the Terraform process environment.
- */
 export declare const addAddressToEnv: string | undefined;
 Object.defineProperty(exports, "addAddressToEnv", {
     get() {

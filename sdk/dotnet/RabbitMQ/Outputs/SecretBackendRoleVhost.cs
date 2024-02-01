@@ -13,9 +13,21 @@ namespace Pulumi.Vault.RabbitMQ.Outputs
     [OutputType]
     public sealed class SecretBackendRoleVhost
     {
+        /// <summary>
+        /// The configure permissions for this vhost.
+        /// </summary>
         public readonly string Configure;
+        /// <summary>
+        /// The vhost to set permissions for.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// The read permissions for this vhost.
+        /// </summary>
         public readonly string Read;
+        /// <summary>
+        /// The write permissions for this vhost.
+        /// </summary>
         public readonly string Write;
 
         [OutputConstructor]

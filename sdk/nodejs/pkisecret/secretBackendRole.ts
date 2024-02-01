@@ -213,7 +213,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly noStore!: pulumi.Output<boolean | undefined>;
     /**
-     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+     * Specifies the duration by which to backdate the NotBefore property.
      */
     public readonly notBeforeDuration!: pulumi.Output<string>;
     /**
@@ -527,7 +527,7 @@ export interface SecretBackendRoleState {
      */
     noStore?: pulumi.Input<boolean>;
     /**
-     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+     * Specifies the duration by which to backdate the NotBefore property.
      */
     notBeforeDuration?: pulumi.Input<string>;
     /**
@@ -726,7 +726,7 @@ export interface SecretBackendRoleArgs {
      */
     noStore?: pulumi.Input<boolean>;
     /**
-     * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
+     * Specifies the duration by which to backdate the NotBefore property.
      */
     notBeforeDuration?: pulumi.Input<string>;
     /**

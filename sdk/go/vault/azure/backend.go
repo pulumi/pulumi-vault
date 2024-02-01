@@ -98,9 +98,7 @@ type Backend struct {
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
-	// Indicates whether the secrets engine should use
-	// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-	// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
 	UseMicrosoftGraphApi pulumi.BoolOutput `pulumi:"useMicrosoftGraphApi"`
 }
 
@@ -181,9 +179,7 @@ type backendState struct {
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
 	TenantId *string `pulumi:"tenantId"`
-	// Indicates whether the secrets engine should use
-	// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-	// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
 	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
@@ -210,9 +206,7 @@ type BackendState struct {
 	SubscriptionId pulumi.StringPtrInput
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringPtrInput
-	// Indicates whether the secrets engine should use
-	// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-	// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
 	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
@@ -243,9 +237,7 @@ type backendArgs struct {
 	SubscriptionId string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
 	TenantId string `pulumi:"tenantId"`
-	// Indicates whether the secrets engine should use
-	// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-	// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
 	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
@@ -273,9 +265,7 @@ type BackendArgs struct {
 	SubscriptionId pulumi.StringInput
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringInput
-	// Indicates whether the secrets engine should use
-	// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-	// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
 	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
@@ -415,9 +405,7 @@ func (o BackendOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
 }
 
-// Indicates whether the secrets engine should use
-// the Microsoft Graph API. This parameter has been deprecated and will be ignored in `vault-1.12+`.
-// For more information, please refer to the [Vault docs](https://developer.hashicorp.com/vault/api-docs/secret/azure#use_microsoft_graph_api)
+// Use the Microsoft Graph API. Should be set to true on vault-1.10+
 func (o BackendOutput) UseMicrosoftGraphApi() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.UseMicrosoftGraphApi }).(pulumi.BoolOutput)
 }

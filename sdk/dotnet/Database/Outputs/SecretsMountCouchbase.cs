@@ -41,6 +41,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// certificate when using TLS.
         /// </summary>
         public readonly bool? InsecureTls;
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// The root credential password used in the connection URL.
