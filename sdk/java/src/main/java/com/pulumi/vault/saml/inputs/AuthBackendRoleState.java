@@ -227,16 +227,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     @Import(name="tokenNumUses")
     private @Nullable Output<Integer> tokenNumUses;
 
     /**
-     * @return The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     public Optional<Output<Integer>> tokenNumUses() {
@@ -662,8 +660,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenNumUses The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-         * of times a generated token may be used (within its lifetime); 0 means unlimited.
+         * @param tokenNumUses The maximum number of times a token may be used, a value of zero means unlimited
          * 
          * @return builder
          * 
@@ -674,8 +671,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenNumUses The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-         * of times a generated token may be used (within its lifetime); 0 means unlimited.
+         * @param tokenNumUses The maximum number of times a token may be used, a value of zero means unlimited
          * 
          * @return builder
          * 

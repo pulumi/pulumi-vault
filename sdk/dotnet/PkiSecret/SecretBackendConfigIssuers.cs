@@ -10,9 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.PkiSecret
 {
     /// <summary>
-    /// Allows setting the value of the default issuer. For more information, see the
-    /// [Vault documentation](https://developer.hashicorp.com/vault/api-docs/secret/pki#set-issuers-configuration)
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

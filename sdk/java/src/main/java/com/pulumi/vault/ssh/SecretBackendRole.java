@@ -452,16 +452,14 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
-     * Specifies the duration by which to backdate the ValidAfter property.
-     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
      * 
      */
     @Export(name="notBeforeDuration", refs={String.class}, tree="[0]")
     private Output<String> notBeforeDuration;
 
     /**
-     * @return Specifies the duration by which to backdate the ValidAfter property.
-     * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+     * @return Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
      * 
      */
     public Output<String> notBeforeDuration() {

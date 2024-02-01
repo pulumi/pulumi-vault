@@ -14,23 +14,47 @@ public final class SecretBackendRoleVhostTopicVhostArgs extends com.pulumi.resou
 
     public static final SecretBackendRoleVhostTopicVhostArgs Empty = new SecretBackendRoleVhostTopicVhostArgs();
 
+    /**
+     * The read permissions for this vhost.
+     * 
+     */
     @Import(name="read", required=true)
     private Output<String> read;
 
+    /**
+     * @return The read permissions for this vhost.
+     * 
+     */
     public Output<String> read() {
         return this.read;
     }
 
+    /**
+     * The vhost to set permissions for.
+     * 
+     */
     @Import(name="topic", required=true)
     private Output<String> topic;
 
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     public Output<String> topic() {
         return this.topic;
     }
 
+    /**
+     * The write permissions for this vhost.
+     * 
+     */
     @Import(name="write", required=true)
     private Output<String> write;
 
+    /**
+     * @return The write permissions for this vhost.
+     * 
+     */
     public Output<String> write() {
         return this.write;
     }
@@ -61,29 +85,65 @@ public final class SecretBackendRoleVhostTopicVhostArgs extends com.pulumi.resou
             $ = new SecretBackendRoleVhostTopicVhostArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param read The read permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder read(Output<String> read) {
             $.read = read;
             return this;
         }
 
+        /**
+         * @param read The read permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder read(String read) {
             return read(Output.of(read));
         }
 
+        /**
+         * @param topic The vhost to set permissions for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topic(Output<String> topic) {
             $.topic = topic;
             return this;
         }
 
+        /**
+         * @param topic The vhost to set permissions for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topic(String topic) {
             return topic(Output.of(topic));
         }
 
+        /**
+         * @param write The write permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder write(Output<String> write) {
             $.write = write;
             return this;
         }
 
+        /**
+         * @param write The write permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder write(String write) {
             return write(Output.of(write));
         }

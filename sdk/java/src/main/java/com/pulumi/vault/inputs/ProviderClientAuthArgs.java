@@ -14,16 +14,32 @@ public final class ProviderClientAuthArgs extends com.pulumi.resources.ResourceA
 
     public static final ProviderClientAuthArgs Empty = new ProviderClientAuthArgs();
 
+    /**
+     * Path to a file containing the client certificate.
+     * 
+     */
     @Import(name="certFile", required=true)
     private Output<String> certFile;
 
+    /**
+     * @return Path to a file containing the client certificate.
+     * 
+     */
     public Output<String> certFile() {
         return this.certFile;
     }
 
+    /**
+     * Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     @Import(name="keyFile", required=true)
     private Output<String> keyFile;
 
+    /**
+     * @return Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     public Output<String> keyFile() {
         return this.keyFile;
     }
@@ -53,20 +69,44 @@ public final class ProviderClientAuthArgs extends com.pulumi.resources.ResourceA
             $ = new ProviderClientAuthArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param certFile Path to a file containing the client certificate.
+         * 
+         * @return builder
+         * 
+         */
         public Builder certFile(Output<String> certFile) {
             $.certFile = certFile;
             return this;
         }
 
+        /**
+         * @param certFile Path to a file containing the client certificate.
+         * 
+         * @return builder
+         * 
+         */
         public Builder certFile(String certFile) {
             return certFile(Output.of(certFile));
         }
 
+        /**
+         * @param keyFile Path to a file containing the private key that the certificate was issued for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keyFile(Output<String> keyFile) {
             $.keyFile = keyFile;
             return this;
         }
 
+        /**
+         * @param keyFile Path to a file containing the private key that the certificate was issued for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keyFile(String keyFile) {
             return keyFile(Output.of(keyFile));
         }

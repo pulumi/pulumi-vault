@@ -13,6 +13,9 @@ namespace Pulumi.Vault.kv.Outputs
     [OutputType]
     public sealed class SecretV2CustomMetadata
     {
+        /// <summary>
+        /// If true, all keys will require the cas parameter to be set on all write requests.
+        /// </summary>
         public readonly bool? CasRequired;
         /// <summary>
         /// A mapping whose keys are the top-level data keys returned from
@@ -21,7 +24,13 @@ namespace Pulumi.Vault.kv.Outputs
         /// serialized as JSON.
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
+        /// <summary>
+        /// If set, specifies the length of time before a version is deleted.
+        /// </summary>
         public readonly int? DeleteVersionAfter;
+        /// <summary>
+        /// The number of versions to keep per key.
+        /// </summary>
         public readonly int? MaxVersions;
 
         [OutputConstructor]

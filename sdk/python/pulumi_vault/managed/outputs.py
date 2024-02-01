@@ -86,6 +86,7 @@ class KeysAw(dict):
                is `ECDSA`. Required if `allow_generate_key` is `true`.
         :param str endpoint: Used to specify a custom AWS endpoint.
         :param str region: The AWS region where the keys are stored (or will be stored).
+        :param str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "access_key", access_key)
         pulumi.set(__self__, "key_bits", key_bits)
@@ -224,6 +225,9 @@ class KeysAw(dict):
     @property
     @pulumi.getter
     def uuid(self) -> Optional[str]:
+        """
+        ID of the managed key read from Vault
+        """
         return pulumi.get(self, "uuid")
 
 
@@ -303,6 +307,7 @@ class KeysAzure(dict):
         :param str environment: The Azure Cloud environment API endpoints to use.
         :param str key_bits: The size in bits for an RSA key.
         :param str resource: The Azure Key Vault resource's DNS Suffix to connect to.
+        :param str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -449,6 +454,9 @@ class KeysAzure(dict):
     @property
     @pulumi.getter
     def uuid(self) -> Optional[str]:
+        """
+        ID of the managed key read from Vault
+        """
         return pulumi.get(self, "uuid")
 
 
@@ -531,6 +539,7 @@ class KeysPkc(dict):
         :param str slot: The slot number to use, specified as a string in a decimal format
                (e.g. `2305843009213693953`).
         :param str token_label: The slot token label to use.
+        :param str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "key_id", key_id)
         pulumi.set(__self__, "key_label", key_label)
@@ -693,6 +702,9 @@ class KeysPkc(dict):
     @property
     @pulumi.getter
     def uuid(self) -> Optional[str]:
+        """
+        ID of the managed key read from Vault
+        """
         return pulumi.get(self, "uuid")
 
 

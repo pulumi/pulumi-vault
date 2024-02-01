@@ -14,30 +14,62 @@ public final class SecretBackendRoleVhostArgs extends com.pulumi.resources.Resou
 
     public static final SecretBackendRoleVhostArgs Empty = new SecretBackendRoleVhostArgs();
 
+    /**
+     * The configure permissions for this vhost.
+     * 
+     */
     @Import(name="configure", required=true)
     private Output<String> configure;
 
+    /**
+     * @return The configure permissions for this vhost.
+     * 
+     */
     public Output<String> configure() {
         return this.configure;
     }
 
+    /**
+     * The vhost to set permissions for.
+     * 
+     */
     @Import(name="host", required=true)
     private Output<String> host;
 
+    /**
+     * @return The vhost to set permissions for.
+     * 
+     */
     public Output<String> host() {
         return this.host;
     }
 
+    /**
+     * The read permissions for this vhost.
+     * 
+     */
     @Import(name="read", required=true)
     private Output<String> read;
 
+    /**
+     * @return The read permissions for this vhost.
+     * 
+     */
     public Output<String> read() {
         return this.read;
     }
 
+    /**
+     * The write permissions for this vhost.
+     * 
+     */
     @Import(name="write", required=true)
     private Output<String> write;
 
+    /**
+     * @return The write permissions for this vhost.
+     * 
+     */
     public Output<String> write() {
         return this.write;
     }
@@ -69,38 +101,86 @@ public final class SecretBackendRoleVhostArgs extends com.pulumi.resources.Resou
             $ = new SecretBackendRoleVhostArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param configure The configure permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder configure(Output<String> configure) {
             $.configure = configure;
             return this;
         }
 
+        /**
+         * @param configure The configure permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder configure(String configure) {
             return configure(Output.of(configure));
         }
 
+        /**
+         * @param host The vhost to set permissions for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder host(Output<String> host) {
             $.host = host;
             return this;
         }
 
+        /**
+         * @param host The vhost to set permissions for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder host(String host) {
             return host(Output.of(host));
         }
 
+        /**
+         * @param read The read permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder read(Output<String> read) {
             $.read = read;
             return this;
         }
 
+        /**
+         * @param read The read permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder read(String read) {
             return read(Output.of(read));
         }
 
+        /**
+         * @param write The write permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder write(Output<String> write) {
             $.write = write;
             return this;
         }
 
+        /**
+         * @param write The write permissions for this vhost.
+         * 
+         * @return builder
+         * 
+         */
         public Builder write(String write) {
             return write(Output.of(write));
         }

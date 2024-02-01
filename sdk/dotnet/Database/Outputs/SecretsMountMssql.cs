@@ -53,6 +53,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// The root credential password used in the connection URL.

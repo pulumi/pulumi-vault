@@ -12,51 +12,99 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class ProviderAuthLoginAwsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The AWS access key ID.
+        /// </summary>
         [Input("awsAccessKeyId")]
         public Input<string>? AwsAccessKeyId { get; set; }
 
+        /// <summary>
+        /// The IAM endpoint URL.
+        /// </summary>
         [Input("awsIamEndpoint")]
         public Input<string>? AwsIamEndpoint { get; set; }
 
+        /// <summary>
+        /// The name of the AWS profile.
+        /// </summary>
         [Input("awsProfile")]
         public Input<string>? AwsProfile { get; set; }
 
+        /// <summary>
+        /// The AWS region.
+        /// </summary>
         [Input("awsRegion")]
         public Input<string>? AwsRegion { get; set; }
 
+        /// <summary>
+        /// The ARN of the AWS Role to assume.Used during STS AssumeRole
+        /// </summary>
         [Input("awsRoleArn")]
         public Input<string>? AwsRoleArn { get; set; }
 
+        /// <summary>
+        /// Specifies the name to attach to the AWS role session. Used during STS AssumeRole
+        /// </summary>
         [Input("awsRoleSessionName")]
         public Input<string>? AwsRoleSessionName { get; set; }
 
+        /// <summary>
+        /// The AWS secret access key.
+        /// </summary>
         [Input("awsSecretAccessKey")]
         public Input<string>? AwsSecretAccessKey { get; set; }
 
+        /// <summary>
+        /// The AWS session token.
+        /// </summary>
         [Input("awsSessionToken")]
         public Input<string>? AwsSessionToken { get; set; }
 
+        /// <summary>
+        /// Path to the AWS shared credentials file.
+        /// </summary>
         [Input("awsSharedCredentialsFile")]
         public Input<string>? AwsSharedCredentialsFile { get; set; }
 
+        /// <summary>
+        /// The STS endpoint URL.
+        /// </summary>
         [Input("awsStsEndpoint")]
         public Input<string>? AwsStsEndpoint { get; set; }
 
+        /// <summary>
+        /// Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
+        /// </summary>
         [Input("awsWebIdentityTokenFile")]
         public Input<string>? AwsWebIdentityTokenFile { get; set; }
 
+        /// <summary>
+        /// The Vault header value to include in the STS signing request.
+        /// </summary>
         [Input("headerValue")]
         public Input<string>? HeaderValue { get; set; }
 
+        /// <summary>
+        /// The path where the authentication engine is mounted.
+        /// </summary>
         [Input("mount")]
         public Input<string>? Mount { get; set; }
 
+        /// <summary>
+        /// The authentication engine's namespace. Conflicts with use_root_namespace
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// The Vault role to use when logging into Vault.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// Authenticate to the root Vault namespace. Conflicts with namespace
+        /// </summary>
         [Input("useRootNamespace")]
         public Input<bool>? UseRootNamespace { get; set; }
 

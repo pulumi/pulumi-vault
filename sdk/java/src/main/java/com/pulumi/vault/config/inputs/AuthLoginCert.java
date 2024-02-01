@@ -13,29 +13,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginCert {
+    /**
+     * @return Path to a file containing the client certificate.
+     * 
+     */
     private String certFile;
+    /**
+     * @return Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     private String keyFile;
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     private @Nullable String mount;
+    /**
+     * @return Name of the certificate&#39;s role
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
 
     private AuthLoginCert() {}
+    /**
+     * @return Path to a file containing the client certificate.
+     * 
+     */
     public String certFile() {
         return this.certFile;
     }
+    /**
+     * @return Path to a file containing the private key that the certificate was issued for.
+     * 
+     */
     public String keyFile() {
         return this.keyFile;
     }
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<String> mount() {
         return Optional.ofNullable(this.mount);
     }
+    /**
+     * @return Name of the certificate&#39;s role
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }

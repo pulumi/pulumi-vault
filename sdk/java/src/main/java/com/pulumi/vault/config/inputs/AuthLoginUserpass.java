@@ -13,29 +13,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AuthLoginUserpass {
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     private @Nullable String mount;
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return Login with password
+     * 
+     */
     private @Nullable String password;
+    /**
+     * @return Login with password from a file
+     * 
+     */
     private @Nullable String passwordFile;
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     private @Nullable Boolean useRootNamespace;
+    /**
+     * @return Login with username
+     * 
+     */
     private String username;
 
     private AuthLoginUserpass() {}
+    /**
+     * @return The path where the authentication engine is mounted.
+     * 
+     */
     public Optional<String> mount() {
         return Optional.ofNullable(this.mount);
     }
+    /**
+     * @return The authentication engine&#39;s namespace. Conflicts with use_root_namespace
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return Login with password
+     * 
+     */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
+    /**
+     * @return Login with password from a file
+     * 
+     */
     public Optional<String> passwordFile() {
         return Optional.ofNullable(this.passwordFile);
     }
+    /**
+     * @return Authenticate to the root Vault namespace. Conflicts with namespace
+     * 
+     */
     public Optional<Boolean> useRootNamespace() {
         return Optional.ofNullable(this.useRootNamespace);
     }
+    /**
+     * @return Login with username
+     * 
+     */
     public String username() {
         return this.username;
     }

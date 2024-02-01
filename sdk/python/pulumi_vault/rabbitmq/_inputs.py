@@ -22,6 +22,12 @@ class SecretBackendRoleVhostArgs:
                  host: pulumi.Input[str],
                  read: pulumi.Input[str],
                  write: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] configure: The configure permissions for this vhost.
+        :param pulumi.Input[str] host: The vhost to set permissions for.
+        :param pulumi.Input[str] read: The read permissions for this vhost.
+        :param pulumi.Input[str] write: The write permissions for this vhost.
+        """
         pulumi.set(__self__, "configure", configure)
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "read", read)
@@ -30,6 +36,9 @@ class SecretBackendRoleVhostArgs:
     @property
     @pulumi.getter
     def configure(self) -> pulumi.Input[str]:
+        """
+        The configure permissions for this vhost.
+        """
         return pulumi.get(self, "configure")
 
     @configure.setter
@@ -39,6 +48,9 @@ class SecretBackendRoleVhostArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The vhost to set permissions for.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -48,6 +60,9 @@ class SecretBackendRoleVhostArgs:
     @property
     @pulumi.getter
     def read(self) -> pulumi.Input[str]:
+        """
+        The read permissions for this vhost.
+        """
         return pulumi.get(self, "read")
 
     @read.setter
@@ -57,6 +72,9 @@ class SecretBackendRoleVhostArgs:
     @property
     @pulumi.getter
     def write(self) -> pulumi.Input[str]:
+        """
+        The write permissions for this vhost.
+        """
         return pulumi.get(self, "write")
 
     @write.setter
@@ -70,6 +88,7 @@ class SecretBackendRoleVhostTopicArgs:
                  host: pulumi.Input[str],
                  vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]] = None):
         """
+        :param pulumi.Input[str] host: The vhost to set permissions for.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         pulumi.set(__self__, "host", host)
@@ -79,6 +98,9 @@ class SecretBackendRoleVhostTopicArgs:
     @property
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
+        """
+        The vhost to set permissions for.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -104,6 +126,11 @@ class SecretBackendRoleVhostTopicVhostArgs:
                  read: pulumi.Input[str],
                  topic: pulumi.Input[str],
                  write: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] read: The read permissions for this vhost.
+        :param pulumi.Input[str] topic: The vhost to set permissions for.
+        :param pulumi.Input[str] write: The write permissions for this vhost.
+        """
         pulumi.set(__self__, "read", read)
         pulumi.set(__self__, "topic", topic)
         pulumi.set(__self__, "write", write)
@@ -111,6 +138,9 @@ class SecretBackendRoleVhostTopicVhostArgs:
     @property
     @pulumi.getter
     def read(self) -> pulumi.Input[str]:
+        """
+        The read permissions for this vhost.
+        """
         return pulumi.get(self, "read")
 
     @read.setter
@@ -120,6 +150,9 @@ class SecretBackendRoleVhostTopicVhostArgs:
     @property
     @pulumi.getter
     def topic(self) -> pulumi.Input[str]:
+        """
+        The vhost to set permissions for.
+        """
         return pulumi.get(self, "topic")
 
     @topic.setter
@@ -129,6 +162,9 @@ class SecretBackendRoleVhostTopicVhostArgs:
     @property
     @pulumi.getter
     def write(self) -> pulumi.Input[str]:
+        """
+        The write permissions for this vhost.
+        """
         return pulumi.get(self, "write")
 
     @write.setter

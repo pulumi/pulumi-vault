@@ -155,8 +155,7 @@ namespace Pulumi.Vault.Saml
         public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Output("tokenNumUses")]
         public Output<int?> TokenNumUses { get; private set; } = null!;
@@ -344,8 +343,7 @@ namespace Pulumi.Vault.Saml
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }
@@ -501,8 +499,7 @@ namespace Pulumi.Vault.Saml
         public Input<bool>? TokenNoDefaultPolicy { get; set; }
 
         /// <summary>
-        /// The [maximum number](https://developer.hashicorp.com/vault/api-docs/auth/saml#token_num_uses)
-        /// of times a generated token may be used (within its lifetime); 0 means unlimited.
+        /// The maximum number of times a token may be used, a value of zero means unlimited
         /// </summary>
         [Input("tokenNumUses")]
         public Input<int>? TokenNumUses { get; set; }

@@ -104,9 +104,17 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.insecureTls);
     }
 
+    /**
+     * Name of the database connection.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return Name of the database connection.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -380,11 +388,23 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
             return insecureTls(Output.of(insecureTls));
         }
 
+        /**
+         * @param name Name of the database connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name of the database connection.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

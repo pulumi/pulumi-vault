@@ -18,6 +18,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// connection.
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
+        /// <summary>
+        /// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        /// </summary>
         public readonly string? AuthType;
         /// <summary>
         /// Specifies the Redshift DSN. 
@@ -44,6 +47,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
+        /// <summary>
+        /// Name of the database connection.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// The root credential password used in the connection URL.
@@ -57,6 +63,9 @@ namespace Pulumi.Vault.Database.Outputs
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
+        /// <summary>
+        /// A JSON encoded credential for use with IAM authorization
+        /// </summary>
         public readonly string? ServiceAccountJson;
         /// <summary>
         /// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.

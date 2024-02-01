@@ -72,6 +72,9 @@ namespace Pulumi.Vault.Managed.Outputs
         /// The AWS access key to use.
         /// </summary>
         public readonly string SecretKey;
+        /// <summary>
+        /// ID of the managed key read from Vault
+        /// </summary>
         public readonly string? Uuid;
 
         [OutputConstructor]

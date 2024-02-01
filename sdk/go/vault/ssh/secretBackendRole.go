@@ -132,8 +132,7 @@ type SecretBackendRole struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// Specifies the duration by which to backdate the ValidAfter property.
-	// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
 	NotBeforeDuration pulumi.StringOutput `pulumi:"notBeforeDuration"`
 	// Specifies the Time To Live value.
 	Ttl pulumi.StringOutput `pulumi:"ttl"`
@@ -235,8 +234,7 @@ type secretBackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Specifies the duration by which to backdate the ValidAfter property.
-	// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// Specifies the Time To Live value.
 	Ttl *string `pulumi:"ttl"`
@@ -303,8 +301,7 @@ type SecretBackendRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Specifies the duration by which to backdate the ValidAfter property.
-	// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
 	NotBeforeDuration pulumi.StringPtrInput
 	// Specifies the Time To Live value.
 	Ttl pulumi.StringPtrInput
@@ -375,8 +372,7 @@ type secretBackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Specifies the duration by which to backdate the ValidAfter property.
-	// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
 	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// Specifies the Time To Live value.
 	Ttl *string `pulumi:"ttl"`
@@ -444,8 +440,7 @@ type SecretBackendRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Specifies the duration by which to backdate the ValidAfter property.
-	// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
 	NotBeforeDuration pulumi.StringPtrInput
 	// Specifies the Time To Live value.
 	Ttl pulumi.StringPtrInput
@@ -675,8 +670,7 @@ func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the duration by which to backdate the ValidAfter property.
-// Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
+// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
 func (o SecretBackendRoleOutput) NotBeforeDuration() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.NotBeforeDuration }).(pulumi.StringOutput)
 }
