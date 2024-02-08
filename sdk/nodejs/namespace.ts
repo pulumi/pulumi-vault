@@ -10,10 +10,14 @@ import * as utilities from "./utilities";
  * Namespaces can be imported using its `name` as accessor id
  *
  * ```sh
- *  $ pulumi import vault:index/namespace:Namespace example <name>
+ * $ pulumi import vault:index/namespace:Namespace example <name>
  * ```
  *
- *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider "vault" {
+ *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
+ *
+ *  hcl
+ *
+ *  provider "vault" {
  *
  * # Configuration options
  *
@@ -21,19 +25,29 @@ import * as utilities from "./utilities";
  *
  *  alias
  *
- *  = "example" } resource "vault_namespace" "example2" {
+ *  = "example"
+ *
+ *  }
+ *
+ *  resource "vault_namespace" "example2" {
  *
  *  provider = vault.example
  *
  *  path
  *
- *  = "example2" }
+ *  = "example2"
+ *
+ *  }
  *
  * ```sh
- *  $ pulumi import vault:index/namespace:Namespace example2 example2
+ * $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  *
- *  $ terraform state show vault_namespace.example2 vault_namespace.example2resource "vault_namespace" "example2" {
+ *  $ terraform state show vault_namespace.example2
+ *
+ *  vault_namespace.example2:
+ *
+ *  resource "vault_namespace" "example2" {
  *
  *  id
  *
@@ -47,7 +61,9 @@ import * as utilities from "./utilities";
  *
  *  path_fq
  *
- * = "example2" }
+ * = "example2"
+ *
+ *  }
  */
 export class Namespace extends pulumi.CustomResource {
     /**

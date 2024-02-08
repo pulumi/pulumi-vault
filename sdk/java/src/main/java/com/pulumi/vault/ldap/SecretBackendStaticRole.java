@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * LDAP secret backend static role can be imported using the full path to the role of the form`&lt;mount_path&gt;/static-role/&lt;role_name&gt;` e.g.
+ * LDAP secret backend static role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/static-role/&lt;role_name&gt;` e.g.
  * 
  * ```sh
  *  $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
