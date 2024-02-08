@@ -110,10 +110,12 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * The Kubernetes secret backend role can be imported using the full path to the role of the form`<backend_path>/roles/<role_name>` e.g.
+ * The Kubernetes secret backend role can be imported using the full path to the role
+ *
+ *  of the form: `<backend_path>/roles/<role_name>` e.g.
  *
  * ```sh
- *  $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
+ * $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
  * ```
  */
 export class SecretBackendRole extends pulumi.CustomResource {

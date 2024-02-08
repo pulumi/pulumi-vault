@@ -22,10 +22,14 @@ import javax.annotation.Nullable;
  * Namespaces can be imported using its `name` as accessor id
  * 
  * ```sh
- *  $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
+ * $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
  * ```
  * 
- *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider &#34;vault&#34; {
+ *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
+ * 
+ *  hcl
+ * 
+ *  provider &#34;vault&#34; {
  * 
  * # Configuration options
  * 
@@ -33,19 +37,29 @@ import javax.annotation.Nullable;
  * 
  *  alias
  * 
- *  = &#34;example&#34; } resource &#34;vault_namespace&#34; &#34;example2&#34; {
+ *  = &#34;example&#34;
+ * 
+ *  }
+ * 
+ *  resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
  *  provider = vault.example
  * 
  *  path
  * 
- *  = &#34;example2&#34; }
+ *  = &#34;example2&#34;
+ * 
+ *  }
  * 
  * ```sh
- *  $ pulumi import vault:index/namespace:Namespace example2 example2
+ * $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  * 
- *  $ terraform state show vault_namespace.example2 vault_namespace.example2resource &#34;vault_namespace&#34; &#34;example2&#34; {
+ *  $ terraform state show vault_namespace.example2
+ * 
+ *  vault_namespace.example2:
+ * 
+ *  resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
  *  id
  * 
@@ -59,7 +73,9 @@ import javax.annotation.Nullable;
  * 
  *  path_fq
  * 
- * = &#34;example2&#34; }
+ * = &#34;example2&#34;
+ * 
+ *  }
  * 
  */
 @ResourceType(type="vault:index/namespace:Namespace")
