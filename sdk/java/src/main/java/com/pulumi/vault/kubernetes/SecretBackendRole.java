@@ -187,10 +187,12 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The Kubernetes secret backend role can be imported using the full path to the role of the form`&lt;backend_path&gt;/roles/&lt;role_name&gt;` e.g.
+ * The Kubernetes secret backend role can be imported using the full path to the role
+ * 
+ *  of the form: `&lt;backend_path&gt;/roles/&lt;role_name&gt;` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
+ * $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
  * ```
  * 
  */

@@ -276,7 +276,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Import
 
-        LDAP secret backend static role can be imported using the full path to the role of the form`<mount_path>/static-role/<role_name>` e.g.
+        LDAP secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-role/<role_name>` e.g.
 
         ```sh
          $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
@@ -327,7 +327,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Import
 
-        LDAP secret backend static role can be imported using the full path to the role of the form`<mount_path>/static-role/<role_name>` e.g.
+        LDAP secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-role/<role_name>` e.g.
 
         ```sh
          $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role

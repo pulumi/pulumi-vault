@@ -15,10 +15,14 @@ namespace Pulumi.Vault
     /// Namespaces can be imported using its `name` as accessor id
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
+    /// $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
     /// ```
     /// 
-    ///  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path. hcl provider "vault" {
+    ///  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
+    /// 
+    ///  hcl
+    /// 
+    ///  provider "vault" {
     /// 
     /// # Configuration options
     /// 
@@ -26,19 +30,29 @@ namespace Pulumi.Vault
     /// 
     ///  alias
     /// 
-    ///  = "example" } resource "vault_namespace" "example2" {
+    ///  = "example"
+    /// 
+    ///  }
+    /// 
+    ///  resource "vault_namespace" "example2" {
     /// 
     ///  provider = vault.example
     /// 
     ///  path
     /// 
-    ///  = "example2" }
+    ///  = "example2"
+    /// 
+    ///  }
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/namespace:Namespace example2 example2
+    /// $ pulumi import vault:index/namespace:Namespace example2 example2
     /// ```
     /// 
-    ///  $ terraform state show vault_namespace.example2 vault_namespace.example2resource "vault_namespace" "example2" {
+    ///  $ terraform state show vault_namespace.example2
+    /// 
+    ///  vault_namespace.example2:
+    /// 
+    ///  resource "vault_namespace" "example2" {
     /// 
     ///  id
     /// 
@@ -52,7 +66,9 @@ namespace Pulumi.Vault
     /// 
     ///  path_fq
     /// 
-    /// = "example2" }
+    /// = "example2"
+    /// 
+    ///  }
     /// </summary>
     [VaultResourceType("vault:index/namespace:Namespace")]
     public partial class Namespace : global::Pulumi.CustomResource
