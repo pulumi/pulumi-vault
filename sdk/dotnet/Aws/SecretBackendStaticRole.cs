@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Aws
     /// 
     /// ## Import
     /// 
-    /// AWS secret backend static role can be imported using the full path to the role of the form`&lt;mount_path&gt;/static-roles/&lt;role_name&gt;` e.g.
+    /// AWS secret backend static role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/static-roles/&lt;role_name&gt;` e.g.
     /// 
     /// ```sh
     ///  $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role

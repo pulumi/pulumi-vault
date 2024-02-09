@@ -234,7 +234,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Import
 
-        AWS secret backend static role can be imported using the full path to the role of the form`<mount_path>/static-roles/<role_name>` e.g.
+        AWS secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-roles/<role_name>` e.g.
 
         ```sh
          $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
@@ -277,7 +277,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Import
 
-        AWS secret backend static role can be imported using the full path to the role of the form`<mount_path>/static-roles/<role_name>` e.g.
+        AWS secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-roles/<role_name>` e.g.
 
         ```sh
          $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role

@@ -32,16 +32,16 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * The group alias can be imported with the group alias `id`, for example
+ * The group alias can be imported with the group alias `id`, for example:
  *
  * ```sh
- *  $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
+ * $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
  * ```
  *
  *  Group aliases can also be imported using the UUID of the alias record, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
+ * $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
  * ```
  */
 export class GroupAlias extends pulumi.CustomResource {
