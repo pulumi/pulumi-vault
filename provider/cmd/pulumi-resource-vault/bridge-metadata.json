@@ -1677,6 +1677,39 @@
                     }
                 }
             },
+            "vault_secrets_sync_association": {
+                "current": "vault:secrets/syncAssociation:SyncAssociation",
+                "majorVersion": 5
+            },
+            "vault_secrets_sync_aws_destination": {
+                "current": "vault:secrets/syncAwsDestination:SyncAwsDestination",
+                "majorVersion": 5
+            },
+            "vault_secrets_sync_azure_destination": {
+                "current": "vault:secrets/syncAzureDestination:SyncAzureDestination",
+                "majorVersion": 5
+            },
+            "vault_secrets_sync_config": {
+                "current": "vault:secrets/syncConfig:SyncConfig",
+                "majorVersion": 5
+            },
+            "vault_secrets_sync_gcp_destination": {
+                "current": "vault:secrets/syncGcpDestination:SyncGcpDestination",
+                "majorVersion": 5
+            },
+            "vault_secrets_sync_gh_destination": {
+                "current": "vault:secrets/syncGhDestination:SyncGhDestination",
+                "majorVersion": 5
+            },
+            "vault_secrets_sync_vercel_destination": {
+                "current": "vault:secrets/syncVercelDestination:SyncVercelDestination",
+                "majorVersion": 5,
+                "fields": {
+                    "deployment_environments": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_ssh_secret_backend_ca": {
                 "current": "vault:ssh/secretBackendCa:SecretBackendCa",
                 "majorVersion": 5
@@ -2269,6 +2302,13 @@
             "vault:rabbitMq/secretBackendRole:SecretBackendRole": "vault_rabbitmq_secret_backend_role",
             "vault:saml/authBackend:AuthBackend": "vault_saml_auth_backend",
             "vault:saml/authBackendRole:AuthBackendRole": "vault_saml_auth_backend_role",
+            "vault:secrets/syncAssociation:SyncAssociation": "vault_secrets_sync_association",
+            "vault:secrets/syncAwsDestination:SyncAwsDestination": "vault_secrets_sync_aws_destination",
+            "vault:secrets/syncAzureDestination:SyncAzureDestination": "vault_secrets_sync_azure_destination",
+            "vault:secrets/syncConfig:SyncConfig": "vault_secrets_sync_config",
+            "vault:secrets/syncGcpDestination:SyncGcpDestination": "vault_secrets_sync_gcp_destination",
+            "vault:secrets/syncGhDestination:SyncGhDestination": "vault_secrets_sync_gh_destination",
+            "vault:secrets/syncVercelDestination:SyncVercelDestination": "vault_secrets_sync_vercel_destination",
             "vault:ssh/secretBackendCa:SecretBackendCa": "vault_ssh_secret_backend_ca",
             "vault:ssh/secretBackendRole:SecretBackendRole": "vault_ssh_secret_backend_role",
             "vault:terraformcloud/secretBackend:SecretBackend": "vault_terraform_cloud_secret_backend",
@@ -2498,7 +2538,11 @@
                 "defaultLeaseTtlSeconds": "default_lease_ttl_seconds",
                 "disableRemount": "disable_remount",
                 "iamEndpoint": "iam_endpoint",
+                "identityTokenAudience": "identity_token_audience",
+                "identityTokenKey": "identity_token_key",
+                "identityTokenTtl": "identity_token_ttl",
                 "maxLeaseTtlSeconds": "max_lease_ttl_seconds",
+                "roleArn": "role_arn",
                 "secretKey": "secret_key",
                 "stsEndpoint": "sts_endpoint",
                 "usernameTemplate": "username_template"
@@ -2765,9 +2809,11 @@
             },
             "vault:database/SecretBackendConnectionOracle:SecretBackendConnectionOracle": {
                 "connectionUrl": "connection_url",
+                "disconnectSessions": "disconnect_sessions",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
+                "splitStatements": "split_statements",
                 "usernameTemplate": "username_template"
             },
             "vault:database/SecretBackendConnectionPostgresql:SecretBackendConnectionPostgresql": {
@@ -2950,11 +2996,13 @@
             "vault:database/SecretsMountOracle:SecretsMountOracle": {
                 "allowedRoles": "allowed_roles",
                 "connectionUrl": "connection_url",
+                "disconnectSessions": "disconnect_sessions",
                 "maxConnectionLifetime": "max_connection_lifetime",
                 "maxIdleConnections": "max_idle_connections",
                 "maxOpenConnections": "max_open_connections",
                 "pluginName": "plugin_name",
                 "rootRotationStatements": "root_rotation_statements",
+                "splitStatements": "split_statements",
                 "usernameTemplate": "username_template",
                 "verifyConnection": "verify_connection"
             },
@@ -4248,6 +4296,45 @@
                 "tokenPolicies": "token_policies",
                 "tokenTtl": "token_ttl",
                 "tokenType": "token_type"
+            },
+            "vault:secrets/syncAssociation:SyncAssociation": {
+                "secretName": "secret_name",
+                "syncStatus": "sync_status",
+                "updatedAt": "updated_at"
+            },
+            "vault:secrets/syncAwsDestination:SyncAwsDestination": {
+                "accessKeyId": "access_key_id",
+                "customTags": "custom_tags",
+                "secretAccessKey": "secret_access_key",
+                "secretNameTemplate": "secret_name_template"
+            },
+            "vault:secrets/syncAzureDestination:SyncAzureDestination": {
+                "clientId": "client_id",
+                "clientSecret": "client_secret",
+                "customTags": "custom_tags",
+                "keyVaultUri": "key_vault_uri",
+                "secretNameTemplate": "secret_name_template",
+                "tenantId": "tenant_id"
+            },
+            "vault:secrets/syncConfig:SyncConfig": {
+                "queueCapacity": "queue_capacity"
+            },
+            "vault:secrets/syncGcpDestination:SyncGcpDestination": {
+                "customTags": "custom_tags",
+                "secretNameTemplate": "secret_name_template"
+            },
+            "vault:secrets/syncGhDestination:SyncGhDestination": {
+                "accessToken": "access_token",
+                "repositoryName": "repository_name",
+                "repositoryOwner": "repository_owner",
+                "secretNameTemplate": "secret_name_template"
+            },
+            "vault:secrets/syncVercelDestination:SyncVercelDestination": {
+                "accessToken": "access_token",
+                "deploymentEnvironments": "deployment_environments",
+                "projectId": "project_id",
+                "secretNameTemplate": "secret_name_template",
+                "teamId": "team_id"
             },
             "vault:ssh/secretBackendCa:SecretBackendCa": {
                 "generateSigningKey": "generate_signing_key",
