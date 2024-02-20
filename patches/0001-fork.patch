@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Ian Wahbe <ian@wahbe.com>
 Date: Fri, 15 Dec 2023 13:32:07 -0800
-Subject: [PATCH] fork
+Subject: [PATCH 1/2] fork
 
 
 diff --git a/go.mod b/go.mod
