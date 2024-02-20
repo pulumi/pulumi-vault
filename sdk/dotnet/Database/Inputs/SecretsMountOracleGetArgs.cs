@@ -47,6 +47,12 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
+        /// Set to true to disconnect any open sessions prior to running the revocation statements.
+        /// </summary>
+        [Input("disconnectSessions")]
+        public Input<bool>? DisconnectSessions { get; set; }
+
+        /// <summary>
         /// The maximum amount of time a connection may be reused.
         /// </summary>
         [Input("maxConnectionLifetime")]
@@ -105,6 +111,12 @@ namespace Pulumi.Vault.Database.Inputs
             get => _rootRotationStatements ?? (_rootRotationStatements = new InputList<string>());
             set => _rootRotationStatements = value;
         }
+
+        /// <summary>
+        /// Set to true in order to split statements after semi-colons.
+        /// </summary>
+        [Input("splitStatements")]
+        public Input<bool>? SplitStatements { get; set; }
 
         /// <summary>
         /// The root credential username used in the connection URL.

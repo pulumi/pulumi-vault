@@ -42,6 +42,7 @@
                 "pkiSecret": "PkiSecret",
                 "rabbitMq": "RabbitMQ",
                 "saml": "Saml",
+                "secrets": "Secrets",
                 "ssh": "Ssh",
                 "terraformcloud": "TerraformCloud",
                 "tokenauth": "TokenAuth",
@@ -1374,6 +1375,10 @@
                     "type": "string",
                     "description": "A URL containing connection information. See\nthe [Vault\ndocs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)\nfor an example.\n"
                 },
+                "disconnectSessions": {
+                    "type": "boolean",
+                    "description": "Enable the built-in session disconnect mechanism.\n"
+                },
                 "maxConnectionLifetime": {
                     "type": "integer",
                     "description": "The maximum number of seconds to keep\na connection alive for.\n"
@@ -1390,6 +1395,10 @@
                     "type": "string",
                     "description": "The password to authenticate with.\n",
                     "secret": true
+                },
+                "splitStatements": {
+                    "type": "boolean",
+                    "description": "Enable spliting statements after semi-colons.\n"
                 },
                 "username": {
                     "type": "string",
@@ -2681,6 +2690,10 @@
                     },
                     "description": "A map of sensitive data to pass to the endpoint. Useful for templated connection strings.\n\nSupported list of database secrets engines that can be configured:\n"
                 },
+                "disconnectSessions": {
+                    "type": "boolean",
+                    "description": "Set to true to disconnect any open sessions prior to running the revocation statements.\n"
+                },
                 "maxConnectionLifetime": {
                     "type": "integer",
                     "description": "The maximum amount of time a connection may be reused.\n"
@@ -2712,6 +2725,10 @@
                         "type": "string"
                     },
                     "description": "A list of database statements to be executed to rotate the root user's credentials.\n"
+                },
+                "splitStatements": {
+                    "type": "boolean",
+                    "description": "Set to true in order to split statements after semi-colons.\n"
                 },
                 "username": {
                     "type": "string",
@@ -7813,9 +7830,21 @@
                     "type": "string",
                     "description": "Specifies a custom HTTP IAM endpoint to use.\n"
                 },
+                "identityTokenAudience": {
+                    "type": "string",
+                    "description": "The audience claim value. Requires Vault 1.16+.\n"
+                },
+                "identityTokenKey": {
+                    "type": "string",
+                    "description": "The key to use for signing identity tokens. Requires Vault 1.16+.\n"
+                },
+                "identityTokenTtl": {
+                    "type": "integer",
+                    "description": "The TTL of generated identity tokens in seconds. Requires Vault 1.16+.\n"
+                },
                 "local": {
                     "type": "boolean",
-                    "description": "Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.\n\n"
+                    "description": "Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.\n"
                 },
                 "maxLeaseTtlSeconds": {
                     "type": "integer",
@@ -7833,6 +7862,10 @@
                     "type": "string",
                     "description": "The AWS region to make API calls against. Defaults to us-east-1.\n"
                 },
+                "roleArn": {
+                    "type": "string",
+                    "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n"
+                },
                 "secretKey": {
                     "type": "string",
                     "description": "The AWS Secret Access Key to use when generating new credentials.\n",
@@ -7849,6 +7882,7 @@
             },
             "required": [
                 "defaultLeaseTtlSeconds",
+                "identityTokenTtl",
                 "maxLeaseTtlSeconds",
                 "region",
                 "usernameTemplate"
@@ -7875,9 +7909,21 @@
                     "type": "string",
                     "description": "Specifies a custom HTTP IAM endpoint to use.\n"
                 },
+                "identityTokenAudience": {
+                    "type": "string",
+                    "description": "The audience claim value. Requires Vault 1.16+.\n"
+                },
+                "identityTokenKey": {
+                    "type": "string",
+                    "description": "The key to use for signing identity tokens. Requires Vault 1.16+.\n"
+                },
+                "identityTokenTtl": {
+                    "type": "integer",
+                    "description": "The TTL of generated identity tokens in seconds. Requires Vault 1.16+.\n"
+                },
                 "local": {
                     "type": "boolean",
-                    "description": "Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.\n\n",
+                    "description": "Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.\n",
                     "willReplaceOnChanges": true
                 },
                 "maxLeaseTtlSeconds": {
@@ -7896,6 +7942,10 @@
                 "region": {
                     "type": "string",
                     "description": "The AWS region to make API calls against. Defaults to us-east-1.\n"
+                },
+                "roleArn": {
+                    "type": "string",
+                    "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n"
                 },
                 "secretKey": {
                     "type": "string",
@@ -7935,9 +7985,21 @@
                         "type": "string",
                         "description": "Specifies a custom HTTP IAM endpoint to use.\n"
                     },
+                    "identityTokenAudience": {
+                        "type": "string",
+                        "description": "The audience claim value. Requires Vault 1.16+.\n"
+                    },
+                    "identityTokenKey": {
+                        "type": "string",
+                        "description": "The key to use for signing identity tokens. Requires Vault 1.16+.\n"
+                    },
+                    "identityTokenTtl": {
+                        "type": "integer",
+                        "description": "The TTL of generated identity tokens in seconds. Requires Vault 1.16+.\n"
+                    },
                     "local": {
                         "type": "boolean",
-                        "description": "Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.\n\n",
+                        "description": "Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.\n",
                         "willReplaceOnChanges": true
                     },
                     "maxLeaseTtlSeconds": {
@@ -7956,6 +8018,10 @@
                     "region": {
                         "type": "string",
                         "description": "The AWS region to make API calls against. Defaults to us-east-1.\n"
+                    },
+                    "roleArn": {
+                        "type": "string",
+                        "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n"
                     },
                     "secretKey": {
                         "type": "string",
@@ -27589,6 +27655,805 @@
                     "tokenType": {
                         "type": "string",
                         "description": "The type of token that should be generated. Can be `service`,\n`batch`, or `default` to use the mount's tuned default (which unless changed will be\n`service` tokens). For token store roles, there are two additional possibilities:\n`default-service` and `default-batch` which specify the type to return unless the client\nrequests a different type at generation time.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncAssociation:SyncAssociation": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst token = new vault.kv.SecretV2(\"token\", {\n    mount: kvv2.path,\n    dataJson: JSON.stringify({\n        dev: \"B!gS3cr3t\",\n        prod: \"S3cureP4$$\",\n    }),\n});\nconst gh = new vault.secrets.SyncGhDestination(\"gh\", {\n    accessToken: _var.access_token,\n    repositoryOwner: _var.repo_owner,\n    repositoryName: \"repo-name-example\",\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n});\nconst ghToken = new vault.secrets.SyncAssociation(\"ghToken\", {\n    type: gh.type,\n    mount: kvv2.path,\n    secretName: token.name,\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\ntoken = vault.kv.SecretV2(\"token\",\n    mount=kvv2.path,\n    data_json=json.dumps({\n        \"dev\": \"B!gS3cr3t\",\n        \"prod\": \"S3cureP4$$\",\n    }))\ngh = vault.secrets.SyncGhDestination(\"gh\",\n    access_token=var[\"access_token\"],\n    repository_owner=var[\"repo_owner\"],\n    repository_name=\"repo-name-example\",\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\ngh_token = vault.secrets.SyncAssociation(\"ghToken\",\n    type=gh.type,\n    mount=kvv2.path,\n    secret_name=token.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var token = new Vault.Kv.SecretV2(\"token\", new()\n    {\n        Mount = kvv2.Path,\n        DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"dev\"] = \"B!gS3cr3t\",\n            [\"prod\"] = \"S3cureP4$$\",\n        }),\n    });\n\n    var gh = new Vault.Secrets.SyncGhDestination(\"gh\", new()\n    {\n        AccessToken = @var.Access_token,\n        RepositoryOwner = @var.Repo_owner,\n        RepositoryName = \"repo-name-example\",\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    });\n\n    var ghToken = new Vault.Secrets.SyncAssociation(\"ghToken\", new()\n    {\n        Type = gh.Type,\n        Mount = kvv2.Path,\n        SecretName = token.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.Map{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"dev\":  \"B!gS3cr3t\",\n\t\t\t\"prod\": \"S3cureP4$$\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttoken, err := kv.NewSecretV2(ctx, \"token\", \u0026kv.SecretV2Args{\n\t\t\tMount:    kvv2.Path,\n\t\t\tDataJson: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgh, err := secrets.NewSyncGhDestination(ctx, \"gh\", \u0026secrets.SyncGhDestinationArgs{\n\t\t\tAccessToken:        pulumi.Any(_var.Access_token),\n\t\t\tRepositoryOwner:    pulumi.Any(_var.Repo_owner),\n\t\t\tRepositoryName:     pulumi.String(\"repo-name-example\"),\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = secrets.NewSyncAssociation(ctx, \"ghToken\", \u0026secrets.SyncAssociationArgs{\n\t\t\tType:       gh.Type,\n\t\t\tMount:      kvv2.Path,\n\t\t\tSecretName: token.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretV2;\nimport com.pulumi.vault.kv.SecretV2Args;\nimport com.pulumi.vault.secrets.SyncGhDestination;\nimport com.pulumi.vault.secrets.SyncGhDestinationArgs;\nimport com.pulumi.vault.secrets.SyncAssociation;\nimport com.pulumi.vault.secrets.SyncAssociationArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var token = new SecretV2(\"token\", SecretV2Args.builder()        \n            .mount(kvv2.path())\n            .dataJson(serializeJson(\n                jsonObject(\n                    jsonProperty(\"dev\", \"B!gS3cr3t\"),\n                    jsonProperty(\"prod\", \"S3cureP4$$\")\n                )))\n            .build());\n\n        var gh = new SyncGhDestination(\"gh\", SyncGhDestinationArgs.builder()        \n            .accessToken(var_.access_token())\n            .repositoryOwner(var_.repo_owner())\n            .repositoryName(\"repo-name-example\")\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .build());\n\n        var ghToken = new SyncAssociation(\"ghToken\", SyncAssociationArgs.builder()        \n            .type(gh.type())\n            .mount(kvv2.path())\n            .secretName(token.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: '2'\n      description: KV Version 2 secret engine mount\n  token:\n    type: vault:kv:SecretV2\n    properties:\n      mount: ${kvv2.path}\n      dataJson:\n        fn::toJSON:\n          dev: B!gS3cr3t\n          prod: S3cureP4$$\n  gh:\n    type: vault:secrets:SyncGhDestination\n    properties:\n      accessToken: ${var.access_token}\n      repositoryOwner: ${var.repo_owner}\n      repositoryName: repo-name-example\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n  ghToken:\n    type: vault:secrets:SyncAssociation\n    properties:\n      type: ${gh.type}\n      mount: ${kvv2.path}\n      secretName: ${token.name}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "mount": {
+                    "type": "string",
+                    "description": "Specifies the mount where the secret is located.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Specifies the name of the destination.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n"
+                },
+                "secretName": {
+                    "type": "string",
+                    "description": "Specifies the name of the secret to synchronize.\n"
+                },
+                "syncStatus": {
+                    "type": "string",
+                    "description": "Specifies the status of the association (for eg. `SYNCED`).\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Specifies the destination type.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Duration string specifying when the secret was last updated.\n"
+                }
+            },
+            "required": [
+                "mount",
+                "name",
+                "secretName",
+                "syncStatus",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "mount": {
+                    "type": "string",
+                    "description": "Specifies the mount where the secret is located.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Specifies the name of the destination.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretName": {
+                    "type": "string",
+                    "description": "Specifies the name of the secret to synchronize.\n",
+                    "willReplaceOnChanges": true
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Specifies the destination type.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "mount",
+                "secretName",
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncAssociation resources.\n",
+                "properties": {
+                    "mount": {
+                        "type": "string",
+                        "description": "Specifies the mount where the secret is located.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Specifies the name of the destination.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretName": {
+                        "type": "string",
+                        "description": "Specifies the name of the secret to synchronize.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "syncStatus": {
+                        "type": "string",
+                        "description": "Specifies the status of the association (for eg. `SYNCED`).\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Specifies the destination type.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Duration string specifying when the secret was last updated.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncAwsDestination:SyncAwsDestination": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst aws = new vault.secrets.SyncAwsDestination(\"aws\", {\n    accessKeyId: _var.access_key_id,\n    secretAccessKey: _var.secret_access_key,\n    region: \"us-east-1\",\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    customTags: {\n        foo: \"bar\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\naws = vault.secrets.SyncAwsDestination(\"aws\",\n    access_key_id=var[\"access_key_id\"],\n    secret_access_key=var[\"secret_access_key\"],\n    region=\"us-east-1\",\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    custom_tags={\n        \"foo\": \"bar\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var aws = new Vault.Secrets.SyncAwsDestination(\"aws\", new()\n    {\n        AccessKeyId = @var.Access_key_id,\n        SecretAccessKey = @var.Secret_access_key,\n        Region = \"us-east-1\",\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n        CustomTags = \n        {\n            { \"foo\", \"bar\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := secrets.NewSyncAwsDestination(ctx, \"aws\", \u0026secrets.SyncAwsDestinationArgs{\n\t\t\tAccessKeyId:        pulumi.Any(_var.Access_key_id),\n\t\t\tSecretAccessKey:    pulumi.Any(_var.Secret_access_key),\n\t\t\tRegion:             pulumi.String(\"us-east-1\"),\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t\tCustomTags: pulumi.Map{\n\t\t\t\t\"foo\": pulumi.Any(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.secrets.SyncAwsDestination;\nimport com.pulumi.vault.secrets.SyncAwsDestinationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var aws = new SyncAwsDestination(\"aws\", SyncAwsDestinationArgs.builder()        \n            .accessKeyId(var_.access_key_id())\n            .secretAccessKey(var_.secret_access_key())\n            .region(\"us-east-1\")\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .customTags(Map.of(\"foo\", \"bar\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  aws:\n    type: vault:secrets:SyncAwsDestination\n    properties:\n      accessKeyId: ${var.access_key_id}\n      secretAccessKey: ${var.secret_access_key}\n      region: us-east-1\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n      customTags:\n        foo: bar\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAWS Secrets sync destinations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest\n```\n ",
+            "properties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "Access key id to authenticate against the AWS secrets manager.\nCan be omitted and directly provided to Vault using the `AWS_ACCESS_KEY_ID` environment\nvariable.\n"
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom tags to set on the secret managed at the destination.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the AWS destination.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region where to manage the secrets manager entries.\nCan be omitted and directly provided to Vault using the `AWS_REGION` environment\nvariable.\n"
+                },
+                "secretAccessKey": {
+                    "type": "string",
+                    "description": "Secret access key to authenticate against the AWS secrets manager.\nCan be omitted and directly provided to Vault using the `AWS_SECRET_ACCESS_KEY` environment\nvariable.\n",
+                    "secret": true
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secrets destination (`aws-sm`).\n"
+                }
+            },
+            "required": [
+                "name",
+                "secretNameTemplate",
+                "type"
+            ],
+            "inputProperties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "Access key id to authenticate against the AWS secrets manager.\nCan be omitted and directly provided to Vault using the `AWS_ACCESS_KEY_ID` environment\nvariable.\n"
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom tags to set on the secret managed at the destination.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the AWS destination.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                    "willReplaceOnChanges": true
+                },
+                "region": {
+                    "type": "string",
+                    "description": "Region where to manage the secrets manager entries.\nCan be omitted and directly provided to Vault using the `AWS_REGION` environment\nvariable.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretAccessKey": {
+                    "type": "string",
+                    "description": "Secret access key to authenticate against the AWS secrets manager.\nCan be omitted and directly provided to Vault using the `AWS_SECRET_ACCESS_KEY` environment\nvariable.\n",
+                    "secret": true
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncAwsDestination resources.\n",
+                "properties": {
+                    "accessKeyId": {
+                        "type": "string",
+                        "description": "Access key id to authenticate against the AWS secrets manager.\nCan be omitted and directly provided to Vault using the `AWS_ACCESS_KEY_ID` environment\nvariable.\n"
+                    },
+                    "customTags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Custom tags to set on the secret managed at the destination.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the AWS destination.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "Region where to manage the secrets manager entries.\nCan be omitted and directly provided to Vault using the `AWS_REGION` environment\nvariable.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretAccessKey": {
+                        "type": "string",
+                        "description": "Secret access key to authenticate against the AWS secrets manager.\nCan be omitted and directly provided to Vault using the `AWS_SECRET_ACCESS_KEY` environment\nvariable.\n",
+                        "secret": true
+                    },
+                    "secretNameTemplate": {
+                        "type": "string",
+                        "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the secrets destination (`aws-sm`).\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncAzureDestination:SyncAzureDestination": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst az = new vault.secrets.SyncAzureDestination(\"az\", {\n    keyVaultUri: _var.key_vault_uri,\n    clientId: _var.client_id,\n    clientSecret: _var.client_secret,\n    tenantId: _var.tenant_id,\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    customTags: {\n        foo: \"bar\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\naz = vault.secrets.SyncAzureDestination(\"az\",\n    key_vault_uri=var[\"key_vault_uri\"],\n    client_id=var[\"client_id\"],\n    client_secret=var[\"client_secret\"],\n    tenant_id=var[\"tenant_id\"],\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    custom_tags={\n        \"foo\": \"bar\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var az = new Vault.Secrets.SyncAzureDestination(\"az\", new()\n    {\n        KeyVaultUri = @var.Key_vault_uri,\n        ClientId = @var.Client_id,\n        ClientSecret = @var.Client_secret,\n        TenantId = @var.Tenant_id,\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n        CustomTags = \n        {\n            { \"foo\", \"bar\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := secrets.NewSyncAzureDestination(ctx, \"az\", \u0026secrets.SyncAzureDestinationArgs{\n\t\t\tKeyVaultUri:        pulumi.Any(_var.Key_vault_uri),\n\t\t\tClientId:           pulumi.Any(_var.Client_id),\n\t\t\tClientSecret:       pulumi.Any(_var.Client_secret),\n\t\t\tTenantId:           pulumi.Any(_var.Tenant_id),\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t\tCustomTags: pulumi.Map{\n\t\t\t\t\"foo\": pulumi.Any(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.secrets.SyncAzureDestination;\nimport com.pulumi.vault.secrets.SyncAzureDestinationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var az = new SyncAzureDestination(\"az\", SyncAzureDestinationArgs.builder()        \n            .keyVaultUri(var_.key_vault_uri())\n            .clientId(var_.client_id())\n            .clientSecret(var_.client_secret())\n            .tenantId(var_.tenant_id())\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .customTags(Map.of(\"foo\", \"bar\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  az:\n    type: vault:secrets:SyncAzureDestination\n    properties:\n      keyVaultUri: ${var.key_vault_uri}\n      clientId: ${var.client_id}\n      clientSecret: ${var.client_secret}\n      tenantId: ${var.tenant_id}\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n      customTags:\n        foo: bar\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAzure Secrets sync destinations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest\n```\n ",
+            "properties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "Client ID of an Azure app registration.\nCan be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment\nvariable.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "Client Secret of an Azure app registration.\nCan be omitted and directly provided to Vault using the `AZURE_CLIENT_SECRET` environment\nvariable.\n",
+                    "secret": true
+                },
+                "cloud": {
+                    "type": "string",
+                    "description": "Specifies a cloud for the client. The default is Azure Public Cloud.\n"
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom tags to set on the secret managed at the destination.\n"
+                },
+                "keyVaultUri": {
+                    "type": "string",
+                    "description": "URI of an existing Azure Key Vault instance.\nCan be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment\nvariable.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the Azure destination.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n"
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "ID of the target Azure tenant.\nCan be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment\nvariable.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secrets destination (`azure-kv`).\n"
+                }
+            },
+            "required": [
+                "name",
+                "secretNameTemplate",
+                "type"
+            ],
+            "inputProperties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "Client ID of an Azure app registration.\nCan be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment\nvariable.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "Client Secret of an Azure app registration.\nCan be omitted and directly provided to Vault using the `AZURE_CLIENT_SECRET` environment\nvariable.\n",
+                    "secret": true
+                },
+                "cloud": {
+                    "type": "string",
+                    "description": "Specifies a cloud for the client. The default is Azure Public Cloud.\n",
+                    "willReplaceOnChanges": true
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom tags to set on the secret managed at the destination.\n"
+                },
+                "keyVaultUri": {
+                    "type": "string",
+                    "description": "URI of an existing Azure Key Vault instance.\nCan be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment\nvariable.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the Azure destination.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "tenantId": {
+                    "type": "string",
+                    "description": "ID of the target Azure tenant.\nCan be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment\nvariable.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncAzureDestination resources.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "Client ID of an Azure app registration.\nCan be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment\nvariable.\n"
+                    },
+                    "clientSecret": {
+                        "type": "string",
+                        "description": "Client Secret of an Azure app registration.\nCan be omitted and directly provided to Vault using the `AZURE_CLIENT_SECRET` environment\nvariable.\n",
+                        "secret": true
+                    },
+                    "cloud": {
+                        "type": "string",
+                        "description": "Specifies a cloud for the client. The default is Azure Public Cloud.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "customTags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Custom tags to set on the secret managed at the destination.\n"
+                    },
+                    "keyVaultUri": {
+                        "type": "string",
+                        "description": "URI of an existing Azure Key Vault instance.\nCan be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment\nvariable.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the Azure destination.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretNameTemplate": {
+                        "type": "string",
+                        "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                    },
+                    "tenantId": {
+                        "type": "string",
+                        "description": "ID of the target Azure tenant.\nCan be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment\nvariable.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the secrets destination (`azure-kv`).\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncConfig:SyncConfig": {
+            "description": "Configures the secret sync global config. \nThe config is global and can only be managed in the root namespace.\n\n\u003e **Important** The config is global so the vault.secrets.SyncConfig resource must not be defined\nmultiple times for the same Vault server. If multiple definition exists, the last one applied will be\neffective.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst globalConfig = new vault.secrets.SyncConfig(\"globalConfig\", {\n    disabled: true,\n    queueCapacity: 500000,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nglobal_config = vault.secrets.SyncConfig(\"globalConfig\",\n    disabled=True,\n    queue_capacity=500000)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var globalConfig = new Vault.Secrets.SyncConfig(\"globalConfig\", new()\n    {\n        Disabled = true,\n        QueueCapacity = 500000,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := secrets.NewSyncConfig(ctx, \"globalConfig\", \u0026secrets.SyncConfigArgs{\n\t\t\tDisabled:      pulumi.Bool(true),\n\t\t\tQueueCapacity: pulumi.Int(500000),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.secrets.SyncConfig;\nimport com.pulumi.vault.secrets.SyncConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var globalConfig = new SyncConfig(\"globalConfig\", SyncConfigArgs.builder()        \n            .disabled(true)\n            .queueCapacity(500000)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  globalConfig:\n    type: vault:secrets:SyncConfig\n    properties:\n      disabled: true\n      queueCapacity: 500000\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n```sh\n $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config\n```\n ",
+            "properties": {
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Disables the syncing process between Vault and external destinations. Defaults to `false`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThis resource can only be configured in the root namespace.\n*Available only for Vault Enterprise*.\n"
+                },
+                "queueCapacity": {
+                    "type": "integer",
+                    "description": "Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.\n"
+                }
+            },
+            "inputProperties": {
+                "disabled": {
+                    "type": "boolean",
+                    "description": "Disables the syncing process between Vault and external destinations. Defaults to `false`.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThis resource can only be configured in the root namespace.\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "queueCapacity": {
+                    "type": "integer",
+                    "description": "Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncConfig resources.\n",
+                "properties": {
+                    "disabled": {
+                        "type": "boolean",
+                        "description": "Disables the syncing process between Vault and external destinations. Defaults to `false`.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThis resource can only be configured in the root namespace.\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "queueCapacity": {
+                        "type": "integer",
+                        "description": "Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncGcpDestination:SyncGcpDestination": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gcp = new vault.secrets.SyncGcpDestination(\"gcp\", {\n    credentials: fs.readFileSync(_var.credentials_file, \"utf8\"),\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    customTags: {\n        foo: \"bar\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngcp = vault.secrets.SyncGcpDestination(\"gcp\",\n    credentials=(lambda path: open(path).read())(var[\"credentials_file\"]),\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    custom_tags={\n        \"foo\": \"bar\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gcp = new Vault.Secrets.SyncGcpDestination(\"gcp\", new()\n    {\n        Credentials = File.ReadAllText(@var.Credentials_file),\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n        CustomTags = \n        {\n            { \"foo\", \"bar\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := secrets.NewSyncGcpDestination(ctx, \"gcp\", \u0026secrets.SyncGcpDestinationArgs{\n\t\t\tCredentials:        readFileOrPanic(_var.Credentials_file),\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t\tCustomTags: pulumi.Map{\n\t\t\t\t\"foo\": pulumi.Any(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.secrets.SyncGcpDestination;\nimport com.pulumi.vault.secrets.SyncGcpDestinationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gcp = new SyncGcpDestination(\"gcp\", SyncGcpDestinationArgs.builder()        \n            .credentials(Files.readString(Paths.get(var_.credentials_file())))\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .customTags(Map.of(\"foo\", \"bar\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  gcp:\n    type: vault:secrets:SyncGcpDestination\n    properties:\n      credentials:\n        fn::readFile: ${var.credentials_file}\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n      customTags:\n        foo: bar\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGCP Secrets sync destinations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest\n```\n ",
+            "properties": {
+                "credentials": {
+                    "type": "string",
+                    "description": "JSON-encoded credentials to use to connect to GCP.\nCan be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment\nvariable.\n",
+                    "secret": true
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom tags to set on the secret managed at the destination.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the GCP destination.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n"
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secrets destination (`gcp-sm`).\n"
+                }
+            },
+            "required": [
+                "name",
+                "secretNameTemplate",
+                "type"
+            ],
+            "inputProperties": {
+                "credentials": {
+                    "type": "string",
+                    "description": "JSON-encoded credentials to use to connect to GCP.\nCan be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment\nvariable.\n",
+                    "secret": true
+                },
+                "customTags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "description": "Custom tags to set on the secret managed at the destination.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the GCP destination.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncGcpDestination resources.\n",
+                "properties": {
+                    "credentials": {
+                        "type": "string",
+                        "description": "JSON-encoded credentials to use to connect to GCP.\nCan be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment\nvariable.\n",
+                        "secret": true
+                    },
+                    "customTags": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "Custom tags to set on the secret managed at the destination.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the GCP destination.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretNameTemplate": {
+                        "type": "string",
+                        "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the secrets destination (`gcp-sm`).\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncGhDestination:SyncGhDestination": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst gh = new vault.secrets.SyncGhDestination(\"gh\", {\n    accessToken: _var.access_token,\n    repositoryOwner: _var.repo_owner,\n    repositoryName: \"repo-name-example\",\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ngh = vault.secrets.SyncGhDestination(\"gh\",\n    access_token=var[\"access_token\"],\n    repository_owner=var[\"repo_owner\"],\n    repository_name=\"repo-name-example\",\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var gh = new Vault.Secrets.SyncGhDestination(\"gh\", new()\n    {\n        AccessToken = @var.Access_token,\n        RepositoryOwner = @var.Repo_owner,\n        RepositoryName = \"repo-name-example\",\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := secrets.NewSyncGhDestination(ctx, \"gh\", \u0026secrets.SyncGhDestinationArgs{\n\t\t\tAccessToken:        pulumi.Any(_var.Access_token),\n\t\t\tRepositoryOwner:    pulumi.Any(_var.Repo_owner),\n\t\t\tRepositoryName:     pulumi.String(\"repo-name-example\"),\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.secrets.SyncGhDestination;\nimport com.pulumi.vault.secrets.SyncGhDestinationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var gh = new SyncGhDestination(\"gh\", SyncGhDestinationArgs.builder()        \n            .accessToken(var_.access_token())\n            .repositoryOwner(var_.repo_owner())\n            .repositoryName(\"repo-name-example\")\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  gh:\n    type: vault:secrets:SyncGhDestination\n    properties:\n      accessToken: ${var.access_token}\n      repositoryOwner: ${var.repo_owner}\n      repositoryName: repo-name-example\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGitHub Secrets sync destinations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest\n```\n ",
+            "properties": {
+                "accessToken": {
+                    "type": "string",
+                    "description": "Fine-grained or personal access token.\nCan be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment\nvariable.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the GitHub destination.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n"
+                },
+                "repositoryName": {
+                    "type": "string",
+                    "description": "Name of the repository.\nCan be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_NAME` environment\nvariable.\n"
+                },
+                "repositoryOwner": {
+                    "type": "string",
+                    "description": "GitHub organization or username that owns the repository.\nCan be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_OWNER` environment\nvariable.\n"
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secrets destination (`gh`).\n"
+                }
+            },
+            "required": [
+                "name",
+                "secretNameTemplate",
+                "type"
+            ],
+            "inputProperties": {
+                "accessToken": {
+                    "type": "string",
+                    "description": "Fine-grained or personal access token.\nCan be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment\nvariable.\n",
+                    "secret": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the GitHub destination.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                    "willReplaceOnChanges": true
+                },
+                "repositoryName": {
+                    "type": "string",
+                    "description": "Name of the repository.\nCan be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_NAME` environment\nvariable.\n",
+                    "willReplaceOnChanges": true
+                },
+                "repositoryOwner": {
+                    "type": "string",
+                    "description": "GitHub organization or username that owns the repository.\nCan be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_OWNER` environment\nvariable.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncGhDestination resources.\n",
+                "properties": {
+                    "accessToken": {
+                        "type": "string",
+                        "description": "Fine-grained or personal access token.\nCan be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment\nvariable.\n",
+                        "secret": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the GitHub destination.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "repositoryName": {
+                        "type": "string",
+                        "description": "Name of the repository.\nCan be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_NAME` environment\nvariable.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "repositoryOwner": {
+                        "type": "string",
+                        "description": "GitHub organization or username that owns the repository.\nCan be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_OWNER` environment\nvariable.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretNameTemplate": {
+                        "type": "string",
+                        "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the secrets destination (`gh`).\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:secrets/syncVercelDestination:SyncVercelDestination": {
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst vercel = new vault.secrets.SyncVercelDestination(\"vercel\", {\n    accessToken: _var.access_token,\n    projectId: _var.project_id,\n    deploymentEnvironments: [\n        \"development\",\n        \"preview\",\n        \"production\",\n    ],\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nvercel = vault.secrets.SyncVercelDestination(\"vercel\",\n    access_token=var[\"access_token\"],\n    project_id=var[\"project_id\"],\n    deployment_environments=[\n        \"development\",\n        \"preview\",\n        \"production\",\n    ],\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vercel = new Vault.Secrets.SyncVercelDestination(\"vercel\", new()\n    {\n        AccessToken = @var.Access_token,\n        ProjectId = @var.Project_id,\n        DeploymentEnvironments = new[]\n        {\n            \"development\",\n            \"preview\",\n            \"production\",\n        },\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := secrets.NewSyncVercelDestination(ctx, \"vercel\", \u0026secrets.SyncVercelDestinationArgs{\n\t\t\tAccessToken: pulumi.Any(_var.Access_token),\n\t\t\tProjectId:   pulumi.Any(_var.Project_id),\n\t\t\tDeploymentEnvironments: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"development\"),\n\t\t\t\tpulumi.String(\"preview\"),\n\t\t\t\tpulumi.String(\"production\"),\n\t\t\t},\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.secrets.SyncVercelDestination;\nimport com.pulumi.vault.secrets.SyncVercelDestinationArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vercel = new SyncVercelDestination(\"vercel\", SyncVercelDestinationArgs.builder()        \n            .accessToken(var_.access_token())\n            .projectId(var_.project_id())\n            .deploymentEnvironments(            \n                \"development\",\n                \"preview\",\n                \"production\")\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vercel:\n    type: vault:secrets:SyncVercelDestination\n    properties:\n      accessToken: ${var.access_token}\n      projectId: ${var.project_id}\n      deploymentEnvironments:\n        - development\n        - preview\n        - production\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nGitHub Secrets sync destinations can be imported using the `name`, e.g.\n\n```sh\n $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest\n```\n ",
+            "properties": {
+                "accessToken": {
+                    "type": "string",
+                    "description": "Vercel API access token with the permissions to manage environment\nvariables.\n",
+                    "secret": true
+                },
+                "deploymentEnvironments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Deployment environments where the environment variables\nare available. Accepts `development`, `preview` and `production`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the GitHub destination.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n"
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Project ID where to manage environment variables.\n"
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "Team ID where to manage environment variables.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the secrets destination (`vercel-project`).\n"
+                }
+            },
+            "required": [
+                "accessToken",
+                "deploymentEnvironments",
+                "name",
+                "projectId",
+                "secretNameTemplate",
+                "type"
+            ],
+            "inputProperties": {
+                "accessToken": {
+                    "type": "string",
+                    "description": "Vercel API access token with the permissions to manage environment\nvariables.\n",
+                    "secret": true
+                },
+                "deploymentEnvironments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Deployment environments where the environment variables\nare available. Accepts `development`, `preview` and `production`.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name of the GitHub destination.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                    "willReplaceOnChanges": true
+                },
+                "projectId": {
+                    "type": "string",
+                    "description": "Project ID where to manage environment variables.\n",
+                    "willReplaceOnChanges": true
+                },
+                "secretNameTemplate": {
+                    "type": "string",
+                    "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "Team ID where to manage environment variables.\n"
+                }
+            },
+            "requiredInputs": [
+                "accessToken",
+                "deploymentEnvironments",
+                "projectId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SyncVercelDestination resources.\n",
+                "properties": {
+                    "accessToken": {
+                        "type": "string",
+                        "description": "Vercel API access token with the permissions to manage environment\nvariables.\n",
+                        "secret": true
+                    },
+                    "deploymentEnvironments": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Deployment environments where the environment variables\nare available. Accepts `development`, `preview` and `production`.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Unique name of the GitHub destination.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "projectId": {
+                        "type": "string",
+                        "description": "Project ID where to manage environment variables.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "secretNameTemplate": {
+                        "type": "string",
+                        "description": "Template describing how to generate external secret names.\nSupports a subset of the Go Template syntax.\n"
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "Team ID where to manage environment variables.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the secrets destination (`vercel-project`).\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"

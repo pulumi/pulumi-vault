@@ -21,6 +21,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
+        /// Enable the built-in session disconnect mechanism.
+        /// </summary>
+        public readonly bool? DisconnectSessions;
+        /// <summary>
         /// The maximum number of seconds to keep
         /// a connection alive for.
         /// </summary>
@@ -40,6 +44,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// Enable spliting statements after semi-colons.
+        /// </summary>
+        public readonly bool? SplitStatements;
+        /// <summary>
         /// The username to authenticate with.
         /// </summary>
         public readonly string? Username;
@@ -52,6 +60,8 @@ namespace Pulumi.Vault.Database.Outputs
         private SecretBackendConnectionOracle(
             string? connectionUrl,
 
+            bool? disconnectSessions,
+
             int? maxConnectionLifetime,
 
             int? maxIdleConnections,
@@ -60,15 +70,19 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            bool? splitStatements,
+
             string? username,
 
             string? usernameTemplate)
         {
             ConnectionUrl = connectionUrl;
+            DisconnectSessions = disconnectSessions;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            SplitStatements = splitStatements;
             Username = username;
             UsernameTemplate = usernameTemplate;
         }

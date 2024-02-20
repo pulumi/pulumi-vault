@@ -30,6 +30,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         /// <summary>
+        /// Set to true to disconnect any open sessions prior to running the revocation statements.
+        /// </summary>
+        public readonly bool? DisconnectSessions;
+        /// <summary>
         /// The maximum amount of time a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
@@ -60,6 +64,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
+        /// Set to true in order to split statements after semi-colons.
+        /// </summary>
+        public readonly bool? SplitStatements;
+        /// <summary>
         /// The root credential username used in the connection URL.
         /// </summary>
         public readonly string? Username;
@@ -81,6 +89,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableDictionary<string, object>? data,
 
+            bool? disconnectSessions,
+
             int? maxConnectionLifetime,
 
             int? maxIdleConnections,
@@ -95,6 +105,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            bool? splitStatements,
+
             string? username,
 
             string? usernameTemplate,
@@ -104,6 +116,7 @@ namespace Pulumi.Vault.Database.Outputs
             AllowedRoles = allowedRoles;
             ConnectionUrl = connectionUrl;
             Data = data;
+            DisconnectSessions = disconnectSessions;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
@@ -111,6 +124,7 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
+            SplitStatements = splitStatements;
             Username = username;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;

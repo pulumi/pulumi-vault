@@ -5,6 +5,7 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -35,6 +36,21 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
      */
     public Optional<Output<String>> connectionUrl() {
         return Optional.ofNullable(this.connectionUrl);
+    }
+
+    /**
+     * Enable the built-in session disconnect mechanism.
+     * 
+     */
+    @Import(name="disconnectSessions")
+    private @Nullable Output<Boolean> disconnectSessions;
+
+    /**
+     * @return Enable the built-in session disconnect mechanism.
+     * 
+     */
+    public Optional<Output<Boolean>> disconnectSessions() {
+        return Optional.ofNullable(this.disconnectSessions);
     }
 
     /**
@@ -104,6 +120,21 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
     }
 
     /**
+     * Enable spliting statements after semi-colons.
+     * 
+     */
+    @Import(name="splitStatements")
+    private @Nullable Output<Boolean> splitStatements;
+
+    /**
+     * @return Enable spliting statements after semi-colons.
+     * 
+     */
+    public Optional<Output<Boolean>> splitStatements() {
+        return Optional.ofNullable(this.splitStatements);
+    }
+
+    /**
      * The username to authenticate with.
      * 
      */
@@ -137,10 +168,12 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
 
     private SecretBackendConnectionOracleArgs(SecretBackendConnectionOracleArgs $) {
         this.connectionUrl = $.connectionUrl;
+        this.disconnectSessions = $.disconnectSessions;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
+        this.splitStatements = $.splitStatements;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
     }
@@ -188,6 +221,27 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
          */
         public Builder connectionUrl(String connectionUrl) {
             return connectionUrl(Output.of(connectionUrl));
+        }
+
+        /**
+         * @param disconnectSessions Enable the built-in session disconnect mechanism.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disconnectSessions(@Nullable Output<Boolean> disconnectSessions) {
+            $.disconnectSessions = disconnectSessions;
+            return this;
+        }
+
+        /**
+         * @param disconnectSessions Enable the built-in session disconnect mechanism.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disconnectSessions(Boolean disconnectSessions) {
+            return disconnectSessions(Output.of(disconnectSessions));
         }
 
         /**
@@ -278,6 +332,27 @@ public final class SecretBackendConnectionOracleArgs extends com.pulumi.resource
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param splitStatements Enable spliting statements after semi-colons.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder splitStatements(@Nullable Output<Boolean> splitStatements) {
+            $.splitStatements = splitStatements;
+            return this;
+        }
+
+        /**
+         * @param splitStatements Enable spliting statements after semi-colons.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder splitStatements(Boolean splitStatements) {
+            return splitStatements(Output.of(splitStatements));
         }
 
         /**

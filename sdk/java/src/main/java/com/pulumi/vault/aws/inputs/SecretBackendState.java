@@ -99,6 +99,51 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * The audience claim value. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="identityTokenAudience")
+    private @Nullable Output<String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudience() {
+        return Optional.ofNullable(this.identityTokenAudience);
+    }
+
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="identityTokenKey")
+    private @Nullable Output<String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing identity tokens. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<String>> identityTokenKey() {
+        return Optional.ofNullable(this.identityTokenKey);
+    }
+
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
+    }
+
+    /**
      * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
      * 
      */
@@ -184,6 +229,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     * 
+     */
+    @Import(name="roleArn")
+    private @Nullable Output<String> roleArn;
+
+    /**
+     * @return Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     * 
+     */
+    public Optional<Output<String>> roleArn() {
+        return Optional.ofNullable(this.roleArn);
+    }
+
+    /**
      * The AWS Secret Access Key to use when generating new credentials.
      * 
      */
@@ -236,11 +296,15 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.iamEndpoint = $.iamEndpoint;
+        this.identityTokenAudience = $.identityTokenAudience;
+        this.identityTokenKey = $.identityTokenKey;
+        this.identityTokenTtl = $.identityTokenTtl;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.namespace = $.namespace;
         this.path = $.path;
         this.region = $.region;
+        this.roleArn = $.roleArn;
         this.secretKey = $.secretKey;
         this.stsEndpoint = $.stsEndpoint;
         this.usernameTemplate = $.usernameTemplate;
@@ -376,6 +440,69 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
+         * @param identityTokenAudience The audience claim value. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(@Nullable Output<String> identityTokenAudience) {
+            $.identityTokenAudience = identityTokenAudience;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(String identityTokenAudience) {
+            return identityTokenAudience(Output.of(identityTokenAudience));
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing identity tokens. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(@Nullable Output<String> identityTokenKey) {
+            $.identityTokenKey = identityTokenKey;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing identity tokens. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(String identityTokenKey) {
+            return identityTokenKey(Output.of(identityTokenKey));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
+        }
+
+        /**
          * @param local Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
          * 
          * @return builder
@@ -488,6 +615,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param roleArn Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleArn(@Nullable Output<String> roleArn) {
+            $.roleArn = roleArn;
+            return this;
+        }
+
+        /**
+         * @param roleArn Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleArn(String roleArn) {
+            return roleArn(Output.of(roleArn));
         }
 
         /**

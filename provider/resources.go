@@ -63,6 +63,7 @@ const (
 	pkiSecretMod      = "PkiSecret"
 	rabbitMqMod       = "RabbitMQ"
 	samlMod           = "Saml"
+	secretsMod        = "Secrets"
 	sshMod            = "Ssh"
 	terraformCloudMod = "TerraformCloud"
 	tokenMod          = "TokenAuth"
@@ -93,6 +94,7 @@ var moduleMap = map[string]string{
 	"pki_secret":      pkiSecretMod,
 	"rabbitmq":        rabbitMqMod,
 	"saml":            samlMod,
+	"secrets":         secretsMod,
 	"ssh":             sshMod,
 	"terraform_cloud": terraformCloudMod,
 	"token":           tokenMod,
