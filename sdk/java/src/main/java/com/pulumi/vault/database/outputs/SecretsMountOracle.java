@@ -37,6 +37,11 @@ public final class SecretsMountOracle {
      */
     private @Nullable Map<String,Object> data;
     /**
+     * @return Set to true to disconnect any open sessions prior to running the revocation statements.
+     * 
+     */
+    private @Nullable Boolean disconnectSessions;
+    /**
      * @return The maximum amount of time a connection may be reused.
      * 
      */
@@ -73,6 +78,11 @@ public final class SecretsMountOracle {
      * 
      */
     private @Nullable List<String> rootRotationStatements;
+    /**
+     * @return Set to true in order to split statements after semi-colons.
+     * 
+     */
+    private @Nullable Boolean splitStatements;
     /**
      * @return The root credential username used in the connection URL.
      * 
@@ -115,6 +125,13 @@ public final class SecretsMountOracle {
      */
     public Map<String,Object> data() {
         return this.data == null ? Map.of() : this.data;
+    }
+    /**
+     * @return Set to true to disconnect any open sessions prior to running the revocation statements.
+     * 
+     */
+    public Optional<Boolean> disconnectSessions() {
+        return Optional.ofNullable(this.disconnectSessions);
     }
     /**
      * @return The maximum amount of time a connection may be reused.
@@ -168,6 +185,13 @@ public final class SecretsMountOracle {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
+     * @return Set to true in order to split statements after semi-colons.
+     * 
+     */
+    public Optional<Boolean> splitStatements() {
+        return Optional.ofNullable(this.splitStatements);
+    }
+    /**
      * @return The root credential username used in the connection URL.
      * 
      */
@@ -202,6 +226,7 @@ public final class SecretsMountOracle {
         private @Nullable List<String> allowedRoles;
         private @Nullable String connectionUrl;
         private @Nullable Map<String,Object> data;
+        private @Nullable Boolean disconnectSessions;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
@@ -209,6 +234,7 @@ public final class SecretsMountOracle {
         private @Nullable String password;
         private @Nullable String pluginName;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable Boolean splitStatements;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         private @Nullable Boolean verifyConnection;
@@ -218,6 +244,7 @@ public final class SecretsMountOracle {
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.connectionUrl = defaults.connectionUrl;
     	      this.data = defaults.data;
+    	      this.disconnectSessions = defaults.disconnectSessions;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
@@ -225,6 +252,7 @@ public final class SecretsMountOracle {
     	      this.password = defaults.password;
     	      this.pluginName = defaults.pluginName;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.splitStatements = defaults.splitStatements;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
     	      this.verifyConnection = defaults.verifyConnection;
@@ -249,6 +277,12 @@ public final class SecretsMountOracle {
         public Builder data(@Nullable Map<String,Object> data) {
 
             this.data = data;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disconnectSessions(@Nullable Boolean disconnectSessions) {
+
+            this.disconnectSessions = disconnectSessions;
             return this;
         }
         @CustomType.Setter
@@ -299,6 +333,12 @@ public final class SecretsMountOracle {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder splitStatements(@Nullable Boolean splitStatements) {
+
+            this.splitStatements = splitStatements;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -321,6 +361,7 @@ public final class SecretsMountOracle {
             _resultValue.allowedRoles = allowedRoles;
             _resultValue.connectionUrl = connectionUrl;
             _resultValue.data = data;
+            _resultValue.disconnectSessions = disconnectSessions;
             _resultValue.maxConnectionLifetime = maxConnectionLifetime;
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
@@ -328,6 +369,7 @@ public final class SecretsMountOracle {
             _resultValue.password = password;
             _resultValue.pluginName = pluginName;
             _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.splitStatements = splitStatements;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             _resultValue.verifyConnection = verifyConnection;

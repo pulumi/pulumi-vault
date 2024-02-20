@@ -36,6 +36,12 @@ type SecretBackend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrOutput `pulumi:"iamEndpoint"`
+	// The audience claim value. Requires Vault 1.16+.
+	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
+	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
 	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
@@ -51,6 +57,8 @@ type SecretBackend struct {
 	Path pulumi.StringPtrOutput `pulumi:"path"`
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+	RoleArn pulumi.StringPtrOutput `pulumi:"roleArn"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -113,6 +121,12 @@ type secretBackendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
+	// The audience claim value. Requires Vault 1.16+.
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
@@ -128,6 +142,8 @@ type secretBackendState struct {
 	Path *string `pulumi:"path"`
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region *string `pulumi:"region"`
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+	RoleArn *string `pulumi:"roleArn"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -150,6 +166,12 @@ type SecretBackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
+	// The audience claim value. Requires Vault 1.16+.
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
@@ -165,6 +187,8 @@ type SecretBackendState struct {
 	Path pulumi.StringPtrInput
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringPtrInput
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+	RoleArn pulumi.StringPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
@@ -191,6 +215,12 @@ type secretBackendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint *string `pulumi:"iamEndpoint"`
+	// The audience claim value. Requires Vault 1.16+.
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
@@ -206,6 +236,8 @@ type secretBackendArgs struct {
 	Path *string `pulumi:"path"`
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region *string `pulumi:"region"`
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+	RoleArn *string `pulumi:"roleArn"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -229,6 +261,12 @@ type SecretBackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Specifies a custom HTTP IAM endpoint to use.
 	IamEndpoint pulumi.StringPtrInput
+	// The audience claim value. Requires Vault 1.16+.
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing identity tokens. Requires Vault 1.16+.
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
@@ -244,6 +282,8 @@ type SecretBackendArgs struct {
 	Path pulumi.StringPtrInput
 	// The AWS region to make API calls against. Defaults to us-east-1.
 	Region pulumi.StringPtrInput
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+	RoleArn pulumi.StringPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
@@ -367,6 +407,21 @@ func (o SecretBackendOutput) IamEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IamEndpoint }).(pulumi.StringPtrOutput)
 }
 
+// The audience claim value. Requires Vault 1.16+.
+func (o SecretBackendOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
+}
+
+// The key to use for signing identity tokens. Requires Vault 1.16+.
+func (o SecretBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
+// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+func (o SecretBackendOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
+}
+
 // Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
@@ -395,6 +450,11 @@ func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
 // The AWS region to make API calls against. Defaults to us-east-1.
 func (o SecretBackendOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+func (o SecretBackendOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.RoleArn }).(pulumi.StringPtrOutput)
 }
 
 // The AWS Secret Access Key to use when generating new credentials.

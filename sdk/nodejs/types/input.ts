@@ -1109,6 +1109,10 @@ export namespace database {
          */
         connectionUrl?: pulumi.Input<string>;
         /**
+         * Enable the built-in session disconnect mechanism.
+         */
+        disconnectSessions?: pulumi.Input<boolean>;
+        /**
          * The maximum number of seconds to keep
          * a connection alive for.
          */
@@ -1127,6 +1131,10 @@ export namespace database {
          * The password to authenticate with.
          */
         password?: pulumi.Input<string>;
+        /**
+         * Enable spliting statements after semi-colons.
+         */
+        splitStatements?: pulumi.Input<boolean>;
         /**
          * The username to authenticate with.
          */
@@ -2172,6 +2180,10 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
+         * Set to true to disconnect any open sessions prior to running the revocation statements.
+         */
+        disconnectSessions?: pulumi.Input<boolean>;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
@@ -2201,6 +2213,10 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Set to true in order to split statements after semi-colons.
+         */
+        splitStatements?: pulumi.Input<boolean>;
         /**
          * The root credential username used in the connection URL.
          */

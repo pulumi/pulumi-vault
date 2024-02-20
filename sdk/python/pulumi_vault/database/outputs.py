@@ -1865,12 +1865,16 @@ class SecretBackendConnectionOracle(dict):
         suggest = None
         if key == "connectionUrl":
             suggest = "connection_url"
+        elif key == "disconnectSessions":
+            suggest = "disconnect_sessions"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
         elif key == "maxIdleConnections":
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "splitStatements":
+            suggest = "split_statements"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -1887,10 +1891,12 @@ class SecretBackendConnectionOracle(dict):
 
     def __init__(__self__, *,
                  connection_url: Optional[str] = None,
+                 disconnect_sessions: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 split_statements: Optional[bool] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
@@ -1898,6 +1904,7 @@ class SecretBackendConnectionOracle(dict):
                the [Vault
                docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
                for an example.
+        :param bool disconnect_sessions: Enable the built-in session disconnect mechanism.
         :param int max_connection_lifetime: The maximum number of seconds to keep
                a connection alive for.
         :param int max_idle_connections: The maximum number of idle connections to
@@ -1905,11 +1912,14 @@ class SecretBackendConnectionOracle(dict):
         :param int max_open_connections: The maximum number of open connections to
                use.
         :param str password: The password to authenticate with.
+        :param bool split_statements: Enable spliting statements after semi-colons.
         :param str username: The username to authenticate with.
         :param str username_template: Template describing how dynamic usernames are generated.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
+        if disconnect_sessions is not None:
+            pulumi.set(__self__, "disconnect_sessions", disconnect_sessions)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -1918,6 +1928,8 @@ class SecretBackendConnectionOracle(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if split_statements is not None:
+            pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -1933,6 +1945,14 @@ class SecretBackendConnectionOracle(dict):
         for an example.
         """
         return pulumi.get(self, "connection_url")
+
+    @property
+    @pulumi.getter(name="disconnectSessions")
+    def disconnect_sessions(self) -> Optional[bool]:
+        """
+        Enable the built-in session disconnect mechanism.
+        """
+        return pulumi.get(self, "disconnect_sessions")
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -1968,6 +1988,14 @@ class SecretBackendConnectionOracle(dict):
         The password to authenticate with.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="splitStatements")
+    def split_statements(self) -> Optional[bool]:
+        """
+        Enable spliting statements after semi-colons.
+        """
+        return pulumi.get(self, "split_statements")
 
     @property
     @pulumi.getter
@@ -5412,6 +5440,8 @@ class SecretsMountOracle(dict):
             suggest = "allowed_roles"
         elif key == "connectionUrl":
             suggest = "connection_url"
+        elif key == "disconnectSessions":
+            suggest = "disconnect_sessions"
         elif key == "maxConnectionLifetime":
             suggest = "max_connection_lifetime"
         elif key == "maxIdleConnections":
@@ -5422,6 +5452,8 @@ class SecretsMountOracle(dict):
             suggest = "plugin_name"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "splitStatements":
+            suggest = "split_statements"
         elif key == "usernameTemplate":
             suggest = "username_template"
         elif key == "verifyConnection":
@@ -5443,12 +5475,14 @@ class SecretsMountOracle(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
                  data: Optional[Mapping[str, Any]] = None,
+                 disconnect_sessions: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 split_statements: Optional[bool] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -5461,6 +5495,7 @@ class SecretsMountOracle(dict):
         :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
+        :param bool disconnect_sessions: Set to true to disconnect any open sessions prior to running the revocation statements.
         :param int max_connection_lifetime: The maximum amount of time a connection may be reused.
         :param int max_idle_connections: The maximum number of idle connections to
                the database.
@@ -5469,6 +5504,7 @@ class SecretsMountOracle(dict):
         :param str password: The root credential password used in the connection URL.
         :param str plugin_name: Specifies the name of the plugin to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool split_statements: Set to true in order to split statements after semi-colons.
         :param str username: The root credential username used in the connection URL.
         :param str username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
         :param bool verify_connection: Whether the connection should be verified on
@@ -5481,6 +5517,8 @@ class SecretsMountOracle(dict):
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disconnect_sessions is not None:
+            pulumi.set(__self__, "disconnect_sessions", disconnect_sessions)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -5493,6 +5531,8 @@ class SecretsMountOracle(dict):
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if split_statements is not None:
+            pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -5535,6 +5575,14 @@ class SecretsMountOracle(dict):
         Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter(name="disconnectSessions")
+    def disconnect_sessions(self) -> Optional[bool]:
+        """
+        Set to true to disconnect any open sessions prior to running the revocation statements.
+        """
+        return pulumi.get(self, "disconnect_sessions")
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -5585,6 +5633,14 @@ class SecretsMountOracle(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="splitStatements")
+    def split_statements(self) -> Optional[bool]:
+        """
+        Set to true in order to split statements after semi-colons.
+        """
+        return pulumi.get(self, "split_statements")
 
     @property
     @pulumi.getter

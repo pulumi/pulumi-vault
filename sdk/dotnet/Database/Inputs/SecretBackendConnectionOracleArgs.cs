@@ -22,6 +22,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? ConnectionUrl { get; set; }
 
         /// <summary>
+        /// Enable the built-in session disconnect mechanism.
+        /// </summary>
+        [Input("disconnectSessions")]
+        public Input<bool>? DisconnectSessions { get; set; }
+
+        /// <summary>
         /// The maximum number of seconds to keep
         /// a connection alive for.
         /// </summary>
@@ -57,6 +63,12 @@ namespace Pulumi.Vault.Database.Inputs
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Enable spliting statements after semi-colons.
+        /// </summary>
+        [Input("splitStatements")]
+        public Input<bool>? SplitStatements { get; set; }
 
         /// <summary>
         /// The username to authenticate with.

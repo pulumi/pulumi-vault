@@ -19,11 +19,15 @@ class SecretBackendArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
@@ -37,6 +41,9 @@ class SecretBackendArgs:
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.16+.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.16+.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
         :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
@@ -47,6 +54,7 @@ class SecretBackendArgs:
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -61,6 +69,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if iam_endpoint is not None:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -71,6 +85,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "path", path)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -142,6 +158,42 @@ class SecretBackendArgs:
         pulumi.set(self, "iam_endpoint", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing identity tokens. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -205,6 +257,18 @@ class SecretBackendArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -251,11 +315,15 @@ class _SecretBackendState:
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
@@ -269,6 +337,9 @@ class _SecretBackendState:
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.16+.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.16+.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
         :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
@@ -279,6 +350,7 @@ class _SecretBackendState:
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -293,6 +365,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if iam_endpoint is not None:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -303,6 +381,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "path", path)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -374,6 +454,42 @@ class _SecretBackendState:
         pulumi.set(self, "iam_endpoint", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing identity tokens. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
     @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -437,6 +553,18 @@ class _SecretBackendState:
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -485,11 +613,15 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
@@ -513,6 +645,9 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.16+.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.16+.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
         :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
@@ -523,6 +658,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -562,11 +698,15 @@ class SecretBackend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
@@ -584,11 +724,15 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["iam_endpoint"] = iam_endpoint
+            __props__.__dict__["identity_token_audience"] = identity_token_audience
+            __props__.__dict__["identity_token_key"] = identity_token_key
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
             __props__.__dict__["region"] = region
+            __props__.__dict__["role_arn"] = role_arn
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["username_template"] = username_template
@@ -609,11 +753,15 @@ class SecretBackend(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             iam_endpoint: Optional[pulumi.Input[str]] = None,
+            identity_token_audience: Optional[pulumi.Input[str]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
+            identity_token_ttl: Optional[pulumi.Input[int]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            role_arn: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             sts_endpoint: Optional[pulumi.Input[str]] = None,
             username_template: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
@@ -632,6 +780,9 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.16+.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.16+.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
         :param pulumi.Input[bool] local: Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend.
@@ -642,6 +793,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -655,11 +807,15 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["iam_endpoint"] = iam_endpoint
+        __props__.__dict__["identity_token_audience"] = identity_token_audience
+        __props__.__dict__["identity_token_key"] = identity_token_key
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["region"] = region
+        __props__.__dict__["role_arn"] = role_arn
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["username_template"] = username_template
@@ -709,6 +865,30 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "iam_endpoint")
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        The audience claim value. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing identity tokens. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[int]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @property
     @pulumi.getter
     def local(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -752,6 +932,14 @@ class SecretBackend(pulumi.CustomResource):
         The AWS region to make API calls against. Defaults to us-east-1.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> pulumi.Output[Optional[str]]:
+        """
+        Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        """
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="secretKey")

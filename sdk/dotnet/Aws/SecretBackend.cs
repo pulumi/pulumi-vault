@@ -55,6 +55,24 @@ namespace Pulumi.Vault.Aws
         public Output<string?> IamEndpoint { get; private set; } = null!;
 
         /// <summary>
+        /// The audience claim value. Requires Vault 1.16+.
+        /// </summary>
+        [Output("identityTokenAudience")]
+        public Output<string?> IdentityTokenAudience { get; private set; } = null!;
+
+        /// <summary>
+        /// The key to use for signing identity tokens. Requires Vault 1.16+.
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int> IdentityTokenTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         /// </summary>
         [Output("local")]
@@ -88,6 +106,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        /// </summary>
+        [Output("roleArn")]
+        public Output<string?> RoleArn { get; private set; } = null!;
 
         /// <summary>
         /// The AWS Secret Access Key to use when generating new credentials.
@@ -202,6 +226,24 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamEndpoint { get; set; }
 
         /// <summary>
+        /// The audience claim value. Requires Vault 1.16+.
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The key to use for signing identity tokens. Requires Vault 1.16+.
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
         /// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         /// </summary>
         [Input("local")]
@@ -235,6 +277,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        /// </summary>
+        [Input("roleArn")]
+        public Input<string>? RoleArn { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;
@@ -316,6 +364,24 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamEndpoint { get; set; }
 
         /// <summary>
+        /// The audience claim value. Requires Vault 1.16+.
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The key to use for signing identity tokens. Requires Vault 1.16+.
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
         /// Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
         /// </summary>
         [Input("local")]
@@ -349,6 +415,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        /// </summary>
+        [Input("roleArn")]
+        public Input<string>? RoleArn { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;

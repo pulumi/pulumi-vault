@@ -83,6 +83,8 @@ if typing.TYPE_CHECKING:
     rabbitmq = __rabbitmq
     import pulumi_vault.saml as __saml
     saml = __saml
+    import pulumi_vault.secrets as __secrets
+    secrets = __secrets
     import pulumi_vault.ssh as __ssh
     ssh = __ssh
     import pulumi_vault.terraformcloud as __terraformcloud
@@ -117,6 +119,7 @@ else:
     pkisecret = _utilities.lazy_import('pulumi_vault.pkisecret')
     rabbitmq = _utilities.lazy_import('pulumi_vault.rabbitmq')
     saml = _utilities.lazy_import('pulumi_vault.saml')
+    secrets = _utilities.lazy_import('pulumi_vault.secrets')
     ssh = _utilities.lazy_import('pulumi_vault.ssh')
     terraformcloud = _utilities.lazy_import('pulumi_vault.terraformcloud')
     tokenauth = _utilities.lazy_import('pulumi_vault.tokenauth')
@@ -1116,6 +1119,62 @@ _utilities.register(
   "fqn": "pulumi_vault.saml",
   "classes": {
    "vault:saml/authBackendRole:AuthBackendRole": "AuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncAssociation",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncAssociation:SyncAssociation": "SyncAssociation"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncAwsDestination",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncAwsDestination:SyncAwsDestination": "SyncAwsDestination"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncAzureDestination",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncAzureDestination:SyncAzureDestination": "SyncAzureDestination"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncConfig",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncConfig:SyncConfig": "SyncConfig"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncGcpDestination",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncGcpDestination:SyncGcpDestination": "SyncGcpDestination"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncGhDestination",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncGhDestination:SyncGhDestination": "SyncGhDestination"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncVercelDestination",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncVercelDestination:SyncVercelDestination": "SyncVercelDestination"
   }
  },
  {

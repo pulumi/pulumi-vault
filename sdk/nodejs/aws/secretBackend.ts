@@ -65,6 +65,18 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly iamEndpoint!: pulumi.Output<string | undefined>;
     /**
+     * The audience claim value. Requires Vault 1.16+.
+     */
+    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.16+.
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     */
+    public readonly identityTokenTtl!: pulumi.Output<number>;
+    /**
      * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
@@ -89,6 +101,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * The AWS region to make API calls against. Defaults to us-east-1.
      */
     public readonly region!: pulumi.Output<string>;
+    /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     */
+    public readonly roleArn!: pulumi.Output<string | undefined>;
     /**
      * The AWS Secret Access Key to use when generating new credentials.
      */
@@ -120,11 +136,15 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["iamEndpoint"] = state ? state.iamEndpoint : undefined;
+            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["roleArn"] = state ? state.roleArn : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
             resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
@@ -135,11 +155,15 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["iamEndpoint"] = args ? args.iamEndpoint : undefined;
+            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["roleArn"] = args ? args.roleArn : undefined;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
             resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
@@ -179,6 +203,18 @@ export interface SecretBackendState {
      */
     iamEndpoint?: pulumi.Input<string>;
     /**
+     * The audience claim value. Requires Vault 1.16+.
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.16+.
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
      */
     local?: pulumi.Input<boolean>;
@@ -203,6 +239,10 @@ export interface SecretBackendState {
      * The AWS region to make API calls against. Defaults to us-east-1.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     */
+    roleArn?: pulumi.Input<string>;
     /**
      * The AWS Secret Access Key to use when generating new credentials.
      */
@@ -245,6 +285,18 @@ export interface SecretBackendArgs {
      */
     iamEndpoint?: pulumi.Input<string>;
     /**
+     * The audience claim value. Requires Vault 1.16+.
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.16+.
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
      */
     local?: pulumi.Input<boolean>;
@@ -269,6 +321,10 @@ export interface SecretBackendArgs {
      * The AWS region to make API calls against. Defaults to us-east-1.
      */
     region?: pulumi.Input<string>;
+    /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     */
+    roleArn?: pulumi.Input<string>;
     /**
      * The AWS Secret Access Key to use when generating new credentials.
      */

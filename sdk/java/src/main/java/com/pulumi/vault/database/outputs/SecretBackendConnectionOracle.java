@@ -4,6 +4,7 @@
 package com.pulumi.vault.database.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -20,6 +21,11 @@ public final class SecretBackendConnectionOracle {
      * 
      */
     private @Nullable String connectionUrl;
+    /**
+     * @return Enable the built-in session disconnect mechanism.
+     * 
+     */
+    private @Nullable Boolean disconnectSessions;
     /**
      * @return The maximum number of seconds to keep
      * a connection alive for.
@@ -44,6 +50,11 @@ public final class SecretBackendConnectionOracle {
      */
     private @Nullable String password;
     /**
+     * @return Enable spliting statements after semi-colons.
+     * 
+     */
+    private @Nullable Boolean splitStatements;
+    /**
      * @return The username to authenticate with.
      * 
      */
@@ -64,6 +75,13 @@ public final class SecretBackendConnectionOracle {
      */
     public Optional<String> connectionUrl() {
         return Optional.ofNullable(this.connectionUrl);
+    }
+    /**
+     * @return Enable the built-in session disconnect mechanism.
+     * 
+     */
+    public Optional<Boolean> disconnectSessions() {
+        return Optional.ofNullable(this.disconnectSessions);
     }
     /**
      * @return The maximum number of seconds to keep
@@ -97,6 +115,13 @@ public final class SecretBackendConnectionOracle {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return Enable spliting statements after semi-colons.
+     * 
+     */
+    public Optional<Boolean> splitStatements() {
+        return Optional.ofNullable(this.splitStatements);
+    }
+    /**
      * @return The username to authenticate with.
      * 
      */
@@ -121,20 +146,24 @@ public final class SecretBackendConnectionOracle {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String connectionUrl;
+        private @Nullable Boolean disconnectSessions;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable Boolean splitStatements;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         public Builder() {}
         public Builder(SecretBackendConnectionOracle defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionUrl = defaults.connectionUrl;
+    	      this.disconnectSessions = defaults.disconnectSessions;
     	      this.maxConnectionLifetime = defaults.maxConnectionLifetime;
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.splitStatements = defaults.splitStatements;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
@@ -143,6 +172,12 @@ public final class SecretBackendConnectionOracle {
         public Builder connectionUrl(@Nullable String connectionUrl) {
 
             this.connectionUrl = connectionUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disconnectSessions(@Nullable Boolean disconnectSessions) {
+
+            this.disconnectSessions = disconnectSessions;
             return this;
         }
         @CustomType.Setter
@@ -170,6 +205,12 @@ public final class SecretBackendConnectionOracle {
             return this;
         }
         @CustomType.Setter
+        public Builder splitStatements(@Nullable Boolean splitStatements) {
+
+            this.splitStatements = splitStatements;
+            return this;
+        }
+        @CustomType.Setter
         public Builder username(@Nullable String username) {
 
             this.username = username;
@@ -184,10 +225,12 @@ public final class SecretBackendConnectionOracle {
         public SecretBackendConnectionOracle build() {
             final var _resultValue = new SecretBackendConnectionOracle();
             _resultValue.connectionUrl = connectionUrl;
+            _resultValue.disconnectSessions = disconnectSessions;
             _resultValue.maxConnectionLifetime = maxConnectionLifetime;
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.splitStatements = splitStatements;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             return _resultValue;

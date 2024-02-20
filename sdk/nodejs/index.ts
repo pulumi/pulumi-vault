@@ -165,6 +165,7 @@ import * as okta from "./okta";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
 import * as saml from "./saml";
+import * as secrets from "./secrets";
 import * as ssh from "./ssh";
 import * as terraformcloud from "./terraformcloud";
 import * as tokenauth from "./tokenauth";
@@ -196,6 +197,7 @@ export {
     pkisecret,
     rabbitmq,
     saml,
+    secrets,
     ssh,
     terraformcloud,
     tokenauth,

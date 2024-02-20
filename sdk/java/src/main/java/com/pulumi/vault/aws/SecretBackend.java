@@ -106,6 +106,48 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.iamEndpoint);
     }
     /**
+     * The audience claim value. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="identityTokenAudience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudience() {
+        return Codegen.optional(this.identityTokenAudience);
+    }
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing identity tokens. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Integer> identityTokenTtl() {
+        return this.identityTokenTtl;
+    }
+    /**
      * Specifies whether the secrets mount will be marked as local. Local mounts are not replicated to performance replicas.
      * 
      */
@@ -184,6 +226,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> region() {
         return this.region;
+    }
+    /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     * 
+     */
+    @Export(name="roleArn", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> roleArn;
+
+    /**
+     * @return Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     * 
+     */
+    public Output<Optional<String>> roleArn() {
+        return Codegen.optional(this.roleArn);
     }
     /**
      * The AWS Secret Access Key to use when generating new credentials.

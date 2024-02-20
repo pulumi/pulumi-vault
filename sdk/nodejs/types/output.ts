@@ -1054,6 +1054,10 @@ export namespace database {
          */
         connectionUrl?: string;
         /**
+         * Enable the built-in session disconnect mechanism.
+         */
+        disconnectSessions?: boolean;
+        /**
          * The maximum number of seconds to keep
          * a connection alive for.
          */
@@ -1072,6 +1076,10 @@ export namespace database {
          * The password to authenticate with.
          */
         password?: string;
+        /**
+         * Enable spliting statements after semi-colons.
+         */
+        splitStatements?: boolean;
         /**
          * The username to authenticate with.
          */
@@ -2117,6 +2125,10 @@ export namespace database {
          */
         data?: {[key: string]: any};
         /**
+         * Set to true to disconnect any open sessions prior to running the revocation statements.
+         */
+        disconnectSessions?: boolean;
+        /**
          * The maximum amount of time a connection may be reused.
          */
         maxConnectionLifetime?: number;
@@ -2146,6 +2158,10 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * Set to true in order to split statements after semi-colons.
+         */
+        splitStatements?: boolean;
         /**
          * The root credential username used in the connection URL.
          */

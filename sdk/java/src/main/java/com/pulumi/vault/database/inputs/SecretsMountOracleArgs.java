@@ -75,6 +75,21 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Set to true to disconnect any open sessions prior to running the revocation statements.
+     * 
+     */
+    @Import(name="disconnectSessions")
+    private @Nullable Output<Boolean> disconnectSessions;
+
+    /**
+     * @return Set to true to disconnect any open sessions prior to running the revocation statements.
+     * 
+     */
+    public Optional<Output<Boolean>> disconnectSessions() {
+        return Optional.ofNullable(this.disconnectSessions);
+    }
+
+    /**
      * The maximum amount of time a connection may be reused.
      * 
      */
@@ -184,6 +199,21 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Set to true in order to split statements after semi-colons.
+     * 
+     */
+    @Import(name="splitStatements")
+    private @Nullable Output<Boolean> splitStatements;
+
+    /**
+     * @return Set to true in order to split statements after semi-colons.
+     * 
+     */
+    public Optional<Output<Boolean>> splitStatements() {
+        return Optional.ofNullable(this.splitStatements);
+    }
+
+    /**
      * The root credential username used in the connection URL.
      * 
      */
@@ -236,6 +266,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
         this.allowedRoles = $.allowedRoles;
         this.connectionUrl = $.connectionUrl;
         this.data = $.data;
+        this.disconnectSessions = $.disconnectSessions;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
@@ -243,6 +274,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
         this.password = $.password;
         this.pluginName = $.pluginName;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.splitStatements = $.splitStatements;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
@@ -346,6 +378,27 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
          */
         public Builder data(Map<String,Object> data) {
             return data(Output.of(data));
+        }
+
+        /**
+         * @param disconnectSessions Set to true to disconnect any open sessions prior to running the revocation statements.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disconnectSessions(@Nullable Output<Boolean> disconnectSessions) {
+            $.disconnectSessions = disconnectSessions;
+            return this;
+        }
+
+        /**
+         * @param disconnectSessions Set to true to disconnect any open sessions prior to running the revocation statements.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disconnectSessions(Boolean disconnectSessions) {
+            return disconnectSessions(Output.of(disconnectSessions));
         }
 
         /**
@@ -507,6 +560,27 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
          */
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
+        }
+
+        /**
+         * @param splitStatements Set to true in order to split statements after semi-colons.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder splitStatements(@Nullable Output<Boolean> splitStatements) {
+            $.splitStatements = splitStatements;
+            return this;
+        }
+
+        /**
+         * @param splitStatements Set to true in order to split statements after semi-colons.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder splitStatements(Boolean splitStatements) {
+            return splitStatements(Output.of(splitStatements));
         }
 
         /**

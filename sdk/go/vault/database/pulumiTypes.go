@@ -3707,6 +3707,8 @@ type SecretBackendConnectionOracle struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
 	// for an example.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
+	// Enable the built-in session disconnect mechanism.
+	DisconnectSessions *bool `pulumi:"disconnectSessions"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
@@ -3718,6 +3720,8 @@ type SecretBackendConnectionOracle struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password *string `pulumi:"password"`
+	// Enable spliting statements after semi-colons.
+	SplitStatements *bool `pulumi:"splitStatements"`
 	// The username to authenticate with.
 	Username *string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -3741,6 +3745,8 @@ type SecretBackendConnectionOracleArgs struct {
 	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
 	// for an example.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
+	// Enable the built-in session disconnect mechanism.
+	DisconnectSessions pulumi.BoolPtrInput `pulumi:"disconnectSessions"`
 	// The maximum number of seconds to keep
 	// a connection alive for.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
@@ -3752,6 +3758,8 @@ type SecretBackendConnectionOracleArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The password to authenticate with.
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Enable spliting statements after semi-colons.
+	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
 	// The username to authenticate with.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
@@ -3843,6 +3851,11 @@ func (o SecretBackendConnectionOracleOutput) ConnectionUrl() pulumi.StringPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
+// Enable the built-in session disconnect mechanism.
+func (o SecretBackendConnectionOracleOutput) DisconnectSessions() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.DisconnectSessions }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionOracleOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
@@ -3864,6 +3877,11 @@ func (o SecretBackendConnectionOracleOutput) MaxOpenConnections() pulumi.IntPtrO
 // The password to authenticate with.
 func (o SecretBackendConnectionOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Enable spliting statements after semi-colons.
+func (o SecretBackendConnectionOracleOutput) SplitStatements() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.SplitStatements }).(pulumi.BoolPtrOutput)
 }
 
 // The username to authenticate with.
@@ -3913,6 +3931,16 @@ func (o SecretBackendConnectionOraclePtrOutput) ConnectionUrl() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// Enable the built-in session disconnect mechanism.
+func (o SecretBackendConnectionOraclePtrOutput) DisconnectSessions() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.DisconnectSessions
+	}).(pulumi.BoolPtrOutput)
+}
+
 // The maximum number of seconds to keep
 // a connection alive for.
 func (o SecretBackendConnectionOraclePtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
@@ -3954,6 +3982,16 @@ func (o SecretBackendConnectionOraclePtrOutput) Password() pulumi.StringPtrOutpu
 		}
 		return v.Password
 	}).(pulumi.StringPtrOutput)
+}
+
+// Enable spliting statements after semi-colons.
+func (o SecretBackendConnectionOraclePtrOutput) SplitStatements() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionOracle) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SplitStatements
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The username to authenticate with.
@@ -8264,6 +8302,8 @@ type SecretsMountOracle struct {
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
+	// Set to true to disconnect any open sessions prior to running the revocation statements.
+	DisconnectSessions *bool `pulumi:"disconnectSessions"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -8280,6 +8320,8 @@ type SecretsMountOracle struct {
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Set to true in order to split statements after semi-colons.
+	SplitStatements *bool `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL.
 	Username *string `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -8311,6 +8353,8 @@ type SecretsMountOracleArgs struct {
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
+	// Set to true to disconnect any open sessions prior to running the revocation statements.
+	DisconnectSessions pulumi.BoolPtrInput `pulumi:"disconnectSessions"`
 	// The maximum amount of time a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// The maximum number of idle connections to
@@ -8327,6 +8371,8 @@ type SecretsMountOracleArgs struct {
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Set to true in order to split statements after semi-colons.
+	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
 	// The root credential username used in the connection URL.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
@@ -8406,6 +8452,11 @@ func (o SecretsMountOracleOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountOracle) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
+// Set to true to disconnect any open sessions prior to running the revocation statements.
+func (o SecretsMountOracleOutput) DisconnectSessions() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.DisconnectSessions }).(pulumi.BoolPtrOutput)
+}
+
 // The maximum amount of time a connection may be reused.
 func (o SecretsMountOracleOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
@@ -8441,6 +8492,11 @@ func (o SecretsMountOracleOutput) PluginName() pulumi.StringPtrOutput {
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretsMountOracleOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountOracle) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Set to true in order to split statements after semi-colons.
+func (o SecretsMountOracleOutput) SplitStatements() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.SplitStatements }).(pulumi.BoolPtrOutput)
 }
 
 // The root credential username used in the connection URL.
