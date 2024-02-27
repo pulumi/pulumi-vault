@@ -50,6 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// configure a static role with period-based rotations
 //			_, err = database.NewSecretBackendStaticRole(ctx, "periodRole", &database.SecretBackendStaticRoleArgs{
 //				Backend:        db.Path,
 //				DbName:         postgres.Name,
@@ -62,6 +63,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// configure a static role with schedule-based rotations
 //			_, err = database.NewSecretBackendStaticRole(ctx, "scheduleRole", &database.SecretBackendStaticRoleArgs{
 //				Backend:          db.Path,
 //				DbName:           postgres.Name,
