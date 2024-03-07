@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -61,13 +62,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * PKI secret backend key can be imported using the `id`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:pkiSecret/secretBackendKey:SecretBackendKey key pki/key/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
+ * $ pulumi import vault:pkiSecret/secretBackendKey:SecretBackendKey key pki/key/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
  * ```
  * 
  */

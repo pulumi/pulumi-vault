@@ -21,6 +21,7 @@ namespace Pulumi.Vault.Ssh.Outputs
         /// 
         /// Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -30,6 +31,7 @@ namespace Pulumi.Vault.Ssh.Outputs
         /// {
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public readonly ImmutableArray<int> Lengths;
         /// <summary>

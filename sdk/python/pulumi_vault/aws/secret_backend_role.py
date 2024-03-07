@@ -566,6 +566,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -588,13 +589,14 @@ class SecretBackendRole(pulumi.CustomResource):
         }
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS secret backend roles can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+        $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
         ```
 
         :param str resource_name: The name of the resource.
@@ -655,6 +657,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -677,13 +680,14 @@ class SecretBackendRole(pulumi.CustomResource):
         }
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS secret backend roles can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+        $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
         ```
 
         :param str resource_name: The name of the resource.

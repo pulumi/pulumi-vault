@@ -16,6 +16,7 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,13 +32,14 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// GitHub authentication mounts can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:github/authBackend:AuthBackend example github
+    /// $ pulumi import vault:github/authBackend:AuthBackend example github
     /// ```
     /// </summary>
     [VaultResourceType("vault:github/authBackend:AuthBackend")]

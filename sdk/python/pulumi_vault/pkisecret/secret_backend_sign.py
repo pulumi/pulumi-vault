@@ -670,6 +670,7 @@ class SecretBackendSign(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -707,6 +708,8 @@ class SecretBackendSign(pulumi.CustomResource):
             common_name="test.my.domain",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Deprecations
 
         * `serial` - Use `serial_number` instead.
@@ -744,6 +747,7 @@ class SecretBackendSign(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -781,6 +785,8 @@ class SecretBackendSign(pulumi.CustomResource):
             common_name="test.my.domain",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Deprecations
 
         * `serial` - Use `serial_number` instead.

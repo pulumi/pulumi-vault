@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,15 +51,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // KMIP Secret scope can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kmip/secretScope:SecretScope dev kmip
-//
+// $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
 // ```
 type SecretScope struct {
 	pulumi.CustomResourceState

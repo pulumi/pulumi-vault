@@ -319,6 +319,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -332,13 +333,14 @@ class SyncAwsDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
+        $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
         ```
 
         :param str resource_name: The name of the resource.
@@ -369,6 +371,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -382,13 +385,14 @@ class SyncAwsDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
+        $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
         ```
 
         :param str resource_name: The name of the resource.

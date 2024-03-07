@@ -254,12 +254,15 @@ def get_entity(alias_id: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     entity = vault.identity.get_entity(entity_name="entity_12345")
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Required Vault Capabilities
 
     Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -323,12 +326,15 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     entity = vault.identity.get_entity(entity_name="entity_12345")
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Required Vault Capabilities
 
     Use of this resource requires the `create` capability on `/identity/lookup/entity`.

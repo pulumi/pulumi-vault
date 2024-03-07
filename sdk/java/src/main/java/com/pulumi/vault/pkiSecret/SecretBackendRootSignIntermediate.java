@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * Creates PKI certificate.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -57,6 +59,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Deprecations
  * 
  * * `serial` - Use `serial_number` instead.

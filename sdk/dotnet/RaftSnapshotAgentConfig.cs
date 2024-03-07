@@ -11,7 +11,9 @@ namespace Pulumi.Vault
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### Local Storage
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +33,10 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### AWS S3
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,8 +66,11 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Azure BLOB
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -87,13 +95,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+    /// $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig")]
@@ -234,14 +243,19 @@ namespace Pulumi.Vault
         /// Google service account key in JSON format. 
         /// The raw value looks like this:
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// ```json
         /// {
-        /// });
+        /// "type": "service_account",
+        /// "project_id": "project-id",
+        /// "private_key_id": "key-id",
+        /// "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
+        /// "client_email": "service-account-email",
+        /// "client_id": "client-id",
+        /// "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        /// "token_uri": "https://accounts.google.com/o/oauth2/token",
+        /// "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        /// "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+        /// }
         /// ```
         /// </summary>
         [Output("googleServiceAccountKey")]
@@ -482,14 +496,19 @@ namespace Pulumi.Vault
         /// Google service account key in JSON format. 
         /// The raw value looks like this:
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// ```json
         /// {
-        /// });
+        /// "type": "service_account",
+        /// "project_id": "project-id",
+        /// "private_key_id": "key-id",
+        /// "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
+        /// "client_email": "service-account-email",
+        /// "client_id": "client-id",
+        /// "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        /// "token_uri": "https://accounts.google.com/o/oauth2/token",
+        /// "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        /// "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+        /// }
         /// ```
         /// </summary>
         [Input("googleServiceAccountKey")]
@@ -692,14 +711,19 @@ namespace Pulumi.Vault
         /// Google service account key in JSON format. 
         /// The raw value looks like this:
         /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// ```json
         /// {
-        /// });
+        /// "type": "service_account",
+        /// "project_id": "project-id",
+        /// "private_key_id": "key-id",
+        /// "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
+        /// "client_email": "service-account-email",
+        /// "client_id": "client-id",
+        /// "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        /// "token_uri": "https://accounts.google.com/o/oauth2/token",
+        /// "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        /// "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+        /// }
         /// ```
         /// </summary>
         [Input("googleServiceAccountKey")]

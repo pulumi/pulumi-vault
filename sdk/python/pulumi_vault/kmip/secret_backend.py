@@ -488,6 +488,7 @@ class SecretBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -505,13 +506,14 @@ class SecretBackend(pulumi.CustomResource):
             tls_ca_key_bits=4096,
             tls_ca_key_type="rsa")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         KMIP Secret backend can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
+        $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
         ```
 
         :param str resource_name: The name of the resource.
@@ -548,6 +550,7 @@ class SecretBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -565,13 +568,14 @@ class SecretBackend(pulumi.CustomResource):
             tls_ca_key_bits=4096,
             tls_ca_key_type="rsa")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         KMIP Secret backend can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
+        $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
         ```
 
         :param str resource_name: The name of the resource.

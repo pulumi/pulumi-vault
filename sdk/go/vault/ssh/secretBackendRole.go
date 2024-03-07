@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,15 +60,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // SSH secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
-//
+// $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
 // ```
 type SecretBackendRole struct {
 	pulumi.CustomResourceState

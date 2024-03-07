@@ -17,9 +17,7 @@ import (
 // Auth methods can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/authBackend:AuthBackend example github
-//
+// $ pulumi import vault:index/authBackend:AuthBackend example github
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState

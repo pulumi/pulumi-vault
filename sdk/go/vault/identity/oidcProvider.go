@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -99,15 +100,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // OIDC Providers can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
-//
+// $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
 // ```
 type OidcProvider struct {
 	pulumi.CustomResourceState

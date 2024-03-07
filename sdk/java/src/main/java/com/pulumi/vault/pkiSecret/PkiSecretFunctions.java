@@ -23,20 +23,38 @@ import com.pulumi.vault.pkiSecret.outputs.GetBackendKeysResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class PkiSecretFunctions {
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetBackendIssuerResult> getBackendIssuer(GetBackendIssuerArgs args) {
         return getBackendIssuer(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetBackendIssuerResult> getBackendIssuerPlain(GetBackendIssuerPlainArgs args) {
         return getBackendIssuerPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetBackendIssuerResult> getBackendIssuer(GetBackendIssuerArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:pkiSecret/getBackendIssuer:getBackendIssuer", TypeShape.of(GetBackendIssuerResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetBackendIssuerResult> getBackendIssuerPlain(GetBackendIssuerPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:pkiSecret/getBackendIssuer:getBackendIssuer", TypeShape.of(GetBackendIssuerResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -83,6 +101,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetBackendIssuersResult> getBackendIssuers(GetBackendIssuersArgs args) {
@@ -90,6 +109,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -136,6 +157,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetBackendIssuersResult> getBackendIssuersPlain(GetBackendIssuersPlainArgs args) {
@@ -143,6 +165,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -189,6 +213,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetBackendIssuersResult> getBackendIssuers(GetBackendIssuersArgs args, InvokeOptions options) {
@@ -196,6 +221,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -242,6 +269,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetBackendIssuersResult> getBackendIssuersPlain(GetBackendIssuersPlainArgs args, InvokeOptions options) {
@@ -249,6 +277,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -296,6 +326,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetBackendKeyResult> getBackendKey(GetBackendKeyArgs args) {
@@ -303,6 +334,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -350,6 +383,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetBackendKeyResult> getBackendKeyPlain(GetBackendKeyPlainArgs args) {
@@ -357,6 +391,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -404,6 +440,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetBackendKeyResult> getBackendKey(GetBackendKeyArgs args, InvokeOptions options) {
@@ -411,6 +448,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -458,6 +497,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetBackendKeyResult> getBackendKeyPlain(GetBackendKeyPlainArgs args, InvokeOptions options) {
@@ -465,6 +505,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -511,6 +553,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetBackendKeysResult> getBackendKeys(GetBackendKeysArgs args) {
@@ -518,6 +561,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -564,6 +609,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetBackendKeysResult> getBackendKeysPlain(GetBackendKeysPlainArgs args) {
@@ -571,6 +617,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -617,6 +665,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetBackendKeysResult> getBackendKeys(GetBackendKeysArgs args, InvokeOptions options) {
@@ -624,6 +673,8 @@ public final class PkiSecretFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -670,6 +721,7 @@ public final class PkiSecretFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetBackendKeysResult> getBackendKeysPlain(GetBackendKeysPlainArgs args, InvokeOptions options) {

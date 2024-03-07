@@ -13,19 +13,21 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * GitHub authentication mounts can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:github/authBackend:AuthBackend example github
+ * $ pulumi import vault:github/authBackend:AuthBackend example github
  * ```
  */
 export class AuthBackend extends pulumi.CustomResource {

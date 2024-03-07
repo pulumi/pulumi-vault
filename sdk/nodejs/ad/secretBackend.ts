@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,13 +21,14 @@ import * as utilities from "../utilities";
  *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * AD secret backend can be imported using the `backend`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
+ * $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
  * ```
  */
 export class SecretBackend extends pulumi.CustomResource {

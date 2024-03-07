@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * Allows setting the issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -58,13 +60,16 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * The PKI config URLs can be imported using the resource&#39;s `id`. In the case of the example above the `id` would be `pki-root/config/urls`, where the `pki-root` component is the resource&#39;s `backend`, e.g.
+ * The PKI config URLs can be imported using the resource&#39;s `id`.
+ * In the case of the example above the `id` would be `pki-root/config/urls`,
+ * where the `pki-root` component is the resource&#39;s `backend`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
+ * $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
  * ```
  * 
  */

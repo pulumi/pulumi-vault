@@ -80,6 +80,7 @@ def get_secrets_list(namespace: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -104,6 +105,8 @@ def get_secrets_list(namespace: Optional[str] = None,
         }))
     secrets = vault.kv.get_secrets_list_output(path=kvv1.path)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Required Vault Capabilities
 
     Use of this resource requires the `read` capability on the given path.
@@ -135,6 +138,7 @@ def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -159,6 +163,8 @@ def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
         }))
     secrets = vault.kv.get_secrets_list_output(path=kvv1.path)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Required Vault Capabilities
 
     Use of this resource requires the `read` capability on the given path.

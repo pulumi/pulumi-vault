@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -26,13 +27,14 @@ import * as utilities from "./utilities";
  *     apiToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Mounts can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
+ * $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
  * ```
  */
 export class MfaOkta extends pulumi.CustomResource {

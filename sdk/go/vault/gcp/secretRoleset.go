@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,15 +75,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // A roleset can be imported using its Vault Path. For example, referencing the example above,
 //
 // ```sh
-//
-//	$ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
-//
+// $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
 // ```
 type SecretRoleset struct {
 	pulumi.CustomResourceState

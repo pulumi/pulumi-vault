@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * for more information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -64,13 +66,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * OIDC Assignments can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
+ * $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
  * ```
  * 
  */

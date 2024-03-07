@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -67,6 +69,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Required Vault Capabilities
  * 
  * Use of this resource requires the `create` or `update` capability
@@ -79,7 +83,7 @@ import javax.annotation.Nullable;
  * KV-V1 secrets can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kv/secret:Secret secret kvv1/secret
+ * $ pulumi import vault:kv/secret:Secret secret kvv1/secret
  * ```
  * 
  */

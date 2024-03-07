@@ -14,10 +14,9 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,8 +34,7 @@ namespace Pulumi.Vault.Transit
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithDefaults());
@@ -44,10 +42,9 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,8 +62,7 @@ namespace Pulumi.Vault.Transit
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDecryptResult> Invoke(GetDecryptInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithDefaults());

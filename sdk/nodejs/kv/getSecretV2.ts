@@ -5,9 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## Required Vault Capabilities
- *
- * Use of this resource requires the `read` capability on the given path.
+ * ## Example Usage
  */
 export function getSecretV2(args: GetSecretV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretV2Result> {
 
@@ -94,9 +92,7 @@ export interface GetSecretV2Result {
     readonly version?: number;
 }
 /**
- * ## Required Vault Capabilities
- *
- * Use of this resource requires the `read` capability on the given path.
+ * ## Example Usage
  */
 export function getSecretV2Output(args: GetSecretV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretV2Result> {
     return pulumi.output(args).apply((a: any) => getSecretV2(a, opts))

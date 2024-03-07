@@ -90,7 +90,17 @@ def get_auth_backends(namespace: Optional[str] = None,
                       type: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendsResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example = vault.get_auth_backends()
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
@@ -117,7 +127,17 @@ def get_auth_backends_output(namespace: Optional[pulumi.Input[Optional[str]]] = 
                              type: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendsResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example = vault.get_auth_backends()
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.

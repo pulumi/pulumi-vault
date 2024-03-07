@@ -20,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,6 +59,8 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Required Vault Capabilities
 //
 // Use of this resource requires the `create` or `update` capability
@@ -67,12 +70,11 @@ import (
 //
 // ## Import
 //
-// The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
+// The KV-V2 secret backend can be imported using its unique ID,
+// the `${mount}/config`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
-//
+// $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
 // ```
 type SecretBackendV2 struct {
 	pulumi.CustomResourceState

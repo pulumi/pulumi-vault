@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,13 +32,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// OIDC Scopes can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/oidcScope:OidcScope groups groups
+    /// $ pulumi import vault:identity/oidcScope:OidcScope groups groups
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcScope:OidcScope")]

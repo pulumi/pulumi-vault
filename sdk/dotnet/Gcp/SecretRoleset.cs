@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -58,13 +59,14 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// A roleset can be imported using its Vault Path. For example, referencing the example above,
     /// 
     /// ```sh
-    ///  $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+    /// $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/secretRoleset:SecretRoleset")]

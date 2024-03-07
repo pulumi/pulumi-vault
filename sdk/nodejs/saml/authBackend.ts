@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -23,13 +24,14 @@ import * as utilities from "../utilities";
  *     path: "saml",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * SAML authentication mounts can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:saml/authBackend:AuthBackend example saml
+ * $ pulumi import vault:saml/authBackend:AuthBackend example saml
  * ```
  */
 export class AuthBackend extends pulumi.CustomResource {

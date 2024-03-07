@@ -16,6 +16,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,13 +37,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Password policies can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
+    /// $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/passwordPolicy:PasswordPolicy")]

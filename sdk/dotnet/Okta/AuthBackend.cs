@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Okta
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,13 +56,14 @@ namespace Pulumi.Vault.Okta
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Okta authentication backends can be imported using its `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:okta/authBackend:AuthBackend example okta
+    /// $ pulumi import vault:okta/authBackend:AuthBackend example okta
     /// ```
     /// </summary>
     [VaultResourceType("vault:okta/authBackend:AuthBackend")]

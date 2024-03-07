@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -51,13 +53,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * GitHub Secrets sync destinations can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
+ * $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
  * ```
  * 
  */

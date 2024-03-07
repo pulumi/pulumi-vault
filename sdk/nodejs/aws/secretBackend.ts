@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * AWS secret backends can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
+ * $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
  * ```
  */
 export class SecretBackend extends pulumi.CustomResource {

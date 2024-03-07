@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -17,13 +18,14 @@ import * as utilities from "../utilities";
  * const example = new vault.Mount("example", {type: "ssh"});
  * const foo = new vault.ssh.SecretBackendCa("foo", {backend: example.path});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * SSH secret backend CAs can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+ * $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
  * ```
  */
 export class SecretBackendCa extends pulumi.CustomResource {

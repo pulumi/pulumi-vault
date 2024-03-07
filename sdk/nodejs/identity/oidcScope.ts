@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -19,13 +20,14 @@ import * as utilities from "../utilities";
  *     template: "{\"groups\":{{identity.entity.groups.names}}}",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * OIDC Scopes can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/oidcScope:OidcScope groups groups
+ * $ pulumi import vault:identity/oidcScope:OidcScope groups groups
  * ```
  */
 export class OidcScope extends pulumi.CustomResource {

@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * **Note** this feature is available only with Vault Enterprise.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -59,13 +61,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Mounts can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+ * $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
  * ```
  * 
  */

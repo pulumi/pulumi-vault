@@ -1063,6 +1063,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1075,13 +1076,14 @@ class SecretBackend(pulumi.CustomResource):
             url="ldaps://localhost",
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP secret backend can be imported using the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
+        $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
         ```
 
         :param str resource_name: The name of the resource.
@@ -1136,6 +1138,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1148,13 +1151,14 @@ class SecretBackend(pulumi.CustomResource):
             url="ldaps://localhost",
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP secret backend can be imported using the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
+        $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
         ```
 
         :param str resource_name: The name of the resource.

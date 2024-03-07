@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,6 +36,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetRaftAutopilotState(ctx *pulumi.Context, args *GetRaftAutopilotStateArgs, opts ...pulumi.InvokeOption) (*GetRaftAutopilotStateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRaftAutopilotStateResult

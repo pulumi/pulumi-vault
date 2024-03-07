@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * Creates an Encryption Keyring on a Transit Secret Backend for Vault.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -61,6 +63,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Deprecations
  * 
  * * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
@@ -70,7 +74,7 @@ import javax.annotation.Nullable;
  * Transit secret backend keys can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+ * $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
  * ```
  * 
  */

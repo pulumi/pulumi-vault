@@ -6,8 +6,10 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### File Audit Device)
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -19,8 +21,11 @@ import * as utilities from "./utilities";
  *     type: "file",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Socket Audit Device)
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -36,13 +41,14 @@ import * as utilities from "./utilities";
  *     type: "socket",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Audit devices can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/audit:Audit test syslog
+ * $ pulumi import vault:index/audit:Audit test syslog
  * ```
  */
 export class Audit extends pulumi.CustomResource {

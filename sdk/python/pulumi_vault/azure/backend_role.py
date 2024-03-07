@@ -465,6 +465,7 @@ class BackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -495,6 +496,7 @@ class BackendRole(pulumi.CustomResource):
             ttl="300",
             max_ttl="600")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -528,6 +530,7 @@ class BackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -558,6 +561,7 @@ class BackendRole(pulumi.CustomResource):
             ttl="300",
             max_ttl="600")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param BackendRoleArgs args: The arguments to use to populate this resource's properties.

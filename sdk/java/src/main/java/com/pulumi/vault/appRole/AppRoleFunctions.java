@@ -18,6 +18,8 @@ public final class AppRoleFunctions {
      * Reads the Role ID of an AppRole from a Vault server.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -48,6 +50,7 @@ public final class AppRoleFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthBackendRoleIdResult> getAuthBackendRoleId(GetAuthBackendRoleIdArgs args) {
@@ -57,6 +60,8 @@ public final class AppRoleFunctions {
      * Reads the Role ID of an AppRole from a Vault server.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -87,6 +92,7 @@ public final class AppRoleFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthBackendRoleIdResult> getAuthBackendRoleIdPlain(GetAuthBackendRoleIdPlainArgs args) {
@@ -96,6 +102,8 @@ public final class AppRoleFunctions {
      * Reads the Role ID of an AppRole from a Vault server.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -126,6 +134,7 @@ public final class AppRoleFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthBackendRoleIdResult> getAuthBackendRoleId(GetAuthBackendRoleIdArgs args, InvokeOptions options) {
@@ -135,6 +144,8 @@ public final class AppRoleFunctions {
      * Reads the Role ID of an AppRole from a Vault server.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -165,6 +176,7 @@ public final class AppRoleFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthBackendRoleIdResult> getAuthBackendRoleIdPlain(GetAuthBackendRoleIdPlainArgs args, InvokeOptions options) {

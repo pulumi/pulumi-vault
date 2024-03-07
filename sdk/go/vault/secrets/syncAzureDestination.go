@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,15 +44,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Azure Secrets sync destinations can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
-//
+// $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
 // ```
 type SyncAzureDestination struct {
 	pulumi.CustomResourceState

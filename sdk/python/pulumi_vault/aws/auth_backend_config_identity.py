@@ -266,6 +266,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -279,13 +280,14 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
                 "account_id",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend identity config can be imported using `auth/`, the `backend` path, and `/config/identity` e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
+        $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
         ```
 
         :param str resource_name: The name of the resource.
@@ -317,6 +319,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -330,13 +333,14 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
                 "account_id",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend identity config can be imported using `auth/`, the `backend` path, and `/config/identity` e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
+        $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
         ```
 
         :param str resource_name: The name of the resource.

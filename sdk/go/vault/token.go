@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,15 +48,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Tokens can be imported using its `id` as accessor id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/token:Token example <accessor_id>
-//
+// $ pulumi import vault:index/token:Token example <accessor_id>
 // ```
 type Token struct {
 	pulumi.CustomResourceState

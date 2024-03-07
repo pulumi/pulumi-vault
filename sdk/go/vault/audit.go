@@ -13,8 +13,10 @@ import (
 )
 
 // ## Example Usage
+//
 // ### File Audit Device)
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,8 +43,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Socket Audit Device)
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,15 +78,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Audit devices can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/audit:Audit test syslog
-//
+// $ pulumi import vault:index/audit:Audit test syslog
 // ```
 type Audit struct {
 	pulumi.CustomResourceState

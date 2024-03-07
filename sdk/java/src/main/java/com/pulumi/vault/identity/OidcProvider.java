@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * for more information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -91,13 +93,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * OIDC Providers can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+ * $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
  * ```
  * 
  */

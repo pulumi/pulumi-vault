@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -53,13 +54,14 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Kubernetes auth backend role can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
+    /// $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
     /// ```
     /// </summary>
     [VaultResourceType("vault:kubernetes/authBackendRole:AuthBackendRole")]

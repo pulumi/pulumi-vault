@@ -211,6 +211,7 @@ class EntityAlias(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -219,13 +220,14 @@ class EntityAlias(pulumi.CustomResource):
             canonical_id="49877D63-07AD-4B85-BDA8-B61626C477E8",
             mount_accessor="token_1f2bd5")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity entity alias can be imported using the `id`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+        $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
         ```
 
         :param str resource_name: The name of the resource.
@@ -248,6 +250,7 @@ class EntityAlias(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -256,13 +259,14 @@ class EntityAlias(pulumi.CustomResource):
             canonical_id="49877D63-07AD-4B85-BDA8-B61626C477E8",
             mount_accessor="token_1f2bd5")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity entity alias can be imported using the `id`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
+        $ pulumi import vault:identity/entityAlias:EntityAlias test "3856fb4d-3c91-dcaf-2401-68f446796bfb"
         ```
 
         :param str resource_name: The name of the resource.

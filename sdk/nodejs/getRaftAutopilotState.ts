@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -18,6 +19,7 @@ import * as utilities from "./utilities";
  *     };
  * }
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRaftAutopilotState(args?: GetRaftAutopilotStateArgs, opts?: pulumi.InvokeOptions): Promise<GetRaftAutopilotStateResult> {
     args = args || {};
@@ -98,6 +100,7 @@ export interface GetRaftAutopilotStateResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -109,6 +112,7 @@ export interface GetRaftAutopilotStateResult {
  *     };
  * }
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRaftAutopilotStateOutput(args?: GetRaftAutopilotStateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRaftAutopilotStateResult> {
     return pulumi.output(args).apply((a: any) => getRaftAutopilotState(a, opts))

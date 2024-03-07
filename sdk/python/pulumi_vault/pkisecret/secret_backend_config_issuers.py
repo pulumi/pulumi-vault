@@ -187,6 +187,7 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -210,13 +211,14 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
             default=example.issuer_id,
             default_follows_latest_issuer=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         PKI secret backend config issuers can be imported using the path, e.g.
 
         ```sh
-         $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
+        $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
         ```
 
         :param str resource_name: The name of the resource.
@@ -240,6 +242,7 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -263,13 +266,14 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
             default=example.issuer_id,
             default_follows_latest_issuer=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         PKI secret backend config issuers can be imported using the path, e.g.
 
         ```sh
-         $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
+        $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
         ```
 
         :param str resource_name: The name of the resource.

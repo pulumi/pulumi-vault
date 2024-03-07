@@ -16,6 +16,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,13 +36,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Mounts can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
+    /// $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mfaTotp:MfaTotp")]

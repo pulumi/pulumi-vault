@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +39,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID")]
     public partial class OidcKeyAllowedClientID : global::Pulumi.CustomResource

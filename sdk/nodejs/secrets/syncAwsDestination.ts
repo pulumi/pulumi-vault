@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,13 +22,14 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * AWS Secrets sync destinations can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
+ * $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
  * ```
  */
 export class SyncAwsDestination extends pulumi.CustomResource {

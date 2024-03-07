@@ -16,7 +16,10 @@ import java.util.concurrent.CompletableFuture;
 public final class GenericFunctions {
     /**
      * ## Example Usage
+     * 
      * ### Generic secret
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -45,9 +48,7 @@ public final class GenericFunctions {
      *     }
      * }
      * ```
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args) {
@@ -55,7 +56,10 @@ public final class GenericFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### Generic secret
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -84,9 +88,7 @@ public final class GenericFunctions {
      *     }
      * }
      * ```
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args) {
@@ -94,7 +96,10 @@ public final class GenericFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### Generic secret
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -123,9 +128,7 @@ public final class GenericFunctions {
      *     }
      * }
      * ```
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args, InvokeOptions options) {
@@ -133,7 +136,10 @@ public final class GenericFunctions {
     }
     /**
      * ## Example Usage
+     * 
      * ### Generic secret
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -162,9 +168,7 @@ public final class GenericFunctions {
      *     }
      * }
      * ```
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args, InvokeOptions options) {

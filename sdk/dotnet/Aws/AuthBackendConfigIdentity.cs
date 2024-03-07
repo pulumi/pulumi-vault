@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Aws
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,13 +43,14 @@ namespace Pulumi.Vault.Aws
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AWS auth backend identity config can be imported using `auth/`, the `backend` path, and `/config/identity` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
+    /// $ pulumi import vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity example auth/aws/config/identity
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity")]

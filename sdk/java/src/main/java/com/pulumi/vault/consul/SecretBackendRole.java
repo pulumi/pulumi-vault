@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * Manages a Consul secrets role for a Consul secrets engine in Vault. Consul secret backends can then issue Consul tokens.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -59,6 +61,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Note About Required Arguments
  * 
  * *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
@@ -70,7 +74,7 @@ import javax.annotation.Nullable;
  * Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+ * $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
  * ```
  * 
  */

@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,13 +25,14 @@ import * as utilities from "../utilities";
  *     userdn: "OU=Users,OU=Accounts,DC=example,DC=org",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * LDAP authentication backends can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+ * $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
  * ```
  */
 export class AuthBackend extends pulumi.CustomResource {

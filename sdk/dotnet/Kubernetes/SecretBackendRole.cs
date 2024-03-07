@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// Example using `service_account_name` mode:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -57,9 +58,11 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Example using `kubernetes_role_name` mode:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -103,9 +106,11 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Example using `generated_role_rules` mode:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -154,12 +159,13 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// The Kubernetes secret backend role can be imported using the full path to the role
     /// 
-    ///  of the form: `&lt;backend_path&gt;/roles/&lt;role_name&gt;` e.g.
+    /// of the form: `&lt;backend_path&gt;/roles/&lt;role_name&gt;` e.g.
     /// 
     /// ```sh
     /// $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role

@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,15 +45,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // GitHub Secrets sync destinations can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
-//
+// $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
 // ```
 type SyncVercelDestination struct {
 	pulumi.CustomResourceState

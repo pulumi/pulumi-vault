@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -37,13 +38,15 @@ import * as utilities from "../utilities";
  * `,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * LDAP secret backend dynamic role can be imported using the full path to the role of the form: `<mount_path>/dynamic-role/<role_name>` e.g.
+ * LDAP secret backend dynamic role can be imported using the full path to the role
+ * of the form: `<mount_path>/dynamic-role/<role_name>` e.g.
  *
  * ```sh
- *  $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
+ * $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
  * ```
  */
 export class SecretBackendDynamicRole extends pulumi.CustomResource {

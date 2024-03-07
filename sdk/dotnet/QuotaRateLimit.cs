@@ -19,6 +19,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,13 +36,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Rate limit quotas can be imported using their names
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+    /// $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/quotaRateLimit:QuotaRateLimit")]

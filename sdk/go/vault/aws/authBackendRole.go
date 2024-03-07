@@ -20,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,15 +80,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
-//
+// $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState

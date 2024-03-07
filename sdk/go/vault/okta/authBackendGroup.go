@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,15 +53,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
-//
+// $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
 // ```
 type AuthBackendGroup struct {
 	pulumi.CustomResourceState

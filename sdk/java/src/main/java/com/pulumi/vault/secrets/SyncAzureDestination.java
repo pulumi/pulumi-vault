@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -52,13 +54,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Azure Secrets sync destinations can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
+ * $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
  * ```
  * 
  */

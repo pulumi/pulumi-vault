@@ -28,6 +28,8 @@ import java.util.concurrent.CompletableFuture;
 public final class KvFunctions {
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -77,6 +79,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -87,6 +91,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -136,6 +142,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -146,6 +154,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -195,6 +205,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -205,6 +217,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -254,6 +268,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -264,6 +280,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -314,6 +332,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -324,6 +344,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -374,6 +396,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -384,6 +408,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -434,6 +460,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -444,6 +472,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -494,6 +524,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -503,36 +535,28 @@ public final class KvFunctions {
         return Deployment.getInstance().invokeAsync("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", TypeShape.of(GetSecretSubkeysV2Result.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * ## Example Usage
      * 
      */
     public static Output<GetSecretV2Result> getSecretV2(GetSecretV2Args args) {
         return getSecretV2(args, InvokeOptions.Empty);
     }
     /**
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetSecretV2Result> getSecretV2Plain(GetSecretV2PlainArgs args) {
         return getSecretV2Plain(args, InvokeOptions.Empty);
     }
     /**
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * ## Example Usage
      * 
      */
     public static Output<GetSecretV2Result> getSecretV2(GetSecretV2Args args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:kv/getSecretV2:getSecretV2", TypeShape.of(GetSecretV2Result.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## Required Vault Capabilities
-     * 
-     * Use of this resource requires the `read` capability on the given path.
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetSecretV2Result> getSecretV2Plain(GetSecretV2PlainArgs args, InvokeOptions options) {
@@ -540,6 +564,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -596,6 +622,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -606,6 +634,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -662,6 +692,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -672,6 +704,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -728,6 +762,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -738,6 +774,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -794,6 +832,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -804,6 +844,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -873,6 +915,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -883,6 +927,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -952,6 +998,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -962,6 +1010,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1031,6 +1081,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.
@@ -1041,6 +1093,8 @@ public final class KvFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1110,6 +1164,8 @@ public final class KvFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `read` capability on the given path.

@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -29,6 +30,7 @@ import * as utilities from "../utilities";
  *     canonicalId: group.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -38,7 +40,7 @@ import * as utilities from "../utilities";
  * $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
  * ```
  *
- *  Group aliases can also be imported using the UUID of the alias record, e.g.
+ * Group aliases can also be imported using the UUID of the alias record, e.g.
  *
  * ```sh
  * $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157

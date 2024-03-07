@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,13 +36,14 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Azure Secrets sync destinations can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
+    /// $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
     /// ```
     /// </summary>
     [VaultResourceType("vault:secrets/syncAzureDestination:SyncAzureDestination")]

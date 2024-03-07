@@ -112,7 +112,8 @@ def get_access_credentials(backend: Optional[str] = None,
                            role: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccessCredentialsResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param str backend: The path to the AD secret backend to
            read credentials from, with no leading or trailing `/`s.
@@ -146,7 +147,8 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param str backend: The path to the AD secret backend to
            read credentials from, with no leading or trailing `/`s.

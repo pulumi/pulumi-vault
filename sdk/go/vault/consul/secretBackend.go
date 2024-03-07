@@ -13,7 +13,9 @@ import (
 )
 
 // ## Example Usage
+//
 // ### Creating a standard backend resource:
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +42,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Creating a backend resource to bootstrap a new Consul instance:
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -67,15 +72,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Consul secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:consul/secretBackend:SecretBackend example consul
-//
+// $ pulumi import vault:consul/secretBackend:SecretBackend example consul
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

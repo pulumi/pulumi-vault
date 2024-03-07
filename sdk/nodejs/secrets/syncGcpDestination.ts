@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -20,13 +21,14 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * GCP Secrets sync destinations can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
+ * $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
  * ```
  */
 export class SyncGcpDestination extends pulumi.CustomResource {

@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -33,13 +34,15 @@ import * as utilities from "../utilities";
  *     maxTtl: "120",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * The MongoDB Atlas secret role can be imported using the full path to the role of the form: `<mount_path>/roles/<role_name>` e.g.
+ * The MongoDB Atlas secret role can be imported using the full path to the role
+ * of the form: `<mount_path>/roles/<role_name>` e.g.
  *
  * ```sh
- *  $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
+ * $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
  * ```
  */
 export class SecretRole extends pulumi.CustomResource {

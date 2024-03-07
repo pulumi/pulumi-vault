@@ -14,15 +14,31 @@ import com.pulumi.vault.ad.outputs.GetAccessCredentialsResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class AdFunctions {
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args) {
         return getAccessCredentials(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args) {
         return getAccessCredentialsPlain(args, InvokeOptions.Empty);
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:ad/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
     }
+    /**
+     * ## Example Usage
+     * 
+     */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:ad/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
     }

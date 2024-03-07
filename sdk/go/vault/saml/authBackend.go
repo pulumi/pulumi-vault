@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,15 +48,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // SAML authentication mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:saml/authBackend:AuthBackend example saml
-//
+// $ pulumi import vault:saml/authBackend:AuthBackend example saml
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState

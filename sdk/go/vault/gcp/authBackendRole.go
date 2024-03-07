@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -62,15 +63,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // GCP authentication roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
-//
+// $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState

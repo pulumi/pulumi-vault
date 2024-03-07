@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -28,13 +29,14 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
  *
  * ```sh
- *  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+ * $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
  * ```
  */
 export class SecretBackendConnection extends pulumi.CustomResource {

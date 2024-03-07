@@ -216,6 +216,7 @@ def get_access_credentials(backend: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -226,6 +227,8 @@ def get_access_credentials(backend: Optional[str] = None,
         num_seconds_between_tests=1,
         max_cred_validation_seconds=300)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Caveats
 
     The `validate_creds` option requires read-access to the `backend` config endpoint.
@@ -314,6 +317,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -324,6 +328,8 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
         num_seconds_between_tests=1,
         max_cred_validation_seconds=300)
     ```
+    <!--End PulumiCodeChooser -->
+
     ## Caveats
 
     The `validate_creds` option requires read-access to the `backend` config endpoint.

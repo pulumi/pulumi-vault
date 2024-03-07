@@ -18,6 +18,7 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,6 +48,8 @@ namespace Pulumi.Vault.kv
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Required Vault Capabilities
     /// 
     /// Use of this resource requires the `create` or `update` capability
@@ -56,10 +59,11 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Import
     /// 
-    /// The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
+    /// The KV-V2 secret backend can be imported using its unique ID,
+    /// the `${mount}/config`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
+    /// $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
     /// ```
     /// </summary>
     [VaultResourceType("vault:kv/secretBackendV2:SecretBackendV2")]

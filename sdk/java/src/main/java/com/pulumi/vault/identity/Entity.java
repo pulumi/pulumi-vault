@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -48,13 +50,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Identity entity can be imported using the `id`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/entity:Entity test &#34;ae6f8ued-0f1a-9f6b-2915-1a2be20dc053&#34;
+ * $ pulumi import vault:identity/entity:Entity test &#34;ae6f8ued-0f1a-9f6b-2915-1a2be20dc053&#34;
  * ```
  * 
  */

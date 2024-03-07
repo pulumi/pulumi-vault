@@ -348,6 +348,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -363,13 +364,14 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer="api",
             disable_iss_validation=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Kubernetes authentication backend can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+        $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
         ```
 
         :param str resource_name: The name of the resource.
@@ -400,6 +402,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -415,13 +418,14 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer="api",
             disable_iss_validation=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Kubernetes authentication backend can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+        $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
         ```
 
         :param str resource_name: The name of the resource.

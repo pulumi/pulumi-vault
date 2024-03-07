@@ -500,6 +500,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -513,13 +514,14 @@ class AuthBackend(pulumi.CustomResource):
                 compute="compute.googleapis.com",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GCP authentication backends can be imported using the backend name, e.g.
 
         ```sh
-         $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+        $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
         ```
 
         :param str resource_name: The name of the resource.
@@ -560,6 +562,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -573,13 +576,14 @@ class AuthBackend(pulumi.CustomResource):
                 compute="compute.googleapis.com",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GCP authentication backends can be imported using the backend name, e.g.
 
         ```sh
-         $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+        $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
         ```
 
         :param str resource_name: The name of the resource.

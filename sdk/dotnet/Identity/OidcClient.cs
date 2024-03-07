@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -53,13 +54,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// OIDC Clients can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/oidcClient:OidcClient test my-app
+    /// $ pulumi import vault:identity/oidcClient:OidcClient test my-app
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcClient:OidcClient")]

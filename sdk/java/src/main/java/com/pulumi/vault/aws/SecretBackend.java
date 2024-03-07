@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  * AWS secret backends can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
+ * $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
  * ```
  * 
  */

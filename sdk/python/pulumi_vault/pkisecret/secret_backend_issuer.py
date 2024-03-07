@@ -486,6 +486,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -505,13 +506,14 @@ class SecretBackendIssuer(pulumi.CustomResource):
             issuer_ref=root.issuer_id,
             issuer_name="example-issuer")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         PKI secret backend issuer can be imported using the `id`, e.g.
 
         ```sh
-         $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
+        $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
         ```
 
         :param str resource_name: The name of the resource.
@@ -548,6 +550,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -567,13 +570,14 @@ class SecretBackendIssuer(pulumi.CustomResource):
             issuer_ref=root.issuer_id,
             issuer_name="example-issuer")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         PKI secret backend issuer can be imported using the `id`, e.g.
 
         ```sh
-         $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
+        $ pulumi import vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer example pki/issuer/bf9b0d48-d0dd-652c-30be-77d04fc7e94d
         ```
 
         :param str resource_name: The name of the resource.

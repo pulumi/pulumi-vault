@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -52,13 +54,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * AD secret backend can be imported using the `backend`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
+ * $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
  * ```
  * 
  */

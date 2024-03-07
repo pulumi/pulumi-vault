@@ -209,57 +209,47 @@ class Namespace(pulumi.CustomResource):
         $ pulumi import vault:index/namespace:Namespace example <name>
         ```
 
-         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
+        If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
 
-         hcl
+        hcl
 
-         provider "vault" {
+        provider "vault" {
 
         # Configuration options
 
-         namespace = "example"
+          namespace = "example"
 
-         alias
+          alias     = "example"
 
-         = "example"
+        }
 
-         }
+        resource "vault_namespace" "example2" {
 
-         resource "vault_namespace" "example2" {
+          provider = vault.example
 
-         provider = vault.example
+          path     = "example2"
 
-         path
-
-         = "example2"
-
-         }
+        }
 
         ```sh
         $ pulumi import vault:index/namespace:Namespace example2 example2
         ```
 
-         $ terraform state show vault_namespace.example2
+        $ terraform state show vault_namespace.example2
 
-         vault_namespace.example2:
+        vault_namespace.example2:
 
-         resource "vault_namespace" "example2" {
+        resource "vault_namespace" "example2" {
 
-         id
+            id           = "example/example2/"
+            
+            namespace_id = <known after import>
+            
+            path         = "example2"
+            
+            path_fq      = "example2"
 
-         = "example/example2/"
-
-         namespace_id = <known after import>
-
-         path
-
-         = "example2"
-
-         path_fq
-
-        = "example2"
-
-         }
+        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -288,57 +278,47 @@ class Namespace(pulumi.CustomResource):
         $ pulumi import vault:index/namespace:Namespace example <name>
         ```
 
-         If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
+        If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
 
-         hcl
+        hcl
 
-         provider "vault" {
+        provider "vault" {
 
         # Configuration options
 
-         namespace = "example"
+          namespace = "example"
 
-         alias
+          alias     = "example"
 
-         = "example"
+        }
 
-         }
+        resource "vault_namespace" "example2" {
 
-         resource "vault_namespace" "example2" {
+          provider = vault.example
 
-         provider = vault.example
+          path     = "example2"
 
-         path
-
-         = "example2"
-
-         }
+        }
 
         ```sh
         $ pulumi import vault:index/namespace:Namespace example2 example2
         ```
 
-         $ terraform state show vault_namespace.example2
+        $ terraform state show vault_namespace.example2
 
-         vault_namespace.example2:
+        vault_namespace.example2:
 
-         resource "vault_namespace" "example2" {
+        resource "vault_namespace" "example2" {
 
-         id
+            id           = "example/example2/"
+            
+            namespace_id = <known after import>
+            
+            path         = "example2"
+            
+            path_fq      = "example2"
 
-         = "example/example2/"
-
-         namespace_id = <known after import>
-
-         path
-
-         = "example2"
-
-         path_fq
-
-        = "example2"
-
-         }
+        }
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

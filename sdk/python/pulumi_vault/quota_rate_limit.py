@@ -313,6 +313,7 @@ class QuotaRateLimit(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -321,13 +322,14 @@ class QuotaRateLimit(pulumi.CustomResource):
             path="",
             rate=100)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Rate limit quotas can be imported using their names
 
         ```sh
-         $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+        $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
         ```
 
         :param str resource_name: The name of the resource.
@@ -366,6 +368,7 @@ class QuotaRateLimit(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -374,13 +377,14 @@ class QuotaRateLimit(pulumi.CustomResource):
             path="",
             rate=100)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Rate limit quotas can be imported using their names
 
         ```sh
-         $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+        $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
         ```
 
         :param str resource_name: The name of the resource.

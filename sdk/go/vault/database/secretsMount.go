@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -87,15 +88,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Database secret backend connections can be imported using the `path` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:database/secretsMount:SecretsMount db db
-//
+// $ pulumi import vault:database/secretsMount:SecretsMount db db
 // ```
 type SecretsMount struct {
 	pulumi.CustomResourceState

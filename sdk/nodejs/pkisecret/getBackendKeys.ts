@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -27,6 +28,7 @@ import * as utilities from "../utilities";
  *     backend: root.backend,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getBackendKeys(args: GetBackendKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendKeysResult> {
 
@@ -81,6 +83,7 @@ export interface GetBackendKeysResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -101,6 +104,7 @@ export interface GetBackendKeysResult {
  *     backend: root.backend,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getBackendKeysOutput(args: GetBackendKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendKeysResult> {
     return pulumi.output(args).apply((a: any) => getBackendKeys(a, opts))

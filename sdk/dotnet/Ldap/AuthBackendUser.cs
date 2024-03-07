@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,13 +48,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// LDAP authentication backend users can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
+    /// $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/authBackendUser:AuthBackendUser")]

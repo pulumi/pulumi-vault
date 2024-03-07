@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * Configure the cache for the Transit Secret Backend in Vault.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -58,6 +60,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="vault:transit/secretCacheConfig:SecretCacheConfig")
