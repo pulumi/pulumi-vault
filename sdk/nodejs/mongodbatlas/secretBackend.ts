@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,13 +23,14 @@ import * as utilities from "../utilities";
  *     publicKey: "publicKey",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
+ * $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
  * ```
  */
 export class SecretBackend extends pulumi.CustomResource {

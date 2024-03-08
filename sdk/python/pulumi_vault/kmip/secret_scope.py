@@ -186,6 +186,7 @@ class SecretScope(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -198,13 +199,14 @@ class SecretScope(pulumi.CustomResource):
             scope="dev",
             force=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         KMIP Secret scope can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
+        $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
         ```
 
         :param str resource_name: The name of the resource.
@@ -231,6 +233,7 @@ class SecretScope(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -243,13 +246,14 @@ class SecretScope(pulumi.CustomResource):
             scope="dev",
             force=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         KMIP Secret scope can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
+        $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
         ```
 
         :param str resource_name: The name of the resource.

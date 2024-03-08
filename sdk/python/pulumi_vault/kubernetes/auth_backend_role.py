@@ -661,6 +661,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -679,13 +680,14 @@ class AuthBackendRole(pulumi.CustomResource):
             ],
             audience="vault")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Kubernetes auth backend role can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
+        $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -744,6 +746,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -762,13 +765,14 @@ class AuthBackendRole(pulumi.CustomResource):
             ],
             audience="vault")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Kubernetes auth backend role can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
+        $ pulumi import vault:kubernetes/authBackendRole:AuthBackendRole foo auth/kubernetes/role/foo
         ```
 
         :param str resource_name: The name of the resource.

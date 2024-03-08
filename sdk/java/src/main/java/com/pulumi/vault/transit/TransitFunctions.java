@@ -21,6 +21,8 @@ public final class TransitFunctions {
      * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -51,6 +53,7 @@ public final class TransitFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDecryptResult> getDecrypt(GetDecryptArgs args) {
@@ -60,6 +63,8 @@ public final class TransitFunctions {
      * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -90,6 +95,7 @@ public final class TransitFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDecryptResult> getDecryptPlain(GetDecryptPlainArgs args) {
@@ -99,6 +105,8 @@ public final class TransitFunctions {
      * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -129,6 +137,7 @@ public final class TransitFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDecryptResult> getDecrypt(GetDecryptArgs args, InvokeOptions options) {
@@ -138,6 +147,8 @@ public final class TransitFunctions {
      * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -168,6 +179,7 @@ public final class TransitFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDecryptResult> getDecryptPlain(GetDecryptPlainArgs args, InvokeOptions options) {

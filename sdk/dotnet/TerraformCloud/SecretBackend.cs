@@ -12,6 +12,7 @@ namespace Pulumi.Vault.TerraformCloud
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,13 +30,14 @@ namespace Pulumi.Vault.TerraformCloud
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Terraform Cloud secret backends can be imported using the `backend`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
+    /// $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
     /// ```
     /// </summary>
     [VaultResourceType("vault:terraformcloud/secretBackend:SecretBackend")]

@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -27,13 +28,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
  *
  * ```sh
- *  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+ * $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
  * ```
  */
 export class AuthBackendGroup extends pulumi.CustomResource {

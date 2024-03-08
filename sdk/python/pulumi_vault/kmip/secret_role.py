@@ -746,6 +746,7 @@ class SecretRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -769,13 +770,14 @@ class SecretRole(pulumi.CustomResource):
             operation_create=True,
             operation_destroy=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         KMIP Secret role can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+        $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
         ```
 
         :param str resource_name: The name of the resource.
@@ -819,6 +821,7 @@ class SecretRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -842,13 +845,14 @@ class SecretRole(pulumi.CustomResource):
             operation_create=True,
             operation_destroy=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         KMIP Secret role can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+        $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
         ```
 
         :param str resource_name: The name of the resource.

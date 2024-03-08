@@ -21,6 +21,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,15 +46,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // # Rate limit quotas can be imported using their names
 //
 // ```sh
-//
-//	$ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
-//
+// $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
 // ```
 type QuotaRateLimit struct {
 	pulumi.CustomResourceState

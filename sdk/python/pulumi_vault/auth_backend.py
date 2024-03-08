@@ -311,7 +311,7 @@ class AuthBackend(pulumi.CustomResource):
         Auth methods can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/authBackend:AuthBackend example github
+        $ pulumi import vault:index/authBackend:AuthBackend example github
         ```
 
         :param str resource_name: The name of the resource.
@@ -342,7 +342,7 @@ class AuthBackend(pulumi.CustomResource):
         Auth methods can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/authBackend:AuthBackend example github
+        $ pulumi import vault:index/authBackend:AuthBackend example github
         ```
 
         :param str resource_name: The name of the resource.

@@ -270,6 +270,7 @@ class OidcRole(pulumi.CustomResource):
         exist before the role can be used to issue tokens. You must also configure the key with the
         role's Client ID to allow the role to use the key.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -283,11 +284,13 @@ class OidcRole(pulumi.CustomResource):
             algorithm="RS256",
             allowed_client_ids=[role.client_id])
         ```
+        <!--End PulumiCodeChooser -->
 
         If you want to create the key first before creating the role, you can use a separate
         resource to configure the allowed Client ID on
         the key.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -298,13 +301,14 @@ class OidcRole(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role_oidc_role.client_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The key can be imported with the role name, for example:
 
         ```sh
-         $ pulumi import vault:identity/oidcRole:OidcRole role role
+        $ pulumi import vault:identity/oidcRole:OidcRole role role
         ```
 
         :param str resource_name: The name of the resource.
@@ -338,6 +342,7 @@ class OidcRole(pulumi.CustomResource):
         exist before the role can be used to issue tokens. You must also configure the key with the
         role's Client ID to allow the role to use the key.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -351,11 +356,13 @@ class OidcRole(pulumi.CustomResource):
             algorithm="RS256",
             allowed_client_ids=[role.client_id])
         ```
+        <!--End PulumiCodeChooser -->
 
         If you want to create the key first before creating the role, you can use a separate
         resource to configure the allowed Client ID on
         the key.
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -366,13 +373,14 @@ class OidcRole(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role_oidc_role.client_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The key can be imported with the role name, for example:
 
         ```sh
-         $ pulumi import vault:identity/oidcRole:OidcRole role role
+        $ pulumi import vault:identity/oidcRole:OidcRole role role
         ```
 
         :param str resource_name: The name of the resource.

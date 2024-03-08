@@ -23,6 +23,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,15 +48,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // # Lease count quotas can be imported using their names
 //
 // ```sh
-//
-//	$ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
-//
+// $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
 // ```
 type QuotaLeaseCount struct {
 	pulumi.CustomResourceState

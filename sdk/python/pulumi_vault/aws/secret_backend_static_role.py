@@ -219,6 +219,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -231,13 +232,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             username="my-test-user",
             rotation_period=3600)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        AWS secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-roles/<role_name>` e.g.
+        AWS secret backend static role can be imported using the full path to the role
+        of the form: `<mount_path>/static-roles/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
+        $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -262,6 +265,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -274,13 +278,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             username="my-test-user",
             rotation_period=3600)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        AWS secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-roles/<role_name>` e.g.
+        AWS secret backend static role can be imported using the full path to the role
+        of the form: `<mount_path>/static-roles/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
+        $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
         ```
 
         :param str resource_name: The name of the resource.

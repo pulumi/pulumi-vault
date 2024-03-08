@@ -150,6 +150,7 @@ class SyncConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -158,11 +159,12 @@ class SyncConfig(pulumi.CustomResource):
             disabled=True,
             queue_capacity=500000)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
+        $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
         ```
 
         :param str resource_name: The name of the resource.
@@ -189,6 +191,7 @@ class SyncConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -197,11 +200,12 @@ class SyncConfig(pulumi.CustomResource):
             disabled=True,
             queue_capacity=500000)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         ```sh
-         $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
+        $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
         ```
 
         :param str resource_name: The name of the resource.

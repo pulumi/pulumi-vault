@@ -12,6 +12,7 @@ namespace Pulumi.Vault
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,13 +44,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Nomad secret role can be imported using the `backend`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
+    /// $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/nomadSecretRole:NomadSecretRole")]

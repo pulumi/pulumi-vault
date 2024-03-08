@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,13 +37,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// LDAP authentication backends can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+    /// $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/authBackend:AuthBackend")]

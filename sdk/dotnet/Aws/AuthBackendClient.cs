@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,13 +35,14 @@ namespace Pulumi.Vault.Aws
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+    /// $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendClient:AuthBackendClient")]

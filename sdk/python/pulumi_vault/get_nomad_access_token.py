@@ -103,6 +103,7 @@ def get_nomad_access_token(backend: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -122,6 +123,7 @@ def get_nomad_access_token(backend: Optional[str] = None,
     token = pulumi.Output.all(config.backend, test.role).apply(lambda backend, role: vault.get_nomad_access_token_output(backend=backend,
         role=role))
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The path to the Nomad secret backend to
@@ -157,6 +159,7 @@ def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -176,6 +179,7 @@ def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
     token = pulumi.Output.all(config.backend, test.role).apply(lambda backend, role: vault.get_nomad_access_token_output(backend=backend,
         role=role))
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The path to the Nomad secret backend to

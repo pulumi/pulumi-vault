@@ -216,6 +216,7 @@ class SecretBackendCa(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -223,13 +224,14 @@ class SecretBackendCa(pulumi.CustomResource):
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         SSH secret backend CAs can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+        $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
         ```
 
         :param str resource_name: The name of the resource.
@@ -255,6 +257,7 @@ class SecretBackendCa(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -262,13 +265,14 @@ class SecretBackendCa(pulumi.CustomResource):
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         SSH secret backend CAs can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+        $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
         ```
 
         :param str resource_name: The name of the resource.

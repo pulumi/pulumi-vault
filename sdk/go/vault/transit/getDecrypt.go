@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +41,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetDecrypt(ctx *pulumi.Context, args *GetDecryptArgs, opts ...pulumi.InvokeOption) (*GetDecryptResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDecryptResult

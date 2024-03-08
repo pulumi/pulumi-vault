@@ -273,6 +273,7 @@ class OidcProvider(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -306,13 +307,14 @@ class OidcProvider(pulumi.CustomResource):
             allowed_client_ids=[test_oidc_client.client_id],
             scopes_supporteds=[test_oidc_scope.name])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         OIDC Providers can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+        $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
         ```
 
         :param str resource_name: The name of the resource.
@@ -340,6 +342,7 @@ class OidcProvider(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -373,13 +376,14 @@ class OidcProvider(pulumi.CustomResource):
             allowed_client_ids=[test_oidc_client.client_id],
             scopes_supporteds=[test_oidc_scope.name])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         OIDC Providers can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+        $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
         ```
 
         :param str resource_name: The name of the resource.

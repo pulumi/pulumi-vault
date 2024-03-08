@@ -13,7 +13,9 @@ import (
 )
 
 // ## Example Usage
+//
 // ### Local Storage
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +43,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### AWS S3
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -82,8 +87,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Azure BLOB
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -117,15 +125,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
-//
+// $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
 // ```
 type RaftSnapshotAgentConfig struct {
 	pulumi.CustomResourceState
@@ -183,20 +190,6 @@ type RaftSnapshotAgentConfig struct {
 	GoogleGcsBucket pulumi.StringPtrOutput `pulumi:"googleGcsBucket"`
 	// Google service account key in JSON format.
 	// The raw value looks like this:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	GoogleServiceAccountKey pulumi.StringPtrOutput `pulumi:"googleServiceAccountKey"`
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds pulumi.IntOutput `pulumi:"intervalSeconds"`
@@ -318,20 +311,6 @@ type raftSnapshotAgentConfigState struct {
 	GoogleGcsBucket *string `pulumi:"googleGcsBucket"`
 	// Google service account key in JSON format.
 	// The raw value looks like this:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	GoogleServiceAccountKey *string `pulumi:"googleServiceAccountKey"`
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds *int `pulumi:"intervalSeconds"`
@@ -415,20 +394,6 @@ type RaftSnapshotAgentConfigState struct {
 	GoogleGcsBucket pulumi.StringPtrInput
 	// Google service account key in JSON format.
 	// The raw value looks like this:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	GoogleServiceAccountKey pulumi.StringPtrInput
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds pulumi.IntPtrInput
@@ -516,20 +481,6 @@ type raftSnapshotAgentConfigArgs struct {
 	GoogleGcsBucket *string `pulumi:"googleGcsBucket"`
 	// Google service account key in JSON format.
 	// The raw value looks like this:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	GoogleServiceAccountKey *string `pulumi:"googleServiceAccountKey"`
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds int `pulumi:"intervalSeconds"`
@@ -614,20 +565,6 @@ type RaftSnapshotAgentConfigArgs struct {
 	GoogleGcsBucket pulumi.StringPtrInput
 	// Google service account key in JSON format.
 	// The raw value looks like this:
-	//
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
 	GoogleServiceAccountKey pulumi.StringPtrInput
 	// `<required>` - Time (in seconds) between snapshots.
 	IntervalSeconds pulumi.IntInput
@@ -857,23 +794,6 @@ func (o RaftSnapshotAgentConfigOutput) GoogleGcsBucket() pulumi.StringPtrOutput 
 
 // Google service account key in JSON format.
 // The raw value looks like this:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
 func (o RaftSnapshotAgentConfigOutput) GoogleServiceAccountKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RaftSnapshotAgentConfig) pulumi.StringPtrOutput { return v.GoogleServiceAccountKey }).(pulumi.StringPtrOutput)
 }

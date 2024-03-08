@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,6 +73,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetEncode(ctx *pulumi.Context, args *GetEncodeArgs, opts ...pulumi.InvokeOption) (*GetEncodeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetEncodeResult

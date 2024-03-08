@@ -12,6 +12,7 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -85,6 +86,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned")]
     public partial class SecretBackendIntermediateSetSigned : global::Pulumi.CustomResource

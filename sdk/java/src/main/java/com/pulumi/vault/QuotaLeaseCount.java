@@ -26,6 +26,8 @@ import javax.annotation.Nullable;
  * **Note** this feature is available only with Vault Enterprise.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,13 +57,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Lease count quotas can be imported using their names
  * 
  * ```sh
- *  $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
+ * $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
  * ```
  * 
  */

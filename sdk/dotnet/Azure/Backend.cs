@@ -11,8 +11,10 @@ namespace Pulumi.Vault.Azure
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### *Vault-1.9 And Above*
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,8 +35,11 @@ namespace Pulumi.Vault.Azure
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### *Vault-1.8 And Below*
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,6 +60,7 @@ namespace Pulumi.Vault.Azure
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:azure/backend:Backend")]
     public partial class Backend : global::Pulumi.CustomResource

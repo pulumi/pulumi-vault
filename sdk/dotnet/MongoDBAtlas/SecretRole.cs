@@ -12,6 +12,7 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -49,13 +50,15 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// The MongoDB Atlas secret role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/roles/&lt;role_name&gt;` e.g.
+    /// The MongoDB Atlas secret role can be imported using the full path to the role
+    /// of the form: `&lt;mount_path&gt;/roles/&lt;role_name&gt;` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
+    /// $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:mongodbatlas/secretRole:SecretRole")]

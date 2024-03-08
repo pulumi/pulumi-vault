@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,15 +51,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // GCP Secrets sync destinations can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
-//
+// $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
 // ```
 type SyncGcpDestination struct {
 	pulumi.CustomResourceState

@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Consul
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,6 +42,8 @@ namespace Pulumi.Vault.Consul
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Note About Required Arguments
     /// 
     /// *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
@@ -52,7 +55,7 @@ namespace Pulumi.Vault.Consul
     /// Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+    /// $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:consul/secretBackendRole:SecretBackendRole")]

@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * Policies can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:index/policy:Policy example dev-team
+ * $ pulumi import vault:index/policy:Policy example dev-team
  * ```
  * 
  */

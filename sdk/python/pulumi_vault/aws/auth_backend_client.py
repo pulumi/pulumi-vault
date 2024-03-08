@@ -430,6 +430,7 @@ class AuthBackendClient(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -440,13 +441,14 @@ class AuthBackendClient(pulumi.CustomResource):
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+        $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
         ```
 
         :param str resource_name: The name of the resource.
@@ -487,6 +489,7 @@ class AuthBackendClient(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -497,13 +500,14 @@ class AuthBackendClient(pulumi.CustomResource):
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+        $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
         ```
 
         :param str resource_name: The name of the resource.

@@ -12,10 +12,9 @@ namespace Pulumi.Vault.Identity
     public static class GetEntity
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -31,8 +30,8 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -41,10 +40,9 @@ namespace Pulumi.Vault.Identity
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -60,8 +58,8 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.

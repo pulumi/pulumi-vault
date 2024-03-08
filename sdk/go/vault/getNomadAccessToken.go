@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,6 +61,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetNomadAccessToken(ctx *pulumi.Context, args *GetNomadAccessTokenArgs, opts ...pulumi.InvokeOption) (*GetNomadAccessTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNomadAccessTokenResult

@@ -23,6 +23,8 @@ public final class TransformFunctions {
      * It decodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -77,6 +79,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDecodeResult> getDecode(GetDecodeArgs args) {
@@ -88,6 +91,8 @@ public final class TransformFunctions {
      * It decodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -142,6 +147,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDecodeResult> getDecodePlain(GetDecodePlainArgs args) {
@@ -153,6 +159,8 @@ public final class TransformFunctions {
      * It decodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -207,6 +215,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDecodeResult> getDecode(GetDecodeArgs args, InvokeOptions options) {
@@ -218,6 +227,8 @@ public final class TransformFunctions {
      * It decodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -272,6 +283,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDecodeResult> getDecodePlain(GetDecodePlainArgs args, InvokeOptions options) {
@@ -283,6 +295,8 @@ public final class TransformFunctions {
      * It encodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -337,6 +351,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetEncodeResult> getEncode(GetEncodeArgs args) {
@@ -348,6 +363,8 @@ public final class TransformFunctions {
      * It encodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -402,6 +419,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetEncodeResult> getEncodePlain(GetEncodePlainArgs args) {
@@ -413,6 +431,8 @@ public final class TransformFunctions {
      * It encodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -467,6 +487,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetEncodeResult> getEncode(GetEncodeArgs args, InvokeOptions options) {
@@ -478,6 +499,8 @@ public final class TransformFunctions {
      * It encodes the provided value using a named role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -532,6 +555,7 @@ public final class TransformFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetEncodeResult> getEncodePlain(GetEncodePlainArgs args, InvokeOptions options) {

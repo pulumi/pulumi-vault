@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,13 +35,14 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AWS Secrets sync destinations can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
+    /// $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
     /// ```
     /// </summary>
     [VaultResourceType("vault:secrets/syncAwsDestination:SyncAwsDestination")]

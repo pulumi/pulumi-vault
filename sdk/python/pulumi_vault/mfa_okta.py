@@ -349,6 +349,7 @@ class MfaOkta(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -362,13 +363,14 @@ class MfaOkta(pulumi.CustomResource):
             org_name="hashicorp",
             api_token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
+        $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
         ```
 
         :param str resource_name: The name of the resource.
@@ -407,6 +409,7 @@ class MfaOkta(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -420,13 +423,14 @@ class MfaOkta(pulumi.CustomResource):
             org_name="hashicorp",
             api_token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
+        $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
         ```
 
         :param str resource_name: The name of the resource.

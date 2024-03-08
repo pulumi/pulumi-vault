@@ -328,6 +328,7 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -341,13 +342,14 @@ class MfaDuo(pulumi.CustomResource):
             integration_key="BIACEUEAXI20BNWTEYXT",
             api_hostname="api-2b5c39f5.duosecurity.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+        $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
         ```
 
         :param str resource_name: The name of the resource.
@@ -381,6 +383,7 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -394,13 +397,14 @@ class MfaDuo(pulumi.CustomResource):
             integration_key="BIACEUEAXI20BNWTEYXT",
             api_hostname="api-2b5c39f5.duosecurity.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
+        $ pulumi import vault:index/mfaDuo:MfaDuo my_duo my_duo
         ```
 
         :param str resource_name: The name of the resource.

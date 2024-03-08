@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -44,13 +45,14 @@ import * as utilities from "../utilities";
  *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
  *
  * ```sh
- *  $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
+ * $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
  * ```
  */
 export class SecretBackendStaticRole extends pulumi.CustomResource {

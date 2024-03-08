@@ -20,6 +20,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      * The URL of the CPS for the policy identifier
      * 
      * Example usage:
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -74,6 +75,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     @Import(name="cps")
@@ -83,6 +85,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      * @return The URL of the CPS for the policy identifier
      * 
      * Example usage:
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -137,6 +140,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Optional<Output<String>> cps() {
@@ -203,6 +207,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          * @param cps The URL of the CPS for the policy identifier
          * 
          * Example usage:
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -257,6 +262,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 
@@ -270,6 +276,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          * @param cps The URL of the CPS for the policy identifier
          * 
          * Example usage:
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -324,6 +331,7 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 

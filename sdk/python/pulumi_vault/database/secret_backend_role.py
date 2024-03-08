@@ -489,6 +489,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -510,13 +511,14 @@ class SecretBackendRole(pulumi.CustomResource):
             db_name=postgres.name,
             creation_statements=["CREATE ROLE \\"{{name}}\\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+        $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -558,6 +560,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -579,13 +582,14 @@ class SecretBackendRole(pulumi.CustomResource):
             db_name=postgres.name,
             creation_statements=["CREATE ROLE \\"{{name}}\\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+        $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.

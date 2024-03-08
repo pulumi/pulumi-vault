@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -66,13 +68,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * AWS secret backend roles can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+ * $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
  * ```
  * 
  */

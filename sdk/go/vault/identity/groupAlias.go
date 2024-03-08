@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,6 +61,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -69,7 +71,7 @@ import (
 // $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
 // ```
 //
-//	Group aliases can also be imported using the UUID of the alias record, e.g.
+// Group aliases can also be imported using the UUID of the alias record, e.g.
 //
 // ```sh
 // $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157

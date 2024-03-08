@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -25,13 +26,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Github user mappings can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
+ * $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
  * ```
  */
 export class User extends pulumi.CustomResource {

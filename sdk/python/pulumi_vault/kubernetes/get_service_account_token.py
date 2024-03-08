@@ -180,6 +180,7 @@ def get_service_account_token(backend: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -211,6 +212,7 @@ def get_service_account_token(backend: Optional[str] = None,
         cluster_role_binding=False,
         ttl="1h")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The Kubernetes secret backend to generate service account 
@@ -265,6 +267,7 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -296,6 +299,7 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
         cluster_role_binding=False,
         ttl="1h")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The Kubernetes secret backend to generate service account 

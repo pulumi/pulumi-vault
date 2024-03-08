@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -27,13 +28,14 @@ import * as utilities from "../utilities";
  *     groupIds: [internal.id],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * OIDC Assignments can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
+ * $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
  * ```
  */
 export class OidcAssignment extends pulumi.CustomResource {

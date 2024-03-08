@@ -18,7 +18,9 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
  * ### Local Storage
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -51,7 +53,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### AWS S3
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -95,7 +100,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Azure BLOB
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -133,13 +142,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+ * $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
  * ```
  * 
  */
@@ -450,28 +460,6 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     /**
      * Google service account key in JSON format.
      * The raw value looks like this:
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *     }
-     * }
-     * ```
      * 
      */
     @Export(name="googleServiceAccountKey", refs={String.class}, tree="[0]")
@@ -480,28 +468,6 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     /**
      * @return Google service account key in JSON format.
      * The raw value looks like this:
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *     }
-     * }
-     * ```
      * 
      */
     public Output<Optional<String>> googleServiceAccountKey() {

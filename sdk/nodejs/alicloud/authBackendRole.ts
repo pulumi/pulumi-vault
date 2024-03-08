@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -23,13 +24,14 @@ import * as utilities from "../utilities";
  *     arn: "acs:ram:123456:tf:role/foobar",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Alicloud authentication roles can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
+ * $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
  * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {

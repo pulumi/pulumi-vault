@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  * exist before the role can be used to issue tokens. You must also configure the key with the
  * role's Client ID to allow the role to use the key.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,11 +25,13 @@ import * as utilities from "../utilities";
  *     allowedClientIds: [role.clientId],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * If you want to create the key first before creating the role, you can use a separate
  * resource to configure the allowed Client ID on
  * the key.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -40,13 +43,14 @@ import * as utilities from "../utilities";
  *     allowedClientId: roleOidcRole.clientId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * The key can be imported with the role name, for example:
  *
  * ```sh
- *  $ pulumi import vault:identity/oidcRole:OidcRole role role
+ * $ pulumi import vault:identity/oidcRole:OidcRole role role
  * ```
  */
 export class OidcRole extends pulumi.CustomResource {

@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -30,13 +31,14 @@ import * as utilities from "../utilities";
  *     maxTtl: 120,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * LDAP secret backend libraries can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
+ * $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
  * ```
  */
 export class SecretBackendLibrarySet extends pulumi.CustomResource {

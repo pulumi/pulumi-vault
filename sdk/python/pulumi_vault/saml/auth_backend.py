@@ -445,6 +445,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -456,13 +457,14 @@ class AuthBackend(pulumi.CustomResource):
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
             path="saml")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         SAML authentication mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:saml/authBackend:AuthBackend example saml
+        $ pulumi import vault:saml/authBackend:AuthBackend example saml
         ```
 
         :param str resource_name: The name of the resource.
@@ -503,6 +505,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -514,13 +517,14 @@ class AuthBackend(pulumi.CustomResource):
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
             path="saml")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         SAML authentication mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:saml/authBackend:AuthBackend example saml
+        $ pulumi import vault:saml/authBackend:AuthBackend example saml
         ```
 
         :param str resource_name: The name of the resource.

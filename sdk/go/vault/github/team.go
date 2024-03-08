@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,15 +53,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Github team mappings can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
-//
+// $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
 // ```
 type Team struct {
 	pulumi.CustomResourceState

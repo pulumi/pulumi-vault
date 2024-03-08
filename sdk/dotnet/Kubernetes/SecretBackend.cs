@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Kubernetes
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -35,13 +36,14 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// The Kubernetes secret backend can be imported using its `path` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
+    /// $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
     /// ```
     /// </summary>
     [VaultResourceType("vault:kubernetes/secretBackend:SecretBackend")]

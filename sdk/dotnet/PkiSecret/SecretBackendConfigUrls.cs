@@ -14,6 +14,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,13 +43,16 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// The PKI config URLs can be imported using the resource's `id`. In the case of the example above the `id` would be `pki-root/config/urls`, where the `pki-root` component is the resource's `backend`, e.g.
+    /// The PKI config URLs can be imported using the resource's `id`.
+    /// In the case of the example above the `id` would be `pki-root/config/urls`,
+    /// where the `pki-root` component is the resource's `backend`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
+    /// $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls")]

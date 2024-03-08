@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * for more information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -60,13 +62,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * KMIP Secret backend can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
+ * $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
  * ```
  * 
  */

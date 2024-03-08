@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,15 +49,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
-//
+// $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

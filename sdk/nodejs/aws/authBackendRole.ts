@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -39,13 +40,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
  *
  * ```sh
- *  $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+ * $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
  * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {

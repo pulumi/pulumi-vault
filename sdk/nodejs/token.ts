@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -26,13 +27,14 @@ import * as utilities from "./utilities";
  *     ttl: "24h",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Tokens can be imported using its `id` as accessor id, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/token:Token example <accessor_id>
+ * $ pulumi import vault:index/token:Token example <accessor_id>
  * ```
  */
 export class Token extends pulumi.CustomResource {

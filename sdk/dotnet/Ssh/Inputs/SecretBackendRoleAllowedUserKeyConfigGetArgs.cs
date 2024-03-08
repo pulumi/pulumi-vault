@@ -23,6 +23,7 @@ namespace Pulumi.Vault.Ssh.Inputs
         /// 
         /// Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,6 +33,7 @@ namespace Pulumi.Vault.Ssh.Inputs
         /// {
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public InputList<int> Lengths
         {

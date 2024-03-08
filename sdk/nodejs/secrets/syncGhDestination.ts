@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -18,13 +19,14 @@ import * as utilities from "../utilities";
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * GitHub Secrets sync destinations can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
+ * $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
  * ```
  */
 export class SyncGhDestination extends pulumi.CustomResource {

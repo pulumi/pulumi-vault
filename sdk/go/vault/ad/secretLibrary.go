@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,15 +56,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AD secret backend libraries can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
-//
+// $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
 // ```
 type SecretLibrary struct {
 	pulumi.CustomResourceState

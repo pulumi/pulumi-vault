@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,13 +47,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// LDAP authentication backend groups can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+    /// $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/authBackendGroup:AuthBackendGroup")]

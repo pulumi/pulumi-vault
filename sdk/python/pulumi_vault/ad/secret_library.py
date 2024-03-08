@@ -293,6 +293,7 @@ class SecretLibrary(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -314,13 +315,14 @@ class SecretLibrary(pulumi.CustomResource):
             disable_check_in_enforcement=True,
             max_ttl=120)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AD secret backend libraries can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+        $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
         ```
 
         :param str resource_name: The name of the resource.
@@ -349,6 +351,7 @@ class SecretLibrary(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -370,13 +373,14 @@ class SecretLibrary(pulumi.CustomResource):
             disable_check_in_enforcement=True,
             max_ttl=120)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AD secret backend libraries can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+        $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
         ```
 
         :param str resource_name: The name of the resource.

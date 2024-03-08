@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,13 +56,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Rate limit quotas can be imported using their names
  * 
  * ```sh
- *  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+ * $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
  * ```
  * 
  */

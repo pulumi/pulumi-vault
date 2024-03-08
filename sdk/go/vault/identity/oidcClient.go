@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,15 +60,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // OIDC Clients can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcClient:OidcClient test my-app
-//
+// $ pulumi import vault:identity/oidcClient:OidcClient test my-app
 // ```
 type OidcClient struct {
 	pulumi.CustomResourceState

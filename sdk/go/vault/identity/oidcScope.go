@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,15 +41,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // OIDC Scopes can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcScope:OidcScope groups groups
-//
+// $ pulumi import vault:identity/oidcScope:OidcScope groups groups
 // ```
 type OidcScope struct {
 	pulumi.CustomResourceState

@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,13 +23,14 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Azure Secrets sync destinations can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
+ * $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
  * ```
  */
 export class SyncAzureDestination extends pulumi.CustomResource {

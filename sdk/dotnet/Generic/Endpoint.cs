@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Generic
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -88,6 +89,8 @@ namespace Pulumi.Vault.Generic
     ///     };
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Required Vault Capabilities
     /// 
     /// Use of this resource requires the `create` or `update` capability

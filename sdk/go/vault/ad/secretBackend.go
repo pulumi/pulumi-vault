@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,15 +43,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AD secret backend can be imported using the `backend`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ad/secretBackend:SecretBackend ad ad
-//
+// $ pulumi import vault:ad/secretBackend:SecretBackend ad ad
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

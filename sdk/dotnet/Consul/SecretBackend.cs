@@ -11,7 +11,9 @@ namespace Pulumi.Vault.Consul
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### Creating a standard backend resource:
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,7 +32,10 @@ namespace Pulumi.Vault.Consul
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Creating a backend resource to bootstrap a new Consul instance:
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -49,13 +54,14 @@ namespace Pulumi.Vault.Consul
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Consul secret backends can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+    /// $ pulumi import vault:consul/secretBackend:SecretBackend example consul
     /// ```
     /// </summary>
     [VaultResourceType("vault:consul/secretBackend:SecretBackend")]

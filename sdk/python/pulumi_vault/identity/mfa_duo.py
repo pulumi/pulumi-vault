@@ -378,6 +378,7 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -387,13 +388,14 @@ class MfaDuo(pulumi.CustomResource):
             integration_key="secret-int-key",
             secret_key="secret-key")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Resource can be imported using its `uuid` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+        $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
         :param str resource_name: The name of the resource.
@@ -417,6 +419,7 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -426,13 +429,14 @@ class MfaDuo(pulumi.CustomResource):
             integration_key="secret-int-key",
             secret_key="secret-key")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Resource can be imported using its `uuid` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+        $ pulumi import vault:identity/mfaDuo:MfaDuo example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
         ```
 
         :param str resource_name: The name of the resource.

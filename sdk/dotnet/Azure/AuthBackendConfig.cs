@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Azure
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,13 +37,14 @@ namespace Pulumi.Vault.Azure
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+    /// $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
     /// ```
     /// </summary>
     [VaultResourceType("vault:azure/authBackendConfig:AuthBackendConfig")]

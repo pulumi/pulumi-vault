@@ -305,6 +305,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -317,13 +318,14 @@ class AuthBackendConfig(pulumi.CustomResource):
             client_secret="01234567890123456789",
             resource="https://vault.hashicorp.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
 
         ```sh
-         $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+        $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
         ```
 
         :param str resource_name: The name of the resource.
@@ -355,6 +357,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -367,13 +370,14 @@ class AuthBackendConfig(pulumi.CustomResource):
             client_secret="01234567890123456789",
             resource="https://vault.hashicorp.com")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
 
         ```sh
-         $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+        $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
         ```
 
         :param str resource_name: The name of the resource.

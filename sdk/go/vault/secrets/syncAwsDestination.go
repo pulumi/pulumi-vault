@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,15 +43,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AWS Secrets sync destinations can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
-//
+// $ pulumi import vault:secrets/syncAwsDestination:SyncAwsDestination aws aws-dest
 // ```
 type SyncAwsDestination struct {
 	pulumi.CustomResourceState

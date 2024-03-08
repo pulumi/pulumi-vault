@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -33,13 +34,14 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// GCP Secrets sync destinations can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
+    /// $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
     /// ```
     /// </summary>
     [VaultResourceType("vault:secrets/syncGcpDestination:SyncGcpDestination")]

@@ -142,6 +142,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -164,6 +165,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
             "value": "1111-2222-3333-4444",
         }])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
@@ -223,6 +225,7 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -245,6 +248,7 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
             "value": "1111-2222-3333-4444",
         }])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.

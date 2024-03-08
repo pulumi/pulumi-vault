@@ -33,6 +33,8 @@ import javax.annotation.Nullable;
  * docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
  * backslashes must be escaped to appear correctly in Vault. For further
  * assistance escaping your own custom regex, see String Literals.
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -80,6 +82,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="vault:transform/template:Template")

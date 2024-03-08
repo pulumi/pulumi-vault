@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -57,13 +59,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * GCP authentication backends can be imported using the backend name, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+ * $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
  * ```
  * 
  */

@@ -190,6 +190,7 @@ def get_raft_autopilot_state(namespace: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -197,6 +198,7 @@ def get_raft_autopilot_state(namespace: Optional[str] = None,
     main = vault.get_raft_autopilot_state()
     pulumi.export("failure-tolerance", main.failure_tolerance)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.
@@ -231,6 +233,7 @@ def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[st
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -238,6 +241,7 @@ def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[st
     main = vault.get_raft_autopilot_state()
     pulumi.export("failure-tolerance", main.failure_tolerance)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.

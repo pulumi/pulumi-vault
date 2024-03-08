@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -82,15 +83,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
-//
+// $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
 // ```
 type SecretBackendStaticRole struct {
 	pulumi.CustomResourceState

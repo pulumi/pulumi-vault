@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -33,13 +34,14 @@ import * as utilities from "../utilities";
  *     tokenTtl: 86400,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * SAML authentication backend roles can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
+ * $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
  * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {

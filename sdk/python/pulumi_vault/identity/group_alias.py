@@ -181,6 +181,7 @@ class GroupAlias(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -196,6 +197,7 @@ class GroupAlias(pulumi.CustomResource):
             mount_accessor=github.accessor,
             canonical_id=group.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -205,7 +207,7 @@ class GroupAlias(pulumi.CustomResource):
         $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
         ```
 
-         Group aliases can also be imported using the UUID of the alias record, e.g.
+        Group aliases can also be imported using the UUID of the alias record, e.g.
 
         ```sh
         $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157
@@ -234,6 +236,7 @@ class GroupAlias(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -249,6 +252,7 @@ class GroupAlias(pulumi.CustomResource):
             mount_accessor=github.accessor,
             canonical_id=group.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -258,7 +262,7 @@ class GroupAlias(pulumi.CustomResource):
         $ pulumi import vault:identity/groupAlias:GroupAlias group-alias id
         ```
 
-         Group aliases can also be imported using the UUID of the alias record, e.g.
+        Group aliases can also be imported using the UUID of the alias record, e.g.
 
         ```sh
         $ pulumi import vault:identity/groupAlias:GroupAlias alias_name 63104e20-88e4-11eb-8d04-cf7ac9d60157

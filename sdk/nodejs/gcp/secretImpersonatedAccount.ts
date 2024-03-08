@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -30,13 +31,14 @@ import * as utilities from "../utilities";
  *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * A impersonated account can be imported using its Vault Path. For example, referencing the example above,
  *
  * ```sh
- *  $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
+ * $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
  * ```
  */
 export class SecretImpersonatedAccount extends pulumi.CustomResource {

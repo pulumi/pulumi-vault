@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -68,13 +70,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * SAML authentication backend roles can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
+ * $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
  * ```
  * 
  */

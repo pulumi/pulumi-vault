@@ -28,6 +28,8 @@ import java.util.concurrent.CompletableFuture;
 public final class IdentityFunctions {
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -56,6 +58,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -66,6 +70,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -94,6 +100,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -104,6 +112,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -132,6 +142,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -142,6 +154,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -170,6 +184,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -180,6 +196,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -208,6 +226,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -218,6 +238,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -246,6 +268,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -256,6 +280,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -284,6 +310,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
@@ -294,6 +322,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -322,6 +352,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
@@ -332,6 +364,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -360,6 +394,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
@@ -370,6 +406,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -398,6 +436,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
@@ -408,6 +448,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -436,6 +478,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
@@ -446,6 +490,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -474,6 +520,8 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Required Vault Capabilities
      * 
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
@@ -484,6 +532,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -523,6 +573,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOidcClientCredsResult> getOidcClientCreds(GetOidcClientCredsArgs args) {
@@ -530,6 +581,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -569,6 +622,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOidcClientCredsResult> getOidcClientCredsPlain(GetOidcClientCredsPlainArgs args) {
@@ -576,6 +630,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -615,6 +671,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOidcClientCredsResult> getOidcClientCreds(GetOidcClientCredsArgs args, InvokeOptions options) {
@@ -622,6 +679,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -661,6 +720,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOidcClientCredsResult> getOidcClientCredsPlain(GetOidcClientCredsPlainArgs args, InvokeOptions options) {
@@ -668,6 +728,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -722,6 +784,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOidcOpenidConfigResult> getOidcOpenidConfig(GetOidcOpenidConfigArgs args) {
@@ -729,6 +792,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -783,6 +848,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOidcOpenidConfigResult> getOidcOpenidConfigPlain(GetOidcOpenidConfigPlainArgs args) {
@@ -790,6 +856,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -844,6 +912,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOidcOpenidConfigResult> getOidcOpenidConfig(GetOidcOpenidConfigArgs args, InvokeOptions options) {
@@ -851,6 +920,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -905,6 +976,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOidcOpenidConfigResult> getOidcOpenidConfigPlain(GetOidcOpenidConfigPlainArgs args, InvokeOptions options) {
@@ -912,6 +984,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -966,6 +1040,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOidcPublicKeysResult> getOidcPublicKeys(GetOidcPublicKeysArgs args) {
@@ -973,6 +1048,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1027,6 +1104,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOidcPublicKeysResult> getOidcPublicKeysPlain(GetOidcPublicKeysPlainArgs args) {
@@ -1034,6 +1112,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1088,6 +1168,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetOidcPublicKeysResult> getOidcPublicKeys(GetOidcPublicKeysArgs args, InvokeOptions options) {
@@ -1095,6 +1176,8 @@ public final class IdentityFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1149,6 +1232,7 @@ public final class IdentityFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetOidcPublicKeysResult> getOidcPublicKeysPlain(GetOidcPublicKeysPlainArgs args, InvokeOptions options) {

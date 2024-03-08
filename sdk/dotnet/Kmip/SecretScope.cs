@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -39,13 +40,14 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// KMIP Secret scope can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
+    /// $ pulumi import vault:kmip/secretScope:SecretScope dev kmip
     /// ```
     /// </summary>
     [VaultResourceType("vault:kmip/secretScope:SecretScope")]

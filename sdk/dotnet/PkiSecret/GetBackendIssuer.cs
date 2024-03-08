@@ -11,9 +11,15 @@ namespace Pulumi.Vault.PkiSecret
 {
     public static class GetBackendIssuer
     {
+        /// <summary>
+        /// ## Example Usage
+        /// </summary>
         public static Task<GetBackendIssuerResult> InvokeAsync(GetBackendIssuerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackendIssuerResult>("vault:pkiSecret/getBackendIssuer:getBackendIssuer", args ?? new GetBackendIssuerArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// ## Example Usage
+        /// </summary>
         public static Output<GetBackendIssuerResult> Invoke(GetBackendIssuerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendIssuerResult>("vault:pkiSecret/getBackendIssuer:getBackendIssuer", args ?? new GetBackendIssuerInvokeArgs(), options.WithDefaults());
     }

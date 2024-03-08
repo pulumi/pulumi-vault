@@ -193,6 +193,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -206,13 +207,14 @@ class SecretBackend(pulumi.CustomResource):
             private_key="privateKey",
             public_key="publicKey")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
+        $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
         ```
 
         :param str resource_name: The name of the resource.
@@ -234,6 +236,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -247,13 +250,14 @@ class SecretBackend(pulumi.CustomResource):
             private_key="privateKey",
             public_key="publicKey")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
+        $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
         ```
 
         :param str resource_name: The name of the resource.

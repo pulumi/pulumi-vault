@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,13 +46,14 @@ namespace Pulumi.Vault.Aws
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AWS secret backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
+    /// $ pulumi import vault:aws/secretBackendRole:SecretBackendRole role aws/roles/deploy
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/secretBackendRole:SecretBackendRole")]

@@ -12,6 +12,7 @@ namespace Pulumi.Vault
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,13 +41,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Tokens can be imported using its `id` as accessor id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;
+    /// $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/token:Token")]

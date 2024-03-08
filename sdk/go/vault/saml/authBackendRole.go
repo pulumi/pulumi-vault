@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -64,15 +65,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // SAML authentication backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
-//
+// $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState

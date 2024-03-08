@@ -20,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,13 +45,12 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // ```sh
-//
-//	$ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
-//
+// $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
 // ```
 type SyncConfig struct {
 	pulumi.CustomResourceState

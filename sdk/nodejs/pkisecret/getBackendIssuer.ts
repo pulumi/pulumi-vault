@@ -4,6 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * ## Example Usage
+ */
 export function getBackendIssuer(args: GetBackendIssuerArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendIssuerResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -81,6 +84,9 @@ export interface GetBackendIssuerResult {
      */
     readonly usage: string;
 }
+/**
+ * ## Example Usage
+ */
 export function getBackendIssuerOutput(args: GetBackendIssuerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendIssuerResult> {
     return pulumi.output(args).apply((a: any) => getBackendIssuer(a, opts))
 }

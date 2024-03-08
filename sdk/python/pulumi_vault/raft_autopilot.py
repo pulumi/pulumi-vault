@@ -349,6 +349,7 @@ class RaftAutopilot(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -361,13 +362,14 @@ class RaftAutopilot(pulumi.CustomResource):
             min_quorum=3,
             server_stabilization_time="10s")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Raft Autopilot config can be imported using the ID, e.g.
 
         ```sh
-         $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+        $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
         ```
 
         :param str resource_name: The name of the resource.
@@ -406,6 +408,7 @@ class RaftAutopilot(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -418,13 +421,14 @@ class RaftAutopilot(pulumi.CustomResource):
             min_quorum=3,
             server_stabilization_time="10s")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Raft Autopilot config can be imported using the ID, e.g.
 
         ```sh
-         $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
+        $ pulumi import vault:index/raftAutopilot:RaftAutopilot autopilot sys/storage/raft/autopilot/configuration
         ```
 
         :param str resource_name: The name of the resource.

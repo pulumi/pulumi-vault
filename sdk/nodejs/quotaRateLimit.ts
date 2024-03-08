@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -23,13 +24,14 @@ import * as utilities from "./utilities";
  *     rate: 100,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Rate limit quotas can be imported using their names
  *
  * ```sh
- *  $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
+ * $ pulumi import vault:index/quotaRateLimit:QuotaRateLimit global global
  * ```
  */
 export class QuotaRateLimit extends pulumi.CustomResource {

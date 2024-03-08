@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,13 +56,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * LDAP secret backend can be imported using the `${mount}/config`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
+ * $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
  * ```
  * 
  */

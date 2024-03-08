@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// Manage JWT auth backend:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,9 +36,11 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Manage OIDC auth backend:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -63,9 +66,11 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Configuring the auth backend with a `provider_config:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -91,18 +96,19 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// JWT auth backend can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+    /// $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
     /// ```
-    ///  or
+    /// or
     /// 
     /// ```sh
-    ///  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+    /// $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
     /// ```
     /// </summary>
     [VaultResourceType("vault:jwt/authBackend:AuthBackend")]

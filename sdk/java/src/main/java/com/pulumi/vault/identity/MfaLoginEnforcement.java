@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * Resource for configuring MFA login-enforcement
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,13 +58,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Resource can be imported using its `name` field, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
+ * $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
  * ```
  * 
  */

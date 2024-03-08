@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,13 +56,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * AWS secret backend static role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/static-roles/&lt;role_name&gt;` e.g.
+ * AWS secret backend static role can be imported using the full path to the role
+ * of the form: `&lt;mount_path&gt;/static-roles/&lt;role_name&gt;` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
+ * $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
  * ```
  * 
  */

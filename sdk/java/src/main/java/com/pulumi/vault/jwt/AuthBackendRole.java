@@ -27,6 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * Role for JWT backend:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -70,8 +72,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Role for OIDC backend:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -115,13 +120,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * JWT authentication backend roles can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
+ * $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
  * ```
  * 
  */

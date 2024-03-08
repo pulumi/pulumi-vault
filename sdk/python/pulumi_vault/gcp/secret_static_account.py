@@ -299,6 +299,7 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -319,13 +320,14 @@ class SecretStaticAccount(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         A static account can be imported using its Vault Path. For example, referencing the example above,
 
         ```sh
-         $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
+        $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
         ```
 
         :param str resource_name: The name of the resource.
@@ -355,6 +357,7 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -375,13 +378,14 @@ class SecretStaticAccount(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         A static account can be imported using its Vault Path. For example, referencing the example above,
 
         ```sh
-         $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
+        $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
         ```
 
         :param str resource_name: The name of the resource.

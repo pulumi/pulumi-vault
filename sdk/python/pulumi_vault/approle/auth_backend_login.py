@@ -299,6 +299,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -320,6 +321,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             role_id=example.role_id,
             secret_id=id.secret_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,6 +347,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -366,6 +369,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             role_id=example.role_id,
             secret_id=id.secret_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AuthBackendLoginArgs args: The arguments to use to populate this resource's properties.

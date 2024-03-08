@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,13 +31,14 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// GitHub Secrets sync destinations can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
+    /// $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
     /// ```
     /// </summary>
     [VaultResourceType("vault:secrets/syncGhDestination:SyncGhDestination")]

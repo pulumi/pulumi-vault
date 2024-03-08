@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
  * Provides a resource to create a user in an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -64,13 +66,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * LDAP authentication backend users can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
+ * $ pulumi import vault:ldap/authBackendUser:AuthBackendUser foo auth/ldap/users/foo
  * ```
  * 
  */

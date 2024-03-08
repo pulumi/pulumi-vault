@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * Provides a resource for managing an [LDAP auth backend within Vault](https://www.vaultproject.io/docs/auth/ldap.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,13 +58,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * LDAP authentication backends can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+ * $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
  * ```
  * 
  */

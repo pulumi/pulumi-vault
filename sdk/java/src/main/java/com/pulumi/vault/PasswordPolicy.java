@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * **Note** this feature is available only Vault 1.5+
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,13 +56,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Password policies can be imported using the `name`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
+ * $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
  * ```
  * 
  */

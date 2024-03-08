@@ -189,6 +189,7 @@ class AuthBackendGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -207,13 +208,14 @@ class AuthBackendGroup(pulumi.CustomResource):
             policies=["dba"],
             backend=ldap.path)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP authentication backend groups can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+        $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -239,6 +241,7 @@ class AuthBackendGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -257,13 +260,14 @@ class AuthBackendGroup(pulumi.CustomResource):
             policies=["dba"],
             backend=ldap.path)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP authentication backend groups can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
+        $ pulumi import vault:ldap/authBackendGroup:AuthBackendGroup foo auth/ldap/groups/foo
         ```
 
         :param str resource_name: The name of the resource.

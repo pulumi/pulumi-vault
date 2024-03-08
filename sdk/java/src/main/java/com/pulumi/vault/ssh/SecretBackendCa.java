@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * [SSH secret backend within Vault](https://www.vaultproject.io/docs/secrets/ssh/index.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,13 +57,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * SSH secret backend CAs can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+ * $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
  * ```
  * 
  */

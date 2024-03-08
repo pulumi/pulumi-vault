@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -25,13 +26,16 @@ import * as utilities from "../utilities";
  *     issuingCertificates: ["http://127.0.0.1:8200/v1/pki/ca"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * The PKI config URLs can be imported using the resource's `id`. In the case of the example above the `id` would be `pki-root/config/urls`, where the `pki-root` component is the resource's `backend`, e.g.
+ * The PKI config URLs can be imported using the resource's `id`.
+ * In the case of the example above the `id` would be `pki-root/config/urls`,
+ * where the `pki-root` component is the resource's `backend`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
+ * $ pulumi import vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls example pki-root/config/urls
  * ```
  */
 export class SecretBackendConfigUrls extends pulumi.CustomResource {

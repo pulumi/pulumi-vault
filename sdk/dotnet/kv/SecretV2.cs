@@ -17,6 +17,7 @@ namespace Pulumi.Vault.kv
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -60,6 +61,8 @@ namespace Pulumi.Vault.kv
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Required Vault Capabilities
     /// 
     /// Use of this resource requires the `create` or `update` capability
@@ -84,7 +87,7 @@ namespace Pulumi.Vault.kv
     /// KV-V2 secrets can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
+    /// $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
     /// ```
     /// </summary>
     [VaultResourceType("vault:kv/secretV2:SecretV2")]
