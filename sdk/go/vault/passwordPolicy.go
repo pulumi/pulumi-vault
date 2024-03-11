@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,15 +48,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Password policies can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
-//
+// $ pulumi import vault:index/passwordPolicy:PasswordPolicy alphanumeric alphanumeric
 // ```
 type PasswordPolicy struct {
 	pulumi.CustomResourceState

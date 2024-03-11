@@ -11,18 +11,12 @@ import * as utilities from "../utilities";
  *
  * **Note** this feature is available only with Vault Enterprise.
  *
- * ## Caveats
- *
- * This single resource handles the lifecycle of _all_ the managed keys that must be created in Vault.
- * There can only be one such resource in the TF state, and if there are already provisioned managed
- * keys in Vault, we recommend using `pulumi import` instead.
- *
  * ## Import
  *
  * Mounts can be imported using the `id` of `default`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:managed/keys:Keys keys default
+ * $ pulumi import vault:managed/keys:Keys keys default
  * ```
  */
 export class Keys extends pulumi.CustomResource {

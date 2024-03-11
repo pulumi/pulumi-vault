@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,15 +47,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // LDAP authentication backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
-//
+// $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState

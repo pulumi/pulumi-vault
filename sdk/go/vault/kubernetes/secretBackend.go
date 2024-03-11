@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,15 +55,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // The Kubernetes secret backend can be imported using its `path` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
-//
+// $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * Creates a role on an PKI Secret Backend for Vault.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -67,13 +69,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * PKI secret backend roles can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
+ * $ pulumi import vault:pkiSecret/secretBackendRole:SecretBackendRole role pki/roles/my_role
  * ```
  * 
  */

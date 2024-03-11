@@ -776,6 +776,7 @@ class AuthBackend(pulumi.CustomResource):
 
         Manage JWT auth backend:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -786,9 +787,11 @@ class AuthBackend(pulumi.CustomResource):
             oidc_discovery_url="https://myco.auth0.com/",
             path="jwt")
         ```
+        <!--End PulumiCodeChooser -->
 
         Manage OIDC auth backend:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -805,9 +808,11 @@ class AuthBackend(pulumi.CustomResource):
             ),
             type="oidc")
         ```
+        <!--End PulumiCodeChooser -->
 
         Configuring the auth backend with a `provider_config:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -824,18 +829,19 @@ class AuthBackend(pulumi.CustomResource):
             },
             type="oidc")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         JWT auth backend can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+        $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
         ```
-         or
+        or
 
         ```sh
-         $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+        $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
         ```
 
         :param str resource_name: The name of the resource.
@@ -883,6 +889,7 @@ class AuthBackend(pulumi.CustomResource):
 
         Manage JWT auth backend:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -893,9 +900,11 @@ class AuthBackend(pulumi.CustomResource):
             oidc_discovery_url="https://myco.auth0.com/",
             path="jwt")
         ```
+        <!--End PulumiCodeChooser -->
 
         Manage OIDC auth backend:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -912,9 +921,11 @@ class AuthBackend(pulumi.CustomResource):
             ),
             type="oidc")
         ```
+        <!--End PulumiCodeChooser -->
 
         Configuring the auth backend with a `provider_config:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -931,18 +942,19 @@ class AuthBackend(pulumi.CustomResource):
             },
             type="oidc")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         JWT auth backend can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+        $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
         ```
-         or
+        or
 
         ```sh
-         $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+        $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
         ```
 
         :param str resource_name: The name of the resource.

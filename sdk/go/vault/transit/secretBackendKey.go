@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,6 +51,8 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Deprecations
 //
 // * `autoRotateInterval` - Replaced by `autoRotatePeriod`.
@@ -59,9 +62,7 @@ import (
 // Transit secret backend keys can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
-//
+// $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
 // ```
 type SecretBackendKey struct {
 	pulumi.CustomResourceState

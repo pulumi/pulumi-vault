@@ -417,6 +417,7 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -440,13 +441,15 @@ class SecretRole(pulumi.CustomResource):
             ttl="60",
             max_ttl="120")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The MongoDB Atlas secret role can be imported using the full path to the role of the form: `<mount_path>/roles/<role_name>` e.g.
+        The MongoDB Atlas secret role can be imported using the full path to the role
+        of the form: `<mount_path>/roles/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
+        $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -477,6 +480,7 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -500,13 +504,15 @@ class SecretRole(pulumi.CustomResource):
             ttl="60",
             max_ttl="120")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        The MongoDB Atlas secret role can be imported using the full path to the role of the form: `<mount_path>/roles/<role_name>` e.g.
+        The MongoDB Atlas secret role can be imported using the full path to the role
+        of the form: `<mount_path>/roles/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
+        $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
         ```
 
         :param str resource_name: The name of the resource.

@@ -750,6 +750,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -768,13 +769,14 @@ class AuthBackendRole(pulumi.CustomResource):
             token_explicit_max_ttl=115200,
             token_period=86400)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
 
         ```sh
-         $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
+        $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -833,6 +835,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -851,13 +854,14 @@ class AuthBackendRole(pulumi.CustomResource):
             token_explicit_max_ttl=115200,
             token_period=86400)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
 
         ```sh
-         $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
+        $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.

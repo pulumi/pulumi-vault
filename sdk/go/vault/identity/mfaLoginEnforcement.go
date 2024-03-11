@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,15 +51,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Resource can be imported using its `name` field, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
-//
+// $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
 // ```
 type MfaLoginEnforcement struct {
 	pulumi.CustomResourceState

@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,13 +58,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Tokens can be imported using its `id` as accessor id, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;
+ * $ pulumi import vault:index/token:Token example &lt;accessor_id&gt;
  * ```
  * 
  */

@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * Auth methods can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/authBackend:AuthBackend example github
+ * $ pulumi import vault:index/authBackend:AuthBackend example github
  * ```
  */
 export class AuthBackend extends pulumi.CustomResource {

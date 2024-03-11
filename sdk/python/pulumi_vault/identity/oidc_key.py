@@ -258,6 +258,7 @@ class OidcKey(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -268,13 +269,14 @@ class OidcKey(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role_oidc_role.client_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The key can be imported with the key name, for example:
 
         ```sh
-         $ pulumi import vault:identity/oidcKey:OidcKey key key
+        $ pulumi import vault:identity/oidcKey:OidcKey key key
         ```
 
         :param str resource_name: The name of the resource.
@@ -301,6 +303,7 @@ class OidcKey(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -311,13 +314,14 @@ class OidcKey(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role_oidc_role.client_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The key can be imported with the key name, for example:
 
         ```sh
-         $ pulumi import vault:identity/oidcKey:OidcKey key key
+        $ pulumi import vault:identity/oidcKey:OidcKey key key
         ```
 
         :param str resource_name: The name of the resource.

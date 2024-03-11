@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -32,6 +33,8 @@ import * as utilities from "../utilities";
  *     }),
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Required Vault Capabilities
  *
  * Use of this resource requires the `create` or `update` capability
@@ -44,7 +47,7 @@ import * as utilities from "../utilities";
  * KV-V1 secrets can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:kv/secret:Secret secret kvv1/secret
+ * $ pulumi import vault:kv/secret:Secret secret kvv1/secret
  * ```
  */
 export class Secret extends pulumi.CustomResource {

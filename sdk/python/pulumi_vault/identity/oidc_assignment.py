@@ -183,6 +183,7 @@ class OidcAssignment(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -198,13 +199,14 @@ class OidcAssignment(pulumi.CustomResource):
             entity_ids=[test.id],
             group_ids=[internal.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         OIDC Assignments can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
+        $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
         ```
 
         :param str resource_name: The name of the resource.
@@ -229,6 +231,7 @@ class OidcAssignment(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -244,13 +247,14 @@ class OidcAssignment(pulumi.CustomResource):
             entity_ids=[test.id],
             group_ids=[internal.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         OIDC Assignments can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
+        $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
         ```
 
         :param str resource_name: The name of the resource.

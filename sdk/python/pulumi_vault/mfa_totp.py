@@ -360,6 +360,7 @@ class MfaTotp(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -371,13 +372,14 @@ class MfaTotp(pulumi.CustomResource):
             key_size=20,
             period=60)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
+        $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
         ```
 
         :param str resource_name: The name of the resource.
@@ -411,6 +413,7 @@ class MfaTotp(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -422,13 +425,14 @@ class MfaTotp(pulumi.CustomResource):
             key_size=20,
             period=60)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
+        $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
         ```
 
         :param str resource_name: The name of the resource.

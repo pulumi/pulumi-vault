@@ -623,6 +623,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -637,13 +638,14 @@ class SecretBackend(pulumi.CustomResource):
             service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
             disable_local_ca_jwt=False)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The Kubernetes secret backend can be imported using its `path` e.g.
 
         ```sh
-         $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
+        $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
         ```
 
         :param str resource_name: The name of the resource.
@@ -685,6 +687,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -699,13 +702,14 @@ class SecretBackend(pulumi.CustomResource):
             service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
             disable_local_ca_jwt=False)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The Kubernetes secret backend can be imported using its `path` e.g.
 
         ```sh
-         $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
+        $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
         ```
 
         :param str resource_name: The name of the resource.

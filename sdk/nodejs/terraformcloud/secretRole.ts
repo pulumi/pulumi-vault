@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,13 +23,14 @@ import * as utilities from "../utilities";
  *     teamId: "team-ieF4isC...",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
  *
  * ```sh
- *  $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
+ * $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
  * ```
  */
 export class SecretRole extends pulumi.CustomResource {

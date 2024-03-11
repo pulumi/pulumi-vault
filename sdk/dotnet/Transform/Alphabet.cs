@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +39,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:transform/alphabet:Alphabet")]
     public partial class Alphabet : global::Pulumi.CustomResource

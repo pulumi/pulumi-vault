@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,13 +39,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// The key can be imported with the key name, for example:
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/oidcKey:OidcKey key key
+    /// $ pulumi import vault:identity/oidcKey:OidcKey key key
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcKey:OidcKey")]

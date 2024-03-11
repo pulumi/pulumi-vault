@@ -246,6 +246,7 @@ class Entity(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -256,13 +257,14 @@ class Entity(pulumi.CustomResource):
             },
             policies=["test"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity entity can be imported using the `id`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+        $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
         ```
 
         :param str resource_name: The name of the resource.
@@ -286,6 +288,7 @@ class Entity(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -296,13 +299,14 @@ class Entity(pulumi.CustomResource):
             },
             policies=["test"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity entity can be imported using the `id`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+        $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
         ```
 
         :param str resource_name: The name of the resource.

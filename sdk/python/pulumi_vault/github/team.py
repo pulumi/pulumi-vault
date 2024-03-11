@@ -191,6 +191,7 @@ class Team(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -204,13 +205,14 @@ class Team(pulumi.CustomResource):
                 "read-only",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Github team mappings can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+        $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
         ```
 
         :param str resource_name: The name of the resource.
@@ -238,6 +240,7 @@ class Team(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -251,13 +254,14 @@ class Team(pulumi.CustomResource):
                 "read-only",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Github team mappings can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+        $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
         ```
 
         :param str resource_name: The name of the resource.

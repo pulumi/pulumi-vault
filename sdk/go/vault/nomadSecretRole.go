@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,15 +54,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Nomad secret role can be imported using the `backend`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
-//
+// $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
 // ```
 type NomadSecretRole struct {
 	pulumi.CustomResourceState

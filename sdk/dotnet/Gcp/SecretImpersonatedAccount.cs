@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -51,13 +52,14 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// A impersonated account can be imported using its Vault Path. For example, referencing the example above,
     /// 
     /// ```sh
-    ///  $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
+    /// $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount")]

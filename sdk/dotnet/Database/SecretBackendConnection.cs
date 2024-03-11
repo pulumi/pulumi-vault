@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Database
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,13 +43,14 @@ namespace Pulumi.Vault.Database
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+    /// $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
     /// ```
     /// </summary>
     [VaultResourceType("vault:database/secretBackendConnection:SecretBackendConnection")]

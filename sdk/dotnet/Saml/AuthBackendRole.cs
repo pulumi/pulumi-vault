@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Saml
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,13 +58,14 @@ namespace Pulumi.Vault.Saml
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// SAML authentication backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
+    /// $ pulumi import vault:saml/authBackendRole:AuthBackendRole example auth/saml/role/my-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:saml/authBackendRole:AuthBackendRole")]

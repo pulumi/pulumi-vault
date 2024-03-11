@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Database
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -79,13 +80,14 @@ namespace Pulumi.Vault.Database
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Database secret backend connections can be imported using the `path` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:database/secretsMount:SecretsMount db db
+    /// $ pulumi import vault:database/secretsMount:SecretsMount db db
     /// ```
     /// </summary>
     [VaultResourceType("vault:database/secretsMount:SecretsMount")]

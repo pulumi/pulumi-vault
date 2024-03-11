@@ -541,6 +541,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         Example using `service_account_name` mode:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -567,9 +568,11 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         Example using `kubernetes_role_name` mode:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -596,9 +599,11 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         Example using `generated_role_rules` mode:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -630,12 +635,13 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The Kubernetes secret backend role can be imported using the full path to the role
 
-         of the form: `<backend_path>/roles/<role_name>` e.g.
+        of the form: `<backend_path>/roles/<role_name>` e.g.
 
         ```sh
         $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role
@@ -687,6 +693,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         Example using `service_account_name` mode:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -713,9 +720,11 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         Example using `kubernetes_role_name` mode:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -742,9 +751,11 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         Example using `generated_role_rules` mode:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -776,12 +787,13 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         The Kubernetes secret backend role can be imported using the full path to the role
 
-         of the form: `<backend_path>/roles/<role_name>` e.g.
+        of the form: `<backend_path>/roles/<role_name>` e.g.
 
         ```sh
         $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role

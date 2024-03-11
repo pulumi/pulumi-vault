@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -68,6 +69,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetDecode(ctx *pulumi.Context, args *GetDecodeArgs, opts ...pulumi.InvokeOption) (*GetDecodeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDecodeResult

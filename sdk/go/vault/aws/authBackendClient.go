@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -45,15 +46,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
-//
+// $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
 // ```
 type AuthBackendClient struct {
 	pulumi.CustomResourceState

@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,13 +36,14 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// SSH secret backend CAs can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
+    /// $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
     /// ```
     /// </summary>
     [VaultResourceType("vault:ssh/secretBackendCa:SecretBackendCa")]

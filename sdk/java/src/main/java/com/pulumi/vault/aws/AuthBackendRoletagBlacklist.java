@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * Configures the periodic tidying operation of the blacklisted role tag entries.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,6 +57,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist")

@@ -11,8 +11,10 @@ namespace Pulumi.Vault
 {
     /// <summary>
     /// ## Example Usage
+    /// 
     /// ### File Audit Device)
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,8 +34,11 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Socket Audit Device)
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,13 +62,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Audit devices can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/audit:Audit test syslog
+    /// $ pulumi import vault:index/audit:Audit test syslog
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/audit:Audit")]

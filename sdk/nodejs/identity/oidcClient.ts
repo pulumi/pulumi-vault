@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -29,13 +30,14 @@ import * as utilities from "../utilities";
  *     accessTokenTtl: 7200,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * OIDC Clients can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/oidcClient:OidcClient test my-app
+ * $ pulumi import vault:identity/oidcClient:OidcClient test my-app
  * ```
  */
 export class OidcClient extends pulumi.CustomResource {

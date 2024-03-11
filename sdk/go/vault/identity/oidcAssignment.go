@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -62,15 +63,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // OIDC Assignments can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
-//
+// $ pulumi import vault:identity/oidcAssignment:OidcAssignment default assignment
 // ```
 type OidcAssignment struct {
 	pulumi.CustomResourceState

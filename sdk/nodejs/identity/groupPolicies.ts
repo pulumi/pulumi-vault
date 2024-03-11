@@ -8,8 +8,10 @@ import * as utilities from "../utilities";
  * Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
  *
  * ## Example Usage
+ *
  * ### Exclusive Policies
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -30,8 +32,11 @@ import * as utilities from "../utilities";
  *     groupId: internal.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Non-exclusive Policies
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -57,6 +62,7 @@ import * as utilities from "../utilities";
  *     groupId: internal.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class GroupPolicies extends pulumi.CustomResource {
     /**

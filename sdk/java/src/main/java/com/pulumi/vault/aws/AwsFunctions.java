@@ -20,6 +20,7 @@ public final class AwsFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -74,6 +75,7 @@ public final class AwsFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args) {
@@ -82,6 +84,7 @@ public final class AwsFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -136,6 +139,7 @@ public final class AwsFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args) {
@@ -144,6 +148,7 @@ public final class AwsFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -198,6 +203,7 @@ public final class AwsFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions options) {
@@ -206,6 +212,7 @@ public final class AwsFunctions {
     /**
      * ## Example Usage
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -260,6 +267,7 @@ public final class AwsFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args, InvokeOptions options) {

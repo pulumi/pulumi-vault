@@ -371,6 +371,7 @@ class OidcClient(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -388,13 +389,14 @@ class OidcClient(pulumi.CustomResource):
             id_token_ttl=2400,
             access_token_ttl=7200)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         OIDC Clients can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/oidcClient:OidcClient test my-app
+        $ pulumi import vault:identity/oidcClient:OidcClient test my-app
         ```
 
         :param str resource_name: The name of the resource.
@@ -429,6 +431,7 @@ class OidcClient(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -446,13 +449,14 @@ class OidcClient(pulumi.CustomResource):
             id_token_ttl=2400,
             access_token_ttl=7200)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         OIDC Clients can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:identity/oidcClient:OidcClient test my-app
+        $ pulumi import vault:identity/oidcClient:OidcClient test my-app
         ```
 
         :param str resource_name: The name of the resource.

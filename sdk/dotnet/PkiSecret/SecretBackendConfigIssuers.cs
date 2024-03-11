@@ -12,6 +12,7 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -52,13 +53,14 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// PKI secret backend config issuers can be imported using the path, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
+    /// $ pulumi import vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers config pki/config/issuers
     /// ```
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers")]

@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -53,13 +54,14 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// KMIP Secret role can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+    /// $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
     /// ```
     /// </summary>
     [VaultResourceType("vault:kmip/secretRole:SecretRole")]

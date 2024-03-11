@@ -12,6 +12,7 @@ namespace Pulumi.Vault.AD
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,13 +41,14 @@ namespace Pulumi.Vault.AD
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AD secret backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+    /// $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
     /// ```
     /// </summary>
     [VaultResourceType("vault:ad/secretRole:SecretRole")]

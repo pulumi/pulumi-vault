@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// Role for JWT backend:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,9 +56,11 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Role for OIDC backend:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -92,13 +95,14 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// JWT authentication backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
+    /// $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:jwt/authBackendRole:AuthBackendRole")]

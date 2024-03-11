@@ -22,7 +22,10 @@ import javax.annotation.Nullable;
  * is the identity management solution for Vault.
  * 
  * ## Example Usage
+ * 
  * ### Exclusive Member Groups
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -65,7 +68,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Non-Exclusive Member Groups
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -108,6 +115,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="vault:identity/groupMemberGroupIds:GroupMemberGroupIds")

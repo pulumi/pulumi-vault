@@ -561,6 +561,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -573,13 +574,14 @@ class AuthBackendRole(pulumi.CustomResource):
             role="example",
             arn="acs:ram:123456:tf:role/foobar")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Alicloud authentication roles can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
+        $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
         ```
 
         :param str resource_name: The name of the resource.
@@ -633,6 +635,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -645,13 +648,14 @@ class AuthBackendRole(pulumi.CustomResource):
             role="example",
             arn="acs:ram:123456:tf:role/foobar")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Alicloud authentication roles can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
+        $ pulumi import vault:alicloud/authBackendRole:AuthBackendRole my_role auth/alicloud/role/my_role
         ```
 
         :param str resource_name: The name of the resource.

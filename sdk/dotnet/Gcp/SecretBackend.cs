@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Gcp
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -28,6 +29,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:gcp/secretBackend:SecretBackend")]
     public partial class SecretBackend : global::Pulumi.CustomResource

@@ -714,19 +714,21 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GitHub authentication mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:github/authBackend:AuthBackend example github
+        $ pulumi import vault:github/authBackend:AuthBackend example github
         ```
 
         :param str resource_name: The name of the resource.
@@ -786,19 +788,21 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GitHub authentication mounts can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:github/authBackend:AuthBackend example github
+        $ pulumi import vault:github/authBackend:AuthBackend example github
         ```
 
         :param str resource_name: The name of the resource.

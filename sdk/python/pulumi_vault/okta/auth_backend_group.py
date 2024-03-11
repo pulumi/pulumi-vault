@@ -181,6 +181,7 @@ class AuthBackendGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -196,13 +197,14 @@ class AuthBackendGroup(pulumi.CustomResource):
                 "two",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
 
         ```sh
-         $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+        $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -227,6 +229,7 @@ class AuthBackendGroup(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -242,13 +245,14 @@ class AuthBackendGroup(pulumi.CustomResource):
                 "two",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
 
         ```sh
-         $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+        $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
         ```
 
         :param str resource_name: The name of the resource.

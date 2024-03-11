@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,13 +22,15 @@ import * as utilities from "../utilities";
  *     rotationPeriod: 3600,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * AWS secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-roles/<role_name>` e.g.
+ * AWS secret backend static role can be imported using the full path to the role
+ * of the form: `<mount_path>/static-roles/<role_name>` e.g.
  *
  * ```sh
- *  $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
+ * $ pulumi import vault:aws/secretBackendStaticRole:SecretBackendStaticRole role aws/static-roles/example-role
  * ```
  */
 export class SecretBackendStaticRole extends pulumi.CustomResource {

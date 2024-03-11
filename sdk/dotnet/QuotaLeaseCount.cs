@@ -21,6 +21,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,13 +38,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Lease count quotas can be imported using their names
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
+    /// $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/quotaLeaseCount:QuotaLeaseCount")]

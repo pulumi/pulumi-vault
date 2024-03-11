@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -18,13 +19,14 @@ import * as utilities from "../utilities";
  *     secretKey: "INSERT_AWS_SECRET_KEY",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * AWS auth backend clients can be imported using `auth/`, the `backend` path, and `/config/client` e.g.
  *
  * ```sh
- *  $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
+ * $ pulumi import vault:aws/authBackendClient:AuthBackendClient example auth/aws/config/client
  * ```
  */
 export class AuthBackendClient extends pulumi.CustomResource {

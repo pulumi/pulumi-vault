@@ -353,6 +353,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -362,13 +363,14 @@ class SecretBackend(pulumi.CustomResource):
             description="Manages the Terraform Cloud backend",
             token="V0idfhi2iksSDU234ucdbi2nidsi...")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Terraform Cloud secret backends can be imported using the `backend`, e.g.
 
         ```sh
-         $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
+        $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
         ```
 
         :param str resource_name: The name of the resource.
@@ -397,6 +399,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -406,13 +409,14 @@ class SecretBackend(pulumi.CustomResource):
             description="Manages the Terraform Cloud backend",
             token="V0idfhi2iksSDU234ucdbi2nidsi...")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Terraform Cloud secret backends can be imported using the `backend`, e.g.
 
         ```sh
-         $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
+        $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
         ```
 
         :param str resource_name: The name of the resource.

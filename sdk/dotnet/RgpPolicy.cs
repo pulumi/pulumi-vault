@@ -16,6 +16,7 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,6 +37,7 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:index/rgpPolicy:RgpPolicy")]
     public partial class RgpPolicy : global::Pulumi.CustomResource

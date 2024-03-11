@@ -1330,6 +1330,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1344,13 +1345,14 @@ class AuthBackend(pulumi.CustomResource):
             userattr="sAMAccountName",
             userdn="OU=Users,OU=Accounts,DC=example,DC=org")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP authentication backends can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+        $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
         ```
 
         :param str resource_name: The name of the resource.
@@ -1420,6 +1422,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1434,13 +1437,14 @@ class AuthBackend(pulumi.CustomResource):
             userattr="sAMAccountName",
             userdn="OU=Users,OU=Accounts,DC=example,DC=org")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP authentication backends can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
+        $ pulumi import vault:ldap/authBackend:AuthBackend ldap ldap
         ```
 
         :param str resource_name: The name of the resource.

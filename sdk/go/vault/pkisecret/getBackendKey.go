@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,6 +56,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetBackendKey(ctx *pulumi.Context, args *GetBackendKeyArgs, opts ...pulumi.InvokeOption) (*GetBackendKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBackendKeyResult

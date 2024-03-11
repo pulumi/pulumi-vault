@@ -488,6 +488,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -508,13 +509,14 @@ class AuthBackend(pulumi.CustomResource):
                 username="bar",
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Okta authentication backends can be imported using its `path`, e.g.
 
         ```sh
-         $ pulumi import vault:okta/authBackend:AuthBackend example okta
+        $ pulumi import vault:okta/authBackend:AuthBackend example okta
         ```
 
         :param str resource_name: The name of the resource.
@@ -553,6 +555,7 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -573,13 +576,14 @@ class AuthBackend(pulumi.CustomResource):
                 username="bar",
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Okta authentication backends can be imported using its `path`, e.g.
 
         ```sh
-         $ pulumi import vault:okta/authBackend:AuthBackend example okta
+        $ pulumi import vault:okta/authBackend:AuthBackend example okta
         ```
 
         :param str resource_name: The name of the resource.

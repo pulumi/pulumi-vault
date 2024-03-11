@@ -393,6 +393,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -407,13 +408,14 @@ class SyncAzureDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Azure Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
+        $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
         ```
 
         :param str resource_name: The name of the resource.
@@ -448,6 +450,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -462,13 +465,14 @@ class SyncAzureDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Azure Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
+        $ pulumi import vault:secrets/syncAzureDestination:SyncAzureDestination az az-dest
         ```
 
         :param str resource_name: The name of the resource.

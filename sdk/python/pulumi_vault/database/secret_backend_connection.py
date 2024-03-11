@@ -923,6 +923,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -940,13 +941,14 @@ class SecretBackendConnection(pulumi.CustomResource):
                 connection_url="postgres://username:password@host:port/database",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+        $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
         ```
 
         :param str resource_name: The name of the resource.
@@ -994,6 +996,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1011,13 +1014,14 @@ class SecretBackendConnection(pulumi.CustomResource):
                 connection_url="postgres://username:password@host:port/database",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+        $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
         ```
 
         :param str resource_name: The name of the resource.

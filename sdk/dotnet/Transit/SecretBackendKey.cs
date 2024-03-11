@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Transit
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +39,8 @@ namespace Pulumi.Vault.Transit
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Deprecations
     /// 
     /// * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
@@ -47,7 +50,7 @@ namespace Pulumi.Vault.Transit
     /// Transit secret backend keys can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+    /// $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
     /// ```
     /// </summary>
     [VaultResourceType("vault:transit/secretBackendKey:SecretBackendKey")]

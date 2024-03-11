@@ -12,6 +12,7 @@ namespace Pulumi.Vault.RabbitMQ
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,13 +62,14 @@ namespace Pulumi.Vault.RabbitMQ
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// RabbitMQ secret backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
+    /// $ pulumi import vault:rabbitMq/secretBackendRole:SecretBackendRole role rabbitmq/roles/deploy
     /// ```
     /// </summary>
     [VaultResourceType("vault:rabbitMq/secretBackendRole:SecretBackendRole")]

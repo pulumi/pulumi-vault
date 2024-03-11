@@ -27,6 +27,7 @@ namespace Pulumi.Vault.Transform
     /// backslashes must be escaped to appear correctly in Vault. For further
     /// assistance escaping your own custom regex, see String Literals.
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -62,6 +63,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:transform/template:Template")]
     public partial class Template : global::Pulumi.CustomResource

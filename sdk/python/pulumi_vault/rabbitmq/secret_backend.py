@@ -461,6 +461,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -470,13 +471,14 @@ class SecretBackend(pulumi.CustomResource):
             password="password",
             username="user")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         RabbitMQ secret backends can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+        $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
         ```
 
         :param str resource_name: The name of the resource.
@@ -511,6 +513,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -520,13 +523,14 @@ class SecretBackend(pulumi.CustomResource):
             password="password",
             username="user")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         RabbitMQ secret backends can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+        $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
         ```
 
         :param str resource_name: The name of the resource.

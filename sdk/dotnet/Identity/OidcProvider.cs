@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -88,13 +89,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// OIDC Providers can be imported using the `name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+    /// $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/oidcProvider:OidcProvider")]

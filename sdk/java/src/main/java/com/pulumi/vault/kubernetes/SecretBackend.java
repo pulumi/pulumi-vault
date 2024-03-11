@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,13 +58,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * The Kubernetes secret backend can be imported using its `path` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
+ * $ pulumi import vault:kubernetes/secretBackend:SecretBackend config kubernetes
  * ```
  * 
  */

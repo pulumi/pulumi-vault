@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,15 +52,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // KMIP Secret backend can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
-//
+// $ pulumi import vault:kmip/secretBackend:SecretBackend default kmip
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

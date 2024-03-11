@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,6 +23,8 @@ import * as utilities from "../utilities";
  * });
  * const key = new vault.transit.SecretBackendKey("key", {backend: transit.path});
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Deprecations
  *
  * * `autoRotateInterval` - Replaced by `autoRotatePeriod`.
@@ -31,7 +34,7 @@ import * as utilities from "../utilities";
  * Transit secret backend keys can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+ * $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
  * ```
  */
 export class SecretBackendKey extends pulumi.CustomResource {

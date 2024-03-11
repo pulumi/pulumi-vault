@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Okta
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,13 +43,14 @@ namespace Pulumi.Vault.Okta
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+    /// $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
     /// ```
     /// </summary>
     [VaultResourceType("vault:okta/authBackendGroup:AuthBackendGroup")]

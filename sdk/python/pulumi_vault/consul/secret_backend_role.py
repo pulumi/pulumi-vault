@@ -556,6 +556,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -569,6 +570,8 @@ class SecretBackendRole(pulumi.CustomResource):
             backend=test.path,
             consul_policies=["example-policy"])
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Note About Required Arguments
 
         *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
@@ -580,7 +583,7 @@ class SecretBackendRole(pulumi.CustomResource):
         Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+        $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -622,6 +625,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -635,6 +639,8 @@ class SecretBackendRole(pulumi.CustomResource):
             backend=test.path,
             consul_policies=["example-policy"])
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Note About Required Arguments
 
         *At least one* of the four arguments `consul_policies`, `consul_roles`, `service_identities`, or
@@ -646,7 +652,7 @@ class SecretBackendRole(pulumi.CustomResource):
         Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+        $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
         ```
 
         :param str resource_name: The name of the resource.

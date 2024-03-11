@@ -12,10 +12,9 @@ namespace Pulumi.Vault.Identity
     public static class GetOidcOpenidConfig
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,17 +61,15 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOidcOpenidConfigResult> InvokeAsync(GetOidcOpenidConfigArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -119,8 +116,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOidcOpenidConfigResult> Invoke(GetOidcOpenidConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigInvokeArgs(), options.WithDefaults());

@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * Manage JWT auth backend:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,8 +58,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Manage OIDC auth backend:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -96,8 +101,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Configuring the auth backend with a `provider_config:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -135,18 +143,19 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * JWT auth backend can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
+ * $ pulumi import vault:jwt/authBackend:AuthBackend oidc oidc
  * ```
- *  or
+ * or
  * 
  * ```sh
- *  $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
+ * $ pulumi import vault:jwt/authBackend:AuthBackend jwt jwt
  * ```
  * 
  */

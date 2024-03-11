@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Azure
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,6 +62,7 @@ namespace Pulumi.Vault.Azure
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:azure/backendRole:BackendRole")]
     public partial class BackendRole : global::Pulumi.CustomResource

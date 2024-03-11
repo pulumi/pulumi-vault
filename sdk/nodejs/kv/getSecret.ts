@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  *     path: secret.path,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Required Vault Capabilities
  *
  * Use of this resource requires the `read` capability on the given path.
@@ -100,6 +103,7 @@ export interface GetSecretResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -123,6 +127,8 @@ export interface GetSecretResult {
  *     path: secret.path,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Required Vault Capabilities
  *
  * Use of this resource requires the `read` capability on the given path.

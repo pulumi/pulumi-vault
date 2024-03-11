@@ -12,10 +12,9 @@ namespace Pulumi.Vault.kv
     public static class GetSecretsListV2
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -76,8 +75,8 @@ namespace Pulumi.Vault.kv
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `read` capability on the given path.
@@ -86,10 +85,9 @@ namespace Pulumi.Vault.kv
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretsListV2Result>("vault:kv/getSecretsListV2:getSecretsListV2", args ?? new GetSecretsListV2Args(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -150,8 +148,8 @@ namespace Pulumi.Vault.kv
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `read` capability on the given path.

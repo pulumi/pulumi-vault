@@ -9,19 +9,21 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.identity.MfaPingid("example", {settingsFileBase64: "CnVzZV9iYXNlNjR[...]HBtCg=="});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Resource can be imported using its `uuid` field, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
+ * $ pulumi import vault:identity/mfaPingid:MfaPingid example 0d89c36a-4ff5-4d70-8749-bb6a5598aeec
  * ```
  */
 export class MfaPingid extends pulumi.CustomResource {

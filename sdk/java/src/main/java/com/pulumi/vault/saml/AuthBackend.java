@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,13 +56,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * SAML authentication mounts can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:saml/authBackend:AuthBackend example saml
+ * $ pulumi import vault:saml/authBackend:AuthBackend example saml
  * ```
  * 
  */

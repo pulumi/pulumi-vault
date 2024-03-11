@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -69,13 +71,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * The MongoDB Atlas secret role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/roles/&lt;role_name&gt;` e.g.
+ * The MongoDB Atlas secret role can be imported using the full path to the role
+ * of the form: `&lt;mount_path&gt;/roles/&lt;role_name&gt;` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
+ * $ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role
  * ```
  * 
  */

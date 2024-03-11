@@ -316,6 +316,7 @@ class MfaLoginEnforcement(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -327,13 +328,14 @@ class MfaLoginEnforcement(pulumi.CustomResource):
             push_info="push-info")
         example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", mfa_method_ids=[example_mfa_duo.method_id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Resource can be imported using its `name` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
+        $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
         ```
 
         :param str resource_name: The name of the resource.
@@ -357,6 +359,7 @@ class MfaLoginEnforcement(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -368,13 +371,14 @@ class MfaLoginEnforcement(pulumi.CustomResource):
             push_info="push-info")
         example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", mfa_method_ids=[example_mfa_duo.method_id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Resource can be imported using its `name` field, e.g.
 
         ```sh
-         $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
+        $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
         ```
 
         :param str resource_name: The name of the resource.

@@ -16,6 +16,7 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,13 +44,14 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Kubernetes authentication backend can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
+    /// $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
     /// ```
     /// </summary>
     [VaultResourceType("vault:kubernetes/authBackendConfig:AuthBackendConfig")]

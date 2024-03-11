@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -65,13 +67,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Okta authentication backends can be imported using its `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:okta/authBackend:AuthBackend example okta
+ * $ pulumi import vault:okta/authBackend:AuthBackend example okta
  * ```
  * 
  */

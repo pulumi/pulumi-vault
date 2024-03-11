@@ -12,6 +12,7 @@ namespace Pulumi.Vault
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,7 +30,9 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -52,7 +55,9 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -74,7 +79,9 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -94,13 +101,14 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Mounts can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:index/mount:Mount example dummy
+    /// $ pulumi import vault:index/mount:Mount example dummy
     /// ```
     /// </summary>
     [VaultResourceType("vault:index/mount:Mount")]

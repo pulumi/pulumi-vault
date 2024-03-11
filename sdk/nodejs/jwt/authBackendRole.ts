@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  * Role for JWT backend:
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -34,9 +35,11 @@ import * as utilities from "../utilities";
  *     roleType: "jwt",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * Role for OIDC backend:
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -58,13 +61,14 @@ import * as utilities from "../utilities";
  *     allowedRedirectUris: ["http://localhost:8200/ui/vault/auth/oidc/oidc/callback"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * JWT authentication backend roles can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
+ * $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
  * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {

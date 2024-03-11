@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -59,13 +61,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Github team mappings can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+ * $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
  * ```
  * 
  */

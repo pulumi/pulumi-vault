@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,15 +55,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // GCP authentication backends can be imported using the backend name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
-//
+// $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState

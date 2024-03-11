@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,15 +54,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Kubernetes authentication backend can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
-//
+// $ pulumi import vault:kubernetes/authBackendConfig:AuthBackendConfig config auth/kubernetes/config
 // ```
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState

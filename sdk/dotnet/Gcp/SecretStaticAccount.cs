@@ -17,6 +17,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -63,13 +64,14 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// A static account can be imported using its Vault Path. For example, referencing the example above,
     /// 
     /// ```sh
-    ///  $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
+    /// $ pulumi import vault:gcp/secretStaticAccount:SecretStaticAccount static_account gcp/static-account/project_viewer
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/secretStaticAccount:SecretStaticAccount")]

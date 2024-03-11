@@ -20,6 +20,7 @@ import (
 //
 // Role for JWT backend:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,9 +64,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Role for OIDC backend:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -107,15 +110,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // JWT authentication backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
-//
+// $ pulumi import vault:jwt/authBackendRole:AuthBackendRole example auth/jwt/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState

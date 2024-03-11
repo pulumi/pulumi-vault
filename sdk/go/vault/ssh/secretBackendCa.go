@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,15 +47,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // SSH secret backend CAs can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
-//
+// $ pulumi import vault:ssh/secretBackendCa:SecretBackendCa foo ssh
 // ```
 type SecretBackendCa struct {
 	pulumi.CustomResourceState

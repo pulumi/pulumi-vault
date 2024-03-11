@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -72,13 +74,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
- * LDAP secret backend dynamic role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/dynamic-role/&lt;role_name&gt;` e.g.
+ * LDAP secret backend dynamic role can be imported using the full path to the role
+ * of the form: `&lt;mount_path&gt;/dynamic-role/&lt;role_name&gt;` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
+ * $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
  * ```
  * 
  */

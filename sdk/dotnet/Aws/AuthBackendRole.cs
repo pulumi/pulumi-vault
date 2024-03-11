@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Aws
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -74,13 +75,14 @@ namespace Pulumi.Vault.Aws
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+    /// $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/authBackendRole:AuthBackendRole")]

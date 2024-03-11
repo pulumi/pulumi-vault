@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * [Okta auth backend within Vault](https://www.vaultproject.io/docs/auth/okta.html).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -59,13 +61,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Okta authentication backend groups can be imported using the format `backend/groupName` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
+ * $ pulumi import vault:okta/authBackendGroup:AuthBackendGroup foo okta/foo
  * ```
  * 
  */

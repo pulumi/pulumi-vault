@@ -18,6 +18,7 @@ namespace Pulumi.Vault.Azure
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -55,13 +56,14 @@ namespace Pulumi.Vault.Azure
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
+    /// $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:azure/authBackendRole:AuthBackendRole")]

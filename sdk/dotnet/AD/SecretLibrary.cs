@@ -12,6 +12,7 @@ namespace Pulumi.Vault.AD
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,13 +46,14 @@ namespace Pulumi.Vault.AD
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AD secret backend libraries can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+    /// $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
     /// ```
     /// </summary>
     [VaultResourceType("vault:ad/secretLibrary:SecretLibrary")]

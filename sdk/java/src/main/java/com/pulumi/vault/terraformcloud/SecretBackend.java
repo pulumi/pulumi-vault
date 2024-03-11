@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,13 +51,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Terraform Cloud secret backends can be imported using the `backend`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
+ * $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
  * ```
  * 
  */

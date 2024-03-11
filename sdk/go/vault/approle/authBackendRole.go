@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,15 +55,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AppRole authentication backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
-//
+// $ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
 // ```
 type AuthBackendRole struct {
 	pulumi.CustomResourceState

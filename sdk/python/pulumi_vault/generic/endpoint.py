@@ -407,6 +407,7 @@ class Endpoint(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -444,6 +445,8 @@ class Endpoint(pulumi.CustomResource):
             opts=pulumi.ResourceOptions(depends_on=[u1_token]))
         pulumi.export("u1Id", u1_entity.write_data["id"])
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -499,6 +502,7 @@ class Endpoint(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -536,6 +540,8 @@ class Endpoint(pulumi.CustomResource):
             opts=pulumi.ResourceOptions(depends_on=[u1_token]))
         pulumi.export("u1Id", u1_entity.write_data["id"])
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability

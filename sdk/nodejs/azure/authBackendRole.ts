@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -32,13 +33,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
  *
  * ```sh
- *  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
+ * $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
  * ```
  */
 export class AuthBackendRole extends pulumi.CustomResource {

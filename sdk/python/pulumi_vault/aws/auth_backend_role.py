@@ -1265,6 +1265,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1290,13 +1291,14 @@ class AuthBackendRole(pulumi.CustomResource):
                 "prod",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+        $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -1416,6 +1418,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1441,13 +1444,14 @@ class AuthBackendRole(pulumi.CustomResource):
                 "prod",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+        $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
         ```
 
         :param str resource_name: The name of the resource.

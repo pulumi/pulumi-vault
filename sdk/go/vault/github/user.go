@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,15 +53,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Github user mappings can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
-//
+// $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
 // ```
 type User struct {
 	pulumi.CustomResourceState

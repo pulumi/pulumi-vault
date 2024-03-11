@@ -260,6 +260,7 @@ class NomadSecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -277,13 +278,14 @@ class NomadSecretRole(pulumi.CustomResource):
             type="client",
             policies=["readonly"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Nomad secret role can be imported using the `backend`, e.g.
 
         ```sh
-         $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
+        $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
         ```
 
         :param str resource_name: The name of the resource.
@@ -311,6 +313,7 @@ class NomadSecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -328,13 +331,14 @@ class NomadSecretRole(pulumi.CustomResource):
             type="client",
             policies=["readonly"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Nomad secret role can be imported using the `backend`, e.g.
 
         ```sh
-         $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
+        $ pulumi import vault:index/nomadSecretRole:NomadSecretRole bob nomad/role/bob
         ```
 
         :param str resource_name: The name of the resource.

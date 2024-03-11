@@ -370,6 +370,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -399,13 +400,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_window=172800,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
+        $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -442,6 +444,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -471,13 +474,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_window=172800,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Database secret backend static roles can be imported using the `backend`, `/static-roles/`, and the `name` e.g.
 
         ```sh
-         $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
+        $ pulumi import vault:database/secretBackendStaticRole:SecretBackendStaticRole example postgres/static-roles/my-role
         ```
 
         :param str resource_name: The name of the resource.

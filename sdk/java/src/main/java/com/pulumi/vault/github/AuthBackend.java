@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -52,13 +54,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * GitHub authentication mounts can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:github/authBackend:AuthBackend example github
+ * $ pulumi import vault:github/authBackend:AuthBackend example github
  * ```
  * 
  */
