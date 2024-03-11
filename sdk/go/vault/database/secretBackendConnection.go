@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,15 +53,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
-//
+// $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
 // ```
 type SecretBackendConnection struct {
 	pulumi.CustomResourceState

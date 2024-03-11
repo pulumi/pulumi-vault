@@ -300,6 +300,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -314,13 +315,14 @@ class SyncVercelDestination(pulumi.CustomResource):
             ],
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GitHub Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
+        $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
         ```
 
         :param str resource_name: The name of the resource.
@@ -347,6 +349,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -361,13 +364,14 @@ class SyncVercelDestination(pulumi.CustomResource):
             ],
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GitHub Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
+        $ pulumi import vault:secrets/syncVercelDestination:SyncVercelDestination vercel vercel-dest
         ```
 
         :param str resource_name: The name of the resource.

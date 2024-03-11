@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,13 +35,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Identity entity can be imported using the `id`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
+    /// $ pulumi import vault:identity/entity:Entity test "ae6f8ued-0f1a-9f6b-2915-1a2be20dc053"
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/entity:Entity")]

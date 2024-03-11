@@ -12,11 +12,11 @@ namespace Pulumi.Vault.Generic
     public static class GetSecret
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Generic secret
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,21 +32,17 @@ namespace Pulumi.Vault.Generic
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// ## Required Vault Capabilities
-        /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetSecretResult> InvokeAsync(GetSecretArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
+        /// 
         /// ### Generic secret
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,11 +58,7 @@ namespace Pulumi.Vault.Generic
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// ## Required Vault Capabilities
-        /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:generic/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());

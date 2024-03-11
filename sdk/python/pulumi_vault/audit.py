@@ -251,8 +251,10 @@ class Audit(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### File Audit Device)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -263,8 +265,11 @@ class Audit(pulumi.CustomResource):
             },
             type="file")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Socket Audit Device)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -279,13 +284,14 @@ class Audit(pulumi.CustomResource):
             path="app_socket",
             type="socket")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Audit devices can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/audit:Audit test syslog
+        $ pulumi import vault:index/audit:Audit test syslog
         ```
 
         :param str resource_name: The name of the resource.
@@ -310,8 +316,10 @@ class Audit(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### File Audit Device)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -322,8 +330,11 @@ class Audit(pulumi.CustomResource):
             },
             type="file")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Socket Audit Device)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -338,13 +349,14 @@ class Audit(pulumi.CustomResource):
             path="app_socket",
             type="socket")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Audit devices can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:index/audit:Audit test syslog
+        $ pulumi import vault:index/audit:Audit test syslog
         ```
 
         :param str resource_name: The name of the resource.

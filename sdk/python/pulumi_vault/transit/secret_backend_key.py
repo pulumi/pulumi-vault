@@ -655,6 +655,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -667,6 +668,8 @@ class SecretBackendKey(pulumi.CustomResource):
             max_lease_ttl_seconds=86400)
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Deprecations
 
         * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
@@ -676,7 +679,7 @@ class SecretBackendKey(pulumi.CustomResource):
         Transit secret backend keys can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+        $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
         ```
 
         :param str resource_name: The name of the resource.
@@ -714,6 +717,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -726,6 +730,8 @@ class SecretBackendKey(pulumi.CustomResource):
             max_lease_ttl_seconds=86400)
         key = vault.transit.SecretBackendKey("key", backend=transit.path)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Deprecations
 
         * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
@@ -735,7 +741,7 @@ class SecretBackendKey(pulumi.CustomResource):
         Transit secret backend keys can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
+        $ pulumi import vault:transit/secretBackendKey:SecretBackendKey key transit/keys/my_key
         ```
 
         :param str resource_name: The name of the resource.

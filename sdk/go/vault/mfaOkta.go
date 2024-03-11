@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,15 +52,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
-//
+// $ pulumi import vault:index/mfaOkta:MfaOkta my_okta my_okta
 // ```
 type MfaOkta struct {
 	pulumi.CustomResourceState

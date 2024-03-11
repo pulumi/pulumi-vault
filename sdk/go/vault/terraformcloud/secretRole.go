@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,15 +47,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
-//
+// $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState

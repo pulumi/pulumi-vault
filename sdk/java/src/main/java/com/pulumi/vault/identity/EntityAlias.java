@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -46,13 +48,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Identity entity alias can be imported using the `id`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/entityAlias:EntityAlias test &#34;3856fb4d-3c91-dcaf-2401-68f446796bfb&#34;
+ * $ pulumi import vault:identity/entityAlias:EntityAlias test &#34;3856fb4d-3c91-dcaf-2401-68f446796bfb&#34;
  * ```
  * 
  */

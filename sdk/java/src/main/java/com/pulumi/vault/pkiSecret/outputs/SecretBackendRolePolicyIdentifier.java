@@ -16,6 +16,7 @@ public final class SecretBackendRolePolicyIdentifier {
      * @return The URL of the CPS for the policy identifier
      * 
      * Example usage:
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -70,6 +71,7 @@ public final class SecretBackendRolePolicyIdentifier {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     private @Nullable String cps;
@@ -89,6 +91,7 @@ public final class SecretBackendRolePolicyIdentifier {
      * @return The URL of the CPS for the policy identifier
      * 
      * Example usage:
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -143,6 +146,7 @@ public final class SecretBackendRolePolicyIdentifier {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Optional<String> cps() {

@@ -528,7 +528,9 @@ class SecretBackend(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### Creating a standard backend resource:
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -539,7 +541,10 @@ class SecretBackend(pulumi.CustomResource):
             path="consul",
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Creating a backend resource to bootstrap a new Consul instance:
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -550,13 +555,14 @@ class SecretBackend(pulumi.CustomResource):
             description="Bootstrap the Consul backend",
             path="consul")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+        $ pulumi import vault:consul/secretBackend:SecretBackend example consul
         ```
 
         :param str resource_name: The name of the resource.
@@ -592,7 +598,9 @@ class SecretBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### Creating a standard backend resource:
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -603,7 +611,10 @@ class SecretBackend(pulumi.CustomResource):
             path="consul",
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Creating a backend resource to bootstrap a new Consul instance:
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -614,13 +625,14 @@ class SecretBackend(pulumi.CustomResource):
             description="Bootstrap the Consul backend",
             path="consul")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Consul secret backends can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:consul/secretBackend:SecretBackend example consul
+        $ pulumi import vault:consul/secretBackend:SecretBackend example consul
         ```
 
         :param str resource_name: The name of the resource.

@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,15 +40,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // RabbitMQ secret backends can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
-//
+// $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

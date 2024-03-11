@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,6 +25,8 @@ import * as utilities from "../utilities";
  *     consulPolicies: ["example-policy"],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Note About Required Arguments
  *
  * *At least one* of the four arguments `consulPolicies`, `consulRoles`, `serviceIdentities`, or
@@ -35,7 +38,7 @@ import * as utilities from "../utilities";
  * Consul secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
  *
  * ```sh
- *  $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
+ * $ pulumi import vault:consul/secretBackendRole:SecretBackendRole example consul/roles/my-role
  * ```
  */
 export class SecretBackendRole extends pulumi.CustomResource {

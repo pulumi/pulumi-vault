@@ -112,6 +112,8 @@ public final class KubernetesFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -173,6 +175,7 @@ public final class KubernetesFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetServiceAccountTokenResult> getServiceAccountToken(GetServiceAccountTokenArgs args) {
@@ -180,6 +183,8 @@ public final class KubernetesFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -241,6 +246,7 @@ public final class KubernetesFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetServiceAccountTokenResult> getServiceAccountTokenPlain(GetServiceAccountTokenPlainArgs args) {
@@ -248,6 +254,8 @@ public final class KubernetesFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -309,6 +317,7 @@ public final class KubernetesFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetServiceAccountTokenResult> getServiceAccountToken(GetServiceAccountTokenArgs args, InvokeOptions options) {
@@ -316,6 +325,8 @@ public final class KubernetesFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -377,6 +388,7 @@ public final class KubernetesFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetServiceAccountTokenResult> getServiceAccountTokenPlain(GetServiceAccountTokenPlainArgs args, InvokeOptions options) {

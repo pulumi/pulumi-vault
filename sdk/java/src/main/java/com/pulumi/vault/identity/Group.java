@@ -23,7 +23,10 @@ import javax.annotation.Nullable;
  * A group can contain multiple entities as its members. A group can also have subgroups. Policies set on the group is granted to all members of the group. During request time, when the token&#39;s entity ID is being evaluated for the policies that it has access to; along with the policies on the entity itself, policies that are inherited due to group memberships are also granted.
  * 
  * ## Example Usage
+ * 
  * ### Internal Group
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -56,7 +59,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### External Group
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -87,12 +94,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Caveats
  * 
  * It&#39;s important to note that Vault identity groups names are *case-insensitive*. For example the following resources would be equivalent.
  * Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
  * 
  * This sort of pattern should be avoided:
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -133,13 +143,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Identity group can be imported using the `id`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:identity/group:Group test &#39;fcbf1efb-2b69-4209-bed8-811e3475dad3&#39;
+ * $ pulumi import vault:identity/group:Group test &#39;fcbf1efb-2b69-4209-bed8-811e3475dad3&#39;
  * ```
  * 
  */

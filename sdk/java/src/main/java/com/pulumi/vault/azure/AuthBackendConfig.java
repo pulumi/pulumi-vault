@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,13 +57,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Azure auth backends can be imported using `auth/`, the `backend` path, and `/config` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
+ * $ pulumi import vault:azure/authBackendConfig:AuthBackendConfig example auth/azure/config
  * ```
  * 
  */

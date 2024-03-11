@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,15 +50,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // The key can be imported with the key name, for example:
 //
 // ```sh
-//
-//	$ pulumi import vault:identity/oidcKey:OidcKey key key
-//
+// $ pulumi import vault:identity/oidcKey:OidcKey key key
 // ```
 type OidcKey struct {
 	pulumi.CustomResourceState

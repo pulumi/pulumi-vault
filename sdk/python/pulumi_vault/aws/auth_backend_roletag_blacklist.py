@@ -197,6 +197,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -206,6 +207,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
             backend=example_auth_backend.path,
             safety_buffer=360)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,6 +234,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -241,6 +244,7 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
             backend=example_auth_backend.path,
             safety_buffer=360)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoletagBlacklistArgs args: The arguments to use to populate this resource's properties.

@@ -16,6 +16,7 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -43,13 +44,14 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// AppRole authentication backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
+    /// $ pulumi import vault:appRole/authBackendRole:AuthBackendRole example auth/approle/role/test-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendRole:AuthBackendRole")]

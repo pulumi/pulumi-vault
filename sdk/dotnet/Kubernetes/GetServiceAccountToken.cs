@@ -12,10 +12,9 @@ namespace Pulumi.Vault.Kubernetes
     public static class GetServiceAccountToken
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.IO;
@@ -68,17 +67,15 @@ namespace Pulumi.Vault.Kubernetes
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetServiceAccountTokenResult> InvokeAsync(GetServiceAccountTokenArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountTokenResult>("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args ?? new GetServiceAccountTokenArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.IO;
@@ -131,8 +128,7 @@ namespace Pulumi.Vault.Kubernetes
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetServiceAccountTokenResult> Invoke(GetServiceAccountTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountTokenResult>("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args ?? new GetServiceAccountTokenInvokeArgs(), options.WithDefaults());

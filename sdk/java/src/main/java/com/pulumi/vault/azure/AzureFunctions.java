@@ -16,6 +16,8 @@ import java.util.concurrent.CompletableFuture;
 public final class AzureFunctions {
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -48,6 +50,8 @@ public final class AzureFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Caveats
      * 
      * The `validate_creds` option requires read-access to the `backend` config endpoint.
@@ -60,6 +64,8 @@ public final class AzureFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -92,6 +98,8 @@ public final class AzureFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Caveats
      * 
      * The `validate_creds` option requires read-access to the `backend` config endpoint.
@@ -104,6 +112,8 @@ public final class AzureFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -136,6 +146,8 @@ public final class AzureFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Caveats
      * 
      * The `validate_creds` option requires read-access to the `backend` config endpoint.
@@ -148,6 +160,8 @@ public final class AzureFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -180,6 +194,8 @@ public final class AzureFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      * ## Caveats
      * 
      * The `validate_creds` option requires read-access to the `backend` config endpoint.

@@ -15,6 +15,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,13 +47,14 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// SSH secret backend roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
+    /// $ pulumi import vault:ssh/secretBackendRole:SecretBackendRole foo ssh/roles/my-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:ssh/secretBackendRole:SecretBackendRole")]

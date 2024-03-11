@@ -210,8 +210,10 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         is the identity management solution for Vault.
 
         ## Example Usage
+
         ### Exclusive Member Groups
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -230,8 +232,11 @@ class GroupMemberGroupIds(pulumi.CustomResource):
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Non-Exclusive Member Groups
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -250,6 +255,7 @@ class GroupMemberGroupIds(pulumi.CustomResource):
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -280,8 +286,10 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         is the identity management solution for Vault.
 
         ## Example Usage
+
         ### Exclusive Member Groups
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -300,8 +308,11 @@ class GroupMemberGroupIds(pulumi.CustomResource):
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Non-Exclusive Member Groups
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -320,6 +331,7 @@ class GroupMemberGroupIds(pulumi.CustomResource):
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GroupMemberGroupIdsArgs args: The arguments to use to populate this resource's properties.

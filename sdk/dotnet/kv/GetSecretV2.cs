@@ -12,17 +12,13 @@ namespace Pulumi.Vault.kv
     public static class GetSecretV2
     {
         /// <summary>
-        /// ## Required Vault Capabilities
-        /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// ## Example Usage
         /// </summary>
         public static Task<GetSecretV2Result> InvokeAsync(GetSecretV2Args args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2Args(), options.WithDefaults());
 
         /// <summary>
-        /// ## Required Vault Capabilities
-        /// 
-        /// Use of this resource requires the `read` capability on the given path.
+        /// ## Example Usage
         /// </summary>
         public static Output<GetSecretV2Result> Invoke(GetSecretV2InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2InvokeArgs(), options.WithDefaults());

@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -68,13 +70,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Azure auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
  * 
  * ```sh
- *  $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
+ * $ pulumi import vault:azure/authBackendRole:AuthBackendRole example auth/azure/role/test-role
  * ```
  * 
  */

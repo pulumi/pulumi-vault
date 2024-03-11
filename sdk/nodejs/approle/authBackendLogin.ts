@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -35,6 +36,7 @@ import * as utilities from "../utilities";
  *     secretId: id.secretId,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class AuthBackendLogin extends pulumi.CustomResource {
     /**

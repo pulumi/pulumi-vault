@@ -16,6 +16,7 @@ import (
 //
 // Example using `serviceAccountName` mode:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,9 +75,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Example using `kubernetesRoleName` mode:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -135,9 +138,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Example using `generatedRoleRules` mode:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -197,12 +202,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
-// The Kubernetes secret backend role can be imported using the full path to the role
+// # The Kubernetes secret backend role can be imported using the full path to the role
 //
-//	of the form: `<backend_path>/roles/<role_name>` e.g.
+// of the form: `<backend_path>/roles/<role_name>` e.g.
 //
 // ```sh
 // $ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role

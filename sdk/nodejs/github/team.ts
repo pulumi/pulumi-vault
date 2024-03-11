@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -25,13 +26,14 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Github team mappings can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+ * $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
  * ```
  */
 export class Team extends pulumi.CustomResource {

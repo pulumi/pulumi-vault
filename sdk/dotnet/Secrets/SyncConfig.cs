@@ -19,6 +19,7 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,11 +36,12 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// ```sh
-    ///  $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
+    /// $ pulumi import vault:secrets/syncConfig:SyncConfig config global_config
     /// ```
     /// </summary>
     [VaultResourceType("vault:secrets/syncConfig:SyncConfig")]

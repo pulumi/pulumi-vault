@@ -6,8 +6,10 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Generic secret
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -16,9 +18,7 @@ import * as utilities from "../utilities";
  *     path: "secret/rundeck_auth",
  * });
  * ```
- * ## Required Vault Capabilities
- *
- * Use of this resource requires the `read` capability on the given path.
+ * <!--End PulumiCodeChooser -->
  */
 export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
 
@@ -103,8 +103,10 @@ export interface GetSecretResult {
 }
 /**
  * ## Example Usage
+ *
  * ### Generic secret
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -113,9 +115,7 @@ export interface GetSecretResult {
  *     path: "secret/rundeck_auth",
  * });
  * ```
- * ## Required Vault Capabilities
- *
- * Use of this resource requires the `read` capability on the given path.
+ * <!--End PulumiCodeChooser -->
  */
 export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
     return pulumi.output(args).apply((a: any) => getSecret(a, opts))

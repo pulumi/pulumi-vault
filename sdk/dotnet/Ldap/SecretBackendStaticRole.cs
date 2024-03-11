@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Ldap
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,13 +42,15 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
-    /// LDAP secret backend static role can be imported using the full path to the role of the form: `&lt;mount_path&gt;/static-role/&lt;role_name&gt;` e.g.
+    /// LDAP secret backend static role can be imported using the full path to the role
+    /// of the form: `&lt;mount_path&gt;/static-role/&lt;role_name&gt;` e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
+    /// $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/secretBackendStaticRole:SecretBackendStaticRole")]

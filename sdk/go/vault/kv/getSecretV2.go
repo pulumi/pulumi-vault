@@ -11,9 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Required Vault Capabilities
-//
-// Use of this resource requires the `read` capability on the given path.
+// ## Example Usage
 func LookupSecretV2(ctx *pulumi.Context, args *LookupSecretV2Args, opts ...pulumi.InvokeOption) (*LookupSecretV2Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretV2Result

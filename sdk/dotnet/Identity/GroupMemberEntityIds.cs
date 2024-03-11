@@ -13,8 +13,10 @@ namespace Pulumi.Vault.Identity
     /// Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Exclusive Member Entities
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,8 +49,11 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Non-exclusive Member Entities
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -96,6 +101,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:identity/groupMemberEntityIds:GroupMemberEntityIds")]
     public partial class GroupMemberEntityIds : global::Pulumi.CustomResource

@@ -15,7 +15,7 @@ namespace Pulumi.Vault.Aws
     /// AWS secret backends can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
+    /// $ pulumi import vault:aws/secretBackend:SecretBackend aws aws
     /// ```
     /// </summary>
     [VaultResourceType("vault:aws/secretBackend:SecretBackend")]

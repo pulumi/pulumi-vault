@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,15 +43,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // LDAP secret backend can be imported using the `${mount}/config`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
-//
+// $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

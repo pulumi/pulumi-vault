@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -26,13 +27,14 @@ import * as utilities from "../utilities";
  *     ttl: 60,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * AD secret backend roles can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+ * $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
  * ```
  */
 export class SecretRole extends pulumi.CustomResource {

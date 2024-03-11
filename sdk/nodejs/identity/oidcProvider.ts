@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -47,13 +48,14 @@ import * as utilities from "../utilities";
  *     scopesSupporteds: [testOidcScope.name],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * OIDC Providers can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
+ * $ pulumi import vault:identity/oidcProvider:OidcProvider test my-provider
  * ```
  */
 export class OidcProvider extends pulumi.CustomResource {

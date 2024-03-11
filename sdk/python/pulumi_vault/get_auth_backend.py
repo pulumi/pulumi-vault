@@ -152,12 +152,14 @@ def get_auth_backend(namespace: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     example = vault.get_auth_backend(path="userpass")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.
@@ -192,12 +194,14 @@ def get_auth_backend_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     example = vault.get_auth_backend(path="userpass")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.

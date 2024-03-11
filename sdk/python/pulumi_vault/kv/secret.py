@@ -176,6 +176,7 @@ class Secret(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -195,6 +196,8 @@ class Secret(pulumi.CustomResource):
                 "foo": "bar",
             }))
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -207,7 +210,7 @@ class Secret(pulumi.CustomResource):
         KV-V1 secrets can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secret:Secret secret kvv1/secret
+        $ pulumi import vault:kv/secret:Secret secret kvv1/secret
         ```
 
         :param str resource_name: The name of the resource.
@@ -234,6 +237,7 @@ class Secret(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -253,6 +257,8 @@ class Secret(pulumi.CustomResource):
                 "foo": "bar",
             }))
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -265,7 +271,7 @@ class Secret(pulumi.CustomResource):
         KV-V1 secrets can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secret:Secret secret kvv1/secret
+        $ pulumi import vault:kv/secret:Secret secret kvv1/secret
         ```
 
         :param str resource_name: The name of the resource.

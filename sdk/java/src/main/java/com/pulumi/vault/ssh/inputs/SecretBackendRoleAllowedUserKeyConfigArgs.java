@@ -23,6 +23,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
      * must be set to a single element list.
      * 
      * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -45,6 +47,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     @Import(name="lengths", required=true)
@@ -57,6 +60,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
      * must be set to a single element list.
      * 
      * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -79,6 +84,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public Output<List<Integer>> lengths() {
@@ -138,6 +144,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          * must be set to a single element list.
          * 
          * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -160,6 +168,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 
@@ -176,6 +185,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          * must be set to a single element list.
          * 
          * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -198,6 +209,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 
@@ -213,6 +225,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          * must be set to a single element list.
          * 
          * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+         * 
+         * &lt;!--Start PulumiCodeChooser --&gt;
          * ```java
          * package generated_program;
          * 
@@ -235,6 +249,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
          *     }
          * }
          * ```
+         * &lt;!--End PulumiCodeChooser --&gt;
          * 
          * @return builder
          * 

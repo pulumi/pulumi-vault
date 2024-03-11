@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * for more information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -74,13 +76,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * KMIP Secret role can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+ * $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
  * ```
  * 
  */

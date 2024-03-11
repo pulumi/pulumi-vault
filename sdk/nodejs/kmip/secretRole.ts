@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -37,13 +38,14 @@ import * as utilities from "../utilities";
  *     operationDestroy: true,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * KMIP Secret role can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
+ * $ pulumi import vault:kmip/secretRole:SecretRole admin kmip
  * ```
  */
 export class SecretRole extends pulumi.CustomResource {

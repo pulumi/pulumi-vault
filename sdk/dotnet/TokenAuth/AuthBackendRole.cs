@@ -16,6 +16,7 @@ namespace Pulumi.Vault.TokenAuth
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -49,13 +50,14 @@ namespace Pulumi.Vault.TokenAuth
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Token auth backend roles can be imported with `auth/token/roles/` followed by the `role_name`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
+    /// $ pulumi import vault:tokenauth/authBackendRole:AuthBackendRole example auth/token/roles/my-role
     /// ```
     /// </summary>
     [VaultResourceType("vault:tokenauth/authBackendRole:AuthBackendRole")]

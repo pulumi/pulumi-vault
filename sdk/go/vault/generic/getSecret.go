@@ -12,8 +12,10 @@ import (
 )
 
 // ## Example Usage
+//
 // ### Generic secret
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,9 +39,7 @@ import (
 //	}
 //
 // ```
-// ## Required Vault Capabilities
-//
-// Use of this resource requires the `read` capability on the given path.
+// <!--End PulumiCodeChooser -->
 func LookupSecret(ctx *pulumi.Context, args *LookupSecretArgs, opts ...pulumi.InvokeOption) (*LookupSecretResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretResult

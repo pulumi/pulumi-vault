@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,15 +39,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Terraform Cloud secret backends can be imported using the `backend`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
-//
+// $ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform
 // ```
 type SecretBackend struct {
 	pulumi.CustomResourceState

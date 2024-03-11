@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Ldap
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,13 +33,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// LDAP secret backend can be imported using the `${mount}/config`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
+    /// $ pulumi import vault:ldap/secretBackend:SecretBackend config ldap/config
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/secretBackend:SecretBackend")]

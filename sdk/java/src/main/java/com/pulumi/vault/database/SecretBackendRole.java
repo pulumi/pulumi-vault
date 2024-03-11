@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -70,13 +72,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Database secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
+ * $ pulumi import vault:database/secretBackendRole:SecretBackendRole example postgres/roles/my-role
  * ```
  * 
  */

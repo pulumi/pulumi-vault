@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -64,6 +66,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Required Vault Capabilities
  * 
  * Use of this resource requires the `create` or `update` capability
@@ -73,10 +77,11 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
+ * The KV-V2 secret backend can be imported using its unique ID,
+ * the `${mount}/config`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
+ * $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
  * ```
  * 
  */

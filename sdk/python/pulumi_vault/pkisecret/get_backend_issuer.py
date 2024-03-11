@@ -173,7 +173,8 @@ def get_backend_issuer(backend: Optional[str] = None,
                        namespace: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendIssuerResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param str backend: The path to the PKI secret backend to
            read the issuer from, with no leading or trailing `/`s.
@@ -211,7 +212,8 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
                               namespace: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendIssuerResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
 
     :param str backend: The path to the PKI secret backend to
            read the issuer from, with no leading or trailing `/`s.

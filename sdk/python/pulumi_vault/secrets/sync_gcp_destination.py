@@ -237,6 +237,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -248,13 +249,14 @@ class SyncGcpDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
+        $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
         ```
 
         :param str resource_name: The name of the resource.
@@ -279,6 +281,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -290,13 +293,14 @@ class SyncGcpDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
+        $ pulumi import vault:secrets/syncGcpDestination:SyncGcpDestination gcp gcp-dest
         ```
 
         :param str resource_name: The name of the resource.

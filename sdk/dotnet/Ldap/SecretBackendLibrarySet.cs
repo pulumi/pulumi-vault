@@ -12,6 +12,7 @@ namespace Pulumi.Vault.Ldap
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,13 +46,14 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// LDAP secret backend libraries can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
+    /// $ pulumi import vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet qa ldap/library/bob
     /// ```
     /// </summary>
     [VaultResourceType("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet")]

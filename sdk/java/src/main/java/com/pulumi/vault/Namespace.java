@@ -25,57 +25,47 @@ import javax.annotation.Nullable;
  * $ pulumi import vault:index/namespace:Namespace example &lt;name&gt;
  * ```
  * 
- *  If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
+ * If the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.
  * 
- *  hcl
+ * hcl
  * 
- *  provider &#34;vault&#34; {
+ * provider &#34;vault&#34; {
  * 
  * # Configuration options
  * 
- *  namespace = &#34;example&#34;
+ *   namespace = &#34;example&#34;
  * 
- *  alias
+ *   alias     = &#34;example&#34;
  * 
- *  = &#34;example&#34;
+ * }
  * 
- *  }
+ * resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
- *  resource &#34;vault_namespace&#34; &#34;example2&#34; {
+ *   provider = vault.example
  * 
- *  provider = vault.example
+ *   path     = &#34;example2&#34;
  * 
- *  path
- * 
- *  = &#34;example2&#34;
- * 
- *  }
+ * }
  * 
  * ```sh
  * $ pulumi import vault:index/namespace:Namespace example2 example2
  * ```
  * 
- *  $ terraform state show vault_namespace.example2
+ * $ terraform state show vault_namespace.example2
  * 
- *  vault_namespace.example2:
+ * vault_namespace.example2:
  * 
- *  resource &#34;vault_namespace&#34; &#34;example2&#34; {
+ * resource &#34;vault_namespace&#34; &#34;example2&#34; {
  * 
- *  id
+ *     id           = &#34;example/example2/&#34;
+ *     
+ *     namespace_id = &lt;known after import&gt;
+ *     
+ *     path         = &#34;example2&#34;
+ *     
+ *     path_fq      = &#34;example2&#34;
  * 
- *  = &#34;example/example2/&#34;
- * 
- *  namespace_id = &lt;known after import&gt;
- * 
- *  path
- * 
- *  = &#34;example2&#34;
- * 
- *  path_fq
- * 
- * = &#34;example2&#34;
- * 
- *  }
+ * }
  * 
  */
 @ResourceType(type="vault:index/namespace:Namespace")

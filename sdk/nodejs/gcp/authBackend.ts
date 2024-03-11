@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -26,13 +27,14 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * GCP authentication backends can be imported using the backend name, e.g.
  *
  * ```sh
- *  $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
+ * $ pulumi import vault:gcp/authBackend:AuthBackend gcp gcp
  * ```
  */
 export class AuthBackend extends pulumi.CustomResource {

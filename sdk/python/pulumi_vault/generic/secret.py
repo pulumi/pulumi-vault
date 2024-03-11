@@ -276,7 +276,7 @@ class Secret(pulumi.CustomResource):
         Generic secrets can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:generic/secret:Secret example secret/foo
+        $ pulumi import vault:generic/secret:Secret example secret/foo
         ```
 
         :param str resource_name: The name of the resource.
@@ -312,7 +312,7 @@ class Secret(pulumi.CustomResource):
         Generic secrets can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:generic/secret:Secret example secret/foo
+        $ pulumi import vault:generic/secret:Secret example secret/foo
         ```
 
         :param str resource_name: The name of the resource.

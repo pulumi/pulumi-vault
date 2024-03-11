@@ -623,6 +623,7 @@ class Token(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -641,13 +642,14 @@ class Token(pulumi.CustomResource):
             role_name="app",
             ttl="24h")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Tokens can be imported using its `id` as accessor id, e.g.
 
         ```sh
-         $ pulumi import vault:index/token:Token example <accessor_id>
+        $ pulumi import vault:index/token:Token example <accessor_id>
         ```
 
         :param str resource_name: The name of the resource.
@@ -680,6 +682,7 @@ class Token(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -698,13 +701,14 @@ class Token(pulumi.CustomResource):
             role_name="app",
             ttl="24h")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Tokens can be imported using its `id` as accessor id, e.g.
 
         ```sh
-         $ pulumi import vault:index/token:Token example <accessor_id>
+        $ pulumi import vault:index/token:Token example <accessor_id>
         ```
 
         :param str resource_name: The name of the resource.

@@ -38,6 +38,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -80,13 +82,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Database secret backend connections can be imported using the `backend`, `/config/`, and the `name` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
+ * $ pulumi import vault:database/secretBackendConnection:SecretBackendConnection example postgres/config/postgres
  * ```
  * 
  */

@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -59,15 +60,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Okta authentication backends can be imported using its `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:okta/authBackend:AuthBackend example okta
-//
+// $ pulumi import vault:okta/authBackend:AuthBackend example okta
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState

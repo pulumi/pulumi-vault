@@ -16,6 +16,7 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,13 +43,14 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Github team mappings can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
+    /// $ pulumi import vault:github/team:Team tf_devs auth/github/map/teams/terraform-developers
     /// ```
     /// </summary>
     [VaultResourceType("vault:github/team:Team")]

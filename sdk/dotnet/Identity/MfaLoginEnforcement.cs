@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,13 +41,14 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Resource can be imported using its `name` field, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
+    /// $ pulumi import vault:identity/mfaLoginEnforcement:MfaLoginEnforcement example default
     /// ```
     /// </summary>
     [VaultResourceType("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement")]

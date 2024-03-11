@@ -191,6 +191,7 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -204,13 +205,14 @@ class User(pulumi.CustomResource):
                 "read-only",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Github user mappings can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
+        $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
         ```
 
         :param str resource_name: The name of the resource.
@@ -238,6 +240,7 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -251,13 +254,14 @@ class User(pulumi.CustomResource):
                 "read-only",
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Github user mappings can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
+        $ pulumi import vault:github/user:User tf_user auth/github/map/users/john.doe
         ```
 
         :param str resource_name: The name of the resource.

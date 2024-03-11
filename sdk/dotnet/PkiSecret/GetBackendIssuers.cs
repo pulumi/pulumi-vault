@@ -12,10 +12,9 @@ namespace Pulumi.Vault.PkiSecret
     public static class GetBackendIssuers
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -47,17 +46,15 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBackendIssuersResult> InvokeAsync(GetBackendIssuersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackendIssuersResult>("vault:pkiSecret/getBackendIssuers:getBackendIssuers", args ?? new GetBackendIssuersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -89,8 +86,7 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBackendIssuersResult> Invoke(GetBackendIssuersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendIssuersResult>("vault:pkiSecret/getBackendIssuers:getBackendIssuers", args ?? new GetBackendIssuersInvokeArgs(), options.WithDefaults());

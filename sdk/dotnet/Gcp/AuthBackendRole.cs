@@ -14,6 +14,7 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -53,13 +54,14 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// GCP authentication roles can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
+    /// $ pulumi import vault:gcp/authBackendRole:AuthBackendRole my_role auth/gcp/role/my_role
     /// ```
     /// </summary>
     [VaultResourceType("vault:gcp/authBackendRole:AuthBackendRole")]

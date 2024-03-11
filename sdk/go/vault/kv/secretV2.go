@@ -19,6 +19,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,6 +75,8 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Required Vault Capabilities
 //
 // Use of this resource requires the `create` or `update` capability
@@ -98,9 +101,7 @@ import (
 // KV-V2 secrets can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
-//
+// $ pulumi import vault:kv/secretV2:SecretV2 example kvv2/data/secret
 // ```
 type SecretV2 struct {
 	pulumi.CustomResourceState

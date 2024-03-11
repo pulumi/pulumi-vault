@@ -13,8 +13,10 @@ namespace Pulumi.Vault.Identity
     /// Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Exclusive Policies
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -41,8 +43,11 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Non-exclusive Policies
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -79,6 +84,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:identity/entityPolicies:EntityPolicies")]
     public partial class EntityPolicies : global::Pulumi.CustomResource

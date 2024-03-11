@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * Policies can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/policy:Policy example dev-team
+ * $ pulumi import vault:index/policy:Policy example dev-team
  * ```
  */
 export class Policy extends pulumi.CustomResource {

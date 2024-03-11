@@ -6,7 +6,9 @@ import * as utilities from "./utilities";
 
 /**
  * ## Example Usage
+ *
  * ### Local Storage
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -19,7 +21,10 @@ import * as utilities from "./utilities";
  *     storageType: "local",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### AWS S3
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -41,8 +46,11 @@ import * as utilities from "./utilities";
  *     awsS3EnableKms: true,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Azure BLOB
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -60,13 +68,14 @@ import * as utilities from "./utilities";
  *     azureAccountKey: azureAccountKey,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+ * $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
  * ```
  */
 export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
@@ -192,8 +201,19 @@ export class RaftSnapshotAgentConfig extends pulumi.CustomResource {
      * Google service account key in JSON format. 
      * The raw value looks like this:
      *
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
+     * ```json
+     * {
+     * "type": "service_account",
+     * "project_id": "project-id",
+     * "private_key_id": "key-id",
+     * "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
+     * "client_email": "service-account-email",
+     * "client_id": "client-id",
+     * "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+     * "token_uri": "https://accounts.google.com/o/oauth2/token",
+     * "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+     * "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+     * }
      * ```
      */
     public readonly googleServiceAccountKey!: pulumi.Output<string | undefined>;
@@ -423,8 +443,19 @@ export interface RaftSnapshotAgentConfigState {
      * Google service account key in JSON format. 
      * The raw value looks like this:
      *
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
+     * ```json
+     * {
+     * "type": "service_account",
+     * "project_id": "project-id",
+     * "private_key_id": "key-id",
+     * "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
+     * "client_email": "service-account-email",
+     * "client_id": "client-id",
+     * "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+     * "token_uri": "https://accounts.google.com/o/oauth2/token",
+     * "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+     * "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+     * }
      * ```
      */
     googleServiceAccountKey?: pulumi.Input<string>;
@@ -569,8 +600,19 @@ export interface RaftSnapshotAgentConfigArgs {
      * Google service account key in JSON format. 
      * The raw value looks like this:
      *
-     * ```typescript
-     * import * as pulumi from "@pulumi/pulumi";
+     * ```json
+     * {
+     * "type": "service_account",
+     * "project_id": "project-id",
+     * "private_key_id": "key-id",
+     * "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
+     * "client_email": "service-account-email",
+     * "client_id": "client-id",
+     * "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+     * "token_uri": "https://accounts.google.com/o/oauth2/token",
+     * "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+     * "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+     * }
      * ```
      */
     googleServiceAccountKey?: pulumi.Input<string>;

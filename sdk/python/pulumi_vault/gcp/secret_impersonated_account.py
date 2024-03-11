@@ -219,6 +219,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -234,13 +235,14 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
             service_account_email=this.email,
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         A impersonated account can be imported using its Vault Path. For example, referencing the example above,
 
         ```sh
-         $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
+        $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
         ```
 
         :param str resource_name: The name of the resource.
@@ -265,6 +267,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -280,13 +283,14 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
             service_account_email=this.email,
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         A impersonated account can be imported using its Vault Path. For example, referencing the example above,
 
         ```sh
-         $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
+        $ pulumi import vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount impersonated_account gcp/impersonated-account/project_viewer
         ```
 
         :param str resource_name: The name of the resource.

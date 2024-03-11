@@ -12,6 +12,7 @@ namespace Pulumi.Vault.RabbitMQ
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,13 +30,14 @@ namespace Pulumi.Vault.RabbitMQ
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// RabbitMQ secret backends can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
+    /// $ pulumi import vault:rabbitMq/secretBackend:SecretBackend rabbitmq rabbitmq
     /// ```
     /// </summary>
     [VaultResourceType("vault:rabbitMq/secretBackend:SecretBackend")]

@@ -297,6 +297,7 @@ class SecretRoleset(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -316,13 +317,14 @@ class SecretRoleset(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         A roleset can be imported using its Vault Path. For example, referencing the example above,
 
         ```sh
-         $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+        $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
         ```
 
         :param str resource_name: The name of the resource.
@@ -351,6 +353,7 @@ class SecretRoleset(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -370,13 +373,14 @@ class SecretRoleset(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         A roleset can be imported using its Vault Path. For example, referencing the example above,
 
         ```sh
-         $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
+        $ pulumi import vault:gcp/secretRoleset:SecretRoleset roleset gcp/roleset/project_viewer
         ```
 
         :param str resource_name: The name of the resource.

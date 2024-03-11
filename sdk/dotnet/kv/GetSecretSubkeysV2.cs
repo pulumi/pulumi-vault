@@ -12,10 +12,9 @@ namespace Pulumi.Vault.kv
     public static class GetSecretSubkeysV2
     {
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -54,8 +53,8 @@ namespace Pulumi.Vault.kv
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `read` capability on the given path.
@@ -64,10 +63,9 @@ namespace Pulumi.Vault.kv
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2Args(), options.WithDefaults());
 
         /// <summary>
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -106,8 +104,8 @@ namespace Pulumi.Vault.kv
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
         /// ## Required Vault Capabilities
         /// 
         /// Use of this resource requires the `read` capability on the given path.

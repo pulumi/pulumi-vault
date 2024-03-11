@@ -422,6 +422,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -450,13 +451,15 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         changetype: delete
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        LDAP secret backend dynamic role can be imported using the full path to the role of the form: `<mount_path>/dynamic-role/<role_name>` e.g.
+        LDAP secret backend dynamic role can be imported using the full path to the role
+        of the form: `<mount_path>/dynamic-role/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
+        $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -503,6 +506,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -531,13 +535,15 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         changetype: delete
         \"\"\")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        LDAP secret backend dynamic role can be imported using the full path to the role of the form: `<mount_path>/dynamic-role/<role_name>` e.g.
+        LDAP secret backend dynamic role can be imported using the full path to the role
+        of the form: `<mount_path>/dynamic-role/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
+        $ pulumi import vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole role ldap/role/dynamic-role
         ```
 
         :param str resource_name: The name of the resource.

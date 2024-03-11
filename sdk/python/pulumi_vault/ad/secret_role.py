@@ -258,6 +258,7 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -275,13 +276,14 @@ class SecretRole(pulumi.CustomResource):
             service_account_name="Bob",
             ttl=60)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AD secret backend roles can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+        $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
         ```
 
         :param str resource_name: The name of the resource.
@@ -308,6 +310,7 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -325,13 +328,14 @@ class SecretRole(pulumi.CustomResource):
             service_account_name="Bob",
             ttl=60)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AD secret backend roles can be imported using the `path`, e.g.
 
         ```sh
-         $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
+        $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
         ```
 
         :param str resource_name: The name of the resource.

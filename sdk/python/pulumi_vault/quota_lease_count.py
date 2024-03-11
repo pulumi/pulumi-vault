@@ -245,6 +245,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -253,13 +254,14 @@ class QuotaLeaseCount(pulumi.CustomResource):
             max_leases=100,
             path="")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Lease count quotas can be imported using their names
 
         ```sh
-         $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
+        $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
         ```
 
         :param str resource_name: The name of the resource.
@@ -297,6 +299,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -305,13 +308,14 @@ class QuotaLeaseCount(pulumi.CustomResource):
             max_leases=100,
             path="")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Lease count quotas can be imported using their names
 
         ```sh
-         $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
+        $ pulumi import vault:index/quotaLeaseCount:QuotaLeaseCount global global
         ```
 
         :param str resource_name: The name of the resource.

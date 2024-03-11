@@ -12,6 +12,7 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,13 +37,14 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// MongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
+    /// $ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config
     /// ```
     /// </summary>
     [VaultResourceType("vault:mongodbatlas/secretBackend:SecretBackend")]

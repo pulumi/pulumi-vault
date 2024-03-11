@@ -11,9 +11,55 @@ namespace Pulumi.Vault
 {
     public static class GetAuthBackends
     {
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Vault.GetAuthBackends.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
+        /// ```hcl
+        /// data "vault.getAuthBackends" "example-filter" {
+        ///   type = "kubernetes"
+        /// }
+        /// </summary>
         public static Task<GetAuthBackendsResult> InvokeAsync(GetAuthBackendsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Vault.GetAuthBackends.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
+        /// ```hcl
+        /// data "vault.getAuthBackends" "example-filter" {
+        ///   type = "kubernetes"
+        /// }
+        /// </summary>
         public static Output<GetAuthBackendsResult> Invoke(GetAuthBackendsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsInvokeArgs(), options.WithDefaults());
     }

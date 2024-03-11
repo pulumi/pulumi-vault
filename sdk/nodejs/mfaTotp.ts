@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -23,13 +24,14 @@ import * as utilities from "./utilities";
  *     period: 60,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Mounts can be imported using the `path`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
+ * $ pulumi import vault:index/mfaTotp:MfaTotp my_totp my_totp
  * ```
  */
 export class MfaTotp extends pulumi.CustomResource {

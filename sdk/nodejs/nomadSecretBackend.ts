@@ -7,6 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,13 +23,14 @@ import * as utilities from "./utilities";
  *     ttl: 120,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Nomad secret backend can be imported using the `backend`, e.g.
  *
  * ```sh
- *  $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
+ * $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
  * ```
  */
 export class NomadSecretBackend extends pulumi.CustomResource {

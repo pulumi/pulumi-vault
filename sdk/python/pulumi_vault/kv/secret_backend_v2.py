@@ -226,6 +226,7 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -243,6 +244,8 @@ class SecretBackendV2(pulumi.CustomResource):
             delete_version_after=12600,
             cas_required=True)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -252,10 +255,11 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Import
 
-        The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
+        The KV-V2 secret backend can be imported using its unique ID,
+        the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
+        $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
         ```
 
         :param str resource_name: The name of the resource.
@@ -286,6 +290,7 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -303,6 +308,8 @@ class SecretBackendV2(pulumi.CustomResource):
             delete_version_after=12600,
             cas_required=True)
         ```
+        <!--End PulumiCodeChooser -->
+
         ## Required Vault Capabilities
 
         Use of this resource requires the `create` or `update` capability
@@ -312,10 +319,11 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Import
 
-        The KV-V2 secret backend can be imported using its unique ID, the `${mount}/config`, e.g.
+        The KV-V2 secret backend can be imported using its unique ID,
+        the `${mount}/config`, e.g.
 
         ```sh
-         $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
+        $ pulumi import vault:kv/secretBackendV2:SecretBackendV2 example kvv2/config
         ```
 
         :param str resource_name: The name of the resource.

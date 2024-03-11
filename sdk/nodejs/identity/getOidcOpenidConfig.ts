@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -31,6 +32,7 @@ import * as utilities from "../utilities";
  *     name: provider.name,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOidcOpenidConfig(args: GetOidcOpenidConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcOpenidConfigResult> {
 
@@ -122,6 +124,7 @@ export interface GetOidcOpenidConfigResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -146,6 +149,7 @@ export interface GetOidcOpenidConfigResult {
  *     name: provider.name,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getOidcOpenidConfigOutput(args: GetOidcOpenidConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcOpenidConfigResult> {
     return pulumi.output(args).apply((a: any) => getOidcOpenidConfig(a, opts))

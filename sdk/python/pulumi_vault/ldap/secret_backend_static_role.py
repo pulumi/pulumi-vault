@@ -255,6 +255,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -273,13 +274,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             role_name="alice",
             rotation_period=60)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        LDAP secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-role/<role_name>` e.g.
+        LDAP secret backend static role can be imported using the full path to the role
+        of the form: `<mount_path>/static-role/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
+        $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
         ```
 
         :param str resource_name: The name of the resource.
@@ -306,6 +309,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -324,13 +328,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             role_name="alice",
             rotation_period=60)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
-        LDAP secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-role/<role_name>` e.g.
+        LDAP secret backend static role can be imported using the full path to the role
+        of the form: `<mount_path>/static-role/<role_name>` e.g.
 
         ```sh
-         $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
+        $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
         ```
 
         :param str resource_name: The name of the resource.

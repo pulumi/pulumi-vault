@@ -25,6 +25,8 @@ import javax.annotation.Nullable;
  * information.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -75,13 +77,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * AWS auth backend roles can be imported using `auth/`, the `backend` path, `/role/`, and the `role` name e.g.
  * 
  * ```sh
- *  $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
+ * $ pulumi import vault:aws/authBackendRole:AuthBackendRole example auth/aws/role/test-role
  * ```
  * 
  */

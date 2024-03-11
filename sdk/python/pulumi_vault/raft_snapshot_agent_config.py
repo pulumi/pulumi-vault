@@ -86,8 +86,19 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
                
-               ```python
-               import pulumi
+               ```json
+               {
+               "type": "service_account",
+               "project_id": "project-id",
+               "private_key_id": "key-id",
+               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+               "client_email": "service-account-email",
+               "client_id": "client-id",
+               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+               "token_uri": "https://accounts.google.com/o/oauth2/token",
+               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+               }
                ```
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
                space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
@@ -454,8 +465,19 @@ class RaftSnapshotAgentConfigArgs:
         Google service account key in JSON format. 
         The raw value looks like this:
 
-        ```python
-        import pulumi
+        ```json
+        {
+        "type": "service_account",
+        "project_id": "project-id",
+        "private_key_id": "key-id",
+        "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+        "client_email": "service-account-email",
+        "client_id": "client-id",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://accounts.google.com/o/oauth2/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+        }
         ```
         """
         return pulumi.get(self, "google_service_account_key")
@@ -587,8 +609,19 @@ class _RaftSnapshotAgentConfigState:
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
                
-               ```python
-               import pulumi
+               ```json
+               {
+               "type": "service_account",
+               "project_id": "project-id",
+               "private_key_id": "key-id",
+               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+               "client_email": "service-account-email",
+               "client_id": "client-id",
+               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+               "token_uri": "https://accounts.google.com/o/oauth2/token",
+               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+               }
                ```
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
@@ -925,8 +958,19 @@ class _RaftSnapshotAgentConfigState:
         Google service account key in JSON format. 
         The raw value looks like this:
 
-        ```python
-        import pulumi
+        ```json
+        {
+        "type": "service_account",
+        "project_id": "project-id",
+        "private_key_id": "key-id",
+        "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+        "client_email": "service-account-email",
+        "client_id": "client-id",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://accounts.google.com/o/oauth2/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+        }
         ```
         """
         return pulumi.get(self, "google_service_account_key")
@@ -1068,7 +1112,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
         ### Local Storage
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1080,7 +1126,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             retain=7,
             storage_type="local")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### AWS S3
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1101,8 +1150,11 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_enable_kms=True)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Azure BLOB
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1119,13 +1171,14 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             azure_account_name=azure_account_name,
             azure_account_key=azure_account_key)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+        $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
         ```
 
         :param str resource_name: The name of the resource.
@@ -1164,8 +1217,19 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
                
-               ```python
-               import pulumi
+               ```json
+               {
+               "type": "service_account",
+               "project_id": "project-id",
+               "private_key_id": "key-id",
+               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+               "client_email": "service-account-email",
+               "client_id": "client-id",
+               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+               "token_uri": "https://accounts.google.com/o/oauth2/token",
+               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+               }
                ```
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
@@ -1195,7 +1259,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
         ### Local Storage
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1207,7 +1273,10 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             retain=7,
             storage_type="local")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### AWS S3
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1228,8 +1297,11 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_enable_kms=True)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Azure BLOB
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1246,13 +1318,14 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             azure_account_name=azure_account_name,
             azure_account_key=azure_account_key)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Raft Snapshot Agent Configurations can be imported using the `name`, e.g.
 
         ```sh
-         $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
+        $ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local
         ```
 
         :param str resource_name: The name of the resource.
@@ -1420,8 +1493,19 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
                The raw value looks like this:
                
-               ```python
-               import pulumi
+               ```json
+               {
+               "type": "service_account",
+               "project_id": "project-id",
+               "private_key_id": "key-id",
+               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+               "client_email": "service-account-email",
+               "client_id": "client-id",
+               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+               "token_uri": "https://accounts.google.com/o/oauth2/token",
+               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+               }
                ```
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
@@ -1655,8 +1739,19 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         Google service account key in JSON format. 
         The raw value looks like this:
 
-        ```python
-        import pulumi
+        ```json
+        {
+        "type": "service_account",
+        "project_id": "project-id",
+        "private_key_id": "key-id",
+        "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
+        "client_email": "service-account-email",
+        "client_id": "client-id",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://accounts.google.com/o/oauth2/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
+        }
         ```
         """
         return pulumi.get(self, "google_service_account_key")

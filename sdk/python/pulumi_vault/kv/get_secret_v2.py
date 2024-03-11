@@ -174,9 +174,7 @@ def get_secret_v2(mount: Optional[str] = None,
                   version: Optional[int] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretV2Result:
     """
-    ## Required Vault Capabilities
-
-    Use of this resource requires the `read` capability on the given path.
+    ## Example Usage
 
 
     :param str mount: Path where KV-V2 engine is mounted.
@@ -220,9 +218,7 @@ def get_secret_v2_output(mount: Optional[pulumi.Input[str]] = None,
                          version: Optional[pulumi.Input[Optional[int]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretV2Result]:
     """
-    ## Required Vault Capabilities
-
-    Use of this resource requires the `read` capability on the given path.
+    ## Example Usage
 
 
     :param str mount: Path where KV-V2 engine is mounted.

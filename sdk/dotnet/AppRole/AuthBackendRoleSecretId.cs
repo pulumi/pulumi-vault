@@ -16,6 +16,7 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,6 +55,7 @@ namespace Pulumi.Vault.AppRole
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId")]
     public partial class AuthBackendRoleSecretId : global::Pulumi.CustomResource

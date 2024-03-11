@@ -15,7 +15,7 @@ namespace Pulumi.Vault.Generic
     /// Generic secrets can be imported using the `path`, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import vault:generic/secret:Secret example secret/foo
+    /// $ pulumi import vault:generic/secret:Secret example secret/foo
     /// ```
     /// </summary>
     [VaultResourceType("vault:generic/secret:Secret")]

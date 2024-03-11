@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,15 +40,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // GitHub Secrets sync destinations can be imported using the `name`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
-//
+// $ pulumi import vault:secrets/syncGhDestination:SyncGhDestination gh gh-dest
 // ```
 type SyncGhDestination struct {
 	pulumi.CustomResourceState

@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,13 +57,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Terraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.
  * 
  * ```sh
- *  $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
+ * $ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role
  * ```
  * 
  */

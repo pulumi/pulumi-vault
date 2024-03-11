@@ -17,6 +17,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,15 +53,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Okta authentication backend users can be imported using its `path/user` ID format, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
-//
+// $ pulumi import vault:okta/authBackendUser:AuthBackendUser example okta/foo
 // ```
 type AuthBackendUser struct {
 	pulumi.CustomResourceState

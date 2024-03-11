@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -51,15 +52,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // AD secret backend roles can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
-//
+// $ pulumi import vault:ad/secretRole:SecretRole role ad/roles/bob
 // ```
 type SecretRole struct {
 	pulumi.CustomResourceState

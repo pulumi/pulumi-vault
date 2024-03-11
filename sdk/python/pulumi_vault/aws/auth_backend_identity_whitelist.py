@@ -197,6 +197,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -206,13 +207,14 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
             backend=example_auth_backend.path,
             safety_buffer=3600)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
+        $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
         ```
 
         :param str resource_name: The name of the resource.
@@ -242,6 +244,7 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -251,13 +254,14 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
             backend=example_auth_backend.path,
             safety_buffer=3600)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         AWS auth backend identity whitelists can be imported using `auth/`, the `backend` path, and `/config/tidy/identity-whitelist` e.g.
 
         ```sh
-         $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
+        $ pulumi import vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist example auth/aws/config/tidy/identity-whitelist
         ```
 
         :param str resource_name: The name of the resource.

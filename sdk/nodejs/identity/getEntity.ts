@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -17,6 +18,8 @@ import * as utilities from "../utilities";
  *     entityName: "entity_12345",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Required Vault Capabilities
  *
  * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
@@ -140,6 +143,7 @@ export interface GetEntityResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -148,6 +152,8 @@ export interface GetEntityResult {
  *     entityName: "entity_12345",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Required Vault Capabilities
  *
  * Use of this resource requires the `create` capability on `/identity/lookup/entity`.

@@ -12,6 +12,7 @@ namespace Pulumi.Vault.TerraformCloud
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -42,6 +43,7 @@ namespace Pulumi.Vault.TerraformCloud
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:terraformcloud/secretCreds:SecretCreds")]
     public partial class SecretCreds : global::Pulumi.CustomResource

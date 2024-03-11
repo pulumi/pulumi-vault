@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -27,13 +28,15 @@ import * as utilities from "../utilities";
  *     rotationPeriod: 60,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
- * LDAP secret backend static role can be imported using the full path to the role of the form: `<mount_path>/static-role/<role_name>` e.g.
+ * LDAP secret backend static role can be imported using the full path to the role
+ * of the form: `<mount_path>/static-role/<role_name>` e.g.
  *
  * ```sh
- *  $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
+ * $ pulumi import vault:ldap/secretBackendStaticRole:SecretBackendStaticRole role ldap/static-role/example-role
  * ```
  */
 export class SecretBackendStaticRole extends pulumi.CustomResource {

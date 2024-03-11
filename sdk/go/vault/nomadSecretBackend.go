@@ -13,6 +13,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,15 +44,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Nomad secret backend can be imported using the `backend`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
-//
+// $ pulumi import vault:index/nomadSecretBackend:NomadSecretBackend nomad nomad
 // ```
 type NomadSecretBackend struct {
 	pulumi.CustomResourceState

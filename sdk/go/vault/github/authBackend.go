@@ -18,6 +18,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,15 +42,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // GitHub authentication mounts can be imported using the `path`, e.g.
 //
 // ```sh
-//
-//	$ pulumi import vault:github/authBackend:AuthBackend example github
-//
+// $ pulumi import vault:github/authBackend:AuthBackend example github
 // ```
 type AuthBackend struct {
 	pulumi.CustomResourceState

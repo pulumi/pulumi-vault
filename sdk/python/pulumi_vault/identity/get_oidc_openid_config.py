@@ -214,6 +214,7 @@ def get_oidc_openid_config(name: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -234,6 +235,7 @@ def get_oidc_openid_config(name: Optional[str] = None,
     provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
     config = vault.identity.get_oidc_openid_config_output(name=provider.name)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the OIDC Provider in Vault.
@@ -273,6 +275,7 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -293,6 +296,7 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
     provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
     config = vault.identity.get_oidc_openid_config_output(name=provider.name)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the OIDC Provider in Vault.

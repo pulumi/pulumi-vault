@@ -29,6 +29,7 @@ import (
 // backslashes must be escaped to appear correctly in Vault. For further
 // assistance escaping your own custom regex, see String Literals.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,6 +75,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type Template struct {
 	pulumi.CustomResourceState
 

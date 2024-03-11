@@ -19,6 +19,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -64,13 +66,14 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * AD secret backend libraries can be imported using the `path`, e.g.
  * 
  * ```sh
- *  $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
+ * $ pulumi import vault:ad/secretLibrary:SecretLibrary role ad/library/bob
  * ```
  * 
  */
