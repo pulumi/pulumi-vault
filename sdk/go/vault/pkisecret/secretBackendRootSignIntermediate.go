@@ -110,7 +110,7 @@ type SecretBackendRootSignIntermediate struct {
 	Revoke pulumi.BoolPtrOutput `pulumi:"revoke"`
 	// The serial number.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial pulumi.StringOutput `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
@@ -218,7 +218,7 @@ type secretBackendRootSignIntermediateState struct {
 	Revoke *bool `pulumi:"revoke"`
 	// The serial number.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial *string `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
@@ -288,7 +288,7 @@ type SecretBackendRootSignIntermediateState struct {
 	Revoke pulumi.BoolPtrInput
 	// The serial number.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial pulumi.StringPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
@@ -628,7 +628,7 @@ func (o SecretBackendRootSignIntermediateOutput) Revoke() pulumi.BoolPtrOutput {
 
 // The serial number.
 //
-// Deprecated: Use serial_number instead
+// Deprecated: Use serialNumber instead
 func (o SecretBackendRootSignIntermediateOutput) Serial() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
 }

@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = vault.NewPolicy(ctx, "examplePolicy", &vault.PolicyArgs{
-//				Policy: *pulumi.String(examplePolicyDocument.Hcl),
+//				Policy: pulumi.String(examplePolicyDocument.Hcl),
 //			})
 //			if err != nil {
 //				return err

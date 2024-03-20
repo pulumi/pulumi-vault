@@ -188,7 +188,7 @@ export interface ProviderArgs {
     /**
      * Client authentication credentials.
      *
-     * @deprecated Use auth_login_cert instead
+     * @deprecated Use authLoginCert instead
      */
     clientAuth?: pulumi.Input<inputs.ProviderClientAuth>;
     /**
