@@ -1,6 +1,6 @@
 provider: vault
 docker: true
-major-version: 5
+major-version: 6
 makeTemplate: bridged
 plugins:
   - name: gcp
