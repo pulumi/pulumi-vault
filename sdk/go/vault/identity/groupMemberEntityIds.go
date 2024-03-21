@@ -141,7 +141,7 @@ type GroupMemberEntityIds struct {
 	// *Deprecated: The value for groupName may not always be accurate*
 	// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
 	//
-	// Deprecated: The value for group_name may not always be accurate,
+	// Deprecated: The value for groupName may not always be accurate,
 	// use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
 	// List of member entities that belong to the group
@@ -198,7 +198,7 @@ type groupMemberEntityIdsState struct {
 	// *Deprecated: The value for groupName may not always be accurate*
 	// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
 	//
-	// Deprecated: The value for group_name may not always be accurate,
+	// Deprecated: The value for groupName may not always be accurate,
 	// use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
 	GroupName *string `pulumi:"groupName"`
 	// List of member entities that belong to the group
@@ -223,7 +223,7 @@ type GroupMemberEntityIdsState struct {
 	// *Deprecated: The value for groupName may not always be accurate*
 	// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
 	//
-	// Deprecated: The value for group_name may not always be accurate,
+	// Deprecated: The value for groupName may not always be accurate,
 	// use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
 	GroupName pulumi.StringPtrInput
 	// List of member entities that belong to the group
@@ -381,7 +381,7 @@ func (o GroupMemberEntityIdsOutput) GroupId() pulumi.StringOutput {
 // *Deprecated: The value for groupName may not always be accurate*
 // *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
 //
-// Deprecated: The value for group_name may not always be accurate,
+// Deprecated: The value for groupName may not always be accurate,
 // use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
 func (o GroupMemberEntityIdsOutput) GroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupMemberEntityIds) pulumi.StringOutput { return v.GroupName }).(pulumi.StringOutput)

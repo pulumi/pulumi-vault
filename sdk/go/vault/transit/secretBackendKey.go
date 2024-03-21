@@ -73,7 +73,7 @@ type SecretBackendKey struct {
 	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
 	// key.
 	//
-	// Deprecated: Use auto_rotate_period instead
+	// Deprecated: Use autoRotatePeriod instead
 	AutoRotateInterval pulumi.IntOutput `pulumi:"autoRotateInterval"`
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
@@ -161,7 +161,7 @@ type secretBackendKeyState struct {
 	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
 	// key.
 	//
-	// Deprecated: Use auto_rotate_period instead
+	// Deprecated: Use autoRotatePeriod instead
 	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
@@ -217,7 +217,7 @@ type SecretBackendKeyState struct {
 	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
 	// key.
 	//
-	// Deprecated: Use auto_rotate_period instead
+	// Deprecated: Use autoRotatePeriod instead
 	AutoRotateInterval pulumi.IntPtrInput
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
@@ -277,7 +277,7 @@ type secretBackendKeyArgs struct {
 	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
 	// key.
 	//
-	// Deprecated: Use auto_rotate_period instead
+	// Deprecated: Use autoRotatePeriod instead
 	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
@@ -318,7 +318,7 @@ type SecretBackendKeyArgs struct {
 	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
 	// key.
 	//
-	// Deprecated: Use auto_rotate_period instead
+	// Deprecated: Use autoRotatePeriod instead
 	AutoRotateInterval pulumi.IntPtrInput
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
@@ -447,7 +447,7 @@ func (o SecretBackendKeyOutput) AllowPlaintextBackup() pulumi.BoolPtrOutput {
 // Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
 // key.
 //
-// Deprecated: Use auto_rotate_period instead
+// Deprecated: Use autoRotatePeriod instead
 func (o SecretBackendKeyOutput) AutoRotateInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntOutput { return v.AutoRotateInterval }).(pulumi.IntOutput)
 }

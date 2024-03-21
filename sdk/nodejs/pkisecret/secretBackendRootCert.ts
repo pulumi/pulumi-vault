@@ -181,7 +181,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
     /**
      * Deprecated, use `serialNumber` instead.
      *
-     * @deprecated Use serial_number instead
+     * @deprecated Use serialNumber instead
      */
     public /*out*/ readonly serial!: pulumi.Output<string>;
     /**
@@ -431,7 +431,7 @@ export interface SecretBackendRootCertState {
     /**
      * Deprecated, use `serialNumber` instead.
      *
-     * @deprecated Use serial_number instead
+     * @deprecated Use serialNumber instead
      */
     serial?: pulumi.Input<string>;
     /**

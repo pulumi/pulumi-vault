@@ -162,7 +162,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
     /**
      * The serial number.
      *
-     * @deprecated Use serial_number instead
+     * @deprecated Use serialNumber instead
      */
     public /*out*/ readonly serial!: pulumi.Output<string>;
     /**
@@ -337,7 +337,7 @@ export interface SecretBackendSignState {
     /**
      * The serial number.
      *
-     * @deprecated Use serial_number instead
+     * @deprecated Use serialNumber instead
      */
     serial?: pulumi.Input<string>;
     /**

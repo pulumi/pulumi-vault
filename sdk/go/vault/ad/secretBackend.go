@@ -89,7 +89,7 @@ type SecretBackend struct {
 	Discoverdn pulumi.BoolPtrOutput `pulumi:"discoverdn"`
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
 	//
-	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Formatter pulumi.StringOutput `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
@@ -108,7 +108,7 @@ type SecretBackend struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length pulumi.IntOutput `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -243,7 +243,7 @@ type secretBackendState struct {
 	Discoverdn *bool `pulumi:"discoverdn"`
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
 	//
-	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Formatter *string `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
@@ -262,7 +262,7 @@ type secretBackendState struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -347,7 +347,7 @@ type SecretBackendState struct {
 	Discoverdn pulumi.BoolPtrInput
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
 	//
-	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Formatter pulumi.StringPtrInput
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
@@ -366,7 +366,7 @@ type SecretBackendState struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -455,7 +455,7 @@ type secretBackendArgs struct {
 	Discoverdn *bool `pulumi:"discoverdn"`
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
 	//
-	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Formatter *string `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
@@ -474,7 +474,7 @@ type secretBackendArgs struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -560,7 +560,7 @@ type SecretBackendArgs struct {
 	Discoverdn pulumi.BoolPtrInput
 	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
 	//
-	// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Formatter pulumi.StringPtrInput
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
@@ -579,7 +579,7 @@ type SecretBackendArgs struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -789,7 +789,7 @@ func (o SecretBackendOutput) Discoverdn() pulumi.BoolPtrOutput {
 
 // **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
 //
-// Deprecated: Formatter is deprecated and password_policy should be used with Vault >= 1.5.
+// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
 func (o SecretBackendOutput) Formatter() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Formatter }).(pulumi.StringOutput)
 }
@@ -826,7 +826,7 @@ func (o SecretBackendOutput) LastRotationTolerance() pulumi.IntOutput {
 // **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 // *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 //
-// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 func (o SecretBackendOutput) Length() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
 }

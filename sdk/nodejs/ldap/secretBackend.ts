@@ -126,7 +126,7 @@ export class SecretBackend extends pulumi.CustomResource {
      * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
      * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
      *
-     * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
+     * @deprecated Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
      */
     public readonly length!: pulumi.Output<number>;
     /**
@@ -353,7 +353,7 @@ export interface SecretBackendState {
      * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
      * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
      *
-     * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
+     * @deprecated Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
      */
     length?: pulumi.Input<number>;
     /**
@@ -488,7 +488,7 @@ export interface SecretBackendArgs {
      * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
      * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
      *
-     * @deprecated Length is deprecated and password_policy should be used with Vault >= 1.5.
+     * @deprecated Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
      */
     length?: pulumi.Input<number>;
     /**

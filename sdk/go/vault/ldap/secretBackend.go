@@ -91,7 +91,7 @@ type SecretBackend struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length pulumi.IntOutput `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -217,7 +217,7 @@ type secretBackendState struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -293,7 +293,7 @@ type SecretBackendState struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -371,7 +371,7 @@ type secretBackendArgs struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -446,7 +446,7 @@ type SecretBackendArgs struct {
 	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 	//
-	// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
@@ -653,7 +653,7 @@ func (o SecretBackendOutput) InsecureTls() pulumi.BoolPtrOutput {
 // **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
 // *Mutually exclusive with `passwordPolicy` on vault-1.11+*
 //
-// Deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.
+// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
 func (o SecretBackendOutput) Length() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
 }
