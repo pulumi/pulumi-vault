@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +28,7 @@ import (
 //	"os"
 //
 //	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

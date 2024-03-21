@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +21,7 @@ import (
 //
 //	"os"
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/secrets"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
