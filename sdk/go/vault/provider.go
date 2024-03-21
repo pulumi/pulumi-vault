@@ -114,7 +114,7 @@ type providerArgs struct {
 	CaCertFile *string `pulumi:"caCertFile"`
 	// Client authentication credentials.
 	//
-	// Deprecated: Use auth_login_cert instead
+	// Deprecated: Use authLoginCert instead
 	ClientAuth *ProviderClientAuth `pulumi:"clientAuth"`
 	// The headers to send with each Vault request.
 	Headers []ProviderHeader `pulumi:"headers"`
@@ -181,7 +181,7 @@ type ProviderArgs struct {
 	CaCertFile pulumi.StringPtrInput
 	// Client authentication credentials.
 	//
-	// Deprecated: Use auth_login_cert instead
+	// Deprecated: Use authLoginCert instead
 	ClientAuth ProviderClientAuthPtrInput
 	// The headers to send with each Vault request.
 	Headers ProviderHeaderArrayInput

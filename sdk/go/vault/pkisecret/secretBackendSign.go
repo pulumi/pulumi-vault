@@ -123,7 +123,7 @@ type SecretBackendSign struct {
 	RenewPending pulumi.BoolOutput `pulumi:"renewPending"`
 	// The serial number.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial pulumi.StringOutput `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
@@ -216,7 +216,7 @@ type secretBackendSignState struct {
 	RenewPending *bool `pulumi:"renewPending"`
 	// The serial number.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial *string `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
@@ -271,7 +271,7 @@ type SecretBackendSignState struct {
 	RenewPending pulumi.BoolPtrInput
 	// The serial number.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial pulumi.StringPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
@@ -549,7 +549,7 @@ func (o SecretBackendSignOutput) RenewPending() pulumi.BoolOutput {
 
 // The serial number.
 //
-// Deprecated: Use serial_number instead
+// Deprecated: Use serialNumber instead
 func (o SecretBackendSignOutput) Serial() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
 }

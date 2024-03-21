@@ -120,7 +120,7 @@ type SecretBackendRootCert struct {
 	Province pulumi.StringPtrOutput `pulumi:"province"`
 	// Deprecated, use `serialNumber` instead.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial pulumi.StringOutput `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
@@ -240,7 +240,7 @@ type secretBackendRootCertState struct {
 	Province *string `pulumi:"province"`
 	// Deprecated, use `serialNumber` instead.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial *string `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
@@ -322,7 +322,7 @@ type SecretBackendRootCertState struct {
 	Province pulumi.StringPtrInput
 	// Deprecated, use `serialNumber` instead.
 	//
-	// Deprecated: Use serial_number instead
+	// Deprecated: Use serialNumber instead
 	Serial pulumi.StringPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
@@ -715,7 +715,7 @@ func (o SecretBackendRootCertOutput) Province() pulumi.StringPtrOutput {
 
 // Deprecated, use `serialNumber` instead.
 //
-// Deprecated: Use serial_number instead
+// Deprecated: Use serialNumber instead
 func (o SecretBackendRootCertOutput) Serial() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
 }

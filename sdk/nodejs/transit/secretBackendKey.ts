@@ -74,7 +74,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
      * key.
      *
-     * @deprecated Use auto_rotate_period instead
+     * @deprecated Use autoRotatePeriod instead
      */
     public readonly autoRotateInterval!: pulumi.Output<number>;
     /**
@@ -240,7 +240,7 @@ export interface SecretBackendKeyState {
      * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
      * key.
      *
-     * @deprecated Use auto_rotate_period instead
+     * @deprecated Use autoRotatePeriod instead
      */
     autoRotateInterval?: pulumi.Input<number>;
     /**
@@ -341,7 +341,7 @@ export interface SecretBackendKeyArgs {
      * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
      * key.
      *
-     * @deprecated Use auto_rotate_period instead
+     * @deprecated Use autoRotatePeriod instead
      */
     autoRotateInterval?: pulumi.Input<number>;
     /**

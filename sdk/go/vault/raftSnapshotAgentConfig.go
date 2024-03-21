@@ -74,7 +74,7 @@ import (
 //				PathPrefix:         pulumi.String("/path/in/bucket"),
 //				StorageType:        pulumi.String("aws-s3"),
 //				AwsS3Bucket:        pulumi.String("my-bucket"),
-//				AwsS3Region:        *pulumi.String(current.Name),
+//				AwsS3Region:        pulumi.String(current.Name),
 //				AwsAccessKeyId:     pulumi.Any(awsAccessKeyId),
 //				AwsSecretAccessKey: pulumi.Any(awsSecretAccessKey),
 //				AwsS3EnableKms:     pulumi.Bool(true),

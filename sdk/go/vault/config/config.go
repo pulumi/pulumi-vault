@@ -92,7 +92,7 @@ func GetCaCertFile(ctx *pulumi.Context) string {
 
 // Client authentication credentials.
 //
-// Deprecated: Use auth_login_cert instead
+// Deprecated: Use authLoginCert instead
 func GetClientAuth(ctx *pulumi.Context) string {
 	return config.Get(ctx, "vault:clientAuth")
 }
