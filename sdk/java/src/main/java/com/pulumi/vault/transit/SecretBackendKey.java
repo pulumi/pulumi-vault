@@ -65,10 +65,6 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Deprecations
- * 
- * * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
- * 
  * ## Import
  * 
  * Transit secret backend keys can be imported using the `path`, e.g.
@@ -95,26 +91,6 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> allowPlaintextBackup() {
         return Codegen.optional(this.allowPlaintextBackup);
-    }
-    /**
-     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     * 
-     * @deprecated
-     * Use auto_rotate_period instead
-     * 
-     */
-    @Deprecated /* Use auto_rotate_period instead */
-    @Export(name="autoRotateInterval", refs={Integer.class}, tree="[0]")
-    private Output<Integer> autoRotateInterval;
-
-    /**
-     * @return Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     * 
-     */
-    public Output<Integer> autoRotateInterval() {
-        return this.autoRotateInterval;
     }
     /**
      * Amount of seconds the key should live before being automatically rotated.
@@ -307,7 +283,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -317,7 +293,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */

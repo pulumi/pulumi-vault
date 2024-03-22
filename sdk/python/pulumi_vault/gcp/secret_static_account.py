@@ -31,7 +31,7 @@ class SecretStaticAccountArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretStaticAccountBindingArgs']]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_type: Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to `access_token` secrets generated under this static account (`access_token` static accounts only).
@@ -102,7 +102,7 @@ class SecretStaticAccountArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -153,7 +153,7 @@ class _SecretStaticAccountState:
         :param pulumi.Input[Sequence[pulumi.Input['SecretStaticAccountBindingArgs']]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_type: Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to manage.
@@ -208,7 +208,7 @@ class _SecretStaticAccountState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -336,7 +336,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_type: Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to manage.
@@ -462,7 +462,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] secret_type: Type of secret generated for this static account. Accepted values: `access_token`, `service_account_key`. Defaults to `access_token`.
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to manage.
@@ -506,7 +506,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

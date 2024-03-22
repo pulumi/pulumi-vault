@@ -52,7 +52,7 @@ func LookupAuthBackend(ctx *pulumi.Context, args *LookupAuthBackendArgs, opts ..
 type LookupAuthBackendArgs struct {
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The auth backend mount point.
@@ -98,7 +98,7 @@ func LookupAuthBackendOutput(ctx *pulumi.Context, args LookupAuthBackendOutputAr
 type LookupAuthBackendOutputArgs struct {
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The auth backend mount point.

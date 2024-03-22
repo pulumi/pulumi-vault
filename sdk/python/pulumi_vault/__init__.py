@@ -315,6 +315,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "config/uiCustomMessage",
+  "fqn": "pulumi_vault.config",
+  "classes": {
+   "vault:config/uiCustomMessage:UiCustomMessage": "UiCustomMessage"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "consul/secretBackend",
   "fqn": "pulumi_vault.consul",
   "classes": {
@@ -987,6 +995,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "pkiSecret/backendConfigCluster",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendConfigCluster:BackendConfigCluster": "BackendConfigCluster"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "pkiSecret/secretBackendCert",
   "fqn": "pulumi_vault.pkisecret",
   "classes": {
@@ -1167,6 +1183,14 @@ _utilities.register(
   "fqn": "pulumi_vault.secrets",
   "classes": {
    "vault:secrets/syncGhDestination:SyncGhDestination": "SyncGhDestination"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "secrets/syncGithubApps",
+  "fqn": "pulumi_vault.secrets",
+  "classes": {
+   "vault:secrets/syncGithubApps:SyncGithubApps": "SyncGithubApps"
   }
  },
  {

@@ -210,6 +210,37 @@ public final class VaultFunctions {
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .type(&#34;kubernetes&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetAuthBackendsResult> getAuthBackends() {
         return getAuthBackends(GetAuthBackendsArgs.Empty, InvokeOptions.Empty);
@@ -240,6 +271,37 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackends();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .type(&#34;kubernetes&#34;)
+     *             .build());
      * 
      *     }
      * }
@@ -282,6 +344,37 @@ public final class VaultFunctions {
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .type(&#34;kubernetes&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetAuthBackendsResult> getAuthBackends(GetAuthBackendsArgs args) {
         return getAuthBackends(args, InvokeOptions.Empty);
@@ -312,6 +405,37 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackends();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .type(&#34;kubernetes&#34;)
+     *             .build());
      * 
      *     }
      * }
@@ -354,6 +478,37 @@ public final class VaultFunctions {
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .type(&#34;kubernetes&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetAuthBackendsResult> getAuthBackends(GetAuthBackendsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:index/getAuthBackends:getAuthBackends", TypeShape.of(GetAuthBackendsResult.class), args, Utilities.withVersion(options));
@@ -384,6 +539,37 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackends();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
+     *             .type(&#34;kubernetes&#34;)
+     *             .build());
      * 
      *     }
      * }

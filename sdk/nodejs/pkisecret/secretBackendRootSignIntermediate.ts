@@ -26,10 +26,6 @@ import * as utilities from "../utilities";
  * });
  * ```
  * <!--End PulumiCodeChooser -->
- *
- * ## Deprecations
- *
- * * `serial` - Use `serialNumber` instead.
  */
 export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
     /**
@@ -126,7 +122,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -158,12 +154,6 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      * If set to `true`, the certificate will be revoked on resource destruction.
      */
     public readonly revoke!: pulumi.Output<boolean | undefined>;
-    /**
-     * The serial number.
-     *
-     * @deprecated Use serialNumber instead
-     */
-    public /*out*/ readonly serial!: pulumi.Output<string>;
     /**
      * The certificate's serial number, hex formatted.
      */
@@ -221,7 +211,6 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["postalCode"] = state ? state.postalCode : undefined;
             resourceInputs["province"] = state ? state.province : undefined;
             resourceInputs["revoke"] = state ? state.revoke : undefined;
-            resourceInputs["serial"] = state ? state.serial : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
@@ -265,7 +254,6 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["certificateBundle"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
-            resourceInputs["serial"] = undefined /*out*/;
             resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -344,7 +332,7 @@ export interface SecretBackendRootSignIntermediateState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -376,12 +364,6 @@ export interface SecretBackendRootSignIntermediateState {
      * If set to `true`, the certificate will be revoked on resource destruction.
      */
     revoke?: pulumi.Input<boolean>;
-    /**
-     * The serial number.
-     *
-     * @deprecated Use serialNumber instead
-     */
-    serial?: pulumi.Input<string>;
     /**
      * The certificate's serial number, hex formatted.
      */
@@ -458,7 +440,7 @@ export interface SecretBackendRootSignIntermediateArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

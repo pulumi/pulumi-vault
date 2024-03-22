@@ -79,10 +79,7 @@ type CertAuthBackendRole struct {
 	AllowedEmailSans pulumi.StringArrayOutput `pulumi:"allowedEmailSans"`
 	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayOutput `pulumi:"allowedNames"`
-	// Deprecated: Use allowed_organizational_units
-	AllowedOrganizationUnits pulumi.StringArrayOutput `pulumi:"allowedOrganizationUnits"`
 	// Allowed organization units for authenticated client certificates.
-	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
 	AllowedOrganizationalUnits pulumi.StringArrayOutput `pulumi:"allowedOrganizationalUnits"`
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
@@ -96,7 +93,7 @@ type CertAuthBackendRole struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Any additional CA certificates
@@ -204,10 +201,7 @@ type certAuthBackendRoleState struct {
 	AllowedEmailSans []string `pulumi:"allowedEmailSans"`
 	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames []string `pulumi:"allowedNames"`
-	// Deprecated: Use allowed_organizational_units
-	AllowedOrganizationUnits []string `pulumi:"allowedOrganizationUnits"`
 	// Allowed organization units for authenticated client certificates.
-	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
 	AllowedOrganizationalUnits []string `pulumi:"allowedOrganizationalUnits"`
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
@@ -221,7 +215,7 @@ type certAuthBackendRoleState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Any additional CA certificates
@@ -297,10 +291,7 @@ type CertAuthBackendRoleState struct {
 	AllowedEmailSans pulumi.StringArrayInput
 	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayInput
-	// Deprecated: Use allowed_organizational_units
-	AllowedOrganizationUnits pulumi.StringArrayInput
 	// Allowed organization units for authenticated client certificates.
-	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
 	AllowedOrganizationalUnits pulumi.StringArrayInput
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans pulumi.StringArrayInput
@@ -314,7 +305,7 @@ type CertAuthBackendRoleState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Any additional CA certificates
@@ -394,10 +385,7 @@ type certAuthBackendRoleArgs struct {
 	AllowedEmailSans []string `pulumi:"allowedEmailSans"`
 	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames []string `pulumi:"allowedNames"`
-	// Deprecated: Use allowed_organizational_units
-	AllowedOrganizationUnits []string `pulumi:"allowedOrganizationUnits"`
 	// Allowed organization units for authenticated client certificates.
-	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
 	AllowedOrganizationalUnits []string `pulumi:"allowedOrganizationalUnits"`
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
@@ -411,7 +399,7 @@ type certAuthBackendRoleArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Any additional CA certificates
@@ -488,10 +476,7 @@ type CertAuthBackendRoleArgs struct {
 	AllowedEmailSans pulumi.StringArrayInput
 	// DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
 	AllowedNames pulumi.StringArrayInput
-	// Deprecated: Use allowed_organizational_units
-	AllowedOrganizationUnits pulumi.StringArrayInput
 	// Allowed organization units for authenticated client certificates.
-	// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
 	AllowedOrganizationalUnits pulumi.StringArrayInput
 	// Allowed URIs for authenticated client certificates
 	AllowedUriSans pulumi.StringArrayInput
@@ -505,7 +490,7 @@ type CertAuthBackendRoleArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Any additional CA certificates
@@ -679,13 +664,7 @@ func (o CertAuthBackendRoleOutput) AllowedNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedNames }).(pulumi.StringArrayOutput)
 }
 
-// Deprecated: Use allowed_organizational_units
-func (o CertAuthBackendRoleOutput) AllowedOrganizationUnits() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedOrganizationUnits }).(pulumi.StringArrayOutput)
-}
-
 // Allowed organization units for authenticated client certificates.
-// *In previous provider releases this field was incorrectly named `allowedOrganizationUnits`, please update accordingly*
 func (o CertAuthBackendRoleOutput) AllowedOrganizationalUnits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringArrayOutput { return v.AllowedOrganizationalUnits }).(pulumi.StringArrayOutput)
 }
@@ -717,7 +696,7 @@ func (o CertAuthBackendRoleOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o CertAuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

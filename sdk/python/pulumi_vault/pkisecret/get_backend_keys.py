@@ -128,7 +128,7 @@ def get_backend_keys(backend: Optional[str] = None,
            read the keys from, with no leading or trailing `/`s.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
     __args__ = dict()
@@ -177,7 +177,7 @@ def get_backend_keys_output(backend: Optional[pulumi.Input[str]] = None,
            read the keys from, with no leading or trailing `/`s.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
     ...

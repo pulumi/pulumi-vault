@@ -47,7 +47,7 @@ class SecretBackendSignArgs:
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
@@ -222,7 +222,7 @@ class SecretBackendSignArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -289,7 +289,6 @@ class _SecretBackendSignState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  renew_pending: Optional[pulumi.Input[bool]] = None,
-                 serial: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -315,11 +314,10 @@ class _SecretBackendSignState:
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
-        :param pulumi.Input[str] serial: The serial number.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -360,11 +358,6 @@ class _SecretBackendSignState:
             pulumi.set(__self__, "other_sans", other_sans)
         if renew_pending is not None:
             pulumi.set(__self__, "renew_pending", renew_pending)
-        if serial is not None:
-            warnings.warn("""Use serial_number instead""", DeprecationWarning)
-            pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
-        if serial is not None:
-            pulumi.set(__self__, "serial", serial)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if ttl is not None:
@@ -561,7 +554,7 @@ class _SecretBackendSignState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -593,21 +586,6 @@ class _SecretBackendSignState:
     @renew_pending.setter
     def renew_pending(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "renew_pending", value)
-
-    @property
-    @pulumi.getter
-    def serial(self) -> Optional[pulumi.Input[str]]:
-        """
-        The serial number.
-        """
-        warnings.warn("""Use serial_number instead""", DeprecationWarning)
-        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
-
-        return pulumi.get(self, "serial")
-
-    @serial.setter
-    def serial(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "serial", value)
 
     @property
     @pulumi.getter(name="serialNumber")
@@ -710,10 +688,6 @@ class SecretBackendSign(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Deprecations
-
-        * `serial` - Use `serial_number` instead.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] alt_names: List of alternative names
@@ -732,7 +706,7 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[str] ttl: Time to live
@@ -786,10 +760,6 @@ class SecretBackendSign(pulumi.CustomResource):
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
         ```
         <!--End PulumiCodeChooser -->
-
-        ## Deprecations
-
-        * `serial` - Use `serial_number` instead.
 
         :param str resource_name: The name of the resource.
         :param SecretBackendSignArgs args: The arguments to use to populate this resource's properties.
@@ -856,7 +826,6 @@ class SecretBackendSign(pulumi.CustomResource):
             __props__.__dict__["expiration"] = None
             __props__.__dict__["issuing_ca"] = None
             __props__.__dict__["renew_pending"] = None
-            __props__.__dict__["serial"] = None
             __props__.__dict__["serial_number"] = None
         super(SecretBackendSign, __self__).__init__(
             'vault:pkiSecret/secretBackendSign:SecretBackendSign',
@@ -886,7 +855,6 @@ class SecretBackendSign(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             renew_pending: Optional[pulumi.Input[bool]] = None,
-            serial: Optional[pulumi.Input[str]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendSign':
@@ -917,11 +885,10 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the role to create the certificate against
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
         :param pulumi.Input[bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
-        :param pulumi.Input[str] serial: The serial number.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
@@ -948,7 +915,6 @@ class SecretBackendSign(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["renew_pending"] = renew_pending
-        __props__.__dict__["serial"] = serial
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["uri_sans"] = uri_sans
@@ -1083,7 +1049,7 @@ class SecretBackendSign(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1103,17 +1069,6 @@ class SecretBackendSign(pulumi.CustomResource):
         `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         """
         return pulumi.get(self, "renew_pending")
-
-    @property
-    @pulumi.getter
-    def serial(self) -> pulumi.Output[str]:
-        """
-        The serial number.
-        """
-        warnings.warn("""Use serial_number instead""", DeprecationWarning)
-        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
-
-        return pulumi.get(self, "serial")
 
     @property
     @pulumi.getter(name="serialNumber")

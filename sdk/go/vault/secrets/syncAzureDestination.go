@@ -76,7 +76,7 @@ type SyncAzureDestination struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -146,7 +146,7 @@ type syncAzureDestinationState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace *string `pulumi:"namespace"`
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -180,7 +180,7 @@ type SyncAzureDestinationState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrInput
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -218,7 +218,7 @@ type syncAzureDestinationArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace *string `pulumi:"namespace"`
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -251,7 +251,7 @@ type SyncAzureDestinationArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrInput
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -387,7 +387,7 @@ func (o SyncAzureDestinationOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 func (o SyncAzureDestinationOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }

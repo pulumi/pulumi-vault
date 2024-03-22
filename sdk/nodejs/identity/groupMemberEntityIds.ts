@@ -106,22 +106,13 @@ export class GroupMemberEntityIds extends pulumi.CustomResource {
      */
     public readonly groupId!: pulumi.Output<string>;
     /**
-     * The name of the group that are assigned the member entities.  
-     * *Deprecated: The value for groupName may not always be accurate*
-     * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-     *
-     * @deprecated The value for groupName may not always be accurate, 
-use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
-     */
-    public /*out*/ readonly groupName!: pulumi.Output<string>;
-    /**
      * List of member entities that belong to the group
      */
     public readonly memberEntityIds!: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -141,7 +132,6 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
             const state = argsOrState as GroupMemberEntityIdsState | undefined;
             resourceInputs["exclusive"] = state ? state.exclusive : undefined;
             resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["groupName"] = state ? state.groupName : undefined;
             resourceInputs["memberEntityIds"] = state ? state.memberEntityIds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
         } else {
@@ -153,7 +143,6 @@ use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name
             resourceInputs["groupId"] = args ? args.groupId : undefined;
             resourceInputs["memberEntityIds"] = args ? args.memberEntityIds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["groupName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMemberEntityIds.__pulumiType, name, resourceInputs, opts);
@@ -177,22 +166,13 @@ export interface GroupMemberEntityIdsState {
      */
     groupId?: pulumi.Input<string>;
     /**
-     * The name of the group that are assigned the member entities.  
-     * *Deprecated: The value for groupName may not always be accurate*
-     * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-     *
-     * @deprecated The value for groupName may not always be accurate, 
-use "data.vault_identity_group.*.group_name", "vault_identity_group.*.group_name" instead
-     */
-    groupName?: pulumi.Input<string>;
-    /**
      * List of member entities that belong to the group
      */
     memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -221,7 +201,7 @@ export interface GroupMemberEntityIdsArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

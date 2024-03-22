@@ -101,10 +101,19 @@ def get_auth_backends(namespace: Optional[str] = None,
     ```
     <!--End PulumiCodeChooser -->
 
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example_filter = vault.get_auth_backends(type="kubernetes")
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str type: The name of the auth method type. Allows filtering of backends returned by type.
     """
@@ -138,10 +147,19 @@ def get_auth_backends_output(namespace: Optional[pulumi.Input[Optional[str]]] = 
     ```
     <!--End PulumiCodeChooser -->
 
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    example_filter = vault.get_auth_backends(type="kubernetes")
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str type: The name of the auth method type. Allows filtering of backends returned by type.
     """

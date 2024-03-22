@@ -123,14 +123,6 @@ namespace Pulumi.Vault.Identity
         public Output<string> GroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the group that are assigned the member entities.  
-        /// *Deprecated: The value for group_name may not always be accurate*
-        /// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-        /// </summary>
-        [Output("groupName")]
-        public Output<string> GroupName { get; private set; } = null!;
-
-        /// <summary>
         /// List of member entities that belong to the group
         /// </summary>
         [Output("memberEntityIds")]
@@ -139,7 +131,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -222,7 +214,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -252,14 +244,6 @@ namespace Pulumi.Vault.Identity
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
-        /// <summary>
-        /// The name of the group that are assigned the member entities.  
-        /// *Deprecated: The value for group_name may not always be accurate*
-        /// *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-        /// </summary>
-        [Input("groupName")]
-        public Input<string>? GroupName { get; set; }
-
         [Input("memberEntityIds")]
         private InputList<string>? _memberEntityIds;
 
@@ -275,7 +259,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

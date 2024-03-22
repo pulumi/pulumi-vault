@@ -74,7 +74,7 @@ type GetAccessCredentialsArgs struct {
 	MaxCredValidationSeconds *int `pulumi:"maxCredValidationSeconds"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// If 'validate_creds' is true,
@@ -160,7 +160,7 @@ type GetAccessCredentialsOutputArgs struct {
 	MaxCredValidationSeconds pulumi.IntPtrInput `pulumi:"maxCredValidationSeconds"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// If 'validate_creds' is true,

@@ -79,27 +79,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * @deprecated
-     * Use allowed_organizational_units
-     * 
-     */
-    @Deprecated /* Use allowed_organizational_units */
-    @Import(name="allowedOrganizationUnits")
-    private @Nullable Output<List<String>> allowedOrganizationUnits;
-
-    /**
-     * @deprecated
-     * Use allowed_organizational_units
-     * 
-     */
-    @Deprecated /* Use allowed_organizational_units */
-    public Optional<Output<List<String>>> allowedOrganizationUnits() {
-        return Optional.ofNullable(this.allowedOrganizationUnits);
-    }
-
-    /**
      * Allowed organization units for authenticated client certificates.
-     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
      * 
      */
     @Import(name="allowedOrganizationalUnits")
@@ -107,7 +87,6 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
 
     /**
      * @return Allowed organization units for authenticated client certificates.
-     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
      * 
      */
     public Optional<Output<List<String>>> allowedOrganizationalUnits() {
@@ -192,7 +171,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -202,7 +181,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -506,7 +485,6 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         this.allowedDnsSans = $.allowedDnsSans;
         this.allowedEmailSans = $.allowedEmailSans;
         this.allowedNames = $.allowedNames;
-        this.allowedOrganizationUnits = $.allowedOrganizationUnits;
         this.allowedOrganizationalUnits = $.allowedOrganizationalUnits;
         this.allowedUriSans = $.allowedUriSans;
         this.backend = $.backend;
@@ -674,45 +652,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @return builder
-         * 
-         * @deprecated
-         * Use allowed_organizational_units
-         * 
-         */
-        @Deprecated /* Use allowed_organizational_units */
-        public Builder allowedOrganizationUnits(@Nullable Output<List<String>> allowedOrganizationUnits) {
-            $.allowedOrganizationUnits = allowedOrganizationUnits;
-            return this;
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * Use allowed_organizational_units
-         * 
-         */
-        @Deprecated /* Use allowed_organizational_units */
-        public Builder allowedOrganizationUnits(List<String> allowedOrganizationUnits) {
-            return allowedOrganizationUnits(Output.of(allowedOrganizationUnits));
-        }
-
-        /**
-         * @return builder
-         * 
-         * @deprecated
-         * Use allowed_organizational_units
-         * 
-         */
-        @Deprecated /* Use allowed_organizational_units */
-        public Builder allowedOrganizationUnits(String... allowedOrganizationUnits) {
-            return allowedOrganizationUnits(List.of(allowedOrganizationUnits));
-        }
-
-        /**
          * @param allowedOrganizationalUnits Allowed organization units for authenticated client certificates.
-         * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
          * 
          * @return builder
          * 
@@ -724,7 +664,6 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
 
         /**
          * @param allowedOrganizationalUnits Allowed organization units for authenticated client certificates.
-         * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
          * 
          * @return builder
          * 
@@ -735,7 +674,6 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
 
         /**
          * @param allowedOrganizationalUnits Allowed organization units for authenticated client certificates.
-         * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
          * 
          * @return builder
          * 
@@ -862,7 +800,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -876,7 +814,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

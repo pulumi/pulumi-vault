@@ -35,6 +35,11 @@ export type SyncGhDestination = import("./syncGhDestination").SyncGhDestination;
 export const SyncGhDestination: typeof import("./syncGhDestination").SyncGhDestination = null as any;
 utilities.lazyLoad(exports, ["SyncGhDestination"], () => require("./syncGhDestination"));
 
+export { SyncGithubAppsArgs, SyncGithubAppsState } from "./syncGithubApps";
+export type SyncGithubApps = import("./syncGithubApps").SyncGithubApps;
+export const SyncGithubApps: typeof import("./syncGithubApps").SyncGithubApps = null as any;
+utilities.lazyLoad(exports, ["SyncGithubApps"], () => require("./syncGithubApps"));
+
 export { SyncVercelDestinationArgs, SyncVercelDestinationState } from "./syncVercelDestination";
 export type SyncVercelDestination = import("./syncVercelDestination").SyncVercelDestination;
 export const SyncVercelDestination: typeof import("./syncVercelDestination").SyncVercelDestination = null as any;
@@ -57,6 +62,8 @@ const _module = {
                 return new SyncGcpDestination(name, <any>undefined, { urn })
             case "vault:secrets/syncGhDestination:SyncGhDestination":
                 return new SyncGhDestination(name, <any>undefined, { urn })
+            case "vault:secrets/syncGithubApps:SyncGithubApps":
+                return new SyncGithubApps(name, <any>undefined, { urn })
             case "vault:secrets/syncVercelDestination:SyncVercelDestination":
                 return new SyncVercelDestination(name, <any>undefined, { urn })
             default:
@@ -70,4 +77,5 @@ pulumi.runtime.registerResourceModule("vault", "secrets/syncAzureDestination", _
 pulumi.runtime.registerResourceModule("vault", "secrets/syncConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "secrets/syncGcpDestination", _module)
 pulumi.runtime.registerResourceModule("vault", "secrets/syncGhDestination", _module)
+pulumi.runtime.registerResourceModule("vault", "secrets/syncGithubApps", _module)
 pulumi.runtime.registerResourceModule("vault", "secrets/syncVercelDestination", _module)

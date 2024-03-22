@@ -67,7 +67,7 @@ type SyncVercelDestination struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Project ID where to manage environment variables.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -136,7 +136,7 @@ type syncVercelDestinationState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace *string `pulumi:"namespace"`
 	// Project ID where to manage environment variables.
 	ProjectId *string `pulumi:"projectId"`
@@ -160,7 +160,7 @@ type SyncVercelDestinationState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrInput
 	// Project ID where to manage environment variables.
 	ProjectId pulumi.StringPtrInput
@@ -188,7 +188,7 @@ type syncVercelDestinationArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace *string `pulumi:"namespace"`
 	// Project ID where to manage environment variables.
 	ProjectId string `pulumi:"projectId"`
@@ -211,7 +211,7 @@ type SyncVercelDestinationArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrInput
 	// Project ID where to manage environment variables.
 	ProjectId pulumi.StringInput
@@ -328,7 +328,7 @@ func (o SyncVercelDestinationOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 func (o SyncVercelDestinationOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncVercelDestination) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }

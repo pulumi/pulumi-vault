@@ -31,7 +31,7 @@ class SyncVercelDestinationArgs:
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] team_id: Team ID where to manage environment variables.
@@ -104,7 +104,7 @@ class SyncVercelDestinationArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
@@ -158,7 +158,7 @@ class _SyncVercelDestinationState:
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] project_id: Project ID where to manage environment variables.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -226,7 +226,7 @@ class _SyncVercelDestinationState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
@@ -334,7 +334,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] project_id: Project ID where to manage environment variables.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -453,7 +453,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] project_id: Project ID where to manage environment variables.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -506,7 +506,7 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 

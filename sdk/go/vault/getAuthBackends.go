@@ -36,6 +36,32 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.GetAuthBackends(ctx, &vault.GetAuthBackendsArgs{
+//				Type: pulumi.StringRef("kubernetes"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func GetAuthBackends(ctx *pulumi.Context, args *GetAuthBackendsArgs, opts ...pulumi.InvokeOption) (*GetAuthBackendsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthBackendsResult
@@ -50,7 +76,7 @@ func GetAuthBackends(ctx *pulumi.Context, args *GetAuthBackendsArgs, opts ...pul
 type GetAuthBackendsArgs struct {
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The name of the auth method type. Allows filtering of backends returned by type.
@@ -86,7 +112,7 @@ func GetAuthBackendsOutput(ctx *pulumi.Context, args GetAuthBackendsOutputArgs, 
 type GetAuthBackendsOutputArgs struct {
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the auth method type. Allows filtering of backends returned by type.

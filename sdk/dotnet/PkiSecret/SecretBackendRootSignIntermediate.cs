@@ -42,10 +42,6 @@ namespace Pulumi.Vault.PkiSecret
     /// });
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Deprecations
-    /// 
-    /// * `serial` - Use `serial_number` instead.
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate")]
     public partial class SecretBackendRootSignIntermediate : global::Pulumi.CustomResource
@@ -147,7 +143,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -194,12 +190,6 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("revoke")]
         public Output<bool?> Revoke { get; private set; } = null!;
-
-        /// <summary>
-        /// The serial number.
-        /// </summary>
-        [Output("serial")]
-        public Output<string> Serial { get; private set; } = null!;
 
         /// <summary>
         /// The certificate's serial number, hex formatted.
@@ -361,7 +351,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -574,7 +564,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -633,12 +623,6 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }
-
-        /// <summary>
-        /// The serial number.
-        /// </summary>
-        [Input("serial")]
-        public Input<string>? Serial { get; set; }
 
         /// <summary>
         /// The certificate's serial number, hex formatted.

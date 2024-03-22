@@ -106,7 +106,7 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] retain: How many snapshots are to be kept; when writing a
                snapshot, if there are more snapshots already stored than this number, the
@@ -518,7 +518,7 @@ class RaftSnapshotAgentConfigArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -630,7 +630,7 @@ class _RaftSnapshotAgentConfigState:
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -1023,7 +1023,7 @@ class _RaftSnapshotAgentConfigState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1238,7 +1238,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -1514,7 +1514,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -1788,7 +1788,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

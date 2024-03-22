@@ -53,10 +53,6 @@ import (
 // ```
 // <!--End PulumiCodeChooser -->
 //
-// ## Deprecations
-//
-// * `autoRotateInterval` - Replaced by `autoRotatePeriod`.
-//
 // ## Import
 //
 // Transit secret backend keys can be imported using the `path`, e.g.
@@ -70,11 +66,6 @@ type SecretBackendKey struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrOutput `pulumi:"allowPlaintextBackup"`
-	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-	// key.
-	//
-	// Deprecated: Use autoRotatePeriod instead
-	AutoRotateInterval pulumi.IntOutput `pulumi:"autoRotateInterval"`
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod pulumi.IntOutput `pulumi:"autoRotatePeriod"`
@@ -106,7 +97,7 @@ type SecretBackendKey struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Whether or not the key supports decryption, based on key type.
@@ -158,11 +149,6 @@ type secretBackendKeyState struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup *bool `pulumi:"allowPlaintextBackup"`
-	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-	// key.
-	//
-	// Deprecated: Use autoRotatePeriod instead
-	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`
@@ -194,7 +180,7 @@ type secretBackendKeyState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Whether or not the key supports decryption, based on key type.
@@ -214,11 +200,6 @@ type SecretBackendKeyState struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrInput
-	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-	// key.
-	//
-	// Deprecated: Use autoRotatePeriod instead
-	AutoRotateInterval pulumi.IntPtrInput
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod pulumi.IntPtrInput
@@ -250,7 +231,7 @@ type SecretBackendKeyState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Whether or not the key supports decryption, based on key type.
@@ -274,11 +255,6 @@ type secretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup *bool `pulumi:"allowPlaintextBackup"`
-	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-	// key.
-	//
-	// Deprecated: Use autoRotatePeriod instead
-	AutoRotateInterval *int `pulumi:"autoRotateInterval"`
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`
@@ -302,7 +278,7 @@ type secretBackendKeyArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
@@ -315,11 +291,6 @@ type SecretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
 	AllowPlaintextBackup pulumi.BoolPtrInput
-	// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-	// key.
-	//
-	// Deprecated: Use autoRotatePeriod instead
-	AutoRotateInterval pulumi.IntPtrInput
 	// Amount of seconds the key should live before being automatically rotated.
 	// A value of 0 disables automatic rotation for the key.
 	AutoRotatePeriod pulumi.IntPtrInput
@@ -343,7 +314,7 @@ type SecretBackendKeyArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
@@ -444,14 +415,6 @@ func (o SecretBackendKeyOutput) AllowPlaintextBackup() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolPtrOutput { return v.AllowPlaintextBackup }).(pulumi.BoolPtrOutput)
 }
 
-// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-// key.
-//
-// Deprecated: Use autoRotatePeriod instead
-func (o SecretBackendKeyOutput) AutoRotateInterval() pulumi.IntOutput {
-	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntOutput { return v.AutoRotateInterval }).(pulumi.IntOutput)
-}
-
 // Amount of seconds the key should live before being automatically rotated.
 // A value of 0 disables automatic rotation for the key.
 func (o SecretBackendKeyOutput) AutoRotatePeriod() pulumi.IntOutput {
@@ -522,7 +485,7 @@ func (o SecretBackendKeyOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendKeyOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

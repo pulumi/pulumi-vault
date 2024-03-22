@@ -77,11 +77,12 @@ export class OidcClient extends pulumi.CustomResource {
      */
     public readonly assignments!: pulumi.Output<string[] | undefined>;
     /**
-     * The Client ID from Vault.
+     * The Client ID returned by Vault.
      */
     public /*out*/ readonly clientId!: pulumi.Output<string>;
     /**
-     * The Client Secret from Vault.
+     * The Client Secret Key returned by Vault.
+     * For public OpenID Clients `clientSecret` is set to an empty string `""`
      */
     public /*out*/ readonly clientSecret!: pulumi.Output<string>;
     /**
@@ -107,7 +108,7 @@ export class OidcClient extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -174,11 +175,12 @@ export interface OidcClientState {
      */
     assignments?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The Client ID from Vault.
+     * The Client ID returned by Vault.
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The Client Secret from Vault.
+     * The Client Secret Key returned by Vault.
+     * For public OpenID Clients `clientSecret` is set to an empty string `""`
      */
     clientSecret?: pulumi.Input<string>;
     /**
@@ -204,7 +206,7 @@ export interface OidcClientState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -251,7 +253,7 @@ export interface OidcClientArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

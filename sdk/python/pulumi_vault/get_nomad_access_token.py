@@ -130,7 +130,7 @@ def get_nomad_access_token(backend: Optional[str] = None,
            read credentials from, with no leading or trailing `/`s.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str role: The name of the Nomad secret backend role to generate
            a token for, with no leading or trailing `/`s.
@@ -186,7 +186,7 @@ def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
            read credentials from, with no leading or trailing `/`s.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str role: The name of the Nomad secret backend role to generate
            a token for, with no leading or trailing `/`s.

@@ -6,6 +6,7 @@ package com.pulumi.vault.ldap;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -56,7 +57,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -66,7 +67,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -105,6 +106,23 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     * 
+     */
+    @Import(name="skipImportRotation")
+    private @Nullable Output<Boolean> skipImportRotation;
+
+    /**
+     * @return Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     * 
+     */
+    public Optional<Output<Boolean>> skipImportRotation() {
+        return Optional.ofNullable(this.skipImportRotation);
+    }
+
+    /**
      * The username of the existing LDAP entry to manage password rotation for.
      * 
      */
@@ -127,6 +145,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         this.namespace = $.namespace;
         this.roleName = $.roleName;
         this.rotationPeriod = $.rotationPeriod;
+        this.skipImportRotation = $.skipImportRotation;
         this.username = $.username;
     }
 
@@ -199,7 +218,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -213,7 +232,7 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -263,6 +282,29 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          */
         public Builder rotationPeriod(Integer rotationPeriod) {
             return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param skipImportRotation Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+         * Requires Vault 1.16 or above.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipImportRotation(@Nullable Output<Boolean> skipImportRotation) {
+            $.skipImportRotation = skipImportRotation;
+            return this;
+        }
+
+        /**
+         * @param skipImportRotation Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+         * Requires Vault 1.16 or above.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipImportRotation(Boolean skipImportRotation) {
+            return skipImportRotation(Output.of(skipImportRotation));
         }
 
         /**

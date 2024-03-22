@@ -76,9 +76,10 @@ type OidcClient struct {
 	AccessTokenTtl pulumi.IntOutput `pulumi:"accessTokenTtl"`
 	// A list of assignment resources associated with the client.
 	Assignments pulumi.StringArrayOutput `pulumi:"assignments"`
-	// The Client ID from Vault.
+	// The Client ID returned by Vault.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	// The Client Secret from Vault.
+	// The Client Secret Key returned by Vault.
+	// For public OpenID Clients `clientSecret` is set to an empty string `""`
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
 	// The client type based on its ability to maintain confidentiality of credentials.
 	// The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
@@ -94,7 +95,7 @@ type OidcClient struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Redirection URI values used by the client.
@@ -141,9 +142,10 @@ type oidcClientState struct {
 	AccessTokenTtl *int `pulumi:"accessTokenTtl"`
 	// A list of assignment resources associated with the client.
 	Assignments []string `pulumi:"assignments"`
-	// The Client ID from Vault.
+	// The Client ID returned by Vault.
 	ClientId *string `pulumi:"clientId"`
-	// The Client Secret from Vault.
+	// The Client Secret Key returned by Vault.
+	// For public OpenID Clients `clientSecret` is set to an empty string `""`
 	ClientSecret *string `pulumi:"clientSecret"`
 	// The client type based on its ability to maintain confidentiality of credentials.
 	// The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
@@ -159,7 +161,7 @@ type oidcClientState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Redirection URI values used by the client.
@@ -173,9 +175,10 @@ type OidcClientState struct {
 	AccessTokenTtl pulumi.IntPtrInput
 	// A list of assignment resources associated with the client.
 	Assignments pulumi.StringArrayInput
-	// The Client ID from Vault.
+	// The Client ID returned by Vault.
 	ClientId pulumi.StringPtrInput
-	// The Client Secret from Vault.
+	// The Client Secret Key returned by Vault.
+	// For public OpenID Clients `clientSecret` is set to an empty string `""`
 	ClientSecret pulumi.StringPtrInput
 	// The client type based on its ability to maintain confidentiality of credentials.
 	// The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
@@ -191,7 +194,7 @@ type OidcClientState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Redirection URI values used by the client.
@@ -223,7 +226,7 @@ type oidcClientArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Redirection URI values used by the client.
@@ -252,7 +255,7 @@ type OidcClientArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Redirection URI values used by the client.
@@ -358,12 +361,13 @@ func (o OidcClientOutput) Assignments() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OidcClient) pulumi.StringArrayOutput { return v.Assignments }).(pulumi.StringArrayOutput)
 }
 
-// The Client ID from Vault.
+// The Client ID returned by Vault.
 func (o OidcClientOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcClient) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// The Client Secret from Vault.
+// The Client Secret Key returned by Vault.
+// For public OpenID Clients `clientSecret` is set to an empty string `""`
 func (o OidcClientOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v *OidcClient) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
 }
@@ -394,7 +398,7 @@ func (o OidcClientOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o OidcClientOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OidcClient) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

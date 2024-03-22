@@ -48,14 +48,14 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Client ID from Vault.
+     * The Client ID returned by Vault.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The Client ID from Vault.
+     * @return The Client ID returned by Vault.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -63,14 +63,16 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Client Secret from Vault.
+     * The Client Secret Key returned by Vault.
+     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
      * 
      */
     @Import(name="clientSecret")
     private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The Client Secret from Vault.
+     * @return The Client Secret Key returned by Vault.
+     * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
      * 
      */
     public Optional<Output<String>> clientSecret() {
@@ -148,7 +150,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -158,7 +160,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -271,7 +273,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId The Client ID from Vault.
+         * @param clientId The Client ID returned by Vault.
          * 
          * @return builder
          * 
@@ -282,7 +284,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId The Client ID from Vault.
+         * @param clientId The Client ID returned by Vault.
          * 
          * @return builder
          * 
@@ -292,7 +294,8 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecret The Client Secret from Vault.
+         * @param clientSecret The Client Secret Key returned by Vault.
+         * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
          * 
          * @return builder
          * 
@@ -303,7 +306,8 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecret The Client Secret from Vault.
+         * @param clientSecret The Client Secret Key returned by Vault.
+         * For public OpenID Clients `client_secret` is set to an empty string `&#34;&#34;`
          * 
          * @return builder
          * 
@@ -407,7 +411,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -421,7 +425,7 @@ public final class OidcClientState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

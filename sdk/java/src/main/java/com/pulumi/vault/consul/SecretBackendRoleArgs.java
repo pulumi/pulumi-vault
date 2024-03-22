@@ -130,7 +130,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -140,7 +140,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -219,31 +219,6 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     * 
-     * @deprecated
-     * Consul 1.11 and later removed the legacy ACL system which supported this field.
-     * 
-     */
-    @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
-    @Import(name="tokenType")
-    private @Nullable Output<String> tokenType;
-
-    /**
-     * @return Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     * 
-     * @deprecated
-     * Consul 1.11 and later removed the legacy ACL system which supported this field.
-     * 
-     */
-    @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
-    public Optional<Output<String>> tokenType() {
-        return Optional.ofNullable(this.tokenType);
-    }
-
-    /**
      * Specifies the TTL for this role.
      * 
      */
@@ -273,7 +248,6 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.partition = $.partition;
         this.policies = $.policies;
         this.serviceIdentities = $.serviceIdentities;
-        this.tokenType = $.tokenType;
         this.ttl = $.ttl;
     }
 
@@ -470,7 +444,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -484,7 +458,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -620,37 +594,6 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder serviceIdentities(String... serviceIdentities) {
             return serviceIdentities(List.of(serviceIdentities));
-        }
-
-        /**
-         * @param tokenType Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
-         * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Consul 1.11 and later removed the legacy ACL system which supported this field.
-         * 
-         */
-        @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
-        public Builder tokenType(@Nullable Output<String> tokenType) {
-            $.tokenType = tokenType;
-            return this;
-        }
-
-        /**
-         * @param tokenType Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
-         * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Consul 1.11 and later removed the legacy ACL system which supported this field.
-         * 
-         */
-        @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
-        public Builder tokenType(String tokenType) {
-            return tokenType(Output.of(tokenType));
         }
 
         /**

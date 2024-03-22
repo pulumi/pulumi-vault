@@ -72,11 +72,13 @@ type SecretBackendConfigUrls struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// Specifies the URL values for the CRL Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayOutput `pulumi:"crlDistributionPoints"`
+	// Specifies that templating of AIA fields is allowed.
+	EnableTemplating pulumi.BoolPtrOutput `pulumi:"enableTemplating"`
 	// Specifies the URL values for the Issuing Certificate field.
 	IssuingCertificates pulumi.StringArrayOutput `pulumi:"issuingCertificates"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the URL values for the OCSP Servers field.
@@ -120,11 +122,13 @@ type secretBackendConfigUrlsState struct {
 	Backend *string `pulumi:"backend"`
 	// Specifies the URL values for the CRL Distribution Points field.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
+	// Specifies that templating of AIA fields is allowed.
+	EnableTemplating *bool `pulumi:"enableTemplating"`
 	// Specifies the URL values for the Issuing Certificate field.
 	IssuingCertificates []string `pulumi:"issuingCertificates"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the URL values for the OCSP Servers field.
@@ -136,11 +140,13 @@ type SecretBackendConfigUrlsState struct {
 	Backend pulumi.StringPtrInput
 	// Specifies the URL values for the CRL Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayInput
+	// Specifies that templating of AIA fields is allowed.
+	EnableTemplating pulumi.BoolPtrInput
 	// Specifies the URL values for the Issuing Certificate field.
 	IssuingCertificates pulumi.StringArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies the URL values for the OCSP Servers field.
@@ -156,11 +162,13 @@ type secretBackendConfigUrlsArgs struct {
 	Backend string `pulumi:"backend"`
 	// Specifies the URL values for the CRL Distribution Points field.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
+	// Specifies that templating of AIA fields is allowed.
+	EnableTemplating *bool `pulumi:"enableTemplating"`
 	// Specifies the URL values for the Issuing Certificate field.
 	IssuingCertificates []string `pulumi:"issuingCertificates"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the URL values for the OCSP Servers field.
@@ -173,11 +181,13 @@ type SecretBackendConfigUrlsArgs struct {
 	Backend pulumi.StringInput
 	// Specifies the URL values for the CRL Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayInput
+	// Specifies that templating of AIA fields is allowed.
+	EnableTemplating pulumi.BoolPtrInput
 	// Specifies the URL values for the Issuing Certificate field.
 	IssuingCertificates pulumi.StringArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies the URL values for the OCSP Servers field.
@@ -281,6 +291,11 @@ func (o SecretBackendConfigUrlsOutput) CrlDistributionPoints() pulumi.StringArra
 	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringArrayOutput { return v.CrlDistributionPoints }).(pulumi.StringArrayOutput)
 }
 
+// Specifies that templating of AIA fields is allowed.
+func (o SecretBackendConfigUrlsOutput) EnableTemplating() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.BoolPtrOutput { return v.EnableTemplating }).(pulumi.BoolPtrOutput)
+}
+
 // Specifies the URL values for the Issuing Certificate field.
 func (o SecretBackendConfigUrlsOutput) IssuingCertificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringArrayOutput { return v.IssuingCertificates }).(pulumi.StringArrayOutput)
@@ -288,7 +303,7 @@ func (o SecretBackendConfigUrlsOutput) IssuingCertificates() pulumi.StringArrayO
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendConfigUrlsOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConfigUrls) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

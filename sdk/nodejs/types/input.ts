@@ -574,6 +574,16 @@ export namespace azure {
 }
 
 export namespace config {
+    export interface UiCustomMessageLink {
+        /**
+         * The URL of the hyperlink
+         */
+        href: pulumi.Input<string>;
+        /**
+         * The title of the hyperlink
+         */
+        title: pulumi.Input<string>;
+    }
 }
 
 export namespace database {

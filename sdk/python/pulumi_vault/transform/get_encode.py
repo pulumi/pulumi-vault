@@ -173,7 +173,7 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
     :param str encoded_value: The result of encoding a value.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str path: Path to where the back-end is mounted within Vault.
     :param str role_name: The name of the role.
@@ -256,7 +256,7 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
     :param str encoded_value: The result of encoding a value.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str path: Path to where the back-end is mounted within Vault.
     :param str role_name: The name of the role.

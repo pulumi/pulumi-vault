@@ -146,7 +146,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -178,12 +178,6 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      * The province
      */
     public readonly province!: pulumi.Output<string | undefined>;
-    /**
-     * Deprecated, use `serialNumber` instead.
-     *
-     * @deprecated Use serialNumber instead
-     */
-    public /*out*/ readonly serial!: pulumi.Output<string>;
     /**
      * The certificate's serial number, hex formatted.
      */
@@ -247,7 +241,6 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["postalCode"] = state ? state.postalCode : undefined;
             resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
             resourceInputs["province"] = state ? state.province : undefined;
-            resourceInputs["serial"] = state ? state.serial : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
@@ -296,7 +289,6 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["issuerId"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["keyId"] = undefined /*out*/;
-            resourceInputs["serial"] = undefined /*out*/;
             resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -396,7 +388,7 @@ export interface SecretBackendRootCertState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -428,12 +420,6 @@ export interface SecretBackendRootCertState {
      * The province
      */
     province?: pulumi.Input<string>;
-    /**
-     * Deprecated, use `serialNumber` instead.
-     *
-     * @deprecated Use serialNumber instead
-     */
-    serial?: pulumi.Input<string>;
     /**
      * The certificate's serial number, hex formatted.
      */
@@ -533,7 +519,7 @@ export interface SecretBackendRootCertArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

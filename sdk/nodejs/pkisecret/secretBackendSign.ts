@@ -48,10 +48,6 @@ import * as utilities from "../utilities";
  * });
  * ```
  * <!--End PulumiCodeChooser -->
- *
- * ## Deprecations
- *
- * * `serial` - Use `serialNumber` instead.
  */
 export class SecretBackendSign extends pulumi.CustomResource {
     /**
@@ -147,7 +143,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -159,12 +155,6 @@ export class SecretBackendSign extends pulumi.CustomResource {
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      */
     public /*out*/ readonly renewPending!: pulumi.Output<boolean>;
-    /**
-     * The serial number.
-     *
-     * @deprecated Use serialNumber instead
-     */
-    public /*out*/ readonly serial!: pulumi.Output<string>;
     /**
      * The certificate's serial number, hex formatted.
      */
@@ -209,7 +199,6 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["renewPending"] = state ? state.renewPending : undefined;
-            resourceInputs["serial"] = state ? state.serial : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
@@ -244,7 +233,6 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["expiration"] = undefined /*out*/;
             resourceInputs["issuingCa"] = undefined /*out*/;
             resourceInputs["renewPending"] = undefined /*out*/;
-            resourceInputs["serial"] = undefined /*out*/;
             resourceInputs["serialNumber"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -322,7 +310,7 @@ export interface SecretBackendSignState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -334,12 +322,6 @@ export interface SecretBackendSignState {
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      */
     renewPending?: pulumi.Input<boolean>;
-    /**
-     * The serial number.
-     *
-     * @deprecated Use serialNumber instead
-     */
-    serial?: pulumi.Input<string>;
     /**
      * The certificate's serial number, hex formatted.
      */
@@ -408,7 +390,7 @@ export interface SecretBackendSignArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

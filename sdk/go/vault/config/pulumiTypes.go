@@ -13,6 +13,162 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type UiCustomMessageLink struct {
+	// The URL of the hyperlink
+	Href string `pulumi:"href"`
+	// The title of the hyperlink
+	Title string `pulumi:"title"`
+}
+
+// UiCustomMessageLinkInput is an input type that accepts UiCustomMessageLinkArgs and UiCustomMessageLinkOutput values.
+// You can construct a concrete instance of `UiCustomMessageLinkInput` via:
+//
+//	UiCustomMessageLinkArgs{...}
+type UiCustomMessageLinkInput interface {
+	pulumi.Input
+
+	ToUiCustomMessageLinkOutput() UiCustomMessageLinkOutput
+	ToUiCustomMessageLinkOutputWithContext(context.Context) UiCustomMessageLinkOutput
+}
+
+type UiCustomMessageLinkArgs struct {
+	// The URL of the hyperlink
+	Href pulumi.StringInput `pulumi:"href"`
+	// The title of the hyperlink
+	Title pulumi.StringInput `pulumi:"title"`
+}
+
+func (UiCustomMessageLinkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UiCustomMessageLink)(nil)).Elem()
+}
+
+func (i UiCustomMessageLinkArgs) ToUiCustomMessageLinkOutput() UiCustomMessageLinkOutput {
+	return i.ToUiCustomMessageLinkOutputWithContext(context.Background())
+}
+
+func (i UiCustomMessageLinkArgs) ToUiCustomMessageLinkOutputWithContext(ctx context.Context) UiCustomMessageLinkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UiCustomMessageLinkOutput)
+}
+
+func (i UiCustomMessageLinkArgs) ToUiCustomMessageLinkPtrOutput() UiCustomMessageLinkPtrOutput {
+	return i.ToUiCustomMessageLinkPtrOutputWithContext(context.Background())
+}
+
+func (i UiCustomMessageLinkArgs) ToUiCustomMessageLinkPtrOutputWithContext(ctx context.Context) UiCustomMessageLinkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UiCustomMessageLinkOutput).ToUiCustomMessageLinkPtrOutputWithContext(ctx)
+}
+
+// UiCustomMessageLinkPtrInput is an input type that accepts UiCustomMessageLinkArgs, UiCustomMessageLinkPtr and UiCustomMessageLinkPtrOutput values.
+// You can construct a concrete instance of `UiCustomMessageLinkPtrInput` via:
+//
+//	        UiCustomMessageLinkArgs{...}
+//
+//	or:
+//
+//	        nil
+type UiCustomMessageLinkPtrInput interface {
+	pulumi.Input
+
+	ToUiCustomMessageLinkPtrOutput() UiCustomMessageLinkPtrOutput
+	ToUiCustomMessageLinkPtrOutputWithContext(context.Context) UiCustomMessageLinkPtrOutput
+}
+
+type uiCustomMessageLinkPtrType UiCustomMessageLinkArgs
+
+func UiCustomMessageLinkPtr(v *UiCustomMessageLinkArgs) UiCustomMessageLinkPtrInput {
+	return (*uiCustomMessageLinkPtrType)(v)
+}
+
+func (*uiCustomMessageLinkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**UiCustomMessageLink)(nil)).Elem()
+}
+
+func (i *uiCustomMessageLinkPtrType) ToUiCustomMessageLinkPtrOutput() UiCustomMessageLinkPtrOutput {
+	return i.ToUiCustomMessageLinkPtrOutputWithContext(context.Background())
+}
+
+func (i *uiCustomMessageLinkPtrType) ToUiCustomMessageLinkPtrOutputWithContext(ctx context.Context) UiCustomMessageLinkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UiCustomMessageLinkPtrOutput)
+}
+
+type UiCustomMessageLinkOutput struct{ *pulumi.OutputState }
+
+func (UiCustomMessageLinkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UiCustomMessageLink)(nil)).Elem()
+}
+
+func (o UiCustomMessageLinkOutput) ToUiCustomMessageLinkOutput() UiCustomMessageLinkOutput {
+	return o
+}
+
+func (o UiCustomMessageLinkOutput) ToUiCustomMessageLinkOutputWithContext(ctx context.Context) UiCustomMessageLinkOutput {
+	return o
+}
+
+func (o UiCustomMessageLinkOutput) ToUiCustomMessageLinkPtrOutput() UiCustomMessageLinkPtrOutput {
+	return o.ToUiCustomMessageLinkPtrOutputWithContext(context.Background())
+}
+
+func (o UiCustomMessageLinkOutput) ToUiCustomMessageLinkPtrOutputWithContext(ctx context.Context) UiCustomMessageLinkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v UiCustomMessageLink) *UiCustomMessageLink {
+		return &v
+	}).(UiCustomMessageLinkPtrOutput)
+}
+
+// The URL of the hyperlink
+func (o UiCustomMessageLinkOutput) Href() pulumi.StringOutput {
+	return o.ApplyT(func(v UiCustomMessageLink) string { return v.Href }).(pulumi.StringOutput)
+}
+
+// The title of the hyperlink
+func (o UiCustomMessageLinkOutput) Title() pulumi.StringOutput {
+	return o.ApplyT(func(v UiCustomMessageLink) string { return v.Title }).(pulumi.StringOutput)
+}
+
+type UiCustomMessageLinkPtrOutput struct{ *pulumi.OutputState }
+
+func (UiCustomMessageLinkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**UiCustomMessageLink)(nil)).Elem()
+}
+
+func (o UiCustomMessageLinkPtrOutput) ToUiCustomMessageLinkPtrOutput() UiCustomMessageLinkPtrOutput {
+	return o
+}
+
+func (o UiCustomMessageLinkPtrOutput) ToUiCustomMessageLinkPtrOutputWithContext(ctx context.Context) UiCustomMessageLinkPtrOutput {
+	return o
+}
+
+func (o UiCustomMessageLinkPtrOutput) Elem() UiCustomMessageLinkOutput {
+	return o.ApplyT(func(v *UiCustomMessageLink) UiCustomMessageLink {
+		if v != nil {
+			return *v
+		}
+		var ret UiCustomMessageLink
+		return ret
+	}).(UiCustomMessageLinkOutput)
+}
+
+// The URL of the hyperlink
+func (o UiCustomMessageLinkPtrOutput) Href() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UiCustomMessageLink) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Href
+	}).(pulumi.StringPtrOutput)
+}
+
+// The title of the hyperlink
+func (o UiCustomMessageLinkPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UiCustomMessageLink) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
+}
+
 type AuthLogin struct {
 	Method *string `pulumi:"method"`
 	// The authentication engine's namespace. Conflicts with use_root_namespace
@@ -1471,6 +1627,8 @@ func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UiCustomMessageLinkInput)(nil)).Elem(), UiCustomMessageLinkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UiCustomMessageLinkPtrInput)(nil)).Elem(), UiCustomMessageLinkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginInput)(nil)).Elem(), AuthLoginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginAwsInput)(nil)).Elem(), AuthLoginAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthLoginAzureInput)(nil)).Elem(), AuthLoginAzureArgs{})
@@ -1486,6 +1644,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthInput)(nil)).Elem(), ClientAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersInput)(nil)).Elem(), HeadersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersArrayInput)(nil)).Elem(), HeadersArray{})
+	pulumi.RegisterOutputType(UiCustomMessageLinkOutput{})
+	pulumi.RegisterOutputType(UiCustomMessageLinkPtrOutput{})
 	pulumi.RegisterOutputType(AuthLoginOutput{})
 	pulumi.RegisterOutputType(AuthLoginAwsOutput{})
 	pulumi.RegisterOutputType(AuthLoginAzureOutput{})

@@ -19,7 +19,8 @@ class SecretBackendStaticRoleArgs:
                  username: pulumi.Input[str],
                  dn: Optional[pulumi.Input[str]] = None,
                  mount: Optional[pulumi.Input[str]] = None,
-                 namespace: Optional[pulumi.Input[str]] = None):
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
         :param pulumi.Input[str] role_name: Name of the role.
@@ -32,8 +33,10 @@ class SecretBackendStaticRoleArgs:
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[bool] skip_import_rotation: Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+               Requires Vault 1.16 or above.
         """
         pulumi.set(__self__, "role_name", role_name)
         pulumi.set(__self__, "rotation_period", rotation_period)
@@ -44,6 +47,8 @@ class SecretBackendStaticRoleArgs:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if skip_import_rotation is not None:
+            pulumi.set(__self__, "skip_import_rotation", skip_import_rotation)
 
     @property
     @pulumi.getter(name="roleName")
@@ -114,7 +119,7 @@ class SecretBackendStaticRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -122,6 +127,19 @@ class SecretBackendStaticRoleArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="skipImportRotation")
+    def skip_import_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+        Requires Vault 1.16 or above.
+        """
+        return pulumi.get(self, "skip_import_rotation")
+
+    @skip_import_rotation.setter
+    def skip_import_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_import_rotation", value)
 
 
 @pulumi.input_type
@@ -132,6 +150,7 @@ class _SecretBackendStaticRoleState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
@@ -142,10 +161,12 @@ class _SecretBackendStaticRoleState:
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: Name of the role.
         :param pulumi.Input[int] rotation_period: How often Vault should rotate the password of the user entry.
+        :param pulumi.Input[bool] skip_import_rotation: Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+               Requires Vault 1.16 or above.
         :param pulumi.Input[str] username: The username of the existing LDAP entry to manage password rotation for.
         """
         if dn is not None:
@@ -158,6 +179,8 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "role_name", role_name)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
+        if skip_import_rotation is not None:
+            pulumi.set(__self__, "skip_import_rotation", skip_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -194,7 +217,7 @@ class _SecretBackendStaticRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -228,6 +251,19 @@ class _SecretBackendStaticRoleState:
         pulumi.set(self, "rotation_period", value)
 
     @property
+    @pulumi.getter(name="skipImportRotation")
+    def skip_import_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+        Requires Vault 1.16 or above.
+        """
+        return pulumi.get(self, "skip_import_rotation")
+
+    @skip_import_rotation.setter
+    def skip_import_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_import_rotation", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -250,6 +286,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -294,10 +331,12 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: Name of the role.
         :param pulumi.Input[int] rotation_period: How often Vault should rotate the password of the user entry.
+        :param pulumi.Input[bool] skip_import_rotation: Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+               Requires Vault 1.16 or above.
         :param pulumi.Input[str] username: The username of the existing LDAP entry to manage password rotation for.
         """
         ...
@@ -359,6 +398,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
+                 skip_import_rotation: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -378,6 +418,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             if rotation_period is None and not opts.urn:
                 raise TypeError("Missing required property 'rotation_period'")
             __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["skip_import_rotation"] = skip_import_rotation
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
@@ -396,6 +437,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             rotation_period: Optional[pulumi.Input[int]] = None,
+            skip_import_rotation: Optional[pulumi.Input[bool]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'SecretBackendStaticRole':
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
@@ -411,10 +453,12 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `ldap`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_name: Name of the role.
         :param pulumi.Input[int] rotation_period: How often Vault should rotate the password of the user entry.
+        :param pulumi.Input[bool] skip_import_rotation: Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+               Requires Vault 1.16 or above.
         :param pulumi.Input[str] username: The username of the existing LDAP entry to manage password rotation for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -426,6 +470,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["skip_import_rotation"] = skip_import_rotation
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
@@ -454,7 +499,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -474,6 +519,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         How often Vault should rotate the password of the user entry.
         """
         return pulumi.get(self, "rotation_period")
+
+    @property
+    @pulumi.getter(name="skipImportRotation")
+    def skip_import_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+        Requires Vault 1.16 or above.
+        """
+        return pulumi.get(self, "skip_import_rotation")
 
     @property
     @pulumi.getter

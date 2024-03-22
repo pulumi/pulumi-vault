@@ -29,7 +29,7 @@ class GroupMemberEntityIdsArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "group_id", group_id)
@@ -86,7 +86,7 @@ class GroupMemberEntityIdsArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -101,7 +101,6 @@ class _GroupMemberEntityIdsState:
     def __init__(__self__, *,
                  exclusive: Optional[pulumi.Input[bool]] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
-                 group_name: Optional[pulumi.Input[str]] = None,
                  member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
@@ -112,26 +111,16 @@ class _GroupMemberEntityIdsState:
                
                If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.  
-               *Deprecated: The value for group_name may not always be accurate*
-               *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         """
         if exclusive is not None:
             pulumi.set(__self__, "exclusive", exclusive)
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
-        if group_name is not None:
-            warnings.warn("""The value for group_name may not always be accurate, 
-use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""", DeprecationWarning)
-            pulumi.log.warn("""group_name is deprecated: The value for group_name may not always be accurate, 
-use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""")
-        if group_name is not None:
-            pulumi.set(__self__, "group_name", group_name)
         if member_entity_ids is not None:
             pulumi.set(__self__, "member_entity_ids", member_entity_ids)
         if namespace is not None:
@@ -166,25 +155,6 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
         pulumi.set(self, "group_id", value)
 
     @property
-    @pulumi.getter(name="groupName")
-    def group_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the group that are assigned the member entities.  
-        *Deprecated: The value for group_name may not always be accurate*
-        *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-        """
-        warnings.warn("""The value for group_name may not always be accurate, 
-use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""", DeprecationWarning)
-        pulumi.log.warn("""group_name is deprecated: The value for group_name may not always be accurate, 
-use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""")
-
-        return pulumi.get(self, "group_name")
-
-    @group_name.setter
-    def group_name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "group_name", value)
-
-    @property
     @pulumi.getter(name="memberEntityIds")
     def member_entity_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -202,7 +172,7 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -289,7 +259,7 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         """
         ...
@@ -388,7 +358,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             __props__.__dict__["group_id"] = group_id
             __props__.__dict__["member_entity_ids"] = member_entity_ids
             __props__.__dict__["namespace"] = namespace
-            __props__.__dict__["group_name"] = None
         super(GroupMemberEntityIds, __self__).__init__(
             'vault:identity/groupMemberEntityIds:GroupMemberEntityIds',
             resource_name,
@@ -401,7 +370,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             exclusive: Optional[pulumi.Input[bool]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
-            group_name: Optional[pulumi.Input[str]] = None,
             member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None) -> 'GroupMemberEntityIds':
         """
@@ -417,13 +385,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
                
                If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
         :param pulumi.Input[str] group_id: Group ID to assign member entities to.
-        :param pulumi.Input[str] group_name: The name of the group that are assigned the member entities.  
-               *Deprecated: The value for group_name may not always be accurate*
-               *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] member_entity_ids: List of member entities that belong to the group
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -432,7 +397,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
 
         __props__.__dict__["exclusive"] = exclusive
         __props__.__dict__["group_id"] = group_id
-        __props__.__dict__["group_name"] = group_name
         __props__.__dict__["member_entity_ids"] = member_entity_ids
         __props__.__dict__["namespace"] = namespace
         return GroupMemberEntityIds(resource_name, opts=opts, __props__=__props__)
@@ -458,21 +422,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         return pulumi.get(self, "group_id")
 
     @property
-    @pulumi.getter(name="groupName")
-    def group_name(self) -> pulumi.Output[str]:
-        """
-        The name of the group that are assigned the member entities.  
-        *Deprecated: The value for group_name may not always be accurate*
-        *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-        """
-        warnings.warn("""The value for group_name may not always be accurate, 
-use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""", DeprecationWarning)
-        pulumi.log.warn("""group_name is deprecated: The value for group_name may not always be accurate, 
-use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_name\" instead""")
-
-        return pulumi.get(self, "group_name")
-
-    @property
     @pulumi.getter(name="memberEntityIds")
     def member_entity_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
@@ -486,7 +435,7 @@ use \"data.vault_identity_group.*.group_name\", \"vault_identity_group.*.group_n
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

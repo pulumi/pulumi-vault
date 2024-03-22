@@ -80,13 +80,14 @@ namespace Pulumi.Vault.Identity
         public Output<ImmutableArray<string>> Assignments { get; private set; } = null!;
 
         /// <summary>
-        /// The Client ID from Vault.
+        /// The Client ID returned by Vault.
         /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The Client Secret from Vault.
+        /// The Client Secret Key returned by Vault.
+        /// For public OpenID Clients `client_secret` is set to an empty string `""`
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
@@ -122,7 +123,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -235,7 +236,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -282,7 +283,7 @@ namespace Pulumi.Vault.Identity
         }
 
         /// <summary>
-        /// The Client ID from Vault.
+        /// The Client ID returned by Vault.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -291,7 +292,8 @@ namespace Pulumi.Vault.Identity
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The Client Secret from Vault.
+        /// The Client Secret Key returned by Vault.
+        /// For public OpenID Clients `client_secret` is set to an empty string `""`
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -334,7 +336,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

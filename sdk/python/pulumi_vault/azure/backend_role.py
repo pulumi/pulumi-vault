@@ -41,7 +41,7 @@ class BackendRoleArgs:
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
@@ -167,7 +167,7 @@ class BackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -255,7 +255,7 @@ class _BackendRoleState:
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
@@ -371,7 +371,7 @@ class _BackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -510,7 +510,7 @@ class BackendRole(pulumi.CustomResource):
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
@@ -652,7 +652,7 @@ class BackendRole(pulumi.CustomResource):
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] permanently_delete: Indicates whether the applications and service principals created by Vault will be permanently
                deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
@@ -737,7 +737,7 @@ class BackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

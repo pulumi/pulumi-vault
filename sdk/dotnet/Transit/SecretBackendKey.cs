@@ -41,10 +41,6 @@ namespace Pulumi.Vault.Transit
     /// ```
     /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Deprecations
-    /// 
-    /// * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
-    /// 
     /// ## Import
     /// 
     /// Transit secret backend keys can be imported using the `path`, e.g.
@@ -62,13 +58,6 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Output("allowPlaintextBackup")]
         public Output<bool?> AllowPlaintextBackup { get; private set; } = null!;
-
-        /// <summary>
-        /// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-        /// key.
-        /// </summary>
-        [Output("autoRotateInterval")]
-        public Output<int> AutoRotateInterval { get; private set; } = null!;
 
         /// <summary>
         /// Amount of seconds the key should live before being automatically rotated.
@@ -154,7 +143,7 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -245,13 +234,6 @@ namespace Pulumi.Vault.Transit
         public Input<bool>? AllowPlaintextBackup { get; set; }
 
         /// <summary>
-        /// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-        /// key.
-        /// </summary>
-        [Input("autoRotateInterval")]
-        public Input<int>? AutoRotateInterval { get; set; }
-
-        /// <summary>
         /// Amount of seconds the key should live before being automatically rotated.
         /// A value of 0 disables automatic rotation for the key.
         /// </summary>
@@ -315,7 +297,7 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -342,13 +324,6 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         [Input("allowPlaintextBackup")]
         public Input<bool>? AllowPlaintextBackup { get; set; }
-
-        /// <summary>
-        /// Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-        /// key.
-        /// </summary>
-        [Input("autoRotateInterval")]
-        public Input<int>? AutoRotateInterval { get; set; }
 
         /// <summary>
         /// Amount of seconds the key should live before being automatically rotated.
@@ -440,7 +415,7 @@ namespace Pulumi.Vault.Transit
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

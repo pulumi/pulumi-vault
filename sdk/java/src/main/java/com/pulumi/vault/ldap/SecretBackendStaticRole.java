@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.ldap.SecretBackendStaticRoleArgs;
 import com.pulumi.vault.ldap.inputs.SecretBackendStaticRoleState;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
@@ -113,7 +114,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -123,7 +124,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -157,6 +158,22 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      */
     public Output<Integer> rotationPeriod() {
         return this.rotationPeriod;
+    }
+    /**
+     * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     * 
+     */
+    @Export(name="skipImportRotation", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> skipImportRotation;
+
+    /**
+     * @return Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     * 
+     */
+    public Output<Optional<Boolean>> skipImportRotation() {
+        return Codegen.optional(this.skipImportRotation);
     }
     /**
      * The username of the existing LDAP entry to manage password rotation for.

@@ -18,6 +18,7 @@ class SyncGcpDestinationArgs:
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  secret_name_template: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SyncGcpDestination resource.
@@ -28,7 +29,11 @@ class SyncGcpDestinationArgs:
         :param pulumi.Input[str] name: Unique name of the GCP destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        :param pulumi.Input[str] project_id: The target project to manage secrets in. If set,
+               overrides the project ID derived from the service account JSON credentials or application
+               default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+               to perform Secret Manager actions in the target project.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         """
@@ -40,6 +45,8 @@ class SyncGcpDestinationArgs:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if secret_name_template is not None:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
 
@@ -87,13 +94,28 @@ class SyncGcpDestinationArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The target project to manage secrets in. If set,
+        overrides the project ID derived from the service account JSON credentials or application
+        default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+        to perform Secret Manager actions in the target project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
     @property
     @pulumi.getter(name="secretNameTemplate")
@@ -116,6 +138,7 @@ class _SyncGcpDestinationState:
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  secret_name_template: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
@@ -127,7 +150,11 @@ class _SyncGcpDestinationState:
         :param pulumi.Input[str] name: Unique name of the GCP destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        :param pulumi.Input[str] project_id: The target project to manage secrets in. If set,
+               overrides the project ID derived from the service account JSON credentials or application
+               default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+               to perform Secret Manager actions in the target project.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] type: The type of the secrets destination (`gcp-sm`).
@@ -140,6 +167,8 @@ class _SyncGcpDestinationState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
         if secret_name_template is not None:
             pulumi.set(__self__, "secret_name_template", secret_name_template)
         if type is not None:
@@ -189,13 +218,28 @@ class _SyncGcpDestinationState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The target project to manage secrets in. If set,
+        overrides the project ID derived from the service account JSON credentials or application
+        default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+        to perform Secret Manager actions in the target project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_id", value)
 
     @property
     @pulumi.getter(name="secretNameTemplate")
@@ -232,6 +276,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  secret_name_template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -243,6 +288,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         gcp = vault.secrets.SyncGcpDestination("gcp",
+            project_id="gcp-project-id",
             credentials=(lambda path: open(path).read())(var["credentials_file"]),
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
             custom_tags={
@@ -268,7 +314,11 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[str] name: Unique name of the GCP destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        :param pulumi.Input[str] project_id: The target project to manage secrets in. If set,
+               overrides the project ID derived from the service account JSON credentials or application
+               default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+               to perform Secret Manager actions in the target project.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         """
@@ -287,6 +337,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         gcp = vault.secrets.SyncGcpDestination("gcp",
+            project_id="gcp-project-id",
             credentials=(lambda path: open(path).read())(var["credentials_file"]),
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
             custom_tags={
@@ -322,6 +373,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 project_id: Optional[pulumi.Input[str]] = None,
                  secret_name_template: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -336,6 +388,7 @@ class SyncGcpDestination(pulumi.CustomResource):
             __props__.__dict__["custom_tags"] = custom_tags
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["project_id"] = project_id
             __props__.__dict__["secret_name_template"] = secret_name_template
             __props__.__dict__["type"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
@@ -354,6 +407,7 @@ class SyncGcpDestination(pulumi.CustomResource):
             custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            project_id: Optional[pulumi.Input[str]] = None,
             secret_name_template: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'SyncGcpDestination':
         """
@@ -370,7 +424,11 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[str] name: Unique name of the GCP destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
+        :param pulumi.Input[str] project_id: The target project to manage secrets in. If set,
+               overrides the project ID derived from the service account JSON credentials or application
+               default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+               to perform Secret Manager actions in the target project.
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] type: The type of the secrets destination (`gcp-sm`).
@@ -383,6 +441,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         __props__.__dict__["custom_tags"] = custom_tags
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["project_id"] = project_id
         __props__.__dict__["secret_name_template"] = secret_name_template
         __props__.__dict__["type"] = type
         return SyncGcpDestination(resource_name, opts=opts, __props__=__props__)
@@ -419,9 +478,20 @@ class SyncGcpDestination(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The target project to manage secrets in. If set,
+        overrides the project ID derived from the service account JSON credentials or application
+        default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+        to perform Secret Manager actions in the target project.
+        """
+        return pulumi.get(self, "project_id")
 
     @property
     @pulumi.getter(name="secretNameTemplate")

@@ -19,7 +19,6 @@ class CertAuthBackendRoleArgs:
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -49,14 +48,13 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
-               *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
         :param pulumi.Input[str] display_name: The name to display on tokens issued under this role.
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
@@ -115,11 +113,6 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "allowed_email_sans", allowed_email_sans)
         if allowed_names is not None:
             pulumi.set(__self__, "allowed_names", allowed_names)
-        if allowed_organization_units is not None:
-            warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-            pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
-        if allowed_organization_units is not None:
-            pulumi.set(__self__, "allowed_organization_units", allowed_organization_units)
         if allowed_organizational_units is not None:
             pulumi.set(__self__, "allowed_organizational_units", allowed_organizational_units)
         if allowed_uri_sans is not None:
@@ -224,23 +217,10 @@ class CertAuthBackendRoleArgs:
         pulumi.set(self, "allowed_names", value)
 
     @property
-    @pulumi.getter(name="allowedOrganizationUnits")
-    def allowed_organization_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
-
-        return pulumi.get(self, "allowed_organization_units")
-
-    @allowed_organization_units.setter
-    def allowed_organization_units(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "allowed_organization_units", value)
-
-    @property
     @pulumi.getter(name="allowedOrganizationalUnits")
     def allowed_organizational_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Allowed organization units for authenticated client certificates.
-        *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         """
         return pulumi.get(self, "allowed_organizational_units")
 
@@ -302,7 +282,7 @@ class CertAuthBackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -531,7 +511,6 @@ class _CertAuthBackendRoleState:
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -561,7 +540,6 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
-               *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
@@ -569,7 +547,7 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
@@ -627,11 +605,6 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "allowed_email_sans", allowed_email_sans)
         if allowed_names is not None:
             pulumi.set(__self__, "allowed_names", allowed_names)
-        if allowed_organization_units is not None:
-            warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-            pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
-        if allowed_organization_units is not None:
-            pulumi.set(__self__, "allowed_organization_units", allowed_organization_units)
         if allowed_organizational_units is not None:
             pulumi.set(__self__, "allowed_organizational_units", allowed_organizational_units)
         if allowed_uri_sans is not None:
@@ -726,23 +699,10 @@ class _CertAuthBackendRoleState:
         pulumi.set(self, "allowed_names", value)
 
     @property
-    @pulumi.getter(name="allowedOrganizationUnits")
-    def allowed_organization_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
-
-        return pulumi.get(self, "allowed_organization_units")
-
-    @allowed_organization_units.setter
-    def allowed_organization_units(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "allowed_organization_units", value)
-
-    @property
     @pulumi.getter(name="allowedOrganizationalUnits")
     def allowed_organizational_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         Allowed organization units for authenticated client certificates.
-        *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         """
         return pulumi.get(self, "allowed_organizational_units")
 
@@ -816,7 +776,7 @@ class _CertAuthBackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1047,7 +1007,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -1104,7 +1063,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
-               *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
@@ -1112,7 +1070,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
@@ -1213,7 +1171,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -1249,7 +1206,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_dns_sans"] = allowed_dns_sans
             __props__.__dict__["allowed_email_sans"] = allowed_email_sans
             __props__.__dict__["allowed_names"] = allowed_names
-            __props__.__dict__["allowed_organization_units"] = allowed_organization_units
             __props__.__dict__["allowed_organizational_units"] = allowed_organizational_units
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
             __props__.__dict__["backend"] = backend
@@ -1288,7 +1244,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
             allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            allowed_organization_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
@@ -1323,7 +1278,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_email_sans: Allowed emails for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_names: DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
-               *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[str] backend: Path to the mounted Cert auth backend
         :param pulumi.Input[str] certificate: CA certificate used to validate client certificates
@@ -1331,7 +1285,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the role
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] ocsp_ca_certificates: Any additional CA certificates
                needed to verify OCSP responses. Provided as base64 encoded PEM data.
@@ -1389,7 +1343,6 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_dns_sans"] = allowed_dns_sans
         __props__.__dict__["allowed_email_sans"] = allowed_email_sans
         __props__.__dict__["allowed_names"] = allowed_names
-        __props__.__dict__["allowed_organization_units"] = allowed_organization_units
         __props__.__dict__["allowed_organizational_units"] = allowed_organizational_units
         __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
         __props__.__dict__["backend"] = backend
@@ -1447,19 +1400,10 @@ class CertAuthBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "allowed_names")
 
     @property
-    @pulumi.getter(name="allowedOrganizationUnits")
-    def allowed_organization_units(self) -> pulumi.Output[Sequence[str]]:
-        warnings.warn("""Use allowed_organizational_units""", DeprecationWarning)
-        pulumi.log.warn("""allowed_organization_units is deprecated: Use allowed_organizational_units""")
-
-        return pulumi.get(self, "allowed_organization_units")
-
-    @property
     @pulumi.getter(name="allowedOrganizationalUnits")
     def allowed_organizational_units(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Allowed organization units for authenticated client certificates.
-        *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         """
         return pulumi.get(self, "allowed_organizational_units")
 
@@ -1509,7 +1453,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

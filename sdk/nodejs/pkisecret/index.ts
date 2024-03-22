@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { BackendConfigClusterArgs, BackendConfigClusterState } from "./backendConfigCluster";
+export type BackendConfigCluster = import("./backendConfigCluster").BackendConfigCluster;
+export const BackendConfigCluster: typeof import("./backendConfigCluster").BackendConfigCluster = null as any;
+utilities.lazyLoad(exports, ["BackendConfigCluster"], () => require("./backendConfigCluster"));
+
 export { GetBackendIssuerArgs, GetBackendIssuerResult, GetBackendIssuerOutputArgs } from "./getBackendIssuer";
 export const getBackendIssuer: typeof import("./getBackendIssuer").getBackendIssuer = null as any;
 export const getBackendIssuerOutput: typeof import("./getBackendIssuer").getBackendIssuerOutput = null as any;
@@ -95,6 +100,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "vault:pkiSecret/backendConfigCluster:BackendConfigCluster":
+                return new BackendConfigCluster(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
                 return new SecretBackendCert(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
@@ -126,6 +133,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCluster", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigIssuers", _module)

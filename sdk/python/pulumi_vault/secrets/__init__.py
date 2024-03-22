@@ -11,4 +11,5 @@ from .sync_azure_destination import *
 from .sync_config import *
 from .sync_gcp_destination import *
 from .sync_gh_destination import *
+from .sync_github_apps import *
 from .sync_vercel_destination import *

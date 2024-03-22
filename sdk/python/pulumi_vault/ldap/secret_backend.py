@@ -28,7 +28,6 @@ class SecretBackendArgs:
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
-                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -38,6 +37,7 @@ class SecretBackendArgs:
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  upndomain: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -62,14 +62,12 @@ class SecretBackendArgs:
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
-        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
@@ -79,6 +77,8 @@ class SecretBackendArgs:
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
+               Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
         :param pulumi.Input[str] url: LDAP URL to connect to. Multiple URLs can be specified by concatenating
@@ -112,11 +112,6 @@ class SecretBackendArgs:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
-        if length is not None:
-            warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-            pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
-        if length is not None:
-            pulumi.set(__self__, "length", length)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -135,6 +130,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "schema", schema)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if starttls is not None:
             pulumi.set(__self__, "starttls", starttls)
         if upndomain is not None:
@@ -319,22 +316,6 @@ class SecretBackendArgs:
 
     @property
     @pulumi.getter
-    def length(self) -> Optional[pulumi.Input[int]]:
-        """
-        **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        *Mutually exclusive with `password_policy` on vault-1.11+*
-        """
-        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
-
-        return pulumi.get(self, "length")
-
-    @length.setter
-    def length(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "length", value)
-
-    @property
-    @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
         Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -364,7 +345,7 @@ class SecretBackendArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -448,6 +429,19 @@ class SecretBackendArgs:
         pulumi.set(self, "seal_wrap", value)
 
     @property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, static roles will not be rotated during import.
+        Defaults to false. Requires Vault 1.16 or above.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
+
+    @property
     @pulumi.getter
     def starttls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -527,7 +521,6 @@ class _SecretBackendState:
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
-                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -537,6 +530,7 @@ class _SecretBackendState:
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  upndomain: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -562,14 +556,12 @@ class _SecretBackendState:
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
-        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
@@ -579,6 +571,8 @@ class _SecretBackendState:
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
+               Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
         :param pulumi.Input[str] url: LDAP URL to connect to. Multiple URLs can be specified by concatenating
@@ -616,11 +610,6 @@ class _SecretBackendState:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
-        if length is not None:
-            warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-            pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
-        if length is not None:
-            pulumi.set(__self__, "length", length)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -639,6 +628,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "schema", schema)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if skip_static_role_import_rotation is not None:
+            pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if starttls is not None:
             pulumi.set(__self__, "starttls", starttls)
         if upndomain is not None:
@@ -835,22 +826,6 @@ class _SecretBackendState:
 
     @property
     @pulumi.getter
-    def length(self) -> Optional[pulumi.Input[int]]:
-        """
-        **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        *Mutually exclusive with `password_policy` on vault-1.11+*
-        """
-        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
-
-        return pulumi.get(self, "length")
-
-    @length.setter
-    def length(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "length", value)
-
-    @property
-    @pulumi.getter
     def local(self) -> Optional[pulumi.Input[bool]]:
         """
         Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -880,7 +855,7 @@ class _SecretBackendState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -964,6 +939,19 @@ class _SecretBackendState:
         pulumi.set(self, "seal_wrap", value)
 
     @property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to true, static roles will not be rotated during import.
+        Defaults to false. Requires Vault 1.16 or above.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
+
+    @skip_static_role_import_rotation.setter
+    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_static_role_import_rotation", value)
+
+    @property
     @pulumi.getter
     def starttls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1044,7 +1032,6 @@ class SecretBackend(pulumi.CustomResource):
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
-                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -1054,6 +1041,7 @@ class SecretBackend(pulumi.CustomResource):
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  upndomain: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -1105,14 +1093,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
-        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
@@ -1122,6 +1108,8 @@ class SecretBackend(pulumi.CustomResource):
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
+               Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
         :param pulumi.Input[str] url: LDAP URL to connect to. Multiple URLs can be specified by concatenating
@@ -1190,7 +1178,6 @@ class SecretBackend(pulumi.CustomResource):
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
-                 length: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -1200,6 +1187,7 @@ class SecretBackend(pulumi.CustomResource):
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
+                 skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
                  starttls: Optional[pulumi.Input[bool]] = None,
                  upndomain: Optional[pulumi.Input[str]] = None,
                  url: Optional[pulumi.Input[str]] = None,
@@ -1232,7 +1220,6 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["external_entropy_access"] = external_entropy_access
             __props__.__dict__["insecure_tls"] = insecure_tls
-            __props__.__dict__["length"] = length
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
@@ -1242,6 +1229,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["request_timeout"] = request_timeout
             __props__.__dict__["schema"] = schema
             __props__.__dict__["seal_wrap"] = seal_wrap
+            __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
             __props__.__dict__["starttls"] = starttls
             __props__.__dict__["upndomain"] = upndomain
             __props__.__dict__["url"] = url
@@ -1275,7 +1263,6 @@ class SecretBackend(pulumi.CustomResource):
             disable_remount: Optional[pulumi.Input[bool]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
             insecure_tls: Optional[pulumi.Input[bool]] = None,
-            length: Optional[pulumi.Input[int]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -1285,6 +1272,7 @@ class SecretBackend(pulumi.CustomResource):
             request_timeout: Optional[pulumi.Input[int]] = None,
             schema: Optional[pulumi.Input[str]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
+            skip_static_role_import_rotation: Optional[pulumi.Input[bool]] = None,
             starttls: Optional[pulumi.Input[bool]] = None,
             upndomain: Optional[pulumi.Input[str]] = None,
             url: Optional[pulumi.Input[str]] = None,
@@ -1315,14 +1303,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
-        :param pulumi.Input[int] length: **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-               *Mutually exclusive with `password_policy` on vault-1.11+*
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
@@ -1332,6 +1318,8 @@ class SecretBackend(pulumi.CustomResource):
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
+               Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
         :param pulumi.Input[str] upndomain: Enables userPrincipalDomain login with [username]@UPNDomain.
         :param pulumi.Input[str] url: LDAP URL to connect to. Multiple URLs can be specified by concatenating
@@ -1358,7 +1346,6 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["external_entropy_access"] = external_entropy_access
         __props__.__dict__["insecure_tls"] = insecure_tls
-        __props__.__dict__["length"] = length
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
@@ -1368,6 +1355,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["request_timeout"] = request_timeout
         __props__.__dict__["schema"] = schema
         __props__.__dict__["seal_wrap"] = seal_wrap
+        __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
         __props__.__dict__["starttls"] = starttls
         __props__.__dict__["upndomain"] = upndomain
         __props__.__dict__["url"] = url
@@ -1500,18 +1488,6 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def length(self) -> pulumi.Output[int]:
-        """
-        **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        *Mutually exclusive with `password_policy` on vault-1.11+*
-        """
-        warnings.warn("""Length is deprecated and password_policy should be used with Vault >= 1.5.""", DeprecationWarning)
-        pulumi.log.warn("""length is deprecated: Length is deprecated and password_policy should be used with Vault >= 1.5.""")
-
-        return pulumi.get(self, "length")
-
-    @property
-    @pulumi.getter
     def local(self) -> pulumi.Output[Optional[bool]]:
         """
         Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -1533,7 +1509,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1587,6 +1563,15 @@ class SecretBackend(pulumi.CustomResource):
         Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         return pulumi.get(self, "seal_wrap")
+
+    @property
+    @pulumi.getter(name="skipStaticRoleImportRotation")
+    def skip_static_role_import_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to true, static roles will not be rotated during import.
+        Defaults to false. Requires Vault 1.16 or above.
+        """
+        return pulumi.get(self, "skip_static_role_import_rotation")
 
     @property
     @pulumi.getter

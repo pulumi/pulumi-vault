@@ -100,7 +100,7 @@ func GetSecretsList(ctx *pulumi.Context, args *GetSecretsListArgs, opts ...pulum
 type GetSecretsListArgs struct {
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Full KV-V1 path where secrets will be listed.
@@ -134,7 +134,7 @@ func GetSecretsListOutput(ctx *pulumi.Context, args GetSecretsListOutputArgs, op
 type GetSecretsListOutputArgs struct {
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Full KV-V1 path where secrets will be listed.

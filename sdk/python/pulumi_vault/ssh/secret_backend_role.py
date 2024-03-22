@@ -29,7 +29,6 @@ class SecretBackendRoleArgs:
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  cidr_list: Optional[pulumi.Input[str]] = None,
@@ -61,9 +60,6 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
                *See Configuration-Options for more info*
-        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
-               are allowed to be signed by the CA type.
-               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
@@ -76,7 +72,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[str] name: Specifies the name of the role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
@@ -105,11 +101,6 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "allowed_extensions", allowed_extensions)
         if allowed_user_key_configs is not None:
             pulumi.set(__self__, "allowed_user_key_configs", allowed_user_key_configs)
-        if allowed_user_key_lengths is not None:
-            warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
-            pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
-        if allowed_user_key_lengths is not None:
-            pulumi.set(__self__, "allowed_user_key_lengths", allowed_user_key_lengths)
         if allowed_users is not None:
             pulumi.set(__self__, "allowed_users", allowed_users)
         if allowed_users_template is not None:
@@ -297,23 +288,6 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "allowed_user_key_configs", value)
 
     @property
-    @pulumi.getter(name="allowedUserKeyLengths")
-    def allowed_user_key_lengths(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]:
-        """
-        Specifies a map of ssh key types and their expected sizes which 
-        are allowed to be signed by the CA type.
-        *Deprecated: use* allowed_user_key_config *instead*
-        """
-        warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
-        pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
-
-        return pulumi.get(self, "allowed_user_key_lengths")
-
-    @allowed_user_key_lengths.setter
-    def allowed_user_key_lengths(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]):
-        pulumi.set(self, "allowed_user_key_lengths", value)
-
-    @property
     @pulumi.getter(name="allowedUsers")
     def allowed_users(self) -> Optional[pulumi.Input[str]]:
         """
@@ -439,7 +413,7 @@ class SecretBackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -487,7 +461,6 @@ class _SecretBackendRoleState:
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -519,9 +492,6 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
                *See Configuration-Options for more info*
-        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
-               are allowed to be signed by the CA type.
-               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -536,7 +506,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] name: Specifies the name of the role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
@@ -563,11 +533,6 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "allowed_extensions", allowed_extensions)
         if allowed_user_key_configs is not None:
             pulumi.set(__self__, "allowed_user_key_configs", allowed_user_key_configs)
-        if allowed_user_key_lengths is not None:
-            warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
-            pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
-        if allowed_user_key_lengths is not None:
-            pulumi.set(__self__, "allowed_user_key_lengths", allowed_user_key_lengths)
         if allowed_users is not None:
             pulumi.set(__self__, "allowed_users", allowed_users)
         if allowed_users_template is not None:
@@ -735,23 +700,6 @@ class _SecretBackendRoleState:
         pulumi.set(self, "allowed_user_key_configs", value)
 
     @property
-    @pulumi.getter(name="allowedUserKeyLengths")
-    def allowed_user_key_lengths(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]:
-        """
-        Specifies a map of ssh key types and their expected sizes which 
-        are allowed to be signed by the CA type.
-        *Deprecated: use* allowed_user_key_config *instead*
-        """
-        warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
-        pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
-
-        return pulumi.get(self, "allowed_user_key_lengths")
-
-    @allowed_user_key_lengths.setter
-    def allowed_user_key_lengths(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]]):
-        pulumi.set(self, "allowed_user_key_lengths", value)
-
-    @property
     @pulumi.getter(name="allowedUsers")
     def allowed_users(self) -> Optional[pulumi.Input[str]]:
         """
@@ -901,7 +849,7 @@ class _SecretBackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -951,7 +899,6 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -1017,9 +964,6 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
                *See Configuration-Options for more info*
-        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
-               are allowed to be signed by the CA type.
-               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -1034,7 +978,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: Specifies the name of the role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
@@ -1104,7 +1048,6 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains_template: Optional[pulumi.Input[bool]] = None,
                  allowed_extensions: Optional[pulumi.Input[str]] = None,
                  allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
-                 allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
@@ -1140,7 +1083,6 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_domains_template"] = allowed_domains_template
             __props__.__dict__["allowed_extensions"] = allowed_extensions
             __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
-            __props__.__dict__["allowed_user_key_lengths"] = allowed_user_key_lengths
             __props__.__dict__["allowed_users"] = allowed_users
             __props__.__dict__["allowed_users_template"] = allowed_users_template
             if backend is None and not opts.urn:
@@ -1181,7 +1123,6 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_domains_template: Optional[pulumi.Input[bool]] = None,
             allowed_extensions: Optional[pulumi.Input[str]] = None,
             allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]]] = None,
-            allowed_user_key_lengths: Optional[pulumi.Input[Mapping[str, pulumi.Input[int]]]] = None,
             allowed_users: Optional[pulumi.Input[str]] = None,
             allowed_users_template: Optional[pulumi.Input[bool]] = None,
             backend: Optional[pulumi.Input[str]] = None,
@@ -1218,9 +1159,6 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleAllowedUserKeyConfigArgs']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
                user key configuration, like key type and their lengths. Can be specified multiple times.
                *See Configuration-Options for more info*
-        :param pulumi.Input[Mapping[str, pulumi.Input[int]]] allowed_user_key_lengths: Specifies a map of ssh key types and their expected sizes which 
-               are allowed to be signed by the CA type.
-               *Deprecated: use* allowed_user_key_config *instead*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -1235,7 +1173,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: Specifies the name of the role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
         :param pulumi.Input[str] ttl: Specifies the Time To Live value.
@@ -1255,7 +1193,6 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_domains_template"] = allowed_domains_template
         __props__.__dict__["allowed_extensions"] = allowed_extensions
         __props__.__dict__["allowed_user_key_configs"] = allowed_user_key_configs
-        __props__.__dict__["allowed_user_key_lengths"] = allowed_user_key_lengths
         __props__.__dict__["allowed_users"] = allowed_users
         __props__.__dict__["allowed_users_template"] = allowed_users_template
         __props__.__dict__["backend"] = backend
@@ -1365,19 +1302,6 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "allowed_user_key_configs")
 
     @property
-    @pulumi.getter(name="allowedUserKeyLengths")
-    def allowed_user_key_lengths(self) -> pulumi.Output[Optional[Mapping[str, int]]]:
-        """
-        Specifies a map of ssh key types and their expected sizes which 
-        are allowed to be signed by the CA type.
-        *Deprecated: use* allowed_user_key_config *instead*
-        """
-        warnings.warn("""Set in allowed_user_key_config""", DeprecationWarning)
-        pulumi.log.warn("""allowed_user_key_lengths is deprecated: Set in allowed_user_key_config""")
-
-        return pulumi.get(self, "allowed_user_key_lengths")
-
-    @property
     @pulumi.getter(name="allowedUsers")
     def allowed_users(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1479,7 +1403,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

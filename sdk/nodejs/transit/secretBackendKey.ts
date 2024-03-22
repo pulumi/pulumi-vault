@@ -25,10 +25,6 @@ import * as utilities from "../utilities";
  * ```
  * <!--End PulumiCodeChooser -->
  *
- * ## Deprecations
- *
- * * `autoRotateInterval` - Replaced by `autoRotatePeriod`.
- *
  * ## Import
  *
  * Transit secret backend keys can be imported using the `path`, e.g.
@@ -70,13 +66,6 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     public readonly allowPlaintextBackup!: pulumi.Output<boolean | undefined>;
-    /**
-     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     *
-     * @deprecated Use autoRotatePeriod instead
-     */
-    public readonly autoRotateInterval!: pulumi.Output<number>;
     /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
@@ -135,7 +124,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -175,7 +164,6 @@ export class SecretBackendKey extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretBackendKeyState | undefined;
             resourceInputs["allowPlaintextBackup"] = state ? state.allowPlaintextBackup : undefined;
-            resourceInputs["autoRotateInterval"] = state ? state.autoRotateInterval : undefined;
             resourceInputs["autoRotatePeriod"] = state ? state.autoRotatePeriod : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["convergentEncryption"] = state ? state.convergentEncryption : undefined;
@@ -201,7 +189,6 @@ export class SecretBackendKey extends pulumi.CustomResource {
                 throw new Error("Missing required property 'backend'");
             }
             resourceInputs["allowPlaintextBackup"] = args ? args.allowPlaintextBackup : undefined;
-            resourceInputs["autoRotateInterval"] = args ? args.autoRotateInterval : undefined;
             resourceInputs["autoRotatePeriod"] = args ? args.autoRotatePeriod : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["convergentEncryption"] = args ? args.convergentEncryption : undefined;
@@ -236,13 +223,6 @@ export interface SecretBackendKeyState {
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     allowPlaintextBackup?: pulumi.Input<boolean>;
-    /**
-     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     *
-     * @deprecated Use autoRotatePeriod instead
-     */
-    autoRotateInterval?: pulumi.Input<number>;
     /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
@@ -301,7 +281,7 @@ export interface SecretBackendKeyState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -337,13 +317,6 @@ export interface SecretBackendKeyArgs {
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
     allowPlaintextBackup?: pulumi.Input<boolean>;
-    /**
-     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     *
-     * @deprecated Use autoRotatePeriod instead
-     */
-    autoRotateInterval?: pulumi.Input<number>;
     /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
@@ -388,7 +361,7 @@ export interface SecretBackendKeyArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

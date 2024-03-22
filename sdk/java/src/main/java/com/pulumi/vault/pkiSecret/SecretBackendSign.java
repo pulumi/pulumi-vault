@@ -84,10 +84,6 @@ import javax.annotation.Nullable;
  * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Deprecations
- * 
- * * `serial` - Use `serial_number` instead.
- * 
  */
 @ResourceType(type="vault:pkiSecret/secretBackendSign:SecretBackendSign")
 public class SecretBackendSign extends com.pulumi.resources.CustomResource {
@@ -310,7 +306,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -320,7 +316,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -354,24 +350,6 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> renewPending() {
         return this.renewPending;
-    }
-    /**
-     * The serial number.
-     * 
-     * @deprecated
-     * Use serial_number instead
-     * 
-     */
-    @Deprecated /* Use serial_number instead */
-    @Export(name="serial", refs={String.class}, tree="[0]")
-    private Output<String> serial;
-
-    /**
-     * @return The serial number.
-     * 
-     */
-    public Output<String> serial() {
-        return this.serial;
     }
     /**
      * The certificate&#39;s serial number, hex formatted.

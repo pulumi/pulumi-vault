@@ -103,7 +103,7 @@ type GetServiceAccountTokenArgs struct {
 	KubernetesNamespace string `pulumi:"kubernetesNamespace"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The name of the Kubernetes secret backend role to generate service
@@ -164,7 +164,7 @@ type GetServiceAccountTokenOutputArgs struct {
 	KubernetesNamespace pulumi.StringInput `pulumi:"kubernetesNamespace"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// The name of the Kubernetes secret backend role to generate service

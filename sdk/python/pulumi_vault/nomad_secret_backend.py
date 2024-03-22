@@ -52,7 +52,7 @@ class NomadSecretBackendArgs:
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
@@ -245,7 +245,7 @@ class NomadSecretBackendArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -320,7 +320,7 @@ class _NomadSecretBackendState:
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
@@ -513,7 +513,7 @@ class _NomadSecretBackendState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -619,7 +619,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
@@ -767,7 +767,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] max_ttl: Maximum possible lease duration for secrets in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] token: Specifies the Nomad Management token to use.
         :param pulumi.Input[int] ttl: Specifies the ttl of the lease for the generated token.
@@ -902,7 +902,7 @@ class NomadSecretBackend(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

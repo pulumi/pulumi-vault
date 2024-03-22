@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const gcp = new vault.secrets.SyncGcpDestination("gcp", {
+ *     projectId: "gcp-project-id",
  *     credentials: fs.readFileSync(_var.credentials_file, "utf8"),
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  *     customTags: {
@@ -76,9 +77,16 @@ export class SyncGcpDestination extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     */
+    public readonly projectId!: pulumi.Output<string | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
@@ -106,6 +114,7 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             resourceInputs["customTags"] = state ? state.customTags : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["secretNameTemplate"] = state ? state.secretNameTemplate : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
@@ -114,6 +123,7 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             resourceInputs["customTags"] = args ? args.customTags : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["secretNameTemplate"] = args ? args.secretNameTemplate : undefined;
             resourceInputs["type"] = undefined /*out*/;
         }
@@ -145,9 +155,16 @@ export interface SyncGcpDestinationState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
@@ -180,9 +197,16 @@ export interface SyncGcpDestinationArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
