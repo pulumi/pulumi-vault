@@ -151,7 +151,7 @@ require (
 	github.com/hashicorp/vault-plugin-auth-jwt v0.18.0 // indirect
 	github.com/hashicorp/vault-plugin-auth-kerberos v0.10.1 // indirect
 	github.com/hashicorp/vault-plugin-auth-oci v0.14.2 // indirect
-	github.com/hashicorp/vault/api v1.11.1-0.20240201194553-aab72100fb2f // indirect
+	github.com/hashicorp/vault/api v1.12.2 // indirect
 	github.com/hashicorp/vault/sdk v0.10.2 // indirect
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect

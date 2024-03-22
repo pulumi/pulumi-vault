@@ -277,9 +277,6 @@
                     "allowed_names": {
                         "maxItemsOne": false
                     },
-                    "allowed_organization_units": {
-                        "maxItemsOne": false
-                    },
                     "allowed_organizational_units": {
                         "maxItemsOne": false
                     },
@@ -297,6 +294,15 @@
                     },
                     "token_policies": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_config_ui_custom_message": {
+                "current": "vault:config/uiCustomMessage:UiCustomMessage",
+                "majorVersion": 6,
+                "fields": {
+                    "link": {
+                        "maxItemsOne": true
                     }
                 }
             },
@@ -1408,6 +1414,10 @@
                 "current": "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa",
                 "majorVersion": 6
             },
+            "vault_pki_secret_backend_config_cluster": {
+                "current": "vault:pkiSecret/backendConfigCluster:BackendConfigCluster",
+                "majorVersion": 6
+            },
             "vault_pki_secret_backend_config_issuers": {
                 "current": "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers",
                 "majorVersion": 6
@@ -1699,6 +1709,10 @@
             },
             "vault_secrets_sync_gh_destination": {
                 "current": "vault:secrets/syncGhDestination:SyncGhDestination",
+                "majorVersion": 6
+            },
+            "vault_secrets_sync_github_apps": {
+                "current": "vault:secrets/syncGithubApps:SyncGithubApps",
                 "majorVersion": 6
             },
             "vault_secrets_sync_vercel_destination": {

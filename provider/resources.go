@@ -78,6 +78,7 @@ var moduleMap = map[string]string{
 	"aws":             awsMod,
 	"azure":           azureMod,
 	"consul":          consulMod,
+	"config":          "Config",
 	"database":        databaseMod,
 	"gcp":             gcpMod,
 	"generic":         genericMod,
