@@ -5,7 +5,7 @@ Subject: [PATCH 2/2] remove dependency on BUSL code
 
 
 diff --git a/go.mod b/go.mod
-index 4170854b..48a538a2 100644
+index a1fa2c56..c84257a9 100644
 --- a/go.mod
 +++ b/go.mod
 @@ -26,7 +26,6 @@ require (
@@ -38,11 +38,11 @@ index 4170854b..48a538a2 100644
  	github.com/docker/go-connections v0.4.0 // indirect
  	github.com/docker/go-units v0.5.0 // indirect
 @@ -66,6 +69,7 @@ require (
- 	github.com/fatih/color v1.15.0 // indirect
+ 	github.com/fatih/color v1.16.0 // indirect
  	github.com/felixge/httpsnoop v1.0.4 // indirect
  	github.com/go-asn1-ber/asn1-ber v1.5.4 // indirect
 +	github.com/go-git/go-git/v5 v5.11.0 // indirect
- 	github.com/go-jose/go-jose/v3 v3.0.1 // indirect
+ 	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
  	github.com/go-ldap/ldap/v3 v3.4.4 // indirect
  	github.com/go-logr/logr v1.4.1 // indirect
 @@ -114,6 +118,7 @@ require (
@@ -52,7 +52,7 @@ index 4170854b..48a538a2 100644
 +	github.com/kr/pretty v0.3.1 // indirect
  	github.com/kylelemons/godebug v1.1.0 // indirect
  	github.com/mattn/go-colorable v0.1.13 // indirect
- 	github.com/mattn/go-isatty v0.0.19 // indirect
+ 	github.com/mattn/go-isatty v0.0.20 // indirect
 @@ -131,6 +136,7 @@ require (
  	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
  	github.com/pkg/errors v0.9.1 // indirect
@@ -62,7 +62,7 @@ index 4170854b..48a538a2 100644
  	github.com/stretchr/testify v1.8.4 // indirect
  	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 diff --git a/go.sum b/go.sum
-index ea39ae6e..3419f9b3 100644
+index 0cb02f06..69fb921c 100644
 --- a/go.sum
 +++ b/go.sum
 @@ -610,8 +610,8 @@ github.com/AdaLogics/go-fuzz-headers v0.0.0-20221206110420-d395f97c4830/go.mod h
