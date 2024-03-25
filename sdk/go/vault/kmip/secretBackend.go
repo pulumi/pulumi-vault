@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -24,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kmip"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kmip"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -79,7 +79,7 @@ type SecretBackend struct {
 	ListenAddrs pulumi.StringArrayOutput `pulumi:"listenAddrs"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
@@ -145,7 +145,7 @@ type secretBackendState struct {
 	ListenAddrs []string `pulumi:"listenAddrs"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
@@ -179,7 +179,7 @@ type SecretBackendState struct {
 	ListenAddrs pulumi.StringArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
@@ -217,7 +217,7 @@ type secretBackendArgs struct {
 	ListenAddrs []string `pulumi:"listenAddrs"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The unique path this backend should be mounted at. Must
@@ -252,7 +252,7 @@ type SecretBackendArgs struct {
 	ListenAddrs pulumi.StringArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The unique path this backend should be mounted at. Must
@@ -390,7 +390,7 @@ func (o SecretBackendOutput) ListenAddrs() pulumi.StringArrayOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

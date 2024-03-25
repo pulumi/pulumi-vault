@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var gcp = new SyncGcpDestination(&#34;gcp&#34;, SyncGcpDestinationArgs.builder()        
+ *             .projectId(&#34;gcp-project-id&#34;)
  *             .credentials(Files.readString(Paths.get(var_.credentials_file())))
  *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
  *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
@@ -113,7 +114,7 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * 
      */
     @Export(name="namespace", refs={String.class}, tree="[0]")
@@ -122,11 +123,31 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * 
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     * 
+     */
+    @Export(name="projectId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> projectId;
+
+    /**
+     * @return The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     * 
+     */
+    public Output<Optional<String>> projectId() {
+        return Codegen.optional(this.projectId);
     }
     /**
      * Template describing how to generate external secret names.

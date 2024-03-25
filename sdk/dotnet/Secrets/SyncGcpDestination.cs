@@ -24,6 +24,7 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var gcp = new Vault.Secrets.SyncGcpDestination("gcp", new()
     ///     {
+    ///         ProjectId = "gcp-project-id",
     ///         Credentials = File.ReadAllText(@var.Credentials_file),
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
     ///         CustomTags = 
@@ -70,10 +71,19 @@ namespace Pulumi.Vault.Secrets
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// The target project to manage secrets in. If set,
+        /// overrides the project ID derived from the service account JSON credentials or application
+        /// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+        /// to perform Secret Manager actions in the target project.
+        /// </summary>
+        [Output("projectId")]
+        public Output<string?> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// Template describing how to generate external secret names.
@@ -177,10 +187,19 @@ namespace Pulumi.Vault.Secrets
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// The target project to manage secrets in. If set,
+        /// overrides the project ID derived from the service account JSON credentials or application
+        /// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+        /// to perform Secret Manager actions in the target project.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Template describing how to generate external secret names.
@@ -236,10 +255,19 @@ namespace Pulumi.Vault.Secrets
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// The target project to manage secrets in. If set,
+        /// overrides the project ID derived from the service account JSON credentials or application
+        /// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+        /// to perform Secret Manager actions in the target project.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Template describing how to generate external secret names.

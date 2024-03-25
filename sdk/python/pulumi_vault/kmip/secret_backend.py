@@ -40,7 +40,7 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_hostnames: Hostnames to include in the server's TLS certificate as SAN DNS names. The first will be used as the common name (CN).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] server_ips: IPs to include in the server's TLS certificate as SAN IP addresses.
@@ -166,7 +166,7 @@ class SecretBackendArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -263,7 +263,7 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
@@ -379,7 +379,7 @@ class _SecretBackendState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -527,7 +527,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
@@ -669,7 +669,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] listen_addrs: Addresses the KMIP server should listen on (`host:port`).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `kmip`.
@@ -753,7 +753,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

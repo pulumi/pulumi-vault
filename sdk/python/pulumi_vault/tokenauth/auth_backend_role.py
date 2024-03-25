@@ -43,7 +43,7 @@ class AuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -192,7 +192,7 @@ class AuthBackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -395,7 +395,7 @@ class _AuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -534,7 +534,7 @@ class _AuthBackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -788,7 +788,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -971,7 +971,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disallowed_policies_globs: Set of disallowed policies with glob match for given role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] orphan: If true, tokens created against this policy will be orphan tokens.
         :param pulumi.Input[str] path_suffix: Tokens created against this role will have the given suffix as part of their path in addition to the role name.
@@ -1076,7 +1076,7 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/identity"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/identity"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -59,7 +59,7 @@ type OidcScope struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
@@ -102,7 +102,7 @@ type oidcScopeState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
@@ -116,7 +116,7 @@ type OidcScopeState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
@@ -134,7 +134,7 @@ type oidcScopeArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
@@ -149,7 +149,7 @@ type OidcScopeArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The template string for the scope. This may be provided as escaped JSON or base64 encoded JSON.
@@ -255,7 +255,7 @@ func (o OidcScopeOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o OidcScopeOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OidcScope) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

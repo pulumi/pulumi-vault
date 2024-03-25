@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -101,7 +101,7 @@ type SecretBackendRootCert struct {
 	MaxPathLength pulumi.IntPtrOutput `pulumi:"maxPathLength"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The organization
@@ -118,10 +118,6 @@ type SecretBackendRootCert struct {
 	PrivateKeyFormat pulumi.StringPtrOutput `pulumi:"privateKeyFormat"`
 	// The province
 	Province pulumi.StringPtrOutput `pulumi:"province"`
-	// Deprecated, use `serialNumber` instead.
-	//
-	// Deprecated: Use serialNumber instead
-	Serial pulumi.StringOutput `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// The street address
@@ -221,7 +217,7 @@ type secretBackendRootCertState struct {
 	MaxPathLength *int `pulumi:"maxPathLength"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The organization
@@ -238,10 +234,6 @@ type secretBackendRootCertState struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The province
 	Province *string `pulumi:"province"`
-	// Deprecated, use `serialNumber` instead.
-	//
-	// Deprecated: Use serialNumber instead
-	Serial *string `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
 	// The street address
@@ -303,7 +295,7 @@ type SecretBackendRootCertState struct {
 	MaxPathLength pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The organization
@@ -320,10 +312,6 @@ type SecretBackendRootCertState struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
-	// Deprecated, use `serialNumber` instead.
-	//
-	// Deprecated: Use serialNumber instead
-	Serial pulumi.StringPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
 	// The street address
@@ -381,7 +369,7 @@ type secretBackendRootCertArgs struct {
 	MaxPathLength *int `pulumi:"maxPathLength"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The organization
@@ -450,7 +438,7 @@ type SecretBackendRootCertArgs struct {
 	MaxPathLength pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The organization
@@ -672,7 +660,7 @@ func (o SecretBackendRootCertOutput) MaxPathLength() pulumi.IntPtrOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendRootCertOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
@@ -711,13 +699,6 @@ func (o SecretBackendRootCertOutput) PrivateKeyFormat() pulumi.StringPtrOutput {
 // The province
 func (o SecretBackendRootCertOutput) Province() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Province }).(pulumi.StringPtrOutput)
-}
-
-// Deprecated, use `serialNumber` instead.
-//
-// Deprecated: Use serialNumber instead
-func (o SecretBackendRootCertOutput) Serial() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
 }
 
 // The certificate's serial number, hex formatted.

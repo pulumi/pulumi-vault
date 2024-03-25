@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,21 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
     }
 
     /**
+     * Specifies that templating of AIA fields is allowed.
+     * 
+     */
+    @Import(name="enableTemplating")
+    private @Nullable Output<Boolean> enableTemplating;
+
+    /**
+     * @return Specifies that templating of AIA fields is allowed.
+     * 
+     */
+    public Optional<Output<Boolean>> enableTemplating() {
+        return Optional.ofNullable(this.enableTemplating);
+    }
+
+    /**
      * Specifies the URL values for the Issuing Certificate field.
      * 
      */
@@ -64,7 +80,7 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -74,7 +90,7 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -102,6 +118,7 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
     private SecretBackendConfigUrlsState(SecretBackendConfigUrlsState $) {
         this.backend = $.backend;
         this.crlDistributionPoints = $.crlDistributionPoints;
+        this.enableTemplating = $.enableTemplating;
         this.issuingCertificates = $.issuingCertificates;
         this.namespace = $.namespace;
         this.ocspServers = $.ocspServers;
@@ -178,6 +195,27 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
         }
 
         /**
+         * @param enableTemplating Specifies that templating of AIA fields is allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableTemplating(@Nullable Output<Boolean> enableTemplating) {
+            $.enableTemplating = enableTemplating;
+            return this;
+        }
+
+        /**
+         * @param enableTemplating Specifies that templating of AIA fields is allowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enableTemplating(Boolean enableTemplating) {
+            return enableTemplating(Output.of(enableTemplating));
+        }
+
+        /**
          * @param issuingCertificates Specifies the URL values for the Issuing Certificate field.
          * 
          * @return builder
@@ -211,7 +249,7 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -225,7 +263,7 @@ public final class SecretBackendConfigUrlsState extends com.pulumi.resources.Res
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

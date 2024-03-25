@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -69,7 +69,7 @@ type Namespace struct {
 	CustomMetadata pulumi.MapOutput `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Vault server's internal ID of the namespace.
@@ -119,7 +119,7 @@ type namespaceState struct {
 	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Vault server's internal ID of the namespace.
@@ -137,7 +137,7 @@ type NamespaceState struct {
 	CustomMetadata pulumi.MapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Vault server's internal ID of the namespace.
@@ -159,7 +159,7 @@ type namespaceArgs struct {
 	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The path of the namespace. Must not have a trailing `/`.
@@ -176,7 +176,7 @@ type NamespaceArgs struct {
 	CustomMetadata pulumi.MapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The path of the namespace. Must not have a trailing `/`.
@@ -281,7 +281,7 @@ func (o NamespaceOutput) CustomMetadata() pulumi.MapOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o NamespaceOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

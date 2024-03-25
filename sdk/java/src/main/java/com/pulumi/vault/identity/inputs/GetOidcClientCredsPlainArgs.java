@@ -33,7 +33,7 @@ public final class GetOidcClientCredsPlainArgs extends com.pulumi.resources.Invo
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -43,7 +43,7 @@ public final class GetOidcClientCredsPlainArgs extends com.pulumi.resources.Invo
     /**
      * @return The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -90,7 +90,7 @@ public final class GetOidcClientCredsPlainArgs extends com.pulumi.resources.Invo
         /**
          * @param namespace The namespace of the target resource.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ad"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/ad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -87,10 +87,6 @@ type SecretBackend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrOutput `pulumi:"discoverdn"`
-	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-	//
-	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Formatter pulumi.StringOutput `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr pulumi.StringPtrOutput `pulumi:"groupattr"`
@@ -105,11 +101,6 @@ type SecretBackend struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntOutput `pulumi:"lastRotationTolerance"`
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length pulumi.IntOutput `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -119,7 +110,7 @@ type SecretBackend struct {
 	MaxTtl pulumi.IntOutput `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the password policy to use to generate passwords.
@@ -241,10 +232,6 @@ type secretBackendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
-	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-	//
-	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Formatter *string `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr *string `pulumi:"groupattr"`
@@ -259,11 +246,6 @@ type secretBackendState struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance *int `pulumi:"lastRotationTolerance"`
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -273,7 +255,7 @@ type secretBackendState struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Name of the password policy to use to generate passwords.
@@ -345,10 +327,6 @@ type SecretBackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrInput
-	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-	//
-	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Formatter pulumi.StringPtrInput
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr pulumi.StringPtrInput
@@ -363,11 +341,6 @@ type SecretBackendState struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntPtrInput
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -377,7 +350,7 @@ type SecretBackendState struct {
 	MaxTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Name of the password policy to use to generate passwords.
@@ -453,10 +426,6 @@ type secretBackendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn *bool `pulumi:"discoverdn"`
-	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-	//
-	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Formatter *string `pulumi:"formatter"`
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr *string `pulumi:"groupattr"`
@@ -471,11 +440,6 @@ type secretBackendArgs struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance *int `pulumi:"lastRotationTolerance"`
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -485,7 +449,7 @@ type secretBackendArgs struct {
 	MaxTtl *int `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Name of the password policy to use to generate passwords.
@@ -558,10 +522,6 @@ type SecretBackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// Use anonymous bind to discover the bind Distinguished Name of a user.
 	Discoverdn pulumi.BoolPtrInput
-	// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-	//
-	// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Formatter pulumi.StringPtrInput
 	// LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 	// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 	Groupattr pulumi.StringPtrInput
@@ -576,11 +536,6 @@ type SecretBackendArgs struct {
 	// The number of seconds after a Vault rotation where, if Active Directory
 	// shows a later rotation, it should be considered out-of-band
 	LastRotationTolerance pulumi.IntPtrInput
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -590,7 +545,7 @@ type SecretBackendArgs struct {
 	MaxTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Name of the password policy to use to generate passwords.
@@ -787,13 +742,6 @@ func (o SecretBackendOutput) Discoverdn() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.Discoverdn }).(pulumi.BoolPtrOutput)
 }
 
-// **Deprecated** use `passwordPolicy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-//
-// Deprecated: Formatter is deprecated and passwordPolicy should be used with Vault >= 1.5.
-func (o SecretBackendOutput) Formatter() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Formatter }).(pulumi.StringOutput)
-}
-
 // LDAP attribute to follow on objects returned by <groupfilter> in order to enumerate
 // user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
 func (o SecretBackendOutput) Groupattr() pulumi.StringPtrOutput {
@@ -823,14 +771,6 @@ func (o SecretBackendOutput) LastRotationTolerance() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.LastRotationTolerance }).(pulumi.IntOutput)
 }
 
-// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-//
-// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-func (o SecretBackendOutput) Length() pulumi.IntOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
-}
-
 // Mark the secrets engine as local-only. Local engines are not replicated or removed by
 // replication.Tolerance duration to use when checking the last rotation time.
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
@@ -849,7 +789,7 @@ func (o SecretBackendOutput) MaxTtl() pulumi.IntOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

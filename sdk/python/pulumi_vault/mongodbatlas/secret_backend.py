@@ -25,7 +25,7 @@ class SecretBackendArgs:
         :param pulumi.Input[str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "mount", mount)
@@ -76,7 +76,7 @@ class SecretBackendArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -99,7 +99,7 @@ class _SecretBackendState:
         :param pulumi.Input[str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path where MongoDB Atlas configuration is located
         :param pulumi.Input[str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
@@ -134,7 +134,7 @@ class _SecretBackendState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -222,7 +222,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
         :param pulumi.Input[str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
@@ -324,7 +324,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path where MongoDB Atlas configuration is located
         :param pulumi.Input[str] private_key: Specifies the Private API Key used to authenticate with the MongoDB Atlas API.
@@ -355,7 +355,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

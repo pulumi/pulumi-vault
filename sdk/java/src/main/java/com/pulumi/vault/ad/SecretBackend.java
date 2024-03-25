@@ -262,24 +262,6 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.discoverdn);
     }
     /**
-     * **Deprecated** use `password_policy`. Text to insert the password into, ex. &#34;customPrefix{{PASSWORD}}customSuffix&#34;.
-     * 
-     * @deprecated
-     * Formatter is deprecated and password_policy should be used with Vault &gt;= 1.5.
-     * 
-     */
-    @Deprecated /* Formatter is deprecated and password_policy should be used with Vault >= 1.5. */
-    @Export(name="formatter", refs={String.class}, tree="[0]")
-    private Output<String> formatter;
-
-    /**
-     * @return **Deprecated** use `password_policy`. Text to insert the password into, ex. &#34;customPrefix{{PASSWORD}}customSuffix&#34;.
-     * 
-     */
-    public Output<String> formatter() {
-        return this.formatter;
-    }
-    /**
      * LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      * 
@@ -358,26 +340,6 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.lastRotationTolerance;
     }
     /**
-     * **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `password_policy` on vault-1.11+*
-     * 
-     * @deprecated
-     * Length is deprecated and password_policy should be used with Vault &gt;= 1.5.
-     * 
-     */
-    @Deprecated /* Length is deprecated and password_policy should be used with Vault >= 1.5. */
-    @Export(name="length", refs={Integer.class}, tree="[0]")
-    private Output<Integer> length;
-
-    /**
-     * @return **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `password_policy` on vault-1.11+*
-     * 
-     */
-    public Output<Integer> length() {
-        return this.length;
-    }
-    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      * 
@@ -424,7 +386,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -434,7 +396,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */

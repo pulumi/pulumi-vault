@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SyncGcpDestination{}
 	case "vault:secrets/syncGhDestination:SyncGhDestination":
 		r = &SyncGhDestination{}
+	case "vault:secrets/syncGithubApps:SyncGithubApps":
+		r = &SyncGithubApps{}
 	case "vault:secrets/syncVercelDestination:SyncVercelDestination":
 		r = &SyncVercelDestination{}
 	default:
@@ -76,6 +78,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"secrets/syncGhDestination",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"secrets/syncGithubApps",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

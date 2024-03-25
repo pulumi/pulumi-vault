@@ -145,6 +145,9 @@ class GetSecretV2Result:
     @property
     @pulumi.getter
     def version(self) -> Optional[int]:
+        """
+        Version of the secret.
+        """
         return pulumi.get(self, "version")
 
 
@@ -184,7 +187,7 @@ def get_secret_v2(mount: Optional[str] = None,
            the name is `foo/bar/baz`.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param int version: Version of the secret to retrieve.
     """
@@ -228,7 +231,7 @@ def get_secret_v2_output(mount: Optional[pulumi.Input[str]] = None,
            the name is `foo/bar/baz`.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param int version: Version of the secret to retrieve.
     """

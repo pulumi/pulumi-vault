@@ -174,7 +174,7 @@ def get_secret(namespace: Optional[str] = None,
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str path: The full logical path from which to request data.
            To read data from the "generic" secret backend mounted in Vault by
@@ -233,7 +233,7 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str path: The full logical path from which to request data.
            To read data from the "generic" secret backend mounted in Vault by

@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-vault/provider/v5
+module github.com/pulumi/pulumi-vault/provider/v6
 
 go 1.21.3
 
@@ -151,7 +151,7 @@ require (
 	github.com/hashicorp/vault-plugin-auth-jwt v0.18.0 // indirect
 	github.com/hashicorp/vault-plugin-auth-kerberos v0.10.1 // indirect
 	github.com/hashicorp/vault-plugin-auth-oci v0.14.2 // indirect
-	github.com/hashicorp/vault/api v1.11.1-0.20240201194553-aab72100fb2f // indirect
+	github.com/hashicorp/vault/api v1.12.2 // indirect
 	github.com/hashicorp/vault/sdk v0.10.2 // indirect
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
@@ -225,7 +225,6 @@ require (
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
-	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/skeema/knownhosts v1.2.1 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cast v1.5.1 // indirect
@@ -249,10 +248,8 @@ require (
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.47.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.47.0 // indirect
 	go.opentelemetry.io/otel v1.23.1 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.23.1 // indirect
 	go.opentelemetry.io/otel/metric v1.23.1 // indirect
 	go.opentelemetry.io/otel/trace v1.23.1 // indirect
-	go.opentelemetry.io/proto/otlp v1.1.0 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	gocloud.dev v0.36.0 // indirect
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect

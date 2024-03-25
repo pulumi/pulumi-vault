@@ -247,7 +247,7 @@ def get_access_credentials(backend: Optional[str] = None,
            to 300.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.
@@ -348,7 +348,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            to 300.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param int num_seconds_between_tests: If 'validate_creds' is true, 
            the number of seconds to wait between each test of generated credentials.

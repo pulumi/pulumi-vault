@@ -29,7 +29,7 @@ class OidcProviderArgs:
         :param pulumi.Input[str] name: The name of the provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
@@ -101,7 +101,7 @@ class OidcProviderArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -145,7 +145,7 @@ class _OidcProviderState:
         :param pulumi.Input[str] name: The name of the provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
@@ -233,7 +233,7 @@ class _OidcProviderState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -326,7 +326,7 @@ class OidcProvider(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
@@ -457,7 +457,7 @@ class OidcProvider(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] scopes_supporteds: The scopes available for requesting on the provider.
         """
@@ -523,7 +523,7 @@ class OidcProvider(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

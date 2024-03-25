@@ -130,14 +130,6 @@ namespace Pulumi.Vault.Ssh
         public Output<ImmutableArray<Outputs.SecretBackendRoleAllowedUserKeyConfig>> AllowedUserKeyConfigs { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which 
-        /// are allowed to be signed by the CA type.
-        /// *Deprecated: use* allowed_user_key_config *instead*
-        /// </summary>
-        [Output("allowedUserKeyLengths")]
-        public Output<ImmutableDictionary<string, int>?> AllowedUserKeyLengths { get; private set; } = null!;
-
-        /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         /// </summary>
         [Output("allowedUsers")]
@@ -212,7 +204,7 @@ namespace Pulumi.Vault.Ssh
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -351,21 +343,6 @@ namespace Pulumi.Vault.Ssh
             set => _allowedUserKeyConfigs = value;
         }
 
-        [Input("allowedUserKeyLengths")]
-        private InputMap<int>? _allowedUserKeyLengths;
-
-        /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which 
-        /// are allowed to be signed by the CA type.
-        /// *Deprecated: use* allowed_user_key_config *instead*
-        /// </summary>
-        [Obsolete(@"Set in allowed_user_key_config")]
-        public InputMap<int> AllowedUserKeyLengths
-        {
-            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<int>());
-            set => _allowedUserKeyLengths = value;
-        }
-
         /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         /// </summary>
@@ -453,7 +430,7 @@ namespace Pulumi.Vault.Ssh
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -554,21 +531,6 @@ namespace Pulumi.Vault.Ssh
             set => _allowedUserKeyConfigs = value;
         }
 
-        [Input("allowedUserKeyLengths")]
-        private InputMap<int>? _allowedUserKeyLengths;
-
-        /// <summary>
-        /// Specifies a map of ssh key types and their expected sizes which 
-        /// are allowed to be signed by the CA type.
-        /// *Deprecated: use* allowed_user_key_config *instead*
-        /// </summary>
-        [Obsolete(@"Set in allowed_user_key_config")]
-        public InputMap<int> AllowedUserKeyLengths
-        {
-            get => _allowedUserKeyLengths ?? (_allowedUserKeyLengths = new InputMap<int>());
-            set => _allowedUserKeyLengths = value;
-        }
-
         /// <summary>
         /// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         /// </summary>
@@ -656,7 +618,7 @@ namespace Pulumi.Vault.Ssh
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

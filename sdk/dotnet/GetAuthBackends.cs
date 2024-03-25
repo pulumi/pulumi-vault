@@ -29,10 +29,23 @@ namespace Pulumi.Vault
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
-        /// ```hcl
-        /// data "vault.getAuthBackends" "example-filter" {
-        ///   type = "kubernetes"
-        /// }
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_filter = Vault.GetAuthBackends.Invoke(new()
+        ///     {
+        ///         Type = "kubernetes",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAuthBackendsResult> InvokeAsync(GetAuthBackendsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsArgs(), options.WithDefaults());
@@ -55,10 +68,23 @@ namespace Pulumi.Vault
         /// ```
         /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
-        /// ```hcl
-        /// data "vault.getAuthBackends" "example-filter" {
-        ///   type = "kubernetes"
-        /// }
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_filter = Vault.GetAuthBackends.Invoke(new()
+        ///     {
+        ///         Type = "kubernetes",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAuthBackendsResult> Invoke(GetAuthBackendsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsInvokeArgs(), options.WithDefaults());
@@ -70,7 +96,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -93,7 +119,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace of the target resource.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

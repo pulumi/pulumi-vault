@@ -74,7 +74,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -91,6 +91,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("rotationPeriod")]
         public Output<int> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+        /// Requires Vault 1.16 or above.
+        /// </summary>
+        [Output("skipImportRotation")]
+        public Output<bool?> SkipImportRotation { get; private set; } = null!;
 
         /// <summary>
         /// The username of the existing LDAP entry to manage password rotation for.
@@ -162,7 +169,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -179,6 +186,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("rotationPeriod", required: true)]
         public Input<int> RotationPeriod { get; set; } = null!;
+
+        /// <summary>
+        /// Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+        /// Requires Vault 1.16 or above.
+        /// </summary>
+        [Input("skipImportRotation")]
+        public Input<bool>? SkipImportRotation { get; set; }
 
         /// <summary>
         /// The username of the existing LDAP entry to manage password rotation for.
@@ -212,7 +226,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -229,6 +243,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("rotationPeriod")]
         public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+        /// Requires Vault 1.16 or above.
+        /// </summary>
+        [Input("skipImportRotation")]
+        public Input<bool>? SkipImportRotation { get; set; }
 
         /// <summary>
         /// The username of the existing LDAP entry to manage password rotation for.

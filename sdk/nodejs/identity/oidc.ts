@@ -61,7 +61,7 @@ export class Oidc extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -105,7 +105,7 @@ export interface OidcState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -125,7 +125,7 @@ export interface OidcArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

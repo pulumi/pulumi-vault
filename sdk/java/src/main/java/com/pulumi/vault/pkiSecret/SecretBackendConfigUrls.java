@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiSecret.SecretBackendConfigUrlsArgs;
 import com.pulumi.vault.pkiSecret.inputs.SecretBackendConfigUrlsState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -104,6 +105,20 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.crlDistributionPoints);
     }
     /**
+     * Specifies that templating of AIA fields is allowed.
+     * 
+     */
+    @Export(name="enableTemplating", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> enableTemplating;
+
+    /**
+     * @return Specifies that templating of AIA fields is allowed.
+     * 
+     */
+    public Output<Optional<Boolean>> enableTemplating() {
+        return Codegen.optional(this.enableTemplating);
+    }
+    /**
      * Specifies the URL values for the Issuing Certificate field.
      * 
      */
@@ -120,7 +135,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -130,7 +145,7 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */

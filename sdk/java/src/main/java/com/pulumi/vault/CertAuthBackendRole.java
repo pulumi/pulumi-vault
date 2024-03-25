@@ -127,20 +127,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.allowedNames;
     }
     /**
-     * @deprecated
-     * Use allowed_organizational_units
-     * 
-     */
-    @Deprecated /* Use allowed_organizational_units */
-    @Export(name="allowedOrganizationUnits", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> allowedOrganizationUnits;
-
-    public Output<List<String>> allowedOrganizationUnits() {
-        return this.allowedOrganizationUnits;
-    }
-    /**
      * Allowed organization units for authenticated client certificates.
-     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
      * 
      */
     @Export(name="allowedOrganizationalUnits", refs={List.class,String.class}, tree="[0,1]")
@@ -148,7 +135,6 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Allowed organization units for authenticated client certificates.
-     * *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
      * 
      */
     public Output<Optional<List<String>>> allowedOrganizationalUnits() {
@@ -227,7 +213,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -237,7 +223,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */

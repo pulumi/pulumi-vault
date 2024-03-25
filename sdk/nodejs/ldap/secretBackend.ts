@@ -123,13 +123,6 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly insecureTls!: pulumi.Output<boolean | undefined>;
     /**
-     * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-     *
-     * @deprecated Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-     */
-    public readonly length!: pulumi.Output<number>;
-    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
@@ -141,7 +134,7 @@ export class SecretBackend extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -171,6 +164,11 @@ export class SecretBackend extends pulumi.CustomResource {
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     public readonly sealWrap!: pulumi.Output<boolean>;
+    /**
+     * If set to true, static roles will not be rotated during import.
+     * Defaults to false. Requires Vault 1.16 or above.
+     */
+    public readonly skipStaticRoleImportRotation!: pulumi.Output<boolean | undefined>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */
@@ -221,7 +219,6 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
             resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
-            resourceInputs["length"] = state ? state.length : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -231,6 +228,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
             resourceInputs["schema"] = state ? state.schema : undefined;
             resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
+            resourceInputs["skipStaticRoleImportRotation"] = state ? state.skipStaticRoleImportRotation : undefined;
             resourceInputs["starttls"] = state ? state.starttls : undefined;
             resourceInputs["upndomain"] = state ? state.upndomain : undefined;
             resourceInputs["url"] = state ? state.url : undefined;
@@ -258,7 +256,6 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
             resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
-            resourceInputs["length"] = args ? args.length : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -268,6 +265,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
             resourceInputs["schema"] = args ? args.schema : undefined;
             resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
+            resourceInputs["skipStaticRoleImportRotation"] = args ? args.skipStaticRoleImportRotation : undefined;
             resourceInputs["starttls"] = args ? args.starttls : undefined;
             resourceInputs["upndomain"] = args ? args.upndomain : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
@@ -350,13 +348,6 @@ export interface SecretBackendState {
      */
     insecureTls?: pulumi.Input<boolean>;
     /**
-     * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-     *
-     * @deprecated Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-     */
-    length?: pulumi.Input<number>;
-    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
@@ -368,7 +359,7 @@ export interface SecretBackendState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -398,6 +389,11 @@ export interface SecretBackendState {
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     sealWrap?: pulumi.Input<boolean>;
+    /**
+     * If set to true, static roles will not be rotated during import.
+     * Defaults to false. Requires Vault 1.16 or above.
+     */
+    skipStaticRoleImportRotation?: pulumi.Input<boolean>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */
@@ -485,13 +481,6 @@ export interface SecretBackendArgs {
      */
     insecureTls?: pulumi.Input<boolean>;
     /**
-     * **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-     *
-     * @deprecated Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-     */
-    length?: pulumi.Input<number>;
-    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      */
@@ -503,7 +492,7 @@ export interface SecretBackendArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -533,6 +522,11 @@ export interface SecretBackendArgs {
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     sealWrap?: pulumi.Input<boolean>;
+    /**
+     * If set to true, static roles will not be rotated during import.
+     * Defaults to false. Requires Vault 1.16 or above.
+     */
+    skipStaticRoleImportRotation?: pulumi.Input<boolean>;
     /**
      * Issue a StartTLS command after establishing unencrypted connection.
      */

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,8 +26,8 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/appRole"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/appRole"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -88,7 +88,7 @@ type AuthBackendRoleSecretId struct {
 	Metadata pulumi.StringPtrOutput `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
@@ -171,7 +171,7 @@ type authBackendRoleSecretIdState struct {
 	Metadata *string `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
@@ -208,7 +208,7 @@ type AuthBackendRoleSecretIdState struct {
 	Metadata pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The name of the role to create the SecretID for.
@@ -247,7 +247,7 @@ type authBackendRoleSecretIdArgs struct {
 	Metadata *string `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The name of the role to create the SecretID for.
@@ -278,7 +278,7 @@ type AuthBackendRoleSecretIdArgs struct {
 	Metadata pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The name of the role to create the SecretID for.
@@ -408,7 +408,7 @@ func (o AuthBackendRoleSecretIdOutput) Metadata() pulumi.StringPtrOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o AuthBackendRoleSecretIdOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

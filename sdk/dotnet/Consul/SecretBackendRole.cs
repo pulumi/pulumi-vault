@@ -108,7 +108,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -142,13 +142,6 @@ namespace Pulumi.Vault.Consul
         /// </summary>
         [Output("serviceIdentities")]
         public Output<ImmutableArray<string>> ServiceIdentities { get; private set; } = null!;
-
-        /// <summary>
-        /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        /// *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-        /// </summary>
-        [Output("tokenType")]
-        public Output<string?> TokenType { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the TTL for this role.
@@ -261,7 +254,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -313,13 +306,6 @@ namespace Pulumi.Vault.Consul
             get => _serviceIdentities ?? (_serviceIdentities = new InputList<string>());
             set => _serviceIdentities = value;
         }
-
-        /// <summary>
-        /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        /// *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-        /// </summary>
-        [Input("tokenType")]
-        public Input<string>? TokenType { get; set; }
 
         /// <summary>
         /// Specifies the TTL for this role.
@@ -394,7 +380,7 @@ namespace Pulumi.Vault.Consul
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -446,13 +432,6 @@ namespace Pulumi.Vault.Consul
             get => _serviceIdentities ?? (_serviceIdentities = new InputList<string>());
             set => _serviceIdentities = value;
         }
-
-        /// <summary>
-        /// Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        /// *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-        /// </summary>
-        [Input("tokenType")]
-        public Input<string>? TokenType { get; set; }
 
         /// <summary>
         /// Specifies the TTL for this role.

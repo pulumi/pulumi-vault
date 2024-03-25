@@ -42,7 +42,7 @@ class AuthBackendArgs:
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
@@ -169,7 +169,7 @@ class AuthBackendArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -260,7 +260,7 @@ class _AuthBackendState:
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
@@ -391,7 +391,7 @@ class _AuthBackendState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -532,7 +532,7 @@ class AuthBackend(pulumi.CustomResource):
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
@@ -681,7 +681,7 @@ class AuthBackend(pulumi.CustomResource):
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The Okta organization. This will be the first part of the url `https://XXX.okta.com`
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
@@ -776,7 +776,7 @@ class AuthBackend(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

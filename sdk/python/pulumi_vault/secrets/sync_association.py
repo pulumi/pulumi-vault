@@ -27,7 +27,7 @@ class SyncAssociationArgs:
         :param pulumi.Input[str] name: Specifies the name of the destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         pulumi.set(__self__, "mount", mount)
         pulumi.set(__self__, "secret_name", secret_name)
@@ -91,7 +91,7 @@ class SyncAssociationArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
@@ -116,7 +116,7 @@ class _SyncAssociationState:
         :param pulumi.Input[str] name: Specifies the name of the destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name: Specifies the name of the secret to synchronize.
         :param pulumi.Input[str] sync_status: Specifies the status of the association (for eg. `SYNCED`).
         :param pulumi.Input[str] type: Specifies the destination type.
@@ -167,7 +167,7 @@ class _SyncAssociationState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
@@ -275,7 +275,7 @@ class SyncAssociation(pulumi.CustomResource):
         :param pulumi.Input[str] name: Specifies the name of the destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name: Specifies the name of the secret to synchronize.
         :param pulumi.Input[str] type: Specifies the destination type.
         """
@@ -389,7 +389,7 @@ class SyncAssociation(pulumi.CustomResource):
         :param pulumi.Input[str] name: Specifies the name of the destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name: Specifies the name of the secret to synchronize.
         :param pulumi.Input[str] sync_status: Specifies the status of the association (for eg. `SYNCED`).
         :param pulumi.Input[str] type: Specifies the destination type.
@@ -430,7 +430,7 @@ class SyncAssociation(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 

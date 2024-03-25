@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +33,7 @@ type LookupSecretV2Args struct {
 	Name string `pulumi:"name"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Version of the secret to retrieve.
@@ -64,8 +64,9 @@ type LookupSecretV2Result struct {
 	Name      string  `pulumi:"name"`
 	Namespace *string `pulumi:"namespace"`
 	// Full path where the KVV2 secret is written.
-	Path    string `pulumi:"path"`
-	Version *int   `pulumi:"version"`
+	Path string `pulumi:"path"`
+	// Version of the secret.
+	Version *int `pulumi:"version"`
 }
 
 func LookupSecretV2Output(ctx *pulumi.Context, args LookupSecretV2OutputArgs, opts ...pulumi.InvokeOption) LookupSecretV2ResultOutput {
@@ -92,7 +93,7 @@ type LookupSecretV2OutputArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Version of the secret to retrieve.
@@ -174,6 +175,7 @@ func (o LookupSecretV2ResultOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretV2Result) string { return v.Path }).(pulumi.StringOutput)
 }
 
+// Version of the secret.
 func (o LookupSecretV2ResultOutput) Version() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupSecretV2Result) *int { return v.Version }).(pulumi.IntPtrOutput)
 }

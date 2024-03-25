@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,9 +22,9 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/kv"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/secrets"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kv"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/secrets"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -89,7 +89,7 @@ type SyncAssociation struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the name of the secret to synchronize.
 	SecretName pulumi.StringOutput `pulumi:"secretName"`
@@ -146,7 +146,7 @@ type syncAssociationState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the name of the secret to synchronize.
 	SecretName *string `pulumi:"secretName"`
@@ -165,7 +165,7 @@ type SyncAssociationState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrInput
 	// Specifies the name of the secret to synchronize.
 	SecretName pulumi.StringPtrInput
@@ -188,7 +188,7 @@ type syncAssociationArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the name of the secret to synchronize.
 	SecretName string `pulumi:"secretName"`
@@ -204,7 +204,7 @@ type SyncAssociationArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	Namespace pulumi.StringPtrInput
 	// Specifies the name of the secret to synchronize.
 	SecretName pulumi.StringInput
@@ -311,7 +311,7 @@ func (o SyncAssociationOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 func (o SyncAssociationOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncAssociation) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }

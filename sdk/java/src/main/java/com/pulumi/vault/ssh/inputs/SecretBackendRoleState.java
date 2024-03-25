@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.ssh.inputs.SecretBackendRoleAllowedUserKeyConfigArgs;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -193,33 +192,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Specifies a map of ssh key types and their expected sizes which
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowed_user_key_config *instead*
-     * 
-     * @deprecated
-     * Set in allowed_user_key_config
-     * 
-     */
-    @Deprecated /* Set in allowed_user_key_config */
-    @Import(name="allowedUserKeyLengths")
-    private @Nullable Output<Map<String,Integer>> allowedUserKeyLengths;
-
-    /**
-     * @return Specifies a map of ssh key types and their expected sizes which
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowed_user_key_config *instead*
-     * 
-     * @deprecated
-     * Set in allowed_user_key_config
-     * 
-     */
-    @Deprecated /* Set in allowed_user_key_config */
-    public Optional<Output<Map<String,Integer>>> allowedUserKeyLengths() {
-        return Optional.ofNullable(this.allowedUserKeyLengths);
-    }
-
-    /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      * 
      */
@@ -402,7 +374,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -412,7 +384,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -464,7 +436,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.allowedDomainsTemplate = $.allowedDomainsTemplate;
         this.allowedExtensions = $.allowedExtensions;
         this.allowedUserKeyConfigs = $.allowedUserKeyConfigs;
-        this.allowedUserKeyLengths = $.allowedUserKeyLengths;
         this.allowedUsers = $.allowedUsers;
         this.allowedUsersTemplate = $.allowedUsersTemplate;
         this.backend = $.backend;
@@ -750,39 +721,6 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedUserKeyLengths Specifies a map of ssh key types and their expected sizes which
-         * are allowed to be signed by the CA type.
-         * *Deprecated: use* allowed_user_key_config *instead*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Set in allowed_user_key_config
-         * 
-         */
-        @Deprecated /* Set in allowed_user_key_config */
-        public Builder allowedUserKeyLengths(@Nullable Output<Map<String,Integer>> allowedUserKeyLengths) {
-            $.allowedUserKeyLengths = allowedUserKeyLengths;
-            return this;
-        }
-
-        /**
-         * @param allowedUserKeyLengths Specifies a map of ssh key types and their expected sizes which
-         * are allowed to be signed by the CA type.
-         * *Deprecated: use* allowed_user_key_config *instead*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Set in allowed_user_key_config
-         * 
-         */
-        @Deprecated /* Set in allowed_user_key_config */
-        public Builder allowedUserKeyLengths(Map<String,Integer> allowedUserKeyLengths) {
-            return allowedUserKeyLengths(Output.of(allowedUserKeyLengths));
-        }
-
-        /**
          * @param allowedUsers Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
          * 
          * @return builder
@@ -1037,7 +975,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -1051,7 +989,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

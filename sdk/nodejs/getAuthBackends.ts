@@ -15,6 +15,17 @@ import * as utilities from "./utilities";
  * const example = vault.getAuthBackends({});
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example-filter = vault.getAuthBackends({
+ *     type: "kubernetes",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAuthBackends(args?: GetAuthBackendsArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendsResult> {
     args = args || {};
@@ -33,7 +44,7 @@ export interface GetAuthBackendsArgs {
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: string;
@@ -73,6 +84,17 @@ export interface GetAuthBackendsResult {
  * const example = vault.getAuthBackends({});
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example-filter = vault.getAuthBackends({
+ *     type: "kubernetes",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAuthBackendsOutput(args?: GetAuthBackendsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendsResult> {
     return pulumi.output(args).apply((a: any) => getAuthBackends(a, opts))
@@ -85,7 +107,7 @@ export interface GetAuthBackendsOutputArgs {
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

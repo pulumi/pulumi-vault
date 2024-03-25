@@ -140,13 +140,6 @@ namespace Pulumi.Vault.Ldap
         public Output<bool?> InsecureTls { get; private set; } = null!;
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        /// *Mutually exclusive with `password_policy` on vault-1.11+*
-        /// </summary>
-        [Output("length")]
-        public Output<int> Length { get; private set; } = null!;
-
-        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -162,7 +155,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -205,6 +198,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("sealWrap")]
         public Output<bool> SealWrap { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to true, static roles will not be rotated during import.
+        /// Defaults to false. Requires Vault 1.16 or above.
+        /// </summary>
+        [Output("skipStaticRoleImportRotation")]
+        public Output<bool?> SkipStaticRoleImportRotation { get; private set; } = null!;
 
         /// <summary>
         /// Issue a StartTLS command after establishing unencrypted connection.
@@ -425,13 +425,6 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        /// *Mutually exclusive with `password_policy` on vault-1.11+*
-        /// </summary>
-        [Input("length")]
-        public Input<int>? Length { get; set; }
-
-        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -447,7 +440,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -496,6 +489,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }
+
+        /// <summary>
+        /// If set to true, static roles will not be rotated during import.
+        /// Defaults to false. Requires Vault 1.16 or above.
+        /// </summary>
+        [Input("skipStaticRoleImportRotation")]
+        public Input<bool>? SkipStaticRoleImportRotation { get; set; }
 
         /// <summary>
         /// Issue a StartTLS command after establishing unencrypted connection.
@@ -678,13 +678,6 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? InsecureTls { get; set; }
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        /// *Mutually exclusive with `password_policy` on vault-1.11+*
-        /// </summary>
-        [Input("length")]
-        public Input<int>? Length { get; set; }
-
-        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -700,7 +693,7 @@ namespace Pulumi.Vault.Ldap
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -749,6 +742,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }
+
+        /// <summary>
+        /// If set to true, static roles will not be rotated during import.
+        /// Defaults to false. Requires Vault 1.16 or above.
+        /// </summary>
+        [Input("skipStaticRoleImportRotation")]
+        public Input<bool>? SkipStaticRoleImportRotation { get; set; }
 
         /// <summary>
         /// Issue a StartTLS command after establishing unencrypted connection.

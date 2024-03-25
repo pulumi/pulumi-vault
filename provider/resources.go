@@ -31,7 +31,7 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
-	"github.com/pulumi/pulumi-vault/provider/v5/pkg/version"
+	"github.com/pulumi/pulumi-vault/provider/v6/pkg/version"
 )
 
 // all of the token components used below.
@@ -78,6 +78,7 @@ var moduleMap = map[string]string{
 	"aws":             awsMod,
 	"azure":           azureMod,
 	"consul":          consulMod,
+	"config":          "Config",
 	"database":        databaseMod,
 	"gcp":             gcpMod,
 	"generic":         genericMod,

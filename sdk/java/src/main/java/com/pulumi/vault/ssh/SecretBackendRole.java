@@ -12,7 +12,6 @@ import com.pulumi.vault.ssh.SecretBackendRoleArgs;
 import com.pulumi.vault.ssh.inputs.SecretBackendRoleState;
 import com.pulumi.vault.ssh.outputs.SecretBackendRoleAllowedUserKeyConfig;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -245,28 +244,6 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedUserKeyConfigs);
     }
     /**
-     * Specifies a map of ssh key types and their expected sizes which
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowed_user_key_config *instead*
-     * 
-     * @deprecated
-     * Set in allowed_user_key_config
-     * 
-     */
-    @Deprecated /* Set in allowed_user_key_config */
-    @Export(name="allowedUserKeyLengths", refs={Map.class,String.class,Integer.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Integer>> allowedUserKeyLengths;
-
-    /**
-     * @return Specifies a map of ssh key types and their expected sizes which
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowed_user_key_config *instead*
-     * 
-     */
-    public Output<Optional<Map<String,Integer>>> allowedUserKeyLengths() {
-        return Codegen.optional(this.allowedUserKeyLengths);
-    }
-    /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      * 
      */
@@ -437,7 +414,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -447,7 +424,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */

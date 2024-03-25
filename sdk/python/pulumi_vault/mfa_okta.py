@@ -33,7 +33,7 @@ class MfaOktaArgs:
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
                primary email for the account.
@@ -127,7 +127,7 @@ class MfaOktaArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -189,7 +189,7 @@ class _MfaOktaState:
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
@@ -275,7 +275,7 @@ class _MfaOktaState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -383,7 +383,7 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
@@ -514,7 +514,7 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
         :param pulumi.Input[bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
@@ -581,7 +581,7 @@ class MfaOkta(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

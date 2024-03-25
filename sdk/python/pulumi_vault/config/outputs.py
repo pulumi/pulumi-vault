@@ -10,6 +10,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'UiCustomMessageLink',
     'AuthLogin',
     'AuthLoginAws',
     'AuthLoginAzure',
@@ -25,6 +26,35 @@ __all__ = [
     'ClientAuth',
     'Headers',
 ]
+
+@pulumi.output_type
+class UiCustomMessageLink(dict):
+    def __init__(__self__, *,
+                 href: str,
+                 title: str):
+        """
+        :param str href: The URL of the hyperlink
+        :param str title: The title of the hyperlink
+        """
+        pulumi.set(__self__, "href", href)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def href(self) -> str:
+        """
+        The URL of the hyperlink
+        """
+        return pulumi.get(self, "href")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        The title of the hyperlink
+        """
+        return pulumi.get(self, "title")
+
 
 @pulumi.output_type
 class AuthLogin(dict):

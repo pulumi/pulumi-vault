@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +27,7 @@ import (
 //	"fmt"
 //	"os"
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/gcp"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -93,7 +93,7 @@ type SecretRoleset struct {
 	Bindings SecretRolesetBindingArrayOutput `pulumi:"bindings"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Name of the GCP project that this roleset's service account will belong to.
@@ -156,7 +156,7 @@ type secretRolesetState struct {
 	Bindings []SecretRolesetBinding `pulumi:"bindings"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Name of the GCP project that this roleset's service account will belong to.
@@ -178,7 +178,7 @@ type SecretRolesetState struct {
 	Bindings SecretRolesetBindingArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Name of the GCP project that this roleset's service account will belong to.
@@ -204,7 +204,7 @@ type secretRolesetArgs struct {
 	Bindings []SecretRolesetBinding `pulumi:"bindings"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Name of the GCP project that this roleset's service account will belong to.
@@ -225,7 +225,7 @@ type SecretRolesetArgs struct {
 	Bindings SecretRolesetBindingArrayInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Name of the GCP project that this roleset's service account will belong to.
@@ -337,7 +337,7 @@ func (o SecretRolesetOutput) Bindings() SecretRolesetBindingArrayOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretRolesetOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRoleset) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

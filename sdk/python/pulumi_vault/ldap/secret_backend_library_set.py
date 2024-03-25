@@ -34,7 +34,7 @@ class SecretBackendLibrarySetArgs:
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
                ttl if not provided.
@@ -123,7 +123,7 @@ class SecretBackendLibrarySetArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -168,7 +168,7 @@ class _SecretBackendLibrarySetState:
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
@@ -247,7 +247,7 @@ class _SecretBackendLibrarySetState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -342,7 +342,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
@@ -463,7 +463,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_account_names: Specifies the slice of service accounts mapped to this set.
         :param pulumi.Input[int] ttl: The password time-to-live in seconds. Defaults to the configuration
@@ -524,7 +524,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

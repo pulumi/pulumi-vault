@@ -252,7 +252,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -262,7 +262,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -298,29 +298,6 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<Boolean>> renewPending() {
         return Optional.ofNullable(this.renewPending);
-    }
-
-    /**
-     * The serial number.
-     * 
-     * @deprecated
-     * Use serial_number instead
-     * 
-     */
-    @Deprecated /* Use serial_number instead */
-    @Import(name="serial")
-    private @Nullable Output<String> serial;
-
-    /**
-     * @return The serial number.
-     * 
-     * @deprecated
-     * Use serial_number instead
-     * 
-     */
-    @Deprecated /* Use serial_number instead */
-    public Optional<Output<String>> serial() {
-        return Optional.ofNullable(this.serial);
     }
 
     /**
@@ -389,7 +366,6 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         this.namespace = $.namespace;
         this.otherSans = $.otherSans;
         this.renewPending = $.renewPending;
-        this.serial = $.serial;
         this.serialNumber = $.serialNumber;
         this.ttl = $.ttl;
         this.uriSans = $.uriSans;
@@ -767,7 +743,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -781,7 +757,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -841,35 +817,6 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
          */
         public Builder renewPending(Boolean renewPending) {
             return renewPending(Output.of(renewPending));
-        }
-
-        /**
-         * @param serial The serial number.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use serial_number instead
-         * 
-         */
-        @Deprecated /* Use serial_number instead */
-        public Builder serial(@Nullable Output<String> serial) {
-            $.serial = serial;
-            return this;
-        }
-
-        /**
-         * @param serial The serial number.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use serial_number instead
-         * 
-         */
-        @Deprecated /* Use serial_number instead */
-        public Builder serial(String serial) {
-            return serial(Output.of(serial));
         }
 
         /**

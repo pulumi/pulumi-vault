@@ -254,7 +254,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -264,7 +264,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -378,29 +378,6 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * The serial number.
-     * 
-     * @deprecated
-     * Use serial_number instead
-     * 
-     */
-    @Deprecated /* Use serial_number instead */
-    @Import(name="serial")
-    private @Nullable Output<String> serial;
-
-    /**
-     * @return The serial number.
-     * 
-     * @deprecated
-     * Use serial_number instead
-     * 
-     */
-    @Deprecated /* Use serial_number instead */
-    public Optional<Output<String>> serial() {
-        return Optional.ofNullable(this.serial);
-    }
-
-    /**
      * The certificate&#39;s serial number, hex formatted.
      * 
      */
@@ -501,7 +478,6 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         this.postalCode = $.postalCode;
         this.province = $.province;
         this.revoke = $.revoke;
-        this.serial = $.serial;
         this.serialNumber = $.serialNumber;
         this.streetAddress = $.streetAddress;
         this.ttl = $.ttl;
@@ -883,7 +859,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -897,7 +873,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -1072,35 +1048,6 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
          */
         public Builder revoke(Boolean revoke) {
             return revoke(Output.of(revoke));
-        }
-
-        /**
-         * @param serial The serial number.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use serial_number instead
-         * 
-         */
-        @Deprecated /* Use serial_number instead */
-        public Builder serial(@Nullable Output<String> serial) {
-            $.serial = serial;
-            return this;
-        }
-
-        /**
-         * @param serial The serial number.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use serial_number instead
-         * 
-         */
-        @Deprecated /* Use serial_number instead */
-        public Builder serial(String serial) {
-            return serial(Output.of(serial));
         }
 
         /**

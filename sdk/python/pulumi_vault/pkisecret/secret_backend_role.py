@@ -103,7 +103,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -596,7 +596,7 @@ class SecretBackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -864,7 +864,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -1358,7 +1358,7 @@ class _SecretBackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1666,7 +1666,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -1946,7 +1946,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this role within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
@@ -2275,7 +2275,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

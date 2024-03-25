@@ -102,7 +102,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -127,13 +127,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      */
     public readonly serviceIdentities!: pulumi.Output<string[] | undefined>;
-    /**
-     * Specifies the type of token to create when using this role. Valid values are "client" or "management".
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     *
-     * @deprecated Consul 1.11 and later removed the legacy ACL system which supported this field.
-     */
-    public readonly tokenType!: pulumi.Output<string | undefined>;
     /**
      * Specifies the TTL for this role.
      */
@@ -164,7 +157,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["partition"] = state ? state.partition : undefined;
             resourceInputs["policies"] = state ? state.policies : undefined;
             resourceInputs["serviceIdentities"] = state ? state.serviceIdentities : undefined;
-            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
@@ -180,7 +172,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["partition"] = args ? args.partition : undefined;
             resourceInputs["policies"] = args ? args.policies : undefined;
             resourceInputs["serviceIdentities"] = args ? args.serviceIdentities : undefined;
-            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -225,7 +216,7 @@ export interface SecretBackendRoleState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -250,13 +241,6 @@ export interface SecretBackendRoleState {
      * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      */
     serviceIdentities?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the type of token to create when using this role. Valid values are "client" or "management".
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     *
-     * @deprecated Consul 1.11 and later removed the legacy ACL system which supported this field.
-     */
-    tokenType?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role.
      */
@@ -300,7 +284,7 @@ export interface SecretBackendRoleArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -325,13 +309,6 @@ export interface SecretBackendRoleArgs {
      * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      */
     serviceIdentities?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Specifies the type of token to create when using this role. Valid values are "client" or "management".
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     *
-     * @deprecated Consul 1.11 and later removed the legacy ACL system which supported this field.
-     */
-    tokenType?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role.
      */

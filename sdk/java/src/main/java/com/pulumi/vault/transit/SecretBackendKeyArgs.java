@@ -36,31 +36,6 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     * 
-     * @deprecated
-     * Use auto_rotate_period instead
-     * 
-     */
-    @Deprecated /* Use auto_rotate_period instead */
-    @Import(name="autoRotateInterval")
-    private @Nullable Output<Integer> autoRotateInterval;
-
-    /**
-     * @return Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-     * key.
-     * 
-     * @deprecated
-     * Use auto_rotate_period instead
-     * 
-     */
-    @Deprecated /* Use auto_rotate_period instead */
-    public Optional<Output<Integer>> autoRotateInterval() {
-        return Optional.ofNullable(this.autoRotateInterval);
-    }
-
-    /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      * 
@@ -215,7 +190,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -225,7 +200,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -254,7 +229,6 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
 
     private SecretBackendKeyArgs(SecretBackendKeyArgs $) {
         this.allowPlaintextBackup = $.allowPlaintextBackup;
-        this.autoRotateInterval = $.autoRotateInterval;
         this.autoRotatePeriod = $.autoRotatePeriod;
         this.backend = $.backend;
         this.convergentEncryption = $.convergentEncryption;
@@ -308,37 +282,6 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder allowPlaintextBackup(Boolean allowPlaintextBackup) {
             return allowPlaintextBackup(Output.of(allowPlaintextBackup));
-        }
-
-        /**
-         * @param autoRotateInterval Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-         * key.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use auto_rotate_period instead
-         * 
-         */
-        @Deprecated /* Use auto_rotate_period instead */
-        public Builder autoRotateInterval(@Nullable Output<Integer> autoRotateInterval) {
-            $.autoRotateInterval = autoRotateInterval;
-            return this;
-        }
-
-        /**
-         * @param autoRotateInterval Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-         * key.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Use auto_rotate_period instead
-         * 
-         */
-        @Deprecated /* Use auto_rotate_period instead */
-        public Builder autoRotateInterval(Integer autoRotateInterval) {
-            return autoRotateInterval(Output.of(autoRotateInterval));
         }
 
         /**
@@ -556,7 +499,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -570,7 +513,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

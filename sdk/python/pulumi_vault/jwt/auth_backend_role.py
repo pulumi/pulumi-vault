@@ -81,7 +81,7 @@ class AuthBackendRoleArgs:
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -374,7 +374,7 @@ class AuthBackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -643,7 +643,7 @@ class _AuthBackendRoleState:
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -916,7 +916,7 @@ class _AuthBackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1278,7 +1278,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -1558,7 +1558,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
                clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -1759,7 +1759,7 @@ class AuthBackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

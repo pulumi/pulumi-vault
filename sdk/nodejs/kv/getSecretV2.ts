@@ -36,7 +36,7 @@ export interface GetSecretV2Args {
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: string;
@@ -89,6 +89,9 @@ export interface GetSecretV2Result {
      * Full path where the KVV2 secret is written.
      */
     readonly path: string;
+    /**
+     * Version of the secret.
+     */
     readonly version?: number;
 }
 /**
@@ -116,7 +119,7 @@ export interface GetSecretV2OutputArgs {
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

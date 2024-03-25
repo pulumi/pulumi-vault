@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ldap"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/ldap"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -88,11 +88,6 @@ type SecretBackend struct {
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
 	// Defaults to `false`.
 	InsecureTls pulumi.BoolPtrOutput `pulumi:"insecureTls"`
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length pulumi.IntOutput `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -100,7 +95,7 @@ type SecretBackend struct {
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
@@ -117,6 +112,9 @@ type SecretBackend struct {
 	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
+	// If set to true, static roles will not be rotated during import.
+	// Defaults to false. Requires Vault 1.16 or above.
+	SkipStaticRoleImportRotation pulumi.BoolPtrOutput `pulumi:"skipStaticRoleImportRotation"`
 	// Issue a StartTLS command after establishing unencrypted connection.
 	Starttls pulumi.BoolOutput `pulumi:"starttls"`
 	// Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -214,11 +212,6 @@ type secretBackendState struct {
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
 	// Defaults to `false`.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -226,7 +219,7 @@ type secretBackendState struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
@@ -243,6 +236,9 @@ type secretBackendState struct {
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
+	// If set to true, static roles will not be rotated during import.
+	// Defaults to false. Requires Vault 1.16 or above.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Issue a StartTLS command after establishing unencrypted connection.
 	Starttls *bool `pulumi:"starttls"`
 	// Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -290,11 +286,6 @@ type SecretBackendState struct {
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
 	// Defaults to `false`.
 	InsecureTls pulumi.BoolPtrInput
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -302,7 +293,7 @@ type SecretBackendState struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
@@ -319,6 +310,9 @@ type SecretBackendState struct {
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
+	// If set to true, static roles will not be rotated during import.
+	// Defaults to false. Requires Vault 1.16 or above.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput
 	// Issue a StartTLS command after establishing unencrypted connection.
 	Starttls pulumi.BoolPtrInput
 	// Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -368,11 +362,6 @@ type secretBackendArgs struct {
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
 	// Defaults to `false`.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length *int `pulumi:"length"`
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local *bool `pulumi:"local"`
@@ -380,7 +369,7 @@ type secretBackendArgs struct {
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
@@ -397,6 +386,9 @@ type secretBackendArgs struct {
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
+	// If set to true, static roles will not be rotated during import.
+	// Defaults to false. Requires Vault 1.16 or above.
+	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
 	// Issue a StartTLS command after establishing unencrypted connection.
 	Starttls *bool `pulumi:"starttls"`
 	// Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -443,11 +435,6 @@ type SecretBackendArgs struct {
 	// Skip LDAP server SSL Certificate verification. This is not recommended for production.
 	// Defaults to `false`.
 	InsecureTls pulumi.BoolPtrInput
-	// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-	// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-	//
-	// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-	Length pulumi.IntPtrInput
 	// Mark the secrets engine as local-only. Local engines are not replicated or removed by
 	// replication.Tolerance duration to use when checking the last rotation time.
 	Local pulumi.BoolPtrInput
@@ -455,7 +442,7 @@ type SecretBackendArgs struct {
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
@@ -472,6 +459,9 @@ type SecretBackendArgs struct {
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
+	// If set to true, static roles will not be rotated during import.
+	// Defaults to false. Requires Vault 1.16 or above.
+	SkipStaticRoleImportRotation pulumi.BoolPtrInput
 	// Issue a StartTLS command after establishing unencrypted connection.
 	Starttls pulumi.BoolPtrInput
 	// Enables userPrincipalDomain login with [username]@UPNDomain.
@@ -650,14 +640,6 @@ func (o SecretBackendOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// **Deprecated** use `passwordPolicy`. The desired length of passwords that Vault generates.
-// *Mutually exclusive with `passwordPolicy` on vault-1.11+*
-//
-// Deprecated: Length is deprecated and passwordPolicy should be used with Vault >= 1.5.
-func (o SecretBackendOutput) Length() pulumi.IntOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.Length }).(pulumi.IntOutput)
-}
-
 // Mark the secrets engine as local-only. Local engines are not replicated or removed by
 // replication.Tolerance duration to use when checking the last rotation time.
 func (o SecretBackendOutput) Local() pulumi.BoolPtrOutput {
@@ -671,7 +653,7 @@ func (o SecretBackendOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
@@ -707,6 +689,12 @@ func (o SecretBackendOutput) Schema() pulumi.StringOutput {
 // Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
+}
+
+// If set to true, static roles will not be rotated during import.
+// Defaults to false. Requires Vault 1.16 or above.
+func (o SecretBackendOutput) SkipStaticRoleImportRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.SkipStaticRoleImportRotation }).(pulumi.BoolPtrOutput)
 }
 
 // Issue a StartTLS command after establishing unencrypted connection.

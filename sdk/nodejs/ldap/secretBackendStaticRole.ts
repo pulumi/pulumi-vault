@@ -81,7 +81,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -93,6 +93,11 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * How often Vault should rotate the password of the user entry.
      */
     public readonly rotationPeriod!: pulumi.Output<number>;
+    /**
+     * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     */
+    public readonly skipImportRotation!: pulumi.Output<boolean | undefined>;
     /**
      * The username of the existing LDAP entry to manage password rotation for.
      */
@@ -116,6 +121,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["skipImportRotation"] = state ? state.skipImportRotation : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
@@ -133,6 +139,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
             resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["skipImportRotation"] = args ? args.skipImportRotation : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -158,7 +165,7 @@ export interface SecretBackendStaticRoleState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -170,6 +177,11 @@ export interface SecretBackendStaticRoleState {
      * How often Vault should rotate the password of the user entry.
      */
     rotationPeriod?: pulumi.Input<number>;
+    /**
+     * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     */
+    skipImportRotation?: pulumi.Input<boolean>;
     /**
      * The username of the existing LDAP entry to manage password rotation for.
      */
@@ -194,7 +206,7 @@ export interface SecretBackendStaticRoleArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -206,6 +218,11 @@ export interface SecretBackendStaticRoleArgs {
      * How often Vault should rotate the password of the user entry.
      */
     rotationPeriod: pulumi.Input<number>;
+    /**
+     * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
+     * Requires Vault 1.16 or above.
+     */
+    skipImportRotation?: pulumi.Input<boolean>;
     /**
      * The username of the existing LDAP entry to manage password rotation for.
      */

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -72,10 +72,6 @@ import (
 //
 // ```
 // <!--End PulumiCodeChooser -->
-//
-// ## Deprecations
-//
-// * `serial` - Use `serialNumber` instead.
 type SecretBackendSign struct {
 	pulumi.CustomResourceState
 
@@ -114,17 +110,13 @@ type SecretBackendSign struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolOutput `pulumi:"renewPending"`
-	// The serial number.
-	//
-	// Deprecated: Use serialNumber instead
-	Serial pulumi.StringOutput `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
 	// Time to live
@@ -207,17 +199,13 @@ type secretBackendSignState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending *bool `pulumi:"renewPending"`
-	// The serial number.
-	//
-	// Deprecated: Use serialNumber instead
-	Serial *string `pulumi:"serial"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
 	// Time to live
@@ -262,17 +250,13 @@ type SecretBackendSignState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 	RenewPending pulumi.BoolPtrInput
-	// The serial number.
-	//
-	// Deprecated: Use serialNumber instead
-	Serial pulumi.StringPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
 	// Time to live
@@ -313,7 +297,7 @@ type secretBackendSignArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// List of other SANs
@@ -353,7 +337,7 @@ type SecretBackendSignArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// List of other SANs
@@ -531,7 +515,7 @@ func (o SecretBackendSignOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendSignOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
@@ -545,13 +529,6 @@ func (o SecretBackendSignOutput) OtherSans() pulumi.StringArrayOutput {
 // `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
 func (o SecretBackendSignOutput) RenewPending() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.BoolOutput { return v.RenewPending }).(pulumi.BoolOutput)
-}
-
-// The serial number.
-//
-// Deprecated: Use serialNumber instead
-func (o SecretBackendSignOutput) Serial() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Serial }).(pulumi.StringOutput)
 }
 
 // The certificate's serial number, hex formatted.

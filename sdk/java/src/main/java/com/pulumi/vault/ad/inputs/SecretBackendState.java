@@ -225,29 +225,6 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * **Deprecated** use `password_policy`. Text to insert the password into, ex. &#34;customPrefix{{PASSWORD}}customSuffix&#34;.
-     * 
-     * @deprecated
-     * Formatter is deprecated and password_policy should be used with Vault &gt;= 1.5.
-     * 
-     */
-    @Deprecated /* Formatter is deprecated and password_policy should be used with Vault >= 1.5. */
-    @Import(name="formatter")
-    private @Nullable Output<String> formatter;
-
-    /**
-     * @return **Deprecated** use `password_policy`. Text to insert the password into, ex. &#34;customPrefix{{PASSWORD}}customSuffix&#34;.
-     * 
-     * @deprecated
-     * Formatter is deprecated and password_policy should be used with Vault &gt;= 1.5.
-     * 
-     */
-    @Deprecated /* Formatter is deprecated and password_policy should be used with Vault >= 1.5. */
-    public Optional<Output<String>> formatter() {
-        return Optional.ofNullable(this.formatter);
-    }
-
-    /**
      * LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
      * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
      * 
@@ -331,31 +308,6 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `password_policy` on vault-1.11+*
-     * 
-     * @deprecated
-     * Length is deprecated and password_policy should be used with Vault &gt;= 1.5.
-     * 
-     */
-    @Deprecated /* Length is deprecated and password_policy should be used with Vault >= 1.5. */
-    @Import(name="length")
-    private @Nullable Output<Integer> length;
-
-    /**
-     * @return **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-     * *Mutually exclusive with `password_policy` on vault-1.11+*
-     * 
-     * @deprecated
-     * Length is deprecated and password_policy should be used with Vault &gt;= 1.5.
-     * 
-     */
-    @Deprecated /* Length is deprecated and password_policy should be used with Vault >= 1.5. */
-    public Optional<Output<Integer>> length() {
-        return Optional.ofNullable(this.length);
-    }
-
-    /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
      * 
@@ -405,7 +357,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -415,7 +367,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -639,13 +591,11 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.discoverdn = $.discoverdn;
-        this.formatter = $.formatter;
         this.groupattr = $.groupattr;
         this.groupdn = $.groupdn;
         this.groupfilter = $.groupfilter;
         this.insecureTls = $.insecureTls;
         this.lastRotationTolerance = $.lastRotationTolerance;
-        this.length = $.length;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.maxTtl = $.maxTtl;
@@ -968,35 +918,6 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param formatter **Deprecated** use `password_policy`. Text to insert the password into, ex. &#34;customPrefix{{PASSWORD}}customSuffix&#34;.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Formatter is deprecated and password_policy should be used with Vault &gt;= 1.5.
-         * 
-         */
-        @Deprecated /* Formatter is deprecated and password_policy should be used with Vault >= 1.5. */
-        public Builder formatter(@Nullable Output<String> formatter) {
-            $.formatter = formatter;
-            return this;
-        }
-
-        /**
-         * @param formatter **Deprecated** use `password_policy`. Text to insert the password into, ex. &#34;customPrefix{{PASSWORD}}customSuffix&#34;.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Formatter is deprecated and password_policy should be used with Vault &gt;= 1.5.
-         * 
-         */
-        @Deprecated /* Formatter is deprecated and password_policy should be used with Vault >= 1.5. */
-        public Builder formatter(String formatter) {
-            return formatter(Output.of(formatter));
-        }
-
-        /**
          * @param groupattr LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
          * user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
          * 
@@ -1110,37 +1031,6 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param length **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-         * *Mutually exclusive with `password_policy` on vault-1.11+*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Length is deprecated and password_policy should be used with Vault &gt;= 1.5.
-         * 
-         */
-        @Deprecated /* Length is deprecated and password_policy should be used with Vault >= 1.5. */
-        public Builder length(@Nullable Output<Integer> length) {
-            $.length = length;
-            return this;
-        }
-
-        /**
-         * @param length **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-         * *Mutually exclusive with `password_policy` on vault-1.11+*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Length is deprecated and password_policy should be used with Vault &gt;= 1.5.
-         * 
-         */
-        @Deprecated /* Length is deprecated and password_policy should be used with Vault >= 1.5. */
-        public Builder length(Integer length) {
-            return length(Output.of(length));
-        }
-
-        /**
          * @param local Mark the secrets engine as local-only. Local engines are not replicated or removed by
          * replication.Tolerance duration to use when checking the last rotation time.
          * 
@@ -1208,7 +1098,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -1222,7 +1112,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

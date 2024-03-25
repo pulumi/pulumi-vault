@@ -519,6 +519,17 @@ export namespace config {
         value: string;
     }
 
+    export interface UiCustomMessageLink {
+        /**
+         * The URL of the hyperlink
+         */
+        href: string;
+        /**
+         * The title of the hyperlink
+         */
+        title: string;
+    }
+
 }
 
 export namespace database {

@@ -78,12 +78,8 @@ namespace Pulumi.Vault
         [Output("allowedNames")]
         public Output<ImmutableArray<string>> AllowedNames { get; private set; } = null!;
 
-        [Output("allowedOrganizationUnits")]
-        public Output<ImmutableArray<string>> AllowedOrganizationUnits { get; private set; } = null!;
-
         /// <summary>
         /// Allowed organization units for authenticated client certificates.
-        /// *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         /// </summary>
         [Output("allowedOrganizationalUnits")]
         public Output<ImmutableArray<string>> AllowedOrganizationalUnits { get; private set; } = null!;
@@ -121,7 +117,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -343,21 +339,11 @@ namespace Pulumi.Vault
             set => _allowedNames = value;
         }
 
-        [Input("allowedOrganizationUnits")]
-        private InputList<string>? _allowedOrganizationUnits;
-        [Obsolete(@"Use allowed_organizational_units")]
-        public InputList<string> AllowedOrganizationUnits
-        {
-            get => _allowedOrganizationUnits ?? (_allowedOrganizationUnits = new InputList<string>());
-            set => _allowedOrganizationUnits = value;
-        }
-
         [Input("allowedOrganizationalUnits")]
         private InputList<string>? _allowedOrganizationalUnits;
 
         /// <summary>
         /// Allowed organization units for authenticated client certificates.
-        /// *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         /// </summary>
         public InputList<string> AllowedOrganizationalUnits
         {
@@ -404,7 +390,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -612,21 +598,11 @@ namespace Pulumi.Vault
             set => _allowedNames = value;
         }
 
-        [Input("allowedOrganizationUnits")]
-        private InputList<string>? _allowedOrganizationUnits;
-        [Obsolete(@"Use allowed_organizational_units")]
-        public InputList<string> AllowedOrganizationUnits
-        {
-            get => _allowedOrganizationUnits ?? (_allowedOrganizationUnits = new InputList<string>());
-            set => _allowedOrganizationUnits = value;
-        }
-
         [Input("allowedOrganizationalUnits")]
         private InputList<string>? _allowedOrganizationalUnits;
 
         /// <summary>
         /// Allowed organization units for authenticated client certificates.
-        /// *In previous provider releases this field was incorrectly named `allowed_organization_units`, please update accordingly*
         /// </summary>
         public InputList<string> AllowedOrganizationalUnits
         {
@@ -673,7 +649,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

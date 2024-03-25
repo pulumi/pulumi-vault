@@ -16,7 +16,6 @@ class SecretBackendKeyArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[str],
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
-                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
                  deletion_allowed: Optional[pulumi.Input[bool]] = None,
@@ -33,8 +32,6 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-               key.
         :param pulumi.Input[int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[bool] convergent_encryption: Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
@@ -47,7 +44,7 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
@@ -55,11 +52,6 @@ class SecretBackendKeyArgs:
         pulumi.set(__self__, "backend", backend)
         if allow_plaintext_backup is not None:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
-        if auto_rotate_interval is not None:
-            warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
-            pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
-        if auto_rotate_interval is not None:
-            pulumi.set(__self__, "auto_rotate_interval", auto_rotate_interval)
         if auto_rotate_period is not None:
             pulumi.set(__self__, "auto_rotate_period", auto_rotate_period)
         if convergent_encryption is not None:
@@ -107,22 +99,6 @@ class SecretBackendKeyArgs:
     @allow_plaintext_backup.setter
     def allow_plaintext_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_plaintext_backup", value)
-
-    @property
-    @pulumi.getter(name="autoRotateInterval")
-    def auto_rotate_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-        key.
-        """
-        warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
-        pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
-
-        return pulumi.get(self, "auto_rotate_interval")
-
-    @auto_rotate_interval.setter
-    def auto_rotate_interval(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "auto_rotate_interval", value)
 
     @property
     @pulumi.getter(name="autoRotatePeriod")
@@ -239,7 +215,7 @@ class SecretBackendKeyArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -266,7 +242,6 @@ class SecretBackendKeyArgs:
 class _SecretBackendKeyState:
     def __init__(__self__, *,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
-                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
@@ -290,8 +265,6 @@ class _SecretBackendKeyState:
         Input properties used for looking up and filtering SecretBackendKey resources.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-               key.
         :param pulumi.Input[int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -310,7 +283,7 @@ class _SecretBackendKeyState:
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
@@ -321,11 +294,6 @@ class _SecretBackendKeyState:
         """
         if allow_plaintext_backup is not None:
             pulumi.set(__self__, "allow_plaintext_backup", allow_plaintext_backup)
-        if auto_rotate_interval is not None:
-            warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
-            pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
-        if auto_rotate_interval is not None:
-            pulumi.set(__self__, "auto_rotate_interval", auto_rotate_interval)
         if auto_rotate_period is not None:
             pulumi.set(__self__, "auto_rotate_period", auto_rotate_period)
         if backend is not None:
@@ -377,22 +345,6 @@ class _SecretBackendKeyState:
     @allow_plaintext_backup.setter
     def allow_plaintext_backup(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_plaintext_backup", value)
-
-    @property
-    @pulumi.getter(name="autoRotateInterval")
-    def auto_rotate_interval(self) -> Optional[pulumi.Input[int]]:
-        """
-        Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-        key.
-        """
-        warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
-        pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
-
-        return pulumi.get(self, "auto_rotate_interval")
-
-    @auto_rotate_interval.setter
-    def auto_rotate_interval(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "auto_rotate_interval", value)
 
     @property
     @pulumi.getter(name="autoRotatePeriod")
@@ -559,7 +511,7 @@ class _SecretBackendKeyState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -636,7 +588,6 @@ class SecretBackendKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
-                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
@@ -670,10 +621,6 @@ class SecretBackendKey(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Deprecations
-
-        * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
-
         ## Import
 
         Transit secret backend keys can be imported using the `path`, e.g.
@@ -686,8 +633,6 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-               key.
         :param pulumi.Input[int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -701,7 +646,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] type: Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
                * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
@@ -732,10 +677,6 @@ class SecretBackendKey(pulumi.CustomResource):
         ```
         <!--End PulumiCodeChooser -->
 
-        ## Deprecations
-
-        * `auto_rotate_interval` - Replaced by `auto_rotate_period`.
-
         ## Import
 
         Transit secret backend keys can be imported using the `path`, e.g.
@@ -760,7 +701,6 @@ class SecretBackendKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
-                 auto_rotate_interval: Optional[pulumi.Input[int]] = None,
                  auto_rotate_period: Optional[pulumi.Input[int]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  convergent_encryption: Optional[pulumi.Input[bool]] = None,
@@ -783,7 +723,6 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__ = SecretBackendKeyArgs.__new__(SecretBackendKeyArgs)
 
             __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
-            __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
             __props__.__dict__["auto_rotate_period"] = auto_rotate_period
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
@@ -816,7 +755,6 @@ class SecretBackendKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_plaintext_backup: Optional[pulumi.Input[bool]] = None,
-            auto_rotate_interval: Optional[pulumi.Input[int]] = None,
             auto_rotate_period: Optional[pulumi.Input[int]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             convergent_encryption: Optional[pulumi.Input[bool]] = None,
@@ -845,8 +783,6 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_plaintext_backup: Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
                * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
-        :param pulumi.Input[int] auto_rotate_interval: Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-               key.
         :param pulumi.Input[int] auto_rotate_period: Amount of seconds the key should live before being automatically rotated.
                A value of 0 disables automatic rotation for the key.
         :param pulumi.Input[str] backend: The path the transit secret backend is mounted at, with no leading or trailing `/`s.
@@ -865,7 +801,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name to identify this key within the backend. Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] supports_decryption: Whether or not the key supports decryption, based on key type.
         :param pulumi.Input[bool] supports_derivation: Whether or not the key supports derivation, based on key type.
@@ -879,7 +815,6 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__ = _SecretBackendKeyState.__new__(_SecretBackendKeyState)
 
         __props__.__dict__["allow_plaintext_backup"] = allow_plaintext_backup
-        __props__.__dict__["auto_rotate_interval"] = auto_rotate_interval
         __props__.__dict__["auto_rotate_period"] = auto_rotate_period
         __props__.__dict__["backend"] = backend
         __props__.__dict__["convergent_encryption"] = convergent_encryption
@@ -909,18 +844,6 @@ class SecretBackendKey(pulumi.CustomResource):
         * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
         """
         return pulumi.get(self, "allow_plaintext_backup")
-
-    @property
-    @pulumi.getter(name="autoRotateInterval")
-    def auto_rotate_interval(self) -> pulumi.Output[int]:
-        """
-        Amount of time the key should live before being automatically rotated. A value of 0 disables automatic rotation for the
-        key.
-        """
-        warnings.warn("""Use auto_rotate_period instead""", DeprecationWarning)
-        pulumi.log.warn("""auto_rotate_interval is deprecated: Use auto_rotate_period instead""")
-
-        return pulumi.get(self, "auto_rotate_interval")
 
     @property
     @pulumi.getter(name="autoRotatePeriod")
@@ -1035,7 +958,7 @@ class SecretBackendKey(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

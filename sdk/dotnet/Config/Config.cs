@@ -333,6 +333,18 @@ namespace Pulumi.Vault
         public static class Types
         {
 
+             public class UiCustomMessageLink
+             {
+            /// <summary>
+            /// The URL of the hyperlink
+            /// </summary>
+                public string Href { get; set; }
+            /// <summary>
+            /// The title of the hyperlink
+            /// </summary>
+                public string Title { get; set; }
+            }
+
              public class AuthLogin
              {
                 public string? Method { get; set; } = null!;

@@ -56,37 +56,6 @@ public final class GroupMemberEntityIdsState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The name of the group that are assigned the member entities.\
-     * *Deprecated: The value for group_name may not always be accurate*
-     * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-     * 
-     * @deprecated
-     * The value for group_name may not always be accurate,
-     * use &#34;data.vault_identity_group.*.group_name&#34;, &#34;vault_identity_group.*.group_name&#34; instead
-     * 
-     */
-    @Deprecated /* The value for group_name may not always be accurate, 
-use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_name"" instead */
-    @Import(name="groupName")
-    private @Nullable Output<String> groupName;
-
-    /**
-     * @return The name of the group that are assigned the member entities.\
-     * *Deprecated: The value for group_name may not always be accurate*
-     * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-     * 
-     * @deprecated
-     * The value for group_name may not always be accurate,
-     * use &#34;data.vault_identity_group.*.group_name&#34;, &#34;vault_identity_group.*.group_name&#34; instead
-     * 
-     */
-    @Deprecated /* The value for group_name may not always be accurate, 
-use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_name"" instead */
-    public Optional<Output<String>> groupName() {
-        return Optional.ofNullable(this.groupName);
-    }
-
-    /**
      * List of member entities that belong to the group
      * 
      */
@@ -104,7 +73,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -114,7 +83,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -127,7 +96,6 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
     private GroupMemberEntityIdsState(GroupMemberEntityIdsState $) {
         this.exclusive = $.exclusive;
         this.groupId = $.groupId;
-        this.groupName = $.groupName;
         this.memberEntityIds = $.memberEntityIds;
         this.namespace = $.namespace;
     }
@@ -201,43 +169,6 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
         }
 
         /**
-         * @param groupName The name of the group that are assigned the member entities.\
-         * *Deprecated: The value for group_name may not always be accurate*
-         * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * The value for group_name may not always be accurate,
-         * use &#34;data.vault_identity_group.*.group_name&#34;, &#34;vault_identity_group.*.group_name&#34; instead
-         * 
-         */
-        @Deprecated /* The value for group_name may not always be accurate, 
-use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_name"" instead */
-        public Builder groupName(@Nullable Output<String> groupName) {
-            $.groupName = groupName;
-            return this;
-        }
-
-        /**
-         * @param groupName The name of the group that are assigned the member entities.\
-         * *Deprecated: The value for group_name may not always be accurate*
-         * *use* `data.vault_identity_group.*.group_name`, *or* `vault_identity_group.*.group_name` *instead.*
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * The value for group_name may not always be accurate,
-         * use &#34;data.vault_identity_group.*.group_name&#34;, &#34;vault_identity_group.*.group_name&#34; instead
-         * 
-         */
-        @Deprecated /* The value for group_name may not always be accurate, 
-use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_name"" instead */
-        public Builder groupName(String groupName) {
-            return groupName(Output.of(groupName));
-        }
-
-        /**
          * @param memberEntityIds List of member entities that belong to the group
          * 
          * @return builder
@@ -271,7 +202,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder
@@ -285,7 +216,7 @@ use ""data.vault_identity_group.*.group_name"", ""vault_identity_group.*.group_n
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * *Available only for Vault Enterprise*.
          * 
          * @return builder

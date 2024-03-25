@@ -28,7 +28,7 @@ class MfaPingidArgs:
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -91,7 +91,7 @@ class MfaPingidArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -144,7 +144,7 @@ class _MfaPingidState:
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] namespace_id: `(string)` – Namespace ID computed by Vault
         :param pulumi.Input[str] org_alias: `(string)` – Org Alias computed by Vault
@@ -252,7 +252,7 @@ class _MfaPingidState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -391,7 +391,7 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
@@ -523,7 +523,7 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] namespace_id: `(string)` – Namespace ID computed by Vault
         :param pulumi.Input[str] org_alias: `(string)` – Org Alias computed by Vault
@@ -604,7 +604,7 @@ class MfaPingid(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

@@ -69,7 +69,7 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * 
      */
     @Import(name="namespace")
@@ -78,11 +78,32 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * 
      */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
+    }
+
+    /**
+     * The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     * 
+     */
+    @Import(name="projectId")
+    private @Nullable Output<String> projectId;
+
+    /**
+     * @return The target project to manage secrets in. If set,
+     * overrides the project ID derived from the service account JSON credentials or application
+     * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+     * to perform Secret Manager actions in the target project.
+     * 
+     */
+    public Optional<Output<String>> projectId() {
+        return Optional.ofNullable(this.projectId);
     }
 
     /**
@@ -124,6 +145,7 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
         this.customTags = $.customTags;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.projectId = $.projectId;
         this.secretNameTemplate = $.secretNameTemplate;
         this.type = $.type;
     }
@@ -216,7 +238,7 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * 
          * @return builder
          * 
@@ -229,13 +251,40 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
         /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+         * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
          * 
          * @return builder
          * 
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param projectId The target project to manage secrets in. If set,
+         * overrides the project ID derived from the service account JSON credentials or application
+         * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+         * to perform Secret Manager actions in the target project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(@Nullable Output<String> projectId) {
+            $.projectId = projectId;
+            return this;
+        }
+
+        /**
+         * @param projectId The target project to manage secrets in. If set,
+         * overrides the project ID derived from the service account JSON credentials or application
+         * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
+         * to perform Secret Manager actions in the target project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder projectId(String projectId) {
+            return projectId(Output.of(projectId));
         }
 
         /**

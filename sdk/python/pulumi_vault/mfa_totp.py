@@ -34,7 +34,7 @@ class MfaTotpArgs:
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
@@ -127,7 +127,7 @@ class MfaTotpArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -197,7 +197,7 @@ class _MfaTotpState:
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
@@ -291,7 +291,7 @@ class _MfaTotpState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -393,7 +393,7 @@ class MfaTotp(pulumi.CustomResource):
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
@@ -514,7 +514,7 @@ class MfaTotp(pulumi.CustomResource):
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] period: `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         :param pulumi.Input[int] qr_size: `(int)` - The pixel size of the generated square QR code.
@@ -584,7 +584,7 @@ class MfaTotp(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

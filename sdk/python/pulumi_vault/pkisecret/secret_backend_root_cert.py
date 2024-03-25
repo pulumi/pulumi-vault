@@ -69,7 +69,7 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
@@ -352,7 +352,7 @@ class SecretBackendRootCertArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -513,7 +513,6 @@ class _SecretBackendRootCertState:
                  postal_code: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
-                 serial: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
@@ -548,7 +547,7 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
@@ -557,7 +556,6 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
-        :param pulumi.Input[str] serial: Deprecated, use `serial_number` instead.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
@@ -621,11 +619,6 @@ class _SecretBackendRootCertState:
             pulumi.set(__self__, "private_key_format", private_key_format)
         if province is not None:
             pulumi.set(__self__, "province", province)
-        if serial is not None:
-            warnings.warn("""Use serial_number instead""", DeprecationWarning)
-            pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
-        if serial is not None:
-            pulumi.set(__self__, "serial", serial)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
         if street_address is not None:
@@ -888,7 +881,7 @@ class _SecretBackendRootCertState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -980,21 +973,6 @@ class _SecretBackendRootCertState:
     @province.setter
     def province(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "province", value)
-
-    @property
-    @pulumi.getter
-    def serial(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deprecated, use `serial_number` instead.
-        """
-        warnings.warn("""Use serial_number instead""", DeprecationWarning)
-        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
-
-        return pulumi.get(self, "serial")
-
-    @serial.setter
-    def serial(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "serial", value)
 
     @property
     @pulumi.getter(name="serialNumber")
@@ -1141,7 +1119,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
@@ -1276,7 +1254,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__.__dict__["issuer_id"] = None
             __props__.__dict__["issuing_ca"] = None
             __props__.__dict__["key_id"] = None
-            __props__.__dict__["serial"] = None
             __props__.__dict__["serial_number"] = None
         super(SecretBackendRootCert, __self__).__init__(
             'vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert',
@@ -1316,7 +1293,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
             postal_code: Optional[pulumi.Input[str]] = None,
             private_key_format: Optional[pulumi.Input[str]] = None,
             province: Optional[pulumi.Input[str]] = None,
-            serial: Optional[pulumi.Input[str]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
@@ -1356,7 +1332,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[str]]] other_sans: List of other SANs
@@ -1365,7 +1341,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
-        :param pulumi.Input[str] serial: Deprecated, use `serial_number` instead.
         :param pulumi.Input[str] serial_number: The certificate's serial number, hex formatted.
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] ttl: Time to live
@@ -1405,7 +1380,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["postal_code"] = postal_code
         __props__.__dict__["private_key_format"] = private_key_format
         __props__.__dict__["province"] = province
-        __props__.__dict__["serial"] = serial
         __props__.__dict__["serial_number"] = serial_number
         __props__.__dict__["street_address"] = street_address
         __props__.__dict__["ttl"] = ttl
@@ -1584,7 +1558,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -1644,17 +1618,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
         The province
         """
         return pulumi.get(self, "province")
-
-    @property
-    @pulumi.getter
-    def serial(self) -> pulumi.Output[str]:
-        """
-        Deprecated, use `serial_number` instead.
-        """
-        warnings.warn("""Use serial_number instead""", DeprecationWarning)
-        pulumi.log.warn("""serial is deprecated: Use serial_number instead""")
-
-        return pulumi.get(self, "serial")
 
     @property
     @pulumi.getter(name="serialNumber")

@@ -174,7 +174,7 @@ def get_secret_subkeys_v2(depth: Optional[int] = None,
            the name is `foo/bar/baz`.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param int version: Specifies the version to return. If not 
            set the latest version is returned.
@@ -250,7 +250,7 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
            the name is `foo/bar/baz`.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param int version: Specifies the version to return. If not 
            set the latest version is returned.

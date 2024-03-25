@@ -36,7 +36,7 @@ class OidcClientArgs:
         :param pulumi.Input[str] name: The name of the client.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
@@ -141,7 +141,7 @@ class OidcClientArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -182,8 +182,9 @@ class _OidcClientState:
         Input properties used for looking up and filtering OidcClient resources.
         :param pulumi.Input[int] access_token_ttl: The time-to-live for access tokens obtained by the client.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] assignments: A list of assignment resources associated with the client.
-        :param pulumi.Input[str] client_id: The Client ID from Vault.
-        :param pulumi.Input[str] client_secret: The Client Secret from Vault.
+        :param pulumi.Input[str] client_id: The Client ID returned by Vault.
+        :param pulumi.Input[str] client_secret: The Client Secret Key returned by Vault.
+               For public OpenID Clients `client_secret` is set to an empty string `""`
         :param pulumi.Input[str] client_type: The client type based on its ability to maintain confidentiality of credentials.
                The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
         :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client. 
@@ -194,7 +195,7 @@ class _OidcClientState:
         :param pulumi.Input[str] name: The name of the client.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
@@ -249,7 +250,7 @@ class _OidcClientState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The Client ID from Vault.
+        The Client ID returned by Vault.
         """
         return pulumi.get(self, "client_id")
 
@@ -261,7 +262,8 @@ class _OidcClientState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[str]]:
         """
-        The Client Secret from Vault.
+        The Client Secret Key returned by Vault.
+        For public OpenID Clients `client_secret` is set to an empty string `""`
         """
         return pulumi.get(self, "client_secret")
 
@@ -327,7 +329,7 @@ class _OidcClientState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -413,7 +415,7 @@ class OidcClient(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the client.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
@@ -532,8 +534,9 @@ class OidcClient(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] access_token_ttl: The time-to-live for access tokens obtained by the client.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] assignments: A list of assignment resources associated with the client.
-        :param pulumi.Input[str] client_id: The Client ID from Vault.
-        :param pulumi.Input[str] client_secret: The Client Secret from Vault.
+        :param pulumi.Input[str] client_id: The Client ID returned by Vault.
+        :param pulumi.Input[str] client_secret: The Client Secret Key returned by Vault.
+               For public OpenID Clients `client_secret` is set to an empty string `""`
         :param pulumi.Input[str] client_type: The client type based on its ability to maintain confidentiality of credentials.
                The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
         :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client. 
@@ -544,7 +547,7 @@ class OidcClient(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the client.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
                One of these values must exactly match the `redirect_uri` parameter value
@@ -586,7 +589,7 @@ class OidcClient(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[str]:
         """
-        The Client ID from Vault.
+        The Client ID returned by Vault.
         """
         return pulumi.get(self, "client_id")
 
@@ -594,7 +597,8 @@ class OidcClient(pulumi.CustomResource):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[str]:
         """
-        The Client Secret from Vault.
+        The Client Secret Key returned by Vault.
+        For public OpenID Clients `client_secret` is set to an empty string `""`
         """
         return pulumi.get(self, "client_secret")
 
@@ -640,7 +644,7 @@ class OidcClient(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")

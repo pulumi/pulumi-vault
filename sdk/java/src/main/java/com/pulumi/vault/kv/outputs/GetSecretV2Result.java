@@ -63,6 +63,10 @@ public final class GetSecretV2Result {
      * 
      */
     private String path;
+    /**
+     * @return Version of the secret.
+     * 
+     */
     private @Nullable Integer version;
 
     private GetSecretV2Result() {}
@@ -135,6 +139,10 @@ public final class GetSecretV2Result {
     public String path() {
         return this.path;
     }
+    /**
+     * @return Version of the secret.
+     * 
+     */
     public Optional<Integer> version() {
         return Optional.ofNullable(this.version);
     }

@@ -75,13 +75,17 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
      */
     public readonly crlDistributionPoints!: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies that templating of AIA fields is allowed.
+     */
+    public readonly enableTemplating!: pulumi.Output<boolean | undefined>;
+    /**
      * Specifies the URL values for the Issuing Certificate field.
      */
     public readonly issuingCertificates!: pulumi.Output<string[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -105,6 +109,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendConfigUrlsState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["crlDistributionPoints"] = state ? state.crlDistributionPoints : undefined;
+            resourceInputs["enableTemplating"] = state ? state.enableTemplating : undefined;
             resourceInputs["issuingCertificates"] = state ? state.issuingCertificates : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["ocspServers"] = state ? state.ocspServers : undefined;
@@ -115,6 +120,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["crlDistributionPoints"] = args ? args.crlDistributionPoints : undefined;
+            resourceInputs["enableTemplating"] = args ? args.enableTemplating : undefined;
             resourceInputs["issuingCertificates"] = args ? args.issuingCertificates : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["ocspServers"] = args ? args.ocspServers : undefined;
@@ -137,13 +143,17 @@ export interface SecretBackendConfigUrlsState {
      */
     crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Specifies that templating of AIA fields is allowed.
+     */
+    enableTemplating?: pulumi.Input<boolean>;
+    /**
      * Specifies the URL values for the Issuing Certificate field.
      */
     issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -166,13 +176,17 @@ export interface SecretBackendConfigUrlsArgs {
      */
     crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Specifies that templating of AIA fields is allowed.
+     */
+    enableTemplating?: pulumi.Input<boolean>;
+    /**
      * Specifies the URL values for the Issuing Certificate field.
      */
     issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

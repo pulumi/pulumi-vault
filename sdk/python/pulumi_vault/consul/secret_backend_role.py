@@ -26,7 +26,6 @@ class SecretBackendRoleArgs:
                  partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_identities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
@@ -41,7 +40,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node
                identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
@@ -52,8 +51,6 @@ class SecretBackendRoleArgs:
                `policies`, remains supported for legacy users, but Vault has deprecated this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul
                service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
-        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
-               *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         if backend is not None:
@@ -80,11 +77,6 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "policies", policies)
         if service_identities is not None:
             pulumi.set(__self__, "service_identities", service_identities)
-        if token_type is not None:
-            warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
-            pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
-        if token_type is not None:
-            pulumi.set(__self__, "token_type", token_type)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -180,7 +172,7 @@ class SecretBackendRoleArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -241,22 +233,6 @@ class SecretBackendRoleArgs:
     @service_identities.setter
     def service_identities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "service_identities", value)
-
-    @property
-    @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-        """
-        warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
-        pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
-
-        return pulumi.get(self, "token_type")
-
-    @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token_type", value)
 
     @property
     @pulumi.getter
@@ -286,7 +262,6 @@ class _SecretBackendRoleState:
                  partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_identities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
@@ -301,7 +276,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node
                identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
@@ -312,8 +287,6 @@ class _SecretBackendRoleState:
                `policies`, remains supported for legacy users, but Vault has deprecated this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul
                service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
-        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
-               *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         if backend is not None:
@@ -340,11 +313,6 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "policies", policies)
         if service_identities is not None:
             pulumi.set(__self__, "service_identities", service_identities)
-        if token_type is not None:
-            warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
-            pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
-        if token_type is not None:
-            pulumi.set(__self__, "token_type", token_type)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
 
@@ -440,7 +408,7 @@ class _SecretBackendRoleState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -501,22 +469,6 @@ class _SecretBackendRoleState:
     @service_identities.setter
     def service_identities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "service_identities", value)
-
-    @property
-    @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-        """
-        warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
-        pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
-
-        return pulumi.get(self, "token_type")
-
-    @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token_type", value)
 
     @property
     @pulumi.getter
@@ -548,7 +500,6 @@ class SecretBackendRole(pulumi.CustomResource):
                  partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_identities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -599,7 +550,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node
                identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
@@ -610,8 +561,6 @@ class SecretBackendRole(pulumi.CustomResource):
                `policies`, remains supported for legacy users, but Vault has deprecated this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul
                service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
-        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
-               *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         ...
@@ -682,7 +631,6 @@ class SecretBackendRole(pulumi.CustomResource):
                  partition: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_identities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -705,7 +653,6 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["partition"] = partition
             __props__.__dict__["policies"] = policies
             __props__.__dict__["service_identities"] = service_identities
-            __props__.__dict__["token_type"] = token_type
             __props__.__dict__["ttl"] = ttl
         super(SecretBackendRole, __self__).__init__(
             'vault:consul/secretBackendRole:SecretBackendRole',
@@ -729,7 +676,6 @@ class SecretBackendRole(pulumi.CustomResource):
             partition: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             service_identities: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            token_type: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
@@ -749,7 +695,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the Consul secrets engine role to create.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] node_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node
                identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
@@ -760,8 +706,6 @@ class SecretBackendRole(pulumi.CustomResource):
                `policies`, remains supported for legacy users, but Vault has deprecated this field.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] service_identities: <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul
                service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
-        :param pulumi.Input[str] token_type: Specifies the type of token to create when using this role. Valid values are "client" or "management".
-               *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -780,7 +724,6 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["partition"] = partition
         __props__.__dict__["policies"] = policies
         __props__.__dict__["service_identities"] = service_identities
-        __props__.__dict__["token_type"] = token_type
         __props__.__dict__["ttl"] = ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
@@ -848,7 +791,7 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
@@ -889,18 +832,6 @@ class SecretBackendRole(pulumi.CustomResource):
         service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
         """
         return pulumi.get(self, "service_identities")
-
-    @property
-    @pulumi.getter(name="tokenType")
-    def token_type(self) -> pulumi.Output[Optional[str]]:
-        """
-        Specifies the type of token to create when using this role. Valid values are "client" or "management".
-        *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-        """
-        warnings.warn("""Consul 1.11 and later removed the legacy ACL system which supported this field.""", DeprecationWarning)
-        pulumi.log.warn("""token_type is deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.""")
-
-        return pulumi.get(self, "token_type")
 
     @property
     @pulumi.getter

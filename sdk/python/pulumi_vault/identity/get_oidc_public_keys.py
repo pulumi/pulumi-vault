@@ -108,7 +108,7 @@ def get_oidc_public_keys(name: Optional[str] = None,
     :param str name: The name of the OIDC Provider in Vault.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
     __args__ = dict()
@@ -158,7 +158,7 @@ def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
     :param str name: The name of the OIDC Provider in Vault.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
     ...

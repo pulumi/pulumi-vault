@@ -131,12 +131,6 @@ namespace Pulumi.Vault.AD
         public Output<bool?> Discoverdn { get; private set; } = null!;
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-        /// </summary>
-        [Output("formatter")]
-        public Output<string> Formatter { get; private set; } = null!;
-
-        /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
         /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         /// </summary>
@@ -171,13 +165,6 @@ namespace Pulumi.Vault.AD
         public Output<int> LastRotationTolerance { get; private set; } = null!;
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        /// *Mutually exclusive with `password_policy` on vault-1.11+*
-        /// </summary>
-        [Output("length")]
-        public Output<int> Length { get; private set; } = null!;
-
-        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -199,7 +186,7 @@ namespace Pulumi.Vault.AD
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -454,12 +441,6 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Discoverdn { get; set; }
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-        /// </summary>
-        [Input("formatter")]
-        public Input<string>? Formatter { get; set; }
-
-        /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
         /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         /// </summary>
@@ -494,13 +475,6 @@ namespace Pulumi.Vault.AD
         public Input<int>? LastRotationTolerance { get; set; }
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        /// *Mutually exclusive with `password_policy` on vault-1.11+*
-        /// </summary>
-        [Input("length")]
-        public Input<int>? Length { get; set; }
-
-        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -522,7 +496,7 @@ namespace Pulumi.Vault.AD
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -733,12 +707,6 @@ namespace Pulumi.Vault.AD
         public Input<bool>? Discoverdn { get; set; }
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. Text to insert the password into, ex. "customPrefix{{PASSWORD}}customSuffix".
-        /// </summary>
-        [Input("formatter")]
-        public Input<string>? Formatter { get; set; }
-
-        /// <summary>
         /// LDAP attribute to follow on objects returned by &lt;groupfilter&gt; in order to enumerate
         /// user group membership. Examples: `cn` or `memberOf`, etc. Defaults to `cn`.
         /// </summary>
@@ -773,13 +741,6 @@ namespace Pulumi.Vault.AD
         public Input<int>? LastRotationTolerance { get; set; }
 
         /// <summary>
-        /// **Deprecated** use `password_policy`. The desired length of passwords that Vault generates.
-        /// *Mutually exclusive with `password_policy` on vault-1.11+*
-        /// </summary>
-        [Input("length")]
-        public Input<int>? Length { get; set; }
-
-        /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
         /// replication.Tolerance duration to use when checking the last rotation time.
         /// </summary>
@@ -801,7 +762,7 @@ namespace Pulumi.Vault.AD
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]

@@ -39,7 +39,7 @@ class SyncAzureDestinationArgs:
         :param pulumi.Input[str] name: Unique name of the Azure destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] tenant_id: ID of the target Azure tenant.
@@ -149,7 +149,7 @@ class SyncAzureDestinationArgs:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
@@ -214,7 +214,7 @@ class _SyncAzureDestinationState:
         :param pulumi.Input[str] name: Unique name of the Azure destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] tenant_id: ID of the target Azure tenant.
@@ -327,7 +327,7 @@ class _SyncAzureDestinationState:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 
@@ -434,7 +434,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         :param pulumi.Input[str] name: Unique name of the Azure destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] tenant_id: ID of the target Azure tenant.
@@ -561,7 +561,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         :param pulumi.Input[str] name: Unique name of the Azure destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+               The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         :param pulumi.Input[str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
         :param pulumi.Input[str] tenant_id: ID of the target Azure tenant.
@@ -645,7 +645,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         return pulumi.get(self, "namespace")
 

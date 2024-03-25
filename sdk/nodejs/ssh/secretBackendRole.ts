@@ -117,14 +117,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedUserKeyConfigs!: pulumi.Output<outputs.ssh.SecretBackendRoleAllowedUserKeyConfig[] | undefined>;
     /**
-     * Specifies a map of ssh key types and their expected sizes which 
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowedUserKeyConfig *instead*
-     *
-     * @deprecated Set in allowed_user_key_config
-     */
-    public readonly allowedUserKeyLengths!: pulumi.Output<{[key: string]: number} | undefined>;
-    /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     public readonly allowedUsers!: pulumi.Output<string | undefined>;
@@ -175,7 +167,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
@@ -212,7 +204,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedDomainsTemplate"] = state ? state.allowedDomainsTemplate : undefined;
             resourceInputs["allowedExtensions"] = state ? state.allowedExtensions : undefined;
             resourceInputs["allowedUserKeyConfigs"] = state ? state.allowedUserKeyConfigs : undefined;
-            resourceInputs["allowedUserKeyLengths"] = state ? state.allowedUserKeyLengths : undefined;
             resourceInputs["allowedUsers"] = state ? state.allowedUsers : undefined;
             resourceInputs["allowedUsersTemplate"] = state ? state.allowedUsersTemplate : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
@@ -247,7 +238,6 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedDomainsTemplate"] = args ? args.allowedDomainsTemplate : undefined;
             resourceInputs["allowedExtensions"] = args ? args.allowedExtensions : undefined;
             resourceInputs["allowedUserKeyConfigs"] = args ? args.allowedUserKeyConfigs : undefined;
-            resourceInputs["allowedUserKeyLengths"] = args ? args.allowedUserKeyLengths : undefined;
             resourceInputs["allowedUsers"] = args ? args.allowedUsers : undefined;
             resourceInputs["allowedUsersTemplate"] = args ? args.allowedUsersTemplate : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
@@ -321,14 +311,6 @@ export interface SecretBackendRoleState {
      */
     allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
     /**
-     * Specifies a map of ssh key types and their expected sizes which 
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowedUserKeyConfig *instead*
-     *
-     * @deprecated Set in allowed_user_key_config
-     */
-    allowedUserKeyLengths?: pulumi.Input<{[key: string]: pulumi.Input<number>}>;
-    /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     allowedUsers?: pulumi.Input<string>;
@@ -379,7 +361,7 @@ export interface SecretBackendRoleState {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
@@ -445,14 +427,6 @@ export interface SecretBackendRoleArgs {
      */
     allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
     /**
-     * Specifies a map of ssh key types and their expected sizes which 
-     * are allowed to be signed by the CA type.
-     * *Deprecated: use* allowedUserKeyConfig *instead*
-     *
-     * @deprecated Set in allowed_user_key_config
-     */
-    allowedUserKeyLengths?: pulumi.Input<{[key: string]: pulumi.Input<number>}>;
-    /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
     allowedUsers?: pulumi.Input<string>;
@@ -503,7 +477,7 @@ export interface SecretBackendRoleArgs {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;

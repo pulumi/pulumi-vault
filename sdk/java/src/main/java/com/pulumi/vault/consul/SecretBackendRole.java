@@ -185,7 +185,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -195,7 +195,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * @return The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+     * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      * 
      */
@@ -267,26 +267,6 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> serviceIdentities() {
         return Codegen.optional(this.serviceIdentities);
-    }
-    /**
-     * Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     * 
-     * @deprecated
-     * Consul 1.11 and later removed the legacy ACL system which supported this field.
-     * 
-     */
-    @Deprecated /* Consul 1.11 and later removed the legacy ACL system which supported this field. */
-    @Export(name="tokenType", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> tokenType;
-
-    /**
-     * @return Specifies the type of token to create when using this role. Valid values are &#34;client&#34; or &#34;management&#34;.
-     * *Deprecated: Consul 1.11 and later removed the legacy ACL system which supported this field.*
-     * 
-     */
-    public Output<Optional<String>> tokenType() {
-        return Codegen.optional(this.tokenType);
     }
     /**
      * Specifies the TTL for this role.

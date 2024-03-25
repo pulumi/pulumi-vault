@@ -203,7 +203,7 @@ def get_access_credentials(backend: Optional[str] = None,
            read credentials from, with no leading or trailing `/`s.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str region: The region the read credentials belong to.
     :param str role: The name of the AWS secret backend role to read
@@ -265,7 +265,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            read credentials from, with no leading or trailing `/`s.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     :param str region: The region the read credentials belong to.
     :param str role: The name of the AWS secret backend role to read

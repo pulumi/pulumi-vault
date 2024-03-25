@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/internal"
+	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,8 +23,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v5/go/vault/ssh"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/ssh"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -97,12 +97,6 @@ type SecretBackendRole struct {
 	// user key configuration, like key type and their lengths. Can be specified multiple times.
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayOutput `pulumi:"allowedUserKeyConfigs"`
-	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
-	// *Deprecated: use* allowedUserKeyConfig *instead*
-	//
-	// Deprecated: Set in allowed_user_key_config
-	AllowedUserKeyLengths pulumi.IntMapOutput `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrOutput `pulumi:"allowedUsers"`
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -129,7 +123,7 @@ type SecretBackendRole struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
@@ -199,12 +193,6 @@ type secretBackendRoleState struct {
 	// user key configuration, like key type and their lengths. Can be specified multiple times.
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
-	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
-	// *Deprecated: use* allowedUserKeyConfig *instead*
-	//
-	// Deprecated: Set in allowed_user_key_config
-	AllowedUserKeyLengths map[string]int `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -231,7 +219,7 @@ type secretBackendRoleState struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
@@ -266,12 +254,6 @@ type SecretBackendRoleState struct {
 	// user key configuration, like key type and their lengths. Can be specified multiple times.
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
-	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
-	// *Deprecated: use* allowedUserKeyConfig *instead*
-	//
-	// Deprecated: Set in allowed_user_key_config
-	AllowedUserKeyLengths pulumi.IntMapInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -298,7 +280,7 @@ type SecretBackendRoleState struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
@@ -337,12 +319,6 @@ type secretBackendRoleArgs struct {
 	// user key configuration, like key type and their lengths. Can be specified multiple times.
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
-	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
-	// *Deprecated: use* allowedUserKeyConfig *instead*
-	//
-	// Deprecated: Set in allowed_user_key_config
-	AllowedUserKeyLengths map[string]int `pulumi:"allowedUserKeyLengths"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -369,7 +345,7 @@ type secretBackendRoleArgs struct {
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
@@ -405,12 +381,6 @@ type SecretBackendRoleArgs struct {
 	// user key configuration, like key type and their lengths. Can be specified multiple times.
 	// *See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
-	// Specifies a map of ssh key types and their expected sizes which
-	// are allowed to be signed by the CA type.
-	// *Deprecated: use* allowedUserKeyConfig *instead*
-	//
-	// Deprecated: Set in allowed_user_key_config
-	AllowedUserKeyLengths pulumi.IntMapInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
 	// Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
@@ -437,7 +407,7 @@ type SecretBackendRoleArgs struct {
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies the duration by which to backdate the ValidAfter property. Uses duration format strings.
@@ -593,15 +563,6 @@ func (o SecretBackendRoleOutput) AllowedUserKeyConfigs() SecretBackendRoleAllowe
 	}).(SecretBackendRoleAllowedUserKeyConfigArrayOutput)
 }
 
-// Specifies a map of ssh key types and their expected sizes which
-// are allowed to be signed by the CA type.
-// *Deprecated: use* allowedUserKeyConfig *instead*
-//
-// Deprecated: Set in allowed_user_key_config
-func (o SecretBackendRoleOutput) AllowedUserKeyLengths() pulumi.IntMapOutput {
-	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntMapOutput { return v.AllowedUserKeyLengths }).(pulumi.IntMapOutput)
-}
-
 // Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 func (o SecretBackendRoleOutput) AllowedUsers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedUsers }).(pulumi.StringPtrOutput)
@@ -664,7 +625,7 @@ func (o SecretBackendRoleOutput) Name() pulumi.StringOutput {
 
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o SecretBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)

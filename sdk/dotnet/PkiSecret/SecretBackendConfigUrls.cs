@@ -71,6 +71,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> CrlDistributionPoints { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies that templating of AIA fields is allowed.
+        /// </summary>
+        [Output("enableTemplating")]
+        public Output<bool?> EnableTemplating { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the URL values for the Issuing Certificate field.
         /// </summary>
         [Output("issuingCertificates")]
@@ -79,7 +85,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Output("namespace")]
@@ -155,6 +161,12 @@ namespace Pulumi.Vault.PkiSecret
             set => _crlDistributionPoints = value;
         }
 
+        /// <summary>
+        /// Specifies that templating of AIA fields is allowed.
+        /// </summary>
+        [Input("enableTemplating")]
+        public Input<bool>? EnableTemplating { get; set; }
+
         [Input("issuingCertificates")]
         private InputList<string>? _issuingCertificates;
 
@@ -170,7 +182,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
@@ -214,6 +226,12 @@ namespace Pulumi.Vault.PkiSecret
             set => _crlDistributionPoints = value;
         }
 
+        /// <summary>
+        /// Specifies that templating of AIA fields is allowed.
+        /// </summary>
+        [Input("enableTemplating")]
+        public Input<bool>? EnableTemplating { get; set; }
+
         [Input("issuingCertificates")]
         private InputList<string>? _issuingCertificates;
 
@@ -229,7 +247,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         /// *Available only for Vault Enterprise*.
         /// </summary>
         [Input("namespace")]
