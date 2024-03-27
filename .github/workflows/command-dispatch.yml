@@ -29,7 +29,6 @@ env:
   TF_APPEND_USER_AGENT: pulumi
   TRAVIS_OS_NAME: linux
   VAULT_DEV_ROOT_TOKEN_ID: root
-  VERSION_PREFIX: 6.0.0
 jobs:
   command-dispatch-for-testing:
     name: command-dispatch-for-testing
