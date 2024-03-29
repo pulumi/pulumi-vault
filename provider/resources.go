@@ -69,6 +69,7 @@ const (
 	tokenMod          = "TokenAuth"
 	transformMod      = "Transform"
 	transitMod        = "Transit"
+	namespaceMod      = "Namespace"
 )
 
 var moduleMap = map[string]string{
@@ -101,6 +102,7 @@ var moduleMap = map[string]string{
 	"token":           tokenMod,
 	"transform":       transformMod,
 	"transit":         transitMod,
+	"namespace":       namespaceMod,
 }
 
 var namespaceMap = map[string]string{
