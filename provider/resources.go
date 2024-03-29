@@ -488,6 +488,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_aws_static_access_credentials": {Docs: missingDocs},
 			"vault_ldap_dynamic_credentials":      {Docs: missingDocs},
 			"vault_ldap_static_credentials":       {Docs: missingDocs},
+			"vault_config_ui_custom_message":      {Docs: missingDocs},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
