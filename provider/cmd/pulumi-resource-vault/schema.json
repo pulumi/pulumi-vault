@@ -39,6 +39,7 @@
                 "ldap": "Ldap",
                 "managed": "Managed",
                 "mongodbatlas": "MongoDBAtlas",
+                "namespace": "Namespace",
                 "okta": "Okta",
                 "pkiSecret": "PkiSecret",
                 "rabbitMq": "RabbitMQ",
@@ -4575,6 +4576,32 @@
                 "topic",
                 "write"
             ]
+        },
+        "vault:secrets/SyncAssociationMetadata:SyncAssociationMetadata": {
+            "properties": {
+                "subKey": {
+                    "type": "string",
+                    "description": "Subkey of the associated secret.\n"
+                },
+                "syncStatus": {
+                    "type": "string",
+                    "description": "A map of sync statuses for each subkey of the associated secret\n(for ex. `{kv_624bea/aws-token/dev: \"SYNCED\", kv_624bea/aws-token/prod: \"SYNCED\"}`).\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "A map of duration strings specifying when each subkey of the associated\nsecret was last updated.\n(for ex.\n`{kv_624bea/aws-token/dev: \"2024-03-21T12:42:02.558533-07:00\",\nkv_624bea/aws-token/prod: \"2024-03-21T12:42:02.558533-07:00\"}`).\n"
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "subKey",
+                        "syncStatus",
+                        "updatedAt"
+                    ]
+                }
+            }
         },
         "vault:ssh/SecretBackendRoleAllowedUserKeyConfig:SecretBackendRoleAllowedUserKeyConfig": {
             "properties": {
@@ -20453,12 +20480,16 @@
         "vault:kubernetes/secretBackendRole:SecretBackendRole": {
             "description": "## Example Usage\n\nExample using `service_account_name` mode:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.kubernetes.SecretBackend(\"config\", {\n    path: \"kubernetes\",\n    description: \"kubernetes secrets engine description\",\n    kubernetesHost: \"https://127.0.0.1:61233\",\n    kubernetesCaCert: fs.readFileSync(\"/path/to/cert\", \"utf8\"),\n    serviceAccountJwt: fs.readFileSync(\"/path/to/token\", \"utf8\"),\n    disableLocalCaJwt: false,\n});\nconst sa_example = new vault.kubernetes.SecretBackendRole(\"sa-example\", {\n    backend: config.path,\n    allowedKubernetesNamespaces: [\"*\"],\n    tokenMaxTtl: 43200,\n    tokenDefaultTtl: 21600,\n    serviceAccountName: \"test-service-account-with-generated-token\",\n    extraLabels: {\n        id: \"abc123\",\n        name: \"some_name\",\n    },\n    extraAnnotations: {\n        env: \"development\",\n        location: \"earth\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.kubernetes.SecretBackend(\"config\",\n    path=\"kubernetes\",\n    description=\"kubernetes secrets engine description\",\n    kubernetes_host=\"https://127.0.0.1:61233\",\n    kubernetes_ca_cert=(lambda path: open(path).read())(\"/path/to/cert\"),\n    service_account_jwt=(lambda path: open(path).read())(\"/path/to/token\"),\n    disable_local_ca_jwt=False)\nsa_example = vault.kubernetes.SecretBackendRole(\"sa-example\",\n    backend=config.path,\n    allowed_kubernetes_namespaces=[\"*\"],\n    token_max_ttl=43200,\n    token_default_ttl=21600,\n    service_account_name=\"test-service-account-with-generated-token\",\n    extra_labels={\n        \"id\": \"abc123\",\n        \"name\": \"some_name\",\n    },\n    extra_annotations={\n        \"env\": \"development\",\n        \"location\": \"earth\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Kubernetes.SecretBackend(\"config\", new()\n    {\n        Path = \"kubernetes\",\n        Description = \"kubernetes secrets engine description\",\n        KubernetesHost = \"https://127.0.0.1:61233\",\n        KubernetesCaCert = File.ReadAllText(\"/path/to/cert\"),\n        ServiceAccountJwt = File.ReadAllText(\"/path/to/token\"),\n        DisableLocalCaJwt = false,\n    });\n\n    var sa_example = new Vault.Kubernetes.SecretBackendRole(\"sa-example\", new()\n    {\n        Backend = config.Path,\n        AllowedKubernetesNamespaces = new[]\n        {\n            \"*\",\n        },\n        TokenMaxTtl = 43200,\n        TokenDefaultTtl = 21600,\n        ServiceAccountName = \"test-service-account-with-generated-token\",\n        ExtraLabels = \n        {\n            { \"id\", \"abc123\" },\n            { \"name\", \"some_name\" },\n        },\n        ExtraAnnotations = \n        {\n            { \"env\", \"development\" },\n            { \"location\", \"earth\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := kubernetes.NewSecretBackend(ctx, \"config\", \u0026kubernetes.SecretBackendArgs{\n\t\t\tPath:              pulumi.String(\"kubernetes\"),\n\t\t\tDescription:       pulumi.String(\"kubernetes secrets engine description\"),\n\t\t\tKubernetesHost:    pulumi.String(\"https://127.0.0.1:61233\"),\n\t\t\tKubernetesCaCert:  readFileOrPanic(\"/path/to/cert\"),\n\t\t\tServiceAccountJwt: readFileOrPanic(\"/path/to/token\"),\n\t\t\tDisableLocalCaJwt: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewSecretBackendRole(ctx, \"sa-example\", \u0026kubernetes.SecretBackendRoleArgs{\n\t\t\tBackend: config.Path,\n\t\t\tAllowedKubernetesNamespaces: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tTokenMaxTtl:        pulumi.Int(43200),\n\t\t\tTokenDefaultTtl:    pulumi.Int(21600),\n\t\t\tServiceAccountName: pulumi.String(\"test-service-account-with-generated-token\"),\n\t\t\tExtraLabels: pulumi.StringMap{\n\t\t\t\t\"id\":   pulumi.String(\"abc123\"),\n\t\t\t\t\"name\": pulumi.String(\"some_name\"),\n\t\t\t},\n\t\t\tExtraAnnotations: pulumi.StringMap{\n\t\t\t\t\"env\":      pulumi.String(\"development\"),\n\t\t\t\t\"location\": pulumi.String(\"earth\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.kubernetes.SecretBackend;\nimport com.pulumi.vault.kubernetes.SecretBackendArgs;\nimport com.pulumi.vault.kubernetes.SecretBackendRole;\nimport com.pulumi.vault.kubernetes.SecretBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"kubernetes\")\n            .description(\"kubernetes secrets engine description\")\n            .kubernetesHost(\"https://127.0.0.1:61233\")\n            .kubernetesCaCert(Files.readString(Paths.get(\"/path/to/cert\")))\n            .serviceAccountJwt(Files.readString(Paths.get(\"/path/to/token\")))\n            .disableLocalCaJwt(false)\n            .build());\n\n        var sa_example = new SecretBackendRole(\"sa-example\", SecretBackendRoleArgs.builder()        \n            .backend(config.path())\n            .allowedKubernetesNamespaces(\"*\")\n            .tokenMaxTtl(43200)\n            .tokenDefaultTtl(21600)\n            .serviceAccountName(\"test-service-account-with-generated-token\")\n            .extraLabels(Map.ofEntries(\n                Map.entry(\"id\", \"abc123\"),\n                Map.entry(\"name\", \"some_name\")\n            ))\n            .extraAnnotations(Map.ofEntries(\n                Map.entry(\"env\", \"development\"),\n                Map.entry(\"location\", \"earth\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:kubernetes:SecretBackend\n    properties:\n      path: kubernetes\n      description: kubernetes secrets engine description\n      kubernetesHost: https://127.0.0.1:61233\n      kubernetesCaCert:\n        fn::readFile: /path/to/cert\n      serviceAccountJwt:\n        fn::readFile: /path/to/token\n      disableLocalCaJwt: false\n  sa-example:\n    type: vault:kubernetes:SecretBackendRole\n    properties:\n      backend: ${config.path}\n      allowedKubernetesNamespaces:\n        - '*'\n      tokenMaxTtl: 43200\n      tokenDefaultTtl: 21600\n      serviceAccountName: test-service-account-with-generated-token\n      extraLabels:\n        id: abc123\n        name: some_name\n      extraAnnotations:\n        env: development\n        location: earth\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nExample using `kubernetes_role_name` mode:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.kubernetes.SecretBackend(\"config\", {\n    path: \"kubernetes\",\n    description: \"kubernetes secrets engine description\",\n    kubernetesHost: \"https://127.0.0.1:61233\",\n    kubernetesCaCert: fs.readFileSync(\"/path/to/cert\", \"utf8\"),\n    serviceAccountJwt: fs.readFileSync(\"/path/to/token\", \"utf8\"),\n    disableLocalCaJwt: false,\n});\nconst name_example = new vault.kubernetes.SecretBackendRole(\"name-example\", {\n    backend: config.path,\n    allowedKubernetesNamespaces: [\"*\"],\n    tokenMaxTtl: 43200,\n    tokenDefaultTtl: 21600,\n    kubernetesRoleName: \"vault-k8s-secrets-role\",\n    extraLabels: {\n        id: \"abc123\",\n        name: \"some_name\",\n    },\n    extraAnnotations: {\n        env: \"development\",\n        location: \"earth\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.kubernetes.SecretBackend(\"config\",\n    path=\"kubernetes\",\n    description=\"kubernetes secrets engine description\",\n    kubernetes_host=\"https://127.0.0.1:61233\",\n    kubernetes_ca_cert=(lambda path: open(path).read())(\"/path/to/cert\"),\n    service_account_jwt=(lambda path: open(path).read())(\"/path/to/token\"),\n    disable_local_ca_jwt=False)\nname_example = vault.kubernetes.SecretBackendRole(\"name-example\",\n    backend=config.path,\n    allowed_kubernetes_namespaces=[\"*\"],\n    token_max_ttl=43200,\n    token_default_ttl=21600,\n    kubernetes_role_name=\"vault-k8s-secrets-role\",\n    extra_labels={\n        \"id\": \"abc123\",\n        \"name\": \"some_name\",\n    },\n    extra_annotations={\n        \"env\": \"development\",\n        \"location\": \"earth\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Kubernetes.SecretBackend(\"config\", new()\n    {\n        Path = \"kubernetes\",\n        Description = \"kubernetes secrets engine description\",\n        KubernetesHost = \"https://127.0.0.1:61233\",\n        KubernetesCaCert = File.ReadAllText(\"/path/to/cert\"),\n        ServiceAccountJwt = File.ReadAllText(\"/path/to/token\"),\n        DisableLocalCaJwt = false,\n    });\n\n    var name_example = new Vault.Kubernetes.SecretBackendRole(\"name-example\", new()\n    {\n        Backend = config.Path,\n        AllowedKubernetesNamespaces = new[]\n        {\n            \"*\",\n        },\n        TokenMaxTtl = 43200,\n        TokenDefaultTtl = 21600,\n        KubernetesRoleName = \"vault-k8s-secrets-role\",\n        ExtraLabels = \n        {\n            { \"id\", \"abc123\" },\n            { \"name\", \"some_name\" },\n        },\n        ExtraAnnotations = \n        {\n            { \"env\", \"development\" },\n            { \"location\", \"earth\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := kubernetes.NewSecretBackend(ctx, \"config\", \u0026kubernetes.SecretBackendArgs{\n\t\t\tPath:              pulumi.String(\"kubernetes\"),\n\t\t\tDescription:       pulumi.String(\"kubernetes secrets engine description\"),\n\t\t\tKubernetesHost:    pulumi.String(\"https://127.0.0.1:61233\"),\n\t\t\tKubernetesCaCert:  readFileOrPanic(\"/path/to/cert\"),\n\t\t\tServiceAccountJwt: readFileOrPanic(\"/path/to/token\"),\n\t\t\tDisableLocalCaJwt: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewSecretBackendRole(ctx, \"name-example\", \u0026kubernetes.SecretBackendRoleArgs{\n\t\t\tBackend: config.Path,\n\t\t\tAllowedKubernetesNamespaces: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tTokenMaxTtl:        pulumi.Int(43200),\n\t\t\tTokenDefaultTtl:    pulumi.Int(21600),\n\t\t\tKubernetesRoleName: pulumi.String(\"vault-k8s-secrets-role\"),\n\t\t\tExtraLabels: pulumi.StringMap{\n\t\t\t\t\"id\":   pulumi.String(\"abc123\"),\n\t\t\t\t\"name\": pulumi.String(\"some_name\"),\n\t\t\t},\n\t\t\tExtraAnnotations: pulumi.StringMap{\n\t\t\t\t\"env\":      pulumi.String(\"development\"),\n\t\t\t\t\"location\": pulumi.String(\"earth\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.kubernetes.SecretBackend;\nimport com.pulumi.vault.kubernetes.SecretBackendArgs;\nimport com.pulumi.vault.kubernetes.SecretBackendRole;\nimport com.pulumi.vault.kubernetes.SecretBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"kubernetes\")\n            .description(\"kubernetes secrets engine description\")\n            .kubernetesHost(\"https://127.0.0.1:61233\")\n            .kubernetesCaCert(Files.readString(Paths.get(\"/path/to/cert\")))\n            .serviceAccountJwt(Files.readString(Paths.get(\"/path/to/token\")))\n            .disableLocalCaJwt(false)\n            .build());\n\n        var name_example = new SecretBackendRole(\"name-example\", SecretBackendRoleArgs.builder()        \n            .backend(config.path())\n            .allowedKubernetesNamespaces(\"*\")\n            .tokenMaxTtl(43200)\n            .tokenDefaultTtl(21600)\n            .kubernetesRoleName(\"vault-k8s-secrets-role\")\n            .extraLabels(Map.ofEntries(\n                Map.entry(\"id\", \"abc123\"),\n                Map.entry(\"name\", \"some_name\")\n            ))\n            .extraAnnotations(Map.ofEntries(\n                Map.entry(\"env\", \"development\"),\n                Map.entry(\"location\", \"earth\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:kubernetes:SecretBackend\n    properties:\n      path: kubernetes\n      description: kubernetes secrets engine description\n      kubernetesHost: https://127.0.0.1:61233\n      kubernetesCaCert:\n        fn::readFile: /path/to/cert\n      serviceAccountJwt:\n        fn::readFile: /path/to/token\n      disableLocalCaJwt: false\n  name-example:\n    type: vault:kubernetes:SecretBackendRole\n    properties:\n      backend: ${config.path}\n      allowedKubernetesNamespaces:\n        - '*'\n      tokenMaxTtl: 43200\n      tokenDefaultTtl: 21600\n      kubernetesRoleName: vault-k8s-secrets-role\n      extraLabels:\n        id: abc123\n        name: some_name\n      extraAnnotations:\n        env: development\n        location: earth\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nExample using `generated_role_rules` mode:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.kubernetes.SecretBackend(\"config\", {\n    path: \"kubernetes\",\n    description: \"kubernetes secrets engine description\",\n    kubernetesHost: \"https://127.0.0.1:61233\",\n    kubernetesCaCert: fs.readFileSync(\"/path/to/cert\", \"utf8\"),\n    serviceAccountJwt: fs.readFileSync(\"/path/to/token\", \"utf8\"),\n    disableLocalCaJwt: false,\n});\nconst rules_example = new vault.kubernetes.SecretBackendRole(\"rules-example\", {\n    backend: config.path,\n    allowedKubernetesNamespaces: [\"*\"],\n    tokenMaxTtl: 43200,\n    tokenDefaultTtl: 21600,\n    kubernetesRoleType: \"Role\",\n    generatedRoleRules: `rules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n`,\n    extraLabels: {\n        id: \"abc123\",\n        name: \"some_name\",\n    },\n    extraAnnotations: {\n        env: \"development\",\n        location: \"earth\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.kubernetes.SecretBackend(\"config\",\n    path=\"kubernetes\",\n    description=\"kubernetes secrets engine description\",\n    kubernetes_host=\"https://127.0.0.1:61233\",\n    kubernetes_ca_cert=(lambda path: open(path).read())(\"/path/to/cert\"),\n    service_account_jwt=(lambda path: open(path).read())(\"/path/to/token\"),\n    disable_local_ca_jwt=False)\nrules_example = vault.kubernetes.SecretBackendRole(\"rules-example\",\n    backend=config.path,\n    allowed_kubernetes_namespaces=[\"*\"],\n    token_max_ttl=43200,\n    token_default_ttl=21600,\n    kubernetes_role_type=\"Role\",\n    generated_role_rules=\"\"\"rules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n\"\"\",\n    extra_labels={\n        \"id\": \"abc123\",\n        \"name\": \"some_name\",\n    },\n    extra_annotations={\n        \"env\": \"development\",\n        \"location\": \"earth\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.Kubernetes.SecretBackend(\"config\", new()\n    {\n        Path = \"kubernetes\",\n        Description = \"kubernetes secrets engine description\",\n        KubernetesHost = \"https://127.0.0.1:61233\",\n        KubernetesCaCert = File.ReadAllText(\"/path/to/cert\"),\n        ServiceAccountJwt = File.ReadAllText(\"/path/to/token\"),\n        DisableLocalCaJwt = false,\n    });\n\n    var rules_example = new Vault.Kubernetes.SecretBackendRole(\"rules-example\", new()\n    {\n        Backend = config.Path,\n        AllowedKubernetesNamespaces = new[]\n        {\n            \"*\",\n        },\n        TokenMaxTtl = 43200,\n        TokenDefaultTtl = 21600,\n        KubernetesRoleType = \"Role\",\n        GeneratedRoleRules = @\"rules:\n- apiGroups: [\"\"\"\"]\n  resources: [\"\"pods\"\"]\n  verbs: [\"\"list\"\"]\n\",\n        ExtraLabels = \n        {\n            { \"id\", \"abc123\" },\n            { \"name\", \"some_name\" },\n        },\n        ExtraAnnotations = \n        {\n            { \"env\", \"development\" },\n            { \"location\", \"earth\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"os\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := os.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := kubernetes.NewSecretBackend(ctx, \"config\", \u0026kubernetes.SecretBackendArgs{\n\t\t\tPath:              pulumi.String(\"kubernetes\"),\n\t\t\tDescription:       pulumi.String(\"kubernetes secrets engine description\"),\n\t\t\tKubernetesHost:    pulumi.String(\"https://127.0.0.1:61233\"),\n\t\t\tKubernetesCaCert:  readFileOrPanic(\"/path/to/cert\"),\n\t\t\tServiceAccountJwt: readFileOrPanic(\"/path/to/token\"),\n\t\t\tDisableLocalCaJwt: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kubernetes.NewSecretBackendRole(ctx, \"rules-example\", \u0026kubernetes.SecretBackendRoleArgs{\n\t\t\tBackend: config.Path,\n\t\t\tAllowedKubernetesNamespaces: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tTokenMaxTtl:        pulumi.Int(43200),\n\t\t\tTokenDefaultTtl:    pulumi.Int(21600),\n\t\t\tKubernetesRoleType: pulumi.String(\"Role\"),\n\t\t\tGeneratedRoleRules: pulumi.String(\"rules:\\n- apiGroups: [\\\"\\\"]\\n  resources: [\\\"pods\\\"]\\n  verbs: [\\\"list\\\"]\\n\"),\n\t\t\tExtraLabels: pulumi.StringMap{\n\t\t\t\t\"id\":   pulumi.String(\"abc123\"),\n\t\t\t\t\"name\": pulumi.String(\"some_name\"),\n\t\t\t},\n\t\t\tExtraAnnotations: pulumi.StringMap{\n\t\t\t\t\"env\":      pulumi.String(\"development\"),\n\t\t\t\t\"location\": pulumi.String(\"earth\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.kubernetes.SecretBackend;\nimport com.pulumi.vault.kubernetes.SecretBackendArgs;\nimport com.pulumi.vault.kubernetes.SecretBackendRole;\nimport com.pulumi.vault.kubernetes.SecretBackendRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .path(\"kubernetes\")\n            .description(\"kubernetes secrets engine description\")\n            .kubernetesHost(\"https://127.0.0.1:61233\")\n            .kubernetesCaCert(Files.readString(Paths.get(\"/path/to/cert\")))\n            .serviceAccountJwt(Files.readString(Paths.get(\"/path/to/token\")))\n            .disableLocalCaJwt(false)\n            .build());\n\n        var rules_example = new SecretBackendRole(\"rules-example\", SecretBackendRoleArgs.builder()        \n            .backend(config.path())\n            .allowedKubernetesNamespaces(\"*\")\n            .tokenMaxTtl(43200)\n            .tokenDefaultTtl(21600)\n            .kubernetesRoleType(\"Role\")\n            .generatedRoleRules(\"\"\"\nrules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n            \"\"\")\n            .extraLabels(Map.ofEntries(\n                Map.entry(\"id\", \"abc123\"),\n                Map.entry(\"name\", \"some_name\")\n            ))\n            .extraAnnotations(Map.ofEntries(\n                Map.entry(\"env\", \"development\"),\n                Map.entry(\"location\", \"earth\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:kubernetes:SecretBackend\n    properties:\n      path: kubernetes\n      description: kubernetes secrets engine description\n      kubernetesHost: https://127.0.0.1:61233\n      kubernetesCaCert:\n        fn::readFile: /path/to/cert\n      serviceAccountJwt:\n        fn::readFile: /path/to/token\n      disableLocalCaJwt: false\n  rules-example:\n    type: vault:kubernetes:SecretBackendRole\n    properties:\n      backend: ${config.path}\n      allowedKubernetesNamespaces:\n        - '*'\n      tokenMaxTtl: 43200\n      tokenDefaultTtl: 21600\n      kubernetesRoleType: Role\n      generatedRoleRules: |\n        rules:\n        - apiGroups: [\"\"]\n          resources: [\"pods\"]\n          verbs: [\"list\"]\n      extraLabels:\n        id: abc123\n        name: some_name\n      extraAnnotations:\n        env: development\n        location: earth\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe Kubernetes secret backend role can be imported using the full path to the role\n\nof the form: `\u003cbackend_path\u003e/roles/\u003crole_name\u003e` e.g.\n\n```sh\n$ pulumi import vault:kubernetes/secretBackendRole:SecretBackendRole example kubernetes kubernetes/roles/example-role\n```\n\n",
             "properties": {
+                "allowedKubernetesNamespaceSelector": {
+                    "type": "string",
+                    "description": "A label selector for Kubernetes namespaces \nin which credentials can be generated. Accepts either a JSON or YAML object. The value should be\nof type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).\nIf set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.\n"
+                },
                 "allowedKubernetesNamespaces": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The list of Kubernetes namespaces this role \ncan generate credentials for. If set to `*` all namespaces are allowed.\n"
+                    "description": "The list of Kubernetes namespaces this role \ncan generate credentials for. If set to `*` all namespaces are allowed. If set with\n`allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -20516,17 +20547,20 @@
                 }
             },
             "required": [
-                "allowedKubernetesNamespaces",
                 "backend",
                 "name"
             ],
             "inputProperties": {
+                "allowedKubernetesNamespaceSelector": {
+                    "type": "string",
+                    "description": "A label selector for Kubernetes namespaces \nin which credentials can be generated. Accepts either a JSON or YAML object. The value should be\nof type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).\nIf set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.\n"
+                },
                 "allowedKubernetesNamespaces": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "The list of Kubernetes namespaces this role \ncan generate credentials for. If set to `*` all namespaces are allowed.\n"
+                    "description": "The list of Kubernetes namespaces this role \ncan generate credentials for. If set to `*` all namespaces are allowed. If set with\n`allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.\n"
                 },
                 "backend": {
                     "type": "string",
@@ -20587,18 +20621,21 @@
                 }
             },
             "requiredInputs": [
-                "allowedKubernetesNamespaces",
                 "backend"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SecretBackendRole resources.\n",
                 "properties": {
+                    "allowedKubernetesNamespaceSelector": {
+                        "type": "string",
+                        "description": "A label selector for Kubernetes namespaces \nin which credentials can be generated. Accepts either a JSON or YAML object. The value should be\nof type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).\nIf set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.\n"
+                    },
                     "allowedKubernetesNamespaces": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "The list of Kubernetes namespaces this role \ncan generate credentials for. If set to `*` all namespaces are allowed.\n"
+                        "description": "The list of Kubernetes namespaces this role \ncan generate credentials for. If set to `*` all namespaces are allowed. If set with\n`allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.\n"
                     },
                     "backend": {
                         "type": "string",
@@ -22623,7 +22660,7 @@
             }
         },
         "vault:mongodbatlas/secretBackend:SecretBackend": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mongo = new vault.Mount(\"mongo\", {\n    description: \"MongoDB Atlas secret engine mount\",\n    path: \"mongodbatlas\",\n    type: \"mongodbatlas\",\n});\nconst config = new vault.mongodbatlas.SecretBackend(\"config\", {\n    mount: \"vault_mount.mongo.path\",\n    privateKey: \"privateKey\",\n    publicKey: \"publicKey\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmongo = vault.Mount(\"mongo\",\n    description=\"MongoDB Atlas secret engine mount\",\n    path=\"mongodbatlas\",\n    type=\"mongodbatlas\")\nconfig = vault.mongodbatlas.SecretBackend(\"config\",\n    mount=\"vault_mount.mongo.path\",\n    private_key=\"privateKey\",\n    public_key=\"publicKey\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mongo = new Vault.Mount(\"mongo\", new()\n    {\n        Description = \"MongoDB Atlas secret engine mount\",\n        Path = \"mongodbatlas\",\n        Type = \"mongodbatlas\",\n    });\n\n    var config = new Vault.MongoDBAtlas.SecretBackend(\"config\", new()\n    {\n        Mount = \"vault_mount.mongo.path\",\n        PrivateKey = \"privateKey\",\n        PublicKey = \"publicKey\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewMount(ctx, \"mongo\", \u0026vault.MountArgs{\n\t\t\tDescription: pulumi.String(\"MongoDB Atlas secret engine mount\"),\n\t\t\tPath:        pulumi.String(\"mongodbatlas\"),\n\t\t\tType:        pulumi.String(\"mongodbatlas\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewSecretBackend(ctx, \"config\", \u0026mongodbatlas.SecretBackendArgs{\n\t\t\tMount:      pulumi.String(\"vault_mount.mongo.path\"),\n\t\t\tPrivateKey: pulumi.String(\"privateKey\"),\n\t\t\tPublicKey:  pulumi.String(\"publicKey\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.mongodbatlas.SecretBackend;\nimport com.pulumi.vault.mongodbatlas.SecretBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mongo = new Mount(\"mongo\", MountArgs.builder()        \n            .description(\"MongoDB Atlas secret engine mount\")\n            .path(\"mongodbatlas\")\n            .type(\"mongodbatlas\")\n            .build());\n\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .mount(\"vault_mount.mongo.path\")\n            .privateKey(\"privateKey\")\n            .publicKey(\"publicKey\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mongo:\n    type: vault:Mount\n    properties:\n      description: MongoDB Atlas secret engine mount\n      path: mongodbatlas\n      type: mongodbatlas\n  config:\n    type: vault:mongodbatlas:SecretBackend\n    properties:\n      mount: vault_mount.mongo.path\n      privateKey: privateKey\n      publicKey: publicKey\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nMongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.\n\n```sh\n$ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config\n```\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mongo = new vault.Mount(\"mongo\", {\n    path: \"mongodbatlas\",\n    type: \"mongodbatlas\",\n    description: \"MongoDB Atlas secret engine mount\",\n});\nconst config = new vault.mongodbatlas.SecretBackend(\"config\", {\n    mount: mongo.path,\n    privateKey: \"privateKey\",\n    publicKey: \"publicKey\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmongo = vault.Mount(\"mongo\",\n    path=\"mongodbatlas\",\n    type=\"mongodbatlas\",\n    description=\"MongoDB Atlas secret engine mount\")\nconfig = vault.mongodbatlas.SecretBackend(\"config\",\n    mount=mongo.path,\n    private_key=\"privateKey\",\n    public_key=\"publicKey\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mongo = new Vault.Mount(\"mongo\", new()\n    {\n        Path = \"mongodbatlas\",\n        Type = \"mongodbatlas\",\n        Description = \"MongoDB Atlas secret engine mount\",\n    });\n\n    var config = new Vault.MongoDBAtlas.SecretBackend(\"config\", new()\n    {\n        Mount = mongo.Path,\n        PrivateKey = \"privateKey\",\n        PublicKey = \"publicKey\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmongo, err := vault.NewMount(ctx, \"mongo\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"mongodbatlas\"),\n\t\t\tType:        pulumi.String(\"mongodbatlas\"),\n\t\t\tDescription: pulumi.String(\"MongoDB Atlas secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewSecretBackend(ctx, \"config\", \u0026mongodbatlas.SecretBackendArgs{\n\t\t\tMount:      mongo.Path,\n\t\t\tPrivateKey: pulumi.String(\"privateKey\"),\n\t\t\tPublicKey:  pulumi.String(\"publicKey\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.mongodbatlas.SecretBackend;\nimport com.pulumi.vault.mongodbatlas.SecretBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mongo = new Mount(\"mongo\", MountArgs.builder()        \n            .path(\"mongodbatlas\")\n            .type(\"mongodbatlas\")\n            .description(\"MongoDB Atlas secret engine mount\")\n            .build());\n\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .mount(mongo.path())\n            .privateKey(\"privateKey\")\n            .publicKey(\"publicKey\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mongo:\n    type: vault:Mount\n    properties:\n      path: mongodbatlas\n      type: mongodbatlas\n      description: MongoDB Atlas secret engine mount\n  config:\n    type: vault:mongodbatlas:SecretBackend\n    properties:\n      mount: ${mongo.path}\n      privateKey: privateKey\n      publicKey: publicKey\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nMongoDB Atlas secret backends can be imported using the `${mount}/config`, e.g.\n\n```sh\n$ pulumi import vault:mongodbatlas/secretBackend:SecretBackend config mongodbatlas/config\n```\n",
             "properties": {
                 "mount": {
                     "type": "string",
@@ -22705,7 +22742,7 @@
             }
         },
         "vault:mongodbatlas/secretRole:SecretRole": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mongo = new vault.Mount(\"mongo\", {\n    path: \"%s\",\n    type: \"mongodbatlas\",\n    description: \"MongoDB Atlas secret engine mount\",\n});\nconst config = new vault.mongodbatlas.SecretBackend(\"config\", {\n    mount: \"vault_mount.mongo.path\",\n    privateKey: \"privateKey\",\n    publicKey: \"publicKey\",\n});\nconst role = new vault.mongodbatlas.SecretRole(\"role\", {\n    mount: mongo.path,\n    organizationId: \"7cf5a45a9ccf6400e60981b7\",\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    roles: \"ORG_READ_ONLY\",\n    ipAddresses: \"192.168.1.5, 192.168.1.6\",\n    cidrBlocks: \"192.168.1.3/35\",\n    projectRoles: \"GROUP_READ_ONLY\",\n    ttl: \"60\",\n    maxTtl: \"120\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmongo = vault.Mount(\"mongo\",\n    path=\"%s\",\n    type=\"mongodbatlas\",\n    description=\"MongoDB Atlas secret engine mount\")\nconfig = vault.mongodbatlas.SecretBackend(\"config\",\n    mount=\"vault_mount.mongo.path\",\n    private_key=\"privateKey\",\n    public_key=\"publicKey\")\nrole = vault.mongodbatlas.SecretRole(\"role\",\n    mount=mongo.path,\n    organization_id=\"7cf5a45a9ccf6400e60981b7\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    roles=\"ORG_READ_ONLY\",\n    ip_addresses=\"192.168.1.5, 192.168.1.6\",\n    cidr_blocks=\"192.168.1.3/35\",\n    project_roles=\"GROUP_READ_ONLY\",\n    ttl=\"60\",\n    max_ttl=\"120\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mongo = new Vault.Mount(\"mongo\", new()\n    {\n        Path = \"%s\",\n        Type = \"mongodbatlas\",\n        Description = \"MongoDB Atlas secret engine mount\",\n    });\n\n    var config = new Vault.MongoDBAtlas.SecretBackend(\"config\", new()\n    {\n        Mount = \"vault_mount.mongo.path\",\n        PrivateKey = \"privateKey\",\n        PublicKey = \"publicKey\",\n    });\n\n    var role = new Vault.MongoDBAtlas.SecretRole(\"role\", new()\n    {\n        Mount = mongo.Path,\n        OrganizationId = \"7cf5a45a9ccf6400e60981b7\",\n        ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n        Roles = \"ORG_READ_ONLY\",\n        IpAddresses = \"192.168.1.5, 192.168.1.6\",\n        CidrBlocks = \"192.168.1.3/35\",\n        ProjectRoles = \"GROUP_READ_ONLY\",\n        Ttl = \"60\",\n        MaxTtl = \"120\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmongo, err := vault.NewMount(ctx, \"mongo\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"%s\"),\n\t\t\tType:        pulumi.String(\"mongodbatlas\"),\n\t\t\tDescription: pulumi.String(\"MongoDB Atlas secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewSecretBackend(ctx, \"config\", \u0026mongodbatlas.SecretBackendArgs{\n\t\t\tMount:      pulumi.String(\"vault_mount.mongo.path\"),\n\t\t\tPrivateKey: pulumi.String(\"privateKey\"),\n\t\t\tPublicKey:  pulumi.String(\"publicKey\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewSecretRole(ctx, \"role\", \u0026mongodbatlas.SecretRoleArgs{\n\t\t\tMount:          mongo.Path,\n\t\t\tOrganizationId: pulumi.String(\"7cf5a45a9ccf6400e60981b7\"),\n\t\t\tProjectId:      pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tRoles:          pulumi.StringArray(\"ORG_READ_ONLY\"),\n\t\t\tIpAddresses:    pulumi.StringArray(\"192.168.1.5, 192.168.1.6\"),\n\t\t\tCidrBlocks:     pulumi.StringArray(\"192.168.1.3/35\"),\n\t\t\tProjectRoles:   pulumi.StringArray(\"GROUP_READ_ONLY\"),\n\t\t\tTtl:            pulumi.String(\"60\"),\n\t\t\tMaxTtl:         pulumi.String(\"120\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.mongodbatlas.SecretBackend;\nimport com.pulumi.vault.mongodbatlas.SecretBackendArgs;\nimport com.pulumi.vault.mongodbatlas.SecretRole;\nimport com.pulumi.vault.mongodbatlas.SecretRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mongo = new Mount(\"mongo\", MountArgs.builder()        \n            .path(\"%s\")\n            .type(\"mongodbatlas\")\n            .description(\"MongoDB Atlas secret engine mount\")\n            .build());\n\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .mount(\"vault_mount.mongo.path\")\n            .privateKey(\"privateKey\")\n            .publicKey(\"publicKey\")\n            .build());\n\n        var role = new SecretRole(\"role\", SecretRoleArgs.builder()        \n            .mount(mongo.path())\n            .organizationId(\"7cf5a45a9ccf6400e60981b7\")\n            .projectId(\"5cf5a45a9ccf6400e60981b6\")\n            .roles(\"ORG_READ_ONLY\")\n            .ipAddresses(\"192.168.1.5, 192.168.1.6\")\n            .cidrBlocks(\"192.168.1.3/35\")\n            .projectRoles(\"GROUP_READ_ONLY\")\n            .ttl(\"60\")\n            .maxTtl(\"120\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mongo:\n    type: vault:Mount\n    properties:\n      path: '%s'\n      type: mongodbatlas\n      description: MongoDB Atlas secret engine mount\n  config:\n    type: vault:mongodbatlas:SecretBackend\n    properties:\n      mount: vault_mount.mongo.path\n      privateKey: privateKey\n      publicKey: publicKey\n  role:\n    type: vault:mongodbatlas:SecretRole\n    properties:\n      mount: ${mongo.path}\n      organizationId: 7cf5a45a9ccf6400e60981b7\n      projectId: 5cf5a45a9ccf6400e60981b6\n      roles: ORG_READ_ONLY\n      ipAddresses: 192.168.1.5, 192.168.1.6\n      cidrBlocks: 192.168.1.3/35\n      projectRoles: GROUP_READ_ONLY\n      ttl: '60'\n      maxTtl: '120'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe MongoDB Atlas secret role can be imported using the full path to the role\nof the form: `\u003cmount_path\u003e/roles/\u003crole_name\u003e` e.g.\n\n```sh\n$ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role\n```\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst mongo = new vault.Mount(\"mongo\", {\n    path: \"%s\",\n    type: \"mongodbatlas\",\n    description: \"MongoDB Atlas secret engine mount\",\n});\nconst config = new vault.mongodbatlas.SecretBackend(\"config\", {\n    mount: mongo.path,\n    privateKey: \"privateKey\",\n    publicKey: \"publicKey\",\n});\nconst role = new vault.mongodbatlas.SecretRole(\"role\", {\n    mount: mongo.path,\n    organizationId: \"7cf5a45a9ccf6400e60981b7\",\n    projectId: \"5cf5a45a9ccf6400e60981b6\",\n    roles: [\"ORG_READ_ONLY\"],\n    ipAddresses: \"192.168.1.5, 192.168.1.6\",\n    cidrBlocks: \"192.168.1.3/35\",\n    projectRoles: [\"GROUP_READ_ONLY\"],\n    ttl: \"60\",\n    maxTtl: \"120\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nmongo = vault.Mount(\"mongo\",\n    path=\"%s\",\n    type=\"mongodbatlas\",\n    description=\"MongoDB Atlas secret engine mount\")\nconfig = vault.mongodbatlas.SecretBackend(\"config\",\n    mount=mongo.path,\n    private_key=\"privateKey\",\n    public_key=\"publicKey\")\nrole = vault.mongodbatlas.SecretRole(\"role\",\n    mount=mongo.path,\n    organization_id=\"7cf5a45a9ccf6400e60981b7\",\n    project_id=\"5cf5a45a9ccf6400e60981b6\",\n    roles=[\"ORG_READ_ONLY\"],\n    ip_addresses=\"192.168.1.5, 192.168.1.6\",\n    cidr_blocks=\"192.168.1.3/35\",\n    project_roles=[\"GROUP_READ_ONLY\"],\n    ttl=\"60\",\n    max_ttl=\"120\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var mongo = new Vault.Mount(\"mongo\", new()\n    {\n        Path = \"%s\",\n        Type = \"mongodbatlas\",\n        Description = \"MongoDB Atlas secret engine mount\",\n    });\n\n    var config = new Vault.MongoDBAtlas.SecretBackend(\"config\", new()\n    {\n        Mount = mongo.Path,\n        PrivateKey = \"privateKey\",\n        PublicKey = \"publicKey\",\n    });\n\n    var role = new Vault.MongoDBAtlas.SecretRole(\"role\", new()\n    {\n        Mount = mongo.Path,\n        OrganizationId = \"7cf5a45a9ccf6400e60981b7\",\n        ProjectId = \"5cf5a45a9ccf6400e60981b6\",\n        Roles = new[]\n        {\n            \"ORG_READ_ONLY\",\n        },\n        IpAddresses = \"192.168.1.5, 192.168.1.6\",\n        CidrBlocks = \"192.168.1.3/35\",\n        ProjectRoles = new[]\n        {\n            \"GROUP_READ_ONLY\",\n        },\n        Ttl = \"60\",\n        MaxTtl = \"120\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/mongodbatlas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmongo, err := vault.NewMount(ctx, \"mongo\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"%s\"),\n\t\t\tType:        pulumi.String(\"mongodbatlas\"),\n\t\t\tDescription: pulumi.String(\"MongoDB Atlas secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewSecretBackend(ctx, \"config\", \u0026mongodbatlas.SecretBackendArgs{\n\t\t\tMount:      mongo.Path,\n\t\t\tPrivateKey: pulumi.String(\"privateKey\"),\n\t\t\tPublicKey:  pulumi.String(\"publicKey\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = mongodbatlas.NewSecretRole(ctx, \"role\", \u0026mongodbatlas.SecretRoleArgs{\n\t\t\tMount:          mongo.Path,\n\t\t\tOrganizationId: pulumi.String(\"7cf5a45a9ccf6400e60981b7\"),\n\t\t\tProjectId:      pulumi.String(\"5cf5a45a9ccf6400e60981b6\"),\n\t\t\tRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"ORG_READ_ONLY\"),\n\t\t\t},\n\t\t\tIpAddresses: pulumi.StringArray(\"192.168.1.5, 192.168.1.6\"),\n\t\t\tCidrBlocks:  pulumi.StringArray(\"192.168.1.3/35\"),\n\t\t\tProjectRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"GROUP_READ_ONLY\"),\n\t\t\t},\n\t\t\tTtl:    pulumi.String(\"60\"),\n\t\t\tMaxTtl: pulumi.String(\"120\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.mongodbatlas.SecretBackend;\nimport com.pulumi.vault.mongodbatlas.SecretBackendArgs;\nimport com.pulumi.vault.mongodbatlas.SecretRole;\nimport com.pulumi.vault.mongodbatlas.SecretRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var mongo = new Mount(\"mongo\", MountArgs.builder()        \n            .path(\"%s\")\n            .type(\"mongodbatlas\")\n            .description(\"MongoDB Atlas secret engine mount\")\n            .build());\n\n        var config = new SecretBackend(\"config\", SecretBackendArgs.builder()        \n            .mount(mongo.path())\n            .privateKey(\"privateKey\")\n            .publicKey(\"publicKey\")\n            .build());\n\n        var role = new SecretRole(\"role\", SecretRoleArgs.builder()        \n            .mount(mongo.path())\n            .organizationId(\"7cf5a45a9ccf6400e60981b7\")\n            .projectId(\"5cf5a45a9ccf6400e60981b6\")\n            .roles(\"ORG_READ_ONLY\")\n            .ipAddresses(\"192.168.1.5, 192.168.1.6\")\n            .cidrBlocks(\"192.168.1.3/35\")\n            .projectRoles(\"GROUP_READ_ONLY\")\n            .ttl(\"60\")\n            .maxTtl(\"120\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mongo:\n    type: vault:Mount\n    properties:\n      path: '%s'\n      type: mongodbatlas\n      description: MongoDB Atlas secret engine mount\n  config:\n    type: vault:mongodbatlas:SecretBackend\n    properties:\n      mount: ${mongo.path}\n      privateKey: privateKey\n      publicKey: publicKey\n  role:\n    type: vault:mongodbatlas:SecretRole\n    properties:\n      mount: ${mongo.path}\n      organizationId: 7cf5a45a9ccf6400e60981b7\n      projectId: 5cf5a45a9ccf6400e60981b6\n      roles:\n        - ORG_READ_ONLY\n      ipAddresses: 192.168.1.5, 192.168.1.6\n      cidrBlocks: 192.168.1.3/35\n      projectRoles:\n        - GROUP_READ_ONLY\n      ttl: '60'\n      maxTtl: '120'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe MongoDB Atlas secret role can be imported using the full path to the role\nof the form: `\u003cmount_path\u003e/roles/\u003crole_name\u003e` e.g.\n\n```sh\n$ pulumi import vault:mongodbatlas/secretRole:SecretRole example mongodbatlas/roles/example-role\n```\n",
             "properties": {
                 "cidrBlocks": {
                     "type": "array",
@@ -22743,21 +22780,21 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique identifier for the project to which the target API Key belongs.\nRequired if `organization_id is` not set.\n"
+                    "description": "Unique identifier for the project to which the target API Key belongs.\nRequired if `organization_id` is not set.\n"
                 },
                 "projectRoles": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Roles assigned when an org API key is assigned to a project API key.\n"
+                    "description": "Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of roles that the API Key needs to have.\n"
+                    "description": "List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.\n"
                 },
                 "ttl": {
                     "type": "string",
@@ -22808,21 +22845,21 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "Unique identifier for the project to which the target API Key belongs.\nRequired if `organization_id is` not set.\n"
+                    "description": "Unique identifier for the project to which the target API Key belongs.\nRequired if `organization_id` is not set.\n"
                 },
                 "projectRoles": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "Roles assigned when an org API key is assigned to a project API key.\n"
+                    "description": "Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of roles that the API Key needs to have.\n"
+                    "description": "List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.\n"
                 },
                 "ttl": {
                     "type": "string",
@@ -22874,21 +22911,21 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "Unique identifier for the project to which the target API Key belongs.\nRequired if `organization_id is` not set.\n"
+                        "description": "Unique identifier for the project to which the target API Key belongs.\nRequired if `organization_id` is not set.\n"
                     },
                     "projectRoles": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "Roles assigned when an org API key is assigned to a project API key.\n"
+                        "description": "Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.\n"
                     },
                     "roles": {
                         "type": "array",
                         "items": {
                             "type": "string"
                         },
-                        "description": "List of roles that the API Key needs to have.\n"
+                        "description": "List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.\n"
                     },
                     "ttl": {
                         "type": "string",
@@ -27800,6 +27837,13 @@
         "vault:secrets/syncAssociation:SyncAssociation": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst kvv2 = new vault.Mount(\"kvv2\", {\n    path: \"kvv2\",\n    type: \"kv\",\n    options: {\n        version: \"2\",\n    },\n    description: \"KV Version 2 secret engine mount\",\n});\nconst token = new vault.kv.SecretV2(\"token\", {\n    mount: kvv2.path,\n    dataJson: JSON.stringify({\n        dev: \"B!gS3cr3t\",\n        prod: \"S3cureP4$$\",\n    }),\n});\nconst gh = new vault.secrets.SyncGhDestination(\"gh\", {\n    accessToken: _var.access_token,\n    repositoryOwner: _var.repo_owner,\n    repositoryName: \"repo-name-example\",\n    secretNameTemplate: \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n});\nconst ghToken = new vault.secrets.SyncAssociation(\"ghToken\", {\n    type: gh.type,\n    mount: kvv2.path,\n    secretName: token.name,\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_vault as vault\n\nkvv2 = vault.Mount(\"kvv2\",\n    path=\"kvv2\",\n    type=\"kv\",\n    options={\n        \"version\": \"2\",\n    },\n    description=\"KV Version 2 secret engine mount\")\ntoken = vault.kv.SecretV2(\"token\",\n    mount=kvv2.path,\n    data_json=json.dumps({\n        \"dev\": \"B!gS3cr3t\",\n        \"prod\": \"S3cureP4$$\",\n    }))\ngh = vault.secrets.SyncGhDestination(\"gh\",\n    access_token=var[\"access_token\"],\n    repository_owner=var[\"repo_owner\"],\n    repository_name=\"repo-name-example\",\n    secret_name_template=\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\ngh_token = vault.secrets.SyncAssociation(\"ghToken\",\n    type=gh.type,\n    mount=kvv2.path,\n    secret_name=token.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var kvv2 = new Vault.Mount(\"kvv2\", new()\n    {\n        Path = \"kvv2\",\n        Type = \"kv\",\n        Options = \n        {\n            { \"version\", \"2\" },\n        },\n        Description = \"KV Version 2 secret engine mount\",\n    });\n\n    var token = new Vault.Kv.SecretV2(\"token\", new()\n    {\n        Mount = kvv2.Path,\n        DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n        {\n            [\"dev\"] = \"B!gS3cr3t\",\n            [\"prod\"] = \"S3cureP4$$\",\n        }),\n    });\n\n    var gh = new Vault.Secrets.SyncGhDestination(\"gh\", new()\n    {\n        AccessToken = @var.Access_token,\n        RepositoryOwner = @var.Repo_owner,\n        RepositoryName = \"repo-name-example\",\n        SecretNameTemplate = \"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\",\n    });\n\n    var ghToken = new Vault.Secrets.SyncAssociation(\"ghToken\", new()\n    {\n        Type = gh.Type,\n        Mount = kvv2.Path,\n        SecretName = token.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kv\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/secrets\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tkvv2, err := vault.NewMount(ctx, \"kvv2\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"kvv2\"),\n\t\t\tType: pulumi.String(\"kv\"),\n\t\t\tOptions: pulumi.Map{\n\t\t\t\t\"version\": pulumi.Any(\"2\"),\n\t\t\t},\n\t\t\tDescription: pulumi.String(\"KV Version 2 secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"dev\":  \"B!gS3cr3t\",\n\t\t\t\"prod\": \"S3cureP4$$\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttoken, err := kv.NewSecretV2(ctx, \"token\", \u0026kv.SecretV2Args{\n\t\t\tMount:    kvv2.Path,\n\t\t\tDataJson: pulumi.String(json0),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tgh, err := secrets.NewSyncGhDestination(ctx, \"gh\", \u0026secrets.SyncGhDestinationArgs{\n\t\t\tAccessToken:        pulumi.Any(_var.Access_token),\n\t\t\tRepositoryOwner:    pulumi.Any(_var.Repo_owner),\n\t\t\tRepositoryName:     pulumi.String(\"repo-name-example\"),\n\t\t\tSecretNameTemplate: pulumi.String(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = secrets.NewSyncAssociation(ctx, \"ghToken\", \u0026secrets.SyncAssociationArgs{\n\t\t\tType:       gh.Type,\n\t\t\tMount:      kvv2.Path,\n\t\t\tSecretName: token.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.kv.SecretV2;\nimport com.pulumi.vault.kv.SecretV2Args;\nimport com.pulumi.vault.secrets.SyncGhDestination;\nimport com.pulumi.vault.secrets.SyncGhDestinationArgs;\nimport com.pulumi.vault.secrets.SyncAssociation;\nimport com.pulumi.vault.secrets.SyncAssociationArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var kvv2 = new Mount(\"kvv2\", MountArgs.builder()        \n            .path(\"kvv2\")\n            .type(\"kv\")\n            .options(Map.of(\"version\", \"2\"))\n            .description(\"KV Version 2 secret engine mount\")\n            .build());\n\n        var token = new SecretV2(\"token\", SecretV2Args.builder()        \n            .mount(kvv2.path())\n            .dataJson(serializeJson(\n                jsonObject(\n                    jsonProperty(\"dev\", \"B!gS3cr3t\"),\n                    jsonProperty(\"prod\", \"S3cureP4$$\")\n                )))\n            .build());\n\n        var gh = new SyncGhDestination(\"gh\", SyncGhDestinationArgs.builder()        \n            .accessToken(var_.access_token())\n            .repositoryOwner(var_.repo_owner())\n            .repositoryName(\"repo-name-example\")\n            .secretNameTemplate(\"vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\")\n            .build());\n\n        var ghToken = new SyncAssociation(\"ghToken\", SyncAssociationArgs.builder()        \n            .type(gh.type())\n            .mount(kvv2.path())\n            .secretName(token.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  kvv2:\n    type: vault:Mount\n    properties:\n      path: kvv2\n      type: kv\n      options:\n        version: '2'\n      description: KV Version 2 secret engine mount\n  token:\n    type: vault:kv:SecretV2\n    properties:\n      mount: ${kvv2.path}\n      dataJson:\n        fn::toJSON:\n          dev: B!gS3cr3t\n          prod: S3cureP4$$\n  gh:\n    type: vault:secrets:SyncGhDestination\n    properties:\n      accessToken: ${var.access_token}\n      repositoryOwner: ${var.repo_owner}\n      repositoryName: repo-name-example\n      secretNameTemplate: vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}\n  ghToken:\n    type: vault:secrets:SyncAssociation\n    properties:\n      type: ${gh.type}\n      mount: ${kvv2.path}\n      secretName: ${token.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
+                "metadatas": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/vault:secrets/SyncAssociationMetadata:SyncAssociationMetadata"
+                    },
+                    "description": "Metadata for each subkey of the associated secret.\n"
+                },
                 "mount": {
                     "type": "string",
                     "description": "Specifies the mount where the secret is located.\n"
@@ -27816,26 +27860,17 @@
                     "type": "string",
                     "description": "Specifies the name of the secret to synchronize.\n"
                 },
-                "syncStatus": {
-                    "type": "string",
-                    "description": "Specifies the status of the association (for eg. `SYNCED`).\n"
-                },
                 "type": {
                     "type": "string",
                     "description": "Specifies the destination type.\n"
-                },
-                "updatedAt": {
-                    "type": "string",
-                    "description": "Duration string specifying when the secret was last updated.\n"
                 }
             },
             "required": [
+                "metadatas",
                 "mount",
                 "name",
                 "secretName",
-                "syncStatus",
-                "type",
-                "updatedAt"
+                "type"
             ],
             "inputProperties": {
                 "mount": {
@@ -27872,6 +27907,13 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering SyncAssociation resources.\n",
                 "properties": {
+                    "metadatas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/vault:secrets/SyncAssociationMetadata:SyncAssociationMetadata"
+                        },
+                        "description": "Metadata for each subkey of the associated secret.\n"
+                    },
                     "mount": {
                         "type": "string",
                         "description": "Specifies the mount where the secret is located.\n",
@@ -27892,18 +27934,10 @@
                         "description": "Specifies the name of the secret to synchronize.\n",
                         "willReplaceOnChanges": true
                     },
-                    "syncStatus": {
-                        "type": "string",
-                        "description": "Specifies the status of the association (for eg. `SYNCED`).\n"
-                    },
                     "type": {
                         "type": "string",
                         "description": "Specifies the destination type.\n",
                         "willReplaceOnChanges": true
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "description": "Duration string specifying when the secret was last updated.\n"
                     }
                 },
                 "type": "object"
@@ -27926,6 +27960,10 @@
                 "externalId": {
                     "type": "string",
                     "description": "Optional extra protection that must match the trust policy granting access to the\nAWS IAM role ARN. We recommend using a different random UUID per destination. The value is generated by users.\nThe field is mutable with no special condition, but users must be careful that the new value fits with the trust\nrelationship condition they set on AWS otherwise sync operations will start to fail due to client-side access\ndenied errors. Ignored if the `role_arn` field is empty.\n"
+                },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource \nat the destination. Supports `secret-path` and `secret-key`.\n"
                 },
                 "name": {
                     "type": "string",
@@ -27978,6 +28016,10 @@
                     "type": "string",
                     "description": "Optional extra protection that must match the trust policy granting access to the\nAWS IAM role ARN. We recommend using a different random UUID per destination. The value is generated by users.\nThe field is mutable with no special condition, but users must be careful that the new value fits with the trust\nrelationship condition they set on AWS otherwise sync operations will start to fail due to client-side access\ndenied errors. Ignored if the `role_arn` field is empty.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource \nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Unique name of the AWS destination.\n",
@@ -28024,6 +28066,10 @@
                     "externalId": {
                         "type": "string",
                         "description": "Optional extra protection that must match the trust policy granting access to the\nAWS IAM role ARN. We recommend using a different random UUID per destination. The value is generated by users.\nThe field is mutable with no special condition, but users must be careful that the new value fits with the trust\nrelationship condition they set on AWS otherwise sync operations will start to fail due to client-side access\ndenied errors. Ignored if the `role_arn` field is empty.\n"
+                    },
+                    "granularity": {
+                        "type": "string",
+                        "description": "Determines what level of information is synced as a distinct resource \nat the destination. Supports `secret-path` and `secret-key`.\n"
                     },
                     "name": {
                         "type": "string",
@@ -28085,6 +28131,10 @@
                     },
                     "description": "Custom tags to set on the secret managed at the destination.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "keyVaultUri": {
                     "type": "string",
                     "description": "URI of an existing Azure Key Vault instance.\nCan be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment\nvariable.\n"
@@ -28137,6 +28187,10 @@
                     },
                     "description": "Custom tags to set on the secret managed at the destination.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "keyVaultUri": {
                     "type": "string",
                     "description": "URI of an existing Azure Key Vault instance.\nCan be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment\nvariable.\n",
@@ -28185,6 +28239,10 @@
                             "$ref": "pulumi.json#/Any"
                         },
                         "description": "Custom tags to set on the secret managed at the destination.\n"
+                    },
+                    "granularity": {
+                        "type": "string",
+                        "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
                     },
                     "keyVaultUri": {
                         "type": "string",
@@ -28285,6 +28343,10 @@
                     },
                     "description": "Custom tags to set on the secret managed at the destination.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Unique name of the GCP destination.\n"
@@ -28324,6 +28386,10 @@
                     },
                     "description": "Custom tags to set on the secret managed at the destination.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Unique name of the GCP destination.\n",
@@ -28358,6 +28424,10 @@
                             "$ref": "pulumi.json#/Any"
                         },
                         "description": "Custom tags to set on the secret managed at the destination.\n"
+                    },
+                    "granularity": {
+                        "type": "string",
+                        "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
                     },
                     "name": {
                         "type": "string",
@@ -28398,6 +28468,10 @@
                 "appName": {
                     "type": "string",
                     "description": "The user-defined name of the GitHub App configuration. This is a reference to the name used   \non the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.\nTakes precedence over the `access_token` field.\n"
+                },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
                 },
                 "installationId": {
                     "type": "integer",
@@ -28443,6 +28517,10 @@
                     "type": "string",
                     "description": "The user-defined name of the GitHub App configuration. This is a reference to the name used   \non the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.\nTakes precedence over the `access_token` field.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "installationId": {
                     "type": "integer",
                     "description": "The ID of the installation generated by GitHub when the app referenced by the `app_name` \nwas installed in the user’s GitHub account. Can be modified. Necessary if the `app_name` field is also provided.\n"
@@ -28483,6 +28561,10 @@
                     "appName": {
                         "type": "string",
                         "description": "The user-defined name of the GitHub App configuration. This is a reference to the name used   \non the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.\nTakes precedence over the `access_token` field.\n"
+                    },
+                    "granularity": {
+                        "type": "string",
+                        "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
                     },
                     "installationId": {
                         "type": "integer",
@@ -28624,6 +28706,10 @@
                     },
                     "description": "Deployment environments where the environment variables\nare available. Accepts `development`, `preview` and `production`.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Unique name of the GitHub destination.\n"
@@ -28670,6 +28756,10 @@
                     },
                     "description": "Deployment environments where the environment variables\nare available. Accepts `development`, `preview` and `production`.\n"
                 },
+                "granularity": {
+                    "type": "string",
+                    "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "Unique name of the GitHub destination.\n",
@@ -28713,6 +28803,10 @@
                             "type": "string"
                         },
                         "description": "Deployment environments where the environment variables\nare available. Accepts `development`, `preview` and `production`.\n"
+                    },
+                    "granularity": {
+                        "type": "string",
+                        "description": "Determines what level of information is synced as a distinct resource\nat the destination. Supports `secret-path` and `secret-key`.\n"
                     },
                     "name": {
                         "type": "string",
@@ -33139,6 +33233,100 @@
                     "rotationPeriod",
                     "ttl",
                     "username",
+                    "id"
+                ]
+            }
+        },
+        "vault:namespace/get:get": {
+            "description": "## Example Usage\n\n### Current namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst current = vault.namespace.get({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ncurrent = vault.namespace.get()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Vault.Namespace.Get.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := namespace.Get(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = NamespaceFunctions.get();\n\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: vault:namespace:get\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Single namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst ns1 = vault.namespace.get({\n    path: \"ns1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nns1 = vault.namespace.get(path=\"ns1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ns1 = Vault.Namespace.Get.Invoke(new()\n    {\n        Path = \"ns1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := namespace.Get(ctx, \u0026namespace.GetArgs{\n\t\t\tPath: pulumi.StringRef(\"ns1\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ns1 = NamespaceFunctions.get(GetArgs.builder()\n            .path(\"ns1\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  ns1:\n    fn::invoke:\n      Function: vault:namespace:get\n      Arguments:\n        path: ns1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst child = vault.namespace.get({\n    namespace: \"parent\",\n    path: \"child\",\n});\nconst fullPath = child.then(child =\u003e child.id);\n// -\u003e foo/parent/child/\nconst pathFq = child.then(child =\u003e child.pathFq);\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchild = vault.namespace.get(namespace=\"parent\",\n    path=\"child\")\nfull_path = child.id\n# -\u003e foo/parent/child/\npath_fq = child.path_fq\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var child = Vault.Namespace.Get.Invoke(new()\n    {\n        Namespace = \"parent\",\n        Path = \"child\",\n    });\n\n    var fullPath = child.Apply(getResult =\u003e getResult.Id);\n\n    // -\u003e foo/parent/child/\n    var pathFq = child.Apply(getResult =\u003e getResult.PathFq);\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tchild, err := namespace.Get(ctx, \u0026namespace.GetArgs{\n\t\t\tNamespace: pulumi.StringRef(\"parent\"),\n\t\t\tPath:      pulumi.StringRef(\"child\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ := child.Id\n\t\t// -\u003e foo/parent/child/\n\t\t_ := child.PathFq\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var child = NamespaceFunctions.get(GetArgs.builder()\n            .namespace(\"parent\")\n            .path(\"child\")\n            .build());\n\n        final var fullPath = child.applyValue(getResult -\u003e getResult.id());\n\n        final var pathFq = child.applyValue(getResult -\u003e getResult.pathFq());\n\n    }\n}\n```\n```yaml\nvariables:\n  child:\n    fn::invoke:\n      Function: vault:namespace:get\n      Arguments:\n        namespace: parent\n        path: child\n  fullPath: ${child.id}\n  # -\u003e foo/parent/child/\n  pathFq: ${child.pathFq}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking get.\n",
+                "properties": {
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The path of the namespace. Must not have a trailing `/`.\nIf not specified or empty, path attributes are set for the current namespace\nbased on the `namespace` arguments of the provider and this data source.\nOther path related attributes will be empty in this case.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by get.\n",
+                "properties": {
+                    "customMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "(Optional) A map of strings containing arbitrary metadata for the namespace.\nOnly fetched if `path` is specified.\n*Requires Vault 1.12+.*\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "namespaceId": {
+                        "type": "string",
+                        "description": "Vault server's internal ID of the namespace.\nOnly fetched if `path` is specified.\n"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "pathFq": {
+                        "type": "string",
+                        "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\nThe path is relative to the provider's `namespace` argument.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "customMetadata",
+                    "namespaceId",
+                    "pathFq",
+                    "id"
+                ]
+            }
+        },
+        "vault:namespace/getS:getS": {
+            "description": "## Example Usage\n\n### Child namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.namespace.getS({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.namespace.get_s()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.Namespace.GetS.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := namespace.GetS(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetSArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var children = NamespaceFunctions.getS();\n\n    }\n}\n```\n```yaml\nvariables:\n  children:\n    fn::invoke:\n      Function: vault:namespace:getS\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\nTo fetch the details of nested namespaces:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.namespace.getS({\n    namespace: \"parent\",\n});\nconst child = .map(([, ]) =\u003e (vault.namespace.get({\n    namespace: _arg0_.namespace,\n    path: __key,\n})));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.namespace.get_s(namespace=\"parent\")\nchild = [vault.namespace.get(namespace=children.namespace,\n    path=__key) for __key, __value in children.paths]\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.Namespace.GetS.Invoke(new()\n    {\n        Namespace = \"parent\",\n    });\n\n    var child = .Select(__value =\u003e \n    {\n        return Vault.Namespace.Get.Invoke(new()\n        {\n            Namespace = _arg0_.Namespace,\n            Path = __key,\n        });\n    }).ToList();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tchildren, err := namespace.GetS(ctx, \u0026namespace.GetSArgs{\n\t\t\tNamespace: pulumi.StringRef(\"parent\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ := \"TODO: For expression\"\n\t\treturn nil\n\t})\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getS.\n",
+                "properties": {
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getS.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "paths": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of the paths of direct child namespaces.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "paths",
                     "id"
                 ]
             }
