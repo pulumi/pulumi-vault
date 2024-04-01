@@ -39,7 +39,6 @@
                 "ldap": "Ldap",
                 "managed": "Managed",
                 "mongodbatlas": "MongoDBAtlas",
-                "namespace": "Namespace",
                 "okta": "Okta",
                 "pkiSecret": "PkiSecret",
                 "rabbitMq": "RabbitMQ",
@@ -32150,6 +32149,100 @@
                 ]
             }
         },
+        "vault:index/getNamespace:getNamespace": {
+            "description": "## Example Usage\n\n### Current namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst current = vault.getNamespace({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ncurrent = vault.get_namespace()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Vault.GetNamespace.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.LookupNamespace(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = VaultFunctions.getNamespace();\n\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: vault:getNamespace\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Single namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst ns1 = vault.getNamespace({\n    path: \"ns1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nns1 = vault.get_namespace(path=\"ns1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ns1 = Vault.GetNamespace.Invoke(new()\n    {\n        Path = \"ns1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.LookupNamespace(ctx, \u0026vault.LookupNamespaceArgs{\n\t\t\tPath: pulumi.StringRef(\"ns1\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()\n            .path(\"ns1\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  ns1:\n    fn::invoke:\n      Function: vault:getNamespace\n      Arguments:\n        path: ns1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst child = vault.getNamespace({\n    namespace: \"parent\",\n    path: \"child\",\n});\nconst fullPath = child.then(child =\u003e child.id);\n// -\u003e foo/parent/child/\nconst pathFq = child.then(child =\u003e child.pathFq);\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchild = vault.get_namespace(namespace=\"parent\",\n    path=\"child\")\nfull_path = child.id\n# -\u003e foo/parent/child/\npath_fq = child.path_fq\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var child = Vault.GetNamespace.Invoke(new()\n    {\n        Namespace = \"parent\",\n        Path = \"child\",\n    });\n\n    var fullPath = child.Apply(getNamespaceResult =\u003e getNamespaceResult.Id);\n\n    // -\u003e foo/parent/child/\n    var pathFq = child.Apply(getNamespaceResult =\u003e getNamespaceResult.PathFq);\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tchild, err := vault.LookupNamespace(ctx, \u0026vault.LookupNamespaceArgs{\n\t\t\tNamespace: pulumi.StringRef(\"parent\"),\n\t\t\tPath:      pulumi.StringRef(\"child\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ := child.Id\n\t\t// -\u003e foo/parent/child/\n\t\t_ := child.PathFq\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()\n            .namespace(\"parent\")\n            .path(\"child\")\n            .build());\n\n        final var fullPath = child.applyValue(getNamespaceResult -\u003e getNamespaceResult.id());\n\n        final var pathFq = child.applyValue(getNamespaceResult -\u003e getNamespaceResult.pathFq());\n\n    }\n}\n```\n```yaml\nvariables:\n  child:\n    fn::invoke:\n      Function: vault:getNamespace\n      Arguments:\n        namespace: parent\n        path: child\n  fullPath: ${child.id}\n  # -\u003e foo/parent/child/\n  pathFq: ${child.pathFq}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNamespace.\n",
+                "properties": {
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "The path of the namespace. Must not have a trailing `/`.\nIf not specified or empty, path attributes are set for the current namespace\nbased on the `namespace` arguments of the provider and this data source.\nOther path related attributes will be empty in this case.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNamespace.\n",
+                "properties": {
+                    "customMetadata": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "description": "(Optional) A map of strings containing arbitrary metadata for the namespace.\nOnly fetched if `path` is specified.\n*Requires Vault 1.12+.*\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "namespaceId": {
+                        "type": "string",
+                        "description": "Vault server's internal ID of the namespace.\nOnly fetched if `path` is specified.\n"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "pathFq": {
+                        "type": "string",
+                        "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\nThe path is relative to the provider's `namespace` argument.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "customMetadata",
+                    "namespaceId",
+                    "pathFq",
+                    "id"
+                ]
+            }
+        },
+        "vault:index/getNamespaces:getNamespaces": {
+            "description": "## Example Usage\n\n### Child namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.GetNamespaces(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNamespacesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var children = VaultFunctions.getNamespaces();\n\n    }\n}\n```\n```yaml\nvariables:\n  children:\n    fn::invoke:\n      Function: vault:getNamespaces\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\nTo fetch the details of nested namespaces:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.getNamespaces({\n    namespace: \"parent\",\n});\nconst child = .map(([, ]) =\u003e (vault.getNamespace({\n    namespace: _arg0_.namespace,\n    path: __key,\n})));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.get_namespaces(namespace=\"parent\")\nchild = [vault.get_namespace(namespace=children.namespace,\n    path=__key) for __key, __value in children.paths]\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.GetNamespaces.Invoke(new()\n    {\n        Namespace = \"parent\",\n    });\n\n    var child = .Select(__value =\u003e \n    {\n        return Vault.GetNamespace.Invoke(new()\n        {\n            Namespace = _arg0_.Namespace,\n            Path = __key,\n        });\n    }).ToList();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tchildren, err := vault.GetNamespaces(ctx, \u0026vault.GetNamespacesArgs{\n\t\t\tNamespace: pulumi.StringRef(\"parent\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ := \"TODO: For expression\"\n\t\treturn nil\n\t})\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNamespaces.\n",
+                "properties": {
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNamespaces.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "paths": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Set of the paths of direct child namespaces.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "paths",
+                    "id"
+                ]
+            }
+        },
         "vault:index/getNomadAccessToken:getNomadAccessToken": {
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new vault.NomadSecretBackend(\"config\", {\n    backend: \"nomad\",\n    description: \"test description\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 7200,\n    address: \"https://127.0.0.1:4646\",\n    token: \"ae20ceaa-...\",\n});\nconst test = new vault.NomadSecretRole(\"test\", {\n    backend: config.backend,\n    role: \"test\",\n    type: \"client\",\n    policies: [\"readonly\"],\n});\nconst token = pulumi.all([config.backend, test.role]).apply(([backend, role]) =\u003e vault.getNomadAccessTokenOutput({\n    backend: backend,\n    role: role,\n}));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = vault.NomadSecretBackend(\"config\",\n    backend=\"nomad\",\n    description=\"test description\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=7200,\n    address=\"https://127.0.0.1:4646\",\n    token=\"ae20ceaa-...\")\ntest = vault.NomadSecretRole(\"test\",\n    backend=config.backend,\n    role=\"test\",\n    type=\"client\",\n    policies=[\"readonly\"])\ntoken = pulumi.Output.all(config.backend, test.role).apply(lambda backend, role: vault.get_nomad_access_token_output(backend=backend,\n    role=role))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Vault.NomadSecretBackend(\"config\", new()\n    {\n        Backend = \"nomad\",\n        Description = \"test description\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 7200,\n        Address = \"https://127.0.0.1:4646\",\n        Token = \"ae20ceaa-...\",\n    });\n\n    var test = new Vault.NomadSecretRole(\"test\", new()\n    {\n        Backend = config.Backend,\n        Role = \"test\",\n        Type = \"client\",\n        Policies = new[]\n        {\n            \"readonly\",\n        },\n    });\n\n    var token = Vault.GetNomadAccessToken.Invoke(new()\n    {\n        Backend = config.Backend,\n        Role = test.Role,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tconfig, err := vault.NewNomadSecretBackend(ctx, \"config\", \u0026vault.NomadSecretBackendArgs{\n\t\t\tBackend:                pulumi.String(\"nomad\"),\n\t\t\tDescription:            pulumi.String(\"test description\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(7200),\n\t\t\tAddress:                pulumi.String(\"https://127.0.0.1:4646\"),\n\t\t\tToken:                  pulumi.String(\"ae20ceaa-...\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := vault.NewNomadSecretRole(ctx, \"test\", \u0026vault.NomadSecretRoleArgs{\n\t\t\tBackend: config.Backend,\n\t\t\tRole:    pulumi.String(\"test\"),\n\t\t\tType:    pulumi.String(\"client\"),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"readonly\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = pulumi.All(config.Backend, test.Role).ApplyT(func(_args []interface{}) (vault.GetNomadAccessTokenResult, error) {\n\t\t\tbackend := _args[0].(*string)\n\t\t\trole := _args[1].(string)\n\t\t\treturn vault.GetNomadAccessTokenOutput(ctx, vault.GetNomadAccessTokenOutputArgs{\n\t\t\t\tBackend: backend,\n\t\t\t\tRole:    role,\n\t\t\t}, nil), nil\n\t\t}).(vault.GetNomadAccessTokenResultOutput)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.NomadSecretBackend;\nimport com.pulumi.vault.NomadSecretBackendArgs;\nimport com.pulumi.vault.NomadSecretRole;\nimport com.pulumi.vault.NomadSecretRoleArgs;\nimport com.pulumi.vault.VaultFunctions;\nimport com.pulumi.vault.inputs.GetNomadAccessTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new NomadSecretBackend(\"config\", NomadSecretBackendArgs.builder()        \n            .backend(\"nomad\")\n            .description(\"test description\")\n            .defaultLeaseTtlSeconds(\"3600\")\n            .maxLeaseTtlSeconds(\"7200\")\n            .address(\"https://127.0.0.1:4646\")\n            .token(\"ae20ceaa-...\")\n            .build());\n\n        var test = new NomadSecretRole(\"test\", NomadSecretRoleArgs.builder()        \n            .backend(config.backend())\n            .role(\"test\")\n            .type(\"client\")\n            .policies(\"readonly\")\n            .build());\n\n        final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()\n            .backend(config.backend())\n            .role(test.role())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: vault:NomadSecretBackend\n    properties:\n      backend: nomad\n      description: test description\n      defaultLeaseTtlSeconds: '3600'\n      maxLeaseTtlSeconds: '7200'\n      address: https://127.0.0.1:4646\n      token: ae20ceaa-...\n  test:\n    type: vault:NomadSecretRole\n    properties:\n      backend: ${config.backend}\n      role: test\n      type: client\n      policies:\n        - readonly\nvariables:\n  token:\n    fn::invoke:\n      Function: vault:getNomadAccessToken\n      Arguments:\n        backend: ${config.backend}\n        role: ${test.role}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -33238,18 +33331,16 @@
             }
         },
         "vault:namespace/get:get": {
-            "description": "## Example Usage\n\n### Current namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst current = vault.namespace.get({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ncurrent = vault.namespace.get()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var current = Vault.Namespace.Get.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := namespace.Get(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var current = NamespaceFunctions.get();\n\n    }\n}\n```\n```yaml\nvariables:\n  current:\n    fn::invoke:\n      Function: vault:namespace:get\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Single namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst ns1 = vault.namespace.get({\n    path: \"ns1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nns1 = vault.namespace.get(path=\"ns1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ns1 = Vault.Namespace.Get.Invoke(new()\n    {\n        Path = \"ns1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := namespace.Get(ctx, \u0026namespace.GetArgs{\n\t\t\tPath: pulumi.StringRef(\"ns1\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ns1 = NamespaceFunctions.get(GetArgs.builder()\n            .path(\"ns1\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  ns1:\n    fn::invoke:\n      Function: vault:namespace:get\n      Arguments:\n        path: ns1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst child = vault.namespace.get({\n    namespace: \"parent\",\n    path: \"child\",\n});\nconst fullPath = child.then(child =\u003e child.id);\n// -\u003e foo/parent/child/\nconst pathFq = child.then(child =\u003e child.pathFq);\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchild = vault.namespace.get(namespace=\"parent\",\n    path=\"child\")\nfull_path = child.id\n# -\u003e foo/parent/child/\npath_fq = child.path_fq\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var child = Vault.Namespace.Get.Invoke(new()\n    {\n        Namespace = \"parent\",\n        Path = \"child\",\n    });\n\n    var fullPath = child.Apply(getResult =\u003e getResult.Id);\n\n    // -\u003e foo/parent/child/\n    var pathFq = child.Apply(getResult =\u003e getResult.PathFq);\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tchild, err := namespace.Get(ctx, \u0026namespace.GetArgs{\n\t\t\tNamespace: pulumi.StringRef(\"parent\"),\n\t\t\tPath:      pulumi.StringRef(\"child\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ := child.Id\n\t\t// -\u003e foo/parent/child/\n\t\t_ := child.PathFq\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var child = NamespaceFunctions.get(GetArgs.builder()\n            .namespace(\"parent\")\n            .path(\"child\")\n            .build());\n\n        final var fullPath = child.applyValue(getResult -\u003e getResult.id());\n\n        final var pathFq = child.applyValue(getResult -\u003e getResult.pathFq());\n\n    }\n}\n```\n```yaml\nvariables:\n  child:\n    fn::invoke:\n      Function: vault:namespace:get\n      Arguments:\n        namespace: parent\n        path: child\n  fullPath: ${child.id}\n  # -\u003e foo/parent/child/\n  pathFq: ${child.pathFq}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "deprecationMessage": "vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace",
             "inputs": {
                 "description": "A collection of arguments for invoking get.\n",
                 "properties": {
                     "namespace": {
                         "type": "string",
-                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
                         "willReplaceOnChanges": true
                     },
                     "path": {
                         "type": "string",
-                        "description": "The path of the namespace. Must not have a trailing `/`.\nIf not specified or empty, path attributes are set for the current namespace\nbased on the `namespace` arguments of the provider and this data source.\nOther path related attributes will be empty in this case.\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -33262,8 +33353,7 @@
                         "type": "object",
                         "additionalProperties": {
                             "$ref": "pulumi.json#/Any"
-                        },
-                        "description": "(Optional) A map of strings containing arbitrary metadata for the namespace.\nOnly fetched if `path` is specified.\n*Requires Vault 1.12+.*\n"
+                        }
                     },
                     "id": {
                         "type": "string",
@@ -33273,15 +33363,13 @@
                         "type": "string"
                     },
                     "namespaceId": {
-                        "type": "string",
-                        "description": "Vault server's internal ID of the namespace.\nOnly fetched if `path` is specified.\n"
+                        "type": "string"
                     },
                     "path": {
                         "type": "string"
                     },
                     "pathFq": {
-                        "type": "string",
-                        "description": "The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.\nThe path is relative to the provider's `namespace` argument.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
@@ -33294,13 +33382,12 @@
             }
         },
         "vault:namespace/getS:getS": {
-            "description": "## Example Usage\n\n### Child namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.namespace.getS({});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.namespace.get_s()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.Namespace.GetS.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := namespace.GetS(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.namespace.NamespaceFunctions;\nimport com.pulumi.vault.namespace.inputs.GetSArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var children = NamespaceFunctions.getS();\n\n    }\n}\n```\n```yaml\nvariables:\n  children:\n    fn::invoke:\n      Function: vault:namespace:getS\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespace\n\nTo fetch the details of nested namespaces:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst children = vault.namespace.getS({\n    namespace: \"parent\",\n});\nconst child = .map(([, ]) =\u003e (vault.namespace.get({\n    namespace: _arg0_.namespace,\n    path: __key,\n})));\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nchildren = vault.namespace.get_s(namespace=\"parent\")\nchild = [vault.namespace.get(namespace=children.namespace,\n    path=__key) for __key, __value in children.paths]\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var children = Vault.Namespace.GetS.Invoke(new()\n    {\n        Namespace = \"parent\",\n    });\n\n    var child = .Select(__value =\u003e \n    {\n        return Vault.Namespace.Get.Invoke(new()\n        {\n            Namespace = _arg0_.Namespace,\n            Path = __key,\n        });\n    }).ToList();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tchildren, err := namespace.GetS(ctx, \u0026namespace.GetSArgs{\n\t\t\tNamespace: pulumi.StringRef(\"parent\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ := \"TODO: For expression\"\n\t\treturn nil\n\t})\n}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "deprecationMessage": "vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces",
             "inputs": {
                 "description": "A collection of arguments for invoking getS.\n",
                 "properties": {
                     "namespace": {
                         "type": "string",
-                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n",
                         "willReplaceOnChanges": true
                     }
                 },
@@ -33320,8 +33407,7 @@
                         "type": "array",
                         "items": {
                             "type": "string"
-                        },
-                        "description": "Set of the paths of direct child namespaces.\n"
+                        }
                     }
                 },
                 "type": "object",
