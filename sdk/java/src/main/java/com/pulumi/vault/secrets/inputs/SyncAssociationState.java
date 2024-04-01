@@ -5,7 +5,9 @@ package com.pulumi.vault.secrets.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.vault.secrets.inputs.SyncAssociationMetadataArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +16,21 @@ import javax.annotation.Nullable;
 public final class SyncAssociationState extends com.pulumi.resources.ResourceArgs {
 
     public static final SyncAssociationState Empty = new SyncAssociationState();
+
+    /**
+     * Metadata for each subkey of the associated secret.
+     * 
+     */
+    @Import(name="metadatas")
+    private @Nullable Output<List<SyncAssociationMetadataArgs>> metadatas;
+
+    /**
+     * @return Metadata for each subkey of the associated secret.
+     * 
+     */
+    public Optional<Output<List<SyncAssociationMetadataArgs>>> metadatas() {
+        return Optional.ofNullable(this.metadatas);
+    }
 
     /**
      * Specifies the mount where the secret is located.
@@ -80,21 +97,6 @@ public final class SyncAssociationState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies the status of the association (for eg. `SYNCED`).
-     * 
-     */
-    @Import(name="syncStatus")
-    private @Nullable Output<String> syncStatus;
-
-    /**
-     * @return Specifies the status of the association (for eg. `SYNCED`).
-     * 
-     */
-    public Optional<Output<String>> syncStatus() {
-        return Optional.ofNullable(this.syncStatus);
-    }
-
-    /**
      * Specifies the destination type.
      * 
      */
@@ -109,31 +111,15 @@ public final class SyncAssociationState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.type);
     }
 
-    /**
-     * Duration string specifying when the secret was last updated.
-     * 
-     */
-    @Import(name="updatedAt")
-    private @Nullable Output<String> updatedAt;
-
-    /**
-     * @return Duration string specifying when the secret was last updated.
-     * 
-     */
-    public Optional<Output<String>> updatedAt() {
-        return Optional.ofNullable(this.updatedAt);
-    }
-
     private SyncAssociationState() {}
 
     private SyncAssociationState(SyncAssociationState $) {
+        this.metadatas = $.metadatas;
         this.mount = $.mount;
         this.name = $.name;
         this.namespace = $.namespace;
         this.secretName = $.secretName;
-        this.syncStatus = $.syncStatus;
         this.type = $.type;
-        this.updatedAt = $.updatedAt;
     }
 
     public static Builder builder() {
@@ -152,6 +138,37 @@ public final class SyncAssociationState extends com.pulumi.resources.ResourceArg
 
         public Builder(SyncAssociationState defaults) {
             $ = new SyncAssociationState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param metadatas Metadata for each subkey of the associated secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadatas(@Nullable Output<List<SyncAssociationMetadataArgs>> metadatas) {
+            $.metadatas = metadatas;
+            return this;
+        }
+
+        /**
+         * @param metadatas Metadata for each subkey of the associated secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadatas(List<SyncAssociationMetadataArgs> metadatas) {
+            return metadatas(Output.of(metadatas));
+        }
+
+        /**
+         * @param metadatas Metadata for each subkey of the associated secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadatas(SyncAssociationMetadataArgs... metadatas) {
+            return metadatas(List.of(metadatas));
         }
 
         /**
@@ -243,27 +260,6 @@ public final class SyncAssociationState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param syncStatus Specifies the status of the association (for eg. `SYNCED`).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder syncStatus(@Nullable Output<String> syncStatus) {
-            $.syncStatus = syncStatus;
-            return this;
-        }
-
-        /**
-         * @param syncStatus Specifies the status of the association (for eg. `SYNCED`).
-         * 
-         * @return builder
-         * 
-         */
-        public Builder syncStatus(String syncStatus) {
-            return syncStatus(Output.of(syncStatus));
-        }
-
-        /**
          * @param type Specifies the destination type.
          * 
          * @return builder
@@ -282,27 +278,6 @@ public final class SyncAssociationState extends com.pulumi.resources.ResourceArg
          */
         public Builder type(String type) {
             return type(Output.of(type));
-        }
-
-        /**
-         * @param updatedAt Duration string specifying when the secret was last updated.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder updatedAt(@Nullable Output<String> updatedAt) {
-            $.updatedAt = updatedAt;
-            return this;
-        }
-
-        /**
-         * @param updatedAt Duration string specifying when the secret was last updated.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder updatedAt(String updatedAt) {
-            return updatedAt(Output.of(updatedAt));
         }
 
         public SyncAssociationState build() {

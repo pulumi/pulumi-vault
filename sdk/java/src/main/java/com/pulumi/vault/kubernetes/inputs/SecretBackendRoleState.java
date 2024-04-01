@@ -19,8 +19,30 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     public static final SecretBackendRoleState Empty = new SecretBackendRoleState();
 
     /**
+     * A label selector for Kubernetes namespaces
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+     * 
+     */
+    @Import(name="allowedKubernetesNamespaceSelector")
+    private @Nullable Output<String> allowedKubernetesNamespaceSelector;
+
+    /**
+     * @return A label selector for Kubernetes namespaces
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+     * 
+     */
+    public Optional<Output<String>> allowedKubernetesNamespaceSelector() {
+        return Optional.ofNullable(this.allowedKubernetesNamespaceSelector);
+    }
+
+    /**
      * The list of Kubernetes namespaces this role
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
      * 
      */
     @Import(name="allowedKubernetesNamespaces")
@@ -28,7 +50,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
     /**
      * @return The list of Kubernetes namespaces this role
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
      * 
      */
     public Optional<Output<List<String>>> allowedKubernetesNamespaces() {
@@ -254,6 +277,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     private SecretBackendRoleState() {}
 
     private SecretBackendRoleState(SecretBackendRoleState $) {
+        this.allowedKubernetesNamespaceSelector = $.allowedKubernetesNamespaceSelector;
         this.allowedKubernetesNamespaces = $.allowedKubernetesNamespaces;
         this.backend = $.backend;
         this.extraAnnotations = $.extraAnnotations;
@@ -288,8 +312,36 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param allowedKubernetesNamespaceSelector A label selector for Kubernetes namespaces
+         * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+         * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+         * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedKubernetesNamespaceSelector(@Nullable Output<String> allowedKubernetesNamespaceSelector) {
+            $.allowedKubernetesNamespaceSelector = allowedKubernetesNamespaceSelector;
+            return this;
+        }
+
+        /**
+         * @param allowedKubernetesNamespaceSelector A label selector for Kubernetes namespaces
+         * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+         * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+         * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedKubernetesNamespaceSelector(String allowedKubernetesNamespaceSelector) {
+            return allowedKubernetesNamespaceSelector(Output.of(allowedKubernetesNamespaceSelector));
+        }
+
+        /**
          * @param allowedKubernetesNamespaces The list of Kubernetes namespaces this role
-         * can generate credentials for. If set to `*` all namespaces are allowed.
+         * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+         * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
          * 
          * @return builder
          * 
@@ -301,7 +353,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
         /**
          * @param allowedKubernetesNamespaces The list of Kubernetes namespaces this role
-         * can generate credentials for. If set to `*` all namespaces are allowed.
+         * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+         * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
          * 
          * @return builder
          * 
@@ -312,7 +365,8 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
 
         /**
          * @param allowedKubernetesNamespaces The list of Kubernetes namespaces this role
-         * can generate credentials for. If set to `*` all namespaces are allowed.
+         * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+         * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
          * 
          * @return builder
          * 

@@ -23,14 +23,14 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// {
     ///     var mongo = new Vault.Mount("mongo", new()
     ///     {
-    ///         Description = "MongoDB Atlas secret engine mount",
     ///         Path = "mongodbatlas",
     ///         Type = "mongodbatlas",
+    ///         Description = "MongoDB Atlas secret engine mount",
     ///     });
     /// 
     ///     var config = new Vault.MongoDBAtlas.SecretBackend("config", new()
     ///     {
-    ///         Mount = "vault_mount.mongo.path",
+    ///         Mount = mongo.Path,
     ///         PrivateKey = "privateKey",
     ///         PublicKey = "publicKey",
     ///     });

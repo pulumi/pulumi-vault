@@ -1689,7 +1689,12 @@
             },
             "vault_secrets_sync_association": {
                 "current": "vault:secrets/syncAssociation:SyncAssociation",
-                "majorVersion": 6
+                "majorVersion": 6,
+                "fields": {
+                    "metadata": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_secrets_sync_aws_destination": {
                 "current": "vault:secrets/syncAwsDestination:SyncAwsDestination",
@@ -2068,6 +2073,19 @@
             "vault_ldap_static_credentials": {
                 "current": "vault:ldap/getStaticCredentials:getStaticCredentials",
                 "majorVersion": 6
+            },
+            "vault_namespace": {
+                "current": "vault:index/getNamespace:getNamespace",
+                "majorVersion": 6
+            },
+            "vault_namespaces": {
+                "current": "vault:index/getNamespaces:getNamespaces",
+                "majorVersion": 6,
+                "fields": {
+                    "paths": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_nomad_access_token": {
                 "current": "vault:index/getNomadAccessToken:getNomadAccessToken",

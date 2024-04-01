@@ -17,6 +17,7 @@ class SyncAwsDestinationArgs:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,8 @@ class SyncAwsDestinationArgs:
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource 
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the AWS destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -58,6 +61,8 @@ class SyncAwsDestinationArgs:
             pulumi.set(__self__, "custom_tags", custom_tags)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
+        if granularity is not None:
+            pulumi.set(__self__, "granularity", granularity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -112,6 +117,19 @@ class SyncAwsDestinationArgs:
     @external_id.setter
     def external_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external_id", value)
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines what level of information is synced as a distinct resource 
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
+
+    @granularity.setter
+    def granularity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "granularity", value)
 
     @property
     @pulumi.getter
@@ -203,6 +221,7 @@ class _SyncAwsDestinationState:
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -221,6 +240,8 @@ class _SyncAwsDestinationState:
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource 
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the AWS destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -246,6 +267,8 @@ class _SyncAwsDestinationState:
             pulumi.set(__self__, "custom_tags", custom_tags)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
+        if granularity is not None:
+            pulumi.set(__self__, "granularity", granularity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -302,6 +325,19 @@ class _SyncAwsDestinationState:
     @external_id.setter
     def external_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external_id", value)
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines what level of information is synced as a distinct resource 
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
+
+    @granularity.setter
+    def granularity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "granularity", value)
 
     @property
     @pulumi.getter
@@ -407,6 +443,7 @@ class SyncAwsDestination(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -454,6 +491,8 @@ class SyncAwsDestination(pulumi.CustomResource):
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource 
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the AWS destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -525,6 +564,7 @@ class SyncAwsDestination(pulumi.CustomResource):
                  access_key_id: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -543,6 +583,7 @@ class SyncAwsDestination(pulumi.CustomResource):
             __props__.__dict__["access_key_id"] = access_key_id
             __props__.__dict__["custom_tags"] = custom_tags
             __props__.__dict__["external_id"] = external_id
+            __props__.__dict__["granularity"] = granularity
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["region"] = region
@@ -565,6 +606,7 @@ class SyncAwsDestination(pulumi.CustomResource):
             access_key_id: Optional[pulumi.Input[str]] = None,
             custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             external_id: Optional[pulumi.Input[str]] = None,
+            granularity: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -588,6 +630,8 @@ class SyncAwsDestination(pulumi.CustomResource):
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource 
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the AWS destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -614,6 +658,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         __props__.__dict__["access_key_id"] = access_key_id
         __props__.__dict__["custom_tags"] = custom_tags
         __props__.__dict__["external_id"] = external_id
+        __props__.__dict__["granularity"] = granularity
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["region"] = region
@@ -652,6 +697,15 @@ class SyncAwsDestination(pulumi.CustomResource):
         denied errors. Ignored if the `role_arn` field is empty.
         """
         return pulumi.get(self, "external_id")
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> pulumi.Output[Optional[str]]:
+        """
+        Determines what level of information is synced as a distinct resource 
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
 
     @property
     @pulumi.getter

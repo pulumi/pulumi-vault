@@ -18,7 +18,7 @@ import * as utilities from "../utilities";
  *     description: "MongoDB Atlas secret engine mount",
  * });
  * const config = new vault.mongodbatlas.SecretBackend("config", {
- *     mount: "vault_mount.mongo.path",
+ *     mount: mongo.path,
  *     privateKey: "privateKey",
  *     publicKey: "publicKey",
  * });
@@ -26,10 +26,10 @@ import * as utilities from "../utilities";
  *     mount: mongo.path,
  *     organizationId: "7cf5a45a9ccf6400e60981b7",
  *     projectId: "5cf5a45a9ccf6400e60981b6",
- *     roles: "ORG_READ_ONLY",
+ *     roles: ["ORG_READ_ONLY"],
  *     ipAddresses: "192.168.1.5, 192.168.1.6",
  *     cidrBlocks: "192.168.1.3/35",
- *     projectRoles: "GROUP_READ_ONLY",
+ *     projectRoles: ["GROUP_READ_ONLY"],
  *     ttl: "60",
  *     maxTtl: "120",
  * });
@@ -107,15 +107,15 @@ export class SecretRole extends pulumi.CustomResource {
     public readonly organizationId!: pulumi.Output<string | undefined>;
     /**
      * Unique identifier for the project to which the target API Key belongs.
-     * Required if `organizationId is` not set.
+     * Required if `organizationId` is not set.
      */
     public readonly projectId!: pulumi.Output<string | undefined>;
     /**
-     * Roles assigned when an org API key is assigned to a project API key.
+     * Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
      */
     public readonly projectRoles!: pulumi.Output<string[] | undefined>;
     /**
-     * List of roles that the API Key needs to have.
+     * List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
      */
     public readonly roles!: pulumi.Output<string[]>;
     /**
@@ -210,15 +210,15 @@ export interface SecretRoleState {
     organizationId?: pulumi.Input<string>;
     /**
      * Unique identifier for the project to which the target API Key belongs.
-     * Required if `organizationId is` not set.
+     * Required if `organizationId` is not set.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Roles assigned when an org API key is assigned to a project API key.
+     * Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
      */
     projectRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of roles that the API Key needs to have.
+     * List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -265,15 +265,15 @@ export interface SecretRoleArgs {
     organizationId?: pulumi.Input<string>;
     /**
      * Unique identifier for the project to which the target API Key belongs.
-     * Required if `organizationId is` not set.
+     * Required if `organizationId` is not set.
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Roles assigned when an org API key is assigned to a project API key.
+     * Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
      */
     projectRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of roles that the API Key needs to have.
+     * List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
      */
     roles: pulumi.Input<pulumi.Input<string>[]>;
     /**

@@ -3077,6 +3077,29 @@ export namespace rabbitMq {
 
 }
 
+export namespace secrets {
+    export interface SyncAssociationMetadata {
+        /**
+         * Subkey of the associated secret.
+         */
+        subKey: string;
+        /**
+         * A map of sync statuses for each subkey of the associated secret
+         * (for ex. `{kv_624bea/aws-token/dev: "SYNCED", kv_624bea/aws-token/prod: "SYNCED"}`).
+         */
+        syncStatus: string;
+        /**
+         * A map of duration strings specifying when each subkey of the associated
+         * secret was last updated.
+         * (for ex.
+         * `{kv_624bea/aws-token/dev: "2024-03-21T12:42:02.558533-07:00",
+         * kv_624bea/aws-token/prod: "2024-03-21T12:42:02.558533-07:00"}`).
+         */
+        updatedAt: string;
+    }
+
+}
+
 export namespace ssh {
     export interface SecretBackendRoleAllowedUserKeyConfig {
         /**

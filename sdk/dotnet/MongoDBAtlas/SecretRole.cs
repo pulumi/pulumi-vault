@@ -30,7 +30,7 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// 
     ///     var config = new Vault.MongoDBAtlas.SecretBackend("config", new()
     ///     {
-    ///         Mount = "vault_mount.mongo.path",
+    ///         Mount = mongo.Path,
     ///         PrivateKey = "privateKey",
     ///         PublicKey = "publicKey",
     ///     });
@@ -40,10 +40,16 @@ namespace Pulumi.Vault.MongoDBAtlas
     ///         Mount = mongo.Path,
     ///         OrganizationId = "7cf5a45a9ccf6400e60981b7",
     ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
-    ///         Roles = "ORG_READ_ONLY",
+    ///         Roles = new[]
+    ///         {
+    ///             "ORG_READ_ONLY",
+    ///         },
     ///         IpAddresses = "192.168.1.5, 192.168.1.6",
     ///         CidrBlocks = "192.168.1.3/35",
-    ///         ProjectRoles = "GROUP_READ_ONLY",
+    ///         ProjectRoles = new[]
+    ///         {
+    ///             "GROUP_READ_ONLY",
+    ///         },
     ///         Ttl = "60",
     ///         MaxTtl = "120",
     ///     });
@@ -112,19 +118,19 @@ namespace Pulumi.Vault.MongoDBAtlas
 
         /// <summary>
         /// Unique identifier for the project to which the target API Key belongs.
-        /// Required if `organization_id is` not set.
+        /// Required if `organization_id` is not set.
         /// </summary>
         [Output("projectId")]
         public Output<string?> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Roles assigned when an org API key is assigned to a project API key.
+        /// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         /// </summary>
         [Output("projectRoles")]
         public Output<ImmutableArray<string>> ProjectRoles { get; private set; } = null!;
 
         /// <summary>
-        /// List of roles that the API Key needs to have.
+        /// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
@@ -241,7 +247,7 @@ namespace Pulumi.Vault.MongoDBAtlas
 
         /// <summary>
         /// Unique identifier for the project to which the target API Key belongs.
-        /// Required if `organization_id is` not set.
+        /// Required if `organization_id` is not set.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -250,7 +256,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         private InputList<string>? _projectRoles;
 
         /// <summary>
-        /// Roles assigned when an org API key is assigned to a project API key.
+        /// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         /// </summary>
         public InputList<string> ProjectRoles
         {
@@ -262,7 +268,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// List of roles that the API Key needs to have.
+        /// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         /// </summary>
         public InputList<string> Roles
         {
@@ -344,7 +350,7 @@ namespace Pulumi.Vault.MongoDBAtlas
 
         /// <summary>
         /// Unique identifier for the project to which the target API Key belongs.
-        /// Required if `organization_id is` not set.
+        /// Required if `organization_id` is not set.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -353,7 +359,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         private InputList<string>? _projectRoles;
 
         /// <summary>
-        /// Roles assigned when an org API key is assigned to a project API key.
+        /// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         /// </summary>
         public InputList<string> ProjectRoles
         {
@@ -365,7 +371,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         private InputList<string>? _roles;
 
         /// <summary>
-        /// List of roles that the API Key needs to have.
+        /// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         /// </summary>
         public InputList<string> Roles
         {

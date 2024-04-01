@@ -63,6 +63,13 @@ namespace Pulumi.Vault.Secrets
         public Output<ImmutableDictionary<string, object>?> CustomTags { get; private set; } = null!;
 
         /// <summary>
+        /// Determines what level of information is synced as a distinct resource
+        /// at the destination. Supports `secret-path` and `secret-key`.
+        /// </summary>
+        [Output("granularity")]
+        public Output<string?> Granularity { get; private set; } = null!;
+
+        /// <summary>
         /// Unique name of the GCP destination.
         /// </summary>
         [Output("name")]
@@ -179,6 +186,13 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
+        /// Determines what level of information is synced as a distinct resource
+        /// at the destination. Supports `secret-path` and `secret-key`.
+        /// </summary>
+        [Input("granularity")]
+        public Input<string>? Granularity { get; set; }
+
+        /// <summary>
         /// Unique name of the GCP destination.
         /// </summary>
         [Input("name")]
@@ -245,6 +259,13 @@ namespace Pulumi.Vault.Secrets
             get => _customTags ?? (_customTags = new InputMap<object>());
             set => _customTags = value;
         }
+
+        /// <summary>
+        /// Determines what level of information is synced as a distinct resource
+        /// at the destination. Supports `secret-path` and `secret-key`.
+        /// </summary>
+        [Input("granularity")]
+        public Input<string>? Granularity { get; set; }
 
         /// <summary>
         /// Unique name of the GCP destination.

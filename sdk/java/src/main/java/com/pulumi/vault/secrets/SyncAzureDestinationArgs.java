@@ -86,6 +86,23 @@ public final class SyncAzureDestinationArgs extends com.pulumi.resources.Resourc
     }
 
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    @Import(name="granularity")
+    private @Nullable Output<String> granularity;
+
+    /**
+     * @return Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    public Optional<Output<String>> granularity() {
+        return Optional.ofNullable(this.granularity);
+    }
+
+    /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
      * variable.
@@ -181,6 +198,7 @@ public final class SyncAzureDestinationArgs extends com.pulumi.resources.Resourc
         this.clientSecret = $.clientSecret;
         this.cloud = $.cloud;
         this.customTags = $.customTags;
+        this.granularity = $.granularity;
         this.keyVaultUri = $.keyVaultUri;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -296,6 +314,29 @@ public final class SyncAzureDestinationArgs extends com.pulumi.resources.Resourc
          */
         public Builder customTags(Map<String,Object> customTags) {
             return customTags(Output.of(customTags));
+        }
+
+        /**
+         * @param granularity Determines what level of information is synced as a distinct resource
+         * at the destination. Supports `secret-path` and `secret-key`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder granularity(@Nullable Output<String> granularity) {
+            $.granularity = granularity;
+            return this;
+        }
+
+        /**
+         * @param granularity Determines what level of information is synced as a distinct resource
+         * at the destination. Supports `secret-path` and `secret-key`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder granularity(String granularity) {
+            return granularity(Output.of(granularity));
         }
 
         /**

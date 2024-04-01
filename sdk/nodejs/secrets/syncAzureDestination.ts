@@ -82,6 +82,11 @@ export class SyncAzureDestination extends pulumi.CustomResource {
      */
     public readonly customTags!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    public readonly granularity!: pulumi.Output<string | undefined>;
+    /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
      * variable.
@@ -130,6 +135,7 @@ export class SyncAzureDestination extends pulumi.CustomResource {
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["cloud"] = state ? state.cloud : undefined;
             resourceInputs["customTags"] = state ? state.customTags : undefined;
+            resourceInputs["granularity"] = state ? state.granularity : undefined;
             resourceInputs["keyVaultUri"] = state ? state.keyVaultUri : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -142,6 +148,7 @@ export class SyncAzureDestination extends pulumi.CustomResource {
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["cloud"] = args ? args.cloud : undefined;
             resourceInputs["customTags"] = args ? args.customTags : undefined;
+            resourceInputs["granularity"] = args ? args.granularity : undefined;
             resourceInputs["keyVaultUri"] = args ? args.keyVaultUri : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -180,6 +187,11 @@ export interface SyncAzureDestinationState {
      * Custom tags to set on the secret managed at the destination.
      */
     customTags?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
@@ -237,6 +249,11 @@ export interface SyncAzureDestinationArgs {
      * Custom tags to set on the secret managed at the destination.
      */
     customTags?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment

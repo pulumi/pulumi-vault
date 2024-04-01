@@ -17,6 +17,7 @@ class SyncVercelDestinationArgs:
                  access_token: pulumi.Input[str],
                  deployment_environments: pulumi.Input[Sequence[pulumi.Input[str]]],
                  project_id: pulumi.Input[str],
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  secret_name_template: Optional[pulumi.Input[str]] = None,
@@ -28,6 +29,8 @@ class SyncVercelDestinationArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
         :param pulumi.Input[str] project_id: Project ID where to manage environment variables.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -39,6 +42,8 @@ class SyncVercelDestinationArgs:
         pulumi.set(__self__, "access_token", access_token)
         pulumi.set(__self__, "deployment_environments", deployment_environments)
         pulumi.set(__self__, "project_id", project_id)
+        if granularity is not None:
+            pulumi.set(__self__, "granularity", granularity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -85,6 +90,19 @@ class SyncVercelDestinationArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "project_id", value)
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines what level of information is synced as a distinct resource
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
+
+    @granularity.setter
+    def granularity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "granularity", value)
 
     @property
     @pulumi.getter
@@ -143,6 +161,7 @@ class _SyncVercelDestinationState:
     def __init__(__self__, *,
                  access_token: Optional[pulumi.Input[str]] = None,
                  deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -155,6 +174,8 @@ class _SyncVercelDestinationState:
                variables.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -169,6 +190,8 @@ class _SyncVercelDestinationState:
             pulumi.set(__self__, "access_token", access_token)
         if deployment_environments is not None:
             pulumi.set(__self__, "deployment_environments", deployment_environments)
+        if granularity is not None:
+            pulumi.set(__self__, "granularity", granularity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -207,6 +230,19 @@ class _SyncVercelDestinationState:
     @deployment_environments.setter
     def deployment_environments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "deployment_environments", value)
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines what level of information is synced as a distinct resource
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
+
+    @granularity.setter
+    def granularity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "granularity", value)
 
     @property
     @pulumi.getter
@@ -291,6 +327,7 @@ class SyncVercelDestination(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_token: Optional[pulumi.Input[str]] = None,
                  deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -331,6 +368,8 @@ class SyncVercelDestination(pulumi.CustomResource):
                variables.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -391,6 +430,7 @@ class SyncVercelDestination(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_token: Optional[pulumi.Input[str]] = None,
                  deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
@@ -411,6 +451,7 @@ class SyncVercelDestination(pulumi.CustomResource):
             if deployment_environments is None and not opts.urn:
                 raise TypeError("Missing required property 'deployment_environments'")
             __props__.__dict__["deployment_environments"] = deployment_environments
+            __props__.__dict__["granularity"] = granularity
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             if project_id is None and not opts.urn:
@@ -433,6 +474,7 @@ class SyncVercelDestination(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_token: Optional[pulumi.Input[str]] = None,
             deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            granularity: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
@@ -450,6 +492,8 @@ class SyncVercelDestination(pulumi.CustomResource):
                variables.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] deployment_environments: Deployment environments where the environment variables
                are available. Accepts `development`, `preview` and `production`.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GitHub destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -466,6 +510,7 @@ class SyncVercelDestination(pulumi.CustomResource):
 
         __props__.__dict__["access_token"] = access_token
         __props__.__dict__["deployment_environments"] = deployment_environments
+        __props__.__dict__["granularity"] = granularity
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["project_id"] = project_id
@@ -491,6 +536,15 @@ class SyncVercelDestination(pulumi.CustomResource):
         are available. Accepts `development`, `preview` and `production`.
         """
         return pulumi.get(self, "deployment_environments")
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> pulumi.Output[Optional[str]]:
+        """
+        Determines what level of information is synced as a distinct resource
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
 
     @property
     @pulumi.getter

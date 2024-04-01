@@ -132,6 +132,22 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customTags);
     }
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    @Export(name="granularity", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> granularity;
+
+    /**
+     * @return Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    public Output<Optional<String>> granularity() {
+        return Codegen.optional(this.granularity);
+    }
+    /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
      * variable.

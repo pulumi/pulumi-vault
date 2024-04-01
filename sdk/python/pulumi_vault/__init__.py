@@ -12,6 +12,8 @@ from .cert_auth_backend_role import *
 from .egp_policy import *
 from .get_auth_backend import *
 from .get_auth_backends import *
+from .get_namespace import *
+from .get_namespaces import *
 from .get_nomad_access_token import *
 from .get_policy_document import *
 from .get_raft_autopilot_state import *

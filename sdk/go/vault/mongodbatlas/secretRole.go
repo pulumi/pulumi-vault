@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewSecretBackend(ctx, "config", &mongodbatlas.SecretBackendArgs{
-//				Mount:      pulumi.String("vault_mount.mongo.path"),
+//				Mount:      mongo.Path,
 //				PrivateKey: pulumi.String("privateKey"),
 //				PublicKey:  pulumi.String("publicKey"),
 //			})
@@ -48,12 +48,16 @@ import (
 //				Mount:          mongo.Path,
 //				OrganizationId: pulumi.String("7cf5a45a9ccf6400e60981b7"),
 //				ProjectId:      pulumi.String("5cf5a45a9ccf6400e60981b6"),
-//				Roles:          pulumi.StringArray("ORG_READ_ONLY"),
-//				IpAddresses:    pulumi.StringArray("192.168.1.5, 192.168.1.6"),
-//				CidrBlocks:     pulumi.StringArray("192.168.1.3/35"),
-//				ProjectRoles:   pulumi.StringArray("GROUP_READ_ONLY"),
-//				Ttl:            pulumi.String("60"),
-//				MaxTtl:         pulumi.String("120"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("ORG_READ_ONLY"),
+//				},
+//				IpAddresses: pulumi.StringArray("192.168.1.5, 192.168.1.6"),
+//				CidrBlocks:  pulumi.StringArray("192.168.1.3/35"),
+//				ProjectRoles: pulumi.StringArray{
+//					pulumi.String("GROUP_READ_ONLY"),
+//				},
+//				Ttl:    pulumi.String("60"),
+//				MaxTtl: pulumi.String("120"),
 //			})
 //			if err != nil {
 //				return err
@@ -95,11 +99,11 @@ type SecretRole struct {
 	// Required if `projectId` is not set.
 	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// Unique identifier for the project to which the target API Key belongs.
-	// Required if `organizationId is` not set.
+	// Required if `organizationId` is not set.
 	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
-	// Roles assigned when an org API key is assigned to a project API key.
+	// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
 	ProjectRoles pulumi.StringArrayOutput `pulumi:"projectRoles"`
-	// List of roles that the API Key needs to have.
+	// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
 	// Duration in seconds after which the issued credential should expire.
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
@@ -160,11 +164,11 @@ type secretRoleState struct {
 	// Required if `projectId` is not set.
 	OrganizationId *string `pulumi:"organizationId"`
 	// Unique identifier for the project to which the target API Key belongs.
-	// Required if `organizationId is` not set.
+	// Required if `organizationId` is not set.
 	ProjectId *string `pulumi:"projectId"`
-	// Roles assigned when an org API key is assigned to a project API key.
+	// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
 	ProjectRoles []string `pulumi:"projectRoles"`
-	// List of roles that the API Key needs to have.
+	// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
 	Roles []string `pulumi:"roles"`
 	// Duration in seconds after which the issued credential should expire.
 	Ttl *string `pulumi:"ttl"`
@@ -190,11 +194,11 @@ type SecretRoleState struct {
 	// Required if `projectId` is not set.
 	OrganizationId pulumi.StringPtrInput
 	// Unique identifier for the project to which the target API Key belongs.
-	// Required if `organizationId is` not set.
+	// Required if `organizationId` is not set.
 	ProjectId pulumi.StringPtrInput
-	// Roles assigned when an org API key is assigned to a project API key.
+	// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
 	ProjectRoles pulumi.StringArrayInput
-	// List of roles that the API Key needs to have.
+	// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
 	Roles pulumi.StringArrayInput
 	// Duration in seconds after which the issued credential should expire.
 	Ttl pulumi.StringPtrInput
@@ -224,11 +228,11 @@ type secretRoleArgs struct {
 	// Required if `projectId` is not set.
 	OrganizationId *string `pulumi:"organizationId"`
 	// Unique identifier for the project to which the target API Key belongs.
-	// Required if `organizationId is` not set.
+	// Required if `organizationId` is not set.
 	ProjectId *string `pulumi:"projectId"`
-	// Roles assigned when an org API key is assigned to a project API key.
+	// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
 	ProjectRoles []string `pulumi:"projectRoles"`
-	// List of roles that the API Key needs to have.
+	// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
 	Roles []string `pulumi:"roles"`
 	// Duration in seconds after which the issued credential should expire.
 	Ttl *string `pulumi:"ttl"`
@@ -255,11 +259,11 @@ type SecretRoleArgs struct {
 	// Required if `projectId` is not set.
 	OrganizationId pulumi.StringPtrInput
 	// Unique identifier for the project to which the target API Key belongs.
-	// Required if `organizationId is` not set.
+	// Required if `organizationId` is not set.
 	ProjectId pulumi.StringPtrInput
-	// Roles assigned when an org API key is assigned to a project API key.
+	// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
 	ProjectRoles pulumi.StringArrayInput
-	// List of roles that the API Key needs to have.
+	// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
 	Roles pulumi.StringArrayInput
 	// Duration in seconds after which the issued credential should expire.
 	Ttl pulumi.StringPtrInput
@@ -392,17 +396,17 @@ func (o SecretRoleOutput) OrganizationId() pulumi.StringPtrOutput {
 }
 
 // Unique identifier for the project to which the target API Key belongs.
-// Required if `organizationId is` not set.
+// Required if `organizationId` is not set.
 func (o SecretRoleOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Roles assigned when an org API key is assigned to a project API key.
+// Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
 func (o SecretRoleOutput) ProjectRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringArrayOutput { return v.ProjectRoles }).(pulumi.StringArrayOutput)
 }
 
-// List of roles that the API Key needs to have.
+// List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
 func (o SecretRoleOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
 }

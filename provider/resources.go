@@ -69,6 +69,7 @@ const (
 	tokenMod          = "TokenAuth"
 	transformMod      = "Transform"
 	transitMod        = "Transit"
+	templateMod       = "Template"
 )
 
 var moduleMap = map[string]string{
@@ -101,6 +102,7 @@ var moduleMap = map[string]string{
 	"token":           tokenMod,
 	"transform":       transformMod,
 	"transit":         transitMod,
+	"template":        templateMod,
 }
 
 var namespaceMap = map[string]string{
@@ -195,11 +197,13 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_mfa_pingid":             {Tok: makeResource(mainMod, "MfaPingid")},
 			"vault_mfa_totp":               {Tok: makeResource(mainMod, "MfaTotp")},
 			"vault_mount":                  {Tok: makeResource(mainMod, "Mount")},
-			"vault_namespace": {Tok: makeResource(mainMod, "Namespace"),
+			"vault_namespace": {
+				Tok: makeResource(mainMod, "Namespace"),
 				Fields: map[string]*tfbridge.SchemaInfo{"namespace": {
 					// error CS0542: 'Namespace': member names cannot be the same as their enclosing type
 					CSharpName: "TargetNamespace",
-				}}},
+				}},
+			},
 			"vault_policy": {
 				Tok: makeResource(mainMod, "Policy"),
 				Fields: map[string]*tfbridge.SchemaInfo{
@@ -305,7 +309,7 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_identity_group_alias": {
 				Tok: makeResource(identityMod, "GroupAlias"),
 				Fields: map[string]*tfbridge.SchemaInfo{
-					//Fixes https://github.com/pulumi/pulumi-vault/issues/11
+					// Fixes https://github.com/pulumi/pulumi-vault/issues/11
 					"name": {
 						Name: "name",
 					},
@@ -439,6 +443,7 @@ func Provider() tfbridge.ProviderInfo {
 					Source: "transit_secret_backend_cache_config.html.md",
 				},
 			},
+			"vault_config_ui_custom_message": {Docs: missingDocs},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			// Main
@@ -486,6 +491,14 @@ func Provider() tfbridge.ProviderInfo {
 			"vault_aws_static_access_credentials": {Docs: missingDocs},
 			"vault_ldap_dynamic_credentials":      {Docs: missingDocs},
 			"vault_ldap_static_credentials":       {Docs: missingDocs},
+			"vault_namespace": {
+				Tok:  makeDataSource(mainMod, "getNamespace"),
+				Docs: missingDocs,
+			},
+			"vault_namespaces": {
+				Tok:  makeDataSource(mainMod, "getNamespaces"),
+				Docs: missingDocs,
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
@@ -500,7 +513,8 @@ func Provider() tfbridge.ProviderInfo {
 			i := &tfbridge.PythonInfo{
 				Requires: map[string]string{
 					"pulumi": ">=3.0.0,<4.0.0",
-				}}
+				},
+			}
 			i.PyProject.Enabled = true
 			return i
 		})(),

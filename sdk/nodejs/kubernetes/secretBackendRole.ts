@@ -153,10 +153,18 @@ export class SecretBackendRole extends pulumi.CustomResource {
     }
 
     /**
-     * The list of Kubernetes namespaces this role 
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * A label selector for Kubernetes namespaces 
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      */
-    public readonly allowedKubernetesNamespaces!: pulumi.Output<string[]>;
+    public readonly allowedKubernetesNamespaceSelector!: pulumi.Output<string | undefined>;
+    /**
+     * The list of Kubernetes namespaces this role 
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
+     */
+    public readonly allowedKubernetesNamespaces!: pulumi.Output<string[] | undefined>;
     /**
      * The path of the Kubernetes Secrets Engine backend mount to create
      * the role in.
@@ -237,6 +245,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendRoleState | undefined;
+            resourceInputs["allowedKubernetesNamespaceSelector"] = state ? state.allowedKubernetesNamespaceSelector : undefined;
             resourceInputs["allowedKubernetesNamespaces"] = state ? state.allowedKubernetesNamespaces : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["extraAnnotations"] = state ? state.extraAnnotations : undefined;
@@ -252,12 +261,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
-            if ((!args || args.allowedKubernetesNamespaces === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'allowedKubernetesNamespaces'");
-            }
             if ((!args || args.backend === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backend'");
             }
+            resourceInputs["allowedKubernetesNamespaceSelector"] = args ? args.allowedKubernetesNamespaceSelector : undefined;
             resourceInputs["allowedKubernetesNamespaces"] = args ? args.allowedKubernetesNamespaces : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["extraAnnotations"] = args ? args.extraAnnotations : undefined;
@@ -282,8 +289,16 @@ export class SecretBackendRole extends pulumi.CustomResource {
  */
 export interface SecretBackendRoleState {
     /**
+     * A label selector for Kubernetes namespaces 
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+     */
+    allowedKubernetesNamespaceSelector?: pulumi.Input<string>;
+    /**
      * The list of Kubernetes namespaces this role 
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
      */
     allowedKubernetesNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -359,10 +374,18 @@ export interface SecretBackendRoleState {
  */
 export interface SecretBackendRoleArgs {
     /**
-     * The list of Kubernetes namespaces this role 
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * A label selector for Kubernetes namespaces 
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      */
-    allowedKubernetesNamespaces: pulumi.Input<pulumi.Input<string>[]>;
+    allowedKubernetesNamespaceSelector?: pulumi.Input<string>;
+    /**
+     * The list of Kubernetes namespaces this role 
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
+     */
+    allowedKubernetesNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The path of the Kubernetes Secrets Engine backend mount to create
      * the role in.

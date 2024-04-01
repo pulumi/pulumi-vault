@@ -12,6 +12,10 @@ import com.pulumi.vault.inputs.GetAuthBackendArgs;
 import com.pulumi.vault.inputs.GetAuthBackendPlainArgs;
 import com.pulumi.vault.inputs.GetAuthBackendsArgs;
 import com.pulumi.vault.inputs.GetAuthBackendsPlainArgs;
+import com.pulumi.vault.inputs.GetNamespaceArgs;
+import com.pulumi.vault.inputs.GetNamespacePlainArgs;
+import com.pulumi.vault.inputs.GetNamespacesArgs;
+import com.pulumi.vault.inputs.GetNamespacesPlainArgs;
 import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
 import com.pulumi.vault.inputs.GetNomadAccessTokenPlainArgs;
 import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
@@ -20,6 +24,8 @@ import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
 import com.pulumi.vault.inputs.GetRaftAutopilotStatePlainArgs;
 import com.pulumi.vault.outputs.GetAuthBackendResult;
 import com.pulumi.vault.outputs.GetAuthBackendsResult;
+import com.pulumi.vault.outputs.GetNamespaceResult;
+import com.pulumi.vault.outputs.GetNamespacesResult;
 import com.pulumi.vault.outputs.GetNomadAccessTokenResult;
 import com.pulumi.vault.outputs.GetPolicyDocumentResult;
 import com.pulumi.vault.outputs.GetRaftAutopilotStateResult;
@@ -579,6 +585,930 @@ public final class VaultFunctions {
      */
     public static CompletableFuture<GetAuthBackendsResult> getAuthBackendsPlain(GetAuthBackendsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:index/getAuthBackends:getAuthBackends", TypeShape.of(GetAuthBackendsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Current namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getNamespace();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Single namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .path(&#34;ns1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .path(&#34;child&#34;)
+     *             .build());
+     * 
+     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     * 
+     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespaceResult> getNamespace() {
+        return getNamespace(GetNamespaceArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Current namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getNamespace();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Single namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .path(&#34;ns1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .path(&#34;child&#34;)
+     *             .build());
+     * 
+     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     * 
+     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNamespaceResult> getNamespacePlain() {
+        return getNamespacePlain(GetNamespacePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Current namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getNamespace();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Single namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .path(&#34;ns1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .path(&#34;child&#34;)
+     *             .build());
+     * 
+     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     * 
+     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespaceResult> getNamespace(GetNamespaceArgs args) {
+        return getNamespace(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Current namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getNamespace();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Single namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .path(&#34;ns1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .path(&#34;child&#34;)
+     *             .build());
+     * 
+     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     * 
+     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNamespaceResult> getNamespacePlain(GetNamespacePlainArgs args) {
+        return getNamespacePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Current namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getNamespace();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Single namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .path(&#34;ns1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .path(&#34;child&#34;)
+     *             .build());
+     * 
+     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     * 
+     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespaceResult> getNamespace(GetNamespaceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Current namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getNamespace();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Single namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .path(&#34;ns1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .path(&#34;child&#34;)
+     *             .build());
+     * 
+     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     * 
+     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNamespaceResult> getNamespacePlain(GetNamespacePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Child namespaces
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * To fetch the details of nested namespaces:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespacesResult> getNamespaces() {
+        return getNamespaces(GetNamespacesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Child namespaces
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * To fetch the details of nested namespaces:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNamespacesResult> getNamespacesPlain() {
+        return getNamespacesPlain(GetNamespacesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Child namespaces
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * To fetch the details of nested namespaces:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespacesResult> getNamespaces(GetNamespacesArgs args) {
+        return getNamespaces(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Child namespaces
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * To fetch the details of nested namespaces:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(GetNamespacesPlainArgs args) {
+        return getNamespacesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Child namespaces
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * To fetch the details of nested namespaces:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespacesResult> getNamespaces(GetNamespacesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### Child namespaces
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces();
+     * 
+     *     }
+     * }
+     * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Nested namespace
+     * 
+     * To fetch the details of nested namespaces:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(GetNamespacesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage

@@ -98,6 +98,22 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customTags);
     }
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    @Export(name="granularity", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> granularity;
+
+    /**
+     * @return Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    public Output<Optional<String>> granularity() {
+        return Codegen.optional(this.granularity);
+    }
+    /**
      * Unique name of the GCP destination.
      * 
      */
