@@ -69,6 +69,9 @@ type SyncAwsDestination struct {
 	// relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
 	// denied errors. Ignored if the `roleArn` field is empty.
 	ExternalId pulumi.StringPtrOutput `pulumi:"externalId"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
 	// Unique name of the AWS destination.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -145,6 +148,9 @@ type syncAwsDestinationState struct {
 	// relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
 	// denied errors. Ignored if the `roleArn` field is empty.
 	ExternalId *string `pulumi:"externalId"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity *string `pulumi:"granularity"`
 	// Unique name of the AWS destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -185,6 +191,9 @@ type SyncAwsDestinationState struct {
 	// relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
 	// denied errors. Ignored if the `roleArn` field is empty.
 	ExternalId pulumi.StringPtrInput
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrInput
 	// Unique name of the AWS destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -229,6 +238,9 @@ type syncAwsDestinationArgs struct {
 	// relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
 	// denied errors. Ignored if the `roleArn` field is empty.
 	ExternalId *string `pulumi:"externalId"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity *string `pulumi:"granularity"`
 	// Unique name of the AWS destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -268,6 +280,9 @@ type SyncAwsDestinationArgs struct {
 	// relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
 	// denied errors. Ignored if the `roleArn` field is empty.
 	ExternalId pulumi.StringPtrInput
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrInput
 	// Unique name of the AWS destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -399,6 +414,12 @@ func (o SyncAwsDestinationOutput) CustomTags() pulumi.MapOutput {
 // denied errors. Ignored if the `roleArn` field is empty.
 func (o SyncAwsDestinationOutput) ExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+// Determines what level of information is synced as a distinct resource
+// at the destination. Supports `secret-path` and `secret-key`.
+func (o SyncAwsDestinationOutput) Granularity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.Granularity }).(pulumi.StringPtrOutput)
 }
 
 // Unique name of the AWS destination.

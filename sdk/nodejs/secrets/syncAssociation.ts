@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -70,6 +72,10 @@ export class SyncAssociation extends pulumi.CustomResource {
     }
 
     /**
+     * Metadata for each subkey of the associated secret.
+     */
+    public /*out*/ readonly metadatas!: pulumi.Output<outputs.secrets.SyncAssociationMetadata[]>;
+    /**
      * Specifies the mount where the secret is located.
      */
     public readonly mount!: pulumi.Output<string>;
@@ -88,17 +94,9 @@ export class SyncAssociation extends pulumi.CustomResource {
      */
     public readonly secretName!: pulumi.Output<string>;
     /**
-     * Specifies the status of the association (for eg. `SYNCED`).
-     */
-    public /*out*/ readonly syncStatus!: pulumi.Output<string>;
-    /**
      * Specifies the destination type.
      */
     public readonly type!: pulumi.Output<string>;
-    /**
-     * Duration string specifying when the secret was last updated.
-     */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a SyncAssociation resource with the given unique name, arguments, and options.
@@ -113,13 +111,12 @@ export class SyncAssociation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SyncAssociationState | undefined;
+            resourceInputs["metadatas"] = state ? state.metadatas : undefined;
             resourceInputs["mount"] = state ? state.mount : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["secretName"] = state ? state.secretName : undefined;
-            resourceInputs["syncStatus"] = state ? state.syncStatus : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as SyncAssociationArgs | undefined;
             if ((!args || args.mount === undefined) && !opts.urn) {
@@ -136,8 +133,7 @@ export class SyncAssociation extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["secretName"] = args ? args.secretName : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["syncStatus"] = undefined /*out*/;
-            resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["metadatas"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SyncAssociation.__pulumiType, name, resourceInputs, opts);
@@ -148,6 +144,10 @@ export class SyncAssociation extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SyncAssociation resources.
  */
 export interface SyncAssociationState {
+    /**
+     * Metadata for each subkey of the associated secret.
+     */
+    metadatas?: pulumi.Input<pulumi.Input<inputs.secrets.SyncAssociationMetadata>[]>;
     /**
      * Specifies the mount where the secret is located.
      */
@@ -167,17 +167,9 @@ export interface SyncAssociationState {
      */
     secretName?: pulumi.Input<string>;
     /**
-     * Specifies the status of the association (for eg. `SYNCED`).
-     */
-    syncStatus?: pulumi.Input<string>;
-    /**
      * Specifies the destination type.
      */
     type?: pulumi.Input<string>;
-    /**
-     * Duration string specifying when the secret was last updated.
-     */
-    updatedAt?: pulumi.Input<string>;
 }
 
 /**

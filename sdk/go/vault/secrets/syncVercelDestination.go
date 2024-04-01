@@ -63,6 +63,9 @@ type SyncVercelDestination struct {
 	// Deployment environments where the environment variables
 	// are available. Accepts `development`, `preview` and `production`.
 	DeploymentEnvironments pulumi.StringArrayOutput `pulumi:"deploymentEnvironments"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
 	// Unique name of the GitHub destination.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -132,6 +135,9 @@ type syncVercelDestinationState struct {
 	// Deployment environments where the environment variables
 	// are available. Accepts `development`, `preview` and `production`.
 	DeploymentEnvironments []string `pulumi:"deploymentEnvironments"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity *string `pulumi:"granularity"`
 	// Unique name of the GitHub destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -156,6 +162,9 @@ type SyncVercelDestinationState struct {
 	// Deployment environments where the environment variables
 	// are available. Accepts `development`, `preview` and `production`.
 	DeploymentEnvironments pulumi.StringArrayInput
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrInput
 	// Unique name of the GitHub destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -184,6 +193,9 @@ type syncVercelDestinationArgs struct {
 	// Deployment environments where the environment variables
 	// are available. Accepts `development`, `preview` and `production`.
 	DeploymentEnvironments []string `pulumi:"deploymentEnvironments"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity *string `pulumi:"granularity"`
 	// Unique name of the GitHub destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -207,6 +219,9 @@ type SyncVercelDestinationArgs struct {
 	// Deployment environments where the environment variables
 	// are available. Accepts `development`, `preview` and `production`.
 	DeploymentEnvironments pulumi.StringArrayInput
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrInput
 	// Unique name of the GitHub destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -319,6 +334,12 @@ func (o SyncVercelDestinationOutput) AccessToken() pulumi.StringOutput {
 // are available. Accepts `development`, `preview` and `production`.
 func (o SyncVercelDestinationOutput) DeploymentEnvironments() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SyncVercelDestination) pulumi.StringArrayOutput { return v.DeploymentEnvironments }).(pulumi.StringArrayOutput)
+}
+
+// Determines what level of information is synced as a distinct resource
+// at the destination. Supports `secret-path` and `secret-key`.
+func (o SyncVercelDestinationOutput) Granularity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncVercelDestination) pulumi.StringPtrOutput { return v.Granularity }).(pulumi.StringPtrOutput)
 }
 
 // Unique name of the GitHub destination.

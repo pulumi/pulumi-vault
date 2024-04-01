@@ -13,12 +13,12 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const mongo = new vault.Mount("mongo", {
- *     description: "MongoDB Atlas secret engine mount",
  *     path: "mongodbatlas",
  *     type: "mongodbatlas",
+ *     description: "MongoDB Atlas secret engine mount",
  * });
  * const config = new vault.mongodbatlas.SecretBackend("config", {
- *     mount: "vault_mount.mongo.path",
+ *     mount: mongo.path,
  *     privateKey: "privateKey",
  *     publicKey: "publicKey",
  * });

@@ -14,8 +14,9 @@ __all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
 @pulumi.input_type
 class SecretBackendRoleArgs:
     def __init__(__self__, *,
-                 allowed_kubernetes_namespaces: pulumi.Input[Sequence[pulumi.Input[str]]],
                  backend: pulumi.Input[str],
+                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[str]] = None,
+                 allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  extra_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  generated_role_rules: Optional[pulumi.Input[str]] = None,
@@ -29,10 +30,15 @@ class SecretBackendRoleArgs:
                  token_max_ttl: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
-               can generate credentials for. If set to `*` all namespaces are allowed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+               in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+               of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+               If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
+               can generate credentials for. If set to `*` all namespaces are allowed. If set with
+               `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
                Kubernetes objects.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
@@ -62,8 +68,11 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[int] token_default_ttl: The default TTL for generated Kubernetes tokens in seconds.
         :param pulumi.Input[int] token_max_ttl: The maximum TTL for generated Kubernetes tokens in seconds.
         """
-        pulumi.set(__self__, "allowed_kubernetes_namespaces", allowed_kubernetes_namespaces)
         pulumi.set(__self__, "backend", backend)
+        if allowed_kubernetes_namespace_selector is not None:
+            pulumi.set(__self__, "allowed_kubernetes_namespace_selector", allowed_kubernetes_namespace_selector)
+        if allowed_kubernetes_namespaces is not None:
+            pulumi.set(__self__, "allowed_kubernetes_namespaces", allowed_kubernetes_namespaces)
         if extra_annotations is not None:
             pulumi.set(__self__, "extra_annotations", extra_annotations)
         if extra_labels is not None:
@@ -88,19 +97,6 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "token_max_ttl", token_max_ttl)
 
     @property
-    @pulumi.getter(name="allowedKubernetesNamespaces")
-    def allowed_kubernetes_namespaces(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        The list of Kubernetes namespaces this role 
-        can generate credentials for. If set to `*` all namespaces are allowed.
-        """
-        return pulumi.get(self, "allowed_kubernetes_namespaces")
-
-    @allowed_kubernetes_namespaces.setter
-    def allowed_kubernetes_namespaces(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "allowed_kubernetes_namespaces", value)
-
-    @property
     @pulumi.getter
     def backend(self) -> pulumi.Input[str]:
         """
@@ -112,6 +108,35 @@ class SecretBackendRoleArgs:
     @backend.setter
     def backend(self, value: pulumi.Input[str]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="allowedKubernetesNamespaceSelector")
+    def allowed_kubernetes_namespace_selector(self) -> Optional[pulumi.Input[str]]:
+        """
+        A label selector for Kubernetes namespaces 
+        in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+        of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+        If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+        """
+        return pulumi.get(self, "allowed_kubernetes_namespace_selector")
+
+    @allowed_kubernetes_namespace_selector.setter
+    def allowed_kubernetes_namespace_selector(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowed_kubernetes_namespace_selector", value)
+
+    @property
+    @pulumi.getter(name="allowedKubernetesNamespaces")
+    def allowed_kubernetes_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of Kubernetes namespaces this role 
+        can generate credentials for. If set to `*` all namespaces are allowed. If set with
+        `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
+        """
+        return pulumi.get(self, "allowed_kubernetes_namespaces")
+
+    @allowed_kubernetes_namespaces.setter
+    def allowed_kubernetes_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_kubernetes_namespaces", value)
 
     @property
     @pulumi.getter(name="extraAnnotations")
@@ -266,6 +291,7 @@ class SecretBackendRoleArgs:
 @pulumi.input_type
 class _SecretBackendRoleState:
     def __init__(__self__, *,
+                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[str]] = None,
                  allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -281,8 +307,13 @@ class _SecretBackendRoleState:
                  token_max_ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+               in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+               of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+               If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
-               can generate credentials for. If set to `*` all namespaces are allowed.
+               can generate credentials for. If set to `*` all namespaces are allowed. If set with
+               `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
@@ -314,6 +345,8 @@ class _SecretBackendRoleState:
         :param pulumi.Input[int] token_default_ttl: The default TTL for generated Kubernetes tokens in seconds.
         :param pulumi.Input[int] token_max_ttl: The maximum TTL for generated Kubernetes tokens in seconds.
         """
+        if allowed_kubernetes_namespace_selector is not None:
+            pulumi.set(__self__, "allowed_kubernetes_namespace_selector", allowed_kubernetes_namespace_selector)
         if allowed_kubernetes_namespaces is not None:
             pulumi.set(__self__, "allowed_kubernetes_namespaces", allowed_kubernetes_namespaces)
         if backend is not None:
@@ -342,11 +375,27 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "token_max_ttl", token_max_ttl)
 
     @property
+    @pulumi.getter(name="allowedKubernetesNamespaceSelector")
+    def allowed_kubernetes_namespace_selector(self) -> Optional[pulumi.Input[str]]:
+        """
+        A label selector for Kubernetes namespaces 
+        in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+        of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+        If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+        """
+        return pulumi.get(self, "allowed_kubernetes_namespace_selector")
+
+    @allowed_kubernetes_namespace_selector.setter
+    def allowed_kubernetes_namespace_selector(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowed_kubernetes_namespace_selector", value)
+
+    @property
     @pulumi.getter(name="allowedKubernetesNamespaces")
     def allowed_kubernetes_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The list of Kubernetes namespaces this role 
-        can generate credentials for. If set to `*` all namespaces are allowed.
+        can generate credentials for. If set to `*` all namespaces are allowed. If set with
+        `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         """
         return pulumi.get(self, "allowed_kubernetes_namespaces")
 
@@ -522,6 +571,7 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[str]] = None,
                  allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -649,8 +699,13 @@ class SecretBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+               in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+               of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+               If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
-               can generate credentials for. If set to `*` all namespaces are allowed.
+               can generate credentials for. If set to `*` all namespaces are allowed. If set with
+               `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
@@ -814,6 +869,7 @@ class SecretBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[str]] = None,
                  allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -836,8 +892,7 @@ class SecretBackendRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretBackendRoleArgs.__new__(SecretBackendRoleArgs)
 
-            if allowed_kubernetes_namespaces is None and not opts.urn:
-                raise TypeError("Missing required property 'allowed_kubernetes_namespaces'")
+            __props__.__dict__["allowed_kubernetes_namespace_selector"] = allowed_kubernetes_namespace_selector
             __props__.__dict__["allowed_kubernetes_namespaces"] = allowed_kubernetes_namespaces
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
@@ -863,6 +918,7 @@ class SecretBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_kubernetes_namespace_selector: Optional[pulumi.Input[str]] = None,
             allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -883,8 +939,13 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+               in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+               of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+               If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
-               can generate credentials for. If set to `*` all namespaces are allowed.
+               can generate credentials for. If set to `*` all namespaces are allowed. If set with
+               `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
@@ -920,6 +981,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         __props__ = _SecretBackendRoleState.__new__(_SecretBackendRoleState)
 
+        __props__.__dict__["allowed_kubernetes_namespace_selector"] = allowed_kubernetes_namespace_selector
         __props__.__dict__["allowed_kubernetes_namespaces"] = allowed_kubernetes_namespaces
         __props__.__dict__["backend"] = backend
         __props__.__dict__["extra_annotations"] = extra_annotations
@@ -936,11 +998,23 @@ class SecretBackendRole(pulumi.CustomResource):
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="allowedKubernetesNamespaceSelector")
+    def allowed_kubernetes_namespace_selector(self) -> pulumi.Output[Optional[str]]:
+        """
+        A label selector for Kubernetes namespaces 
+        in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+        of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+        If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+        """
+        return pulumi.get(self, "allowed_kubernetes_namespace_selector")
+
+    @property
     @pulumi.getter(name="allowedKubernetesNamespaces")
-    def allowed_kubernetes_namespaces(self) -> pulumi.Output[Sequence[str]]:
+    def allowed_kubernetes_namespaces(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         The list of Kubernetes namespaces this role 
-        can generate credentials for. If set to `*` all namespaces are allowed.
+        can generate credentials for. If set to `*` all namespaces are allowed. If set with
+        `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         """
         return pulumi.get(self, "allowed_kubernetes_namespaces")
 

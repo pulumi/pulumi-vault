@@ -81,6 +81,11 @@ export class SyncAwsDestination extends pulumi.CustomResource {
      */
     public readonly externalId!: pulumi.Output<string | undefined>;
     /**
+     * Determines what level of information is synced as a distinct resource 
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    public readonly granularity!: pulumi.Output<string | undefined>;
+    /**
      * Unique name of the AWS destination.
      */
     public readonly name!: pulumi.Output<string>;
@@ -136,6 +141,7 @@ export class SyncAwsDestination extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = state ? state.accessKeyId : undefined;
             resourceInputs["customTags"] = state ? state.customTags : undefined;
             resourceInputs["externalId"] = state ? state.externalId : undefined;
+            resourceInputs["granularity"] = state ? state.granularity : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -148,6 +154,7 @@ export class SyncAwsDestination extends pulumi.CustomResource {
             resourceInputs["accessKeyId"] = args ? args.accessKeyId : undefined;
             resourceInputs["customTags"] = args ? args.customTags : undefined;
             resourceInputs["externalId"] = args ? args.externalId : undefined;
+            resourceInputs["granularity"] = args ? args.granularity : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -185,6 +192,11 @@ export interface SyncAwsDestinationState {
      * denied errors. Ignored if the `roleArn` field is empty.
      */
     externalId?: pulumi.Input<string>;
+    /**
+     * Determines what level of information is synced as a distinct resource 
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * Unique name of the AWS destination.
      */
@@ -248,6 +260,11 @@ export interface SyncAwsDestinationArgs {
      * denied errors. Ignored if the `roleArn` field is empty.
      */
     externalId?: pulumi.Input<string>;
+    /**
+     * Determines what level of information is synced as a distinct resource 
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * Unique name of the AWS destination.
      */

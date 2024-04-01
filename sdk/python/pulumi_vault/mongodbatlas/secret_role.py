@@ -28,7 +28,7 @@ class SecretRoleArgs:
         """
         The set of arguments for constructing a SecretRole resource.
         :param pulumi.Input[str] mount: Path where the MongoDB Atlas Secrets Engine is mounted.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidr_blocks: Whitelist entry in CIDR notation to be added for the API key.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_addresses: IP address to be added to the whitelist for the API key.
         :param pulumi.Input[str] max_ttl: The maximum allowed lifetime of credentials issued using this role.
@@ -40,8 +40,8 @@ class SecretRoleArgs:
         :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
-               Required if `organization_id is` not set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key.
+               Required if `organization_id` is not set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         :param pulumi.Input[str] ttl: Duration in seconds after which the issued credential should expire.
         """
         pulumi.set(__self__, "mount", mount)
@@ -81,7 +81,7 @@ class SecretRoleArgs:
     @pulumi.getter
     def roles(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of roles that the API Key needs to have.
+        List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         """
         return pulumi.get(self, "roles")
 
@@ -170,7 +170,7 @@ class SecretRoleArgs:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         Unique identifier for the project to which the target API Key belongs.
-        Required if `organization_id is` not set.
+        Required if `organization_id` is not set.
         """
         return pulumi.get(self, "project_id")
 
@@ -182,7 +182,7 @@ class SecretRoleArgs:
     @pulumi.getter(name="projectRoles")
     def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Roles assigned when an org API key is assigned to a project API key.
+        Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         """
         return pulumi.get(self, "project_roles")
 
@@ -231,9 +231,9 @@ class _SecretRoleState:
         :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
-               Required if `organization_id is` not set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have.
+               Required if `organization_id` is not set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         :param pulumi.Input[str] ttl: Duration in seconds after which the issued credential should expire.
         """
         if cidr_blocks is not None:
@@ -352,7 +352,7 @@ class _SecretRoleState:
     def project_id(self) -> Optional[pulumi.Input[str]]:
         """
         Unique identifier for the project to which the target API Key belongs.
-        Required if `organization_id is` not set.
+        Required if `organization_id` is not set.
         """
         return pulumi.get(self, "project_id")
 
@@ -364,7 +364,7 @@ class _SecretRoleState:
     @pulumi.getter(name="projectRoles")
     def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Roles assigned when an org API key is assigned to a project API key.
+        Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         """
         return pulumi.get(self, "project_roles")
 
@@ -376,7 +376,7 @@ class _SecretRoleState:
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of roles that the API Key needs to have.
+        List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         """
         return pulumi.get(self, "roles")
 
@@ -427,17 +427,17 @@ class SecretRole(pulumi.CustomResource):
             type="mongodbatlas",
             description="MongoDB Atlas secret engine mount")
         config = vault.mongodbatlas.SecretBackend("config",
-            mount="vault_mount.mongo.path",
+            mount=mongo.path,
             private_key="privateKey",
             public_key="publicKey")
         role = vault.mongodbatlas.SecretRole("role",
             mount=mongo.path,
             organization_id="7cf5a45a9ccf6400e60981b7",
             project_id="5cf5a45a9ccf6400e60981b6",
-            roles="ORG_READ_ONLY",
+            roles=["ORG_READ_ONLY"],
             ip_addresses="192.168.1.5, 192.168.1.6",
             cidr_blocks="192.168.1.3/35",
-            project_roles="GROUP_READ_ONLY",
+            project_roles=["GROUP_READ_ONLY"],
             ttl="60",
             max_ttl="120")
         ```
@@ -466,9 +466,9 @@ class SecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
-               Required if `organization_id is` not set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have.
+               Required if `organization_id` is not set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         :param pulumi.Input[str] ttl: Duration in seconds after which the issued credential should expire.
         """
         ...
@@ -490,17 +490,17 @@ class SecretRole(pulumi.CustomResource):
             type="mongodbatlas",
             description="MongoDB Atlas secret engine mount")
         config = vault.mongodbatlas.SecretBackend("config",
-            mount="vault_mount.mongo.path",
+            mount=mongo.path,
             private_key="privateKey",
             public_key="publicKey")
         role = vault.mongodbatlas.SecretRole("role",
             mount=mongo.path,
             organization_id="7cf5a45a9ccf6400e60981b7",
             project_id="5cf5a45a9ccf6400e60981b6",
-            roles="ORG_READ_ONLY",
+            roles=["ORG_READ_ONLY"],
             ip_addresses="192.168.1.5, 192.168.1.6",
             cidr_blocks="192.168.1.3/35",
-            project_roles="GROUP_READ_ONLY",
+            project_roles=["GROUP_READ_ONLY"],
             ttl="60",
             max_ttl="120")
         ```
@@ -605,9 +605,9 @@ class SecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
-               Required if `organization_id is` not set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have.
+               Required if `organization_id` is not set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] project_roles: Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         :param pulumi.Input[str] ttl: Duration in seconds after which the issued credential should expire.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -692,7 +692,7 @@ class SecretRole(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[Optional[str]]:
         """
         Unique identifier for the project to which the target API Key belongs.
-        Required if `organization_id is` not set.
+        Required if `organization_id` is not set.
         """
         return pulumi.get(self, "project_id")
 
@@ -700,7 +700,7 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter(name="projectRoles")
     def project_roles(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Roles assigned when an org API key is assigned to a project API key.
+        Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
         """
         return pulumi.get(self, "project_roles")
 
@@ -708,7 +708,7 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter
     def roles(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of roles that the API Key needs to have.
+        List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
         """
         return pulumi.get(self, "roles")
 

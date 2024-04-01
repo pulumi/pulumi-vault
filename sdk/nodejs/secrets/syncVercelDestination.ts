@@ -72,6 +72,11 @@ export class SyncVercelDestination extends pulumi.CustomResource {
      */
     public readonly deploymentEnvironments!: pulumi.Output<string[]>;
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    public readonly granularity!: pulumi.Output<string | undefined>;
+    /**
      * Unique name of the GitHub destination.
      */
     public readonly name!: pulumi.Output<string>;
@@ -114,6 +119,7 @@ export class SyncVercelDestination extends pulumi.CustomResource {
             const state = argsOrState as SyncVercelDestinationState | undefined;
             resourceInputs["accessToken"] = state ? state.accessToken : undefined;
             resourceInputs["deploymentEnvironments"] = state ? state.deploymentEnvironments : undefined;
+            resourceInputs["granularity"] = state ? state.granularity : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -133,6 +139,7 @@ export class SyncVercelDestination extends pulumi.CustomResource {
             }
             resourceInputs["accessToken"] = args?.accessToken ? pulumi.secret(args.accessToken) : undefined;
             resourceInputs["deploymentEnvironments"] = args ? args.deploymentEnvironments : undefined;
+            resourceInputs["granularity"] = args ? args.granularity : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -161,6 +168,11 @@ export interface SyncVercelDestinationState {
      * are available. Accepts `development`, `preview` and `production`.
      */
     deploymentEnvironments?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * Unique name of the GitHub destination.
      */
@@ -204,6 +216,11 @@ export interface SyncVercelDestinationArgs {
      * are available. Accepts `development`, `preview` and `production`.
      */
     deploymentEnvironments: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * Unique name of the GitHub destination.
      */

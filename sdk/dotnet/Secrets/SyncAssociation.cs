@@ -66,6 +66,12 @@ namespace Pulumi.Vault.Secrets
     public partial class SyncAssociation : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Metadata for each subkey of the associated secret.
+        /// </summary>
+        [Output("metadatas")]
+        public Output<ImmutableArray<Outputs.SyncAssociationMetadata>> Metadatas { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the mount where the secret is located.
         /// </summary>
         [Output("mount")]
@@ -92,22 +98,10 @@ namespace Pulumi.Vault.Secrets
         public Output<string> SecretName { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the status of the association (for eg. `SYNCED`).
-        /// </summary>
-        [Output("syncStatus")]
-        public Output<string> SyncStatus { get; private set; } = null!;
-
-        /// <summary>
         /// Specifies the destination type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
-
-        /// <summary>
-        /// Duration string specifying when the secret was last updated.
-        /// </summary>
-        [Output("updatedAt")]
-        public Output<string> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
@@ -195,6 +189,18 @@ namespace Pulumi.Vault.Secrets
 
     public sealed class SyncAssociationState : global::Pulumi.ResourceArgs
     {
+        [Input("metadatas")]
+        private InputList<Inputs.SyncAssociationMetadataGetArgs>? _metadatas;
+
+        /// <summary>
+        /// Metadata for each subkey of the associated secret.
+        /// </summary>
+        public InputList<Inputs.SyncAssociationMetadataGetArgs> Metadatas
+        {
+            get => _metadatas ?? (_metadatas = new InputList<Inputs.SyncAssociationMetadataGetArgs>());
+            set => _metadatas = value;
+        }
+
         /// <summary>
         /// Specifies the mount where the secret is located.
         /// </summary>
@@ -222,22 +228,10 @@ namespace Pulumi.Vault.Secrets
         public Input<string>? SecretName { get; set; }
 
         /// <summary>
-        /// Specifies the status of the association (for eg. `SYNCED`).
-        /// </summary>
-        [Input("syncStatus")]
-        public Input<string>? SyncStatus { get; set; }
-
-        /// <summary>
         /// Specifies the destination type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
-
-        /// <summary>
-        /// Duration string specifying when the secret was last updated.
-        /// </summary>
-        [Input("updatedAt")]
-        public Input<string>? UpdatedAt { get; set; }
 
         public SyncAssociationState()
         {

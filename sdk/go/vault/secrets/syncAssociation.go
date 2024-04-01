@@ -83,6 +83,8 @@ import (
 type SyncAssociation struct {
 	pulumi.CustomResourceState
 
+	// Metadata for each subkey of the associated secret.
+	Metadatas SyncAssociationMetadataArrayOutput `pulumi:"metadatas"`
 	// Specifies the mount where the secret is located.
 	Mount pulumi.StringOutput `pulumi:"mount"`
 	// Specifies the name of the destination.
@@ -93,12 +95,8 @@ type SyncAssociation struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies the name of the secret to synchronize.
 	SecretName pulumi.StringOutput `pulumi:"secretName"`
-	// Specifies the status of the association (for eg. `SYNCED`).
-	SyncStatus pulumi.StringOutput `pulumi:"syncStatus"`
 	// Specifies the destination type.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Duration string specifying when the secret was last updated.
-	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
 // NewSyncAssociation registers a new resource with the given unique name, arguments, and options.
@@ -140,6 +138,8 @@ func GetSyncAssociation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SyncAssociation resources.
 type syncAssociationState struct {
+	// Metadata for each subkey of the associated secret.
+	Metadatas []SyncAssociationMetadata `pulumi:"metadatas"`
 	// Specifies the mount where the secret is located.
 	Mount *string `pulumi:"mount"`
 	// Specifies the name of the destination.
@@ -150,15 +150,13 @@ type syncAssociationState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Specifies the name of the secret to synchronize.
 	SecretName *string `pulumi:"secretName"`
-	// Specifies the status of the association (for eg. `SYNCED`).
-	SyncStatus *string `pulumi:"syncStatus"`
 	// Specifies the destination type.
 	Type *string `pulumi:"type"`
-	// Duration string specifying when the secret was last updated.
-	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type SyncAssociationState struct {
+	// Metadata for each subkey of the associated secret.
+	Metadatas SyncAssociationMetadataArrayInput
 	// Specifies the mount where the secret is located.
 	Mount pulumi.StringPtrInput
 	// Specifies the name of the destination.
@@ -169,12 +167,8 @@ type SyncAssociationState struct {
 	Namespace pulumi.StringPtrInput
 	// Specifies the name of the secret to synchronize.
 	SecretName pulumi.StringPtrInput
-	// Specifies the status of the association (for eg. `SYNCED`).
-	SyncStatus pulumi.StringPtrInput
 	// Specifies the destination type.
 	Type pulumi.StringPtrInput
-	// Duration string specifying when the secret was last updated.
-	UpdatedAt pulumi.StringPtrInput
 }
 
 func (SyncAssociationState) ElementType() reflect.Type {
@@ -299,6 +293,11 @@ func (o SyncAssociationOutput) ToSyncAssociationOutputWithContext(ctx context.Co
 	return o
 }
 
+// Metadata for each subkey of the associated secret.
+func (o SyncAssociationOutput) Metadatas() SyncAssociationMetadataArrayOutput {
+	return o.ApplyT(func(v *SyncAssociation) SyncAssociationMetadataArrayOutput { return v.Metadatas }).(SyncAssociationMetadataArrayOutput)
+}
+
 // Specifies the mount where the secret is located.
 func (o SyncAssociationOutput) Mount() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyncAssociation) pulumi.StringOutput { return v.Mount }).(pulumi.StringOutput)
@@ -321,19 +320,9 @@ func (o SyncAssociationOutput) SecretName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyncAssociation) pulumi.StringOutput { return v.SecretName }).(pulumi.StringOutput)
 }
 
-// Specifies the status of the association (for eg. `SYNCED`).
-func (o SyncAssociationOutput) SyncStatus() pulumi.StringOutput {
-	return o.ApplyT(func(v *SyncAssociation) pulumi.StringOutput { return v.SyncStatus }).(pulumi.StringOutput)
-}
-
 // Specifies the destination type.
 func (o SyncAssociationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyncAssociation) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
-}
-
-// Duration string specifying when the secret was last updated.
-func (o SyncAssociationOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v *SyncAssociation) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type SyncAssociationArrayOutput struct{ *pulumi.OutputState }

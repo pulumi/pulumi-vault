@@ -68,6 +68,9 @@ type SyncAzureDestination struct {
 	Cloud pulumi.StringPtrOutput `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.MapOutput `pulumi:"customTags"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -138,6 +141,9 @@ type syncAzureDestinationState struct {
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags map[string]interface{} `pulumi:"customTags"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity *string `pulumi:"granularity"`
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -172,6 +178,9 @@ type SyncAzureDestinationState struct {
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.MapInput
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrInput
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -210,6 +219,9 @@ type syncAzureDestinationArgs struct {
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags map[string]interface{} `pulumi:"customTags"`
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity *string `pulumi:"granularity"`
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -243,6 +255,9 @@ type SyncAzureDestinationArgs struct {
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
 	CustomTags pulumi.MapInput
+	// Determines what level of information is synced as a distinct resource
+	// at the destination. Supports `secret-path` and `secret-key`.
+	Granularity pulumi.StringPtrInput
 	// URI of an existing Azure Key Vault instance.
 	// Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
 	// variable.
@@ -371,6 +386,12 @@ func (o SyncAzureDestinationOutput) Cloud() pulumi.StringPtrOutput {
 // Custom tags to set on the secret managed at the destination.
 func (o SyncAzureDestinationOutput) CustomTags() pulumi.MapOutput {
 	return o.ApplyT(func(v *SyncAzureDestination) pulumi.MapOutput { return v.CustomTags }).(pulumi.MapOutput)
+}
+
+// Determines what level of information is synced as a distinct resource
+// at the destination. Supports `secret-path` and `secret-key`.
+func (o SyncAzureDestinationOutput) Granularity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringPtrOutput { return v.Granularity }).(pulumi.StringPtrOutput)
 }
 
 // URI of an existing Azure Key Vault instance.

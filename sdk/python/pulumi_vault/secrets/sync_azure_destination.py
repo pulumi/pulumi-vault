@@ -18,6 +18,7 @@ class SyncAzureDestinationArgs:
                  client_secret: Optional[pulumi.Input[str]] = None,
                  cloud: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  key_vault_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,8 @@ class SyncAzureDestinationArgs:
                variable.
         :param pulumi.Input[str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -54,6 +57,8 @@ class SyncAzureDestinationArgs:
             pulumi.set(__self__, "cloud", cloud)
         if custom_tags is not None:
             pulumi.set(__self__, "custom_tags", custom_tags)
+        if granularity is not None:
+            pulumi.set(__self__, "granularity", granularity)
         if key_vault_uri is not None:
             pulumi.set(__self__, "key_vault_uri", key_vault_uri)
         if name is not None:
@@ -116,6 +121,19 @@ class SyncAzureDestinationArgs:
     @custom_tags.setter
     def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "custom_tags", value)
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines what level of information is synced as a distinct resource
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
+
+    @granularity.setter
+    def granularity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "granularity", value)
 
     @property
     @pulumi.getter(name="keyVaultUri")
@@ -192,6 +210,7 @@ class _SyncAzureDestinationState:
                  client_secret: Optional[pulumi.Input[str]] = None,
                  cloud: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  key_vault_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -208,6 +227,8 @@ class _SyncAzureDestinationState:
                variable.
         :param pulumi.Input[str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -230,6 +251,8 @@ class _SyncAzureDestinationState:
             pulumi.set(__self__, "cloud", cloud)
         if custom_tags is not None:
             pulumi.set(__self__, "custom_tags", custom_tags)
+        if granularity is not None:
+            pulumi.set(__self__, "granularity", granularity)
         if key_vault_uri is not None:
             pulumi.set(__self__, "key_vault_uri", key_vault_uri)
         if name is not None:
@@ -294,6 +317,19 @@ class _SyncAzureDestinationState:
     @custom_tags.setter
     def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "custom_tags", value)
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Determines what level of information is synced as a distinct resource
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
+
+    @granularity.setter
+    def granularity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "granularity", value)
 
     @property
     @pulumi.getter(name="keyVaultUri")
@@ -384,6 +420,7 @@ class SyncAzureDestination(pulumi.CustomResource):
                  client_secret: Optional[pulumi.Input[str]] = None,
                  cloud: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  key_vault_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -428,6 +465,8 @@ class SyncAzureDestination(pulumi.CustomResource):
                variable.
         :param pulumi.Input[str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -494,6 +533,7 @@ class SyncAzureDestination(pulumi.CustomResource):
                  client_secret: Optional[pulumi.Input[str]] = None,
                  cloud: Optional[pulumi.Input[str]] = None,
                  custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 granularity: Optional[pulumi.Input[str]] = None,
                  key_vault_uri: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -512,6 +552,7 @@ class SyncAzureDestination(pulumi.CustomResource):
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["cloud"] = cloud
             __props__.__dict__["custom_tags"] = custom_tags
+            __props__.__dict__["granularity"] = granularity
             __props__.__dict__["key_vault_uri"] = key_vault_uri
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -534,6 +575,7 @@ class SyncAzureDestination(pulumi.CustomResource):
             client_secret: Optional[pulumi.Input[str]] = None,
             cloud: Optional[pulumi.Input[str]] = None,
             custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            granularity: Optional[pulumi.Input[str]] = None,
             key_vault_uri: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -555,6 +597,8 @@ class SyncAzureDestination(pulumi.CustomResource):
                variable.
         :param pulumi.Input[str] cloud: Specifies a cloud for the client. The default is Azure Public Cloud.
         :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
+               at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] key_vault_uri: URI of an existing Azure Key Vault instance.
                Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
                variable.
@@ -577,6 +621,7 @@ class SyncAzureDestination(pulumi.CustomResource):
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["cloud"] = cloud
         __props__.__dict__["custom_tags"] = custom_tags
+        __props__.__dict__["granularity"] = granularity
         __props__.__dict__["key_vault_uri"] = key_vault_uri
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -620,6 +665,15 @@ class SyncAzureDestination(pulumi.CustomResource):
         Custom tags to set on the secret managed at the destination.
         """
         return pulumi.get(self, "custom_tags")
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> pulumi.Output[Optional[str]]:
+        """
+        Determines what level of information is synced as a distinct resource
+        at the destination. Supports `secret-path` and `secret-key`.
+        """
+        return pulumi.get(self, "granularity")
 
     @property
     @pulumi.getter(name="keyVaultUri")

@@ -71,6 +71,11 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      */
     public readonly customTags!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    public readonly granularity!: pulumi.Output<string | undefined>;
+    /**
      * Unique name of the GCP destination.
      */
     public readonly name!: pulumi.Output<string>;
@@ -112,6 +117,7 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             const state = argsOrState as SyncGcpDestinationState | undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["customTags"] = state ? state.customTags : undefined;
+            resourceInputs["granularity"] = state ? state.granularity : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -121,6 +127,7 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             const args = argsOrState as SyncGcpDestinationArgs | undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["customTags"] = args ? args.customTags : undefined;
+            resourceInputs["granularity"] = args ? args.granularity : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -148,6 +155,11 @@ export interface SyncGcpDestinationState {
      * Custom tags to set on the secret managed at the destination.
      */
     customTags?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * Unique name of the GCP destination.
      */
@@ -190,6 +202,11 @@ export interface SyncGcpDestinationArgs {
      * Custom tags to set on the secret managed at the destination.
      */
     customTags?: pulumi.Input<{[key: string]: any}>;
+    /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     */
+    granularity?: pulumi.Input<string>;
     /**
      * Unique name of the GCP destination.
      */

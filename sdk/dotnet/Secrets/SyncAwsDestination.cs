@@ -75,6 +75,13 @@ namespace Pulumi.Vault.Secrets
         public Output<string?> ExternalId { get; private set; } = null!;
 
         /// <summary>
+        /// Determines what level of information is synced as a distinct resource 
+        /// at the destination. Supports `secret-path` and `secret-key`.
+        /// </summary>
+        [Output("granularity")]
+        public Output<string?> Granularity { get; private set; } = null!;
+
+        /// <summary>
         /// Unique name of the AWS destination.
         /// </summary>
         [Output("name")]
@@ -208,6 +215,13 @@ namespace Pulumi.Vault.Secrets
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
+        /// Determines what level of information is synced as a distinct resource 
+        /// at the destination. Supports `secret-path` and `secret-key`.
+        /// </summary>
+        [Input("granularity")]
+        public Input<string>? Granularity { get; set; }
+
+        /// <summary>
         /// Unique name of the AWS destination.
         /// </summary>
         [Input("name")]
@@ -301,6 +315,13 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
+
+        /// <summary>
+        /// Determines what level of information is synced as a distinct resource 
+        /// at the destination. Supports `secret-path` and `secret-key`.
+        /// </summary>
+        [Input("granularity")]
+        public Input<string>? Granularity { get; set; }
 
         /// <summary>
         /// Unique name of the AWS destination.

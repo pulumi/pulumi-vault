@@ -28,16 +28,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewMount(ctx, "mongo", &vault.MountArgs{
-//				Description: pulumi.String("MongoDB Atlas secret engine mount"),
+//			mongo, err := vault.NewMount(ctx, "mongo", &vault.MountArgs{
 //				Path:        pulumi.String("mongodbatlas"),
 //				Type:        pulumi.String("mongodbatlas"),
+//				Description: pulumi.String("MongoDB Atlas secret engine mount"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = mongodbatlas.NewSecretBackend(ctx, "config", &mongodbatlas.SecretBackendArgs{
-//				Mount:      pulumi.String("vault_mount.mongo.path"),
+//				Mount:      mongo.Path,
 //				PrivateKey: pulumi.String("privateKey"),
 //				PublicKey:  pulumi.String("publicKey"),
 //			})

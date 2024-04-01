@@ -216,8 +216,14 @@ import (
 type SecretBackendRole struct {
 	pulumi.CustomResourceState
 
+	// A label selector for Kubernetes namespaces
+	// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+	// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+	// If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+	AllowedKubernetesNamespaceSelector pulumi.StringPtrOutput `pulumi:"allowedKubernetesNamespaceSelector"`
 	// The list of Kubernetes namespaces this role
-	// can generate credentials for. If set to `*` all namespaces are allowed.
+	// can generate credentials for. If set to `*` all namespaces are allowed. If set with
+	// `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
 	AllowedKubernetesNamespaces pulumi.StringArrayOutput `pulumi:"allowedKubernetesNamespaces"`
 	// The path of the Kubernetes Secrets Engine backend mount to create
 	// the role in.
@@ -270,9 +276,6 @@ func NewSecretBackendRole(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.AllowedKubernetesNamespaces == nil {
-		return nil, errors.New("invalid value for required argument 'AllowedKubernetesNamespaces'")
-	}
 	if args.Backend == nil {
 		return nil, errors.New("invalid value for required argument 'Backend'")
 	}
@@ -299,8 +302,14 @@ func GetSecretBackendRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackendRole resources.
 type secretBackendRoleState struct {
+	// A label selector for Kubernetes namespaces
+	// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+	// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+	// If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+	AllowedKubernetesNamespaceSelector *string `pulumi:"allowedKubernetesNamespaceSelector"`
 	// The list of Kubernetes namespaces this role
-	// can generate credentials for. If set to `*` all namespaces are allowed.
+	// can generate credentials for. If set to `*` all namespaces are allowed. If set with
+	// `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
 	AllowedKubernetesNamespaces []string `pulumi:"allowedKubernetesNamespaces"`
 	// The path of the Kubernetes Secrets Engine backend mount to create
 	// the role in.
@@ -347,8 +356,14 @@ type secretBackendRoleState struct {
 }
 
 type SecretBackendRoleState struct {
+	// A label selector for Kubernetes namespaces
+	// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+	// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+	// If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+	AllowedKubernetesNamespaceSelector pulumi.StringPtrInput
 	// The list of Kubernetes namespaces this role
-	// can generate credentials for. If set to `*` all namespaces are allowed.
+	// can generate credentials for. If set to `*` all namespaces are allowed. If set with
+	// `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
 	AllowedKubernetesNamespaces pulumi.StringArrayInput
 	// The path of the Kubernetes Secrets Engine backend mount to create
 	// the role in.
@@ -399,8 +414,14 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 }
 
 type secretBackendRoleArgs struct {
+	// A label selector for Kubernetes namespaces
+	// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+	// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+	// If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+	AllowedKubernetesNamespaceSelector *string `pulumi:"allowedKubernetesNamespaceSelector"`
 	// The list of Kubernetes namespaces this role
-	// can generate credentials for. If set to `*` all namespaces are allowed.
+	// can generate credentials for. If set to `*` all namespaces are allowed. If set with
+	// `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
 	AllowedKubernetesNamespaces []string `pulumi:"allowedKubernetesNamespaces"`
 	// The path of the Kubernetes Secrets Engine backend mount to create
 	// the role in.
@@ -448,8 +469,14 @@ type secretBackendRoleArgs struct {
 
 // The set of arguments for constructing a SecretBackendRole resource.
 type SecretBackendRoleArgs struct {
+	// A label selector for Kubernetes namespaces
+	// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+	// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+	// If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+	AllowedKubernetesNamespaceSelector pulumi.StringPtrInput
 	// The list of Kubernetes namespaces this role
-	// can generate credentials for. If set to `*` all namespaces are allowed.
+	// can generate credentials for. If set to `*` all namespaces are allowed. If set with
+	// `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
 	AllowedKubernetesNamespaces pulumi.StringArrayInput
 	// The path of the Kubernetes Secrets Engine backend mount to create
 	// the role in.
@@ -582,8 +609,17 @@ func (o SecretBackendRoleOutput) ToSecretBackendRoleOutputWithContext(ctx contex
 	return o
 }
 
+// A label selector for Kubernetes namespaces
+// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+// If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
+func (o SecretBackendRoleOutput) AllowedKubernetesNamespaceSelector() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedKubernetesNamespaceSelector }).(pulumi.StringPtrOutput)
+}
+
 // The list of Kubernetes namespaces this role
-// can generate credentials for. If set to `*` all namespaces are allowed.
+// can generate credentials for. If set to `*` all namespaces are allowed. If set with
+// `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
 func (o SecretBackendRoleOutput) AllowedKubernetesNamespaces() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.AllowedKubernetesNamespaces }).(pulumi.StringArrayOutput)
 }

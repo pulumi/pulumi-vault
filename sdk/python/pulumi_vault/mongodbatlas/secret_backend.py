@@ -199,11 +199,11 @@ class SecretBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         mongo = vault.Mount("mongo",
-            description="MongoDB Atlas secret engine mount",
             path="mongodbatlas",
-            type="mongodbatlas")
+            type="mongodbatlas",
+            description="MongoDB Atlas secret engine mount")
         config = vault.mongodbatlas.SecretBackend("config",
-            mount="vault_mount.mongo.path",
+            mount=mongo.path,
             private_key="privateKey",
             public_key="publicKey")
         ```
@@ -242,11 +242,11 @@ class SecretBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         mongo = vault.Mount("mongo",
-            description="MongoDB Atlas secret engine mount",
             path="mongodbatlas",
-            type="mongodbatlas")
+            type="mongodbatlas",
+            description="MongoDB Atlas secret engine mount")
         config = vault.mongodbatlas.SecretBackend("config",
-            mount="vault_mount.mongo.path",
+            mount=mongo.path,
             private_key="privateKey",
             public_key="publicKey")
         ```
