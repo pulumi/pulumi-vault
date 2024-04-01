@@ -77,8 +77,6 @@ if typing.TYPE_CHECKING:
     managed = __managed
     import pulumi_vault.mongodbatlas as __mongodbatlas
     mongodbatlas = __mongodbatlas
-    import pulumi_vault.namespace as __namespace
-    namespace = __namespace
     import pulumi_vault.okta as __okta
     okta = __okta
     import pulumi_vault.pkisecret as __pkisecret
@@ -119,7 +117,6 @@ else:
     ldap = _utilities.lazy_import('pulumi_vault.ldap')
     managed = _utilities.lazy_import('pulumi_vault.managed')
     mongodbatlas = _utilities.lazy_import('pulumi_vault.mongodbatlas')
-    namespace = _utilities.lazy_import('pulumi_vault.namespace')
     okta = _utilities.lazy_import('pulumi_vault.okta')
     pkisecret = _utilities.lazy_import('pulumi_vault.pkisecret')
     rabbitmq = _utilities.lazy_import('pulumi_vault.rabbitmq')

@@ -42,13 +42,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var mongo = new Mount(&#34;mongo&#34;, MountArgs.builder()        
- *             .description(&#34;MongoDB Atlas secret engine mount&#34;)
  *             .path(&#34;mongodbatlas&#34;)
  *             .type(&#34;mongodbatlas&#34;)
+ *             .description(&#34;MongoDB Atlas secret engine mount&#34;)
  *             .build());
  * 
  *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
- *             .mount(&#34;vault_mount.mongo.path&#34;)
+ *             .mount(mongo.path())
  *             .privateKey(&#34;privateKey&#34;)
  *             .publicKey(&#34;publicKey&#34;)
  *             .build());

@@ -75,6 +75,23 @@ public final class SyncAwsDestinationState extends com.pulumi.resources.Resource
     }
 
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    @Import(name="granularity")
+    private @Nullable Output<String> granularity;
+
+    /**
+     * @return Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    public Optional<Output<String>> granularity() {
+        return Optional.ofNullable(this.granularity);
+    }
+
+    /**
      * Unique name of the AWS destination.
      * 
      */
@@ -207,6 +224,7 @@ public final class SyncAwsDestinationState extends com.pulumi.resources.Resource
         this.accessKeyId = $.accessKeyId;
         this.customTags = $.customTags;
         this.externalId = $.externalId;
+        this.granularity = $.granularity;
         this.name = $.name;
         this.namespace = $.namespace;
         this.region = $.region;
@@ -307,6 +325,29 @@ public final class SyncAwsDestinationState extends com.pulumi.resources.Resource
          */
         public Builder externalId(String externalId) {
             return externalId(Output.of(externalId));
+        }
+
+        /**
+         * @param granularity Determines what level of information is synced as a distinct resource
+         * at the destination. Supports `secret-path` and `secret-key`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder granularity(@Nullable Output<String> granularity) {
+            $.granularity = granularity;
+            return this;
+        }
+
+        /**
+         * @param granularity Determines what level of information is synced as a distinct resource
+         * at the destination. Supports `secret-path` and `secret-key`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder granularity(String granularity) {
+            return granularity(Output.of(granularity));
         }
 
         /**

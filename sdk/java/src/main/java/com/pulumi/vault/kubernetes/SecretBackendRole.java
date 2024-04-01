@@ -208,20 +208,42 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:kubernetes/secretBackendRole:SecretBackendRole")
 public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     /**
+     * A label selector for Kubernetes namespaces
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+     * 
+     */
+    @Export(name="allowedKubernetesNamespaceSelector", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> allowedKubernetesNamespaceSelector;
+
+    /**
+     * @return A label selector for Kubernetes namespaces
+     * in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
+     * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
+     * If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
+     * 
+     */
+    public Output<Optional<String>> allowedKubernetesNamespaceSelector() {
+        return Codegen.optional(this.allowedKubernetesNamespaceSelector);
+    }
+    /**
      * The list of Kubernetes namespaces this role
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
      * 
      */
     @Export(name="allowedKubernetesNamespaces", refs={List.class,String.class}, tree="[0,1]")
-    private Output<List<String>> allowedKubernetesNamespaces;
+    private Output</* @Nullable */ List<String>> allowedKubernetesNamespaces;
 
     /**
      * @return The list of Kubernetes namespaces this role
-     * can generate credentials for. If set to `*` all namespaces are allowed.
+     * can generate credentials for. If set to `*` all namespaces are allowed. If set with
+     * `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
      * 
      */
-    public Output<List<String>> allowedKubernetesNamespaces() {
-        return this.allowedKubernetesNamespaces;
+    public Output<Optional<List<String>>> allowedKubernetesNamespaces() {
+        return Codegen.optional(this.allowedKubernetesNamespaces);
     }
     /**
      * The path of the Kubernetes Secrets Engine backend mount to create

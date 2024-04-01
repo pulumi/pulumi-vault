@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncAssociationArgs;
 import com.pulumi.vault.secrets.inputs.SyncAssociationState;
+import com.pulumi.vault.secrets.outputs.SyncAssociationMetadata;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -84,6 +86,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:secrets/syncAssociation:SyncAssociation")
 public class SyncAssociation extends com.pulumi.resources.CustomResource {
     /**
+     * Metadata for each subkey of the associated secret.
+     * 
+     */
+    @Export(name="metadatas", refs={List.class,SyncAssociationMetadata.class}, tree="[0,1]")
+    private Output<List<SyncAssociationMetadata>> metadatas;
+
+    /**
+     * @return Metadata for each subkey of the associated secret.
+     * 
+     */
+    public Output<List<SyncAssociationMetadata>> metadatas() {
+        return this.metadatas;
+    }
+    /**
      * Specifies the mount where the secret is located.
      * 
      */
@@ -144,20 +160,6 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
         return this.secretName;
     }
     /**
-     * Specifies the status of the association (for eg. `SYNCED`).
-     * 
-     */
-    @Export(name="syncStatus", refs={String.class}, tree="[0]")
-    private Output<String> syncStatus;
-
-    /**
-     * @return Specifies the status of the association (for eg. `SYNCED`).
-     * 
-     */
-    public Output<String> syncStatus() {
-        return this.syncStatus;
-    }
-    /**
      * Specifies the destination type.
      * 
      */
@@ -170,20 +172,6 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
      */
     public Output<String> type() {
         return this.type;
-    }
-    /**
-     * Duration string specifying when the secret was last updated.
-     * 
-     */
-    @Export(name="updatedAt", refs={String.class}, tree="[0]")
-    private Output<String> updatedAt;
-
-    /**
-     * @return Duration string specifying when the secret was last updated.
-     * 
-     */
-    public Output<String> updatedAt() {
-        return this.updatedAt;
     }
 
     /**

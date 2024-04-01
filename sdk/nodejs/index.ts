@@ -171,7 +171,6 @@ import * as kv from "./kv";
 import * as ldap from "./ldap";
 import * as managed from "./managed";
 import * as mongodbatlas from "./mongodbatlas";
-import * as namespace from "./namespace";
 import * as okta from "./okta";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
@@ -204,7 +203,6 @@ export {
     ldap,
     managed,
     mongodbatlas,
-    namespace,
     okta,
     pkisecret,
     rabbitmq,

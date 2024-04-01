@@ -132,7 +132,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Unique identifier for the project to which the target API Key belongs.
-     * Required if `organization_id is` not set.
+     * Required if `organization_id` is not set.
      * 
      */
     @Import(name="projectId")
@@ -140,7 +140,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Unique identifier for the project to which the target API Key belongs.
-     * Required if `organization_id is` not set.
+     * Required if `organization_id` is not set.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -148,14 +148,14 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Roles assigned when an org API key is assigned to a project API key.
+     * Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
      * 
      */
     @Import(name="projectRoles")
     private @Nullable Output<List<String>> projectRoles;
 
     /**
-     * @return Roles assigned when an org API key is assigned to a project API key.
+     * @return Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
      * 
      */
     public Optional<Output<List<String>>> projectRoles() {
@@ -163,14 +163,14 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of roles that the API Key needs to have.
+     * List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
      * 
      */
     @Import(name="roles", required=true)
     private Output<List<String>> roles;
 
     /**
-     * @return List of roles that the API Key needs to have.
+     * @return List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
      * 
      */
     public Output<List<String>> roles() {
@@ -403,7 +403,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectId Unique identifier for the project to which the target API Key belongs.
-         * Required if `organization_id is` not set.
+         * Required if `organization_id` is not set.
          * 
          * @return builder
          * 
@@ -415,7 +415,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param projectId Unique identifier for the project to which the target API Key belongs.
-         * Required if `organization_id is` not set.
+         * Required if `organization_id` is not set.
          * 
          * @return builder
          * 
@@ -425,7 +425,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectRoles Roles assigned when an org API key is assigned to a project API key.
+         * @param projectRoles Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
          * 
          * @return builder
          * 
@@ -436,7 +436,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectRoles Roles assigned when an org API key is assigned to a project API key.
+         * @param projectRoles Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
          * 
          * @return builder
          * 
@@ -446,7 +446,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectRoles Roles assigned when an org API key is assigned to a project API key.
+         * @param projectRoles Roles assigned when an org API key is assigned to a project API key. Possible values are `GROUP_CLUSTER_MANAGER`, `GROUP_DATA_ACCESS_ADMIN`, `GROUP_DATA_ACCESS_READ_ONLY`, `GROUP_DATA_ACCESS_READ_WRITE`, `GROUP_OWNER` and `GROUP_READ_ONLY`.
          * 
          * @return builder
          * 
@@ -456,7 +456,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roles List of roles that the API Key needs to have.
+         * @param roles List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
          * 
          * @return builder
          * 
@@ -467,7 +467,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roles List of roles that the API Key needs to have.
+         * @param roles List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
          * 
          * @return builder
          * 
@@ -477,7 +477,7 @@ public final class SecretRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param roles List of roles that the API Key needs to have.
+         * @param roles List of roles that the API Key needs to have. Possible values are `ORG_OWNER`, `ORG_MEMBER`, `ORG_GROUP_CREATOR`, `ORG_BILLING_ADMIN` and `ORG_READ_ONLY`.
          * 
          * @return builder
          * 

@@ -51,6 +51,23 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
     }
 
     /**
+     * Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    @Import(name="granularity")
+    private @Nullable Output<String> granularity;
+
+    /**
+     * @return Determines what level of information is synced as a distinct resource
+     * at the destination. Supports `secret-path` and `secret-key`.
+     * 
+     */
+    public Optional<Output<String>> granularity() {
+        return Optional.ofNullable(this.granularity);
+    }
+
+    /**
      * Unique name of the GitHub destination.
      * 
      */
@@ -151,6 +168,7 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
     private SyncVercelDestinationState(SyncVercelDestinationState $) {
         this.accessToken = $.accessToken;
         this.deploymentEnvironments = $.deploymentEnvironments;
+        this.granularity = $.granularity;
         this.name = $.name;
         this.namespace = $.namespace;
         this.projectId = $.projectId;
@@ -232,6 +250,29 @@ public final class SyncVercelDestinationState extends com.pulumi.resources.Resou
          */
         public Builder deploymentEnvironments(String... deploymentEnvironments) {
             return deploymentEnvironments(List.of(deploymentEnvironments));
+        }
+
+        /**
+         * @param granularity Determines what level of information is synced as a distinct resource
+         * at the destination. Supports `secret-path` and `secret-key`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder granularity(@Nullable Output<String> granularity) {
+            $.granularity = granularity;
+            return this;
+        }
+
+        /**
+         * @param granularity Determines what level of information is synced as a distinct resource
+         * at the destination. Supports `secret-path` and `secret-key`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder granularity(String granularity) {
+            return granularity(Output.of(granularity));
         }
 
         /**

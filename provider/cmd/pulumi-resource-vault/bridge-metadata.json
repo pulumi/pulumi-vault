@@ -2076,24 +2076,10 @@
             },
             "vault_namespace": {
                 "current": "vault:index/getNamespace:getNamespace",
-                "past": [
-                    {
-                        "name": "vault:namespace/get:get",
-                        "inCodegen": true,
-                        "majorVersion": 6
-                    }
-                ],
                 "majorVersion": 6
             },
             "vault_namespaces": {
                 "current": "vault:index/getNamespaces:getNamespaces",
-                "past": [
-                    {
-                        "name": "vault:namespace/getS:getS",
-                        "inCodegen": true,
-                        "majorVersion": 6
-                    }
-                ],
                 "majorVersion": 6,
                 "fields": {
                     "paths": {
@@ -2221,20 +2207,7 @@
             }
         }
     },
-    "auto-settings": {
-        "datasources": {
-            "vault_namespace": {
-                "renames": [
-                    "vault:namespace/get:get"
-                ]
-            },
-            "vault_namespaces": {
-                "renames": [
-                    "vault:namespace/getS:getS"
-                ]
-            }
-        }
-    },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "vault:ad/secretBackend:SecretBackend": "vault_ad_secret_backend",
