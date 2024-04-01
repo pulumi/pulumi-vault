@@ -16,6 +16,8 @@ __all__ = [
     'get_output',
 ]
 
+warnings.warn("""vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace""", DeprecationWarning)
+
 @pulumi.output_type
 class GetResult:
     """
@@ -44,11 +46,6 @@ class GetResult:
     @property
     @pulumi.getter(name="customMetadata")
     def custom_metadata(self) -> Mapping[str, Any]:
-        """
-        (Optional) A map of strings containing arbitrary metadata for the namespace.
-        Only fetched if `path` is specified.
-        *Requires Vault 1.12+.*
-        """
         return pulumi.get(self, "custom_metadata")
 
     @property
@@ -67,10 +64,6 @@ class GetResult:
     @property
     @pulumi.getter(name="namespaceId")
     def namespace_id(self) -> str:
-        """
-        Vault server's internal ID of the namespace.
-        Only fetched if `path` is specified.
-        """
         return pulumi.get(self, "namespace_id")
 
     @property
@@ -81,10 +74,6 @@ class GetResult:
     @property
     @pulumi.getter(name="pathFq")
     def path_fq(self) -> str:
-        """
-        The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-        The path is relative to the provider's `namespace` argument.
-        """
         return pulumi.get(self, "path_fq")
 
 
@@ -106,54 +95,9 @@ def get(namespace: Optional[str] = None,
         path: Optional[str] = None,
         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResult:
     """
-    ## Example Usage
-
-    ### Current namespace
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    current = vault.namespace.get()
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ### Single namespace
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    ns1 = vault.namespace.get(path="ns1")
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ### Nested namespace
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    child = vault.namespace.get(namespace="parent",
-        path="child")
-    full_path = child.id
-    # -> foo/parent/child/
-    path_fq = child.path_fq
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str namespace: The namespace to provision the resource in.
-           The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-    :param str path: The path of the namespace. Must not have a trailing `/`.
-           If not specified or empty, path attributes are set for the current namespace
-           based on the `namespace` arguments of the provider and this data source.
-           Other path related attributes will be empty in this case.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get is deprecated: vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['namespace'] = namespace
     __args__['path'] = path
@@ -174,52 +118,7 @@ def get_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                path: Optional[pulumi.Input[Optional[str]]] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResult]:
     """
-    ## Example Usage
-
-    ### Current namespace
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    current = vault.namespace.get()
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ### Single namespace
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    ns1 = vault.namespace.get(path="ns1")
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ### Nested namespace
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    child = vault.namespace.get(namespace="parent",
-        path="child")
-    full_path = child.id
-    # -> foo/parent/child/
-    path_fq = child.path_fq
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str namespace: The namespace to provision the resource in.
-           The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-    :param str path: The path of the namespace. Must not have a trailing `/`.
-           If not specified or empty, path attributes are set for the current namespace
-           based on the `namespace` arguments of the provider and this data source.
-           Other path related attributes will be empty in this case.
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get is deprecated: vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace""")
     ...

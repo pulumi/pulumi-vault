@@ -76,6 +76,8 @@
         "generic/secret.ts",
         "getAuthBackend.ts",
         "getAuthBackends.ts",
+        "getNamespace.ts",
+        "getNamespaces.ts",
         "getNomadAccessToken.ts",
         "getPolicyDocument.ts",
         "getRaftAutopilotState.ts",

@@ -9,113 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Namespace
 {
+    [Obsolete(@"vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces")]
     public static class GetS
     {
-        /// <summary>
-        /// ## Example Usage
-        /// 
-        /// ### Child namespaces
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var children = Vault.Namespace.GetS.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### Nested namespace
-        /// 
-        /// To fetch the details of nested namespaces:
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var children = Vault.Namespace.GetS.Invoke(new()
-        ///     {
-        ///         Namespace = "parent",
-        ///     });
-        /// 
-        ///     var child = .Select(__value =&gt; 
-        ///     {
-        ///         return Vault.Namespace.Get.Invoke(new()
-        ///         {
-        ///             Namespace = _arg0_.Namespace,
-        ///             Path = __key,
-        ///         });
-        ///     }).ToList();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetSResult> InvokeAsync(GetSArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSResult>("vault:namespace/getS:getS", args ?? new GetSArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// ## Example Usage
-        /// 
-        /// ### Child namespaces
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var children = Vault.Namespace.GetS.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### Nested namespace
-        /// 
-        /// To fetch the details of nested namespaces:
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var children = Vault.Namespace.GetS.Invoke(new()
-        ///     {
-        ///         Namespace = "parent",
-        ///     });
-        /// 
-        ///     var child = .Select(__value =&gt; 
-        ///     {
-        ///         return Vault.Namespace.Get.Invoke(new()
-        ///         {
-        ///             Namespace = _arg0_.Namespace,
-        ///             Path = __key,
-        ///         });
-        ///     }).ToList();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetSResult> Invoke(GetSInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSResult>("vault:namespace/getS:getS", args ?? new GetSInvokeArgs(), options.WithDefaults());
     }
@@ -123,11 +22,6 @@ namespace Pulumi.Vault.Namespace
 
     public sealed class GetSArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-        /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
 
@@ -139,11 +33,6 @@ namespace Pulumi.Vault.Namespace
 
     public sealed class GetSInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
@@ -162,9 +51,6 @@ namespace Pulumi.Vault.Namespace
         /// </summary>
         public readonly string Id;
         public readonly string? Namespace;
-        /// <summary>
-        /// Set of the paths of direct child namespaces.
-        /// </summary>
         public readonly ImmutableArray<string> Paths;
 
         [OutputConstructor]

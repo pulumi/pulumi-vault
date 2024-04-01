@@ -16,6 +16,8 @@ __all__ = [
     'get_s_output',
 ]
 
+warnings.warn("""vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces""", DeprecationWarning)
+
 @pulumi.output_type
 class GetSResult:
     """
@@ -48,9 +50,6 @@ class GetSResult:
     @property
     @pulumi.getter
     def paths(self) -> Sequence[str]:
-        """
-        Set of the paths of direct child namespaces.
-        """
         return pulumi.get(self, "paths")
 
 
@@ -68,39 +67,9 @@ class AwaitableGetSResult(GetSResult):
 def get_s(namespace: Optional[str] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSResult:
     """
-    ## Example Usage
-
-    ### Child namespaces
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    children = vault.namespace.get_s()
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ### Nested namespace
-
-    To fetch the details of nested namespaces:
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    children = vault.namespace.get_s(namespace="parent")
-    child = [vault.namespace.get(namespace=children.namespace,
-        path=__key) for __key, __value in children.paths]
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str namespace: The namespace to provision the resource in.
-           The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_s is deprecated: vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces""")
     __args__ = dict()
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -116,37 +85,7 @@ def get_s(namespace: Optional[str] = None,
 def get_s_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSResult]:
     """
-    ## Example Usage
-
-    ### Child namespaces
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    children = vault.namespace.get_s()
-    ```
-    <!--End PulumiCodeChooser -->
-
-    ### Nested namespace
-
-    To fetch the details of nested namespaces:
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    children = vault.namespace.get_s(namespace="parent")
-    child = [vault.namespace.get(namespace=children.namespace,
-        path=__key) for __key, __value in children.paths]
-    ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str namespace: The namespace to provision the resource in.
-           The value should not contain leading or trailing forward slashes.
-           The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
+    Use this data source to access information about an existing resource.
     """
+    pulumi.log.warn("""get_s is deprecated: vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces""")
     ...

@@ -4,40 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## Example Usage
- *
- * ### Child namespaces
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const children = vault.namespace.getS({});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Nested namespace
- *
- * To fetch the details of nested namespaces:
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const children = vault.namespace.getS({
- *     namespace: "parent",
- * });
- * const child = .map(([, ]) => (vault.namespace.get({
- *     namespace: _arg0_.namespace,
- *     path: __key,
- * })));
- * ```
- * <!--End PulumiCodeChooser -->
- */
+/** @deprecated vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces */
 export function getS(args?: GetSArgs, opts?: pulumi.InvokeOptions): Promise<GetSResult> {
+    pulumi.log.warn("getS is deprecated: vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -50,11 +19,6 @@ export function getS(args?: GetSArgs, opts?: pulumi.InvokeOptions): Promise<GetS
  * A collection of arguments for invoking getS.
  */
 export interface GetSArgs {
-    /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-     */
     namespace?: string;
 }
 
@@ -67,44 +31,9 @@ export interface GetSResult {
      */
     readonly id: string;
     readonly namespace?: string;
-    /**
-     * Set of the paths of direct child namespaces.
-     */
     readonly paths: string[];
 }
-/**
- * ## Example Usage
- *
- * ### Child namespaces
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const children = vault.namespace.getS({});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Nested namespace
- *
- * To fetch the details of nested namespaces:
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const children = vault.namespace.getS({
- *     namespace: "parent",
- * });
- * const child = .map(([, ]) => (vault.namespace.get({
- *     namespace: _arg0_.namespace,
- *     path: __key,
- * })));
- * ```
- * <!--End PulumiCodeChooser -->
- */
+/** @deprecated vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces */
 export function getSOutput(args?: GetSOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSResult> {
     return pulumi.output(args).apply((a: any) => getS(a, opts))
 }
@@ -113,10 +42,5 @@ export function getSOutput(args?: GetSOutputArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getS.
  */
 export interface GetSOutputArgs {
-    /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-     */
     namespace?: pulumi.Input<string>;
 }

@@ -11,64 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ### Child namespaces
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := namespace.GetS(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Nested namespace
-//
-// To fetch the details of nested namespaces:
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			children, err := namespace.GetS(ctx, &namespace.GetSArgs{
-//				Namespace: pulumi.StringRef("parent"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_ := "TODO: For expression"
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
+// Deprecated: vault.namespace/gets.getS has been deprecated in favor of vault.index/getnamespaces.getNamespaces
 func GetS(ctx *pulumi.Context, args *GetSArgs, opts ...pulumi.InvokeOption) (*GetSResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSResult
@@ -81,19 +24,15 @@ func GetS(ctx *pulumi.Context, args *GetSArgs, opts ...pulumi.InvokeOption) (*Ge
 
 // A collection of arguments for invoking getS.
 type GetSArgs struct {
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	Namespace *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getS.
 type GetSResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	Namespace *string `pulumi:"namespace"`
-	// Set of the paths of direct child namespaces.
-	Paths []string `pulumi:"paths"`
+	Id        string   `pulumi:"id"`
+	Namespace *string  `pulumi:"namespace"`
+	Paths     []string `pulumi:"paths"`
 }
 
 func GetSOutput(ctx *pulumi.Context, args GetSOutputArgs, opts ...pulumi.InvokeOption) GetSResultOutput {
@@ -111,9 +50,6 @@ func GetSOutput(ctx *pulumi.Context, args GetSOutputArgs, opts ...pulumi.InvokeO
 
 // A collection of arguments for invoking getS.
 type GetSOutputArgs struct {
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
@@ -145,7 +81,6 @@ func (o GetSResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Set of the paths of direct child namespaces.
 func (o GetSResultOutput) Paths() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetSResult) []string { return v.Paths }).(pulumi.StringArrayOutput)
 }

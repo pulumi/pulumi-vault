@@ -11,93 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// ### Current namespace
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := namespace.Get(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Single namespace
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := namespace.Get(ctx, &namespace.GetArgs{
-//				Path: pulumi.StringRef("ns1"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Nested namespace
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/namespace"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			child, err := namespace.Get(ctx, &namespace.GetArgs{
-//				Namespace: pulumi.StringRef("parent"),
-//				Path:      pulumi.StringRef("child"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_ := child.Id
-//			// -> foo/parent/child/
-//			_ := child.PathFq
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
+// Deprecated: vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace
 func Get(ctx *pulumi.Context, args *GetArgs, opts ...pulumi.InvokeOption) (*GetResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetResult
@@ -110,33 +24,19 @@ func Get(ctx *pulumi.Context, args *GetArgs, opts ...pulumi.InvokeOption) (*GetR
 
 // A collection of arguments for invoking get.
 type GetArgs struct {
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	Namespace *string `pulumi:"namespace"`
-	// The path of the namespace. Must not have a trailing `/`.
-	// If not specified or empty, path attributes are set for the current namespace
-	// based on the `namespace` arguments of the provider and this data source.
-	// Other path related attributes will be empty in this case.
-	Path *string `pulumi:"path"`
+	Path      *string `pulumi:"path"`
 }
 
 // A collection of values returned by get.
 type GetResult struct {
-	// (Optional) A map of strings containing arbitrary metadata for the namespace.
-	// Only fetched if `path` is specified.
-	// *Requires Vault 1.12+.*
 	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	Namespace *string `pulumi:"namespace"`
-	// Vault server's internal ID of the namespace.
-	// Only fetched if `path` is specified.
+	Id          string  `pulumi:"id"`
+	Namespace   *string `pulumi:"namespace"`
 	NamespaceId string  `pulumi:"namespaceId"`
 	Path        *string `pulumi:"path"`
-	// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-	// The path is relative to the provider's `namespace` argument.
-	PathFq string `pulumi:"pathFq"`
+	PathFq      string  `pulumi:"pathFq"`
 }
 
 func GetOutput(ctx *pulumi.Context, args GetOutputArgs, opts ...pulumi.InvokeOption) GetResultOutput {
@@ -154,15 +54,8 @@ func GetOutput(ctx *pulumi.Context, args GetOutputArgs, opts ...pulumi.InvokeOpt
 
 // A collection of arguments for invoking get.
 type GetOutputArgs struct {
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	// The path of the namespace. Must not have a trailing `/`.
-	// If not specified or empty, path attributes are set for the current namespace
-	// based on the `namespace` arguments of the provider and this data source.
-	// Other path related attributes will be empty in this case.
-	Path pulumi.StringPtrInput `pulumi:"path"`
+	Path      pulumi.StringPtrInput `pulumi:"path"`
 }
 
 func (GetOutputArgs) ElementType() reflect.Type {
@@ -184,9 +77,6 @@ func (o GetResultOutput) ToGetResultOutputWithContext(ctx context.Context) GetRe
 	return o
 }
 
-// (Optional) A map of strings containing arbitrary metadata for the namespace.
-// Only fetched if `path` is specified.
-// *Requires Vault 1.12+.*
 func (o GetResultOutput) CustomMetadata() pulumi.MapOutput {
 	return o.ApplyT(func(v GetResult) map[string]interface{} { return v.CustomMetadata }).(pulumi.MapOutput)
 }
@@ -200,8 +90,6 @@ func (o GetResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Vault server's internal ID of the namespace.
-// Only fetched if `path` is specified.
 func (o GetResultOutput) NamespaceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResult) string { return v.NamespaceId }).(pulumi.StringOutput)
 }
@@ -210,8 +98,6 @@ func (o GetResultOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetResult) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
-// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-// The path is relative to the provider's `namespace` argument.
 func (o GetResultOutput) PathFq() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResult) string { return v.PathFq }).(pulumi.StringOutput)
 }

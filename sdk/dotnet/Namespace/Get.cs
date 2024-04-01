@@ -9,143 +9,12 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Vault.Namespace
 {
+    [Obsolete(@"vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace")]
     public static class Get
     {
-        /// <summary>
-        /// ## Example Usage
-        /// 
-        /// ### Current namespace
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var current = Vault.Namespace.Get.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### Single namespace
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var ns1 = Vault.Namespace.Get.Invoke(new()
-        ///     {
-        ///         Path = "ns1",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### Nested namespace
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var child = Vault.Namespace.Get.Invoke(new()
-        ///     {
-        ///         Namespace = "parent",
-        ///         Path = "child",
-        ///     });
-        /// 
-        ///     var fullPath = child.Apply(getResult =&gt; getResult.Id);
-        /// 
-        ///     // -&gt; foo/parent/child/
-        ///     var pathFq = child.Apply(getResult =&gt; getResult.PathFq);
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Task<GetResult> InvokeAsync(GetArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetResult>("vault:namespace/get:get", args ?? new GetArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// ## Example Usage
-        /// 
-        /// ### Current namespace
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var current = Vault.Namespace.Get.Invoke();
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### Single namespace
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var ns1 = Vault.Namespace.Get.Invoke(new()
-        ///     {
-        ///         Path = "ns1",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// 
-        /// ### Nested namespace
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var child = Vault.Namespace.Get.Invoke(new()
-        ///     {
-        ///         Namespace = "parent",
-        ///         Path = "child",
-        ///     });
-        /// 
-        ///     var fullPath = child.Apply(getResult =&gt; getResult.Id);
-        /// 
-        ///     // -&gt; foo/parent/child/
-        ///     var pathFq = child.Apply(getResult =&gt; getResult.PathFq);
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
-        /// </summary>
         public static Output<GetResult> Invoke(GetInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetResult>("vault:namespace/get:get", args ?? new GetInvokeArgs(), options.WithDefaults());
     }
@@ -153,20 +22,9 @@ namespace Pulumi.Vault.Namespace
 
     public sealed class GetArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-        /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
 
-        /// <summary>
-        /// The path of the namespace. Must not have a trailing `/`.
-        /// If not specified or empty, path attributes are set for the current namespace
-        /// based on the `namespace` arguments of the provider and this data source.
-        /// Other path related attributes will be empty in this case.
-        /// </summary>
         [Input("path")]
         public string? Path { get; set; }
 
@@ -178,20 +36,9 @@ namespace Pulumi.Vault.Namespace
 
     public sealed class GetInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
-        /// <summary>
-        /// The path of the namespace. Must not have a trailing `/`.
-        /// If not specified or empty, path attributes are set for the current namespace
-        /// based on the `namespace` arguments of the provider and this data source.
-        /// Other path related attributes will be empty in this case.
-        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
@@ -205,27 +52,14 @@ namespace Pulumi.Vault.Namespace
     [OutputType]
     public sealed class GetResult
     {
-        /// <summary>
-        /// (Optional) A map of strings containing arbitrary metadata for the namespace.
-        /// Only fetched if `path` is specified.
-        /// *Requires Vault 1.12+.*
-        /// </summary>
         public readonly ImmutableDictionary<string, object> CustomMetadata;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string? Namespace;
-        /// <summary>
-        /// Vault server's internal ID of the namespace.
-        /// Only fetched if `path` is specified.
-        /// </summary>
         public readonly string NamespaceId;
         public readonly string? Path;
-        /// <summary>
-        /// The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-        /// The path is relative to the provider's `namespace` argument.
-        /// </summary>
         public readonly string PathFq;
 
         [OutputConstructor]

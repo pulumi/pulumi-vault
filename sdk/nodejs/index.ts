@@ -40,6 +40,16 @@ export const getAuthBackends: typeof import("./getAuthBackends").getAuthBackends
 export const getAuthBackendsOutput: typeof import("./getAuthBackends").getAuthBackendsOutput = null as any;
 utilities.lazyLoad(exports, ["getAuthBackends","getAuthBackendsOutput"], () => require("./getAuthBackends"));
 
+export { GetNamespaceArgs, GetNamespaceResult, GetNamespaceOutputArgs } from "./getNamespace";
+export const getNamespace: typeof import("./getNamespace").getNamespace = null as any;
+export const getNamespaceOutput: typeof import("./getNamespace").getNamespaceOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespace","getNamespaceOutput"], () => require("./getNamespace"));
+
+export { GetNamespacesArgs, GetNamespacesResult, GetNamespacesOutputArgs } from "./getNamespaces";
+export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
+export const getNamespacesOutput: typeof import("./getNamespaces").getNamespacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespaces","getNamespacesOutput"], () => require("./getNamespaces"));
+
 export { GetNomadAccessTokenArgs, GetNomadAccessTokenResult, GetNomadAccessTokenOutputArgs } from "./getNomadAccessToken";
 export const getNomadAccessToken: typeof import("./getNomadAccessToken").getNomadAccessToken = null as any;
 export const getNomadAccessTokenOutput: typeof import("./getNomadAccessToken").getNomadAccessTokenOutput = null as any;

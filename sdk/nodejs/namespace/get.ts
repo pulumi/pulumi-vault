@@ -4,51 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-/**
- * ## Example Usage
- *
- * ### Current namespace
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const current = vault.namespace.get({});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Single namespace
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const ns1 = vault.namespace.get({
- *     path: "ns1",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Nested namespace
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const child = vault.namespace.get({
- *     namespace: "parent",
- *     path: "child",
- * });
- * const fullPath = child.then(child => child.id);
- * // -> foo/parent/child/
- * const pathFq = child.then(child => child.pathFq);
- * ```
- * <!--End PulumiCodeChooser -->
- */
+/** @deprecated vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace */
 export function get(args?: GetArgs, opts?: pulumi.InvokeOptions): Promise<GetResult> {
+    pulumi.log.warn("get is deprecated: vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace")
     args = args || {};
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -62,18 +20,7 @@ export function get(args?: GetArgs, opts?: pulumi.InvokeOptions): Promise<GetRes
  * A collection of arguments for invoking get.
  */
 export interface GetArgs {
-    /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-     */
     namespace?: string;
-    /**
-     * The path of the namespace. Must not have a trailing `/`.
-     * If not specified or empty, path attributes are set for the current namespace
-     * based on the `namespace` arguments of the provider and this data source.
-     * Other path related attributes will be empty in this case.
-     */
     path?: string;
 }
 
@@ -81,73 +28,17 @@ export interface GetArgs {
  * A collection of values returned by get.
  */
 export interface GetResult {
-    /**
-     * (Optional) A map of strings containing arbitrary metadata for the namespace.
-     * Only fetched if `path` is specified.
-     * *Requires Vault 1.12+.*
-     */
     readonly customMetadata: {[key: string]: any};
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly namespace?: string;
-    /**
-     * Vault server's internal ID of the namespace.
-     * Only fetched if `path` is specified.
-     */
     readonly namespaceId: string;
     readonly path?: string;
-    /**
-     * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
-     * The path is relative to the provider's `namespace` argument.
-     */
     readonly pathFq: string;
 }
-/**
- * ## Example Usage
- *
- * ### Current namespace
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const current = vault.namespace.get({});
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Single namespace
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const ns1 = vault.namespace.get({
- *     path: "ns1",
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ### Nested namespace
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const child = vault.namespace.get({
- *     namespace: "parent",
- *     path: "child",
- * });
- * const fullPath = child.then(child => child.id);
- * // -> foo/parent/child/
- * const pathFq = child.then(child => child.pathFq);
- * ```
- * <!--End PulumiCodeChooser -->
- */
+/** @deprecated vault.namespace/get.get has been deprecated in favor of vault.index/getnamespace.getNamespace */
 export function getOutput(args?: GetOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetResult> {
     return pulumi.output(args).apply((a: any) => get(a, opts))
 }
@@ -156,17 +47,6 @@ export function getOutput(args?: GetOutputArgs, opts?: pulumi.InvokeOptions): pu
  * A collection of arguments for invoking get.
  */
 export interface GetOutputArgs {
-    /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
-     */
     namespace?: pulumi.Input<string>;
-    /**
-     * The path of the namespace. Must not have a trailing `/`.
-     * If not specified or empty, path attributes are set for the current namespace
-     * based on the `namespace` arguments of the provider and this data source.
-     * Other path related attributes will be empty in this case.
-     */
     path?: pulumi.Input<string>;
 }
