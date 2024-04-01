@@ -495,6 +495,10 @@ func Provider() tfbridge.ProviderInfo {
 				Tok:  makeDataSource(mainMod, "getNamespace"),
 				Docs: missingDocs,
 			},
+			"vault_namespaces": {
+				Tok:  makeDataSource(mainMod, "getNamespaces"),
+				Docs: missingDocs,
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			Dependencies: map[string]string{
