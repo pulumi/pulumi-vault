@@ -70,6 +70,7 @@ const (
 	transformMod      = "Transform"
 	transitMod        = "Transit"
 	namespaceMod      = "Namespace"
+	templateMod       = "Template"
 )
 
 var moduleMap = map[string]string{
@@ -103,6 +104,7 @@ var moduleMap = map[string]string{
 	"transform":       transformMod,
 	"transit":         transitMod,
 	"namespace":       namespaceMod,
+	"template":        templateMod,
 }
 
 var namespaceMap = map[string]string{
