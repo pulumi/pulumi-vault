@@ -63,6 +63,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
+ *         // configure a static role with period-based rotations
  *         var periodRole = new SecretBackendStaticRole(&#34;periodRole&#34;, SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
  *             .dbName(postgres.name())
@@ -71,6 +72,7 @@ import javax.annotation.Nullable;
  *             .rotationStatements(&#34;ALTER USER \&#34;{{name}}\&#34; WITH PASSWORD &#39;{{password}}&#39;;&#34;)
  *             .build());
  * 
+ *         // configure a static role with schedule-based rotations
  *         var scheduleRole = new SecretBackendStaticRole(&#34;scheduleRole&#34;, SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
  *             .dbName(postgres.name())
