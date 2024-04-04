@@ -684,6 +684,7 @@ public final class VaultFunctions {
      * 
      *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
      * 
+     *         // -&gt; foo/parent/child/
      *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
      * 
      *     }
@@ -793,6 +794,7 @@ public final class VaultFunctions {
      * 
      *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
      * 
+     *         // -&gt; foo/parent/child/
      *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
      * 
      *     }
@@ -902,6 +904,7 @@ public final class VaultFunctions {
      * 
      *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
      * 
+     *         // -&gt; foo/parent/child/
      *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
      * 
      *     }
@@ -1011,6 +1014,7 @@ public final class VaultFunctions {
      * 
      *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
      * 
+     *         // -&gt; foo/parent/child/
      *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
      * 
      *     }
@@ -1120,6 +1124,7 @@ public final class VaultFunctions {
      * 
      *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
      * 
+     *         // -&gt; foo/parent/child/
      *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
      * 
      *     }
@@ -1229,6 +1234,7 @@ public final class VaultFunctions {
      * 
      *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
      * 
+     *         // -&gt; foo/parent/child/
      *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
      * 
      *     }
@@ -1279,6 +1285,36 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .build());
+     * 
+     *         final var child = &#34;TODO: ForExpression&#34;;
+     * 
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1324,6 +1360,36 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .build());
+     * 
+     *         final var child = &#34;TODO: ForExpression&#34;;
+     * 
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1369,6 +1435,36 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .build());
+     * 
+     *         final var child = &#34;TODO: ForExpression&#34;;
+     * 
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1414,6 +1510,36 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .build());
+     * 
+     *         final var child = &#34;TODO: ForExpression&#34;;
+     * 
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1459,6 +1585,36 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .build());
+     * 
+     *         final var child = &#34;TODO: ForExpression&#34;;
+     * 
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1504,6 +1660,36 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetNamespacesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
+     *             .namespace(&#34;parent&#34;)
+     *             .build());
+     * 
+     *         final var child = &#34;TODO: ForExpression&#34;;
+     * 
+     *     }
+     * }
+     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
