@@ -28,9 +28,9 @@ namespace Pulumi.Vault.PkiSecret
     ///         CommonName = "app.my.domain",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki,
+    ///             vault_mount.Pki, 
     ///         },
     ///     });
     /// 

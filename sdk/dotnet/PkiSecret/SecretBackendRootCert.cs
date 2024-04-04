@@ -36,9 +36,9 @@ namespace Pulumi.Vault.PkiSecret
     ///         Organization = "My organization",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki,
+    ///             vault_mount.Pki, 
     ///         },
     ///     });
     /// 

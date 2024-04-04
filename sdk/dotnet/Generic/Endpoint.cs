@@ -37,9 +37,9 @@ namespace Pulumi.Vault.Generic
     /// ",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             userpass,
+    ///             userpass, 
     ///         },
     ///     });
     /// 
@@ -54,9 +54,9 @@ namespace Pulumi.Vault.Generic
     /// ",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             u1,
+    ///             u1, 
     ///         },
     ///     });
     /// 
@@ -77,9 +77,9 @@ namespace Pulumi.Vault.Generic
     /// ",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             u1Token,
+    ///             u1Token, 
     ///         },
     ///     });
     /// 
