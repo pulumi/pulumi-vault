@@ -7876,7 +7876,7 @@
                 },
                 "roleArn": {
                     "type": "string",
-                    "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n"
+                    "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n```\n{{ if (eq .Type \"STS\") }}\n{{ printf \"vault-%s-%s\" (unix_time) (random 20) | truncate 32 }}\n{{ else }}\n{{ printf \"vault-%s-%s-%s\" (printf \"%s-%s\" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}\n{{ end }}\n\n```\n"
                 },
                 "secretKey": {
                     "type": "string",
@@ -7957,7 +7957,7 @@
                 },
                 "roleArn": {
                     "type": "string",
-                    "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n"
+                    "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n```\n{{ if (eq .Type \"STS\") }}\n{{ printf \"vault-%s-%s\" (unix_time) (random 20) | truncate 32 }}\n{{ else }}\n{{ printf \"vault-%s-%s-%s\" (printf \"%s-%s\" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}\n{{ end }}\n\n```\n"
                 },
                 "secretKey": {
                     "type": "string",
@@ -8033,7 +8033,7 @@
                     },
                     "roleArn": {
                         "type": "string",
-                        "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n"
+                        "description": "Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.\n\n```\n{{ if (eq .Type \"STS\") }}\n{{ printf \"vault-%s-%s\" (unix_time) (random 20) | truncate 32 }}\n{{ else }}\n{{ printf \"vault-%s-%s-%s\" (printf \"%s-%s\" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}\n{{ end }}\n\n```\n"
                     },
                     "secretKey": {
                         "type": "string",
