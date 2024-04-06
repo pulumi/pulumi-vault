@@ -55,6 +55,15 @@ class SecretBackendArgs:
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+               
+               ```
+               {{ if (eq .Type "STS") }}
+               {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+               {{ else }}
+               {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+               {{ end }}
+               
+               ```
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -263,6 +272,15 @@ class SecretBackendArgs:
     def role_arn(self) -> Optional[pulumi.Input[str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+
+        ```
+        {{ if (eq .Type "STS") }}
+        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        {{ else }}
+        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        {{ end }}
+
+        ```
         """
         return pulumi.get(self, "role_arn")
 
@@ -351,6 +369,15 @@ class _SecretBackendState:
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+               
+               ```
+               {{ if (eq .Type "STS") }}
+               {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+               {{ else }}
+               {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+               {{ end }}
+               
+               ```
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -559,6 +586,15 @@ class _SecretBackendState:
     def role_arn(self) -> Optional[pulumi.Input[str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+
+        ```
+        {{ if (eq .Type "STS") }}
+        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        {{ else }}
+        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        {{ end }}
+
+        ```
         """
         return pulumi.get(self, "role_arn")
 
@@ -659,6 +695,15 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+               
+               ```
+               {{ if (eq .Type "STS") }}
+               {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+               {{ else }}
+               {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+               {{ end }}
+               
+               ```
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -794,6 +839,15 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+               
+               ```
+               {{ if (eq .Type "STS") }}
+               {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+               {{ else }}
+               {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+               {{ end }}
+               
+               ```
         :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
         :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
@@ -938,6 +992,15 @@ class SecretBackend(pulumi.CustomResource):
     def role_arn(self) -> pulumi.Output[Optional[str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+
+        ```
+        {{ if (eq .Type "STS") }}
+        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        {{ else }}
+        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        {{ end }}
+
+        ```
         """
         return pulumi.get(self, "role_arn")
 

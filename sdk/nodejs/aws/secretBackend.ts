@@ -103,6 +103,15 @@ export class SecretBackend extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     *
+     * ```
+     * {{ if (eq .Type "STS") }}
+     * {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+     * {{ else }}
+     * {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+     * {{ end }}
+     *
+     * ```
      */
     public readonly roleArn!: pulumi.Output<string | undefined>;
     /**
@@ -241,6 +250,15 @@ export interface SecretBackendState {
     region?: pulumi.Input<string>;
     /**
      * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     *
+     * ```
+     * {{ if (eq .Type "STS") }}
+     * {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+     * {{ else }}
+     * {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+     * {{ end }}
+     *
+     * ```
      */
     roleArn?: pulumi.Input<string>;
     /**
@@ -323,6 +341,15 @@ export interface SecretBackendArgs {
     region?: pulumi.Input<string>;
     /**
      * Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+     *
+     * ```
+     * {{ if (eq .Type "STS") }}
+     * {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+     * {{ else }}
+     * {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+     * {{ end }}
+     *
+     * ```
      */
     roleArn?: pulumi.Input<string>;
     /**

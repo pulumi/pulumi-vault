@@ -109,6 +109,15 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        /// 
+        /// ```
+        /// {{ if (eq .Type "STS") }}
+        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        /// {{ else }}
+        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        /// {{ end }}
+        /// 
+        /// ```
         /// </summary>
         [Output("roleArn")]
         public Output<string?> RoleArn { get; private set; } = null!;
@@ -280,6 +289,15 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        /// 
+        /// ```
+        /// {{ if (eq .Type "STS") }}
+        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        /// {{ else }}
+        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        /// {{ end }}
+        /// 
+        /// ```
         /// </summary>
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
@@ -418,6 +436,15 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        /// 
+        /// ```
+        /// {{ if (eq .Type "STS") }}
+        /// {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        /// {{ else }}
+        /// {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        /// {{ end }}
+        /// 
+        /// ```
         /// </summary>
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
