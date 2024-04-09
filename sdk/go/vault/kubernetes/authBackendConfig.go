@@ -32,14 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+//			kubernetesRes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
 //				Type: pulumi.String("kubernetes"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewAuthBackendConfig(ctx, "example", &kubernetes.AuthBackendConfigArgs{
-//				Backend:              kubernetes.Path,
+//				Backend:              kubernetesRes.Path,
 //				KubernetesHost:       pulumi.String("http://example.com:443"),
 //				KubernetesCaCert:     pulumi.String("-----BEGIN CERTIFICATE-----\nexample\n-----END CERTIFICATE-----"),
 //				TokenReviewerJwt:     pulumi.String("ZXhhbXBsZQo="),

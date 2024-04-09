@@ -32,14 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			kubernetes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
+//			kubernetesRes, err := vault.NewAuthBackend(ctx, "kubernetes", &vault.AuthBackendArgs{
 //				Type: pulumi.String("kubernetes"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewAuthBackendRole(ctx, "example", &kubernetes.AuthBackendRoleArgs{
-//				Backend:  kubernetes.Path,
+//				Backend:  kubernetesRes.Path,
 //				RoleName: pulumi.String("example-role"),
 //				BoundServiceAccountNames: pulumi.StringArray{
 //					pulumi.String("example"),
