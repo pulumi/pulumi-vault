@@ -3,6 +3,10 @@ docker: true
 major-version: 6
 makeTemplate: bridged
 plugins:
+  - name: terraform
+    version: "1.0.16"
+    kind: converter
+
   - name: gcp
     version: "5.26.0"
   - name: aws
@@ -10,3 +14,4 @@ plugins:
 team: ecosystem
 env:
   VAULT_DEV_ROOT_TOKEN_ID: "root"
+pulumiConvert: 1
