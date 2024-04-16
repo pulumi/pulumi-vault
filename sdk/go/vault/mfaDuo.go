@@ -38,7 +38,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vault.NewMfaDuo(ctx, "myDuo", &vault.MfaDuoArgs{
+//			_, err = vault.NewMfaDuo(ctx, "my_duo", &vault.MfaDuoArgs{
+//				Name:           pulumi.String("my_duo"),
 //				MountAccessor:  userpass.Accessor,
 //				SecretKey:      pulumi.String("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz"),
 //				IntegrationKey: pulumi.String("BIACEUEAXI20BNWTEYXT"),

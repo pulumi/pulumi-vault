@@ -295,30 +295,6 @@ class SecretRoleset(pulumi.CustomResource):
 
         Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
 
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        project = "my-awesome-project"
-        gcp = vault.gcp.SecretBackend("gcp",
-            path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
-        roleset = vault.gcp.SecretRoleset("roleset",
-            backend=gcp.path,
-            roleset="project_viewer",
-            secret_type="access_token",
-            project=project,
-            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            bindings=[vault.gcp.SecretRolesetBindingArgs(
-                resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
-                roles=["roles/viewer"],
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
         ## Import
 
         A roleset can be imported using its Vault Path. For example, referencing the example above,
@@ -350,30 +326,6 @@ class SecretRoleset(pulumi.CustomResource):
         Creates a Roleset in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
 
         Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        project = "my-awesome-project"
-        gcp = vault.gcp.SecretBackend("gcp",
-            path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
-        roleset = vault.gcp.SecretRoleset("roleset",
-            backend=gcp.path,
-            roleset="project_viewer",
-            secret_type="access_token",
-            project=project,
-            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            bindings=[vault.gcp.SecretRolesetBindingArgs(
-                resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
-                roles=["roles/viewer"],
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

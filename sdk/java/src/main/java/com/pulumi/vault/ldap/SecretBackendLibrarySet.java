@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
  * 
  *         var qa = new SecretBackendLibrarySet(&#34;qa&#34;, SecretBackendLibrarySetArgs.builder()        
  *             .mount(config.path())
+ *             .name(&#34;qa&#34;)
  *             .serviceAccountNames(            
  *                 &#34;Bob&#34;,
  *                 &#34;Mary&#34;)

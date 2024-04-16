@@ -617,7 +617,9 @@ class SecretBackendKey(pulumi.CustomResource):
             description="Example description",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
-        key = vault.transit.SecretBackendKey("key", backend=transit.path)
+        key = vault.transit.SecretBackendKey("key",
+            backend=transit.path,
+            name="my_key")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -673,7 +675,9 @@ class SecretBackendKey(pulumi.CustomResource):
             description="Example description",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
-        key = vault.transit.SecretBackendKey("key", backend=transit.path)
+        key = vault.transit.SecretBackendKey("key",
+            backend=transit.path,
+            name="my_key")
         ```
         <!--End PulumiCodeChooser -->
 

@@ -50,6 +50,7 @@ import javax.annotation.Nullable;
  * 
  *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
  *             .backend(aws.path())
+ *             .name(&#34;deploy&#34;)
  *             .credentialType(&#34;iam_user&#34;)
  *             .policyDocument(&#34;&#34;&#34;
  * {

@@ -11,33 +11,6 @@ import * as utilities from "../utilities";
  *
  * Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
  *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as vault from "@pulumi/vault";
- *
- * const project = "my-awesome-project";
- * const gcp = new vault.gcp.SecretBackend("gcp", {
- *     path: "gcp",
- *     credentials: fs.readFileSync("credentials.json", "utf8"),
- * });
- * const roleset = new vault.gcp.SecretRoleset("roleset", {
- *     backend: gcp.path,
- *     roleset: "project_viewer",
- *     secretType: "access_token",
- *     project: project,
- *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
- *     bindings: [{
- *         resource: `//cloudresourcemanager.googleapis.com/projects/${project}`,
- *         roles: ["roles/viewer"],
- *     }],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
  * ## Import
  *
  * A roleset can be imported using its Vault Path. For example, referencing the example above,

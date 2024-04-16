@@ -37,8 +37,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewQuotaLeaseCount(ctx, "global", &vault.QuotaLeaseCountArgs{
-//				MaxLeases: pulumi.Int(100),
+//				Name:      pulumi.String("global"),
 //				Path:      pulumi.String(""),
+//				MaxLeases: pulumi.Int(100),
 //			})
 //			if err != nil {
 //				return err

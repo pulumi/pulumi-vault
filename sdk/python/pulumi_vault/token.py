@@ -629,18 +629,18 @@ class Token(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.Token("example",
-            metadata={
-                "purpose": "service-account",
-            },
+            role_name="app",
             policies=[
                 "policy1",
                 "policy2",
             ],
-            renew_increment=86400,
-            renew_min_lease=43200,
             renewable=True,
-            role_name="app",
-            ttl="24h")
+            ttl="24h",
+            renew_min_lease=43200,
+            renew_increment=86400,
+            metadata={
+                "purpose": "service-account",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -688,18 +688,18 @@ class Token(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.Token("example",
-            metadata={
-                "purpose": "service-account",
-            },
+            role_name="app",
             policies=[
                 "policy1",
                 "policy2",
             ],
-            renew_increment=86400,
-            renew_min_lease=43200,
             renewable=True,
-            role_name="app",
-            ttl="24h")
+            ttl="24h",
+            renew_min_lease=43200,
+            renew_increment=86400,
+            metadata={
+                "purpose": "service-account",
+            })
         ```
         <!--End PulumiCodeChooser -->
 

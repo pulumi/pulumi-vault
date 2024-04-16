@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.identity.MfaOkta("example", {
+ *     orgName: "org1",
  *     apiToken: "token1",
  *     baseUrl: "qux.baz.com",
- *     orgName: "org1",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

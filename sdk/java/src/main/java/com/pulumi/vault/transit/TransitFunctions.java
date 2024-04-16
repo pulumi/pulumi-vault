@@ -46,8 +46,8 @@ public final class TransitFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = TransitFunctions.getDecrypt(GetDecryptArgs.builder()
      *             .backend(&#34;transit&#34;)
-     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .key(&#34;test&#34;)
+     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .build());
      * 
      *     }
@@ -88,8 +88,8 @@ public final class TransitFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = TransitFunctions.getDecrypt(GetDecryptArgs.builder()
      *             .backend(&#34;transit&#34;)
-     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .key(&#34;test&#34;)
+     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .build());
      * 
      *     }
@@ -130,8 +130,8 @@ public final class TransitFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = TransitFunctions.getDecrypt(GetDecryptArgs.builder()
      *             .backend(&#34;transit&#34;)
-     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .key(&#34;test&#34;)
+     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .build());
      * 
      *     }
@@ -172,8 +172,8 @@ public final class TransitFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = TransitFunctions.getDecrypt(GetDecryptArgs.builder()
      *             .backend(&#34;transit&#34;)
-     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .key(&#34;test&#34;)
+     *             .ciphertext(&#34;vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==&#34;)
      *             .build());
      * 
      *     }

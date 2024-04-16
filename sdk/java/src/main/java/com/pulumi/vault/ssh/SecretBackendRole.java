@@ -54,12 +54,14 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var foo = new SecretBackendRole(&#34;foo&#34;, SecretBackendRoleArgs.builder()        
+ *             .name(&#34;my-role&#34;)
  *             .backend(example.path())
  *             .keyType(&#34;ca&#34;)
  *             .allowUserCertificates(true)
  *             .build());
  * 
  *         var bar = new SecretBackendRole(&#34;bar&#34;, SecretBackendRoleArgs.builder()        
+ *             .name(&#34;otp-role&#34;)
  *             .backend(example.path())
  *             .keyType(&#34;otp&#34;)
  *             .defaultUser(&#34;default&#34;)

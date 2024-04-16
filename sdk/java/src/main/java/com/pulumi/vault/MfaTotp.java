@@ -45,11 +45,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var myTotp = new MfaTotp(&#34;myTotp&#34;, MfaTotpArgs.builder()        
+ *             .name(&#34;my_totp&#34;)
+ *             .issuer(&#34;hashicorp&#34;)
+ *             .period(60)
  *             .algorithm(&#34;SHA256&#34;)
  *             .digits(8)
- *             .issuer(&#34;hashicorp&#34;)
  *             .keySize(20)
- *             .period(60)
  *             .build());
  * 
  *     }

@@ -45,11 +45,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
+ *             .path(&#34;my-custom-ldap&#34;)
  *             .binddn(&#34;CN=Administrator,CN=Users,DC=corp,DC=example,DC=net&#34;)
  *             .bindpass(&#34;SuperSecretPassw0rd&#34;)
- *             .insecureTls(&#34;true&#34;)
- *             .path(&#34;my-custom-ldap&#34;)
  *             .url(&#34;ldaps://localhost&#34;)
+ *             .insecureTls(&#34;true&#34;)
  *             .userdn(&#34;CN=Users,DC=corp,DC=example,DC=net&#34;)
  *             .build());
  * 

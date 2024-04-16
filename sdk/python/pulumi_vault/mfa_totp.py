@@ -365,12 +365,13 @@ class MfaTotp(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        my_totp = vault.MfaTotp("myTotp",
+        my_totp = vault.MfaTotp("my_totp",
+            name="my_totp",
+            issuer="hashicorp",
+            period=60,
             algorithm="SHA256",
             digits=8,
-            issuer="hashicorp",
-            key_size=20,
-            period=60)
+            key_size=20)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -418,12 +419,13 @@ class MfaTotp(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        my_totp = vault.MfaTotp("myTotp",
+        my_totp = vault.MfaTotp("my_totp",
+            name="my_totp",
+            issuer="hashicorp",
+            period=60,
             algorithm="SHA256",
             digits=8,
-            issuer="hashicorp",
-            key_size=20,
-            period=60)
+            key_size=20)
         ```
         <!--End PulumiCodeChooser -->
 

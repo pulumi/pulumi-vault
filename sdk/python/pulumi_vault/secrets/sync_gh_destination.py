@@ -407,8 +407,9 @@ class SyncGhDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         gh = vault.secrets.SyncGhDestination("gh",
-            access_token=var["access_token"],
-            repository_owner=var["repo_owner"],
+            name="gh-dest",
+            access_token=access_token,
+            repository_owner=repo_owner,
             repository_name="repo-name-example",
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
@@ -462,8 +463,9 @@ class SyncGhDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         gh = vault.secrets.SyncGhDestination("gh",
-            access_token=var["access_token"],
-            repository_owner=var["repo_owner"],
+            name="gh-dest",
+            access_token=access_token,
+            repository_owner=repo_owner,
             repository_name="repo-name-example",
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```

@@ -31,8 +31,9 @@ namespace Pulumi.Vault
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myOkta = new Vault.MfaOkta("myOkta", new()
+    ///     var myOkta = new Vault.MfaOkta("my_okta", new()
     ///     {
+    ///         Name = "my_okta",
     ///         MountAccessor = userpass.Accessor,
     ///         UsernameFormat = "user@example.com",
     ///         OrgName = "hashicorp",

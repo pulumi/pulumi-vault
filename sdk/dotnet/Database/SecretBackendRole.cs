@@ -30,6 +30,7 @@ namespace Pulumi.Vault.Database
     ///     var postgres = new Vault.Database.SecretBackendConnection("postgres", new()
     ///     {
     ///         Backend = db.Path,
+    ///         Name = "postgres",
     ///         AllowedRoles = new[]
     ///         {
     ///             "dev",
@@ -44,6 +45,7 @@ namespace Pulumi.Vault.Database
     ///     var role = new Vault.Database.SecretBackendRole("role", new()
     ///     {
     ///         Backend = db.Path,
+    ///         Name = "dev",
     ///         DbName = postgres.Name,
     ///         CreationStatements = new[]
     ///         {

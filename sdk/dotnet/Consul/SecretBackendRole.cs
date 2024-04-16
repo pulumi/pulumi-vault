@@ -33,6 +33,7 @@ namespace Pulumi.Vault.Consul
     /// 
     ///     var example = new Vault.Consul.SecretBackendRole("example", new()
     ///     {
+    ///         Name = "test-role",
     ///         Backend = test.Path,
     ///         ConsulPolicies = new[]
     ///         {

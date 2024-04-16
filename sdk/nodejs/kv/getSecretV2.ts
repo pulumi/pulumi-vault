@@ -6,6 +6,40 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv2 = new vault.Mount("kvv2", {
+ *     path: "kvv2",
+ *     type: "kv",
+ *     options: {
+ *         version: "2",
+ *     },
+ *     description: "KV Version 2 secret engine mount",
+ * });
+ * const exampleSecretV2 = new vault.kv.SecretV2("example", {
+ *     mount: kvv2.path,
+ *     name: "secret",
+ *     cas: 1,
+ *     deleteAllVersions: true,
+ *     dataJson: JSON.stringify({
+ *         zip: "zap",
+ *         foo: "bar",
+ *     }),
+ * });
+ * const example = vault.kv.getSecretV2Output({
+ *     mount: kvv2.path,
+ *     name: exampleSecretV2.name,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretV2(args: GetSecretV2Args, opts?: pulumi.InvokeOptions): Promise<GetSecretV2Result> {
 
@@ -96,6 +130,40 @@ export interface GetSecretV2Result {
 }
 /**
  * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const kvv2 = new vault.Mount("kvv2", {
+ *     path: "kvv2",
+ *     type: "kv",
+ *     options: {
+ *         version: "2",
+ *     },
+ *     description: "KV Version 2 secret engine mount",
+ * });
+ * const exampleSecretV2 = new vault.kv.SecretV2("example", {
+ *     mount: kvv2.path,
+ *     name: "secret",
+ *     cas: 1,
+ *     deleteAllVersions: true,
+ *     dataJson: JSON.stringify({
+ *         zip: "zap",
+ *         foo: "bar",
+ *     }),
+ * });
+ * const example = vault.kv.getSecretV2Output({
+ *     mount: kvv2.path,
+ *     name: exampleSecretV2.name,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretV2Output(args: GetSecretV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretV2Result> {
     return pulumi.output(args).apply((a: any) => getSecretV2(a, opts))

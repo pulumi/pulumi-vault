@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAuthBackend, err := saml.NewAuthBackend(ctx, "exampleAuthBackend", &saml.AuthBackendArgs{
+//			example, err := saml.NewAuthBackend(ctx, "example", &saml.AuthBackendArgs{
 //				Path:           pulumi.String("saml"),
 //				IdpMetadataUrl: pulumi.String("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata"),
 //				EntityId:       pulumi.String("https://my.vault/v1/auth/saml"),
@@ -43,8 +43,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = saml.NewAuthBackendRole(ctx, "exampleAuthBackendRole", &saml.AuthBackendRoleArgs{
-//				Path:            exampleAuthBackend.Path,
+//			_, err = saml.NewAuthBackendRole(ctx, "example", &saml.AuthBackendRoleArgs{
+//				Path:            example.Path,
+//				Name:            pulumi.String("my-role"),
 //				GroupsAttribute: pulumi.String("groups"),
 //				BoundAttributes: pulumi.Map{
 //					"group": pulumi.Any("admin"),

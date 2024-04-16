@@ -25,9 +25,9 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var example = new Vault.Identity.MfaOkta("example", new()
     ///     {
+    ///         OrgName = "org1",
     ///         ApiToken = "token1",
     ///         BaseUrl = "qux.baz.com",
-    ///         OrgName = "org1",
     ///     });
     /// 
     /// });

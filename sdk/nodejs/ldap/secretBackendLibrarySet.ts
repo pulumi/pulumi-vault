@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * });
  * const qa = new vault.ldap.SecretBackendLibrarySet("qa", {
  *     mount: config.path,
+ *     name: "qa",
  *     serviceAccountNames: [
  *         "Bob",
  *         "Mary",

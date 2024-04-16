@@ -197,7 +197,7 @@ class Team(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
-        tf_devs = vault.github.Team("tfDevs",
+        tf_devs = vault.github.Team("tf_devs",
             backend=example.id,
             team="terraform-developers",
             policies=[
@@ -246,7 +246,7 @@ class Team(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
-        tf_devs = vault.github.Team("tfDevs",
+        tf_devs = vault.github.Team("tf_devs",
             backend=example.id,
             team="terraform-developers",
             policies=[

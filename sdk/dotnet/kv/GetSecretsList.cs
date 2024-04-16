@@ -35,7 +35,7 @@ namespace Pulumi.Vault.kv
         ///         Description = "KV Version 1 secret engine mount",
         ///     });
         /// 
-        ///     var awsSecret = new Vault.Kv.Secret("awsSecret", new()
+        ///     var awsSecret = new Vault.Kv.Secret("aws_secret", new()
         ///     {
         ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/aws-secret"),
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -44,7 +44,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var azureSecret = new Vault.Kv.Secret("azureSecret", new()
+        ///     var azureSecret = new Vault.Kv.Secret("azure_secret", new()
         ///     {
         ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/azure-secret"),
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -93,7 +93,7 @@ namespace Pulumi.Vault.kv
         ///         Description = "KV Version 1 secret engine mount",
         ///     });
         /// 
-        ///     var awsSecret = new Vault.Kv.Secret("awsSecret", new()
+        ///     var awsSecret = new Vault.Kv.Secret("aws_secret", new()
         ///     {
         ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/aws-secret"),
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -102,7 +102,7 @@ namespace Pulumi.Vault.kv
         ///         }),
         ///     });
         /// 
-        ///     var azureSecret = new Vault.Kv.Secret("azureSecret", new()
+        ///     var azureSecret = new Vault.Kv.Secret("azure_secret", new()
         ///     {
         ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/azure-secret"),
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;

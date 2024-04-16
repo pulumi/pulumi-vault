@@ -15,57 +15,6 @@ namespace Pulumi.Vault.Gcp
     /// Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
     /// Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
     /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.IO;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Gcp = Pulumi.Gcp;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var @this = new Gcp.ServiceAccount.Account("this", new()
-    ///     {
-    ///         AccountId = "my-awesome-account",
-    ///     });
-    /// 
-    ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
-    ///     {
-    ///         Path = "gcp",
-    ///         Credentials = File.ReadAllText("credentials.json"),
-    ///     });
-    /// 
-    ///     var staticAccount = new Vault.Gcp.SecretStaticAccount("staticAccount", new()
-    ///     {
-    ///         Backend = gcp.Path,
-    ///         StaticAccount = "project_viewer",
-    ///         SecretType = "access_token",
-    ///         TokenScopes = new[]
-    ///         {
-    ///             "https://www.googleapis.com/auth/cloud-platform",
-    ///         },
-    ///         ServiceAccountEmail = @this.Email,
-    ///         Bindings = new[]
-    ///         {
-    ///             new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs
-    ///             {
-    ///                 Resource = @this.Project.Apply(project =&gt; $"//cloudresourcemanager.googleapis.com/projects/{project}"),
-    ///                 Roles = new[]
-    ///                 {
-    ///                     "roles/viewer",
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
     /// ## Import
     /// 
     /// A static account can be imported using its Vault Path. For example, referencing the example above,

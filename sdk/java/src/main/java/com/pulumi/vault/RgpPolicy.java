@@ -44,12 +44,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var allow_all = new RgpPolicy(&#34;allow-all&#34;, RgpPolicyArgs.builder()        
+ *             .name(&#34;allow-all&#34;)
  *             .enforcementLevel(&#34;soft-mandatory&#34;)
  *             .policy(&#34;&#34;&#34;
  * main = rule {
  *   true
  * }
- * 
  *             &#34;&#34;&#34;)
  *             .build());
  * 

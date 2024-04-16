@@ -17,12 +17,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const mountTransform = new vault.Mount("mountTransform", {
+ * const mountTransform = new vault.Mount("mount_transform", {
  *     path: "transform",
  *     type: "transform",
  * });
  * const test = new vault.transform.Role("test", {
  *     path: mountTransform.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * ```

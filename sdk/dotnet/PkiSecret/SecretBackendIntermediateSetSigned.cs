@@ -39,7 +39,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         MaxLeaseTtlSeconds = 86400,
     ///     });
     /// 
-    ///     var exampleSecretBackendRootCert = new Vault.PkiSecret.SecretBackendRootCert("exampleSecretBackendRootCert", new()
+    ///     var example = new Vault.PkiSecret.SecretBackendRootCert("example", new()
     ///     {
     ///         Backend = root.Path,
     ///         Type = "internal",
@@ -57,14 +57,14 @@ namespace Pulumi.Vault.PkiSecret
     ///         Province = "CA",
     ///     });
     /// 
-    ///     var exampleSecretBackendIntermediateCertRequest = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", new()
+    ///     var exampleSecretBackendIntermediateCertRequest = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("example", new()
     ///     {
     ///         Backend = intermediate.Path,
-    ///         Type = exampleSecretBackendRootCert.Type,
+    ///         Type = example.Type,
     ///         CommonName = "SubOrg Intermediate CA",
     ///     });
     /// 
-    ///     var exampleSecretBackendRootSignIntermediate = new Vault.PkiSecret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", new()
+    ///     var exampleSecretBackendRootSignIntermediate = new Vault.PkiSecret.SecretBackendRootSignIntermediate("example", new()
     ///     {
     ///         Backend = root.Path,
     ///         Csr = exampleSecretBackendIntermediateCertRequest.Csr,
@@ -78,7 +78,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         Revoke = true,
     ///     });
     /// 
-    ///     var exampleSecretBackendIntermediateSetSigned = new Vault.PkiSecret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", new()
+    ///     var exampleSecretBackendIntermediateSetSigned = new Vault.PkiSecret.SecretBackendIntermediateSetSigned("example", new()
     ///     {
     ///         Backend = intermediate.Path,
     ///         Certificate = exampleSecretBackendRootSignIntermediate.Certificate,

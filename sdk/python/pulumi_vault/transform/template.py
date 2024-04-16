@@ -344,9 +344,11 @@ class Template(pulumi.CustomResource):
             type="transform")
         numerics = vault.transform.Alphabet("numerics",
             path=transform.path,
+            name="numerics",
             alphabet="0123456789")
         test = vault.transform.Template("test",
             path=numerics.path,
+            name="ccn",
             type="regex",
             pattern="(\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})",
             alphabet="numerics",
@@ -407,9 +409,11 @@ class Template(pulumi.CustomResource):
             type="transform")
         numerics = vault.transform.Alphabet("numerics",
             path=transform.path,
+            name="numerics",
             alphabet="0123456789")
         test = vault.transform.Template("test",
             path=numerics.path,
+            name="ccn",
             type="regex",
             pattern="(\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})",
             alphabet="numerics",

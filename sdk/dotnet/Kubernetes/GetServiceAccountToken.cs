@@ -13,122 +13,12 @@ namespace Pulumi.Vault.Kubernetes
     {
         /// <summary>
         /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.IO;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
-        ///     {
-        ///         Path = "kubernetes",
-        ///         Description = "kubernetes secrets engine description",
-        ///         KubernetesHost = "https://127.0.0.1:61233",
-        ///         KubernetesCaCert = File.ReadAllText("/path/to/cert"),
-        ///         ServiceAccountJwt = File.ReadAllText("/path/to/token"),
-        ///         DisableLocalCaJwt = false,
-        ///     });
-        /// 
-        ///     var role = new Vault.Kubernetes.SecretBackendRole("role", new()
-        ///     {
-        ///         Backend = config.Path,
-        ///         AllowedKubernetesNamespaces = new[]
-        ///         {
-        ///             "*",
-        ///         },
-        ///         TokenMaxTtl = 43200,
-        ///         TokenDefaultTtl = 21600,
-        ///         ServiceAccountName = "test-service-account-with-generated-token",
-        ///         ExtraLabels = 
-        ///         {
-        ///             { "id", "abc123" },
-        ///             { "name", "some_name" },
-        ///         },
-        ///         ExtraAnnotations = 
-        ///         {
-        ///             { "env", "development" },
-        ///             { "location", "earth" },
-        ///         },
-        ///     });
-        /// 
-        ///     var token = Vault.Kubernetes.GetServiceAccountToken.Invoke(new()
-        ///     {
-        ///         Backend = config.Path,
-        ///         Role = role.Name,
-        ///         KubernetesNamespace = "test",
-        ///         ClusterRoleBinding = false,
-        ///         Ttl = "1h",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetServiceAccountTokenResult> InvokeAsync(GetServiceAccountTokenArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountTokenResult>("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args ?? new GetServiceAccountTokenArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.IO;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Vault = Pulumi.Vault;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
-        ///     {
-        ///         Path = "kubernetes",
-        ///         Description = "kubernetes secrets engine description",
-        ///         KubernetesHost = "https://127.0.0.1:61233",
-        ///         KubernetesCaCert = File.ReadAllText("/path/to/cert"),
-        ///         ServiceAccountJwt = File.ReadAllText("/path/to/token"),
-        ///         DisableLocalCaJwt = false,
-        ///     });
-        /// 
-        ///     var role = new Vault.Kubernetes.SecretBackendRole("role", new()
-        ///     {
-        ///         Backend = config.Path,
-        ///         AllowedKubernetesNamespaces = new[]
-        ///         {
-        ///             "*",
-        ///         },
-        ///         TokenMaxTtl = 43200,
-        ///         TokenDefaultTtl = 21600,
-        ///         ServiceAccountName = "test-service-account-with-generated-token",
-        ///         ExtraLabels = 
-        ///         {
-        ///             { "id", "abc123" },
-        ///             { "name", "some_name" },
-        ///         },
-        ///         ExtraAnnotations = 
-        ///         {
-        ///             { "env", "development" },
-        ///             { "location", "earth" },
-        ///         },
-        ///     });
-        /// 
-        ///     var token = Vault.Kubernetes.GetServiceAccountToken.Invoke(new()
-        ///     {
-        ///         Backend = config.Path,
-        ///         Role = role.Name,
-        ///         KubernetesNamespace = "test",
-        ///         ClusterRoleBinding = false,
-        ///         Ttl = "1h",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetServiceAccountTokenResult> Invoke(GetServiceAccountTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountTokenResult>("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args ?? new GetServiceAccountTokenInvokeArgs(), options.WithDefaults());

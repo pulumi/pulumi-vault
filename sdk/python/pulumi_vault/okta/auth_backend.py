@@ -495,6 +495,8 @@ class AuthBackend(pulumi.CustomResource):
 
         example = vault.okta.AuthBackend("example",
             description="Demonstration of the Terraform Okta auth backend",
+            organization="example",
+            token="something that should be kept secret",
             groups=[vault.okta.AuthBackendGroupArgs(
                 group_name="foo",
                 policies=[
@@ -502,11 +504,9 @@ class AuthBackend(pulumi.CustomResource):
                     "two",
                 ],
             )],
-            organization="example",
-            token="something that should be kept secret",
             users=[vault.okta.AuthBackendUserArgs(
-                groups=["foo"],
                 username="bar",
+                groups=["foo"],
             )])
         ```
         <!--End PulumiCodeChooser -->
@@ -562,6 +562,8 @@ class AuthBackend(pulumi.CustomResource):
 
         example = vault.okta.AuthBackend("example",
             description="Demonstration of the Terraform Okta auth backend",
+            organization="example",
+            token="something that should be kept secret",
             groups=[vault.okta.AuthBackendGroupArgs(
                 group_name="foo",
                 policies=[
@@ -569,11 +571,9 @@ class AuthBackend(pulumi.CustomResource):
                     "two",
                 ],
             )],
-            organization="example",
-            token="something that should be kept secret",
             users=[vault.okta.AuthBackendUserArgs(
-                groups=["foo"],
                 username="bar",
+                groups=["foo"],
             )])
         ```
         <!--End PulumiCodeChooser -->

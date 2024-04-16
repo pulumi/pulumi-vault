@@ -17,13 +17,14 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     externalMemberEntityIds: true,
  *     metadata: {
  *         version: "2",
  *     },
  * });
- * const user = new vault.identity.Entity("user", {});
+ * const user = new vault.identity.Entity("user", {name: "user"});
  * const members = new vault.identity.GroupMemberEntityIds("members", {
  *     exclusive: true,
  *     memberEntityIds: [user.id],
@@ -40,15 +41,16 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     externalMemberEntityIds: true,
  *     metadata: {
  *         version: "2",
  *     },
  * });
- * const testUser = new vault.identity.Entity("testUser", {});
- * const secondTestUser = new vault.identity.Entity("secondTestUser", {});
- * const devUser = new vault.identity.Entity("devUser", {});
+ * const testUser = new vault.identity.Entity("test_user", {name: "test"});
+ * const secondTestUser = new vault.identity.Entity("second_test_user", {name: "second_test"});
+ * const devUser = new vault.identity.Entity("dev_user", {name: "dev"});
  * const test = new vault.identity.GroupMemberEntityIds("test", {
  *     memberEntityIds: [
  *         testUser.id,

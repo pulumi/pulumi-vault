@@ -20,6 +20,7 @@ import (
 // import (
 //
 //	"encoding/json"
+//	"fmt"
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kv"
@@ -47,8 +48,9 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = kv.NewSecretV2(ctx, "awsSecret", &kv.SecretV2Args{
+//			_, err = kv.NewSecretV2(ctx, "aws_secret", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
+//				Name:     pulumi.String("aws_secret"),
 //				DataJson: pulumi.String(json0),
 //			})
 //			if err != nil {
@@ -61,8 +63,9 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			_, err = kv.NewSecretV2(ctx, "azureSecret", &kv.SecretV2Args{
+//			azureSecret, err := kv.NewSecretV2(ctx, "azure_secret", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
+//				Name:     pulumi.String("azure_secret"),
 //				DataJson: pulumi.String(json1),
 //			})
 //			if err != nil {
@@ -75,8 +78,11 @@ import (
 //				return err
 //			}
 //			json2 := string(tmpJSON2)
-//			_, err = kv.NewSecretV2(ctx, "nestedSecret", &kv.SecretV2Args{
-//				Mount:    kvv2.Path,
+//			_, err = kv.NewSecretV2(ctx, "nested_secret", &kv.SecretV2Args{
+//				Mount: kvv2.Path,
+//				Name: azureSecret.Name.ApplyT(func(name string) (string, error) {
+//					return fmt.Sprintf("%v/dev", name), nil
+//				}).(pulumi.StringOutput),
 //				DataJson: pulumi.String(json2),
 //			})
 //			if err != nil {
@@ -88,7 +94,7 @@ import (
 //			_ = kvv2.Path.ApplyT(func(path string) (kv.GetSecretsListV2Result, error) {
 //				return kv.GetSecretsListV2Output(ctx, kv.GetSecretsListV2OutputArgs{
 //					Mount: path,
-//					Name:  vault_kv_secret_v2.Test_2.Name,
+//					Name:  test2.Name,
 //				}, nil), nil
 //			}).(kv.GetSecretsListV2ResultOutput)
 //			return nil

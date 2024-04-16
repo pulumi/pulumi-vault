@@ -20,10 +20,10 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.jwt.AuthBackend("example", {
- *     boundIssuer: "https://myco.auth0.com/",
  *     description: "Demonstration of the Terraform JWT auth backend",
- *     oidcDiscoveryUrl: "https://myco.auth0.com/",
  *     path: "jwt",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
+ *     boundIssuer: "https://myco.auth0.com/",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -36,16 +36,16 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.jwt.AuthBackend("example", {
- *     boundIssuer: "https://myco.auth0.com/",
  *     description: "Demonstration of the Terraform JWT auth backend",
+ *     path: "oidc",
+ *     type: "oidc",
+ *     oidcDiscoveryUrl: "https://myco.auth0.com/",
  *     oidcClientId: "1234567890",
  *     oidcClientSecret: "secret123456",
- *     oidcDiscoveryUrl: "https://myco.auth0.com/",
- *     path: "oidc",
+ *     boundIssuer: "https://myco.auth0.com/",
  *     tune: {
  *         listingVisibility: "unauth",
  *     },
- *     type: "oidc",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -61,13 +61,13 @@ import * as utilities from "../utilities";
  *     description: "OIDC backend",
  *     oidcDiscoveryUrl: "https://accounts.google.com",
  *     path: "oidc",
+ *     type: "oidc",
  *     providerConfig: {
+ *         provider: "gsuite",
  *         fetch_groups: "true",
  *         fetch_user_info: "true",
  *         groups_recurse_max_depth: "1",
- *         provider: "gsuite",
  *     },
- *     type: "oidc",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

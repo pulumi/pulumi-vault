@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const crlConfig = new vault.pkisecret.SecretBackendCrlConfig("crlConfig", {
+ * const crlConfig = new vault.pkisecret.SecretBackendCrlConfig("crl_config", {
  *     backend: pki.path,
  *     expiry: "72h",
  *     disable: false,

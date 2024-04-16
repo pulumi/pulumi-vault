@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var globalConfig = new Vault.Secrets.SyncConfig("globalConfig", new()
+    ///     var globalConfig = new Vault.Secrets.SyncConfig("global_config", new()
     ///     {
     ///         Disabled = true,
     ///         QueueCapacity = 500000,

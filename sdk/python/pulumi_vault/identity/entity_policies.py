@@ -219,7 +219,9 @@ class EntityPolicies(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        entity = vault.identity.Entity("entity", external_policies=True)
+        entity = vault.identity.Entity("entity",
+            name="entity",
+            external_policies=True)
         policies = vault.identity.EntityPolicies("policies",
             policies=[
                 "default",
@@ -237,7 +239,9 @@ class EntityPolicies(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        entity = vault.identity.Entity("entity", external_policies=True)
+        entity = vault.identity.Entity("entity",
+            name="entity",
+            external_policies=True)
         default = vault.identity.EntityPolicies("default",
             policies=[
                 "default",
@@ -284,7 +288,9 @@ class EntityPolicies(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        entity = vault.identity.Entity("entity", external_policies=True)
+        entity = vault.identity.Entity("entity",
+            name="entity",
+            external_policies=True)
         policies = vault.identity.EntityPolicies("policies",
             policies=[
                 "default",
@@ -302,7 +308,9 @@ class EntityPolicies(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        entity = vault.identity.Entity("entity", external_policies=True)
+        entity = vault.identity.Entity("entity",
+            name="entity",
+            external_policies=True)
         default = vault.identity.EntityPolicies("default",
             policies=[
                 "default",

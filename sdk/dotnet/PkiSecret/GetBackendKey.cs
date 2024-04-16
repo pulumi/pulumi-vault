@@ -41,7 +41,7 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         ///     var example = Vault.PkiSecret.GetBackendKey.Invoke(new()
         ///     {
-        ///         Backend = vault_mount.Key.Path,
+        ///         Backend = keyVaultMount.Path,
         ///         KeyRef = key.KeyId,
         ///     });
         /// 
@@ -82,7 +82,7 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         ///     var example = Vault.PkiSecret.GetBackendKey.Invoke(new()
         ///     {
-        ///         Backend = vault_mount.Key.Path,
+        ///         Backend = keyVaultMount.Path,
         ///         KeyRef = key.KeyId,
         ///     });
         /// 

@@ -32,10 +32,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
 //				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
-//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
 //				Path:             pulumi.String("jwt"),
+//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
+//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
 //			})
 //			if err != nil {
 //				return err
@@ -63,16 +63,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := jwt.NewAuthBackend(ctx, "example", &jwt.AuthBackendArgs{
-//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
 //				Description:      pulumi.String("Demonstration of the Terraform JWT auth backend"),
+//				Path:             pulumi.String("oidc"),
+//				Type:             pulumi.String("oidc"),
+//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
 //				OidcClientId:     pulumi.String("1234567890"),
 //				OidcClientSecret: pulumi.String("secret123456"),
-//				OidcDiscoveryUrl: pulumi.String("https://myco.auth0.com/"),
-//				Path:             pulumi.String("oidc"),
+//				BoundIssuer:      pulumi.String("https://myco.auth0.com/"),
 //				Tune: &jwt.AuthBackendTuneArgs{
 //					ListingVisibility: pulumi.String("unauth"),
 //				},
-//				Type: pulumi.String("oidc"),
 //			})
 //			if err != nil {
 //				return err
@@ -103,13 +103,13 @@ import (
 //				Description:      pulumi.String("OIDC backend"),
 //				OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
 //				Path:             pulumi.String("oidc"),
+//				Type:             pulumi.String("oidc"),
 //				ProviderConfig: pulumi.StringMap{
+//					"provider":                 pulumi.String("gsuite"),
 //					"fetch_groups":             pulumi.String("true"),
 //					"fetch_user_info":          pulumi.String("true"),
 //					"groups_recurse_max_depth": pulumi.String("1"),
-//					"provider":                 pulumi.String("gsuite"),
 //				},
-//				Type: pulumi.String("oidc"),
 //			})
 //			if err != nil {
 //				return err

@@ -34,6 +34,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name:                   pulumi.String("internal"),
 //				Type:                   pulumi.String("internal"),
 //				ExternalMemberGroupIds: pulumi.Bool(true),
 //				Metadata: pulumi.StringMap{
@@ -44,6 +45,7 @@ import (
 //				return err
 //			}
 //			users, err := identity.NewGroup(ctx, "users", &identity.GroupArgs{
+//				Name: pulumi.String("users"),
 //				Metadata: pulumi.StringMap{
 //					"version": pulumi.String("2"),
 //				},
@@ -84,6 +86,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name:                   pulumi.String("internal"),
 //				Type:                   pulumi.String("internal"),
 //				ExternalMemberGroupIds: pulumi.Bool(true),
 //				Metadata: pulumi.StringMap{
@@ -94,6 +97,7 @@ import (
 //				return err
 //			}
 //			users, err := identity.NewGroup(ctx, "users", &identity.GroupArgs{
+//				Name: pulumi.String("users"),
 //				Metadata: pulumi.StringMap{
 //					"version": pulumi.String("2"),
 //				},

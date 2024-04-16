@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  * });
  * const example = new vault.kv.SecretV2("example", {
  *     mount: kvv2.path,
+ *     name: "secret",
  *     cas: 1,
  *     deleteAllVersions: true,
  *     dataJson: JSON.stringify({

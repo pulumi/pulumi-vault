@@ -25,6 +25,7 @@ namespace Pulumi.Vault.Identity
         /// {
         ///     var app = new Vault.Identity.OidcClient("app", new()
         ///     {
+        ///         Name = "application",
         ///         RedirectUris = new[]
         ///         {
         ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -61,6 +62,7 @@ namespace Pulumi.Vault.Identity
         /// {
         ///     var app = new Vault.Identity.OidcClient("app", new()
         ///     {
+        ///         Name = "application",
         ///         RedirectUris = new[]
         ///         {
         ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",

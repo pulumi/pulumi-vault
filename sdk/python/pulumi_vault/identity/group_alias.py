@@ -187,6 +187,7 @@ class GroupAlias(pulumi.CustomResource):
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
+            name="test",
             type="external",
             policies=["test"])
         github = vault.AuthBackend("github",
@@ -242,6 +243,7 @@ class GroupAlias(pulumi.CustomResource):
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
+            name="test",
             type="external",
             policies=["test"])
         github = vault.AuthBackend("github",

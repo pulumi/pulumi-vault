@@ -28,8 +28,8 @@ namespace Pulumi.Vault.Transit
         ///     var test = Vault.Transit.GetDecrypt.Invoke(new()
         ///     {
         ///         Backend = "transit",
-        ///         Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
         ///         Key = "test",
+        ///         Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
         ///     });
         /// 
         /// });
@@ -56,8 +56,8 @@ namespace Pulumi.Vault.Transit
         ///     var test = Vault.Transit.GetDecrypt.Invoke(new()
         ///     {
         ///         Backend = "transit",
-        ///         Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
         ///         Key = "test",
+        ///         Ciphertext = "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
         ///     });
         /// 
         /// });

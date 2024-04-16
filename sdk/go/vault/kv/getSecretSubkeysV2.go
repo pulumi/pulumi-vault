@@ -48,8 +48,9 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			awsSecret, err := kv.NewSecretV2(ctx, "awsSecret", &kv.SecretV2Args{
+//			awsSecret, err := kv.NewSecretV2(ctx, "aws_secret", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
+//				Name:     pulumi.String("aws_secret"),
 //				DataJson: pulumi.String(json0),
 //			})
 //			if err != nil {

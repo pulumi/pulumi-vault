@@ -968,10 +968,10 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendIntermediateCertRequest("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
             type="internal",
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+            opts=pulumi.ResourceOptions(depends_on=[pki]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1028,10 +1028,10 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendIntermediateCertRequest("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
             type="internal",
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+            opts=pulumi.ResourceOptions(depends_on=[pki]))
         ```
         <!--End PulumiCodeChooser -->
 

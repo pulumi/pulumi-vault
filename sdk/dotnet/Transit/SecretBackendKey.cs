@@ -35,6 +35,7 @@ namespace Pulumi.Vault.Transit
     ///     var key = new Vault.Transit.SecretBackendKey("key", new()
     ///     {
     ///         Backend = transit.Path,
+    ///         Name = "my_key",
     ///     });
     /// 
     /// });

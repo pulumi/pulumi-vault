@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  * 
  *         var test = new Alphabet(&#34;test&#34;, AlphabetArgs.builder()        
  *             .path(mountTransform.path())
+ *             .name(&#34;numerics&#34;)
  *             .alphabet(&#34;0123456789&#34;)
  *             .build());
  * 

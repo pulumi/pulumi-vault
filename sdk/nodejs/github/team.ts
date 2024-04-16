@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
- * const tfDevs = new vault.github.Team("tfDevs", {
+ * const tfDevs = new vault.github.Team("tf_devs", {
  *     backend: example.id,
  *     team: "terraform-developers",
  *     policies: [

@@ -27,6 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			app, err := identity.NewOidcClient(ctx, "app", &identity.OidcClientArgs{
+//				Name: pulumi.String("application"),
 //				RedirectUris: pulumi.StringArray{
 //					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
 //					pulumi.String("http://127.0.0.1:8251/callback"),

@@ -220,10 +220,12 @@ def get_oidc_openid_config(name: Optional[str] = None,
     import pulumi_vault as vault
 
     key = vault.identity.OidcKey("key",
+        name="key",
         allowed_client_ids=["*"],
         rotation_period=3600,
         verification_ttl=3600)
     app = vault.identity.OidcClient("app",
+        name="application",
         key=key.name,
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -232,7 +234,9 @@ def get_oidc_openid_config(name: Optional[str] = None,
         ],
         id_token_ttl=2400,
         access_token_ttl=7200)
-    provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
+    provider = vault.identity.OidcProvider("provider",
+        name="provider",
+        allowed_client_ids=[test["clientId"]])
     config = vault.identity.get_oidc_openid_config_output(name=provider.name)
     ```
     <!--End PulumiCodeChooser -->
@@ -281,10 +285,12 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
     import pulumi_vault as vault
 
     key = vault.identity.OidcKey("key",
+        name="key",
         allowed_client_ids=["*"],
         rotation_period=3600,
         verification_ttl=3600)
     app = vault.identity.OidcClient("app",
+        name="application",
         key=key.name,
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -293,7 +299,9 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
         ],
         id_token_ttl=2400,
         access_token_ttl=7200)
-    provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
+    provider = vault.identity.OidcProvider("provider",
+        name="provider",
+        allowed_client_ids=[test["clientId"]])
     config = vault.identity.get_oidc_openid_config_output(name=provider.name)
     ```
     <!--End PulumiCodeChooser -->

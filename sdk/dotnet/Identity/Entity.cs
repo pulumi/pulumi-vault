@@ -23,13 +23,14 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var test = new Vault.Identity.Entity("test", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "foo", "bar" },
-    ///         },
+    ///         Name = "tester1",
     ///         Policies = new[]
     ///         {
     ///             "test",
+    ///         },
+    ///         Metadata = 
+    ///         {
+    ///             { "foo", "bar" },
     ///         },
     ///     });
     /// 

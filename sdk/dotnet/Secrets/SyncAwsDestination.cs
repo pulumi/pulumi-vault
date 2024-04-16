@@ -23,8 +23,9 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var aws = new Vault.Secrets.SyncAwsDestination("aws", new()
     ///     {
-    ///         AccessKeyId = @var.Access_key_id,
-    ///         SecretAccessKey = @var.Secret_access_key,
+    ///         Name = "aws-dest",
+    ///         AccessKeyId = accessKeyId,
+    ///         SecretAccessKey = secretAccessKey,
     ///         Region = "us-east-1",
     ///         RoleArn = "role-arn",
     ///         ExternalId = "external-id",

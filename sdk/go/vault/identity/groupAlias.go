@@ -33,6 +33,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			group, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
+//				Name: pulumi.String("test"),
 //				Type: pulumi.String("external"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("test"),

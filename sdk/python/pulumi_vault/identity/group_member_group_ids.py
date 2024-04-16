@@ -219,14 +219,17 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=True,
             member_group_ids=[users.id],
@@ -242,14 +245,17 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=False,
             member_group_ids=[users.id],
@@ -295,14 +301,17 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=True,
             member_group_ids=[users.id],
@@ -318,14 +327,17 @@ class GroupMemberGroupIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=False,
             member_group_ids=[users.id],

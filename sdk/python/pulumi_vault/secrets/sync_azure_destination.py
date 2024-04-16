@@ -436,10 +436,11 @@ class SyncAzureDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         az = vault.secrets.SyncAzureDestination("az",
-            key_vault_uri=var["key_vault_uri"],
-            client_id=var["client_id"],
-            client_secret=var["client_secret"],
-            tenant_id=var["tenant_id"],
+            name="az-dest",
+            key_vault_uri=key_vault_uri,
+            client_id=client_id,
+            client_secret=client_secret,
+            tenant_id=tenant_id,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
             custom_tags={
                 "foo": "bar",
@@ -495,10 +496,11 @@ class SyncAzureDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         az = vault.secrets.SyncAzureDestination("az",
-            key_vault_uri=var["key_vault_uri"],
-            client_id=var["client_id"],
-            client_secret=var["client_secret"],
-            tenant_id=var["tenant_id"],
+            name="az-dest",
+            key_vault_uri=key_vault_uri,
+            client_id=client_id,
+            client_secret=client_secret,
+            tenant_id=tenant_id,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
             custom_tags={
                 "foo": "bar",

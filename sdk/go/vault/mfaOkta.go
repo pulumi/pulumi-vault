@@ -38,7 +38,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vault.NewMfaOkta(ctx, "myOkta", &vault.MfaOktaArgs{
+//			_, err = vault.NewMfaOkta(ctx, "my_okta", &vault.MfaOktaArgs{
+//				Name:           pulumi.String("my_okta"),
 //				MountAccessor:  userpass.Accessor,
 //				UsernameFormat: pulumi.String("user@example.com"),
 //				OrgName:        pulumi.String("hashicorp"),

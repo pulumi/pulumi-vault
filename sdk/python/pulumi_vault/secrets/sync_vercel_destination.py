@@ -343,8 +343,9 @@ class SyncVercelDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         vercel = vault.secrets.SyncVercelDestination("vercel",
-            access_token=var["access_token"],
-            project_id=var["project_id"],
+            name="vercel-dest",
+            access_token=access_token,
+            project_id=project_id,
             deployment_environments=[
                 "development",
                 "preview",
@@ -394,8 +395,9 @@ class SyncVercelDestination(pulumi.CustomResource):
         import pulumi_vault as vault
 
         vercel = vault.secrets.SyncVercelDestination("vercel",
-            access_token=var["access_token"],
-            project_id=var["project_id"],
+            name="vercel-dest",
+            access_token=access_token,
+            project_id=project_id,
             deployment_environments=[
                 "development",
                 "preview",

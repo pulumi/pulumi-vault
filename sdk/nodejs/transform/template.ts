@@ -33,10 +33,12 @@ import * as utilities from "../utilities";
  * });
  * const numerics = new vault.transform.Alphabet("numerics", {
  *     path: transform.path,
+ *     name: "numerics",
  *     alphabet: "0123456789",
  * });
  * const test = new vault.transform.Template("test", {
  *     path: numerics.path,
+ *     name: "ccn",
  *     type: "regex",
  *     pattern: "(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})",
  *     alphabet: "numerics",

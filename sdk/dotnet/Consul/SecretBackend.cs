@@ -24,9 +24,9 @@ namespace Pulumi.Vault.Consul
     /// {
     ///     var test = new Vault.Consul.SecretBackend("test", new()
     ///     {
-    ///         Address = "127.0.0.1:8500",
-    ///         Description = "Manages the Consul backend",
     ///         Path = "consul",
+    ///         Description = "Manages the Consul backend",
+    ///         Address = "127.0.0.1:8500",
     ///         Token = "4240861b-ce3d-8530-115a-521ff070dd29",
     ///     });
     /// 
@@ -46,10 +46,10 @@ namespace Pulumi.Vault.Consul
     /// {
     ///     var test = new Vault.Consul.SecretBackend("test", new()
     ///     {
+    ///         Path = "consul",
+    ///         Description = "Bootstrap the Consul backend",
     ///         Address = "127.0.0.1:8500",
     ///         Bootstrap = true,
-    ///         Description = "Bootstrap the Consul backend",
-    ///         Path = "consul",
     ///     });
     /// 
     /// });

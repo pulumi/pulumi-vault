@@ -41,7 +41,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vault.NewMfaPingid(ctx, "myPingid", &vault.MfaPingidArgs{
+//			_, err = vault.NewMfaPingid(ctx, "my_pingid", &vault.MfaPingidArgs{
+//				Name:               pulumi.String("my_pingid"),
 //				MountAccessor:      userpass.Accessor,
 //				UsernameFormat:     pulumi.String("user@example.com"),
 //				SettingsFileBase64: pulumi.Any(settingsFile),

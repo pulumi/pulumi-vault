@@ -307,6 +307,7 @@ class SecretLibrary(pulumi.CustomResource):
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         qa = vault.ad.SecretLibrary("qa",
             backend=config.backend,
+            name="qa",
             service_account_names=[
                 "Bob",
                 "Mary",
@@ -365,6 +366,7 @@ class SecretLibrary(pulumi.CustomResource):
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         qa = vault.ad.SecretLibrary("qa",
             backend=config.backend,
+            name="qa",
             service_account_names=[
                 "Bob",
                 "Mary",

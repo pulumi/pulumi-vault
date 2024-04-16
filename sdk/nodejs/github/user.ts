@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
- * const tfUser = new vault.github.User("tfUser", {
+ * const tfUser = new vault.github.User("tf_user", {
  *     backend: example.id,
  *     user: "john.doe",
  *     policies: [

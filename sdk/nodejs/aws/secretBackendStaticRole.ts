@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.aws.SecretBackendStaticRole("role", {
  *     backend: aws.path,
+ *     name: "test",
  *     username: "my-test-user",
  *     rotationPeriod: 3600,
  * });

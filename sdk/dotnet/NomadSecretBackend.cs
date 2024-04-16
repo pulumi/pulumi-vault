@@ -23,12 +23,12 @@ namespace Pulumi.Vault
     /// {
     ///     var config = new Vault.NomadSecretBackend("config", new()
     ///     {
-    ///         Address = "https://127.0.0.1:4646",
     ///         Backend = "nomad",
-    ///         DefaultLeaseTtlSeconds = 3600,
     ///         Description = "test description",
+    ///         DefaultLeaseTtlSeconds = 3600,
     ///         MaxLeaseTtlSeconds = 7200,
     ///         MaxTtl = 240,
+    ///         Address = "https://127.0.0.1:4646",
     ///         Token = "ae20ceaa-...",
     ///         Ttl = 120,
     ///     });

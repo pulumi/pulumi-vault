@@ -30,6 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name: pulumi.String("internal"),
 //				Type: pulumi.String("internal"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dev"),
@@ -40,6 +41,7 @@ import (
 //				return err
 //			}
 //			test, err := identity.NewEntity(ctx, "test", &identity.EntityArgs{
+//				Name: pulumi.String("test"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("test"),
 //				},
@@ -48,6 +50,7 @@ import (
 //				return err
 //			}
 //			_, err = identity.NewOidcAssignment(ctx, "default", &identity.OidcAssignmentArgs{
+//				Name: pulumi.String("assignment"),
 //				EntityIds: pulumi.StringArray{
 //					test.ID(),
 //				},

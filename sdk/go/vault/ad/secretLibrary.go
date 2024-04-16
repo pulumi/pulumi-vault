@@ -40,6 +40,7 @@ import (
 //			}
 //			_, err = ad.NewSecretLibrary(ctx, "qa", &ad.SecretLibraryArgs{
 //				Backend: config.Backend,
+//				Name:    pulumi.String("qa"),
 //				ServiceAccountNames: pulumi.StringArray{
 //					pulumi.String("Bob"),
 //					pulumi.String("Mary"),

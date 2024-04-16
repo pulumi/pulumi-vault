@@ -17,11 +17,11 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.saml.AuthBackend("test", {
+ *     path: "saml",
+ *     idpMetadataUrl: "https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
+ *     entityId: "https://my.vault/v1/auth/saml",
  *     acsUrls: ["https://my.vault.primary/v1/auth/saml/callback"],
  *     defaultRole: "admin",
- *     entityId: "https://my.vault/v1/auth/saml",
- *     idpMetadataUrl: "https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
- *     path: "saml",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

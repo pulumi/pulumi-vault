@@ -17,12 +17,12 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const allow_all = new vault.EgpPolicy("allow-all", {
- *     enforcementLevel: "soft-mandatory",
+ *     name: "allow-all",
  *     paths: ["*"],
+ *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule {
  *   true
  * }
- *
  * `,
  * });
  * ```

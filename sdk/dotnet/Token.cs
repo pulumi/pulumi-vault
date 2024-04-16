@@ -23,20 +23,20 @@ namespace Pulumi.Vault
     /// {
     ///     var example = new Vault.Token("example", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "purpose", "service-account" },
-    ///         },
+    ///         RoleName = "app",
     ///         Policies = new[]
     ///         {
     ///             "policy1",
     ///             "policy2",
     ///         },
-    ///         RenewIncrement = 86400,
-    ///         RenewMinLease = 43200,
     ///         Renewable = true,
-    ///         RoleName = "app",
     ///         Ttl = "24h",
+    ///         RenewMinLease = 43200,
+    ///         RenewIncrement = 86400,
+    ///         Metadata = 
+    ///         {
+    ///             { "purpose", "service-account" },
+    ///         },
     ///     });
     /// 
     /// });

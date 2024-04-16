@@ -27,11 +27,11 @@ namespace Pulumi.Vault
     /// {
     ///     var allow_all = new Vault.RgpPolicy("allow-all", new()
     ///     {
+    ///         Name = "allow-all",
     ///         EnforcementLevel = "soft-mandatory",
     ///         Policy = @"main = rule {
     ///   true
     /// }
-    /// 
     /// ",
     ///     });
     /// 

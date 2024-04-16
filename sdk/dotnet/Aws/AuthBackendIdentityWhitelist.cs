@@ -26,14 +26,14 @@ namespace Pulumi.Vault.Aws
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
+    ///     var example = new Vault.AuthBackend("example", new()
     ///     {
     ///         Type = "aws",
     ///     });
     /// 
-    ///     var exampleAuthBackendIdentityWhitelist = new Vault.Aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", new()
+    ///     var exampleAuthBackendIdentityWhitelist = new Vault.Aws.AuthBackendIdentityWhitelist("example", new()
     ///     {
-    ///         Backend = exampleAuthBackend.Path,
+    ///         Backend = example.Path,
     ///         SafetyBuffer = 3600,
     ///     });
     /// 

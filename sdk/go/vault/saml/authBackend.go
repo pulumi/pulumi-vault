@@ -32,13 +32,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := saml.NewAuthBackend(ctx, "test", &saml.AuthBackendArgs{
+//				Path:           pulumi.String("saml"),
+//				IdpMetadataUrl: pulumi.String("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata"),
+//				EntityId:       pulumi.String("https://my.vault/v1/auth/saml"),
 //				AcsUrls: pulumi.StringArray{
 //					pulumi.String("https://my.vault.primary/v1/auth/saml/callback"),
 //				},
-//				DefaultRole:    pulumi.String("admin"),
-//				EntityId:       pulumi.String("https://my.vault/v1/auth/saml"),
-//				IdpMetadataUrl: pulumi.String("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata"),
-//				Path:           pulumi.String("saml"),
+//				DefaultRole: pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err

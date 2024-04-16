@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  * 
  *         var example = new SecretRole(&#34;example&#34;, SecretRoleArgs.builder()        
  *             .backend(test.backend())
+ *             .name(&#34;test-role&#34;)
  *             .organization(&#34;example-organization-name&#34;)
  *             .teamId(&#34;team-ieF4isC...&#34;)
  *             .build());

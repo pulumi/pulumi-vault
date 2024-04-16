@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var intermediate = new SecretBackendConfigCa(&#34;intermediate&#34;, SecretBackendConfigCaArgs.builder()        
- *             .backend(vault_mount.intermediate().path())
+ *             .backend(intermediateVaultMount.path())
  *             .pemBundle(&#34;&#34;&#34;
  * -----BEGIN RSA PRIVATE KEY-----
  * MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
@@ -94,7 +94,7 @@ import javax.annotation.Nullable;
  * -----END CERTIFICATE-----
  *             &#34;&#34;&#34;)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vault_mount.intermediate())
+ *                 .dependsOn(intermediateVaultMount)
  *                 .build());
  * 
  *     }

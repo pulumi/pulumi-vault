@@ -435,9 +435,9 @@ class AuthBackendClient(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("exampleAuthBackendClient",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_client = vault.aws.AuthBackendClient("example",
+            backend=example.path,
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY")
         ```
@@ -494,9 +494,9 @@ class AuthBackendClient(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_client = vault.aws.AuthBackendClient("exampleAuthBackendClient",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_client = vault.aws.AuthBackendClient("example",
+            backend=example.path,
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY")
         ```

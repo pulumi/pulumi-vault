@@ -13,10 +13,11 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.identity.Entity("test", {
+ *     name: "tester1",
+ *     policies: ["test"],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     policies: ["test"],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

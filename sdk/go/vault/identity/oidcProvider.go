@@ -31,7 +31,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testOidcKey, err := identity.NewOidcKey(ctx, "testOidcKey", &identity.OidcKeyArgs{
+//			test, err := identity.NewOidcKey(ctx, "test", &identity.OidcKeyArgs{
+//				Name: pulumi.String("my-key"),
 //				AllowedClientIds: pulumi.StringArray{
 //					pulumi.String("*"),
 //				},
@@ -41,7 +42,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testOidcAssignment, err := identity.NewOidcAssignment(ctx, "testOidcAssignment", &identity.OidcAssignmentArgs{
+//			testOidcAssignment, err := identity.NewOidcAssignment(ctx, "test", &identity.OidcAssignmentArgs{
+//				Name: pulumi.String("my-assignment"),
 //				EntityIds: pulumi.StringArray{
 //					pulumi.String("fake-ascbascas-2231a-sdfaa"),
 //				},
@@ -52,8 +54,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testOidcClient, err := identity.NewOidcClient(ctx, "testOidcClient", &identity.OidcClientArgs{
-//				Key: testOidcKey.Name,
+//			testOidcClient, err := identity.NewOidcClient(ctx, "test", &identity.OidcClientArgs{
+//				Name: pulumi.String("application"),
+//				Key:  test.Name,
 //				RedirectUris: pulumi.StringArray{
 //					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
 //					pulumi.String("http://127.0.0.1:8251/callback"),
@@ -75,14 +78,16 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			testOidcScope, err := identity.NewOidcScope(ctx, "testOidcScope", &identity.OidcScopeArgs{
+//			testOidcScope, err := identity.NewOidcScope(ctx, "test", &identity.OidcScopeArgs{
+//				Name:        pulumi.String("groups"),
 //				Template:    pulumi.String(json0),
 //				Description: pulumi.String("Groups scope."),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcProvider(ctx, "testOidcProvider", &identity.OidcProviderArgs{
+//			_, err = identity.NewOidcProvider(ctx, "test", &identity.OidcProviderArgs{
+//				Name:         pulumi.String("my-provider"),
 //				HttpsEnabled: pulumi.Bool(false),
 //				IssuerHost:   pulumi.String("127.0.0.1:8200"),
 //				AllowedClientIds: pulumi.StringArray{

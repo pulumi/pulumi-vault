@@ -654,7 +654,8 @@ class SecretBackendSign(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendSign("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
+            name=admin["name"],
             csr=\"\"\"-----BEGIN CERTIFICATE REQUEST-----
         MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
         ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -684,7 +685,7 @@ class SecretBackendSign(pulumi.CustomResource):
         -----END CERTIFICATE REQUEST-----
         \"\"\",
             common_name="test.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+            opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -727,7 +728,8 @@ class SecretBackendSign(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendSign("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
+            name=admin["name"],
             csr=\"\"\"-----BEGIN CERTIFICATE REQUEST-----
         MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
         ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -757,7 +759,7 @@ class SecretBackendSign(pulumi.CustomResource):
         -----END CERTIFICATE REQUEST-----
         \"\"\",
             common_name="test.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+            opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
         <!--End PulumiCodeChooser -->
 

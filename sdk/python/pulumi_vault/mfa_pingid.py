@@ -369,7 +369,8 @@ class MfaPingid(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_pingid = vault.MfaPingid("myPingid",
+        my_pingid = vault.MfaPingid("my_pingid",
+            name="my_pingid",
             mount_accessor=userpass.accessor,
             username_format="user@example.com",
             settings_file_base64=settings_file)
@@ -426,7 +427,8 @@ class MfaPingid(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_pingid = vault.MfaPingid("myPingid",
+        my_pingid = vault.MfaPingid("my_pingid",
+            name="my_pingid",
             mount_accessor=userpass.accessor,
             username_format="user@example.com",
             settings_file_base64=settings_file)

@@ -623,23 +623,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        config = vault.kubernetes.SecretBackend("config",
-            path="kubernetes",
-            description="kubernetes secrets engine description",
-            default_lease_ttl_seconds=43200,
-            max_lease_ttl_seconds=86400,
-            kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
-            disable_local_ca_jwt=False)
-        ```
-        <!--End PulumiCodeChooser -->
-
         ## Import
 
         The Kubernetes secret backend can be imported using its `path` e.g.
@@ -686,23 +669,6 @@ class SecretBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        config = vault.kubernetes.SecretBackend("config",
-            path="kubernetes",
-            description="kubernetes secrets engine description",
-            default_lease_ttl_seconds=43200,
-            max_lease_ttl_seconds=86400,
-            kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
-            disable_local_ca_jwt=False)
-        ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

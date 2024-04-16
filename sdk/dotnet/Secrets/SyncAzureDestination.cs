@@ -23,10 +23,11 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var az = new Vault.Secrets.SyncAzureDestination("az", new()
     ///     {
-    ///         KeyVaultUri = @var.Key_vault_uri,
-    ///         ClientId = @var.Client_id,
-    ///         ClientSecret = @var.Client_secret,
-    ///         TenantId = @var.Tenant_id,
+    ///         Name = "az-dest",
+    ///         KeyVaultUri = keyVaultUri,
+    ///         ClientId = clientId,
+    ///         ClientSecret = clientSecret,
+    ///         TenantId = tenantId,
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
     ///         CustomTags = 
     ///         {

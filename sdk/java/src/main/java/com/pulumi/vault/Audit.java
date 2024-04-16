@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Audit(&#34;test&#34;, AuditArgs.builder()        
- *             .options(Map.of(&#34;file_path&#34;, &#34;C:/temp/audit.txt&#34;))
  *             .type(&#34;file&#34;)
+ *             .options(Map.of(&#34;file_path&#34;, &#34;C:/temp/audit.txt&#34;))
  *             .build());
  * 
  *     }
@@ -78,14 +78,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Audit(&#34;test&#34;, AuditArgs.builder()        
+ *             .type(&#34;socket&#34;)
+ *             .path(&#34;app_socket&#34;)
  *             .local(false)
  *             .options(Map.ofEntries(
  *                 Map.entry(&#34;address&#34;, &#34;127.0.0.1:8000&#34;),
- *                 Map.entry(&#34;description&#34;, &#34;application x socket&#34;),
- *                 Map.entry(&#34;socket_type&#34;, &#34;tcp&#34;)
+ *                 Map.entry(&#34;socket_type&#34;, &#34;tcp&#34;),
+ *                 Map.entry(&#34;description&#34;, &#34;application x socket&#34;)
  *             ))
- *             .path(&#34;app_socket&#34;)
- *             .type(&#34;socket&#34;)
  *             .build());
  * 
  *     }

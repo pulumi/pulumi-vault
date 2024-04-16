@@ -180,40 +180,6 @@ def get_service_account_token(backend: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    config = vault.kubernetes.SecretBackend("config",
-        path="kubernetes",
-        description="kubernetes secrets engine description",
-        kubernetes_host="https://127.0.0.1:61233",
-        kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-        service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
-        disable_local_ca_jwt=False)
-    role = vault.kubernetes.SecretBackendRole("role",
-        backend=config.path,
-        allowed_kubernetes_namespaces=["*"],
-        token_max_ttl=43200,
-        token_default_ttl=21600,
-        service_account_name="test-service-account-with-generated-token",
-        extra_labels={
-            "id": "abc123",
-            "name": "some_name",
-        },
-        extra_annotations={
-            "env": "development",
-            "location": "earth",
-        })
-    token = vault.kubernetes.get_service_account_token_output(backend=config.path,
-        role=role.name,
-        kubernetes_namespace="test",
-        cluster_role_binding=False,
-        ttl="1h")
-    ```
-    <!--End PulumiCodeChooser -->
-
 
     :param str backend: The Kubernetes secret backend to generate service account 
            tokens from.
@@ -266,40 +232,6 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountTokenResult]:
     """
     ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_vault as vault
-
-    config = vault.kubernetes.SecretBackend("config",
-        path="kubernetes",
-        description="kubernetes secrets engine description",
-        kubernetes_host="https://127.0.0.1:61233",
-        kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-        service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
-        disable_local_ca_jwt=False)
-    role = vault.kubernetes.SecretBackendRole("role",
-        backend=config.path,
-        allowed_kubernetes_namespaces=["*"],
-        token_max_ttl=43200,
-        token_default_ttl=21600,
-        service_account_name="test-service-account-with-generated-token",
-        extra_labels={
-            "id": "abc123",
-            "name": "some_name",
-        },
-        extra_annotations={
-            "env": "development",
-            "location": "earth",
-        })
-    token = vault.kubernetes.get_service_account_token_output(backend=config.path,
-        role=role.name,
-        kubernetes_namespace="test",
-        cluster_role_binding=False,
-        ttl="1h")
-    ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The Kubernetes secret backend to generate service account 

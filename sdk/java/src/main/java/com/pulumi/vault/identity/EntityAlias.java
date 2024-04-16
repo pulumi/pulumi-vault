@@ -41,8 +41,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new EntityAlias(&#34;test&#34;, EntityAliasArgs.builder()        
- *             .canonicalId(&#34;49877D63-07AD-4B85-BDA8-B61626C477E8&#34;)
+ *             .name(&#34;user_1&#34;)
  *             .mountAccessor(&#34;token_1f2bd5&#34;)
+ *             .canonicalId(&#34;49877D63-07AD-4B85-BDA8-B61626C477E8&#34;)
  *             .build());
  * 
  *     }

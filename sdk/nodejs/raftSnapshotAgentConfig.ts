@@ -13,12 +13,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const localBackups = new vault.RaftSnapshotAgentConfig("localBackups", {
+ * const localBackups = new vault.RaftSnapshotAgentConfig("local_backups", {
+ *     name: "local",
  *     intervalSeconds: 86400,
- *     localMaxSpace: 10000000,
- *     pathPrefix: "/opt/vault/snapshots/",
  *     retain: 7,
+ *     pathPrefix: "/opt/vault/snapshots/",
  *     storageType: "local",
+ *     localMaxSpace: 10000000,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -34,7 +35,8 @@ import * as utilities from "./utilities";
  * const awsAccessKeyId = config.requireObject("awsAccessKeyId");
  * const awsSecretAccessKey = config.requireObject("awsSecretAccessKey");
  * const current = aws.getRegion({});
- * const s3Backups = new vault.RaftSnapshotAgentConfig("s3Backups", {
+ * const s3Backups = new vault.RaftSnapshotAgentConfig("s3_backups", {
+ *     name: "s3",
  *     intervalSeconds: 86400,
  *     retain: 7,
  *     pathPrefix: "/path/in/bucket",
@@ -58,7 +60,8 @@ import * as utilities from "./utilities";
  * const config = new pulumi.Config();
  * const azureAccountName = config.requireObject("azureAccountName");
  * const azureAccountKey = config.requireObject("azureAccountKey");
- * const azureBackups = new vault.RaftSnapshotAgentConfig("azureBackups", {
+ * const azureBackups = new vault.RaftSnapshotAgentConfig("azure_backups", {
+ *     name: "azure_backup",
  *     intervalSeconds: 86400,
  *     retain: 7,
  *     pathPrefix: "/",

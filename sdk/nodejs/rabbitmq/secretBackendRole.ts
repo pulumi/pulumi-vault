@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.rabbitmq.SecretBackendRole("role", {
  *     backend: rabbitmq.path,
+ *     name: "deploy",
  *     tags: "tag1,tag2",
  *     vhosts: [{
  *         host: "/",

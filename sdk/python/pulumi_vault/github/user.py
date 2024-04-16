@@ -197,7 +197,7 @@ class User(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
-        tf_user = vault.github.User("tfUser",
+        tf_user = vault.github.User("tf_user",
             backend=example.id,
             user="john.doe",
             policies=[
@@ -246,7 +246,7 @@ class User(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
-        tf_user = vault.github.User("tfUser",
+        tf_user = vault.github.User("tf_user",
             backend=example.id,
             user="john.doe",
             policies=[

@@ -1285,36 +1285,6 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.VaultFunctions;
-     * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .build());
-     * 
-     *         final var child = &#34;TODO: ForExpression&#34;;
-     * 
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1360,36 +1330,6 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.VaultFunctions;
-     * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .build());
-     * 
-     *         final var child = &#34;TODO: ForExpression&#34;;
-     * 
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1435,36 +1375,6 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.VaultFunctions;
-     * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .build());
-     * 
-     *         final var child = &#34;TODO: ForExpression&#34;;
-     * 
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1510,36 +1420,6 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.VaultFunctions;
-     * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .build());
-     * 
-     *         final var child = &#34;TODO: ForExpression&#34;;
-     * 
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1585,36 +1465,6 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.VaultFunctions;
-     * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .build());
-     * 
-     *         final var child = &#34;TODO: ForExpression&#34;;
-     * 
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1660,36 +1510,6 @@ public final class VaultFunctions {
      * To fetch the details of nested namespaces:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.VaultFunctions;
-     * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var children = VaultFunctions.getNamespaces(GetNamespacesArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .build());
-     * 
-     *         final var child = &#34;TODO: ForExpression&#34;;
-     * 
-     *     }
-     * }
-     * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1961,7 +1781,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var examplePolicyDocument = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
+     *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
      *                 .path(&#34;secret/*&#34;)
      *                 .capabilities(                
@@ -1975,7 +1795,8 @@ public final class VaultFunctions {
      *             .build());
      * 
      *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .policy(examplePolicyDocument.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *             .name(&#34;example_policy&#34;)
+     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
@@ -2016,7 +1837,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var examplePolicyDocument = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
+     *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
      *                 .path(&#34;secret/*&#34;)
      *                 .capabilities(                
@@ -2030,7 +1851,8 @@ public final class VaultFunctions {
      *             .build());
      * 
      *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .policy(examplePolicyDocument.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *             .name(&#34;example_policy&#34;)
+     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
@@ -2071,7 +1893,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var examplePolicyDocument = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
+     *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
      *                 .path(&#34;secret/*&#34;)
      *                 .capabilities(                
@@ -2085,7 +1907,8 @@ public final class VaultFunctions {
      *             .build());
      * 
      *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .policy(examplePolicyDocument.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *             .name(&#34;example_policy&#34;)
+     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
@@ -2126,7 +1949,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var examplePolicyDocument = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
+     *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
      *                 .path(&#34;secret/*&#34;)
      *                 .capabilities(                
@@ -2140,7 +1963,8 @@ public final class VaultFunctions {
      *             .build());
      * 
      *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .policy(examplePolicyDocument.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *             .name(&#34;example_policy&#34;)
+     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
@@ -2181,7 +2005,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var examplePolicyDocument = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
+     *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
      *                 .path(&#34;secret/*&#34;)
      *                 .capabilities(                
@@ -2195,7 +2019,8 @@ public final class VaultFunctions {
      *             .build());
      * 
      *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .policy(examplePolicyDocument.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *             .name(&#34;example_policy&#34;)
+     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
@@ -2236,7 +2061,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var examplePolicyDocument = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
+     *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
      *                 .path(&#34;secret/*&#34;)
      *                 .capabilities(                
@@ -2250,7 +2075,8 @@ public final class VaultFunctions {
      *             .build());
      * 
      *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .policy(examplePolicyDocument.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *             .name(&#34;example_policy&#34;)
+     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }

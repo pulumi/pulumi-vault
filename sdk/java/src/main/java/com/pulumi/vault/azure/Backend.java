@@ -44,12 +44,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azure = new Backend(&#34;azure&#34;, BackendArgs.builder()        
+ *             .useMicrosoftGraphApi(true)
+ *             .subscriptionId(&#34;11111111-2222-3333-4444-111111111111&#34;)
+ *             .tenantId(&#34;11111111-2222-3333-4444-222222222222&#34;)
  *             .clientId(&#34;11111111-2222-3333-4444-333333333333&#34;)
  *             .clientSecret(&#34;12345678901234567890&#34;)
  *             .environment(&#34;AzurePublicCloud&#34;)
- *             .subscriptionId(&#34;11111111-2222-3333-4444-111111111111&#34;)
- *             .tenantId(&#34;11111111-2222-3333-4444-222222222222&#34;)
- *             .useMicrosoftGraphApi(true)
  *             .build());
  * 
  *     }
@@ -82,12 +82,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azure = new Backend(&#34;azure&#34;, BackendArgs.builder()        
+ *             .useMicrosoftGraphApi(false)
+ *             .subscriptionId(&#34;11111111-2222-3333-4444-111111111111&#34;)
+ *             .tenantId(&#34;11111111-2222-3333-4444-222222222222&#34;)
  *             .clientId(&#34;11111111-2222-3333-4444-333333333333&#34;)
  *             .clientSecret(&#34;12345678901234567890&#34;)
  *             .environment(&#34;AzurePublicCloud&#34;)
- *             .subscriptionId(&#34;11111111-2222-3333-4444-111111111111&#34;)
- *             .tenantId(&#34;11111111-2222-3333-4444-222222222222&#34;)
- *             .useMicrosoftGraphApi(false)
  *             .build());
  * 
  *     }

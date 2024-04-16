@@ -44,15 +44,15 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Token(&#34;example&#34;, TokenArgs.builder()        
- *             .metadata(Map.of(&#34;purpose&#34;, &#34;service-account&#34;))
+ *             .roleName(&#34;app&#34;)
  *             .policies(            
  *                 &#34;policy1&#34;,
  *                 &#34;policy2&#34;)
- *             .renewIncrement(86400)
- *             .renewMinLease(43200)
  *             .renewable(true)
- *             .roleName(&#34;app&#34;)
  *             .ttl(&#34;24h&#34;)
+ *             .renewMinLease(43200)
+ *             .renewIncrement(86400)
+ *             .metadata(Map.of(&#34;purpose&#34;, &#34;service-account&#34;))
  *             .build());
  * 
  *     }

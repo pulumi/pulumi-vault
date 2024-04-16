@@ -29,16 +29,17 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "2" },
-    ///         },
+    ///         Name = "internal",
+    ///         Type = "internal",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "test",
     ///         },
-    ///         Type = "internal",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -58,15 +59,16 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @group = new Vault.Identity.Group("group", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "1" },
-    ///         },
+    ///         Name = "external",
+    ///         Type = "external",
     ///         Policies = new[]
     ///         {
     ///             "test",
     ///         },
-    ///         Type = "external",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "1" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -88,32 +90,34 @@ namespace Pulumi.Vault.Identity
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var internalIdentity_groupGroup = new Vault.Identity.Group("internalIdentity/groupGroup", new()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "2" },
-    ///         },
+    ///         Name = "internal",
+    ///         Type = "internal",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "test",
     ///         },
-    ///         Type = "internal",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
     ///     });
     /// 
-    ///     var internalGroup = new Vault.Identity.Group("internalGroup", new()
+    ///     var internalGroup = new Vault.Identity.Group("Internal", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "2" },
-    ///         },
+    ///         Name = "Internal",
+    ///         Type = "internal",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "test",
     ///         },
-    ///         Type = "internal",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
     ///     });
     /// 
     /// });

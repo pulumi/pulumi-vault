@@ -32,6 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
+//				Name:             pulumi.String("entity"),
 //				ExternalPolicies: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -71,6 +72,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
+//				Name:             pulumi.String("entity"),
 //				ExternalPolicies: pulumi.Bool(true),
 //			})
 //			if err != nil {

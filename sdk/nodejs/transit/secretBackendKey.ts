@@ -21,7 +21,10 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const key = new vault.transit.SecretBackendKey("key", {backend: transit.path});
+ * const key = new vault.transit.SecretBackendKey("key", {
+ *     backend: transit.path,
+ *     name: "my_key",
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *

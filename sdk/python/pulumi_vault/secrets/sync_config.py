@@ -155,7 +155,7 @@ class SyncConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        global_config = vault.secrets.SyncConfig("globalConfig",
+        global_config = vault.secrets.SyncConfig("global_config",
             disabled=True,
             queue_capacity=500000)
         ```
@@ -196,7 +196,7 @@ class SyncConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        global_config = vault.secrets.SyncConfig("globalConfig",
+        global_config = vault.secrets.SyncConfig("global_config",
             disabled=True,
             queue_capacity=500000)
         ```

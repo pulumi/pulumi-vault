@@ -242,6 +242,7 @@ class SecretCreds(pulumi.CustomResource):
             token="V0idfhi2iksSDU234ucdbi2nidsi...")
         example = vault.terraformcloud.SecretRole("example",
             backend=test.backend,
+            name="test-role",
             organization="example-organization-name",
             team_id="team-ieF4isC...")
         token = vault.terraformcloud.SecretCreds("token",
@@ -279,6 +280,7 @@ class SecretCreds(pulumi.CustomResource):
             token="V0idfhi2iksSDU234ucdbi2nidsi...")
         example = vault.terraformcloud.SecretRole("example",
             backend=test.backend,
+            name="test-role",
             organization="example-organization-name",
             team_id="team-ieF4isC...")
         token = vault.terraformcloud.SecretCreds("token",

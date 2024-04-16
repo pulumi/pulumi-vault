@@ -6,16 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as vault from "@pulumi/vault";
- *
- * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: fs.readFileSync("credentials.json", "utf8")});
- * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SecretBackend extends pulumi.CustomResource {
     /**

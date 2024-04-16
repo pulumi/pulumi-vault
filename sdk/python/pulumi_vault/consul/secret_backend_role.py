@@ -518,6 +518,7 @@ class SecretBackendRole(pulumi.CustomResource):
             address="127.0.0.1:8500",
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         example = vault.consul.SecretBackendRole("example",
+            name="test-role",
             backend=test.path,
             consul_policies=["example-policy"])
         ```
@@ -585,6 +586,7 @@ class SecretBackendRole(pulumi.CustomResource):
             address="127.0.0.1:8500",
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         example = vault.consul.SecretBackendRole("example",
+            name="test-role",
             backend=test.path,
             consul_policies=["example-policy"])
         ```

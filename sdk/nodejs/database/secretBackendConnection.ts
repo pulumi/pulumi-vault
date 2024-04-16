@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const postgres = new vault.database.SecretBackendConnection("postgres", {
  *     backend: db.path,
+ *     name: "postgres",
  *     allowedRoles: [
  *         "dev",
  *         "prod",

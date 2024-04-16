@@ -53,19 +53,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testOidcKey = new OidcKey(&#34;testOidcKey&#34;, OidcKeyArgs.builder()        
+ *         var test = new OidcKey(&#34;test&#34;, OidcKeyArgs.builder()        
+ *             .name(&#34;my-key&#34;)
  *             .allowedClientIds(&#34;*&#34;)
  *             .rotationPeriod(3600)
  *             .verificationTtl(3600)
  *             .build());
  * 
  *         var testOidcAssignment = new OidcAssignment(&#34;testOidcAssignment&#34;, OidcAssignmentArgs.builder()        
+ *             .name(&#34;my-assignment&#34;)
  *             .entityIds(&#34;fake-ascbascas-2231a-sdfaa&#34;)
  *             .groupIds(&#34;fake-sajkdsad-32414-sfsada&#34;)
  *             .build());
  * 
  *         var testOidcClient = new OidcClient(&#34;testOidcClient&#34;, OidcClientArgs.builder()        
- *             .key(testOidcKey.name())
+ *             .name(&#34;application&#34;)
+ *             .key(test.name())
  *             .redirectUris(            
  *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
  *                 &#34;http://127.0.0.1:8251/callback&#34;,
@@ -76,6 +79,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testOidcScope = new OidcScope(&#34;testOidcScope&#34;, OidcScopeArgs.builder()        
+ *             .name(&#34;groups&#34;)
  *             .template(serializeJson(
  *                 jsonObject(
  *                     jsonProperty(&#34;groups&#34;, &#34;{{identity.entity.groups.names}}&#34;)
@@ -84,6 +88,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var testOidcProvider = new OidcProvider(&#34;testOidcProvider&#34;, OidcProviderArgs.builder()        
+ *             .name(&#34;my-provider&#34;)
  *             .httpsEnabled(false)
  *             .issuerHost(&#34;127.0.0.1:8200&#34;)
  *             .allowedClientIds(testOidcClient.clientId())

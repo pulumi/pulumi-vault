@@ -27,11 +27,11 @@ namespace Pulumi.Vault
     /// {
     ///     var alphanumeric = new Vault.PasswordPolicy("alphanumeric", new()
     ///     {
+    ///         Name = "alphanumeric",
     ///         Policy = @"    length = 20
     ///     rule ""charset"" {
     ///       charset = ""abcdefghijklmnopqrstuvwxyz0123456789""
     ///     }
-    ///   
     /// ",
     ///     });
     /// 

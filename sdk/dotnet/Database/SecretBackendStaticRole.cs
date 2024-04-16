@@ -34,6 +34,7 @@ namespace Pulumi.Vault.Database
     ///     var postgres = new Vault.Database.SecretBackendConnection("postgres", new()
     ///     {
     ///         Backend = db.Path,
+    ///         Name = "postgres",
     ///         AllowedRoles = new[]
     ///         {
     ///             "*",
@@ -45,9 +46,10 @@ namespace Pulumi.Vault.Database
     ///     });
     /// 
     ///     // configure a static role with period-based rotations
-    ///     var periodRole = new Vault.Database.SecretBackendStaticRole("periodRole", new()
+    ///     var periodRole = new Vault.Database.SecretBackendStaticRole("period_role", new()
     ///     {
     ///         Backend = db.Path,
+    ///         Name = "my-period-role",
     ///         DbName = postgres.Name,
     ///         Username = "example",
     ///         RotationPeriod = 3600,
@@ -58,9 +60,10 @@ namespace Pulumi.Vault.Database
     ///     });
     /// 
     ///     // configure a static role with schedule-based rotations
-    ///     var scheduleRole = new Vault.Database.SecretBackendStaticRole("scheduleRole", new()
+    ///     var scheduleRole = new Vault.Database.SecretBackendStaticRole("schedule_role", new()
     ///     {
     ///         Backend = db.Path,
+    ///         Name = "my-schedule-role",
     ///         DbName = postgres.Name,
     ///         Username = "example",
     ///         RotationSchedule = "0 0 * * SAT",

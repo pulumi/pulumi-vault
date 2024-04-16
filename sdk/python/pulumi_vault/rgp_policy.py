@@ -188,11 +188,11 @@ class RgpPolicy(pulumi.CustomResource):
         import pulumi_vault as vault
 
         allow_all = vault.RgpPolicy("allow-all",
+            name="allow-all",
             enforcement_level="soft-mandatory",
             policy=\"\"\"main = rule {
           true
         }
-
         \"\"\")
         ```
         <!--End PulumiCodeChooser -->
@@ -226,11 +226,11 @@ class RgpPolicy(pulumi.CustomResource):
         import pulumi_vault as vault
 
         allow_all = vault.RgpPolicy("allow-all",
+            name="allow-all",
             enforcement_level="soft-mandatory",
             policy=\"\"\"main = rule {
           true
         }
-
         \"\"\")
         ```
         <!--End PulumiCodeChooser -->

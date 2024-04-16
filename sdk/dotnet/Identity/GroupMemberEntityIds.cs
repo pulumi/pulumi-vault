@@ -27,6 +27,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalMemberEntityIds = true,
     ///         Metadata = 
@@ -35,7 +36,10 @@ namespace Pulumi.Vault.Identity
     ///         },
     ///     });
     /// 
-    ///     var user = new Vault.Identity.Entity("user");
+    ///     var user = new Vault.Identity.Entity("user", new()
+    ///     {
+    ///         Name = "user",
+    ///     });
     /// 
     ///     var members = new Vault.Identity.GroupMemberEntityIds("members", new()
     ///     {
@@ -64,6 +68,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalMemberEntityIds = true,
     ///         Metadata = 
@@ -72,11 +77,20 @@ namespace Pulumi.Vault.Identity
     ///         },
     ///     });
     /// 
-    ///     var testUser = new Vault.Identity.Entity("testUser");
+    ///     var testUser = new Vault.Identity.Entity("test_user", new()
+    ///     {
+    ///         Name = "test",
+    ///     });
     /// 
-    ///     var secondTestUser = new Vault.Identity.Entity("secondTestUser");
+    ///     var secondTestUser = new Vault.Identity.Entity("second_test_user", new()
+    ///     {
+    ///         Name = "second_test",
+    ///     });
     /// 
-    ///     var devUser = new Vault.Identity.Entity("devUser");
+    ///     var devUser = new Vault.Identity.Entity("dev_user", new()
+    ///     {
+    ///         Name = "dev",
+    ///     });
     /// 
     ///     var test = new Vault.Identity.GroupMemberEntityIds("test", new()
     ///     {

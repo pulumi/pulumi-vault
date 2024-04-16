@@ -28,10 +28,10 @@ namespace Pulumi.Vault.Jwt
     /// {
     ///     var example = new Vault.Jwt.AuthBackend("example", new()
     ///     {
-    ///         BoundIssuer = "https://myco.auth0.com/",
     ///         Description = "Demonstration of the Terraform JWT auth backend",
-    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
     ///         Path = "jwt",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         BoundIssuer = "https://myco.auth0.com/",
     ///     });
     /// 
     /// });
@@ -51,17 +51,17 @@ namespace Pulumi.Vault.Jwt
     /// {
     ///     var example = new Vault.Jwt.AuthBackend("example", new()
     ///     {
-    ///         BoundIssuer = "https://myco.auth0.com/",
     ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         Path = "oidc",
+    ///         Type = "oidc",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
     ///         OidcClientId = "1234567890",
     ///         OidcClientSecret = "secret123456",
-    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
-    ///         Path = "oidc",
+    ///         BoundIssuer = "https://myco.auth0.com/",
     ///         Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
     ///         {
     ///             ListingVisibility = "unauth",
     ///         },
-    ///         Type = "oidc",
     ///     });
     /// 
     /// });
@@ -84,14 +84,14 @@ namespace Pulumi.Vault.Jwt
     ///         Description = "OIDC backend",
     ///         OidcDiscoveryUrl = "https://accounts.google.com",
     ///         Path = "oidc",
+    ///         Type = "oidc",
     ///         ProviderConfig = 
     ///         {
+    ///             { "provider", "gsuite" },
     ///             { "fetch_groups", "true" },
     ///             { "fetch_user_info", "true" },
     ///             { "groups_recurse_max_depth", "1" },
-    ///             { "provider", "gsuite" },
     ///         },
-    ///         Type = "oidc",
     ///     });
     /// 
     /// });

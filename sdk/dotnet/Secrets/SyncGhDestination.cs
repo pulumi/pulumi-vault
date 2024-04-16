@@ -23,8 +23,9 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var gh = new Vault.Secrets.SyncGhDestination("gh", new()
     ///     {
-    ///         AccessToken = @var.Access_token,
-    ///         RepositoryOwner = @var.Repo_owner,
+    ///         Name = "gh-dest",
+    ///         AccessToken = accessToken,
+    ///         RepositoryOwner = repoOwner,
     ///         RepositoryName = "repo-name-example",
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
     ///     });

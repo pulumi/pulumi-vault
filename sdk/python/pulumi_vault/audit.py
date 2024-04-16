@@ -260,10 +260,10 @@ class Audit(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.Audit("test",
+            type="file",
             options={
                 "file_path": "C:/temp/audit.txt",
-            },
-            type="file")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -275,14 +275,14 @@ class Audit(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.Audit("test",
+            type="socket",
+            path="app_socket",
             local=False,
             options={
                 "address": "127.0.0.1:8000",
-                "description": "application x socket",
                 "socket_type": "tcp",
-            },
-            path="app_socket",
-            type="socket")
+                "description": "application x socket",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -325,10 +325,10 @@ class Audit(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.Audit("test",
+            type="file",
             options={
                 "file_path": "C:/temp/audit.txt",
-            },
-            type="file")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -340,14 +340,14 @@ class Audit(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.Audit("test",
+            type="socket",
+            path="app_socket",
             local=False,
             options={
                 "address": "127.0.0.1:8000",
-                "description": "application x socket",
                 "socket_type": "tcp",
-            },
-            path="app_socket",
-            type="socket")
+                "description": "application x socket",
+            })
         ```
         <!--End PulumiCodeChooser -->
 

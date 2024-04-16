@@ -47,16 +47,16 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var default_ = new SecretBackend(&#34;default&#34;, SecretBackendArgs.builder()        
- *             .defaultTlsClientKeyBits(4096)
- *             .defaultTlsClientKeyType(&#34;rsa&#34;)
- *             .defaultTlsClientTtl(86400)
+ *             .path(&#34;kmip&#34;)
  *             .description(&#34;Vault KMIP backend&#34;)
  *             .listenAddrs(            
  *                 &#34;127.0.0.1:5696&#34;,
  *                 &#34;127.0.0.1:8080&#34;)
- *             .path(&#34;kmip&#34;)
- *             .tlsCaKeyBits(4096)
  *             .tlsCaKeyType(&#34;rsa&#34;)
+ *             .tlsCaKeyBits(4096)
+ *             .defaultTlsClientKeyType(&#34;rsa&#34;)
+ *             .defaultTlsClientKeyBits(4096)
+ *             .defaultTlsClientTtl(86400)
  *             .build());
  * 
  *     }

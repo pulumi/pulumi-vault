@@ -59,6 +59,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -67,6 +68,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -127,6 +129,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -135,6 +138,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -195,6 +199,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -203,6 +208,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -263,6 +269,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -271,6 +278,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -331,6 +339,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -339,6 +348,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -399,6 +409,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -407,6 +418,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -467,6 +479,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -475,6 +488,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 
@@ -535,6 +549,7 @@ public final class TransformFunctions {
      * 
      *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
      *             .path(transform.path())
+     *             .name(&#34;ccn-fpe&#34;)
      *             .type(&#34;fpe&#34;)
      *             .template(&#34;builtin/creditcardnumber&#34;)
      *             .tweakSource(&#34;internal&#34;)
@@ -543,6 +558,7 @@ public final class TransformFunctions {
      * 
      *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
      *             .path(ccn_fpe.path())
+     *             .name(&#34;payments&#34;)
      *             .transformations(&#34;ccn-fpe&#34;)
      *             .build());
      * 

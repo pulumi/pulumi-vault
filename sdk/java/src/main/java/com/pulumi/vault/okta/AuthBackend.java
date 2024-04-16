@@ -50,17 +50,17 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
  *             .description(&#34;Demonstration of the Terraform Okta auth backend&#34;)
+ *             .organization(&#34;example&#34;)
+ *             .token(&#34;something that should be kept secret&#34;)
  *             .groups(AuthBackendGroupArgs.builder()
  *                 .groupName(&#34;foo&#34;)
  *                 .policies(                
  *                     &#34;one&#34;,
  *                     &#34;two&#34;)
  *                 .build())
- *             .organization(&#34;example&#34;)
- *             .token(&#34;something that should be kept secret&#34;)
  *             .users(AuthBackendUserArgs.builder()
- *                 .groups(&#34;foo&#34;)
  *                 .username(&#34;bar&#34;)
+ *                 .groups(&#34;foo&#34;)
  *                 .build())
  *             .build());
  * 

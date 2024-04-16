@@ -58,6 +58,7 @@ import javax.annotation.Nullable;
  * 
  *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
  *             .backend(transit.path())
+ *             .name(&#34;my_key&#34;)
  *             .build());
  * 
  *     }

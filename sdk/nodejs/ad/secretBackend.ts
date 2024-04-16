@@ -16,8 +16,8 @@ import * as utilities from "../utilities";
  *     backend: "ad",
  *     binddn: "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
  *     bindpass: "SuperSecretPassw0rd",
- *     insecureTls: true,
  *     url: "ldaps://ad",
+ *     insecureTls: true,
  *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
  * });
  * ```

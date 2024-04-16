@@ -27,6 +27,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalPolicies = true,
     ///         Metadata = 
@@ -63,6 +64,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalPolicies = true,
     ///         Metadata = 

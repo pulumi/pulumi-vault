@@ -44,11 +44,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new SecretBackendIntermediateCertRequest(&#34;test&#34;, SecretBackendIntermediateCertRequestArgs.builder()        
- *             .backend(vault_mount.pki().path())
+ *             .backend(pki.path())
  *             .type(&#34;internal&#34;)
  *             .commonName(&#34;app.my.domain&#34;)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vault_mount.pki())
+ *                 .dependsOn(pki)
  *                 .build());
  * 
  *     }

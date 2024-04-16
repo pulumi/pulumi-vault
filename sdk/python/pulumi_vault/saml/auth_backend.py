@@ -451,11 +451,11 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.saml.AuthBackend("test",
-            acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
-            default_role="admin",
-            entity_id="https://my.vault/v1/auth/saml",
+            path="saml",
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
-            path="saml")
+            entity_id="https://my.vault/v1/auth/saml",
+            acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
+            default_role="admin")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -511,11 +511,11 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.saml.AuthBackend("test",
-            acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
-            default_role="admin",
-            entity_id="https://my.vault/v1/auth/saml",
+            path="saml",
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
-            path="saml")
+            entity_id="https://my.vault/v1/auth/saml",
+            acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
+            default_role="admin")
         ```
         <!--End PulumiCodeChooser -->
 

@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * });
  * const qa = new vault.ad.SecretLibrary("qa", {
  *     backend: config.backend,
+ *     name: "qa",
  *     serviceAccountNames: [
  *         "Bob",
  *         "Mary",

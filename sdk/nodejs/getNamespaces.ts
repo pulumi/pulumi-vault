@@ -30,10 +30,10 @@ import * as utilities from "./utilities";
  * const children = vault.getNamespaces({
  *     namespace: "parent",
  * });
- * const child = .map(([, ]) => (vault.getNamespace({
+ * const child = .reduce((__obj, [, ]) => ({ ...__obj, [__key]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
  *     path: __key,
- * })));
+ * }) }));
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -98,10 +98,10 @@ export interface GetNamespacesResult {
  * const children = vault.getNamespaces({
  *     namespace: "parent",
  * });
- * const child = .map(([, ]) => (vault.getNamespace({
+ * const child = .reduce((__obj, [, ]) => ({ ...__obj, [__key]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
  *     path: __key,
- * })));
+ * }) }));
  * ```
  * <!--End PulumiCodeChooser -->
  */

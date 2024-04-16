@@ -693,14 +693,15 @@ class AuthBackendRole(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.saml.AuthBackend("exampleAuthBackend",
+        example = vault.saml.AuthBackend("example",
             path="saml",
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
             entity_id="https://my.vault/v1/auth/saml",
             acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
             default_role="default-role")
-        example_auth_backend_role = vault.saml.AuthBackendRole("exampleAuthBackendRole",
-            path=example_auth_backend.path,
+        example_auth_backend_role = vault.saml.AuthBackendRole("example",
+            path=example.path,
+            name="my-role",
             groups_attribute="groups",
             bound_attributes={
                 "group": "admin",
@@ -779,14 +780,15 @@ class AuthBackendRole(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.saml.AuthBackend("exampleAuthBackend",
+        example = vault.saml.AuthBackend("example",
             path="saml",
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
             entity_id="https://my.vault/v1/auth/saml",
             acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
             default_role="default-role")
-        example_auth_backend_role = vault.saml.AuthBackendRole("exampleAuthBackendRole",
-            path=example_auth_backend.path,
+        example_auth_backend_role = vault.saml.AuthBackendRole("example",
+            path=example.path,
+            name="my-role",
             groups_attribute="groups",
             bound_attributes={
                 "group": "admin",

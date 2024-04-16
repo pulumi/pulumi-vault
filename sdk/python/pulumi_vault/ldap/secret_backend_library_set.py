@@ -312,6 +312,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         qa = vault.ldap.SecretBackendLibrarySet("qa",
             mount=config.path,
+            name="qa",
             service_account_names=[
                 "Bob",
                 "Mary",
@@ -371,6 +372,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         qa = vault.ldap.SecretBackendLibrarySet("qa",
             mount=config.path,
+            name="qa",
             service_account_names=[
                 "Bob",
                 "Mary",

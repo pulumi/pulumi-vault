@@ -14,13 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const exampleMfaDuo = new vault.identity.MfaDuo("exampleMfaDuo", {
+ * const example = new vault.identity.MfaDuo("example", {
  *     secretKey: "secret-key",
  *     integrationKey: "int-key",
  *     apiHostname: "foo.baz",
  *     pushInfo: "push-info",
  * });
- * const exampleMfaLoginEnforcement = new vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", {mfaMethodIds: [exampleMfaDuo.methodId]});
+ * const exampleMfaLoginEnforcement = new vault.identity.MfaLoginEnforcement("example", {
+ *     name: "default",
+ *     mfaMethodIds: [example.methodId],
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *

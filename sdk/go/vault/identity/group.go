@@ -33,14 +33,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
+//				Name: pulumi.String("internal"),
+//				Type: pulumi.String("internal"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("test"),
 //				},
-//				Type: pulumi.String("internal"),
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -68,13 +69,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewGroup(ctx, "group", &identity.GroupArgs{
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("1"),
-//				},
+//				Name: pulumi.String("external"),
+//				Type: pulumi.String("external"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("test"),
 //				},
-//				Type: pulumi.String("external"),
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("1"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -105,28 +107,30 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := identity.NewGroup(ctx, "internalIdentity/groupGroup", &identity.GroupArgs{
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
+//			_, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name: pulumi.String("internal"),
+//				Type: pulumi.String("internal"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("test"),
 //				},
-//				Type: pulumi.String("internal"),
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewGroup(ctx, "internalGroup", &identity.GroupArgs{
-//				Metadata: pulumi.StringMap{
-//					"version": pulumi.String("2"),
-//				},
+//			_, err = identity.NewGroup(ctx, "Internal", &identity.GroupArgs{
+//				Name: pulumi.String("Internal"),
+//				Type: pulumi.String("internal"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("test"),
 //				},
-//				Type: pulumi.String("internal"),
+//				Metadata: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//				},
 //			})
 //			if err != nil {
 //				return err

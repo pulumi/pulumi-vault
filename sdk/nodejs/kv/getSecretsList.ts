@@ -20,13 +20,13 @@ import * as utilities from "../utilities";
  *     },
  *     description: "KV Version 1 secret engine mount",
  * });
- * const awsSecret = new vault.kv.Secret("awsSecret", {
+ * const awsSecret = new vault.kv.Secret("aws_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/aws-secret`,
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *     }),
  * });
- * const azureSecret = new vault.kv.Secret("azureSecret", {
+ * const azureSecret = new vault.kv.Secret("azure_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/azure-secret`,
  *     dataJson: JSON.stringify({
  *         foo: "bar",
@@ -99,13 +99,13 @@ export interface GetSecretsListResult {
  *     },
  *     description: "KV Version 1 secret engine mount",
  * });
- * const awsSecret = new vault.kv.Secret("awsSecret", {
+ * const awsSecret = new vault.kv.Secret("aws_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/aws-secret`,
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *     }),
  * });
- * const azureSecret = new vault.kv.Secret("azureSecret", {
+ * const azureSecret = new vault.kv.Secret("azure_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/azure-secret`,
  *     dataJson: JSON.stringify({
  *         foo: "bar",

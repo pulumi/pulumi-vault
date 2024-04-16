@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
  * 
  *         var token = new SecretV2(&#34;token&#34;, SecretV2Args.builder()        
  *             .mount(kvv2.path())
+ *             .name(&#34;token&#34;)
  *             .dataJson(serializeJson(
  *                 jsonObject(
  *                     jsonProperty(&#34;dev&#34;, &#34;B!gS3cr3t&#34;),
@@ -65,13 +66,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var gh = new SyncGhDestination(&#34;gh&#34;, SyncGhDestinationArgs.builder()        
- *             .accessToken(var_.access_token())
- *             .repositoryOwner(var_.repo_owner())
+ *             .name(&#34;gh-dest&#34;)
+ *             .accessToken(accessToken)
+ *             .repositoryOwner(repoOwner)
  *             .repositoryName(&#34;repo-name-example&#34;)
  *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
  *             .build());
  * 
  *         var ghToken = new SyncAssociation(&#34;ghToken&#34;, SyncAssociationArgs.builder()        
+ *             .name(gh.name())
  *             .type(gh.type())
  *             .mount(kvv2.path())
  *             .secretName(token.name())

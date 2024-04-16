@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new MfaDuo(&#34;example&#34;, MfaDuoArgs.builder()        
  *             .apiHostname(&#34;api-xxxxxxxx.duosecurity.com&#34;)
- *             .integrationKey(&#34;secret-int-key&#34;)
  *             .secretKey(&#34;secret-key&#34;)
+ *             .integrationKey(&#34;secret-int-key&#34;)
  *             .build());
  * 
  *     }

@@ -13,18 +13,18 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.Token("example", {
- *     metadata: {
- *         purpose: "service-account",
- *     },
+ *     roleName: "app",
  *     policies: [
  *         "policy1",
  *         "policy2",
  *     ],
- *     renewIncrement: 86400,
- *     renewMinLease: 43200,
  *     renewable: true,
- *     roleName: "app",
  *     ttl: "24h",
+ *     renewMinLease: 43200,
+ *     renewIncrement: 86400,
+ *     metadata: {
+ *         purpose: "service-account",
+ *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->

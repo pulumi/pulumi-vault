@@ -42,12 +42,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleAuthBackend = new AuthBackend(&#34;exampleAuthBackend&#34;, AuthBackendArgs.builder()        
+ *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
  *             .type(&#34;azure&#34;)
  *             .build());
  * 
  *         var exampleAuthBackendConfig = new AuthBackendConfig(&#34;exampleAuthBackendConfig&#34;, AuthBackendConfigArgs.builder()        
- *             .backend(exampleAuthBackend.path())
+ *             .backend(example.path())
  *             .tenantId(&#34;11111111-2222-3333-4444-555555555555&#34;)
  *             .clientId(&#34;11111111-2222-3333-4444-555555555555&#34;)
  *             .clientSecret(&#34;01234567890123456789&#34;)

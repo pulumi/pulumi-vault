@@ -26,8 +26,8 @@ namespace Pulumi.Vault.AD
     ///         Backend = "ad",
     ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
     ///         Bindpass = "SuperSecretPassw0rd",
-    ///         InsecureTls = true,
     ///         Url = "ldaps://ad",
+    ///         InsecureTls = true,
     ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
     ///     });
     /// 

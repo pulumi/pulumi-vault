@@ -16,8 +16,8 @@ import * as utilities from "../utilities";
  *
  * const test = vault.transit.getDecrypt({
  *     backend: "transit",
- *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  *     key: "test",
+ *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -87,8 +87,8 @@ export interface GetDecryptResult {
  *
  * const test = vault.transit.getDecrypt({
  *     backend: "transit",
- *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  *     key: "test",
+ *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

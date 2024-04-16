@@ -12,34 +12,6 @@ import * as utilities from "../utilities";
  * Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
  * Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
  *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * import * as vault from "@pulumi/vault";
- *
- * const _this = new gcp.serviceaccount.Account("this", {accountId: "my-awesome-account"});
- * const gcp = new vault.gcp.SecretBackend("gcp", {
- *     path: "gcp",
- *     credentials: fs.readFileSync("credentials.json", "utf8"),
- * });
- * const staticAccount = new vault.gcp.SecretStaticAccount("staticAccount", {
- *     backend: gcp.path,
- *     staticAccount: "project_viewer",
- *     secretType: "access_token",
- *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
- *     serviceAccountEmail: _this.email,
- *     bindings: [{
- *         resource: pulumi.interpolate`//cloudresourcemanager.googleapis.com/projects/${_this.project}`,
- *         roles: ["roles/viewer"],
- *     }],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
  * ## Import
  *
  * A static account can be imported using its Vault Path. For example, referencing the example above,

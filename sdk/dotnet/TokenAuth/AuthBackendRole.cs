@@ -27,10 +27,7 @@ namespace Pulumi.Vault.TokenAuth
     /// {
     ///     var example = new Vault.TokenAuth.AuthBackendRole("example", new()
     ///     {
-    ///         AllowedEntityAliases = new[]
-    ///         {
-    ///             "test_entity",
-    ///         },
+    ///         RoleName = "my-role",
     ///         AllowedPolicies = new[]
     ///         {
     ///             "dev",
@@ -40,12 +37,15 @@ namespace Pulumi.Vault.TokenAuth
     ///         {
     ///             "default",
     ///         },
+    ///         AllowedEntityAliases = new[]
+    ///         {
+    ///             "test_entity",
+    ///         },
     ///         Orphan = true,
-    ///         PathSuffix = "path-suffix",
-    ///         Renewable = true,
-    ///         RoleName = "my-role",
-    ///         TokenExplicitMaxTtl = 115200,
     ///         TokenPeriod = 86400,
+    ///         Renewable = true,
+    ///         TokenExplicitMaxTtl = 115200,
+    ///         PathSuffix = "path-suffix",
     ///     });
     /// 
     /// });

@@ -321,12 +321,14 @@ class MfaLoginEnforcement(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_mfa_duo = vault.identity.MfaDuo("exampleMfaDuo",
+        example = vault.identity.MfaDuo("example",
             secret_key="secret-key",
             integration_key="int-key",
             api_hostname="foo.baz",
             push_info="push-info")
-        example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", mfa_method_ids=[example_mfa_duo.method_id])
+        example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("example",
+            name="default",
+            mfa_method_ids=[example.method_id])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -364,12 +366,14 @@ class MfaLoginEnforcement(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_mfa_duo = vault.identity.MfaDuo("exampleMfaDuo",
+        example = vault.identity.MfaDuo("example",
             secret_key="secret-key",
             integration_key="int-key",
             api_hostname="foo.baz",
             push_info="push-info")
-        example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", mfa_method_ids=[example_mfa_duo.method_id])
+        example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("example",
+            name="default",
+            mfa_method_ids=[example.method_id])
         ```
         <!--End PulumiCodeChooser -->
 

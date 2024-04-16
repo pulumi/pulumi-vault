@@ -19,6 +19,30 @@ import * as utilities from "../utilities";
  * });
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * ### KV
+ *
+ * For this example, consider `example` as a path for a KV engine.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * function notImplemented(message: string) {
+ *     throw new Error(message);
+ * }
+ *
+ * const exampleCreds = vault.generic.getSecret({
+ *     path: "example/creds",
+ * });
+ * const exampleTemplate = notImplemented("The template_file data resource is not yet supported.");
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecret(args: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
 
@@ -116,6 +140,30 @@ export interface GetSecretResult {
  * });
  * ```
  * <!--End PulumiCodeChooser -->
+ *
+ * ### KV
+ *
+ * For this example, consider `example` as a path for a KV engine.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * function notImplemented(message: string) {
+ *     throw new Error(message);
+ * }
+ *
+ * const exampleCreds = vault.generic.getSecret({
+ *     path: "example/creds",
+ * });
+ * const exampleTemplate = notImplemented("The template_file data resource is not yet supported.");
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ## Required Vault Capabilities
+ *
+ * Use of this resource requires the `read` capability on the given path.
  */
 export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
     return pulumi.output(args).apply((a: any) => getSecret(a, opts))

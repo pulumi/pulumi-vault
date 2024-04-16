@@ -13,10 +13,11 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const az = new vault.secrets.SyncAzureDestination("az", {
- *     keyVaultUri: _var.key_vault_uri,
- *     clientId: _var.client_id,
- *     clientSecret: _var.client_secret,
- *     tenantId: _var.tenant_id,
+ *     name: "az-dest",
+ *     keyVaultUri: keyVaultUri,
+ *     clientId: clientId,
+ *     clientSecret: clientSecret,
+ *     tenantId: tenantId,
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  *     customTags: {
  *         foo: "bar",

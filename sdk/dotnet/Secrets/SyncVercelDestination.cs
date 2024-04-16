@@ -23,8 +23,9 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var vercel = new Vault.Secrets.SyncVercelDestination("vercel", new()
     ///     {
-    ///         AccessToken = @var.Access_token,
-    ///         ProjectId = @var.Project_id,
+    ///         Name = "vercel-dest",
+    ///         AccessToken = accessToken,
+    ///         ProjectId = projectId,
     ///         DeploymentEnvironments = new[]
     ///         {
     ///             "development",

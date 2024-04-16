@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  * 
  *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
  *             .backend(rabbitmq.path())
+ *             .name(&#34;deploy&#34;)
  *             .tags(&#34;tag1,tag2&#34;)
  *             .vhosts(SecretBackendRoleVhostArgs.builder()
  *                 .host(&#34;/&#34;)

@@ -14,8 +14,8 @@ import * as utilities from "../utilities";
  *
  * const rabbitmq = new vault.rabbitmq.SecretBackend("rabbitmq", {
  *     connectionUri: "https://.....",
- *     password: "password",
  *     username: "user",
+ *     password: "password",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

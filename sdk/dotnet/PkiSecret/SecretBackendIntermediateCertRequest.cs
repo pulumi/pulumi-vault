@@ -23,14 +23,14 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var test = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("test", new()
     ///     {
-    ///         Backend = vault_mount.Pki.Path,
+    ///         Backend = pki.Path,
     ///         Type = "internal",
     ///         CommonName = "app.my.domain",
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki, 
+    ///             pki, 
     ///         },
     ///     });
     /// 

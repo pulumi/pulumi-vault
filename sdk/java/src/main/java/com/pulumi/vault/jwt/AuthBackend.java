@@ -49,10 +49,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .boundIssuer(&#34;https://myco.auth0.com/&#34;)
  *             .description(&#34;Demonstration of the Terraform JWT auth backend&#34;)
- *             .oidcDiscoveryUrl(&#34;https://myco.auth0.com/&#34;)
  *             .path(&#34;jwt&#34;)
+ *             .oidcDiscoveryUrl(&#34;https://myco.auth0.com/&#34;)
+ *             .boundIssuer(&#34;https://myco.auth0.com/&#34;)
  *             .build());
  * 
  *     }
@@ -86,16 +86,16 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .boundIssuer(&#34;https://myco.auth0.com/&#34;)
  *             .description(&#34;Demonstration of the Terraform JWT auth backend&#34;)
+ *             .path(&#34;oidc&#34;)
+ *             .type(&#34;oidc&#34;)
+ *             .oidcDiscoveryUrl(&#34;https://myco.auth0.com/&#34;)
  *             .oidcClientId(&#34;1234567890&#34;)
  *             .oidcClientSecret(&#34;secret123456&#34;)
- *             .oidcDiscoveryUrl(&#34;https://myco.auth0.com/&#34;)
- *             .path(&#34;oidc&#34;)
+ *             .boundIssuer(&#34;https://myco.auth0.com/&#34;)
  *             .tune(AuthBackendTuneArgs.builder()
  *                 .listingVisibility(&#34;unauth&#34;)
  *                 .build())
- *             .type(&#34;oidc&#34;)
  *             .build());
  * 
  *     }
@@ -131,13 +131,13 @@ import javax.annotation.Nullable;
  *             .description(&#34;OIDC backend&#34;)
  *             .oidcDiscoveryUrl(&#34;https://accounts.google.com&#34;)
  *             .path(&#34;oidc&#34;)
+ *             .type(&#34;oidc&#34;)
  *             .providerConfig(Map.ofEntries(
+ *                 Map.entry(&#34;provider&#34;, &#34;gsuite&#34;),
  *                 Map.entry(&#34;fetch_groups&#34;, true),
  *                 Map.entry(&#34;fetch_user_info&#34;, true),
- *                 Map.entry(&#34;groups_recurse_max_depth&#34;, 1),
- *                 Map.entry(&#34;provider&#34;, &#34;gsuite&#34;)
+ *                 Map.entry(&#34;groups_recurse_max_depth&#34;, 1)
  *             ))
- *             .type(&#34;oidc&#34;)
  *             .build());
  * 
  *     }

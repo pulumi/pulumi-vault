@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const gh = new vault.secrets.SyncGhDestination("gh", {
- *     accessToken: _var.access_token,
- *     repositoryOwner: _var.repo_owner,
+ *     name: "gh-dest",
+ *     accessToken: accessToken,
+ *     repositoryOwner: repoOwner,
  *     repositoryName: "repo-name-example",
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  * });

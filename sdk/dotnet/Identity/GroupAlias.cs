@@ -27,6 +27,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @group = new Vault.Identity.Group("group", new()
     ///     {
+    ///         Name = "test",
     ///         Type = "external",
     ///         Policies = new[]
     ///         {

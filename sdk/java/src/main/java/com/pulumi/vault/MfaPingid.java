@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var myPingid = new MfaPingid(&#34;myPingid&#34;, MfaPingidArgs.builder()        
+ *             .name(&#34;my_pingid&#34;)
  *             .mountAccessor(userpass.accessor())
  *             .usernameFormat(&#34;user@example.com&#34;)
  *             .settingsFileBase64(settingsFile)

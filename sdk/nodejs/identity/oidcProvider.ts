@@ -15,17 +15,20 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const testOidcKey = new vault.identity.OidcKey("testOidcKey", {
+ * const test = new vault.identity.OidcKey("test", {
+ *     name: "my-key",
  *     allowedClientIds: ["*"],
  *     rotationPeriod: 3600,
  *     verificationTtl: 3600,
  * });
- * const testOidcAssignment = new vault.identity.OidcAssignment("testOidcAssignment", {
+ * const testOidcAssignment = new vault.identity.OidcAssignment("test", {
+ *     name: "my-assignment",
  *     entityIds: ["fake-ascbascas-2231a-sdfaa"],
  *     groupIds: ["fake-sajkdsad-32414-sfsada"],
  * });
- * const testOidcClient = new vault.identity.OidcClient("testOidcClient", {
- *     key: testOidcKey.name,
+ * const testOidcClient = new vault.identity.OidcClient("test", {
+ *     name: "application",
+ *     key: test.name,
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
  *         "http://127.0.0.1:8251/callback",
@@ -35,13 +38,15 @@ import * as utilities from "../utilities";
  *     idTokenTtl: 2400,
  *     accessTokenTtl: 7200,
  * });
- * const testOidcScope = new vault.identity.OidcScope("testOidcScope", {
+ * const testOidcScope = new vault.identity.OidcScope("test", {
+ *     name: "groups",
  *     template: JSON.stringify({
  *         groups: "{{identity.entity.groups.names}}",
  *     }),
  *     description: "Groups scope.",
  * });
- * const testOidcProvider = new vault.identity.OidcProvider("testOidcProvider", {
+ * const testOidcProvider = new vault.identity.OidcProvider("test", {
+ *     name: "my-provider",
  *     httpsEnabled: false,
  *     issuerHost: "127.0.0.1:8200",
  *     allowedClientIds: [testOidcClient.clientId],

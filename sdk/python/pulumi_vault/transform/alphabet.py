@@ -188,11 +188,12 @@ class Alphabet(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        mount_transform = vault.Mount("mountTransform",
+        mount_transform = vault.Mount("mount_transform",
             path="transform",
             type="transform")
         test = vault.transform.Alphabet("test",
             path=mount_transform.path,
+            name="numerics",
             alphabet="0123456789")
         ```
         <!--End PulumiCodeChooser -->
@@ -225,11 +226,12 @@ class Alphabet(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        mount_transform = vault.Mount("mountTransform",
+        mount_transform = vault.Mount("mount_transform",
             path="transform",
             type="transform")
         test = vault.transform.Alphabet("test",
             path=mount_transform.path,
+            name="numerics",
             alphabet="0123456789")
         ```
         <!--End PulumiCodeChooser -->

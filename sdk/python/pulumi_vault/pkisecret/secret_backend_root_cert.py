@@ -1079,7 +1079,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendRootCert("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
             type="internal",
             common_name="Root CA",
             ttl="315360000",
@@ -1090,7 +1090,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+            opts=pulumi.ResourceOptions(depends_on=[pki]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1149,7 +1149,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendRootCert("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
             type="internal",
             common_name="Root CA",
             ttl="315360000",
@@ -1160,7 +1160,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+            opts=pulumi.ResourceOptions(depends_on=[pki]))
         ```
         <!--End PulumiCodeChooser -->
 

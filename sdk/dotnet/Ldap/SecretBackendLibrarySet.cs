@@ -34,6 +34,7 @@ namespace Pulumi.Vault.Ldap
     ///     var qa = new Vault.Ldap.SecretBackendLibrarySet("qa", new()
     ///     {
     ///         Mount = config.Path,
+    ///         Name = "qa",
     ///         ServiceAccountNames = new[]
     ///         {
     ///             "Bob",

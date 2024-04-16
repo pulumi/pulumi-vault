@@ -468,8 +468,8 @@ class SecretBackend(pulumi.CustomResource):
 
         rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
             connection_uri="https://.....",
-            password="password",
-            username="user")
+            username="user",
+            password="password")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -520,8 +520,8 @@ class SecretBackend(pulumi.CustomResource):
 
         rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
             connection_uri="https://.....",
-            password="password",
-            username="user")
+            username="user",
+            password="password")
         ```
         <!--End PulumiCodeChooser -->
 

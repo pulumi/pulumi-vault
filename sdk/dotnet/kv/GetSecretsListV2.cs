@@ -35,27 +35,30 @@ namespace Pulumi.Vault.kv
         ///         Description = "KV Version 2 secret engine mount",
         ///     });
         /// 
-        ///     var awsSecret = new Vault.Kv.SecretV2("awsSecret", new()
+        ///     var awsSecret = new Vault.Kv.SecretV2("aws_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = "aws_secret",
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["zip"] = "zap",
         ///         }),
         ///     });
         /// 
-        ///     var azureSecret = new Vault.Kv.SecretV2("azureSecret", new()
+        ///     var azureSecret = new Vault.Kv.SecretV2("azure_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = "azure_secret",
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["foo"] = "bar",
         ///         }),
         ///     });
         /// 
-        ///     var nestedSecret = new Vault.Kv.SecretV2("nestedSecret", new()
+        ///     var nestedSecret = new Vault.Kv.SecretV2("nested_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = azureSecret.Name.Apply(name =&gt; $"{name}/dev"),
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["password"] = "test",
@@ -70,7 +73,7 @@ namespace Pulumi.Vault.kv
         ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
-        ///         Name = vault_kv_secret_v2.Test_2.Name,
+        ///         Name = test2.Name,
         ///     });
         /// 
         /// });
@@ -108,27 +111,30 @@ namespace Pulumi.Vault.kv
         ///         Description = "KV Version 2 secret engine mount",
         ///     });
         /// 
-        ///     var awsSecret = new Vault.Kv.SecretV2("awsSecret", new()
+        ///     var awsSecret = new Vault.Kv.SecretV2("aws_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = "aws_secret",
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["zip"] = "zap",
         ///         }),
         ///     });
         /// 
-        ///     var azureSecret = new Vault.Kv.SecretV2("azureSecret", new()
+        ///     var azureSecret = new Vault.Kv.SecretV2("azure_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = "azure_secret",
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["foo"] = "bar",
         ///         }),
         ///     });
         /// 
-        ///     var nestedSecret = new Vault.Kv.SecretV2("nestedSecret", new()
+        ///     var nestedSecret = new Vault.Kv.SecretV2("nested_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = azureSecret.Name.Apply(name =&gt; $"{name}/dev"),
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["password"] = "test",
@@ -143,7 +149,7 @@ namespace Pulumi.Vault.kv
         ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
         ///     {
         ///         Mount = kvv2.Path,
-        ///         Name = vault_kv_secret_v2.Test_2.Name,
+        ///         Name = test2.Name,
         ///     });
         /// 
         /// });

@@ -432,6 +432,7 @@ class SecretRole(pulumi.CustomResource):
             public_key="publicKey")
         role = vault.mongodbatlas.SecretRole("role",
             mount=mongo.path,
+            name="tf-test-role",
             organization_id="7cf5a45a9ccf6400e60981b7",
             project_id="5cf5a45a9ccf6400e60981b6",
             roles=["ORG_READ_ONLY"],
@@ -495,6 +496,7 @@ class SecretRole(pulumi.CustomResource):
             public_key="publicKey")
         role = vault.mongodbatlas.SecretRole("role",
             mount=mongo.path,
+            name="tf-test-role",
             organization_id="7cf5a45a9ccf6400e60981b7",
             project_id="5cf5a45a9ccf6400e60981b6",
             roles=["ORG_READ_ONLY"],

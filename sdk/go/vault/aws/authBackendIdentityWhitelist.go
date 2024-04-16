@@ -32,14 +32,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
 //				Type: pulumi.String("aws"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = aws.NewAuthBackendIdentityWhitelist(ctx, "exampleAuthBackendIdentityWhitelist", &aws.AuthBackendIdentityWhitelistArgs{
-//				Backend:      exampleAuthBackend.Path,
+//			_, err = aws.NewAuthBackendIdentityWhitelist(ctx, "example", &aws.AuthBackendIdentityWhitelistArgs{
+//				Backend:      example.Path,
 //				SafetyBuffer: pulumi.Int(3600),
 //			})
 //			if err != nil {

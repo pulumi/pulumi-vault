@@ -189,8 +189,9 @@ class OidcScope(pulumi.CustomResource):
         import pulumi_vault as vault
 
         groups = vault.identity.OidcScope("groups",
-            description="Vault OIDC Groups Scope",
-            template="{\\"groups\\":{{identity.entity.groups.names}}}")
+            name="groups",
+            template="{\\"groups\\":{{identity.entity.groups.names}}}",
+            description="Vault OIDC Groups Scope")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -230,8 +231,9 @@ class OidcScope(pulumi.CustomResource):
         import pulumi_vault as vault
 
         groups = vault.identity.OidcScope("groups",
-            description="Vault OIDC Groups Scope",
-            template="{\\"groups\\":{{identity.entity.groups.names}}}")
+            name="groups",
+            template="{\\"groups\\":{{identity.entity.groups.names}}}",
+            description="Vault OIDC Groups Scope")
         ```
         <!--End PulumiCodeChooser -->
 

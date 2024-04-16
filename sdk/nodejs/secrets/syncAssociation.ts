@@ -24,18 +24,21 @@ import * as utilities from "../utilities";
  * });
  * const token = new vault.kv.SecretV2("token", {
  *     mount: kvv2.path,
+ *     name: "token",
  *     dataJson: JSON.stringify({
  *         dev: "B!gS3cr3t",
  *         prod: "S3cureP4$$",
  *     }),
  * });
  * const gh = new vault.secrets.SyncGhDestination("gh", {
- *     accessToken: _var.access_token,
- *     repositoryOwner: _var.repo_owner,
+ *     name: "gh-dest",
+ *     accessToken: accessToken,
+ *     repositoryOwner: repoOwner,
  *     repositoryName: "repo-name-example",
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  * });
- * const ghToken = new vault.secrets.SyncAssociation("ghToken", {
+ * const ghToken = new vault.secrets.SyncAssociation("gh_token", {
+ *     name: gh.name,
  *     type: gh.type,
  *     mount: kvv2.path,
  *     secretName: token.name,

@@ -43,8 +43,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var groups = new OidcScope(&#34;groups&#34;, OidcScopeArgs.builder()        
- *             .description(&#34;Vault OIDC Groups Scope&#34;)
+ *             .name(&#34;groups&#34;)
  *             .template(&#34;{\&#34;groups\&#34;:{{identity.entity.groups.names}}}&#34;)
+ *             .description(&#34;Vault OIDC Groups Scope&#34;)
  *             .build());
  * 
  *     }

@@ -31,6 +31,7 @@ namespace Pulumi.Vault.TerraformCloud
     ///     var example = new Vault.TerraformCloud.SecretRole("example", new()
     ///     {
     ///         Backend = test.Backend,
+    ///         Name = "test-role",
     ///         Organization = "example-organization-name",
     ///         TeamId = "team-ieF4isC...",
     ///     });

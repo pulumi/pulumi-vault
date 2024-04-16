@@ -43,11 +43,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var localBackups = new RaftSnapshotAgentConfig(&#34;localBackups&#34;, RaftSnapshotAgentConfigArgs.builder()        
+ *             .name(&#34;local&#34;)
  *             .intervalSeconds(86400)
- *             .localMaxSpace(10000000)
- *             .pathPrefix(&#34;/opt/vault/snapshots/&#34;)
  *             .retain(7)
+ *             .pathPrefix(&#34;/opt/vault/snapshots/&#34;)
  *             .storageType(&#34;local&#34;)
+ *             .localMaxSpace(10000000)
  *             .build());
  * 
  *     }
@@ -86,6 +87,7 @@ import javax.annotation.Nullable;
  *         final var current = AwsFunctions.getRegion();
  * 
  *         var s3Backups = new RaftSnapshotAgentConfig(&#34;s3Backups&#34;, RaftSnapshotAgentConfigArgs.builder()        
+ *             .name(&#34;s3&#34;)
  *             .intervalSeconds(86400)
  *             .retain(7)
  *             .pathPrefix(&#34;/path/in/bucket&#34;)
@@ -130,6 +132,7 @@ import javax.annotation.Nullable;
  *         final var azureAccountName = config.get(&#34;azureAccountName&#34;);
  *         final var azureAccountKey = config.get(&#34;azureAccountKey&#34;);
  *         var azureBackups = new RaftSnapshotAgentConfig(&#34;azureBackups&#34;, RaftSnapshotAgentConfigArgs.builder()        
+ *             .name(&#34;azure_backup&#34;)
  *             .intervalSeconds(86400)
  *             .retain(7)
  *             .pathPrefix(&#34;/&#34;)

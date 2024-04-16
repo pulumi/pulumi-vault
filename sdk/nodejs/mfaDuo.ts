@@ -20,7 +20,8 @@ import * as utilities from "./utilities";
  *     type: "userpass",
  *     path: "userpass",
  * });
- * const myDuo = new vault.MfaDuo("myDuo", {
+ * const myDuo = new vault.MfaDuo("my_duo", {
+ *     name: "my_duo",
  *     mountAccessor: userpass.accessor,
  *     secretKey: "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
  *     integrationKey: "BIACEUEAXI20BNWTEYXT",

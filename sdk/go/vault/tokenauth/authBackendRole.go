@@ -32,9 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tokenauth.NewAuthBackendRole(ctx, "example", &tokenauth.AuthBackendRoleArgs{
-//				AllowedEntityAliases: pulumi.StringArray{
-//					pulumi.String("test_entity"),
-//				},
+//				RoleName: pulumi.String("my-role"),
 //				AllowedPolicies: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("test"),
@@ -42,12 +40,14 @@ import (
 //				DisallowedPolicies: pulumi.StringArray{
 //					pulumi.String("default"),
 //				},
+//				AllowedEntityAliases: pulumi.StringArray{
+//					pulumi.String("test_entity"),
+//				},
 //				Orphan:              pulumi.Bool(true),
-//				PathSuffix:          pulumi.String("path-suffix"),
-//				Renewable:           pulumi.Bool(true),
-//				RoleName:            pulumi.String("my-role"),
-//				TokenExplicitMaxTtl: pulumi.Int(115200),
 //				TokenPeriod:         pulumi.Int(86400),
+//				Renewable:           pulumi.Bool(true),
+//				TokenExplicitMaxTtl: pulumi.Int(115200),
+//				PathSuffix:          pulumi.String("path-suffix"),
 //			})
 //			if err != nil {
 //				return err

@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const examplePolicyDocument = vault.getPolicyDocument({
+ * const example = vault.getPolicyDocument({
  *     rules: [{
  *         path: "secret/*",
  *         capabilities: [
@@ -29,7 +29,10 @@ import * as utilities from "./utilities";
  *         description: "allow all on secrets",
  *     }],
  * });
- * const examplePolicy = new vault.Policy("examplePolicy", {policy: examplePolicyDocument.then(examplePolicyDocument => examplePolicyDocument.hcl)});
+ * const examplePolicy = new vault.Policy("example", {
+ *     name: "example_policy",
+ *     policy: example.then(example => example.hcl),
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  */
@@ -76,7 +79,7 @@ export interface GetPolicyDocumentResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const examplePolicyDocument = vault.getPolicyDocument({
+ * const example = vault.getPolicyDocument({
  *     rules: [{
  *         path: "secret/*",
  *         capabilities: [
@@ -89,7 +92,10 @@ export interface GetPolicyDocumentResult {
  *         description: "allow all on secrets",
  *     }],
  * });
- * const examplePolicy = new vault.Policy("examplePolicy", {policy: examplePolicyDocument.then(examplePolicyDocument => examplePolicyDocument.hcl)});
+ * const examplePolicy = new vault.Policy("example", {
+ *     name: "example_policy",
+ *     policy: example.then(example => example.hcl),
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  */

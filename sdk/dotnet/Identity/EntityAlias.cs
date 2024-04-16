@@ -23,8 +23,9 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var test = new Vault.Identity.EntityAlias("test", new()
     ///     {
-    ///         CanonicalId = "49877D63-07AD-4B85-BDA8-B61626C477E8",
+    ///         Name = "user_1",
     ///         MountAccessor = "token_1f2bd5",
+    ///         CanonicalId = "49877D63-07AD-4B85-BDA8-B61626C477E8",
     ///     });
     /// 
     /// });

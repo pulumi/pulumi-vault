@@ -17,17 +17,17 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const _default = new vault.kmip.SecretBackend("default", {
- *     defaultTlsClientKeyBits: 4096,
- *     defaultTlsClientKeyType: "rsa",
- *     defaultTlsClientTtl: 86400,
+ *     path: "kmip",
  *     description: "Vault KMIP backend",
  *     listenAddrs: [
  *         "127.0.0.1:5696",
  *         "127.0.0.1:8080",
  *     ],
- *     path: "kmip",
- *     tlsCaKeyBits: 4096,
  *     tlsCaKeyType: "rsa",
+ *     tlsCaKeyBits: 4096,
+ *     defaultTlsClientKeyType: "rsa",
+ *     defaultTlsClientKeyBits: 4096,
+ *     defaultTlsClientTtl: 86400,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

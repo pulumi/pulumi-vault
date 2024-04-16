@@ -22,22 +22,25 @@ import * as utilities from "../utilities";
  * });
  * const postgres = new vault.database.SecretBackendConnection("postgres", {
  *     backend: db.path,
+ *     name: "postgres",
  *     allowedRoles: ["*"],
  *     postgresql: {
  *         connectionUrl: "postgres://username:password@host:port/database",
  *     },
  * });
  * // configure a static role with period-based rotations
- * const periodRole = new vault.database.SecretBackendStaticRole("periodRole", {
+ * const periodRole = new vault.database.SecretBackendStaticRole("period_role", {
  *     backend: db.path,
+ *     name: "my-period-role",
  *     dbName: postgres.name,
  *     username: "example",
  *     rotationPeriod: 3600,
  *     rotationStatements: ["ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';"],
  * });
  * // configure a static role with schedule-based rotations
- * const scheduleRole = new vault.database.SecretBackendStaticRole("scheduleRole", {
+ * const scheduleRole = new vault.database.SecretBackendStaticRole("schedule_role", {
  *     backend: db.path,
+ *     name: "my-schedule-role",
  *     dbName: postgres.name,
  *     username: "example",
  *     rotationSchedule: "0 0 * * SAT",

@@ -1336,14 +1336,14 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         ldap = vault.ldap.AuthBackend("ldap",
+            path="ldap",
+            url="ldaps://dc-01.example.org",
+            userdn="OU=Users,OU=Accounts,DC=example,DC=org",
+            userattr="sAMAccountName",
+            upndomain="EXAMPLE.ORG",
             discoverdn=False,
             groupdn="OU=Groups,DC=example,DC=org",
-            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
-            path="ldap",
-            upndomain="EXAMPLE.ORG",
-            url="ldaps://dc-01.example.org",
-            userattr="sAMAccountName",
-            userdn="OU=Users,OU=Accounts,DC=example,DC=org")
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1428,14 +1428,14 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         ldap = vault.ldap.AuthBackend("ldap",
+            path="ldap",
+            url="ldaps://dc-01.example.org",
+            userdn="OU=Users,OU=Accounts,DC=example,DC=org",
+            userattr="sAMAccountName",
+            upndomain="EXAMPLE.ORG",
             discoverdn=False,
             groupdn="OU=Groups,DC=example,DC=org",
-            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
-            path="ldap",
-            upndomain="EXAMPLE.ORG",
-            url="ldaps://dc-01.example.org",
-            userattr="sAMAccountName",
-            userdn="OU=Users,OU=Accounts,DC=example,DC=org")
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))")
         ```
         <!--End PulumiCodeChooser -->
 

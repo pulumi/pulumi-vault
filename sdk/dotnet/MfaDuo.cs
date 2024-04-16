@@ -31,8 +31,9 @@ namespace Pulumi.Vault
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myDuo = new Vault.MfaDuo("myDuo", new()
+    ///     var myDuo = new Vault.MfaDuo("my_duo", new()
     ///     {
+    ///         Name = "my_duo",
     ///         MountAccessor = userpass.Accessor,
     ///         SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
     ///         IntegrationKey = "BIACEUEAXI20BNWTEYXT",

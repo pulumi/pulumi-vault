@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.pkisecret.SecretBackendRootCert("test", {
- *     backend: vault_mount.pki.path,
+ *     backend: pki.path,
  *     type: "internal",
  *     commonName: "Root CA",
  *     ttl: "315360000",
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *     ou: "My OU",
  *     organization: "My organization",
  * }, {
- *     dependsOn: [vault_mount.pki],
+ *     dependsOn: [pki],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

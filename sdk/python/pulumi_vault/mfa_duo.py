@@ -336,7 +336,8 @@ class MfaDuo(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_duo = vault.MfaDuo("myDuo",
+        my_duo = vault.MfaDuo("my_duo",
+            name="my_duo",
             mount_accessor=userpass.accessor,
             secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
             integration_key="BIACEUEAXI20BNWTEYXT",
@@ -391,7 +392,8 @@ class MfaDuo(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_duo = vault.MfaDuo("myDuo",
+        my_duo = vault.MfaDuo("my_duo",
+            name="my_duo",
             mount_accessor=userpass.accessor,
             secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
             integration_key="BIACEUEAXI20BNWTEYXT",

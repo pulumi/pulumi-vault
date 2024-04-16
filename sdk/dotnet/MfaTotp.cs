@@ -25,13 +25,14 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myTotp = new Vault.MfaTotp("myTotp", new()
+    ///     var myTotp = new Vault.MfaTotp("my_totp", new()
     ///     {
+    ///         Name = "my_totp",
+    ///         Issuer = "hashicorp",
+    ///         Period = 60,
     ///         Algorithm = "SHA256",
     ///         Digits = 8,
-    ///         Issuer = "hashicorp",
     ///         KeySize = 20,
-    ///         Period = 60,
     ///     });
     /// 
     /// });

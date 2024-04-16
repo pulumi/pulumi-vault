@@ -26,8 +26,9 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var groups = new Vault.Identity.OidcScope("groups", new()
     ///     {
-    ///         Description = "Vault OIDC Groups Scope",
+    ///         Name = "groups",
     ///         Template = "{\"groups\":{{identity.entity.groups.names}}}",
+    ///         Description = "Vault OIDC Groups Scope",
     ///     });
     /// 
     /// });

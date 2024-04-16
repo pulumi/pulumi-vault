@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
+ *             .name(&#34;test&#34;)
  *             .type(&#34;external&#34;)
  *             .policies(&#34;test&#34;)
  *             .build());

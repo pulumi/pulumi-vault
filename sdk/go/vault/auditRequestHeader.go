@@ -33,7 +33,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewAuditRequestHeader(ctx, "xForwardedFor", &vault.AuditRequestHeaderArgs{
+//			_, err := vault.NewAuditRequestHeader(ctx, "x_forwarded_for", &vault.AuditRequestHeaderArgs{
+//				Name: pulumi.String("X-Forwarded-For"),
 //				Hmac: pulumi.Bool(false),
 //			})
 //			if err != nil {

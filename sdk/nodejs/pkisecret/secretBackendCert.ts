@@ -13,10 +13,11 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const app = new vault.pkisecret.SecretBackendCert("app", {
- *     backend: vault_mount.intermediate.path,
+ *     backend: intermediate.path,
+ *     name: test.name,
  *     commonName: "app.my.domain",
  * }, {
- *     dependsOn: [vault_pki_secret_backend_role.admin],
+ *     dependsOn: [admin],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -28,11 +28,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, "test", &pkiSecret.SecretBackendIntermediateCertRequestArgs{
-//				Backend:    pulumi.Any(vault_mount.Pki.Path),
+//				Backend:    pulumi.Any(pki.Path),
 //				Type:       pulumi.String("internal"),
 //				CommonName: pulumi.String("app.my.domain"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_mount.Pki,
+//				pki,
 //			}))
 //			if err != nil {
 //				return err

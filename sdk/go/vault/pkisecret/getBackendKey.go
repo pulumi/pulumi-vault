@@ -47,7 +47,7 @@ import (
 //			}
 //			_ = key.KeyId.ApplyT(func(keyId string) (pkisecret.GetBackendKeyResult, error) {
 //				return pkiSecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
-//					Backend: vault_mount.Key.Path,
+//					Backend: keyVaultMount.Path,
 //					KeyRef:  keyId,
 //				}, nil), nil
 //			}).(pkisecret.GetBackendKeyResultOutput)
