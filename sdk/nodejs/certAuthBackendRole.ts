@@ -6,6 +6,35 @@ import * as utilities from "./utilities";
 
 /**
  * Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const cert = new vault.AuthBackend("cert", {
+ *     path: "cert",
+ *     type: "cert",
+ * });
+ * const certCertAuthBackendRole = new vault.CertAuthBackendRole("cert", {
+ *     name: "foo",
+ *     certificate: std.file({
+ *         input: "/path/to/certs/ca-cert.pem",
+ *     }).then(invoke => invoke.result),
+ *     backend: cert.path,
+ *     allowedNames: [
+ *         "foo.example.org",
+ *         "baz.example.org",
+ *     ],
+ *     tokenTtl: 300,
+ *     tokenMaxTtl: 600,
+ *     tokenPolicies: ["foo"],
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class CertAuthBackendRole extends pulumi.CustomResource {
     /**

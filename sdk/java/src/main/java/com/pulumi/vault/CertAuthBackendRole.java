@@ -20,6 +20,56 @@ import javax.annotation.Nullable;
 /**
  * Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.CertAuthBackendRole;
+ * import com.pulumi.vault.CertAuthBackendRoleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cert = new AuthBackend(&#34;cert&#34;, AuthBackendArgs.builder()        
+ *             .path(&#34;cert&#34;)
+ *             .type(&#34;cert&#34;)
+ *             .build());
+ * 
+ *         var certCertAuthBackendRole = new CertAuthBackendRole(&#34;certCertAuthBackendRole&#34;, CertAuthBackendRoleArgs.builder()        
+ *             .name(&#34;foo&#34;)
+ *             .certificate(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;/path/to/certs/ca-cert.pem&#34;)
+ *                 .build()).result())
+ *             .backend(cert.path())
+ *             .allowedNames(            
+ *                 &#34;foo.example.org&#34;,
+ *                 &#34;baz.example.org&#34;)
+ *             .tokenTtl(300)
+ *             .tokenMaxTtl(600)
+ *             .tokenPolicies(&#34;foo&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  */
 @ResourceType(type="vault:index/certAuthBackendRole:CertAuthBackendRole")
 public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {

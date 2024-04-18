@@ -12,6 +12,35 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcp = new Vault.Secrets.SyncGcpDestination("gcp", new()
+    ///     {
+    ///         Name = "gcp-dest",
+    ///         ProjectId = "gcp-project-id",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         CustomTags = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// GCP Secrets sync destinations can be imported using the `name`, e.g.

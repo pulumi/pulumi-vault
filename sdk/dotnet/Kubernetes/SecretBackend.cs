@@ -12,6 +12,38 @@ namespace Pulumi.Vault.Kubernetes
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
+    ///     {
+    ///         Path = "kubernetes",
+    ///         Description = "kubernetes secrets engine description",
+    ///         DefaultLeaseTtlSeconds = 43200,
+    ///         MaxLeaseTtlSeconds = 86400,
+    ///         KubernetesHost = "https://127.0.0.1:61233",
+    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/cert",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/token",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         DisableLocalCaJwt = false,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// The Kubernetes secret backend can be imported using its `path` e.g.

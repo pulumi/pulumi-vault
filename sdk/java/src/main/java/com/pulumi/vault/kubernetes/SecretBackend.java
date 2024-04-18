@@ -22,6 +22,48 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.kubernetes.SecretBackend;
+ * import com.pulumi.vault.kubernetes.SecretBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
+ *             .path(&#34;kubernetes&#34;)
+ *             .description(&#34;kubernetes secrets engine description&#34;)
+ *             .defaultLeaseTtlSeconds(43200)
+ *             .maxLeaseTtlSeconds(86400)
+ *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
+ *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;/path/to/cert&#34;)
+ *                 .build()).result())
+ *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;/path/to/token&#34;)
+ *                 .build()).result())
+ *             .disableLocalCaJwt(false)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * The Kubernetes secret backend can be imported using its `path` e.g.

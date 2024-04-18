@@ -7,6 +7,26 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcp = new vault.secrets.SyncGcpDestination("gcp", {
+ *     name: "gcp-dest",
+ *     projectId: "gcp-project-id",
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
+ *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+ *     customTags: {
+ *         foo: "bar",
+ *     },
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * GCP Secrets sync destinations can be imported using the `name`, e.g.

@@ -6,6 +6,50 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.kubernetes.SecretBackend("config", {
+ *     path: "kubernetes",
+ *     description: "kubernetes secrets engine description",
+ *     kubernetesHost: "https://127.0.0.1:61233",
+ *     kubernetesCaCert: std.file({
+ *         input: "/path/to/cert",
+ *     }).then(invoke => invoke.result),
+ *     serviceAccountJwt: std.file({
+ *         input: "/path/to/token",
+ *     }).then(invoke => invoke.result),
+ *     disableLocalCaJwt: false,
+ * });
+ * const role = new vault.kubernetes.SecretBackendRole("role", {
+ *     backend: config.path,
+ *     name: "service-account-name-role",
+ *     allowedKubernetesNamespaces: ["*"],
+ *     tokenMaxTtl: 43200,
+ *     tokenDefaultTtl: 21600,
+ *     serviceAccountName: "test-service-account-with-generated-token",
+ *     extraLabels: {
+ *         id: "abc123",
+ *         name: "some_name",
+ *     },
+ *     extraAnnotations: {
+ *         env: "development",
+ *         location: "earth",
+ *     },
+ * });
+ * const token = vault.kubernetes.getServiceAccountTokenOutput({
+ *     backend: config.path,
+ *     role: role.name,
+ *     kubernetesNamespace: "test",
+ *     clusterRoleBinding: false,
+ *     ttl: "1h",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountTokenResult> {
 
@@ -99,6 +143,50 @@ export interface GetServiceAccountTokenResult {
 }
 /**
  * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.kubernetes.SecretBackend("config", {
+ *     path: "kubernetes",
+ *     description: "kubernetes secrets engine description",
+ *     kubernetesHost: "https://127.0.0.1:61233",
+ *     kubernetesCaCert: std.file({
+ *         input: "/path/to/cert",
+ *     }).then(invoke => invoke.result),
+ *     serviceAccountJwt: std.file({
+ *         input: "/path/to/token",
+ *     }).then(invoke => invoke.result),
+ *     disableLocalCaJwt: false,
+ * });
+ * const role = new vault.kubernetes.SecretBackendRole("role", {
+ *     backend: config.path,
+ *     name: "service-account-name-role",
+ *     allowedKubernetesNamespaces: ["*"],
+ *     tokenMaxTtl: 43200,
+ *     tokenDefaultTtl: 21600,
+ *     serviceAccountName: "test-service-account-with-generated-token",
+ *     extraLabels: {
+ *         id: "abc123",
+ *         name: "some_name",
+ *     },
+ *     extraAnnotations: {
+ *         env: "development",
+ *         location: "earth",
+ *     },
+ * });
+ * const token = vault.kubernetes.getServiceAccountTokenOutput({
+ *     backend: config.path,
+ *     role: role.name,
+ *     kubernetesNamespace: "test",
+ *     clusterRoleBinding: false,
+ *     ttl: "1h",
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountTokenResult> {
     return pulumi.output(args).apply((a: any) => getServiceAccountToken(a, opts))

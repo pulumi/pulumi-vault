@@ -14,6 +14,174 @@ namespace Pulumi.Vault.Kubernetes
     /// 
     /// Example using `service_account_name` mode:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
+    ///     {
+    ///         Path = "kubernetes",
+    ///         Description = "kubernetes secrets engine description",
+    ///         KubernetesHost = "https://127.0.0.1:61233",
+    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/cert",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/token",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         DisableLocalCaJwt = false,
+    ///     });
+    /// 
+    ///     var sa_example = new Vault.Kubernetes.SecretBackendRole("sa-example", new()
+    ///     {
+    ///         Backend = config.Path,
+    ///         Name = "service-account-name-role",
+    ///         AllowedKubernetesNamespaces = new[]
+    ///         {
+    ///             "*",
+    ///         },
+    ///         TokenMaxTtl = 43200,
+    ///         TokenDefaultTtl = 21600,
+    ///         ServiceAccountName = "test-service-account-with-generated-token",
+    ///         ExtraLabels = 
+    ///         {
+    ///             { "id", "abc123" },
+    ///             { "name", "some_name" },
+    ///         },
+    ///         ExtraAnnotations = 
+    ///         {
+    ///             { "env", "development" },
+    ///             { "location", "earth" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Example using `kubernetes_role_name` mode:
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
+    ///     {
+    ///         Path = "kubernetes",
+    ///         Description = "kubernetes secrets engine description",
+    ///         KubernetesHost = "https://127.0.0.1:61233",
+    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/cert",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/token",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         DisableLocalCaJwt = false,
+    ///     });
+    /// 
+    ///     var name_example = new Vault.Kubernetes.SecretBackendRole("name-example", new()
+    ///     {
+    ///         Backend = config.Path,
+    ///         Name = "service-account-name-role",
+    ///         AllowedKubernetesNamespaces = new[]
+    ///         {
+    ///             "*",
+    ///         },
+    ///         TokenMaxTtl = 43200,
+    ///         TokenDefaultTtl = 21600,
+    ///         KubernetesRoleName = "vault-k8s-secrets-role",
+    ///         ExtraLabels = 
+    ///         {
+    ///             { "id", "abc123" },
+    ///             { "name", "some_name" },
+    ///         },
+    ///         ExtraAnnotations = 
+    ///         {
+    ///             { "env", "development" },
+    ///             { "location", "earth" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// Example using `generated_role_rules` mode:
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Vault.Kubernetes.SecretBackend("config", new()
+    ///     {
+    ///         Path = "kubernetes",
+    ///         Description = "kubernetes secrets engine description",
+    ///         KubernetesHost = "https://127.0.0.1:61233",
+    ///         KubernetesCaCert = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/cert",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         ServiceAccountJwt = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/token",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         DisableLocalCaJwt = false,
+    ///     });
+    /// 
+    ///     var rules_example = new Vault.Kubernetes.SecretBackendRole("rules-example", new()
+    ///     {
+    ///         Backend = config.Path,
+    ///         Name = "service-account-name-role",
+    ///         AllowedKubernetesNamespaces = new[]
+    ///         {
+    ///             "*",
+    ///         },
+    ///         TokenMaxTtl = 43200,
+    ///         TokenDefaultTtl = 21600,
+    ///         KubernetesRoleType = "Role",
+    ///         GeneratedRoleRules = @"rules:
+    /// - apiGroups: [""""]
+    ///   resources: [""pods""]
+    ///   verbs: [""list""]
+    /// ",
+    ///         ExtraLabels = 
+    ///         {
+    ///             { "id", "abc123" },
+    ///             { "name", "some_name" },
+    ///         },
+    ///         ExtraAnnotations = 
+    ///         {
+    ///             { "env", "development" },
+    ///             { "location", "earth" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// The Kubernetes secret backend role can be imported using the full path to the role

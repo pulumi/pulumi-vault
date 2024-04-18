@@ -217,6 +217,27 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         Each [impersonated account](https://www.vaultproject.io/docs/secrets/gcp/index.html#impersonated-accounts) is tied to a separately managed
         Service Account.
 
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
+        gcp = vault.gcp.SecretBackend("gcp",
+            path="gcp",
+            credentials=std.file(input="credentials.json").result)
+        impersonated_account = vault.gcp.SecretImpersonatedAccount("impersonated_account",
+            backend=gcp.path,
+            impersonated_account="this",
+            service_account_email=this["email"],
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         A impersonated account can be imported using its Vault Path. For example, referencing the example above,
@@ -244,6 +265,27 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
 
         Each [impersonated account](https://www.vaultproject.io/docs/secrets/gcp/index.html#impersonated-accounts) is tied to a separately managed
         Service Account.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
+        gcp = vault.gcp.SecretBackend("gcp",
+            path="gcp",
+            credentials=std.file(input="credentials.json").result)
+        impersonated_account = vault.gcp.SecretImpersonatedAccount("impersonated_account",
+            backend=gcp.path,
+            impersonated_account="this",
+            service_account_email=this["email"],
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

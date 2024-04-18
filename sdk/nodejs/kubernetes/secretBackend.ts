@@ -7,6 +7,29 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const config = new vault.kubernetes.SecretBackend("config", {
+ *     path: "kubernetes",
+ *     description: "kubernetes secrets engine description",
+ *     defaultLeaseTtlSeconds: 43200,
+ *     maxLeaseTtlSeconds: 86400,
+ *     kubernetesHost: "https://127.0.0.1:61233",
+ *     kubernetesCaCert: std.file({
+ *         input: "/path/to/cert",
+ *     }).then(invoke => invoke.result),
+ *     serviceAccountJwt: std.file({
+ *         input: "/path/to/token",
+ *     }).then(invoke => invoke.result),
+ *     disableLocalCaJwt: false,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * The Kubernetes secret backend can be imported using its `path` e.g.

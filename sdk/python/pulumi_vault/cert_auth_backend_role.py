@@ -1033,6 +1033,31 @@ class CertAuthBackendRole(pulumi.CustomResource):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
 
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        cert = vault.AuthBackend("cert",
+            path="cert",
+            type="cert")
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("cert",
+            name="foo",
+            certificate=std.file(input="/path/to/certs/ca-cert.pem").result,
+            backend=cert.path,
+            allowed_names=[
+                "foo.example.org",
+                "baz.example.org",
+            ],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=["foo"])
+        ```
+        <!--End PulumiCodeChooser -->
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_common_names: Allowed the common names for authenticated client certificates
@@ -1105,6 +1130,31 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        cert = vault.AuthBackend("cert",
+            path="cert",
+            type="cert")
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("cert",
+            name="foo",
+            certificate=std.file(input="/path/to/certs/ca-cert.pem").result,
+            backend=cert.path,
+            allowed_names=[
+                "foo.example.org",
+                "baz.example.org",
+            ],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=["foo"])
+        ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param CertAuthBackendRoleArgs args: The arguments to use to populate this resource's properties.

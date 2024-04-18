@@ -297,6 +297,32 @@ class SecretStaticAccount(pulumi.CustomResource):
         Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
         Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
 
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
+        gcp = vault.gcp.SecretBackend("gcp",
+            path="gcp",
+            credentials=std.file(input="credentials.json").result)
+        static_account = vault.gcp.SecretStaticAccount("static_account",
+            backend=gcp.path,
+            static_account="project_viewer",
+            secret_type="access_token",
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
+            service_account_email=this["email"],
+            bindings=[vault.gcp.SecretStaticAccountBindingArgs(
+                resource=f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
+                roles=["roles/viewer"],
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         A static account can be imported using its Vault Path. For example, referencing the example above,
@@ -329,6 +355,32 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         Each [static account](https://www.vaultproject.io/docs/secrets/gcp/index.html#static-accounts) is tied to a separately managed
         Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings) associated with it.
+
+        ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
+        gcp = vault.gcp.SecretBackend("gcp",
+            path="gcp",
+            credentials=std.file(input="credentials.json").result)
+        static_account = vault.gcp.SecretStaticAccount("static_account",
+            backend=gcp.path,
+            static_account="project_viewer",
+            secret_type="access_token",
+            token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
+            service_account_email=this["email"],
+            bindings=[vault.gcp.SecretStaticAccountBindingArgs(
+                resource=f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
+                roles=["roles/viewer"],
+            )])
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

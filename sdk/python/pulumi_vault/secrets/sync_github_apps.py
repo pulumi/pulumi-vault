@@ -190,6 +190,19 @@ class SyncGithubApps(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        github_apps = vault.secrets.SyncGithubApps("github-apps",
+            name="gh-apps",
+            app_id=app_id,
+            private_key=std.file(input=privatekey_file).result)
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         GitHub Apps Secrets sync configuration endpoint can be imported using the `name`, e.g.
@@ -215,6 +228,19 @@ class SyncGithubApps(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        github_apps = vault.secrets.SyncGithubApps("github-apps",
+            name="gh-apps",
+            app_id=app_id,
+            private_key=std.file(input=privatekey_file).result)
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

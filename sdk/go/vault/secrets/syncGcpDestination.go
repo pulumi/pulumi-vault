@@ -13,6 +13,45 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: credentialsFile,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = secrets.NewSyncGcpDestination(ctx, "gcp", &secrets.SyncGcpDestinationArgs{
+//				Name:               pulumi.String("gcp-dest"),
+//				ProjectId:          pulumi.String("gcp-project-id"),
+//				Credentials:        invokeFile.Result,
+//				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
+//				CustomTags: pulumi.Map{
+//					"foo": pulumi.Any("bar"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // GCP Secrets sync destinations can be imported using the `name`, e.g.

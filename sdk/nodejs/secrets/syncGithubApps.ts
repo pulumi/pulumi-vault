@@ -7,6 +7,22 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const github_apps = new vault.secrets.SyncGithubApps("github-apps", {
+ *     name: "gh-apps",
+ *     appId: appId,
+ *     privateKey: std.file({
+ *         input: privatekeyFile,
+ *     }).then(invoke => invoke.result),
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Import
  *
  * GitHub Apps Secrets sync configuration endpoint can be imported using the `name`, e.g.

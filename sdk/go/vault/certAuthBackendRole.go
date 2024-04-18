@@ -13,6 +13,59 @@ import (
 )
 
 // Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cert, err := vault.NewAuthBackend(ctx, "cert", &vault.AuthBackendArgs{
+//				Path: pulumi.String("cert"),
+//				Type: pulumi.String("cert"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/certs/ca-cert.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewCertAuthBackendRole(ctx, "cert", &vault.CertAuthBackendRoleArgs{
+//				Name:        pulumi.String("foo"),
+//				Certificate: invokeFile.Result,
+//				Backend:     cert.Path,
+//				AllowedNames: pulumi.StringArray{
+//					pulumi.String("foo.example.org"),
+//					pulumi.String("baz.example.org"),
+//				},
+//				TokenTtl:    pulumi.Int(300),
+//				TokenMaxTtl: pulumi.Int(600),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("foo"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 type CertAuthBackendRole struct {
 	pulumi.CustomResourceState
 

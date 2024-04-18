@@ -21,6 +21,59 @@ import javax.annotation.Nullable;
  * 
  * Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
  * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.gcp.SecretBackend;
+ * import com.pulumi.vault.gcp.SecretBackendArgs;
+ * import com.pulumi.vault.gcp.SecretRoleset;
+ * import com.pulumi.vault.gcp.SecretRolesetArgs;
+ * import com.pulumi.vault.gcp.inputs.SecretRolesetBindingArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var project = &#34;my-awesome-project&#34;;
+ * 
+ *         var gcp = new SecretBackend(&#34;gcp&#34;, SecretBackendArgs.builder()        
+ *             .path(&#34;gcp&#34;)
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;credentials.json&#34;)
+ *                 .build()).result())
+ *             .build());
+ * 
+ *         var roleset = new SecretRoleset(&#34;roleset&#34;, SecretRolesetArgs.builder()        
+ *             .backend(gcp.path())
+ *             .roleset(&#34;project_viewer&#34;)
+ *             .secretType(&#34;access_token&#34;)
+ *             .project(project)
+ *             .tokenScopes(&#34;https://www.googleapis.com/auth/cloud-platform&#34;)
+ *             .bindings(SecretRolesetBindingArgs.builder()
+ *                 .resource(String.format(&#34;//cloudresourcemanager.googleapis.com/projects/%s&#34;, project))
+ *                 .roles(&#34;roles/viewer&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * A roleset can be imported using its Vault Path. For example, referencing the example above,

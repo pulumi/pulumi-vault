@@ -16,6 +16,206 @@ import (
 //
 // Example using `serviceAccountName` mode:
 //
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/cert",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/token",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+//				Path:              pulumi.String("kubernetes"),
+//				Description:       pulumi.String("kubernetes secrets engine description"),
+//				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
+//				KubernetesCaCert:  invokeFile.Result,
+//				ServiceAccountJwt: invokeFile1.Result,
+//				DisableLocalCaJwt: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewSecretBackendRole(ctx, "sa-example", &kubernetes.SecretBackendRoleArgs{
+//				Backend: config.Path,
+//				Name:    pulumi.String("service-account-name-role"),
+//				AllowedKubernetesNamespaces: pulumi.StringArray{
+//					pulumi.String("*"),
+//				},
+//				TokenMaxTtl:        pulumi.Int(43200),
+//				TokenDefaultTtl:    pulumi.Int(21600),
+//				ServiceAccountName: pulumi.String("test-service-account-with-generated-token"),
+//				ExtraLabels: pulumi.StringMap{
+//					"id":   pulumi.String("abc123"),
+//					"name": pulumi.String("some_name"),
+//				},
+//				ExtraAnnotations: pulumi.StringMap{
+//					"env":      pulumi.String("development"),
+//					"location": pulumi.String("earth"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// Example using `kubernetesRoleName` mode:
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/cert",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/token",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+//				Path:              pulumi.String("kubernetes"),
+//				Description:       pulumi.String("kubernetes secrets engine description"),
+//				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
+//				KubernetesCaCert:  invokeFile.Result,
+//				ServiceAccountJwt: invokeFile1.Result,
+//				DisableLocalCaJwt: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewSecretBackendRole(ctx, "name-example", &kubernetes.SecretBackendRoleArgs{
+//				Backend: config.Path,
+//				Name:    pulumi.String("service-account-name-role"),
+//				AllowedKubernetesNamespaces: pulumi.StringArray{
+//					pulumi.String("*"),
+//				},
+//				TokenMaxTtl:        pulumi.Int(43200),
+//				TokenDefaultTtl:    pulumi.Int(21600),
+//				KubernetesRoleName: pulumi.String("vault-k8s-secrets-role"),
+//				ExtraLabels: pulumi.StringMap{
+//					"id":   pulumi.String("abc123"),
+//					"name": pulumi.String("some_name"),
+//				},
+//				ExtraAnnotations: pulumi.StringMap{
+//					"env":      pulumi.String("development"),
+//					"location": pulumi.String("earth"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// Example using `generatedRoleRules` mode:
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/cert",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/token",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			config, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+//				Path:              pulumi.String("kubernetes"),
+//				Description:       pulumi.String("kubernetes secrets engine description"),
+//				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
+//				KubernetesCaCert:  invokeFile.Result,
+//				ServiceAccountJwt: invokeFile1.Result,
+//				DisableLocalCaJwt: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewSecretBackendRole(ctx, "rules-example", &kubernetes.SecretBackendRoleArgs{
+//				Backend: config.Path,
+//				Name:    pulumi.String("service-account-name-role"),
+//				AllowedKubernetesNamespaces: pulumi.StringArray{
+//					pulumi.String("*"),
+//				},
+//				TokenMaxTtl:        pulumi.Int(43200),
+//				TokenDefaultTtl:    pulumi.Int(21600),
+//				KubernetesRoleType: pulumi.String("Role"),
+//				GeneratedRoleRules: pulumi.String("rules:\n- apiGroups: [\"\"]\n  resources: [\"pods\"]\n  verbs: [\"list\"]\n"),
+//				ExtraLabels: pulumi.StringMap{
+//					"id":   pulumi.String("abc123"),
+//					"name": pulumi.String("some_name"),
+//				},
+//				ExtraAnnotations: pulumi.StringMap{
+//					"env":      pulumi.String("development"),
+//					"location": pulumi.String("earth"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // # The Kubernetes secret backend role can be imported using the full path to the role

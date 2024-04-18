@@ -17,6 +17,60 @@ import (
 // Each [impersonated account](https://www.vaultproject.io/docs/secrets/gcp/index.html#impersonated-accounts) is tied to a separately managed
 // Service Account.
 //
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-google/sdk/v1/go/google"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := index.NewServiceAccount(ctx, "this", &index.ServiceAccountArgs{
+//				AccountId: "my-awesome-account",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "credentials.json",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//				Path:        pulumi.String("gcp"),
+//				Credentials: invokeFile.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gcp.NewSecretImpersonatedAccount(ctx, "impersonated_account", &gcp.SecretImpersonatedAccountArgs{
+//				Backend:             gcp.Path,
+//				ImpersonatedAccount: pulumi.String("this"),
+//				ServiceAccountEmail: this.Email,
+//				TokenScopes: pulumi.StringArray{
+//					pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // A impersonated account can be imported using its Vault Path. For example, referencing the example above,

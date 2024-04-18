@@ -16,6 +16,65 @@ import (
 //
 // Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
 //
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project := "my-awesome-project"
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "credentials.json",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//				Path:        pulumi.String("gcp"),
+//				Credentials: invokeFile.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gcp.NewSecretRoleset(ctx, "roleset", &gcp.SecretRolesetArgs{
+//				Backend:    gcp.Path,
+//				Roleset:    pulumi.String("project_viewer"),
+//				SecretType: pulumi.String("access_token"),
+//				Project:    pulumi.String(project),
+//				TokenScopes: pulumi.StringArray{
+//					pulumi.String("https://www.googleapis.com/auth/cloud-platform"),
+//				},
+//				Bindings: gcp.SecretRolesetBindingArray{
+//					&gcp.SecretRolesetBindingArgs{
+//						Resource: pulumi.String(fmt.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", project)),
+//						Roles: pulumi.StringArray{
+//							pulumi.String("roles/viewer"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // A roleset can be imported using its Vault Path. For example, referencing the example above,

@@ -14,6 +14,41 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: privatekeyFile,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = secrets.NewSyncGithubApps(ctx, "github-apps", &secrets.SyncGithubAppsArgs{
+//				Name:       pulumi.String("gh-apps"),
+//				AppId:      pulumi.Any(appId),
+//				PrivateKey: invokeFile.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // GitHub Apps Secrets sync configuration endpoint can be imported using the `name`, e.g.

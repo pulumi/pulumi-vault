@@ -14,6 +14,56 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// Each Roleset is [tied](https://www.vaultproject.io/docs/secrets/gcp/index.html#service-accounts-are-tied-to-rolesets) to a Service Account, and can have one or more [bindings](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings) associated with it.
     /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = "my-awesome-project";
+    /// 
+    ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
+    ///     {
+    ///         Path = "gcp",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "credentials.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     });
+    /// 
+    ///     var roleset = new Vault.Gcp.SecretRoleset("roleset", new()
+    ///     {
+    ///         Backend = gcp.Path,
+    ///         Roleset = "project_viewer",
+    ///         SecretType = "access_token",
+    ///         Project = project,
+    ///         TokenScopes = new[]
+    ///         {
+    ///             "https://www.googleapis.com/auth/cloud-platform",
+    ///         },
+    ///         Bindings = new[]
+    ///         {
+    ///             new Vault.Gcp.Inputs.SecretRolesetBindingArgs
+    ///             {
+    ///                 Resource = $"//cloudresourcemanager.googleapis.com/projects/{project}",
+    ///                 Roles = new[]
+    ///                 {
+    ///                     "roles/viewer",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// A roleset can be imported using its Vault Path. For example, referencing the example above,

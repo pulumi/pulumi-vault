@@ -12,6 +12,30 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var github_apps = new Vault.Secrets.SyncGithubApps("github-apps", new()
+    ///     {
+    ///         Name = "gh-apps",
+    ///         AppId = appId,
+    ///         PrivateKey = Std.File.Invoke(new()
+    ///         {
+    ///             Input = privatekeyFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// GitHub Apps Secrets sync configuration endpoint can be imported using the `name`, e.g.

@@ -20,6 +20,43 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGcpDestination;
+ * import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcp = new SyncGcpDestination(&#34;gcp&#34;, SyncGcpDestinationArgs.builder()        
+ *             .name(&#34;gcp-dest&#34;)
+ *             .projectId(&#34;gcp-project-id&#34;)
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
+ *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
+ *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * GCP Secrets sync destinations can be imported using the `name`, e.g.

@@ -319,6 +319,23 @@ class SyncGcpDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp = vault.secrets.SyncGcpDestination("gcp",
+            name="gcp-dest",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            custom_tags={
+                "foo": "bar",
+            })
+        ```
+        <!--End PulumiCodeChooser -->
+
         ## Import
 
         GCP Secrets sync destinations can be imported using the `name`, e.g.
@@ -354,6 +371,23 @@ class SyncGcpDestination(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        <!--Start PulumiCodeChooser -->
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp = vault.secrets.SyncGcpDestination("gcp",
+            name="gcp-dest",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            custom_tags={
+                "foo": "bar",
+            })
+        ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

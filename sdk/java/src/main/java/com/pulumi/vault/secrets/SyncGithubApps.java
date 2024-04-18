@@ -19,6 +19,41 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGithubApps;
+ * import com.pulumi.vault.secrets.SyncGithubAppsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var github_apps = new SyncGithubApps(&#34;github-apps&#34;, SyncGithubAppsArgs.builder()        
+ *             .name(&#34;gh-apps&#34;)
+ *             .appId(appId)
+ *             .privateKey(StdFunctions.file(FileArgs.builder()
+ *                 .input(privatekeyFile)
+ *                 .build()).result())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * GitHub Apps Secrets sync configuration endpoint can be imported using the `name`, e.g.
