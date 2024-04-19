@@ -186,7 +186,6 @@ class SecretScope(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -199,7 +198,6 @@ class SecretScope(pulumi.CustomResource):
             scope="dev",
             force=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -233,7 +231,6 @@ class SecretScope(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -246,7 +243,6 @@ class SecretScope(pulumi.CustomResource):
             scope="dev",
             force=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

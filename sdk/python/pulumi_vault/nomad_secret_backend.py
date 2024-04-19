@@ -571,7 +571,6 @@ class NomadSecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -586,7 +585,6 @@ class NomadSecretBackend(pulumi.CustomResource):
             token="ae20ceaa-...",
             ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -633,7 +631,6 @@ class NomadSecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -648,7 +645,6 @@ class NomadSecretBackend(pulumi.CustomResource):
             token="ae20ceaa-...",
             ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

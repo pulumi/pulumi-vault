@@ -18,7 +18,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -63,7 +62,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDecodeResult> InvokeAsync(GetDecodeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithDefaults());
@@ -75,7 +73,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -120,7 +117,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithDefaults());

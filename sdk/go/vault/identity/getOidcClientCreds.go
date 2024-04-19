@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetOidcClientCreds(ctx *pulumi.Context, args *GetOidcClientCredsArgs, opts ...pulumi.InvokeOption) (*GetOidcClientCredsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcClientCredsResult

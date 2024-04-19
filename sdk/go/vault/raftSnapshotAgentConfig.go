@@ -15,7 +15,6 @@ import (
 // ## Example Usage
 //
 // ### Local Storage
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,10 +42,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### AWS S3
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -87,11 +84,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Azure BLOB
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -125,7 +120,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

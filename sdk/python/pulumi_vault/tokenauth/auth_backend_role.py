@@ -750,7 +750,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -769,7 +768,6 @@ class AuthBackendRole(pulumi.CustomResource):
             token_explicit_max_ttl=115200,
             token_period=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -835,7 +833,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -854,7 +851,6 @@ class AuthBackendRole(pulumi.CustomResource):
             token_explicit_max_ttl=115200,
             token_period=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

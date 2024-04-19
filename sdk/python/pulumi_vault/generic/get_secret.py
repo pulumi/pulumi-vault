@@ -162,14 +162,12 @@ def get_secret(namespace: Optional[str] = None,
 
     ### Generic secret
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.
@@ -221,14 +219,12 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
 
     ### Generic secret
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.

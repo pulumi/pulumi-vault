@@ -110,29 +110,24 @@ def get_namespace(namespace: Optional[str] = None,
 
     ### Current namespace
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     current = vault.get_namespace()
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Single namespace
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     ns1 = vault.get_namespace(path="ns1")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Nested namespace
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -143,7 +138,6 @@ def get_namespace(namespace: Optional[str] = None,
     # -> foo/parent/child/
     path_fq = child.path_fq
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace to provision the resource in.
@@ -178,29 +172,24 @@ def get_namespace_output(namespace: Optional[pulumi.Input[Optional[str]]] = None
 
     ### Current namespace
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     current = vault.get_namespace()
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Single namespace
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     ns1 = vault.get_namespace(path="ns1")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Nested namespace
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -211,7 +200,6 @@ def get_namespace_output(namespace: Optional[pulumi.Input[Optional[str]]] = None
     # -> foo/parent/child/
     path_fq = child.path_fq
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace to provision the resource in.

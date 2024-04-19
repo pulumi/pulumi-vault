@@ -181,7 +181,6 @@ class BackendConfigCluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -197,7 +196,6 @@ class BackendConfigCluster(pulumi.CustomResource):
             path="http://127.0.0.1:8200/v1/pki-root",
             aia_path="http://127.0.0.1:8200/v1/pki-root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -230,7 +228,6 @@ class BackendConfigCluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -246,7 +243,6 @@ class BackendConfigCluster(pulumi.CustomResource):
             path="http://127.0.0.1:8200/v1/pki-root",
             aia_path="http://127.0.0.1:8200/v1/pki-root")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

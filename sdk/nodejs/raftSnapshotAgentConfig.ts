@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Local Storage
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,10 +20,8 @@ import * as utilities from "./utilities";
  *     storageType: "local",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### AWS S3
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -46,11 +43,9 @@ import * as utilities from "./utilities";
  *     awsS3EnableKms: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Azure BLOB
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -68,7 +63,6 @@ import * as utilities from "./utilities";
  *     azureAccountKey: azureAccountKey,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

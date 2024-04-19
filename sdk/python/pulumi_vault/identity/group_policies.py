@@ -214,7 +214,6 @@ class GroupPolicies(pulumi.CustomResource):
 
         ### Exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -233,11 +232,9 @@ class GroupPolicies(pulumi.CustomResource):
             exclusive=True,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -260,7 +257,6 @@ class GroupPolicies(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -289,7 +285,6 @@ class GroupPolicies(pulumi.CustomResource):
 
         ### Exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -308,11 +303,9 @@ class GroupPolicies(pulumi.CustomResource):
             exclusive=True,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -335,7 +328,6 @@ class GroupPolicies(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GroupPoliciesArgs args: The arguments to use to populate this resource's properties.

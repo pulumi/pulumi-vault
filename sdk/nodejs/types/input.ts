@@ -3111,11 +3111,9 @@ export namespace ssh {
          *
          * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
          *
-         * <!--Start PulumiCodeChooser -->
          * ```typescript
          * import * as pulumi from "@pulumi/pulumi";
          * ```
-         * <!--End PulumiCodeChooser -->
          */
         lengths: pulumi.Input<pulumi.Input<number>[]>;
         /**

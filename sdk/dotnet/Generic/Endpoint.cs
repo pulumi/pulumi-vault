@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Generic
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -39,7 +38,7 @@ namespace Pulumi.Vault.Generic
     ///     {
     ///         DependsOn =
     ///         {
-    ///             userpass, 
+    ///             userpass,
     ///         },
     ///     });
     /// 
@@ -56,7 +55,7 @@ namespace Pulumi.Vault.Generic
     ///     {
     ///         DependsOn =
     ///         {
-    ///             u1, 
+    ///             u1,
     ///         },
     ///     });
     /// 
@@ -79,7 +78,7 @@ namespace Pulumi.Vault.Generic
     ///     {
     ///         DependsOn =
     ///         {
-    ///             u1Token, 
+    ///             u1Token,
     ///         },
     ///     });
     /// 
@@ -89,7 +88,6 @@ namespace Pulumi.Vault.Generic
     ///     };
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Required Vault Capabilities
     /// 

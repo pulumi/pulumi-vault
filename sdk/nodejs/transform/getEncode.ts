@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -39,7 +38,6 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getEncode(args: GetEncodeArgs, opts?: pulumi.InvokeOptions): Promise<GetEncodeResult> {
 
@@ -127,7 +125,6 @@ export interface GetEncodeResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -155,7 +152,6 @@ export interface GetEncodeResult {
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
     return pulumi.output(args).apply((a: any) => getEncode(a, opts))

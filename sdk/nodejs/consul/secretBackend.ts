@@ -8,7 +8,6 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * ### Creating a standard backend resource:
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,10 +19,8 @@ import * as utilities from "../utilities";
  *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Creating a backend resource to bootstrap a new Consul instance:
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -35,7 +32,6 @@ import * as utilities from "../utilities";
  *     path: "consul",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

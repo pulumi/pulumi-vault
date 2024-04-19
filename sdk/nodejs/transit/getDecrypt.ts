@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,7 +19,6 @@ import * as utilities from "../utilities";
  *     key: "test",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): Promise<GetDecryptResult> {
 
@@ -80,7 +78,6 @@ export interface GetDecryptResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -91,7 +88,6 @@ export interface GetDecryptResult {
  *     key: "test",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecryptResult> {
     return pulumi.output(args).apply((a: any) => getDecrypt(a, opts))

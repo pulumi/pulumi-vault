@@ -1114,7 +1114,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         ## Example Usage
 
         ### Local Storage
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1126,10 +1125,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             retain=7,
             storage_type="local")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### AWS S3
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1150,11 +1147,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_enable_kms=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Azure BLOB
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1171,7 +1166,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             azure_account_name=azure_account_name,
             azure_account_key=azure_account_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1261,7 +1255,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         ## Example Usage
 
         ### Local Storage
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1273,10 +1266,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             retain=7,
             storage_type="local")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### AWS S3
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1297,11 +1288,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_enable_kms=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Azure BLOB
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1318,7 +1307,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             azure_account_name=azure_account_name,
             azure_account_key=azure_account_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

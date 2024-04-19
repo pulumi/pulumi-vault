@@ -359,7 +359,6 @@ class MfaPingid(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -374,7 +373,6 @@ class MfaPingid(pulumi.CustomResource):
             username_format="user@example.com",
             settings_file_base64=settings_file)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -416,7 +414,6 @@ class MfaPingid(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -431,7 +428,6 @@ class MfaPingid(pulumi.CustomResource):
             username_format="user@example.com",
             settings_file_base64=settings_file)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

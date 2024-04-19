@@ -183,7 +183,6 @@ class OidcAssignment(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -199,7 +198,6 @@ class OidcAssignment(pulumi.CustomResource):
             entity_ids=[test.id],
             group_ids=[internal.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -231,7 +229,6 @@ class OidcAssignment(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -247,7 +244,6 @@ class OidcAssignment(pulumi.CustomResource):
             entity_ids=[test.id],
             group_ids=[internal.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

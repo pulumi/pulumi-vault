@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -25,7 +24,6 @@ import * as utilities from "../utilities";
  *     alphabet: "0123456789",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Alphabet extends pulumi.CustomResource {
     /**

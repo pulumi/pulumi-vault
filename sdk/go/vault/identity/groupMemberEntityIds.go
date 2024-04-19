@@ -18,7 +18,6 @@ import (
 //
 // ### Exclusive Member Entities
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -60,11 +59,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Non-exclusive Member Entities
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -125,7 +122,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type GroupMemberEntityIds struct {
 	pulumi.CustomResourceState
 

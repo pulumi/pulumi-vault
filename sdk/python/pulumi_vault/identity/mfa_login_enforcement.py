@@ -316,7 +316,6 @@ class MfaLoginEnforcement(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -328,7 +327,6 @@ class MfaLoginEnforcement(pulumi.CustomResource):
             push_info="push-info")
         example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", mfa_method_ids=[example_mfa_duo.method_id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -359,7 +357,6 @@ class MfaLoginEnforcement(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -371,7 +368,6 @@ class MfaLoginEnforcement(pulumi.CustomResource):
             push_info="push-info")
         example_mfa_login_enforcement = vault.identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", mfa_method_ids=[example_mfa_duo.method_id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

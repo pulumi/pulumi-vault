@@ -231,7 +231,6 @@ class SecretCreds(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -248,7 +247,6 @@ class SecretCreds(pulumi.CustomResource):
             backend=test.backend,
             role=example.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -268,7 +266,6 @@ class SecretCreds(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -285,7 +282,6 @@ class SecretCreds(pulumi.CustomResource):
             backend=test.backend,
             role=example.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretCredsArgs args: The arguments to use to populate this resource's properties.

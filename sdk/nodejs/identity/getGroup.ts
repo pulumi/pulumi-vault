@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -16,7 +15,6 @@ import * as utilities from "../utilities";
  *     groupName: "user",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *
@@ -165,7 +163,6 @@ export interface GetGroupResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -174,7 +171,6 @@ export interface GetGroupResult {
  *     groupName: "user",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *

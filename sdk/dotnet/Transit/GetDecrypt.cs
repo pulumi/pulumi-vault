@@ -16,7 +16,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithDefaults());
@@ -44,7 +42,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,7 +59,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDecryptResult> Invoke(GetDecryptInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithDefaults());

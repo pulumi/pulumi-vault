@@ -591,7 +591,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         Example using `service_account_name` mode:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -618,11 +617,9 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         Example using `kubernetes_role_name` mode:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -649,11 +646,9 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         Example using `generated_role_rules` mode:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -685,7 +680,6 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -748,7 +742,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         Example using `service_account_name` mode:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -775,11 +768,9 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         Example using `kubernetes_role_name` mode:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -806,11 +797,9 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         Example using `generated_role_rules` mode:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -842,7 +831,6 @@ class SecretBackendRole(pulumi.CustomResource):
                 "location": "earth",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

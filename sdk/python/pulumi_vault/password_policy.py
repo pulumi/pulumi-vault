@@ -150,7 +150,6 @@ class PasswordPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -162,7 +161,6 @@ class PasswordPolicy(pulumi.CustomResource):
           
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -194,7 +192,6 @@ class PasswordPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -206,7 +203,6 @@ class PasswordPolicy(pulumi.CustomResource):
           
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

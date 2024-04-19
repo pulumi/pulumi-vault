@@ -373,7 +373,6 @@ class OidcClient(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -391,7 +390,6 @@ class OidcClient(pulumi.CustomResource):
             id_token_ttl=2400,
             access_token_ttl=7200)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -433,7 +431,6 @@ class OidcClient(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -451,7 +448,6 @@ class OidcClient(pulumi.CustomResource):
             id_token_ttl=2400,
             access_token_ttl=7200)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

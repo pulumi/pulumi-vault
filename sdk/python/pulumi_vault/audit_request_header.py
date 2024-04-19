@@ -142,14 +142,12 @@ class AuditRequestHeader(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         x_forwarded_for = vault.AuditRequestHeader("xForwardedFor", hmac=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -173,14 +171,12 @@ class AuditRequestHeader(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         x_forwarded_for = vault.AuditRequestHeader("xForwardedFor", hmac=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AuditRequestHeaderArgs args: The arguments to use to populate this resource's properties.

@@ -445,7 +445,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -457,7 +456,6 @@ class AuthBackend(pulumi.CustomResource):
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
             path="saml")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -505,7 +503,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -517,7 +514,6 @@ class AuthBackend(pulumi.CustomResource):
             idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
             path="saml")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

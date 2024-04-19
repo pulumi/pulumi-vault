@@ -255,7 +255,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -282,7 +281,6 @@ class SecretBackendRole(pulumi.CustomResource):
                 host="/",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -315,7 +313,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -342,7 +339,6 @@ class SecretBackendRole(pulumi.CustomResource):
                 host="/",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

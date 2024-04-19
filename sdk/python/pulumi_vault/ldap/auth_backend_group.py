@@ -189,7 +189,6 @@ class AuthBackendGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -208,7 +207,6 @@ class AuthBackendGroup(pulumi.CustomResource):
             policies=["dba"],
             backend=ldap.path)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -241,7 +239,6 @@ class AuthBackendGroup(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -260,7 +257,6 @@ class AuthBackendGroup(pulumi.CustomResource):
             policies=["dba"],
             backend=ldap.path)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

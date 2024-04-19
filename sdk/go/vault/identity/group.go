@@ -19,7 +19,6 @@ import (
 //
 // ### Internal Group
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,11 +49,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### External Group
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -84,7 +81,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Caveats
 //
@@ -92,7 +88,6 @@ import (
 // Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
 //
 // This sort of pattern should be avoided:
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -136,7 +131,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

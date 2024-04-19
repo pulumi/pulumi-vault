@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,7 +78,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetServiceAccountToken(ctx *pulumi.Context, args *GetServiceAccountTokenArgs, opts ...pulumi.InvokeOption) (*GetServiceAccountTokenResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServiceAccountTokenResult

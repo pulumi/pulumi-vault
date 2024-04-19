@@ -190,7 +190,6 @@ class SyncGithubApps(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -199,7 +198,6 @@ class SyncGithubApps(pulumi.CustomResource):
             app_id=var["app_id"],
             private_key=(lambda path: open(path).read())(var["privatekey_file"]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -227,7 +225,6 @@ class SyncGithubApps(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -236,7 +233,6 @@ class SyncGithubApps(pulumi.CustomResource):
             app_id=var["app_id"],
             private_key=(lambda path: open(path).read())(var["privatekey_file"]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

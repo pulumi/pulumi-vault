@@ -1073,7 +1073,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1092,7 +1091,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
             organization="My organization",
             opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1143,7 +1141,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1162,7 +1159,6 @@ class SecretBackendRootCert(pulumi.CustomResource):
             organization="My organization",
             opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRootCertArgs args: The arguments to use to populate this resource's properties.

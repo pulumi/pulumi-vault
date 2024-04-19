@@ -15,7 +15,6 @@ import (
 // ## Example Usage
 //
 // ### Creating a standard backend resource:
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,10 +41,8 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Creating a backend resource to bootstrap a new Consul instance:
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -72,7 +69,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

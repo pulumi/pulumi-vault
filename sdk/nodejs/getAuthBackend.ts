@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -16,7 +15,6 @@ import * as utilities from "./utilities";
  *     path: "userpass",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuthBackend(args: GetAuthBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendResult> {
 
@@ -86,7 +84,6 @@ export interface GetAuthBackendResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -95,7 +92,6 @@ export interface GetAuthBackendResult {
  *     path: "userpass",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuthBackendOutput(args: GetAuthBackendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendResult> {
     return pulumi.output(args).apply((a: any) => getAuthBackend(a, opts))

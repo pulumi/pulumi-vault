@@ -353,7 +353,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -363,7 +362,6 @@ class SecretBackend(pulumi.CustomResource):
             description="Manages the Terraform Cloud backend",
             token="V0idfhi2iksSDU234ucdbi2nidsi...")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -399,7 +397,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -409,7 +406,6 @@ class SecretBackend(pulumi.CustomResource):
             description="Manages the Terraform Cloud backend",
             token="V0idfhi2iksSDU234ucdbi2nidsi...")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -1139,7 +1139,6 @@ class SecretsMount(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1177,7 +1176,6 @@ class SecretsMount(pulumi.CustomResource):
                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \\"{{name}}\\";",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1249,7 +1247,6 @@ class SecretsMount(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1287,7 +1284,6 @@ class SecretsMount(pulumi.CustomResource):
                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \\"{{name}}\\";",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

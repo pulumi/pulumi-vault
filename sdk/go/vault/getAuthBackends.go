@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,9 +34,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -61,7 +58,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetAuthBackends(ctx *pulumi.Context, args *GetAuthBackendsArgs, opts ...pulumi.InvokeOption) (*GetAuthBackendsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthBackendsResult

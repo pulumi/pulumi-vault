@@ -1189,7 +1189,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         Role for JWT backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1210,11 +1209,9 @@ class AuthBackendRole(pulumi.CustomResource):
             user_claim="https://vault/user",
             role_type="jwt")
         ```
-        <!--End PulumiCodeChooser -->
 
         Role for OIDC backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1234,7 +1231,6 @@ class AuthBackendRole(pulumi.CustomResource):
             role_type="oidc",
             allowed_redirect_uris=["http://localhost:8200/ui/vault/auth/oidc/oidc/callback"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1339,7 +1335,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         Role for JWT backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1360,11 +1355,9 @@ class AuthBackendRole(pulumi.CustomResource):
             user_claim="https://vault/user",
             role_type="jwt")
         ```
-        <!--End PulumiCodeChooser -->
 
         Role for OIDC backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1384,7 +1377,6 @@ class AuthBackendRole(pulumi.CustomResource):
             role_type="oidc",
             allowed_redirect_uris=["http://localhost:8200/ui/vault/auth/oidc/oidc/callback"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

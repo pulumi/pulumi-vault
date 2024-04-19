@@ -900,7 +900,6 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -914,7 +913,6 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             organization="My organization",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_intermediate_cert_request["intermediate"]]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -959,7 +957,6 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -973,7 +970,6 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             organization="My organization",
             opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_intermediate_cert_request["intermediate"]]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendRootSignIntermediateArgs args: The arguments to use to populate this resource's properties.

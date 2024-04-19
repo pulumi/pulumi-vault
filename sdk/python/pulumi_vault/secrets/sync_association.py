@@ -224,7 +224,6 @@ class SyncAssociation(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -253,7 +252,6 @@ class SyncAssociation(pulumi.CustomResource):
             mount=kvv2.path,
             secret_name=token.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,7 +272,6 @@ class SyncAssociation(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -303,7 +300,6 @@ class SyncAssociation(pulumi.CustomResource):
             mount=kvv2.path,
             secret_name=token.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SyncAssociationArgs args: The arguments to use to populate this resource's properties.

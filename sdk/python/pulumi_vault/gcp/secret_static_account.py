@@ -299,7 +299,6 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -320,7 +319,6 @@ class SecretStaticAccount(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +355,6 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -378,7 +375,6 @@ class SecretStaticAccount(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

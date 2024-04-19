@@ -9,20 +9,17 @@ import * as utilities from "./utilities";
  *
  * ### Child namespaces
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const children = vault.getNamespaces({});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Nested namespace
  *
  * To fetch the details of nested namespaces:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -35,7 +32,6 @@ import * as utilities from "./utilities";
  *     path: __key,
  * })));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNamespaces(args?: GetNamespacesArgs, opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
     args = args || {};
@@ -77,20 +73,17 @@ export interface GetNamespacesResult {
  *
  * ### Child namespaces
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const children = vault.getNamespaces({});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Nested namespace
  *
  * To fetch the details of nested namespaces:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -103,7 +96,6 @@ export interface GetNamespacesResult {
  *     path: __key,
  * })));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNamespacesOutput(args?: GetNamespacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespacesResult> {
     return pulumi.output(args).apply((a: any) => getNamespaces(a, opts))

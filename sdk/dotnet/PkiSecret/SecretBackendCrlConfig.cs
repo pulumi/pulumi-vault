@@ -14,7 +14,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -40,7 +39,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig")]
     public partial class SecretBackendCrlConfig : global::Pulumi.CustomResource

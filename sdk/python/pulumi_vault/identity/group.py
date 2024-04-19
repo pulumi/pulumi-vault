@@ -416,7 +416,6 @@ class Group(pulumi.CustomResource):
 
         ### Internal Group
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -431,11 +430,9 @@ class Group(pulumi.CustomResource):
             ],
             type="internal")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### External Group
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -447,7 +444,6 @@ class Group(pulumi.CustomResource):
             policies=["test"],
             type="external")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Caveats
 
@@ -455,7 +451,6 @@ class Group(pulumi.CustomResource):
         Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
 
         This sort of pattern should be avoided:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -479,7 +474,6 @@ class Group(pulumi.CustomResource):
             ],
             type="internal")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -528,7 +522,6 @@ class Group(pulumi.CustomResource):
 
         ### Internal Group
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -543,11 +536,9 @@ class Group(pulumi.CustomResource):
             ],
             type="internal")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### External Group
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -559,7 +550,6 @@ class Group(pulumi.CustomResource):
             policies=["test"],
             type="external")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Caveats
 
@@ -567,7 +557,6 @@ class Group(pulumi.CustomResource):
         Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
 
         This sort of pattern should be avoided:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -591,7 +580,6 @@ class Group(pulumi.CustomResource):
             ],
             type="internal")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

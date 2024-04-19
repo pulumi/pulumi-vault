@@ -500,7 +500,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -514,7 +513,6 @@ class AuthBackend(pulumi.CustomResource):
                 compute="compute.googleapis.com",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -562,7 +560,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -576,7 +573,6 @@ class AuthBackend(pulumi.CustomResource):
                 compute="compute.googleapis.com",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

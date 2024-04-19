@@ -14,7 +14,6 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -52,7 +51,6 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNomadAccessTokenResult> InvokeAsync(GetNomadAccessTokenArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenArgs(), options.WithDefaults());
@@ -60,7 +58,6 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -98,7 +95,6 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());

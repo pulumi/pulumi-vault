@@ -21,7 +21,6 @@ type SecretBackendRoleAllowedUserKeyConfig struct {
 	//
 	// Example configuration blocks that might be included in the `ssh.SecretBackendRole`
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -35,7 +34,6 @@ type SecretBackendRoleAllowedUserKeyConfig struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Lengths []int `pulumi:"lengths"`
 	// The SSH public key type.\
 	// *Supported key types are:*
@@ -63,7 +61,6 @@ type SecretBackendRoleAllowedUserKeyConfigArgs struct {
 	//
 	// Example configuration blocks that might be included in the `ssh.SecretBackendRole`
 	//
-	// <!--Start PulumiCodeChooser -->
 	// ```go
 	// package main
 	//
@@ -77,7 +74,6 @@ type SecretBackendRoleAllowedUserKeyConfigArgs struct {
 	// 	})
 	// }
 	// ```
-	// <!--End PulumiCodeChooser -->
 	Lengths pulumi.IntArrayInput `pulumi:"lengths"`
 	// The SSH public key type.\
 	// *Supported key types are:*
@@ -144,7 +140,6 @@ func (o SecretBackendRoleAllowedUserKeyConfigOutput) ToSecretBackendRoleAllowedU
 //
 // Example configuration blocks that might be included in the `ssh.SecretBackendRole`
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -161,7 +156,6 @@ func (o SecretBackendRoleAllowedUserKeyConfigOutput) ToSecretBackendRoleAllowedU
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func (o SecretBackendRoleAllowedUserKeyConfigOutput) Lengths() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecretBackendRoleAllowedUserKeyConfig) []int { return v.Lengths }).(pulumi.IntArrayOutput)
 }

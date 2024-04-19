@@ -378,7 +378,6 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -388,7 +387,6 @@ class MfaDuo(pulumi.CustomResource):
             integration_key="secret-int-key",
             secret_key="secret-key")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -419,7 +417,6 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -429,7 +426,6 @@ class MfaDuo(pulumi.CustomResource):
             integration_key="secret-int-key",
             secret_key="secret-key")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

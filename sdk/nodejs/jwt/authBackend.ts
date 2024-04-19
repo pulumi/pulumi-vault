@@ -14,7 +14,6 @@ import * as utilities from "../utilities";
  *
  * Manage JWT auth backend:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -26,11 +25,9 @@ import * as utilities from "../utilities";
  *     path: "jwt",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Manage OIDC auth backend:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -48,11 +45,9 @@ import * as utilities from "../utilities";
  *     type: "oidc",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Configuring the auth backend with a `provider_config:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -70,7 +65,6 @@ import * as utilities from "../utilities";
  *     type: "oidc",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -14,7 +14,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -49,7 +48,6 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:index/certAuthBackendRole:CertAuthBackendRole")]
     public partial class CertAuthBackendRole : global::Pulumi.CustomResource

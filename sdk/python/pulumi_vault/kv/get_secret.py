@@ -134,7 +134,6 @@ def get_secret(namespace: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -155,7 +154,6 @@ def get_secret(namespace: Optional[str] = None,
         }))
     secret_data = vault.kv.get_secret_output(path=secret.path)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -192,7 +190,6 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -213,7 +210,6 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
         }))
     secret_data = vault.kv.get_secret_output(path=secret.path)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

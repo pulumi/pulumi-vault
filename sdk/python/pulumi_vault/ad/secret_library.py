@@ -293,7 +293,6 @@ class SecretLibrary(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -315,7 +314,6 @@ class SecretLibrary(pulumi.CustomResource):
             disable_check_in_enforcement=True,
             max_ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -351,7 +349,6 @@ class SecretLibrary(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -373,7 +370,6 @@ class SecretLibrary(pulumi.CustomResource):
             disable_check_in_enforcement=True,
             max_ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

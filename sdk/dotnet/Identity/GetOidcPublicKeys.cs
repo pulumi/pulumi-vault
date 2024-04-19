@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,7 +60,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOidcPublicKeysResult> InvokeAsync(GetOidcPublicKeysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysArgs(), options.WithDefaults());
@@ -69,7 +67,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -116,7 +113,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOidcPublicKeysResult> Invoke(GetOidcPublicKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysInvokeArgs(), options.WithDefaults());

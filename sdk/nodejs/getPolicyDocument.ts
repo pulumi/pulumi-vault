@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -31,7 +30,6 @@ import * as utilities from "./utilities";
  * });
  * const examplePolicy = new vault.Policy("examplePolicy", {policy: examplePolicyDocument.then(examplePolicyDocument => examplePolicyDocument.hcl)});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> {
     args = args || {};
@@ -71,7 +69,6 @@ export interface GetPolicyDocumentResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -91,7 +88,6 @@ export interface GetPolicyDocumentResult {
  * });
  * const examplePolicy = new vault.Policy("examplePolicy", {policy: examplePolicyDocument.then(examplePolicyDocument => examplePolicyDocument.hcl)});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicyDocumentResult> {
     return pulumi.output(args).apply((a: any) => getPolicyDocument(a, opts))

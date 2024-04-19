@@ -490,7 +490,6 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -505,7 +504,6 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             expiry="72h",
             disable=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -540,7 +538,6 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -555,7 +552,6 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             expiry="72h",
             disable=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendCrlConfigArgs args: The arguments to use to populate this resource's properties.

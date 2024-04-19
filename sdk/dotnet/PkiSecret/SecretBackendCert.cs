@@ -12,7 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,13 +28,12 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_pki_secret_backend_role.Admin, 
+    ///             vault_pki_secret_backend_role.Admin,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendCert:SecretBackendCert")]
     public partial class SecretBackendCert : global::Pulumi.CustomResource

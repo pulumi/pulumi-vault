@@ -493,7 +493,6 @@ class Mount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -503,9 +502,7 @@ class Mount(pulumi.CustomResource):
             path="dummy",
             type="generic")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -519,9 +516,7 @@ class Mount(pulumi.CustomResource):
             path="version2-example",
             type="kv-v2")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -534,9 +529,7 @@ class Mount(pulumi.CustomResource):
             path="transit-example",
             type="transit")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -548,7 +541,6 @@ class Mount(pulumi.CustomResource):
             path="pki-example",
             type="pki")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -588,7 +580,6 @@ class Mount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -598,9 +589,7 @@ class Mount(pulumi.CustomResource):
             path="dummy",
             type="generic")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -614,9 +603,7 @@ class Mount(pulumi.CustomResource):
             path="version2-example",
             type="kv-v2")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -629,9 +616,7 @@ class Mount(pulumi.CustomResource):
             path="transit-example",
             type="transit")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -643,7 +628,6 @@ class Mount(pulumi.CustomResource):
             path="pki-example",
             type="pki")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

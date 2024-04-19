@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,7 +64,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetOidcOpenidConfig(ctx *pulumi.Context, args *GetOidcOpenidConfigArgs, opts ...pulumi.InvokeOption) (*GetOidcOpenidConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcOpenidConfigResult

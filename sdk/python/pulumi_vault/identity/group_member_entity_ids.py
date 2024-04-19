@@ -199,7 +199,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
 
         ### Exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -216,11 +215,9 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             member_entity_ids=[user.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -246,7 +243,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -275,7 +271,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
 
         ### Exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -292,11 +287,9 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             member_entity_ids=[user.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -322,7 +315,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GroupMemberEntityIdsArgs args: The arguments to use to populate this resource's properties.

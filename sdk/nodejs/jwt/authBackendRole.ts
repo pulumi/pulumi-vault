@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  *
  * Role for JWT backend:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -35,11 +34,9 @@ import * as utilities from "../utilities";
  *     roleType: "jwt",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Role for OIDC backend:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -61,7 +58,6 @@ import * as utilities from "../utilities";
  *     allowedRedirectUris: ["http://localhost:8200/ui/vault/auth/oidc/oidc/callback"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

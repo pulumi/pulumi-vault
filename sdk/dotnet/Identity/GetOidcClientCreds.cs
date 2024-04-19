@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOidcClientCredsResult> InvokeAsync(GetOidcClientCredsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsArgs(), options.WithDefaults());
@@ -50,7 +48,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -78,7 +75,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOidcClientCredsResult> Invoke(GetOidcClientCredsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsInvokeArgs(), options.WithDefaults());

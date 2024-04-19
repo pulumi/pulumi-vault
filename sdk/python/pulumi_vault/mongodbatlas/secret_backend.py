@@ -193,7 +193,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -207,7 +206,6 @@ class SecretBackend(pulumi.CustomResource):
             private_key="privateKey",
             public_key="publicKey")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -236,7 +234,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -250,7 +247,6 @@ class SecretBackend(pulumi.CustomResource):
             private_key="privateKey",
             public_key="publicKey")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

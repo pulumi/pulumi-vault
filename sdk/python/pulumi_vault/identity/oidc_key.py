@@ -258,7 +258,6 @@ class OidcKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -269,7 +268,6 @@ class OidcKey(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role_oidc_role.client_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -303,7 +301,6 @@ class OidcKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -314,7 +311,6 @@ class OidcKey(pulumi.CustomResource):
             key_name=key.name,
             allowed_client_id=role_oidc_role.client_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

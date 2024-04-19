@@ -22,7 +22,6 @@ import * as utilities from "../utilities";
  * backslashes must be escaped to appear correctly in Vault. For further
  * assistance escaping your own custom regex, see String Literals.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -46,7 +45,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Template extends pulumi.CustomResource {
     /**

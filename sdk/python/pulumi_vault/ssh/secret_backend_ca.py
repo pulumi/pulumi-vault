@@ -216,7 +216,6 @@ class SecretBackendCa(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -224,7 +223,6 @@ class SecretBackendCa(pulumi.CustomResource):
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -257,7 +255,6 @@ class SecretBackendCa(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -265,7 +262,6 @@ class SecretBackendCa(pulumi.CustomResource):
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendCa("foo", backend=example.path)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
