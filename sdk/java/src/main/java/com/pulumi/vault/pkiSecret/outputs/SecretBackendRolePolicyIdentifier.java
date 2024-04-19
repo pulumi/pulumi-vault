@@ -49,6 +49,7 @@ public final class SecretBackendRolePolicyIdentifier {
      * 
      *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
      *             .backend(pki.path())
+     *             .name(&#34;my_role&#34;)
      *             .ttl(3600)
      *             .allowIpSans(true)
      *             .keyType(&#34;rsa&#34;)
@@ -124,6 +125,7 @@ public final class SecretBackendRolePolicyIdentifier {
      * 
      *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
      *             .backend(pki.path())
+     *             .name(&#34;my_role&#34;)
      *             .ttl(3600)
      *             .allowIpSans(true)
      *             .keyType(&#34;rsa&#34;)

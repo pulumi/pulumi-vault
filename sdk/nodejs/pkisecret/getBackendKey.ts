@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *     keyBits: 4096,
  * });
  * const example = key.keyId.apply(keyId => vault.pkiSecret.getBackendKeyOutput({
- *     backend: vault_mount.key.path,
+ *     backend: keyVaultMount.path,
  *     keyRef: keyId,
  * }));
  * ```
@@ -108,7 +108,7 @@ export interface GetBackendKeyResult {
  *     keyBits: 4096,
  * });
  * const example = key.keyId.apply(keyId => vault.pkiSecret.getBackendKeyOutput({
- *     backend: vault_mount.key.path,
+ *     backend: keyVaultMount.path,
  *     keyRef: keyId,
  * }));
  * ```

@@ -17,9 +17,9 @@ namespace Pulumi.Vault.Kubernetes
         /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
-        /// using System.IO;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Std = Pulumi.Std;
         /// using Vault = Pulumi.Vault;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -29,14 +29,21 @@ namespace Pulumi.Vault.Kubernetes
         ///         Path = "kubernetes",
         ///         Description = "kubernetes secrets engine description",
         ///         KubernetesHost = "https://127.0.0.1:61233",
-        ///         KubernetesCaCert = File.ReadAllText("/path/to/cert"),
-        ///         ServiceAccountJwt = File.ReadAllText("/path/to/token"),
+        ///         KubernetesCaCert = Std.File.Invoke(new()
+        ///         {
+        ///             Input = "/path/to/cert",
+        ///         }).Apply(invoke =&gt; invoke.Result),
+        ///         ServiceAccountJwt = Std.File.Invoke(new()
+        ///         {
+        ///             Input = "/path/to/token",
+        ///         }).Apply(invoke =&gt; invoke.Result),
         ///         DisableLocalCaJwt = false,
         ///     });
         /// 
         ///     var role = new Vault.Kubernetes.SecretBackendRole("role", new()
         ///     {
         ///         Backend = config.Path,
+        ///         Name = "service-account-name-role",
         ///         AllowedKubernetesNamespaces = new[]
         ///         {
         ///             "*",
@@ -78,9 +85,9 @@ namespace Pulumi.Vault.Kubernetes
         /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
-        /// using System.IO;
         /// using System.Linq;
         /// using Pulumi;
+        /// using Std = Pulumi.Std;
         /// using Vault = Pulumi.Vault;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
@@ -90,14 +97,21 @@ namespace Pulumi.Vault.Kubernetes
         ///         Path = "kubernetes",
         ///         Description = "kubernetes secrets engine description",
         ///         KubernetesHost = "https://127.0.0.1:61233",
-        ///         KubernetesCaCert = File.ReadAllText("/path/to/cert"),
-        ///         ServiceAccountJwt = File.ReadAllText("/path/to/token"),
+        ///         KubernetesCaCert = Std.File.Invoke(new()
+        ///         {
+        ///             Input = "/path/to/cert",
+        ///         }).Apply(invoke =&gt; invoke.Result),
+        ///         ServiceAccountJwt = Std.File.Invoke(new()
+        ///         {
+        ///             Input = "/path/to/token",
+        ///         }).Apply(invoke =&gt; invoke.Result),
         ///         DisableLocalCaJwt = false,
         ///     });
         /// 
         ///     var role = new Vault.Kubernetes.SecretBackendRole("role", new()
         ///     {
         ///         Backend = config.Path,
+        ///         Name = "service-account-name-role",
         ///         AllowedKubernetesNamespaces = new[]
         ///         {
         ///             "*",

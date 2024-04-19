@@ -1261,8 +1261,8 @@ class SecretBackend(pulumi.CustomResource):
             backend="ad",
             binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
             bindpass="SuperSecretPassw0rd",
-            insecure_tls=True,
             url="ldaps://ad",
+            insecure_tls=True,
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
         <!--End PulumiCodeChooser -->
@@ -1354,8 +1354,8 @@ class SecretBackend(pulumi.CustomResource):
             backend="ad",
             binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
             bindpass="SuperSecretPassw0rd",
-            insecure_tls=True,
             url="ldaps://ad",
+            insecure_tls=True,
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
         <!--End PulumiCodeChooser -->

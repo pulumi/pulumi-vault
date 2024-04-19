@@ -16,15 +16,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const exampleAuthBackend = new vault.saml.AuthBackend("exampleAuthBackend", {
+ * const example = new vault.saml.AuthBackend("example", {
  *     path: "saml",
  *     idpMetadataUrl: "https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
  *     entityId: "https://my.vault/v1/auth/saml",
  *     acsUrls: ["https://my.vault.primary/v1/auth/saml/callback"],
  *     defaultRole: "default-role",
  * });
- * const exampleAuthBackendRole = new vault.saml.AuthBackendRole("exampleAuthBackendRole", {
- *     path: exampleAuthBackend.path,
+ * const exampleAuthBackendRole = new vault.saml.AuthBackendRole("example", {
+ *     path: example.path,
+ *     name: "my-role",
  *     groupsAttribute: "groups",
  *     boundAttributes: {
  *         group: "admin",

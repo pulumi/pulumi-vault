@@ -41,8 +41,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vercel = new SyncVercelDestination(&#34;vercel&#34;, SyncVercelDestinationArgs.builder()        
- *             .accessToken(var_.access_token())
- *             .projectId(var_.project_id())
+ *             .name(&#34;vercel-dest&#34;)
+ *             .accessToken(accessToken)
+ *             .projectId(projectId)
  *             .deploymentEnvironments(            
  *                 &#34;development&#34;,
  *                 &#34;preview&#34;,

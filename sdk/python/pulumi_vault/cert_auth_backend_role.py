@@ -1038,14 +1038,16 @@ class CertAuthBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        cert_auth_backend = vault.AuthBackend("certAuthBackend",
+        cert = vault.AuthBackend("cert",
             path="cert",
             type="cert")
-        cert_cert_auth_backend_role = vault.CertAuthBackendRole("certCertAuthBackendRole",
-            certificate=(lambda path: open(path).read())("/path/to/certs/ca-cert.pem"),
-            backend=cert_auth_backend.path,
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("cert",
+            name="foo",
+            certificate=std.file(input="/path/to/certs/ca-cert.pem").result,
+            backend=cert.path,
             allowed_names=[
                 "foo.example.org",
                 "baz.example.org",
@@ -1134,14 +1136,16 @@ class CertAuthBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        cert_auth_backend = vault.AuthBackend("certAuthBackend",
+        cert = vault.AuthBackend("cert",
             path="cert",
             type="cert")
-        cert_cert_auth_backend_role = vault.CertAuthBackendRole("certCertAuthBackendRole",
-            certificate=(lambda path: open(path).read())("/path/to/certs/ca-cert.pem"),
-            backend=cert_auth_backend.path,
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("cert",
+            name="foo",
+            certificate=std.file(input="/path/to/certs/ca-cert.pem").result,
+            backend=cert.path,
             allowed_names=[
                 "foo.example.org",
                 "baz.example.org",

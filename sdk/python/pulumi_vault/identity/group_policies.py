@@ -220,6 +220,7 @@ class GroupPolicies(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_policies=True,
             metadata={
@@ -243,6 +244,7 @@ class GroupPolicies(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_policies=True,
             metadata={
@@ -295,6 +297,7 @@ class GroupPolicies(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_policies=True,
             metadata={
@@ -318,6 +321,7 @@ class GroupPolicies(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_policies=True,
             metadata={

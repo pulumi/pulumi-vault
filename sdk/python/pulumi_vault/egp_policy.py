@@ -220,12 +220,12 @@ class EgpPolicy(pulumi.CustomResource):
         import pulumi_vault as vault
 
         allow_all = vault.EgpPolicy("allow-all",
-            enforcement_level="soft-mandatory",
+            name="allow-all",
             paths=["*"],
+            enforcement_level="soft-mandatory",
             policy=\"\"\"main = rule {
           true
         }
-
         \"\"\")
         ```
         <!--End PulumiCodeChooser -->
@@ -260,12 +260,12 @@ class EgpPolicy(pulumi.CustomResource):
         import pulumi_vault as vault
 
         allow_all = vault.EgpPolicy("allow-all",
-            enforcement_level="soft-mandatory",
+            name="allow-all",
             paths=["*"],
+            enforcement_level="soft-mandatory",
             policy=\"\"\"main = rule {
           true
         }
-
         \"\"\")
         ```
         <!--End PulumiCodeChooser -->

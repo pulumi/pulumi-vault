@@ -47,9 +47,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Mount(&#34;example&#34;, MountArgs.builder()        
- *             .description(&#34;This is an example mount&#34;)
  *             .path(&#34;dummy&#34;)
  *             .type(&#34;generic&#34;)
+ *             .description(&#34;This is an example mount&#34;)
  *             .build());
  * 
  *     }
@@ -80,13 +80,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var kvv2_example = new Mount(&#34;kvv2-example&#34;, MountArgs.builder()        
- *             .description(&#34;This is an example KV Version 2 secret engine mount&#34;)
- *             .options(Map.ofEntries(
- *                 Map.entry(&#34;type&#34;, &#34;kv-v2&#34;),
- *                 Map.entry(&#34;version&#34;, &#34;2&#34;)
- *             ))
  *             .path(&#34;version2-example&#34;)
  *             .type(&#34;kv-v2&#34;)
+ *             .options(Map.ofEntries(
+ *                 Map.entry(&#34;version&#34;, &#34;2&#34;),
+ *                 Map.entry(&#34;type&#34;, &#34;kv-v2&#34;)
+ *             ))
+ *             .description(&#34;This is an example KV Version 2 secret engine mount&#34;)
  *             .build());
  * 
  *     }
@@ -117,10 +117,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var transit_example = new Mount(&#34;transit-example&#34;, MountArgs.builder()        
- *             .description(&#34;This is an example transit secret engine mount&#34;)
- *             .options(Map.of(&#34;convergent_encryption&#34;, false))
  *             .path(&#34;transit-example&#34;)
  *             .type(&#34;transit&#34;)
+ *             .description(&#34;This is an example transit secret engine mount&#34;)
+ *             .options(Map.of(&#34;convergent_encryption&#34;, false))
  *             .build());
  * 
  *     }
@@ -151,11 +151,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var pki_example = new Mount(&#34;pki-example&#34;, MountArgs.builder()        
- *             .defaultLeaseTtlSeconds(3600)
- *             .description(&#34;This is an example PKI mount&#34;)
- *             .maxLeaseTtlSeconds(86400)
  *             .path(&#34;pki-example&#34;)
  *             .type(&#34;pki&#34;)
+ *             .description(&#34;This is an example PKI mount&#34;)
+ *             .defaultLeaseTtlSeconds(3600)
+ *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
  *     }

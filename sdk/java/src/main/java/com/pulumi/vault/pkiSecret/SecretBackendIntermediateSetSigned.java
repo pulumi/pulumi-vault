@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var exampleSecretBackendRootCert = new SecretBackendRootCert(&#34;exampleSecretBackendRootCert&#34;, SecretBackendRootCertArgs.builder()        
+ *         var example = new SecretBackendRootCert(&#34;example&#34;, SecretBackendRootCertArgs.builder()        
  *             .backend(root.path())
  *             .type(&#34;internal&#34;)
  *             .commonName(&#34;RootOrg Root CA&#34;)
@@ -83,7 +83,7 @@ import javax.annotation.Nullable;
  * 
  *         var exampleSecretBackendIntermediateCertRequest = new SecretBackendIntermediateCertRequest(&#34;exampleSecretBackendIntermediateCertRequest&#34;, SecretBackendIntermediateCertRequestArgs.builder()        
  *             .backend(intermediate.path())
- *             .type(exampleSecretBackendRootCert.type())
+ *             .type(example.type())
  *             .commonName(&#34;SubOrg Intermediate CA&#34;)
  *             .build());
  * 

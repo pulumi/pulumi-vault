@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
+ *             .name(&#34;internal&#34;)
  *             .type(&#34;internal&#34;)
  *             .externalPolicies(true)
  *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
@@ -93,6 +94,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
+ *             .name(&#34;internal&#34;)
  *             .type(&#34;internal&#34;)
  *             .externalPolicies(true)
  *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))

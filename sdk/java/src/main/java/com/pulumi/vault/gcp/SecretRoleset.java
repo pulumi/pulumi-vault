@@ -52,7 +52,9 @@ import javax.annotation.Nullable;
  * 
  *         var gcp = new SecretBackend(&#34;gcp&#34;, SecretBackendArgs.builder()        
  *             .path(&#34;gcp&#34;)
- *             .credentials(Files.readString(Paths.get(&#34;credentials.json&#34;)))
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;credentials.json&#34;)
+ *                 .build()).result())
  *             .build());
  * 
  *         var roleset = new SecretRoleset(&#34;roleset&#34;, SecretRolesetArgs.builder()        

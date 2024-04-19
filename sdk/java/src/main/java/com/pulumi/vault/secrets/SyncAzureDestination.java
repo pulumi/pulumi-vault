@@ -43,10 +43,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var az = new SyncAzureDestination(&#34;az&#34;, SyncAzureDestinationArgs.builder()        
- *             .keyVaultUri(var_.key_vault_uri())
- *             .clientId(var_.client_id())
- *             .clientSecret(var_.client_secret())
- *             .tenantId(var_.tenant_id())
+ *             .name(&#34;az-dest&#34;)
+ *             .keyVaultUri(keyVaultUri)
+ *             .clientId(clientId)
+ *             .clientSecret(clientSecret)
+ *             .tenantId(tenantId)
  *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
  *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
  *             .build());

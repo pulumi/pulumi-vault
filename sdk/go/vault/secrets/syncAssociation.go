@@ -52,21 +52,24 @@ import (
 //			json0 := string(tmpJSON0)
 //			token, err := kv.NewSecretV2(ctx, "token", &kv.SecretV2Args{
 //				Mount:    kvv2.Path,
+//				Name:     pulumi.String("token"),
 //				DataJson: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			gh, err := secrets.NewSyncGhDestination(ctx, "gh", &secrets.SyncGhDestinationArgs{
-//				AccessToken:        pulumi.Any(_var.Access_token),
-//				RepositoryOwner:    pulumi.Any(_var.Repo_owner),
+//				Name:               pulumi.String("gh-dest"),
+//				AccessToken:        pulumi.Any(accessToken),
+//				RepositoryOwner:    pulumi.Any(repoOwner),
 //				RepositoryName:     pulumi.String("repo-name-example"),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = secrets.NewSyncAssociation(ctx, "ghToken", &secrets.SyncAssociationArgs{
+//			_, err = secrets.NewSyncAssociation(ctx, "gh_token", &secrets.SyncAssociationArgs{
+//				Name:       gh.Name,
 //				Type:       gh.Type,
 //				Mount:      kvv2.Path,
 //				SecretName: token.Name,

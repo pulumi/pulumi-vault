@@ -16,8 +16,8 @@ import * as utilities from "../utilities";
  *
  * const example = new vault.identity.MfaDuo("example", {
  *     apiHostname: "api-xxxxxxxx.duosecurity.com",
- *     integrationKey: "secret-int-key",
  *     secretKey: "secret-key",
+ *     integrationKey: "secret-int-key",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

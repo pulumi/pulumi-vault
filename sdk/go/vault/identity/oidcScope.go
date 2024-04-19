@@ -30,8 +30,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewOidcScope(ctx, "groups", &identity.OidcScopeArgs{
-//				Description: pulumi.String("Vault OIDC Groups Scope"),
+//				Name:        pulumi.String("groups"),
 //				Template:    pulumi.String("{\"groups\":{{identity.entity.groups.names}}}"),
+//				Description: pulumi.String("Vault OIDC Groups Scope"),
 //			})
 //			if err != nil {
 //				return err

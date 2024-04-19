@@ -49,14 +49,17 @@ namespace Pulumi.Vault
         ///         Namespace = "parent",
         ///     });
         /// 
-        ///     var child = .Select(__value =&gt; 
-        ///     {
+        ///     var child = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key;
+        ///     }, item =&gt; {
+        ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,
         ///         });
-        ///     }).ToList();
+        ///     });
         /// 
         /// });
         /// ```
@@ -103,14 +106,17 @@ namespace Pulumi.Vault
         ///         Namespace = "parent",
         ///     });
         /// 
-        ///     var child = .Select(__value =&gt; 
-        ///     {
+        ///     var child = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key;
+        ///     }, item =&gt; {
+        ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,
         ///         });
-        ///     }).ToList();
+        ///     });
         /// 
         /// });
         /// ```

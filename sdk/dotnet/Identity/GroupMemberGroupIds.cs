@@ -29,6 +29,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalMemberGroupIds = true,
     ///         Metadata = 
@@ -39,6 +40,7 @@ namespace Pulumi.Vault.Identity
     /// 
     ///     var users = new Vault.Identity.Group("users", new()
     ///     {
+    ///         Name = "users",
     ///         Metadata = 
     ///         {
     ///             { "version", "2" },
@@ -72,6 +74,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalMemberGroupIds = true,
     ///         Metadata = 
@@ -82,6 +85,7 @@ namespace Pulumi.Vault.Identity
     /// 
     ///     var users = new Vault.Identity.Group("users", new()
     ///     {
+    ///         Name = "users",
     ///         Metadata = 
     ///         {
     ///             { "version", "2" },

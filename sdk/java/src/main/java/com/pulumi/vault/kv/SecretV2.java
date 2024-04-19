@@ -63,6 +63,7 @@ import javax.annotation.Nullable;
  * 
  *         var example = new SecretV2(&#34;example&#34;, SecretV2Args.builder()        
  *             .mount(kvv2.path())
+ *             .name(&#34;secret&#34;)
  *             .cas(1)
  *             .deleteAllVersions(true)
  *             .dataJson(serializeJson(

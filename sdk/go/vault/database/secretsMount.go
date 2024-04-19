@@ -57,6 +57,7 @@ import (
 //				return err
 //			}
 //			_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
+//				Name:    pulumi.String("dev1"),
 //				Backend: db.Path,
 //				DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (*string, error) {
 //					return &mssqls[0].Name, nil
@@ -71,6 +72,7 @@ import (
 //				return err
 //			}
 //			_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
+//				Name:    pulumi.String("dev2"),
 //				Backend: db.Path,
 //				DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (*string, error) {
 //					return &postgresqls[0].Name, nil

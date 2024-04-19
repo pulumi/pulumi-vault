@@ -23,15 +23,15 @@ namespace Pulumi.Vault.AliCloud
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var alicloudAuthBackend = new Vault.AuthBackend("alicloudAuthBackend", new()
+    ///     var alicloud = new Vault.AuthBackend("alicloud", new()
     ///     {
     ///         Type = "alicloud",
     ///         Path = "alicloud",
     ///     });
     /// 
-    ///     var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole("alicloudAuthBackendRole", new()
+    ///     var alicloudAuthBackendRole = new Vault.AliCloud.AuthBackendRole("alicloud", new()
     ///     {
-    ///         Backend = alicloudAuthBackend.Path,
+    ///         Backend = alicloud.Path,
     ///         Role = "example",
     ///         Arn = "acs:ram:123456:tf:role/foobar",
     ///     });

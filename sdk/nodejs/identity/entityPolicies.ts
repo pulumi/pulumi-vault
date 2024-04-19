@@ -16,7 +16,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
+ * const entity = new vault.identity.Entity("entity", {
+ *     name: "entity",
+ *     externalPolicies: true,
+ * });
  * const policies = new vault.identity.EntityPolicies("policies", {
  *     policies: [
  *         "default",
@@ -35,7 +38,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const entity = new vault.identity.Entity("entity", {externalPolicies: true});
+ * const entity = new vault.identity.Entity("entity", {
+ *     name: "entity",
+ *     externalPolicies: true,
+ * });
  * const _default = new vault.identity.EntityPolicies("default", {
  *     policies: [
  *         "default",

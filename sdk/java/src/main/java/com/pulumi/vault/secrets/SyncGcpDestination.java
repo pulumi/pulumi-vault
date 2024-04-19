@@ -43,8 +43,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var gcp = new SyncGcpDestination(&#34;gcp&#34;, SyncGcpDestinationArgs.builder()        
+ *             .name(&#34;gcp-dest&#34;)
  *             .projectId(&#34;gcp-project-id&#34;)
- *             .credentials(Files.readString(Paths.get(var_.credentials_file())))
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
  *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
  *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
  *             .build());

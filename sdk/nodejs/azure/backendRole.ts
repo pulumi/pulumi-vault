@@ -15,12 +15,12 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const azure = new vault.azure.Backend("azure", {
- *     subscriptionId: _var.subscription_id,
- *     tenantId: _var.tenant_id,
- *     clientSecret: _var.client_secret,
- *     clientId: _var.client_id,
+ *     subscriptionId: subscriptionId,
+ *     tenantId: tenantId,
+ *     clientSecret: clientSecret,
+ *     clientId: clientId,
  * });
- * const generatedRole = new vault.azure.BackendRole("generatedRole", {
+ * const generatedRole = new vault.azure.BackendRole("generated_role", {
  *     backend: azure.path,
  *     role: "generated_role",
  *     signInAudience: "AzureADMyOrg",
@@ -32,10 +32,10 @@ import * as utilities from "../utilities";
  *     maxTtl: "600",
  *     azureRoles: [{
  *         roleName: "Reader",
- *         scope: `/subscriptions/${_var.subscription_id}/resourceGroups/azure-vault-group`,
+ *         scope: `/subscriptions/${subscriptionId}/resourceGroups/azure-vault-group`,
  *     }],
  * });
- * const existingObjectId = new vault.azure.BackendRole("existingObjectId", {
+ * const existingObjectId = new vault.azure.BackendRole("existing_object_id", {
  *     backend: azure.path,
  *     role: "existing_object_id",
  *     applicationObjectId: "11111111-2222-3333-4444-44444444444",

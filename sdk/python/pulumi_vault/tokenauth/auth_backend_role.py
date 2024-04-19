@@ -756,18 +756,18 @@ class AuthBackendRole(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.tokenauth.AuthBackendRole("example",
-            allowed_entity_aliases=["test_entity"],
+            role_name="my-role",
             allowed_policies=[
                 "dev",
                 "test",
             ],
             disallowed_policies=["default"],
+            allowed_entity_aliases=["test_entity"],
             orphan=True,
-            path_suffix="path-suffix",
+            token_period=86400,
             renewable=True,
-            role_name="my-role",
             token_explicit_max_ttl=115200,
-            token_period=86400)
+            path_suffix="path-suffix")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -841,18 +841,18 @@ class AuthBackendRole(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.tokenauth.AuthBackendRole("example",
-            allowed_entity_aliases=["test_entity"],
+            role_name="my-role",
             allowed_policies=[
                 "dev",
                 "test",
             ],
             disallowed_policies=["default"],
+            allowed_entity_aliases=["test_entity"],
             orphan=True,
-            path_suffix="path-suffix",
+            token_period=86400,
             renewable=True,
-            role_name="my-role",
             token_explicit_max_ttl=115200,
-            token_period=86400)
+            path_suffix="path-suffix")
         ```
         <!--End PulumiCodeChooser -->
 

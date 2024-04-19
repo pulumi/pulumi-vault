@@ -47,10 +47,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azure = new Backend(&#34;azure&#34;, BackendArgs.builder()        
- *             .subscriptionId(var_.subscription_id())
- *             .tenantId(var_.tenant_id())
- *             .clientSecret(var_.client_secret())
- *             .clientId(var_.client_id())
+ *             .subscriptionId(subscriptionId)
+ *             .tenantId(tenantId)
+ *             .clientSecret(clientSecret)
+ *             .clientId(clientId)
  *             .build());
  * 
  *         var generatedRole = new BackendRole(&#34;generatedRole&#34;, BackendRoleArgs.builder()        
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *             .maxTtl(600)
  *             .azureRoles(BackendRoleAzureRoleArgs.builder()
  *                 .roleName(&#34;Reader&#34;)
- *                 .scope(String.format(&#34;/subscriptions/%s/resourceGroups/azure-vault-group&#34;, var_.subscription_id()))
+ *                 .scope(String.format(&#34;/subscriptions/%s/resourceGroups/azure-vault-group&#34;, subscriptionId))
  *                 .build())
  *             .build());
  * 

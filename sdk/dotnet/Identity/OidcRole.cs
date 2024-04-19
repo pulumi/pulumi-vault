@@ -27,14 +27,17 @@ namespace Pulumi.Vault.Identity
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
+    ///     // Name of the OIDC Key
     ///     var key = config.Get("key") ?? "key";
     ///     var role = new Vault.Identity.OidcRole("role", new()
     ///     {
+    ///         Name = "role",
     ///         Key = key,
     ///     });
     /// 
-    ///     var keyOidcKey = new Vault.Identity.OidcKey("keyOidcKey", new()
+    ///     var keyOidcKey = new Vault.Identity.OidcKey("key", new()
     ///     {
+    ///         Name = key,
     ///         Algorithm = "RS256",
     ///         AllowedClientIds = new[]
     ///         {
@@ -61,18 +64,20 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var key = new Vault.Identity.OidcKey("key", new()
     ///     {
+    ///         Name = "key",
     ///         Algorithm = "RS256",
     ///     });
     /// 
-    ///     var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new()
+    ///     var role = new Vault.Identity.OidcRole("role", new()
     ///     {
+    ///         Name = "role",
     ///         Key = key.Name,
     ///     });
     /// 
-    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new()
+    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("role", new()
     ///     {
     ///         KeyName = key.Name,
-    ///         AllowedClientId = roleOidcRole.ClientId,
+    ///         AllowedClientId = role.ClientId,
     ///     });
     /// 
     /// });

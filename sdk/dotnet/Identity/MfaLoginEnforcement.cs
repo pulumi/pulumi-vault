@@ -23,7 +23,7 @@ namespace Pulumi.Vault.Identity
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleMfaDuo = new Vault.Identity.MfaDuo("exampleMfaDuo", new()
+    ///     var example = new Vault.Identity.MfaDuo("example", new()
     ///     {
     ///         SecretKey = "secret-key",
     ///         IntegrationKey = "int-key",
@@ -31,11 +31,12 @@ namespace Pulumi.Vault.Identity
     ///         PushInfo = "push-info",
     ///     });
     /// 
-    ///     var exampleMfaLoginEnforcement = new Vault.Identity.MfaLoginEnforcement("exampleMfaLoginEnforcement", new()
+    ///     var exampleMfaLoginEnforcement = new Vault.Identity.MfaLoginEnforcement("example", new()
     ///     {
+    ///         Name = "default",
     ///         MfaMethodIds = new[]
     ///         {
-    ///             exampleMfaDuo.MethodId,
+    ///             example.MethodId,
     ///         },
     ///     });
     /// 

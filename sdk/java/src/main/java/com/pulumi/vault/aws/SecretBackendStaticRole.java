@@ -49,6 +49,7 @@ import javax.annotation.Nullable;
  * 
  *         var role = new SecretBackendStaticRole(&#34;role&#34;, SecretBackendStaticRoleArgs.builder()        
  *             .backend(aws.path())
+ *             .name(&#34;test&#34;)
  *             .username(&#34;my-test-user&#34;)
  *             .rotationPeriod(&#34;3600&#34;)
  *             .build());

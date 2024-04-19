@@ -36,6 +36,7 @@ import (
 //			}
 //			_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
 //				Backend:        aws.Path,
+//				Name:           pulumi.String("deploy"),
 //				CredentialType: pulumi.String("iam_user"),
 //				PolicyDocument: pulumi.String(`{
 //	  "Version": "2012-10-17",

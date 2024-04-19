@@ -37,6 +37,7 @@ import (
 //			}
 //			_, err = database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
 //				Backend: db.Path,
+//				Name:    pulumi.String("postgres"),
 //				AllowedRoles: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("prod"),

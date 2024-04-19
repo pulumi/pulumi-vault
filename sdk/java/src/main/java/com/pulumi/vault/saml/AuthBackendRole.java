@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleAuthBackend = new AuthBackend(&#34;exampleAuthBackend&#34;, AuthBackendArgs.builder()        
+ *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
  *             .path(&#34;saml&#34;)
  *             .idpMetadataUrl(&#34;https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata&#34;)
  *             .entityId(&#34;https://my.vault/v1/auth/saml&#34;)
@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleAuthBackendRole = new AuthBackendRole(&#34;exampleAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
- *             .path(exampleAuthBackend.path())
+ *             .path(example.path())
+ *             .name(&#34;my-role&#34;)
  *             .groupsAttribute(&#34;groups&#34;)
  *             .boundAttributes(Map.of(&#34;group&#34;, &#34;admin&#34;))
  *             .boundSubjects(&#34;*example.com&#34;)

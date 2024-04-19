@@ -31,7 +31,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         MaxLeaseTtlSeconds = 86400,
     ///     });
     /// 
-    ///     var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new()
+    ///     var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crl_config", new()
     ///     {
     ///         Backend = pki.Path,
     ///         Expiry = "72h",

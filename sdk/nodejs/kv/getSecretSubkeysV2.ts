@@ -20,8 +20,9 @@ import * as utilities from "../utilities";
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ * const awsSecret = new vault.kv.SecretV2("aws_secret", {
  *     mount: kvv2.path,
+ *     name: "aws_secret",
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *         foo: "bar",
@@ -128,8 +129,9 @@ export interface GetSecretSubkeysV2Result {
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ * const awsSecret = new vault.kv.SecretV2("aws_secret", {
  *     mount: kvv2.path,
+ *     name: "aws_secret",
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *         foo: "bar",

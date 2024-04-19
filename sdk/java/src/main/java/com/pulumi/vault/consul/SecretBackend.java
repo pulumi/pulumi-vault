@@ -44,9 +44,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
- *             .address(&#34;127.0.0.1:8500&#34;)
- *             .description(&#34;Manages the Consul backend&#34;)
  *             .path(&#34;consul&#34;)
+ *             .description(&#34;Manages the Consul backend&#34;)
+ *             .address(&#34;127.0.0.1:8500&#34;)
  *             .token(&#34;4240861b-ce3d-8530-115a-521ff070dd29&#34;)
  *             .build());
  * 
@@ -79,10 +79,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
+ *             .path(&#34;consul&#34;)
+ *             .description(&#34;Bootstrap the Consul backend&#34;)
  *             .address(&#34;127.0.0.1:8500&#34;)
  *             .bootstrap(true)
- *             .description(&#34;Bootstrap the Consul backend&#34;)
- *             .path(&#34;consul&#34;)
  *             .build());
  * 
  *     }

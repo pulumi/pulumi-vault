@@ -50,6 +50,17 @@ public final class GenericFunctions {
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args) {
         return getSecret(args, InvokeOptions.Empty);
@@ -89,6 +100,17 @@ public final class GenericFunctions {
      * }
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
      * 
      */
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args) {
@@ -130,6 +152,17 @@ public final class GenericFunctions {
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:generic/getSecret:getSecret", TypeShape.of(GetSecretResult.class), args, Utilities.withVersion(options));
@@ -169,6 +202,17 @@ public final class GenericFunctions {
      * }
      * ```
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
      * 
      */
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args, InvokeOptions options) {

@@ -13,50 +13,6 @@ import (
 
 // Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 //
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"os"
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
-//				Credentials: readFileOrPanic("vault-gcp-credentials.json"),
-//				CustomEndpoint: &gcp.AuthBackendCustomEndpointArgs{
-//					Api:     pulumi.String("www.googleapis.com"),
-//					Iam:     pulumi.String("iam.googleapis.com"),
-//					Crm:     pulumi.String("cloudresourcemanager.googleapis.com"),
-//					Compute: pulumi.String("compute.googleapis.com"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
 // ## Import
 //
 // GCP authentication backends can be imported using the backend name, e.g.

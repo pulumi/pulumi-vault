@@ -21,46 +21,6 @@ import javax.annotation.Nullable;
 /**
  * Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
  * 
- * ## Example Usage
- * 
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.gcp.AuthBackend;
- * import com.pulumi.vault.gcp.AuthBackendArgs;
- * import com.pulumi.vault.gcp.inputs.AuthBackendCustomEndpointArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var gcp = new AuthBackend(&#34;gcp&#34;, AuthBackendArgs.builder()        
- *             .credentials(Files.readString(Paths.get(&#34;vault-gcp-credentials.json&#34;)))
- *             .customEndpoint(AuthBackendCustomEndpointArgs.builder()
- *                 .api(&#34;www.googleapis.com&#34;)
- *                 .iam(&#34;iam.googleapis.com&#34;)
- *                 .crm(&#34;cloudresourcemanager.googleapis.com&#34;)
- *                 .compute(&#34;compute.googleapis.com&#34;)
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
  * ## Import
  * 
  * GCP authentication backends can be imported using the backend name, e.g.

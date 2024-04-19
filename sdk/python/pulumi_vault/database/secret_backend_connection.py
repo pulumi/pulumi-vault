@@ -933,6 +933,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=[
                 "dev",
                 "prod",
@@ -1006,6 +1007,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=[
                 "dev",
                 "prod",

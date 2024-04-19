@@ -118,8 +118,8 @@ def get_decrypt(backend: Optional[str] = None,
     import pulumi_vault as vault
 
     test = vault.transit.get_decrypt(backend="transit",
-        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        key="test")
+        key="test",
+        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -166,8 +166,8 @@ def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
     import pulumi_vault as vault
 
     test = vault.transit.get_decrypt(backend="transit",
-        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        key="test")
+        key="test",
+        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==")
     ```
     <!--End PulumiCodeChooser -->
 

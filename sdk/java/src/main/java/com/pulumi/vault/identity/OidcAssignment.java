@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
+ *             .name(&#34;internal&#34;)
  *             .type(&#34;internal&#34;)
  *             .policies(            
  *                 &#34;dev&#34;,
@@ -55,10 +56,12 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var test = new Entity(&#34;test&#34;, EntityArgs.builder()        
+ *             .name(&#34;test&#34;)
  *             .policies(&#34;test&#34;)
  *             .build());
  * 
  *         var default_ = new OidcAssignment(&#34;default&#34;, OidcAssignmentArgs.builder()        
+ *             .name(&#34;assignment&#34;)
  *             .entityIds(test.id())
  *             .groupIds(internal.id())
  *             .build());

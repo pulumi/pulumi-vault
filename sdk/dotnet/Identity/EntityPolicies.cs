@@ -27,6 +27,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var entity = new Vault.Identity.Entity("entity", new()
     ///     {
+    ///         Name = "entity",
     ///         ExternalPolicies = true,
     ///     });
     /// 
@@ -58,6 +59,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var entity = new Vault.Identity.Entity("entity", new()
     ///     {
+    ///         Name = "entity",
     ///         ExternalPolicies = true,
     ///     });
     /// 

@@ -331,9 +331,10 @@ class SecretBackend(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        gcp = vault.gcp.SecretBackend("gcp", credentials=(lambda path: open(path).read())("credentials.json"))
+        gcp = vault.gcp.SecretBackend("gcp", credentials=std.file(input="credentials.json").result)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -367,9 +368,10 @@ class SecretBackend(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        gcp = vault.gcp.SecretBackend("gcp", credentials=(lambda path: open(path).read())("credentials.json"))
+        gcp = vault.gcp.SecretBackend("gcp", credentials=std.file(input="credentials.json").result)
         ```
         <!--End PulumiCodeChooser -->
 

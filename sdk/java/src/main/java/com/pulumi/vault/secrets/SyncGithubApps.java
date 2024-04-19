@@ -42,8 +42,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var github_apps = new SyncGithubApps(&#34;github-apps&#34;, SyncGithubAppsArgs.builder()        
- *             .appId(var_.app_id())
- *             .privateKey(Files.readString(Paths.get(var_.privatekey_file())))
+ *             .name(&#34;gh-apps&#34;)
+ *             .appId(appId)
+ *             .privateKey(StdFunctions.file(FileArgs.builder()
+ *                 .input(privatekeyFile)
+ *                 .build()).result())
  *             .build());
  * 
  *     }

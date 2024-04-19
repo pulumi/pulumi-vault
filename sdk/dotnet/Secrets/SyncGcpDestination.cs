@@ -15,17 +15,21 @@ namespace Pulumi.Vault.Secrets
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Std = Pulumi.Std;
     /// using Vault = Pulumi.Vault;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var gcp = new Vault.Secrets.SyncGcpDestination("gcp", new()
     ///     {
+    ///         Name = "gcp-dest",
     ///         ProjectId = "gcp-project-id",
-    ///         Credentials = File.ReadAllText(@var.Credentials_file),
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
     ///         CustomTags = 
     ///         {

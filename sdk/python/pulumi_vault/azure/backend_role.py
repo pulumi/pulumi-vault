@@ -471,11 +471,11 @@ class BackendRole(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            subscription_id=var["subscription_id"],
-            tenant_id=var["tenant_id"],
-            client_secret=var["client_secret"],
-            client_id=var["client_id"])
-        generated_role = vault.azure.BackendRole("generatedRole",
+            subscription_id=subscription_id,
+            tenant_id=tenant_id,
+            client_secret=client_secret,
+            client_id=client_id)
+        generated_role = vault.azure.BackendRole("generated_role",
             backend=azure.path,
             role="generated_role",
             sign_in_audience="AzureADMyOrg",
@@ -487,9 +487,9 @@ class BackendRole(pulumi.CustomResource):
             max_ttl="600",
             azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
                 role_name="Reader",
-                scope=f"/subscriptions/{var['subscription_id']}/resourceGroups/azure-vault-group",
+                scope=f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
             )])
-        existing_object_id = vault.azure.BackendRole("existingObjectId",
+        existing_object_id = vault.azure.BackendRole("existing_object_id",
             backend=azure.path,
             role="existing_object_id",
             application_object_id="11111111-2222-3333-4444-44444444444",
@@ -536,11 +536,11 @@ class BackendRole(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            subscription_id=var["subscription_id"],
-            tenant_id=var["tenant_id"],
-            client_secret=var["client_secret"],
-            client_id=var["client_id"])
-        generated_role = vault.azure.BackendRole("generatedRole",
+            subscription_id=subscription_id,
+            tenant_id=tenant_id,
+            client_secret=client_secret,
+            client_id=client_id)
+        generated_role = vault.azure.BackendRole("generated_role",
             backend=azure.path,
             role="generated_role",
             sign_in_audience="AzureADMyOrg",
@@ -552,9 +552,9 @@ class BackendRole(pulumi.CustomResource):
             max_ttl="600",
             azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
                 role_name="Reader",
-                scope=f"/subscriptions/{var['subscription_id']}/resourceGroups/azure-vault-group",
+                scope=f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
             )])
-        existing_object_id = vault.azure.BackendRole("existingObjectId",
+        existing_object_id = vault.azure.BackendRole("existing_object_id",
             backend=azure.path,
             role="existing_object_id",
             application_object_id="11111111-2222-3333-4444-44444444444",

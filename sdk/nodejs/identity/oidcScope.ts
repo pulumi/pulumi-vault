@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const groups = new vault.identity.OidcScope("groups", {
- *     description: "Vault OIDC Groups Scope",
+ *     name: "groups",
  *     template: "{\"groups\":{{identity.entity.groups.names}}}",
+ *     description: "Vault OIDC Groups Scope",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

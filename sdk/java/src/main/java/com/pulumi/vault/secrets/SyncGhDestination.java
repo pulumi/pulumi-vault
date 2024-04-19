@@ -42,8 +42,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var gh = new SyncGhDestination(&#34;gh&#34;, SyncGhDestinationArgs.builder()        
- *             .accessToken(var_.access_token())
- *             .repositoryOwner(var_.repo_owner())
+ *             .name(&#34;gh-dest&#34;)
+ *             .accessToken(accessToken)
+ *             .repositoryOwner(repoOwner)
  *             .repositoryName(&#34;repo-name-example&#34;)
  *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
  *             .build());

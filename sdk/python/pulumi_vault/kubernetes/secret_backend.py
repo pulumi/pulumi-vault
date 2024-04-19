@@ -626,6 +626,7 @@ class SecretBackend(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
@@ -634,8 +635,8 @@ class SecretBackend(pulumi.CustomResource):
             default_lease_ttl_seconds=43200,
             max_lease_ttl_seconds=86400,
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         ```
         <!--End PulumiCodeChooser -->
@@ -690,6 +691,7 @@ class SecretBackend(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
@@ -698,8 +700,8 @@ class SecretBackend(pulumi.CustomResource):
             default_lease_ttl_seconds=43200,
             max_lease_ttl_seconds=86400,
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         ```
         <!--End PulumiCodeChooser -->

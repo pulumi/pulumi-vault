@@ -1119,12 +1119,13 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        local_backups = vault.RaftSnapshotAgentConfig("localBackups",
+        local_backups = vault.RaftSnapshotAgentConfig("local_backups",
+            name="local",
             interval_seconds=86400,
-            local_max_space=10000000,
-            path_prefix="/opt/vault/snapshots/",
             retain=7,
-            storage_type="local")
+            path_prefix="/opt/vault/snapshots/",
+            storage_type="local",
+            local_max_space=10000000)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1139,7 +1140,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         aws_access_key_id = config.require_object("awsAccessKeyId")
         aws_secret_access_key = config.require_object("awsSecretAccessKey")
         current = aws.get_region()
-        s3_backups = vault.RaftSnapshotAgentConfig("s3Backups",
+        s3_backups = vault.RaftSnapshotAgentConfig("s3_backups",
+            name="s3",
             interval_seconds=86400,
             retain=7,
             path_prefix="/path/in/bucket",
@@ -1162,7 +1164,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         config = pulumi.Config()
         azure_account_name = config.require_object("azureAccountName")
         azure_account_key = config.require_object("azureAccountKey")
-        azure_backups = vault.RaftSnapshotAgentConfig("azureBackups",
+        azure_backups = vault.RaftSnapshotAgentConfig("azure_backups",
+            name="azure_backup",
             interval_seconds=86400,
             retain=7,
             path_prefix="/",
@@ -1266,12 +1269,13 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        local_backups = vault.RaftSnapshotAgentConfig("localBackups",
+        local_backups = vault.RaftSnapshotAgentConfig("local_backups",
+            name="local",
             interval_seconds=86400,
-            local_max_space=10000000,
-            path_prefix="/opt/vault/snapshots/",
             retain=7,
-            storage_type="local")
+            path_prefix="/opt/vault/snapshots/",
+            storage_type="local",
+            local_max_space=10000000)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -1286,7 +1290,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         aws_access_key_id = config.require_object("awsAccessKeyId")
         aws_secret_access_key = config.require_object("awsSecretAccessKey")
         current = aws.get_region()
-        s3_backups = vault.RaftSnapshotAgentConfig("s3Backups",
+        s3_backups = vault.RaftSnapshotAgentConfig("s3_backups",
+            name="s3",
             interval_seconds=86400,
             retain=7,
             path_prefix="/path/in/bucket",
@@ -1309,7 +1314,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         config = pulumi.Config()
         azure_account_name = config.require_object("azureAccountName")
         azure_account_key = config.require_object("azureAccountKey")
-        azure_backups = vault.RaftSnapshotAgentConfig("azureBackups",
+        azure_backups = vault.RaftSnapshotAgentConfig("azure_backups",
+            name="azure_backup",
             interval_seconds=86400,
             retain=7,
             path_prefix="/",

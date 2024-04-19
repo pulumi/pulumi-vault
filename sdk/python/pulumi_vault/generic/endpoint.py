@@ -422,7 +422,7 @@ class Endpoint(pulumi.CustomResource):
         }
         \"\"\",
             opts=pulumi.ResourceOptions(depends_on=[userpass]))
-        u1_token = vault.generic.Endpoint("u1Token",
+        u1_token = vault.generic.Endpoint("u1_token",
             path="auth/userpass/login/u1",
             disable_read=True,
             disable_delete=True,
@@ -431,7 +431,7 @@ class Endpoint(pulumi.CustomResource):
         }
         \"\"\",
             opts=pulumi.ResourceOptions(depends_on=[u1]))
-        u1_entity = vault.generic.Endpoint("u1Entity",
+        u1_entity = vault.generic.Endpoint("u1_entity",
             disable_read=True,
             disable_delete=True,
             path="identity/lookup/entity",
@@ -517,7 +517,7 @@ class Endpoint(pulumi.CustomResource):
         }
         \"\"\",
             opts=pulumi.ResourceOptions(depends_on=[userpass]))
-        u1_token = vault.generic.Endpoint("u1Token",
+        u1_token = vault.generic.Endpoint("u1_token",
             path="auth/userpass/login/u1",
             disable_read=True,
             disable_delete=True,
@@ -526,7 +526,7 @@ class Endpoint(pulumi.CustomResource):
         }
         \"\"\",
             opts=pulumi.ResourceOptions(depends_on=[u1]))
-        u1_entity = vault.generic.Endpoint("u1Entity",
+        u1_entity = vault.generic.Endpoint("u1_entity",
             disable_read=True,
             disable_delete=True,
             path="identity/lookup/entity",

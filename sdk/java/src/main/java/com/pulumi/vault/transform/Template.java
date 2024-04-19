@@ -67,11 +67,13 @@ import javax.annotation.Nullable;
  * 
  *         var numerics = new Alphabet(&#34;numerics&#34;, AlphabetArgs.builder()        
  *             .path(transform.path())
+ *             .name(&#34;numerics&#34;)
  *             .alphabet(&#34;0123456789&#34;)
  *             .build());
  * 
  *         var test = new Template(&#34;test&#34;, TemplateArgs.builder()        
  *             .path(numerics.path())
+ *             .name(&#34;ccn&#34;)
  *             .type(&#34;regex&#34;)
  *             .pattern(&#34;(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})&#34;)
  *             .alphabet(&#34;numerics&#34;)

@@ -15,16 +15,19 @@ namespace Pulumi.Vault.Gcp
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Std = Pulumi.Std;
     /// using Vault = Pulumi.Vault;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
-    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "credentials.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });

@@ -357,7 +357,8 @@ class MfaOkta(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_okta = vault.MfaOkta("myOkta",
+        my_okta = vault.MfaOkta("my_okta",
+            name="my_okta",
             mount_accessor=userpass.accessor,
             username_format="user@example.com",
             org_name="hashicorp",
@@ -417,7 +418,8 @@ class MfaOkta(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_okta = vault.MfaOkta("myOkta",
+        my_okta = vault.MfaOkta("my_okta",
+            name="my_okta",
             mount_accessor=userpass.accessor,
             username_format="user@example.com",
             org_name="hashicorp",

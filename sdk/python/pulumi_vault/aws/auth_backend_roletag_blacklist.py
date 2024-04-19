@@ -202,9 +202,9 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("example",
+            backend=example.path,
             safety_buffer=360)
         ```
         <!--End PulumiCodeChooser -->
@@ -239,9 +239,9 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("example",
+            backend=example.path,
             safety_buffer=360)
         ```
         <!--End PulumiCodeChooser -->

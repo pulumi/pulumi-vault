@@ -19,11 +19,13 @@ import * as utilities from "../utilities";
  *
  * const example = new vault.Mount("example", {type: "ssh"});
  * const foo = new vault.ssh.SecretBackendRole("foo", {
+ *     name: "my-role",
  *     backend: example.path,
  *     keyType: "ca",
  *     allowUserCertificates: true,
  * });
  * const bar = new vault.ssh.SecretBackendRole("bar", {
+ *     name: "otp-role",
  *     backend: example.path,
  *     keyType: "otp",
  *     defaultUser: "default",

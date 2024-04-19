@@ -3109,12 +3109,6 @@ export namespace ssh {
          * must be set to a single element list.
          *
          * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-         *
-         * <!--Start PulumiCodeChooser -->
-         * ```typescript
-         * import * as pulumi from "@pulumi/pulumi";
-         * ```
-         * <!--End PulumiCodeChooser -->
          */
         lengths: number[];
         /**

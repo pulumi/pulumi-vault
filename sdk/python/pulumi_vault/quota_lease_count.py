@@ -251,8 +251,9 @@ class QuotaLeaseCount(pulumi.CustomResource):
         import pulumi_vault as vault
 
         global_ = vault.QuotaLeaseCount("global",
-            max_leases=100,
-            path="")
+            name="global",
+            path="",
+            max_leases=100)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -305,8 +306,9 @@ class QuotaLeaseCount(pulumi.CustomResource):
         import pulumi_vault as vault
 
         global_ = vault.QuotaLeaseCount("global",
-            max_leases=100,
-            path="")
+            name="global",
+            path="",
+            max_leases=100)
         ```
         <!--End PulumiCodeChooser -->
 

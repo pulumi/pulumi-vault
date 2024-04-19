@@ -20,7 +20,8 @@ import * as utilities from "./utilities";
  *     type: "userpass",
  *     path: "userpass",
  * });
- * const myOkta = new vault.MfaOkta("myOkta", {
+ * const myOkta = new vault.MfaOkta("my_okta", {
+ *     name: "my_okta",
  *     mountAccessor: userpass.accessor,
  *     usernameFormat: "user@example.com",
  *     orgName: "hashicorp",

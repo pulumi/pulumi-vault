@@ -25,14 +25,14 @@ namespace Pulumi.Vault.Ldap
     /// {
     ///     var ldap = new Vault.Ldap.AuthBackend("ldap", new()
     ///     {
+    ///         Path = "ldap",
+    ///         Url = "ldaps://dc-01.example.org",
+    ///         Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
+    ///         Userattr = "sAMAccountName",
+    ///         Upndomain = "EXAMPLE.ORG",
     ///         Discoverdn = false,
     ///         Groupdn = "OU=Groups,DC=example,DC=org",
     ///         Groupfilter = "(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))",
-    ///         Path = "ldap",
-    ///         Upndomain = "EXAMPLE.ORG",
-    ///         Url = "ldaps://dc-01.example.org",
-    ///         Userattr = "sAMAccountName",
-    ///         Userdn = "OU=Users,OU=Accounts,DC=example,DC=org",
     ///     });
     /// 
     /// });

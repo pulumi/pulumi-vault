@@ -558,6 +558,7 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
      *                 &#34;http://127.0.0.1:8251/callback&#34;,
@@ -607,6 +608,7 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
      *                 &#34;http://127.0.0.1:8251/callback&#34;,
@@ -656,6 +658,7 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
      *                 &#34;http://127.0.0.1:8251/callback&#34;,
@@ -705,6 +708,7 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
      *                 &#34;http://127.0.0.1:8251/callback&#34;,
@@ -758,12 +762,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -774,7 +780,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -822,12 +829,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -838,7 +847,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -886,12 +896,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -902,7 +914,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -950,12 +963,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -966,7 +981,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -1014,12 +1030,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -1030,7 +1048,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1078,12 +1097,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -1094,7 +1115,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1142,12 +1164,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -1158,7 +1182,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1206,12 +1231,14 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+     *             .name(&#34;key&#34;)
      *             .allowedClientIds(&#34;*&#34;)
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
      *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
+     *             .name(&#34;application&#34;)
      *             .key(key.name())
      *             .redirectUris(            
      *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
@@ -1222,7 +1249,8 @@ public final class IdentityFunctions {
      *             .build());
      * 
      *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .allowedClientIds(vault_identity_oidc_client.test().client_id())
+     *             .name(&#34;provider&#34;)
+     *             .allowedClientIds(test.clientId())
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()

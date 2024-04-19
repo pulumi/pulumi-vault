@@ -53,6 +53,7 @@ public final class AwsFunctions {
      * 
      *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
+     *             .name(&#34;test&#34;)
      *             .policy(&#34;&#34;&#34;
      * {
      *   &#34;Version&#34;: &#34;2012-10-17&#34;,
@@ -67,6 +68,7 @@ public final class AwsFunctions {
      *             &#34;&#34;&#34;)
      *             .build());
      * 
+     *         // generally, these blocks would be in a different module
      *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
      *             .backend(aws.path())
      *             .role(role.name())
@@ -117,6 +119,7 @@ public final class AwsFunctions {
      * 
      *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
+     *             .name(&#34;test&#34;)
      *             .policy(&#34;&#34;&#34;
      * {
      *   &#34;Version&#34;: &#34;2012-10-17&#34;,
@@ -131,6 +134,7 @@ public final class AwsFunctions {
      *             &#34;&#34;&#34;)
      *             .build());
      * 
+     *         // generally, these blocks would be in a different module
      *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
      *             .backend(aws.path())
      *             .role(role.name())
@@ -181,6 +185,7 @@ public final class AwsFunctions {
      * 
      *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
+     *             .name(&#34;test&#34;)
      *             .policy(&#34;&#34;&#34;
      * {
      *   &#34;Version&#34;: &#34;2012-10-17&#34;,
@@ -195,6 +200,7 @@ public final class AwsFunctions {
      *             &#34;&#34;&#34;)
      *             .build());
      * 
+     *         // generally, these blocks would be in a different module
      *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
      *             .backend(aws.path())
      *             .role(role.name())
@@ -245,6 +251,7 @@ public final class AwsFunctions {
      * 
      *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
+     *             .name(&#34;test&#34;)
      *             .policy(&#34;&#34;&#34;
      * {
      *   &#34;Version&#34;: &#34;2012-10-17&#34;,
@@ -259,6 +266,7 @@ public final class AwsFunctions {
      *             &#34;&#34;&#34;)
      *             .build());
      * 
+     *         // generally, these blocks would be in a different module
      *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
      *             .backend(aws.path())
      *             .role(role.name())

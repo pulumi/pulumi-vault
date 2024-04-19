@@ -21,14 +21,14 @@ namespace Pulumi.Vault.Azure
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
+    ///     var example = new Vault.AuthBackend("example", new()
     ///     {
     ///         Type = "azure",
     ///     });
     /// 
-    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("exampleAuthBackendConfig", new()
+    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("example", new()
     ///     {
-    ///         Backend = exampleAuthBackend.Path,
+    ///         Backend = example.Path,
     ///         TenantId = "11111111-2222-3333-4444-555555555555",
     ///         ClientId = "11111111-2222-3333-4444-555555555555",
     ///         ClientSecret = "01234567890123456789",

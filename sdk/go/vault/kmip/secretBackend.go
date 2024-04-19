@@ -32,17 +32,17 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
-//				DefaultTlsClientKeyBits: pulumi.Int(4096),
-//				DefaultTlsClientKeyType: pulumi.String("rsa"),
-//				DefaultTlsClientTtl:     pulumi.Int(86400),
-//				Description:             pulumi.String("Vault KMIP backend"),
+//				Path:        pulumi.String("kmip"),
+//				Description: pulumi.String("Vault KMIP backend"),
 //				ListenAddrs: pulumi.StringArray{
 //					pulumi.String("127.0.0.1:5696"),
 //					pulumi.String("127.0.0.1:8080"),
 //				},
-//				Path:         pulumi.String("kmip"),
-//				TlsCaKeyBits: pulumi.Int(4096),
-//				TlsCaKeyType: pulumi.String("rsa"),
+//				TlsCaKeyType:            pulumi.String("rsa"),
+//				TlsCaKeyBits:            pulumi.Int(4096),
+//				DefaultTlsClientKeyType: pulumi.String("rsa"),
+//				DefaultTlsClientKeyBits: pulumi.Int(4096),
+//				DefaultTlsClientTtl:     pulumi.Int(86400),
 //			})
 //			if err != nil {
 //				return err

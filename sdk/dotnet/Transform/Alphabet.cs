@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mountTransform = new Vault.Mount("mountTransform", new()
+    ///     var mountTransform = new Vault.Mount("mount_transform", new()
     ///     {
     ///         Path = "transform",
     ///         Type = "transform",
@@ -34,6 +34,7 @@ namespace Pulumi.Vault.Transform
     ///     var test = new Vault.Transform.Alphabet("test", new()
     ///     {
     ///         Path = mountTransform.Path,
+    ///         Name = "numerics",
     ///         AlphabetSet = "0123456789",
     ///     });
     /// 

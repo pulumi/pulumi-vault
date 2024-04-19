@@ -19,14 +19,15 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
- *     metadata: {
- *         version: "2",
- *     },
+ *     name: "internal",
+ *     type: "internal",
  *     policies: [
  *         "dev",
  *         "test",
  *     ],
- *     type: "internal",
+ *     metadata: {
+ *         version: "2",
+ *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -39,11 +40,12 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const group = new vault.identity.Group("group", {
+ *     name: "external",
+ *     type: "external",
+ *     policies: ["test"],
  *     metadata: {
  *         version: "1",
  *     },
- *     policies: ["test"],
- *     type: "external",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -59,25 +61,27 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const internalIdentity_groupGroup = new vault.identity.Group("internalIdentity/groupGroup", {
- *     metadata: {
- *         version: "2",
- *     },
+ * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
+ *     type: "internal",
  *     policies: [
  *         "dev",
  *         "test",
  *     ],
- *     type: "internal",
+ *     metadata: {
+ *         version: "2",
+ *     },
  * });
- * const internalGroup = new vault.identity.Group("internalGroup", {
- *     metadata: {
- *         version: "2",
- *     },
+ * const internalGroup = new vault.identity.Group("Internal", {
+ *     name: "Internal",
+ *     type: "internal",
  *     policies: [
  *         "dev",
  *         "test",
  *     ],
- *     type: "internal",
+ *     metadata: {
+ *         version: "2",
+ *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->

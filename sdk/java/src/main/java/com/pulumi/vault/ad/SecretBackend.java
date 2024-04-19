@@ -46,8 +46,8 @@ import javax.annotation.Nullable;
  *             .backend(&#34;ad&#34;)
  *             .binddn(&#34;CN=Administrator,CN=Users,DC=corp,DC=example,DC=net&#34;)
  *             .bindpass(&#34;SuperSecretPassw0rd&#34;)
- *             .insecureTls(&#34;true&#34;)
  *             .url(&#34;ldaps://ad&#34;)
+ *             .insecureTls(&#34;true&#34;)
  *             .userdn(&#34;CN=Users,DC=corp,DC=example,DC=net&#34;)
  *             .build());
  * 

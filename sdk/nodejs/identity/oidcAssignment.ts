@@ -16,14 +16,19 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     policies: [
  *         "dev",
  *         "test",
  *     ],
  * });
- * const test = new vault.identity.Entity("test", {policies: ["test"]});
+ * const test = new vault.identity.Entity("test", {
+ *     name: "test",
+ *     policies: ["test"],
+ * });
  * const _default = new vault.identity.OidcAssignment("default", {
+ *     name: "assignment",
  *     entityIds: [test.id],
  *     groupIds: [internal.id],
  * });

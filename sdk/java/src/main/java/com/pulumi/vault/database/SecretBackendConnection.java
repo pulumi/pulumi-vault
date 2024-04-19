@@ -71,6 +71,7 @@ import javax.annotation.Nullable;
  * 
  *         var postgres = new SecretBackendConnection(&#34;postgres&#34;, SecretBackendConnectionArgs.builder()        
  *             .backend(db.path())
+ *             .name(&#34;postgres&#34;)
  *             .allowedRoles(            
  *                 &#34;dev&#34;,
  *                 &#34;prod&#34;)

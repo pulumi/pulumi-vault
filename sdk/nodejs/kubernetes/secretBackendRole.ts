@@ -12,19 +12,24 @@ import * as utilities from "../utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new vault.kubernetes.SecretBackend("config", {
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
+ *     kubernetesCaCert: std.file({
+ *         input: "/path/to/cert",
+ *     }).then(invoke => invoke.result),
+ *     serviceAccountJwt: std.file({
+ *         input: "/path/to/token",
+ *     }).then(invoke => invoke.result),
  *     disableLocalCaJwt: false,
  * });
  * const sa_example = new vault.kubernetes.SecretBackendRole("sa-example", {
  *     backend: config.path,
+ *     name: "service-account-name-role",
  *     allowedKubernetesNamespaces: ["*"],
  *     tokenMaxTtl: 43200,
  *     tokenDefaultTtl: 21600,
@@ -46,19 +51,24 @@ import * as utilities from "../utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new vault.kubernetes.SecretBackend("config", {
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
+ *     kubernetesCaCert: std.file({
+ *         input: "/path/to/cert",
+ *     }).then(invoke => invoke.result),
+ *     serviceAccountJwt: std.file({
+ *         input: "/path/to/token",
+ *     }).then(invoke => invoke.result),
  *     disableLocalCaJwt: false,
  * });
  * const name_example = new vault.kubernetes.SecretBackendRole("name-example", {
  *     backend: config.path,
+ *     name: "service-account-name-role",
  *     allowedKubernetesNamespaces: ["*"],
  *     tokenMaxTtl: 43200,
  *     tokenDefaultTtl: 21600,
@@ -80,19 +90,24 @@ import * as utilities from "../utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new vault.kubernetes.SecretBackend("config", {
  *     path: "kubernetes",
  *     description: "kubernetes secrets engine description",
  *     kubernetesHost: "https://127.0.0.1:61233",
- *     kubernetesCaCert: fs.readFileSync("/path/to/cert", "utf8"),
- *     serviceAccountJwt: fs.readFileSync("/path/to/token", "utf8"),
+ *     kubernetesCaCert: std.file({
+ *         input: "/path/to/cert",
+ *     }).then(invoke => invoke.result),
+ *     serviceAccountJwt: std.file({
+ *         input: "/path/to/token",
+ *     }).then(invoke => invoke.result),
  *     disableLocalCaJwt: false,
  * });
  * const rules_example = new vault.kubernetes.SecretBackendRole("rules-example", {
  *     backend: config.path,
+ *     name: "service-account-name-role",
  *     allowedKubernetesNamespaces: ["*"],
  *     tokenMaxTtl: 43200,
  *     tokenDefaultTtl: 21600,

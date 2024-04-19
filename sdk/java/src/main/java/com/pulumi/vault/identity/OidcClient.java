@@ -46,17 +46,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testOidcAssignment = new OidcAssignment(&#34;testOidcAssignment&#34;, OidcAssignmentArgs.builder()        
+ *         var test = new OidcAssignment(&#34;test&#34;, OidcAssignmentArgs.builder()        
+ *             .name(&#34;my-assignment&#34;)
  *             .entityIds(&#34;ascbascas-2231a-sdfaa&#34;)
  *             .groupIds(&#34;sajkdsad-32414-sfsada&#34;)
  *             .build());
  * 
  *         var testOidcClient = new OidcClient(&#34;testOidcClient&#34;, OidcClientArgs.builder()        
+ *             .name(&#34;my-app&#34;)
  *             .redirectUris(            
  *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
  *                 &#34;http://127.0.0.1:8251/callback&#34;,
  *                 &#34;http://127.0.0.1:8080/callback&#34;)
- *             .assignments(testOidcAssignment.name())
+ *             .assignments(test.name())
  *             .idTokenTtl(2400)
  *             .accessTokenTtl(7200)
  *             .build());

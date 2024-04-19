@@ -171,6 +171,28 @@ def get_secret(namespace: Optional[str] = None,
     ```
     <!--End PulumiCodeChooser -->
 
+    ### KV
+
+    For this example, consider `example` as a path for a KV engine.
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+
+    def not_implemented(msg):
+        raise NotImplementedError(msg)
+
+    example_creds = vault.generic.get_secret(path="example/creds")
+    example_template = not_implemented("The template_file data resource is not yet supported.")
+    ```
+    <!--End PulumiCodeChooser -->
+
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
+
 
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
@@ -229,6 +251,28 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
     ```
     <!--End PulumiCodeChooser -->
+
+    ### KV
+
+    For this example, consider `example` as a path for a KV engine.
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+
+    def not_implemented(msg):
+        raise NotImplementedError(msg)
+
+    example_creds = vault.generic.get_secret(path="example/creds")
+    example_template = not_implemented("The template_file data resource is not yet supported.")
+    ```
+    <!--End PulumiCodeChooser -->
+
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
 
 
     :param str namespace: The namespace of the target resource.

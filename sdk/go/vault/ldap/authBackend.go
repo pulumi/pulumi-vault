@@ -30,14 +30,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+//				Path:        pulumi.String("ldap"),
+//				Url:         pulumi.String("ldaps://dc-01.example.org"),
+//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
+//				Userattr:    pulumi.String("sAMAccountName"),
+//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
 //				Discoverdn:  pulumi.Bool(false),
 //				Groupdn:     pulumi.String("OU=Groups,DC=example,DC=org"),
 //				Groupfilter: pulumi.String("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"),
-//				Path:        pulumi.String("ldap"),
-//				Upndomain:   pulumi.String("EXAMPLE.ORG"),
-//				Url:         pulumi.String("ldaps://dc-01.example.org"),
-//				Userattr:    pulumi.String("sAMAccountName"),
-//				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
 //			})
 //			if err != nil {
 //				return err

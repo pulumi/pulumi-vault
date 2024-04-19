@@ -422,14 +422,15 @@ class Group(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
-            metadata={
-                "version": "2",
-            },
+            name="internal",
+            type="internal",
             policies=[
                 "dev",
                 "test",
             ],
-            type="internal")
+            metadata={
+                "version": "2",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -441,11 +442,12 @@ class Group(pulumi.CustomResource):
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
+            name="external",
+            type="external",
+            policies=["test"],
             metadata={
                 "version": "1",
-            },
-            policies=["test"],
-            type="external")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -460,24 +462,26 @@ class Group(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        internal_identity_group_group = vault.identity.Group("internalIdentity/groupGroup",
-            metadata={
-                "version": "2",
-            },
+        internal = vault.identity.Group("internal",
+            name="internal",
+            type="internal",
             policies=[
                 "dev",
                 "test",
             ],
-            type="internal")
-        internal_group = vault.identity.Group("internalGroup",
             metadata={
                 "version": "2",
-            },
+            })
+        internal_group = vault.identity.Group("Internal",
+            name="Internal",
+            type="internal",
             policies=[
                 "dev",
                 "test",
             ],
-            type="internal")
+            metadata={
+                "version": "2",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -534,14 +538,15 @@ class Group(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
-            metadata={
-                "version": "2",
-            },
+            name="internal",
+            type="internal",
             policies=[
                 "dev",
                 "test",
             ],
-            type="internal")
+            metadata={
+                "version": "2",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -553,11 +558,12 @@ class Group(pulumi.CustomResource):
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
+            name="external",
+            type="external",
+            policies=["test"],
             metadata={
                 "version": "1",
-            },
-            policies=["test"],
-            type="external")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -572,24 +578,26 @@ class Group(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        internal_identity_group_group = vault.identity.Group("internalIdentity/groupGroup",
-            metadata={
-                "version": "2",
-            },
+        internal = vault.identity.Group("internal",
+            name="internal",
+            type="internal",
             policies=[
                 "dev",
                 "test",
             ],
-            type="internal")
-        internal_group = vault.identity.Group("internalGroup",
             metadata={
                 "version": "2",
-            },
+            })
+        internal_group = vault.identity.Group("Internal",
+            name="Internal",
+            type="internal",
             policies=[
                 "dev",
                 "test",
             ],
-            type="internal")
+            metadata={
+                "version": "2",
+            })
         ```
         <!--End PulumiCodeChooser -->
 

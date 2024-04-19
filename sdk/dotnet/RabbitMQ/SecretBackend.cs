@@ -24,8 +24,8 @@ namespace Pulumi.Vault.RabbitMQ
     ///     var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new()
     ///     {
     ///         ConnectionUri = "https://.....",
-    ///         Password = "password",
     ///         Username = "user",
+    ///         Password = "password",
     ///     });
     /// 
     /// });

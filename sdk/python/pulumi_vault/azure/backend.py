@@ -388,12 +388,12 @@ class Backend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=True,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=True)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -405,12 +405,12 @@ class Backend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=False,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=False)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -448,12 +448,12 @@ class Backend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=True,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=True)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -465,12 +465,12 @@ class Backend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=False,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=False)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
         <!--End PulumiCodeChooser -->
 

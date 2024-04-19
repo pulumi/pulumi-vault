@@ -30,15 +30,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			alicloudAuthBackend, err := vault.NewAuthBackend(ctx, "alicloudAuthBackend", &vault.AuthBackendArgs{
+//			alicloud, err := vault.NewAuthBackend(ctx, "alicloud", &vault.AuthBackendArgs{
 //				Type: pulumi.String("alicloud"),
 //				Path: pulumi.String("alicloud"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = alicloud.NewAuthBackendRole(ctx, "alicloudAuthBackendRole", &alicloud.AuthBackendRoleArgs{
-//				Backend: alicloudAuthBackend.Path,
+//			_, err = alicloud.NewAuthBackendRole(ctx, "alicloud", &alicloud.AuthBackendRoleArgs{
+//				Backend: alicloud.Path,
 //				Role:    pulumi.String("example"),
 //				Arn:     pulumi.String("acs:ram:123456:tf:role/foobar"),
 //			})

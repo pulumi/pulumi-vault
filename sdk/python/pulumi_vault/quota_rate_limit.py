@@ -319,6 +319,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         import pulumi_vault as vault
 
         global_ = vault.QuotaRateLimit("global",
+            name="global",
             path="",
             rate=100)
         ```
@@ -374,6 +375,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         import pulumi_vault as vault
 
         global_ = vault.QuotaRateLimit("global",
+            name="global",
             path="",
             rate=100)
         ```

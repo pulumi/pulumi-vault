@@ -302,21 +302,22 @@ class SecretStaticAccount(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_gcp as gcp
+        import pulumi_google as google
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        this = gcp.service_account.Account("this", account_id="my-awesome-account")
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
-        static_account = vault.gcp.SecretStaticAccount("staticAccount",
+            credentials=std.file(input="credentials.json").result)
+        static_account = vault.gcp.SecretStaticAccount("static_account",
             backend=gcp.path,
             static_account="project_viewer",
             secret_type="access_token",
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            service_account_email=this.email,
+            service_account_email=this["email"],
             bindings=[vault.gcp.SecretStaticAccountBindingArgs(
-                resource=this.project.apply(lambda project: f"//cloudresourcemanager.googleapis.com/projects/{project}"),
+                resource=f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
                 roles=["roles/viewer"],
             )])
         ```
@@ -360,21 +361,22 @@ class SecretStaticAccount(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_gcp as gcp
+        import pulumi_google as google
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        this = gcp.service_account.Account("this", account_id="my-awesome-account")
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
-        static_account = vault.gcp.SecretStaticAccount("staticAccount",
+            credentials=std.file(input="credentials.json").result)
+        static_account = vault.gcp.SecretStaticAccount("static_account",
             backend=gcp.path,
             static_account="project_viewer",
             secret_type="access_token",
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            service_account_email=this.email,
+            service_account_email=this["email"],
             bindings=[vault.gcp.SecretStaticAccountBindingArgs(
-                resource=this.project.apply(lambda project: f"//cloudresourcemanager.googleapis.com/projects/{project}"),
+                resource=f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
                 roles=["roles/viewer"],
             )])
         ```

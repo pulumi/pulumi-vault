@@ -38,6 +38,7 @@ import (
 //				return err
 //			}
 //			_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
+//				Name:    pulumi.String("test-role"),
 //				Backend: test.Path,
 //				ConsulPolicies: pulumi.StringArray{
 //					pulumi.String("example-policy"),

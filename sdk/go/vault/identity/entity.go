@@ -27,11 +27,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewEntity(ctx, "test", &identity.EntityArgs{
-//				Metadata: pulumi.StringMap{
-//					"foo": pulumi.String("bar"),
-//				},
+//				Name: pulumi.String("tester1"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("test"),
+//				},
+//				Metadata: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
 //				},
 //			})
 //			if err != nil {

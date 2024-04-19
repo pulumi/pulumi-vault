@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * });
  * const example = new vault.terraformcloud.SecretRole("example", {
  *     backend: test.backend,
+ *     name: "test-role",
  *     organization: "example-organization-name",
  *     teamId: "team-ieF4isC...",
  * });

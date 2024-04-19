@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const global = new vault.QuotaRateLimit("global", {
+ *     name: "global",
  *     path: "",
  *     rate: 100,
  * });

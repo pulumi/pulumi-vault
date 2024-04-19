@@ -43,12 +43,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleAuthBackend = new AuthBackend(&#34;exampleAuthBackend&#34;, AuthBackendArgs.builder()        
+ *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
  *             .type(&#34;aws&#34;)
  *             .build());
  * 
  *         var exampleAuthBackendClient = new AuthBackendClient(&#34;exampleAuthBackendClient&#34;, AuthBackendClientArgs.builder()        
- *             .backend(exampleAuthBackend.path())
+ *             .backend(example.path())
  *             .accessKey(&#34;INSERT_AWS_ACCESS_KEY&#34;)
  *             .secretKey(&#34;INSERT_AWS_SECRET_KEY&#34;)
  *             .build());

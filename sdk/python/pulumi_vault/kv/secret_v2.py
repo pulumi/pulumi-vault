@@ -463,6 +463,7 @@ class SecretV2(pulumi.CustomResource):
             description="KV Version 2 secret engine mount")
         example = vault.kv.SecretV2("example",
             mount=kvv2.path,
+            name="secret",
             cas=1,
             delete_all_versions=True,
             data_json=json.dumps({
@@ -561,6 +562,7 @@ class SecretV2(pulumi.CustomResource):
             description="KV Version 2 secret engine mount")
         example = vault.kv.SecretV2("example",
             mount=kvv2.path,
+            name="secret",
             cas=1,
             delete_all_versions=True,
             data_json=json.dumps({

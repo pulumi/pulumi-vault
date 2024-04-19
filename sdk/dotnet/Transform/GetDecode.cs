@@ -36,6 +36,7 @@ namespace Pulumi.Vault.Transform
         ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
         ///     {
         ///         Path = transform.Path,
+        ///         Name = "ccn-fpe",
         ///         Type = "fpe",
         ///         Template = "builtin/creditcardnumber",
         ///         TweakSource = "internal",
@@ -48,6 +49,7 @@ namespace Pulumi.Vault.Transform
         ///     var payments = new Vault.Transform.Role("payments", new()
         ///     {
         ///         Path = ccn_fpe.Path,
+        ///         Name = "payments",
         ///         Transformations = new[]
         ///         {
         ///             "ccn-fpe",
@@ -93,6 +95,7 @@ namespace Pulumi.Vault.Transform
         ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
         ///     {
         ///         Path = transform.Path,
+        ///         Name = "ccn-fpe",
         ///         Type = "fpe",
         ///         Template = "builtin/creditcardnumber",
         ///         TweakSource = "internal",
@@ -105,6 +108,7 @@ namespace Pulumi.Vault.Transform
         ///     var payments = new Vault.Transform.Role("payments", new()
         ///     {
         ///         Path = ccn_fpe.Path,
+        ///         Name = "payments",
         ///         Transformations = new[]
         ///         {
         ///             "ccn-fpe",

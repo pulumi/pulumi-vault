@@ -86,6 +86,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var dev1 = new SecretBackendRole(&#34;dev1&#34;, SecretBackendRoleArgs.builder()        
+ *             .name(&#34;dev1&#34;)
  *             .backend(db.path())
  *             .dbName(db.mssqls().applyValue(mssqls -&gt; mssqls[0].name()))
  *             .creationStatements(            
@@ -95,6 +96,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var dev2 = new SecretBackendRole(&#34;dev2&#34;, SecretBackendRoleArgs.builder()        
+ *             .name(&#34;dev2&#34;)
  *             .backend(db.path())
  *             .dbName(db.postgresqls().applyValue(postgresqls -&gt; postgresqls[0].name()))
  *             .creationStatements(            

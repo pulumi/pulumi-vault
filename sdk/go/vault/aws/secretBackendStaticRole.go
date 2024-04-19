@@ -36,6 +36,7 @@ import (
 //			}
 //			_, err = aws.NewSecretBackendStaticRole(ctx, "role", &aws.SecretBackendStaticRoleArgs{
 //				Backend:        aws.Path,
+//				Name:           pulumi.String("test"),
 //				Username:       pulumi.String("my-test-user"),
 //				RotationPeriod: pulumi.Int(3600),
 //			})

@@ -27,10 +27,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := secrets.NewSyncAzureDestination(ctx, "az", &secrets.SyncAzureDestinationArgs{
-//				KeyVaultUri:        pulumi.Any(_var.Key_vault_uri),
-//				ClientId:           pulumi.Any(_var.Client_id),
-//				ClientSecret:       pulumi.Any(_var.Client_secret),
-//				TenantId:           pulumi.Any(_var.Tenant_id),
+//				Name:               pulumi.String("az-dest"),
+//				KeyVaultUri:        pulumi.Any(keyVaultUri),
+//				ClientId:           pulumi.Any(clientId),
+//				ClientSecret:       pulumi.Any(clientSecret),
+//				TenantId:           pulumi.Any(tenantId),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
 //				CustomTags: pulumi.Map{
 //					"foo": pulumi.Any("bar"),

@@ -13,7 +13,8 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.pkisecret.SecretBackendSign("test", {
- *     backend: vault_mount.pki.path,
+ *     backend: pki.path,
+ *     name: admin.name,
  *     csr: `-----BEGIN CERTIFICATE REQUEST-----
  * MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
  * ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -44,7 +45,7 @@ import * as utilities from "../utilities";
  * `,
  *     commonName: "test.my.domain",
  * }, {
- *     dependsOn: [vault_pki_secret_backend_role.admin],
+ *     dependsOn: [admin],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

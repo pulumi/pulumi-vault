@@ -27,8 +27,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := secrets.NewSyncAwsDestination(ctx, "aws", &secrets.SyncAwsDestinationArgs{
-//				AccessKeyId:        pulumi.Any(_var.Access_key_id),
-//				SecretAccessKey:    pulumi.Any(_var.Secret_access_key),
+//				Name:               pulumi.String("aws-dest"),
+//				AccessKeyId:        pulumi.Any(accessKeyId),
+//				SecretAccessKey:    pulumi.Any(secretAccessKey),
 //				Region:             pulumi.String("us-east-1"),
 //				RoleArn:            pulumi.String("role-arn"),
 //				ExternalId:         pulumi.String("external-id"),

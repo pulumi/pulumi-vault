@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
  * 
  *         var postgres = new SecretBackendConnection(&#34;postgres&#34;, SecretBackendConnectionArgs.builder()        
  *             .backend(db.path())
+ *             .name(&#34;postgres&#34;)
  *             .allowedRoles(&#34;*&#34;)
  *             .postgresql(SecretBackendConnectionPostgresqlArgs.builder()
  *                 .connectionUrl(&#34;postgres://username:password@host:port/database&#34;)
@@ -66,6 +67,7 @@ import javax.annotation.Nullable;
  *         // configure a static role with period-based rotations
  *         var periodRole = new SecretBackendStaticRole(&#34;periodRole&#34;, SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
+ *             .name(&#34;my-period-role&#34;)
  *             .dbName(postgres.name())
  *             .username(&#34;example&#34;)
  *             .rotationPeriod(&#34;3600&#34;)
@@ -75,6 +77,7 @@ import javax.annotation.Nullable;
  *         // configure a static role with schedule-based rotations
  *         var scheduleRole = new SecretBackendStaticRole(&#34;scheduleRole&#34;, SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
+ *             .name(&#34;my-schedule-role&#34;)
  *             .dbName(postgres.name())
  *             .username(&#34;example&#34;)
  *             .rotationSchedule(&#34;0 0 * * SAT&#34;)

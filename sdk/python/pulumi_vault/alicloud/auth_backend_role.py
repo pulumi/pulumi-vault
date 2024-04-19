@@ -566,11 +566,11 @@ class AuthBackendRole(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        alicloud_auth_backend = vault.AuthBackend("alicloudAuthBackend",
+        alicloud = vault.AuthBackend("alicloud",
             type="alicloud",
             path="alicloud")
-        alicloud_auth_backend_role = vault.alicloud.AuthBackendRole("alicloudAuthBackendRole",
-            backend=alicloud_auth_backend.path,
+        alicloud_auth_backend_role = vault.alicloud.AuthBackendRole("alicloud",
+            backend=alicloud.path,
             role="example",
             arn="acs:ram:123456:tf:role/foobar")
         ```
@@ -640,11 +640,11 @@ class AuthBackendRole(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        alicloud_auth_backend = vault.AuthBackend("alicloudAuthBackend",
+        alicloud = vault.AuthBackend("alicloud",
             type="alicloud",
             path="alicloud")
-        alicloud_auth_backend_role = vault.alicloud.AuthBackendRole("alicloudAuthBackendRole",
-            backend=alicloud_auth_backend.path,
+        alicloud_auth_backend_role = vault.alicloud.AuthBackendRole("alicloud",
+            backend=alicloud.path,
             role="example",
             arn="acs:ram:123456:tf:role/foobar")
         ```

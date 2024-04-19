@@ -45,14 +45,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var ldap = new AuthBackend(&#34;ldap&#34;, AuthBackendArgs.builder()        
+ *             .path(&#34;ldap&#34;)
+ *             .url(&#34;ldaps://dc-01.example.org&#34;)
+ *             .userdn(&#34;OU=Users,OU=Accounts,DC=example,DC=org&#34;)
+ *             .userattr(&#34;sAMAccountName&#34;)
+ *             .upndomain(&#34;EXAMPLE.ORG&#34;)
  *             .discoverdn(false)
  *             .groupdn(&#34;OU=Groups,DC=example,DC=org&#34;)
  *             .groupfilter(&#34;(&amp;(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))&#34;)
- *             .path(&#34;ldap&#34;)
- *             .upndomain(&#34;EXAMPLE.ORG&#34;)
- *             .url(&#34;ldaps://dc-01.example.org&#34;)
- *             .userattr(&#34;sAMAccountName&#34;)
- *             .userdn(&#34;OU=Users,OU=Accounts,DC=example,DC=org&#34;)
  *             .build());
  * 
  *     }

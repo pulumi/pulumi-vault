@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *             .path(&#34;aws&#34;)
  *             .build());
  * 
- *         var exampleAuthBackendClient = new AuthBackendClient(&#34;exampleAuthBackendClient&#34;, AuthBackendClientArgs.builder()        
+ *         var example = new AuthBackendClient(&#34;example&#34;, AuthBackendClientArgs.builder()        
  *             .backend(aws.path())
  *             .accessKey(&#34;123456789012&#34;)
  *             .secretKey(&#34;AWSSECRETKEYGOESHERE&#34;)
@@ -83,11 +83,11 @@ import javax.annotation.Nullable;
  *                 &#34;dev&#34;,
  *                 &#34;prod&#34;)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(&#34;vault_aws_auth_backend_client.example&#34;)
+ *                 .dependsOn(example)
  *                 .build());
  * 
  *         var exampleAuthBackendLogin = new AuthBackendLogin(&#34;exampleAuthBackendLogin&#34;, AuthBackendLoginArgs.builder()        
- *             .backend(vault_auth_backend.example().path())
+ *             .backend(exampleVaultAuthBackend.path())
  *             .role(exampleAuthBackendRole.role())
  *             .identity(&#34;BASE64ENCODEDIDENTITYDOCUMENT&#34;)
  *             .signature(&#34;BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE&#34;)

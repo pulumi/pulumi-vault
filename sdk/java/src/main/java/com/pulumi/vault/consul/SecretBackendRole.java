@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var example = new SecretBackendRole(&#34;example&#34;, SecretBackendRoleArgs.builder()        
+ *             .name(&#34;test-role&#34;)
  *             .backend(test.path())
  *             .consulPolicies(&#34;example-policy&#34;)
  *             .build());

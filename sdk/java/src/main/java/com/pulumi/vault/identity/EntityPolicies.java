@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var entity = new Entity(&#34;entity&#34;, EntityArgs.builder()        
+ *             .name(&#34;entity&#34;)
  *             .externalPolicies(true)
  *             .build());
  * 
@@ -91,6 +92,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var entity = new Entity(&#34;entity&#34;, EntityArgs.builder()        
+ *             .name(&#34;entity&#34;)
  *             .externalPolicies(true)
  *             .build());
  * 

@@ -34,6 +34,7 @@ namespace Pulumi.Vault.AD
     ///     var qa = new Vault.AD.SecretLibrary("qa", new()
     ///     {
     ///         Backend = config.Backend,
+    ///         Name = "qa",
     ///         ServiceAccountNames = new[]
     ///         {
     ///             "Bob",

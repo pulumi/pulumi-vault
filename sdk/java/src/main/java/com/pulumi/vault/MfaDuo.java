@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var myDuo = new MfaDuo(&#34;myDuo&#34;, MfaDuoArgs.builder()        
+ *             .name(&#34;my_duo&#34;)
  *             .mountAccessor(userpass.accessor())
  *             .secretKey(&#34;8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz&#34;)
  *             .integrationKey(&#34;BIACEUEAXI20BNWTEYXT&#34;)

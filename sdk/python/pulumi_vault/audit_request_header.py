@@ -147,7 +147,9 @@ class AuditRequestHeader(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        x_forwarded_for = vault.AuditRequestHeader("xForwardedFor", hmac=False)
+        x_forwarded_for = vault.AuditRequestHeader("x_forwarded_for",
+            name="X-Forwarded-For",
+            hmac=False)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -178,7 +180,9 @@ class AuditRequestHeader(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        x_forwarded_for = vault.AuditRequestHeader("xForwardedFor", hmac=False)
+        x_forwarded_for = vault.AuditRequestHeader("x_forwarded_for",
+            name="X-Forwarded-For",
+            hmac=False)
         ```
         <!--End PulumiCodeChooser -->
 

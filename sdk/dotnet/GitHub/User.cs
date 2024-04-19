@@ -30,7 +30,7 @@ namespace Pulumi.Vault.GitHub
     ///         Organization = "myorg",
     ///     });
     /// 
-    ///     var tfUser = new Vault.GitHub.User("tfUser", new()
+    ///     var tfUser = new Vault.GitHub.User("tf_user", new()
     ///     {
     ///         Backend = example.Id,
     ///         UserName = "john.doe",

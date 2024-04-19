@@ -189,11 +189,12 @@ class Role(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        mount_transform = vault.Mount("mountTransform",
+        mount_transform = vault.Mount("mount_transform",
             path="transform",
             type="transform")
         test = vault.transform.Role("test",
             path=mount_transform.path,
+            name="payments",
             transformations=["ccn-fpe"])
         ```
         <!--End PulumiCodeChooser -->
@@ -227,11 +228,12 @@ class Role(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        mount_transform = vault.Mount("mountTransform",
+        mount_transform = vault.Mount("mount_transform",
             path="transform",
             type="transform")
         test = vault.transform.Role("test",
             path=mount_transform.path,
+            name="payments",
             transformations=["ccn-fpe"])
         ```
         <!--End PulumiCodeChooser -->

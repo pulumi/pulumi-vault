@@ -49,6 +49,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var global = new QuotaRateLimit(&#34;global&#34;, QuotaRateLimitArgs.builder()        
+ *             .name(&#34;global&#34;)
  *             .path(&#34;&#34;)
  *             .rate(100)
  *             .build());

@@ -38,6 +38,7 @@ import (
 //				return err
 //			}
 //			_, err = ssh.NewSecretBackendRole(ctx, "foo", &ssh.SecretBackendRoleArgs{
+//				Name:                  pulumi.String("my-role"),
 //				Backend:               example.Path,
 //				KeyType:               pulumi.String("ca"),
 //				AllowUserCertificates: pulumi.Bool(true),
@@ -46,6 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = ssh.NewSecretBackendRole(ctx, "bar", &ssh.SecretBackendRoleArgs{
+//				Name:         pulumi.String("otp-role"),
 //				Backend:      example.Path,
 //				KeyType:      pulumi.String("otp"),
 //				DefaultUser:  pulumi.String("default"),

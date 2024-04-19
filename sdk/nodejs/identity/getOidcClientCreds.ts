@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const app = new vault.identity.OidcClient("app", {
+ *     name: "application",
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
  *         "http://127.0.0.1:8251/callback",
@@ -82,6 +83,7 @@ export interface GetOidcClientCredsResult {
  * import * as vault from "@pulumi/vault";
  *
  * const app = new vault.identity.OidcClient("app", {
+ *     name: "application",
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
  *         "http://127.0.0.1:8251/callback",

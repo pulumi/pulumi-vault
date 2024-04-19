@@ -30,6 +30,7 @@ namespace Pulumi.Vault.Aws
     ///     var role = new Vault.Aws.SecretBackendStaticRole("role", new()
     ///     {
     ///         Backend = aws.Path,
+    ///         Name = "test",
     ///         Username = "my-test-user",
     ///         RotationPeriod = 3600,
     ///     });

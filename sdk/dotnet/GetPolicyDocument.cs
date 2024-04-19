@@ -25,7 +25,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var examplePolicyDocument = Vault.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -45,9 +45,10 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Policy("examplePolicy", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
-        ///         PolicyContents = examplePolicyDocument.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///         Name = "example_policy",
+        ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
         ///     });
         /// 
         /// });
@@ -71,7 +72,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var examplePolicyDocument = Vault.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -91,9 +92,10 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Policy("examplePolicy", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
-        ///         PolicyContents = examplePolicyDocument.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///         Name = "example_policy",
+        ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
         ///     });
         /// 
         /// });

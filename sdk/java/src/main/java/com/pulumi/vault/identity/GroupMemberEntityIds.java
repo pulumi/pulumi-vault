@@ -33,6 +33,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.identity.Group;
  * import com.pulumi.vault.identity.GroupArgs;
  * import com.pulumi.vault.identity.Entity;
+ * import com.pulumi.vault.identity.EntityArgs;
  * import com.pulumi.vault.identity.GroupMemberEntityIds;
  * import com.pulumi.vault.identity.GroupMemberEntityIdsArgs;
  * import java.util.List;
@@ -49,12 +50,15 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
+ *             .name(&#34;internal&#34;)
  *             .type(&#34;internal&#34;)
  *             .externalMemberEntityIds(true)
  *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
  *             .build());
  * 
- *         var user = new Entity(&#34;user&#34;);
+ *         var user = new Entity(&#34;user&#34;, EntityArgs.builder()        
+ *             .name(&#34;user&#34;)
+ *             .build());
  * 
  *         var members = new GroupMemberEntityIds(&#34;members&#34;, GroupMemberEntityIdsArgs.builder()        
  *             .exclusive(true)
@@ -79,6 +83,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.identity.Group;
  * import com.pulumi.vault.identity.GroupArgs;
  * import com.pulumi.vault.identity.Entity;
+ * import com.pulumi.vault.identity.EntityArgs;
  * import com.pulumi.vault.identity.GroupMemberEntityIds;
  * import com.pulumi.vault.identity.GroupMemberEntityIdsArgs;
  * import java.util.List;
@@ -95,16 +100,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
+ *             .name(&#34;internal&#34;)
  *             .type(&#34;internal&#34;)
  *             .externalMemberEntityIds(true)
  *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
  *             .build());
  * 
- *         var testUser = new Entity(&#34;testUser&#34;);
+ *         var testUser = new Entity(&#34;testUser&#34;, EntityArgs.builder()        
+ *             .name(&#34;test&#34;)
+ *             .build());
  * 
- *         var secondTestUser = new Entity(&#34;secondTestUser&#34;);
+ *         var secondTestUser = new Entity(&#34;secondTestUser&#34;, EntityArgs.builder()        
+ *             .name(&#34;second_test&#34;)
+ *             .build());
  * 
- *         var devUser = new Entity(&#34;devUser&#34;);
+ *         var devUser = new Entity(&#34;devUser&#34;, EntityArgs.builder()        
+ *             .name(&#34;dev&#34;)
+ *             .build());
  * 
  *         var test = new GroupMemberEntityIds(&#34;test&#34;, GroupMemberEntityIdsArgs.builder()        
  *             .memberEntityIds(            

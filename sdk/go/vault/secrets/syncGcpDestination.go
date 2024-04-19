@@ -19,26 +19,24 @@ import (
 //
 // import (
 //
-//	"os"
-//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/secrets"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := secrets.NewSyncGcpDestination(ctx, "gcp", &secrets.SyncGcpDestinationArgs{
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: credentialsFile,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = secrets.NewSyncGcpDestination(ctx, "gcp", &secrets.SyncGcpDestinationArgs{
+//				Name:               pulumi.String("gcp-dest"),
 //				ProjectId:          pulumi.String("gcp-project-id"),
-//				Credentials:        readFileOrPanic(_var.Credentials_file),
+//				Credentials:        invokeFile.Result,
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
 //				CustomTags: pulumi.Map{
 //					"foo": pulumi.Any("bar"),

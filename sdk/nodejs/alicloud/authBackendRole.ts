@@ -14,12 +14,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const alicloudAuthBackend = new vault.AuthBackend("alicloudAuthBackend", {
+ * const alicloud = new vault.AuthBackend("alicloud", {
  *     type: "alicloud",
  *     path: "alicloud",
  * });
- * const alicloudAuthBackendRole = new vault.alicloud.AuthBackendRole("alicloudAuthBackendRole", {
- *     backend: alicloudAuthBackend.path,
+ * const alicloudAuthBackendRole = new vault.alicloud.AuthBackendRole("alicloud", {
+ *     backend: alicloud.path,
  *     role: "example",
  *     arn: "acs:ram:123456:tf:role/foobar",
  * });

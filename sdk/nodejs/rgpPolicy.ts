@@ -17,11 +17,11 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const allow_all = new vault.RgpPolicy("allow-all", {
+ *     name: "allow-all",
  *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule {
  *   true
  * }
- *
  * `,
  * });
  * ```

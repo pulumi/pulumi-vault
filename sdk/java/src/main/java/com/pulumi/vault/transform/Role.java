@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  * 
  *         var test = new Role(&#34;test&#34;, RoleArgs.builder()        
  *             .path(mountTransform.path())
+ *             .name(&#34;payments&#34;)
  *             .transformations(&#34;ccn-fpe&#34;)
  *             .build());
  * 

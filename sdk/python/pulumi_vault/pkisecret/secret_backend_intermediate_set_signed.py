@@ -204,7 +204,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             description="intermediate",
             default_lease_ttl_seconds=86400,
             max_lease_ttl_seconds=86400)
-        example_secret_backend_root_cert = vault.pki_secret.SecretBackendRootCert("exampleSecretBackendRootCert",
+        example = vault.pki_secret.SecretBackendRootCert("example",
             backend=root.path,
             type="internal",
             common_name="RootOrg Root CA",
@@ -219,11 +219,11 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             country="US",
             locality="San Francisco",
             province="CA")
-        example_secret_backend_intermediate_cert_request = vault.pki_secret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest",
+        example_secret_backend_intermediate_cert_request = vault.pki_secret.SecretBackendIntermediateCertRequest("example",
             backend=intermediate.path,
-            type=example_secret_backend_root_cert.type,
+            type=example.type,
             common_name="SubOrg Intermediate CA")
-        example_secret_backend_root_sign_intermediate = vault.pki_secret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate",
+        example_secret_backend_root_sign_intermediate = vault.pki_secret.SecretBackendRootSignIntermediate("example",
             backend=root.path,
             csr=example_secret_backend_intermediate_cert_request.csr,
             common_name="SubOrg Intermediate CA",
@@ -234,7 +234,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             locality="San Francisco",
             province="CA",
             revoke=True)
-        example_secret_backend_intermediate_set_signed = vault.pki_secret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned",
+        example_secret_backend_intermediate_set_signed = vault.pki_secret.SecretBackendIntermediateSetSigned("example",
             backend=intermediate.path,
             certificate=example_secret_backend_root_sign_intermediate.certificate)
         ```
@@ -277,7 +277,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             description="intermediate",
             default_lease_ttl_seconds=86400,
             max_lease_ttl_seconds=86400)
-        example_secret_backend_root_cert = vault.pki_secret.SecretBackendRootCert("exampleSecretBackendRootCert",
+        example = vault.pki_secret.SecretBackendRootCert("example",
             backend=root.path,
             type="internal",
             common_name="RootOrg Root CA",
@@ -292,11 +292,11 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             country="US",
             locality="San Francisco",
             province="CA")
-        example_secret_backend_intermediate_cert_request = vault.pki_secret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest",
+        example_secret_backend_intermediate_cert_request = vault.pki_secret.SecretBackendIntermediateCertRequest("example",
             backend=intermediate.path,
-            type=example_secret_backend_root_cert.type,
+            type=example.type,
             common_name="SubOrg Intermediate CA")
-        example_secret_backend_root_sign_intermediate = vault.pki_secret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate",
+        example_secret_backend_root_sign_intermediate = vault.pki_secret.SecretBackendRootSignIntermediate("example",
             backend=root.path,
             csr=example_secret_backend_intermediate_cert_request.csr,
             common_name="SubOrg Intermediate CA",
@@ -307,7 +307,7 @@ class SecretBackendIntermediateSetSigned(pulumi.CustomResource):
             locality="San Francisco",
             province="CA",
             revoke=True)
-        example_secret_backend_intermediate_set_signed = vault.pki_secret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned",
+        example_secret_backend_intermediate_set_signed = vault.pki_secret.SecretBackendIntermediateSetSigned("example",
             backend=intermediate.path,
             certificate=example_secret_backend_root_sign_intermediate.certificate)
         ```

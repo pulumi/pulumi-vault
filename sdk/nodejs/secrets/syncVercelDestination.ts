@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const vercel = new vault.secrets.SyncVercelDestination("vercel", {
- *     accessToken: _var.access_token,
- *     projectId: _var.project_id,
+ *     name: "vercel-dest",
+ *     accessToken: accessToken,
+ *     projectId: projectId,
  *     deploymentEnvironments: [
  *         "development",
  *         "preview",

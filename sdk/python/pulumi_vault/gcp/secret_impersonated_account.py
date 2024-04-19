@@ -222,17 +222,18 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_gcp as gcp
+        import pulumi_google as google
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        this = gcp.service_account.Account("this", account_id="my-awesome-account")
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
-        impersonated_account = vault.gcp.SecretImpersonatedAccount("impersonatedAccount",
+            credentials=std.file(input="credentials.json").result)
+        impersonated_account = vault.gcp.SecretImpersonatedAccount("impersonated_account",
             backend=gcp.path,
             impersonated_account="this",
-            service_account_email=this.email,
+            service_account_email=this["email"],
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
         ```
         <!--End PulumiCodeChooser -->
@@ -270,17 +271,18 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_gcp as gcp
+        import pulumi_google as google
+        import pulumi_std as std
         import pulumi_vault as vault
 
-        this = gcp.service_account.Account("this", account_id="my-awesome-account")
+        this = google.index.ServiceAccount("this", account_id=my-awesome-account)
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
-        impersonated_account = vault.gcp.SecretImpersonatedAccount("impersonatedAccount",
+            credentials=std.file(input="credentials.json").result)
+        impersonated_account = vault.gcp.SecretImpersonatedAccount("impersonated_account",
             backend=gcp.path,
             impersonated_account="this",
-            service_account_email=this.email,
+            service_account_email=this["email"],
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"])
         ```
         <!--End PulumiCodeChooser -->

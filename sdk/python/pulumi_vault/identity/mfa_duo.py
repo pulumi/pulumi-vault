@@ -385,8 +385,8 @@ class MfaDuo(pulumi.CustomResource):
 
         example = vault.identity.MfaDuo("example",
             api_hostname="api-xxxxxxxx.duosecurity.com",
-            integration_key="secret-int-key",
-            secret_key="secret-key")
+            secret_key="secret-key",
+            integration_key="secret-int-key")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -426,8 +426,8 @@ class MfaDuo(pulumi.CustomResource):
 
         example = vault.identity.MfaDuo("example",
             api_hostname="api-xxxxxxxx.duosecurity.com",
-            integration_key="secret-int-key",
-            secret_key="secret-key")
+            secret_key="secret-key",
+            integration_key="secret-int-key")
         ```
         <!--End PulumiCodeChooser -->
 

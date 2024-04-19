@@ -22,8 +22,9 @@ import * as utilities from "./utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const global = new vault.QuotaLeaseCount("global", {
- *     maxLeases: 100,
+ *     name: "global",
  *     path: "",
+ *     maxLeases: 100,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

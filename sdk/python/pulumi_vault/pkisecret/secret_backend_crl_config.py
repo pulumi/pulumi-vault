@@ -500,7 +500,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             type="pki",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
-        crl_config = vault.pki_secret.SecretBackendCrlConfig("crlConfig",
+        crl_config = vault.pki_secret.SecretBackendCrlConfig("crl_config",
             backend=pki.path,
             expiry="72h",
             disable=False)
@@ -550,7 +550,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             type="pki",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
-        crl_config = vault.pki_secret.SecretBackendCrlConfig("crlConfig",
+        crl_config = vault.pki_secret.SecretBackendCrlConfig("crl_config",
             backend=pki.path,
             expiry="72h",
             disable=False)

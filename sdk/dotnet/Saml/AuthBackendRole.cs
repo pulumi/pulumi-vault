@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Saml
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleAuthBackend = new Vault.Saml.AuthBackend("exampleAuthBackend", new()
+    ///     var example = new Vault.Saml.AuthBackend("example", new()
     ///     {
     ///         Path = "saml",
     ///         IdpMetadataUrl = "https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
@@ -37,9 +37,10 @@ namespace Pulumi.Vault.Saml
     ///         DefaultRole = "default-role",
     ///     });
     /// 
-    ///     var exampleAuthBackendRole = new Vault.Saml.AuthBackendRole("exampleAuthBackendRole", new()
+    ///     var exampleAuthBackendRole = new Vault.Saml.AuthBackendRole("example", new()
     ///     {
-    ///         Path = exampleAuthBackend.Path,
+    ///         Path = example.Path,
+    ///         Name = "my-role",
     ///         GroupsAttribute = "groups",
     ///         BoundAttributes = 
     ///         {

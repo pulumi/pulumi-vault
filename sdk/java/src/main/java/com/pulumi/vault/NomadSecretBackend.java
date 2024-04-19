@@ -43,12 +43,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
- *             .address(&#34;https://127.0.0.1:4646&#34;)
  *             .backend(&#34;nomad&#34;)
- *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
  *             .description(&#34;test description&#34;)
+ *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
  *             .maxLeaseTtlSeconds(&#34;7200&#34;)
  *             .maxTtl(&#34;240&#34;)
+ *             .address(&#34;https://127.0.0.1:4646&#34;)
  *             .token(&#34;ae20ceaa-...&#34;)
  *             .ttl(&#34;120&#34;)
  *             .build());

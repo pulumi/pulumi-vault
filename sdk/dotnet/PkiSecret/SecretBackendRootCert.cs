@@ -23,7 +23,7 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var test = new Vault.PkiSecret.SecretBackendRootCert("test", new()
     ///     {
-    ///         Backend = vault_mount.Pki.Path,
+    ///         Backend = pki.Path,
     ///         Type = "internal",
     ///         CommonName = "Root CA",
     ///         Ttl = "315360000",
@@ -38,7 +38,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki, 
+    ///             pki, 
     ///         },
     ///     });
     /// 

@@ -31,8 +31,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.gcp.serviceAccount.Account;
- * import com.pulumi.gcp.serviceAccount.AccountArgs;
+ * import com.pulumi.google.serviceAccount;
+ * import com.pulumi.google.ServiceAccountArgs;
  * import com.pulumi.vault.gcp.SecretBackend;
  * import com.pulumi.vault.gcp.SecretBackendArgs;
  * import com.pulumi.vault.gcp.SecretStaticAccount;
@@ -51,13 +51,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new Account(&#34;this&#34;, AccountArgs.builder()        
+ *         var this_ = new ServiceAccount(&#34;this&#34;, ServiceAccountArgs.builder()        
  *             .accountId(&#34;my-awesome-account&#34;)
  *             .build());
  * 
  *         var gcp = new SecretBackend(&#34;gcp&#34;, SecretBackendArgs.builder()        
  *             .path(&#34;gcp&#34;)
- *             .credentials(Files.readString(Paths.get(&#34;credentials.json&#34;)))
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;credentials.json&#34;)
+ *                 .build()).result())
  *             .build());
  * 
  *         var staticAccount = new SecretStaticAccount(&#34;staticAccount&#34;, SecretStaticAccountArgs.builder()        
@@ -67,7 +69,7 @@ import javax.annotation.Nullable;
  *             .tokenScopes(&#34;https://www.googleapis.com/auth/cloud-platform&#34;)
  *             .serviceAccountEmail(this_.email())
  *             .bindings(SecretStaticAccountBindingArgs.builder()
- *                 .resource(this_.project().applyValue(project -&gt; String.format(&#34;//cloudresourcemanager.googleapis.com/projects/%s&#34;, project)))
+ *                 .resource(String.format(&#34;//cloudresourcemanager.googleapis.com/projects/%s&#34;, this_.project()))
  *                 .roles(&#34;roles/viewer&#34;)
  *                 .build())
  *             .build());

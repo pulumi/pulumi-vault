@@ -205,12 +205,13 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        user = vault.identity.Entity("user")
+        user = vault.identity.Entity("user", name="user")
         members = vault.identity.GroupMemberEntityIds("members",
             exclusive=True,
             member_entity_ids=[user.id],
@@ -226,14 +227,15 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        test_user = vault.identity.Entity("testUser")
-        second_test_user = vault.identity.Entity("secondTestUser")
-        dev_user = vault.identity.Entity("devUser")
+        test_user = vault.identity.Entity("test_user", name="test")
+        second_test_user = vault.identity.Entity("second_test_user", name="second_test")
+        dev_user = vault.identity.Entity("dev_user", name="dev")
         test = vault.identity.GroupMemberEntityIds("test",
             member_entity_ids=[
                 test_user.id,
@@ -281,12 +283,13 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        user = vault.identity.Entity("user")
+        user = vault.identity.Entity("user", name="user")
         members = vault.identity.GroupMemberEntityIds("members",
             exclusive=True,
             member_entity_ids=[user.id],
@@ -302,14 +305,15 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        test_user = vault.identity.Entity("testUser")
-        second_test_user = vault.identity.Entity("secondTestUser")
-        dev_user = vault.identity.Entity("devUser")
+        test_user = vault.identity.Entity("test_user", name="test")
+        second_test_user = vault.identity.Entity("second_test_user", name="second_test")
+        dev_user = vault.identity.Entity("dev_user", name="dev")
         test = vault.identity.GroupMemberEntityIds("test",
             member_entity_ids=[
                 test_user.id,

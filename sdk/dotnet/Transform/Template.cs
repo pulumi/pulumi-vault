@@ -45,12 +45,14 @@ namespace Pulumi.Vault.Transform
     ///     var numerics = new Vault.Transform.Alphabet("numerics", new()
     ///     {
     ///         Path = transform.Path,
+    ///         Name = "numerics",
     ///         AlphabetSet = "0123456789",
     ///     });
     /// 
     ///     var test = new Vault.Transform.Template("test", new()
     ///     {
     ///         Path = numerics.Path,
+    ///         Name = "ccn",
     ///         Type = "regex",
     ///         Pattern = "(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})",
     ///         Alphabet = "numerics",

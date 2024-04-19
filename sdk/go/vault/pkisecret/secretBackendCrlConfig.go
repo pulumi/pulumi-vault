@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crlConfig", &pkiSecret.SecretBackendCrlConfigArgs{
+//			_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crl_config", &pkiSecret.SecretBackendCrlConfigArgs{
 //				Backend: pki.Path,
 //				Expiry:  pulumi.String("72h"),
 //				Disable: pulumi.Bool(false),

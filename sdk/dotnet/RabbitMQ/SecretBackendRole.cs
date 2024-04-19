@@ -31,6 +31,7 @@ namespace Pulumi.Vault.RabbitMQ
     ///     var role = new Vault.RabbitMQ.SecretBackendRole("role", new()
     ///     {
     ///         Backend = rabbitmq.Path,
+    ///         Name = "deploy",
     ///         Tags = "tag1,tag2",
     ///         Vhosts = new[]
     ///         {

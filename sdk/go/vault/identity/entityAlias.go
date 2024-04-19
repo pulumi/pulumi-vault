@@ -28,8 +28,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewEntityAlias(ctx, "test", &identity.EntityAliasArgs{
-//				CanonicalId:   pulumi.String("49877D63-07AD-4B85-BDA8-B61626C477E8"),
+//				Name:          pulumi.String("user_1"),
 //				MountAccessor: pulumi.String("token_1f2bd5"),
+//				CanonicalId:   pulumi.String("49877D63-07AD-4B85-BDA8-B61626C477E8"),
 //			})
 //			if err != nil {
 //				return err

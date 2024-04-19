@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const exampleAuthBackend = new vault.AuthBackend("exampleAuthBackend", {type: "azure"});
- * const exampleAuthBackendConfig = new vault.azure.AuthBackendConfig("exampleAuthBackendConfig", {
- *     backend: exampleAuthBackend.path,
+ * const example = new vault.AuthBackend("example", {type: "azure"});
+ * const exampleAuthBackendConfig = new vault.azure.AuthBackendConfig("example", {
+ *     backend: example.path,
  *     tenantId: "11111111-2222-3333-4444-555555555555",
  *     clientId: "11111111-2222-3333-4444-555555555555",
  *     clientSecret: "01234567890123456789",

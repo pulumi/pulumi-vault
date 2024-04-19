@@ -33,6 +33,7 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * const dev1 = new vault.database.SecretBackendRole("dev1", {
+ *     name: "dev1",
  *     backend: db.path,
  *     dbName: db.mssqls.apply(mssqls => mssqls?.[0]?.name),
  *     creationStatements: [
@@ -42,6 +43,7 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * const dev2 = new vault.database.SecretBackendRole("dev2", {
+ *     name: "dev2",
  *     backend: db.path,
  *     dbName: db.postgresqls.apply(postgresqls => postgresqls?.[0]?.name),
  *     creationStatements: [

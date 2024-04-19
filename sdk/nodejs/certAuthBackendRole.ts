@@ -12,16 +12,19 @@ import * as utilities from "./utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
- * const certAuthBackend = new vault.AuthBackend("certAuthBackend", {
+ * const cert = new vault.AuthBackend("cert", {
  *     path: "cert",
  *     type: "cert",
  * });
- * const certCertAuthBackendRole = new vault.CertAuthBackendRole("certCertAuthBackendRole", {
- *     certificate: fs.readFileSync("/path/to/certs/ca-cert.pem", "utf8"),
- *     backend: certAuthBackend.path,
+ * const certCertAuthBackendRole = new vault.CertAuthBackendRole("cert", {
+ *     name: "foo",
+ *     certificate: std.file({
+ *         input: "/path/to/certs/ca-cert.pem",
+ *     }).then(invoke => invoke.result),
+ *     backend: cert.path,
  *     allowedNames: [
  *         "foo.example.org",
  *         "baz.example.org",

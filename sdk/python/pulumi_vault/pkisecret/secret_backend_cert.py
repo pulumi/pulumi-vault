@@ -741,9 +741,10 @@ class SecretBackendCert(pulumi.CustomResource):
         import pulumi_vault as vault
 
         app = vault.pki_secret.SecretBackendCert("app",
-            backend=vault_mount["intermediate"]["path"],
+            backend=intermediate["path"],
+            name=test["name"],
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+            opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -785,9 +786,10 @@ class SecretBackendCert(pulumi.CustomResource):
         import pulumi_vault as vault
 
         app = vault.pki_secret.SecretBackendCert("app",
-            backend=vault_mount["intermediate"]["path"],
+            backend=intermediate["path"],
+            name=test["name"],
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+            opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
         <!--End PulumiCodeChooser -->
 

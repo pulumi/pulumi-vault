@@ -49,11 +49,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .name(&#34;internal&#34;)
+ *             .type(&#34;internal&#34;)
  *             .policies(            
  *                 &#34;dev&#34;,
  *                 &#34;test&#34;)
- *             .type(&#34;internal&#34;)
+ *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
  *             .build());
  * 
  *     }
@@ -86,9 +87,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
- *             .metadata(Map.of(&#34;version&#34;, &#34;1&#34;))
- *             .policies(&#34;test&#34;)
+ *             .name(&#34;external&#34;)
  *             .type(&#34;external&#34;)
+ *             .policies(&#34;test&#34;)
+ *             .metadata(Map.of(&#34;version&#34;, &#34;1&#34;))
  *             .build());
  * 
  *     }
@@ -124,20 +126,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internalIdentity_groupGroup = new Group(&#34;internalIdentity/groupGroup&#34;, GroupArgs.builder()        
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
+ *             .name(&#34;internal&#34;)
+ *             .type(&#34;internal&#34;)
  *             .policies(            
  *                 &#34;dev&#34;,
  *                 &#34;test&#34;)
- *             .type(&#34;internal&#34;)
+ *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
  *             .build());
  * 
  *         var internalGroup = new Group(&#34;internalGroup&#34;, GroupArgs.builder()        
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .name(&#34;Internal&#34;)
+ *             .type(&#34;internal&#34;)
  *             .policies(            
  *                 &#34;dev&#34;,
  *                 &#34;test&#34;)
- *             .type(&#34;internal&#34;)
+ *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
  *             .build());
  * 
  *     }

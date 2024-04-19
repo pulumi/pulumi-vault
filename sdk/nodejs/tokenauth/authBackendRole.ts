@@ -17,18 +17,18 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.tokenauth.AuthBackendRole("example", {
- *     allowedEntityAliases: ["test_entity"],
+ *     roleName: "my-role",
  *     allowedPolicies: [
  *         "dev",
  *         "test",
  *     ],
  *     disallowedPolicies: ["default"],
+ *     allowedEntityAliases: ["test_entity"],
  *     orphan: true,
- *     pathSuffix: "path-suffix",
- *     renewable: true,
- *     roleName: "my-role",
- *     tokenExplicitMaxTtl: 115200,
  *     tokenPeriod: 86400,
+ *     renewable: true,
+ *     tokenExplicitMaxTtl: 115200,
+ *     pathSuffix: "path-suffix",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

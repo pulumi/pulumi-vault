@@ -50,10 +50,12 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         final var key = config.get(&#34;key&#34;).orElse(&#34;key&#34;);
  *         var role = new OidcRole(&#34;role&#34;, OidcRoleArgs.builder()        
+ *             .name(&#34;role&#34;)
  *             .key(key)
  *             .build());
  * 
  *         var keyOidcKey = new OidcKey(&#34;keyOidcKey&#34;, OidcKeyArgs.builder()        
+ *             .name(key)
  *             .algorithm(&#34;RS256&#34;)
  *             .allowedClientIds(role.clientId())
  *             .build());
@@ -94,16 +96,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
+ *             .name(&#34;key&#34;)
  *             .algorithm(&#34;RS256&#34;)
  *             .build());
  * 
- *         var roleOidcRole = new OidcRole(&#34;roleOidcRole&#34;, OidcRoleArgs.builder()        
+ *         var role = new OidcRole(&#34;role&#34;, OidcRoleArgs.builder()        
+ *             .name(&#34;role&#34;)
  *             .key(key.name())
  *             .build());
  * 
  *         var roleOidcKeyAllowedClientID = new OidcKeyAllowedClientID(&#34;roleOidcKeyAllowedClientID&#34;, OidcKeyAllowedClientIDArgs.builder()        
  *             .keyName(key.name())
- *             .allowedClientId(roleOidcRole.clientId())
+ *             .allowedClientId(role.clientId())
  *             .build());
  * 
  *     }

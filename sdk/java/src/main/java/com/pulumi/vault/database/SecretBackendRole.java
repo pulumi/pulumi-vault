@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
  * 
  *         var postgres = new SecretBackendConnection(&#34;postgres&#34;, SecretBackendConnectionArgs.builder()        
  *             .backend(db.path())
+ *             .name(&#34;postgres&#34;)
  *             .allowedRoles(            
  *                 &#34;dev&#34;,
  *                 &#34;prod&#34;)
@@ -65,6 +66,7 @@ import javax.annotation.Nullable;
  * 
  *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
  *             .backend(db.path())
+ *             .name(&#34;dev&#34;)
  *             .dbName(postgres.name())
  *             .creationStatements(&#34;CREATE ROLE \&#34;{{name}}\&#34; WITH LOGIN PASSWORD &#39;{{password}}&#39; VALID UNTIL &#39;{{expiration}}&#39;;&#34;)
  *             .build());

@@ -25,12 +25,6 @@ class SecretBackendRoleAllowedUserKeyConfig(dict):
                must be set to a single element list.
                
                Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-               
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               ```
-               <!--End PulumiCodeChooser -->
         :param str type: The SSH public key type.  
                *Supported key types are:*
                `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
@@ -49,12 +43,6 @@ class SecretBackendRoleAllowedUserKeyConfig(dict):
         must be set to a single element list.
 
         Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
         """
         return pulumi.get(self, "lengths")
 

@@ -352,9 +352,9 @@ class MfaOkta(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.identity.MfaOkta("example",
+            org_name="org1",
             api_token="token1",
-            base_url="qux.baz.com",
-            org_name="org1")
+            base_url="qux.baz.com")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -392,9 +392,9 @@ class MfaOkta(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.identity.MfaOkta("example",
+            org_name="org1",
             api_token="token1",
-            base_url="qux.baz.com",
-            org_name="org1")
+            base_url="qux.baz.com")
         ```
         <!--End PulumiCodeChooser -->
 

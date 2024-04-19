@@ -229,6 +229,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             description="Obtain AWS credentials.")
         role = vault.aws.SecretBackendStaticRole("role",
             backend=aws.path,
+            name="test",
             username="my-test-user",
             rotation_period=3600)
         ```
@@ -275,6 +276,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             description="Obtain AWS credentials.")
         role = vault.aws.SecretBackendStaticRole("role",
             backend=aws.path,
+            name="test",
             username="my-test-user",
             rotation_period=3600)
         ```

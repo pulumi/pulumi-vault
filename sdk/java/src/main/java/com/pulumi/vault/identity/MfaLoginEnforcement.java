@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleMfaDuo = new MfaDuo(&#34;exampleMfaDuo&#34;, MfaDuoArgs.builder()        
+ *         var example = new MfaDuo(&#34;example&#34;, MfaDuoArgs.builder()        
  *             .secretKey(&#34;secret-key&#34;)
  *             .integrationKey(&#34;int-key&#34;)
  *             .apiHostname(&#34;foo.baz&#34;)
@@ -52,7 +52,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleMfaLoginEnforcement = new MfaLoginEnforcement(&#34;exampleMfaLoginEnforcement&#34;, MfaLoginEnforcementArgs.builder()        
- *             .mfaMethodIds(exampleMfaDuo.methodId())
+ *             .name(&#34;default&#34;)
+ *             .mfaMethodIds(example.methodId())
  *             .build());
  * 
  *     }

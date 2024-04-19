@@ -27,15 +27,15 @@ namespace Pulumi.Vault
     /// {
     ///     var allow_all = new Vault.EgpPolicy("allow-all", new()
     ///     {
-    ///         EnforcementLevel = "soft-mandatory",
+    ///         Name = "allow-all",
     ///         Paths = new[]
     ///         {
     ///             "*",
     ///         },
+    ///         EnforcementLevel = "soft-mandatory",
     ///         Policy = @"main = rule {
     ///   true
     /// }
-    /// 
     /// ",
     ///     });
     /// 

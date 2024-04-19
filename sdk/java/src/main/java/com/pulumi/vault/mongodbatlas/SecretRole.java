@@ -58,6 +58,7 @@ import javax.annotation.Nullable;
  * 
  *         var role = new SecretRole(&#34;role&#34;, SecretRoleArgs.builder()        
  *             .mount(mongo.path())
+ *             .name(&#34;tf-test-role&#34;)
  *             .organizationId(&#34;7cf5a45a9ccf6400e60981b7&#34;)
  *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
  *             .roles(&#34;ORG_READ_ONLY&#34;)

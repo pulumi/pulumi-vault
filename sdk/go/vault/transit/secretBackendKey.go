@@ -42,6 +42,7 @@ import (
 //			}
 //			_, err = transit.NewSecretBackendKey(ctx, "key", &transit.SecretBackendKeyArgs{
 //				Backend: transit.Path,
+//				Name:    pulumi.String("my_key"),
 //			})
 //			if err != nil {
 //				return err

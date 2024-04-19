@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.consul.SecretBackend("test", {
- *     address: "127.0.0.1:8500",
- *     description: "Manages the Consul backend",
  *     path: "consul",
+ *     description: "Manages the Consul backend",
+ *     address: "127.0.0.1:8500",
  *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
  * });
  * ```
@@ -29,10 +29,10 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.consul.SecretBackend("test", {
+ *     path: "consul",
+ *     description: "Bootstrap the Consul backend",
  *     address: "127.0.0.1:8500",
  *     bootstrap: true,
- *     description: "Bootstrap the Consul backend",
- *     path: "consul",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

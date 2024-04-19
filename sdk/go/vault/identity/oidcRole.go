@@ -34,17 +34,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
+//			// Name of the OIDC Key
 //			key := "key"
 //			if param := cfg.Get("key"); param != "" {
 //				key = param
 //			}
 //			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
-//				Key: pulumi.String(key),
+//				Name: pulumi.String("role"),
+//				Key:  pulumi.String(key),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcKey(ctx, "keyOidcKey", &identity.OidcKeyArgs{
+//			_, err = identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Name:      pulumi.String(key),
 //				Algorithm: pulumi.String("RS256"),
 //				AllowedClientIds: pulumi.StringArray{
 //					role.ClientId,
@@ -78,20 +81,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Name:      pulumi.String("key"),
 //				Algorithm: pulumi.String("RS256"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
-//				Key: key.Name,
+//			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
+//				Name: pulumi.String("role"),
+//				Key:  key.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "role", &identity.OidcKeyAllowedClientIDArgs{
 //				KeyName:         key.Name,
-//				AllowedClientId: roleOidcRole.ClientId,
+//				AllowedClientId: role.ClientId,
 //			})
 //			if err != nil {
 //				return err

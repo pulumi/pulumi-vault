@@ -29,9 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
-//				Address:     pulumi.String("127.0.0.1:8500"),
-//				Description: pulumi.String("Manages the Consul backend"),
 //				Path:        pulumi.String("consul"),
+//				Description: pulumi.String("Manages the Consul backend"),
+//				Address:     pulumi.String("127.0.0.1:8500"),
 //				Token:       pulumi.String("4240861b-ce3d-8530-115a-521ff070dd29"),
 //			})
 //			if err != nil {
@@ -59,10 +59,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := consul.NewSecretBackend(ctx, "test", &consul.SecretBackendArgs{
+//				Path:        pulumi.String("consul"),
+//				Description: pulumi.String("Bootstrap the Consul backend"),
 //				Address:     pulumi.String("127.0.0.1:8500"),
 //				Bootstrap:   pulumi.Bool(true),
-//				Description: pulumi.String("Bootstrap the Consul backend"),
-//				Path:        pulumi.String("consul"),
 //			})
 //			if err != nil {
 //				return err

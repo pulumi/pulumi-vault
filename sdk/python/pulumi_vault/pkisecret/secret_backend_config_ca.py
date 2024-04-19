@@ -151,7 +151,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         import pulumi_vault as vault
 
         intermediate = vault.pki_secret.SecretBackendConfigCa("intermediate",
-            backend=vault_mount["intermediate"]["path"],
+            backend=intermediate_vault_mount["path"],
             pem_bundle=\"\"\"-----BEGIN RSA PRIVATE KEY-----
         MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
         5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -201,7 +201,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         MUR4qFxeUOW/GJGccMUd
         -----END CERTIFICATE-----
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["intermediate"]]))
+            opts=pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -229,7 +229,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         import pulumi_vault as vault
 
         intermediate = vault.pki_secret.SecretBackendConfigCa("intermediate",
-            backend=vault_mount["intermediate"]["path"],
+            backend=intermediate_vault_mount["path"],
             pem_bundle=\"\"\"-----BEGIN RSA PRIVATE KEY-----
         MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
         5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -279,7 +279,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         MUR4qFxeUOW/GJGccMUd
         -----END CERTIFICATE-----
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["intermediate"]]))
+            opts=pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
         <!--End PulumiCodeChooser -->
 

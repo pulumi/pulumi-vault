@@ -30,6 +30,7 @@ namespace Pulumi.Vault.Aws
     ///     var role = new Vault.Aws.SecretBackendRole("role", new()
     ///     {
     ///         Backend = aws.Path,
+    ///         Name = "deploy",
     ///         CredentialType = "iam_user",
     ///         PolicyDocument = @"{
     ///   ""Version"": ""2012-10-17"",

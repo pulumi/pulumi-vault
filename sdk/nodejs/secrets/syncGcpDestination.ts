@@ -10,12 +10,15 @@ import * as utilities from "../utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
  * const gcp = new vault.secrets.SyncGcpDestination("gcp", {
+ *     name: "gcp-dest",
  *     projectId: "gcp-project-id",
- *     credentials: fs.readFileSync(_var.credentials_file, "utf8"),
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  *     customTags: {
  *         foo: "bar",

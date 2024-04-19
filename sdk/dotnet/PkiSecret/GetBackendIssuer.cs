@@ -13,12 +13,82 @@ namespace Pulumi.Vault.PkiSecret
     {
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pki = new Vault.Mount("pki", new()
+        ///     {
+        ///         Path = "pki",
+        ///         Type = "pki",
+        ///         Description = "PKI secret engine mount",
+        ///     });
+        /// 
+        ///     var root = new Vault.PkiSecret.SecretBackendRootCert("root", new()
+        ///     {
+        ///         Backend = pki.Path,
+        ///         Type = "internal",
+        ///         CommonName = "example",
+        ///         Ttl = "86400",
+        ///         IssuerName = "example",
+        ///     });
+        /// 
+        ///     var example = Vault.PkiSecret.GetBackendIssuer.Invoke(new()
+        ///     {
+        ///         Backend = root.Path,
+        ///         IssuerRef = root.IssuerId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBackendIssuerResult> InvokeAsync(GetBackendIssuerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackendIssuerResult>("vault:pkiSecret/getBackendIssuer:getBackendIssuer", args ?? new GetBackendIssuerArgs(), options.WithDefaults());
 
         /// <summary>
         /// ## Example Usage
+        /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pki = new Vault.Mount("pki", new()
+        ///     {
+        ///         Path = "pki",
+        ///         Type = "pki",
+        ///         Description = "PKI secret engine mount",
+        ///     });
+        /// 
+        ///     var root = new Vault.PkiSecret.SecretBackendRootCert("root", new()
+        ///     {
+        ///         Backend = pki.Path,
+        ///         Type = "internal",
+        ///         CommonName = "example",
+        ///         Ttl = "86400",
+        ///         IssuerName = "example",
+        ///     });
+        /// 
+        ///     var example = Vault.PkiSecret.GetBackendIssuer.Invoke(new()
+        ///     {
+        ///         Backend = root.Path,
+        ///         IssuerRef = root.IssuerId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBackendIssuerResult> Invoke(GetBackendIssuerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendIssuerResult>("vault:pkiSecret/getBackendIssuer:getBackendIssuer", args ?? new GetBackendIssuerInvokeArgs(), options.WithDefaults());

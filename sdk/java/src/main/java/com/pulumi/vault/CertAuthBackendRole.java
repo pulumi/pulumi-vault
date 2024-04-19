@@ -46,14 +46,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var certAuthBackend = new AuthBackend(&#34;certAuthBackend&#34;, AuthBackendArgs.builder()        
+ *         var cert = new AuthBackend(&#34;cert&#34;, AuthBackendArgs.builder()        
  *             .path(&#34;cert&#34;)
  *             .type(&#34;cert&#34;)
  *             .build());
  * 
  *         var certCertAuthBackendRole = new CertAuthBackendRole(&#34;certCertAuthBackendRole&#34;, CertAuthBackendRoleArgs.builder()        
- *             .certificate(Files.readString(Paths.get(&#34;/path/to/certs/ca-cert.pem&#34;)))
- *             .backend(certAuthBackend.path())
+ *             .name(&#34;foo&#34;)
+ *             .certificate(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;/path/to/certs/ca-cert.pem&#34;)
+ *                 .build()).result())
+ *             .backend(cert.path())
  *             .allowedNames(            
  *                 &#34;foo.example.org&#34;,
  *                 &#34;baz.example.org&#34;)

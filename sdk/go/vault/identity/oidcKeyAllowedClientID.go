@@ -28,20 +28,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Name:      pulumi.String("key"),
 //				Algorithm: pulumi.String("RS256"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
-//				Key: key.Name,
+//			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
+//				Name: pulumi.String("role"),
+//				Key:  key.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "role", &identity.OidcKeyAllowedClientIDArgs{
 //				KeyName:         key.Name,
-//				AllowedClientId: roleOidcRole.ClientId,
+//				AllowedClientId: role.ClientId,
 //			})
 //			if err != nil {
 //				return err

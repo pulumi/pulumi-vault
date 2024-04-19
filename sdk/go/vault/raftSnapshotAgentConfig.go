@@ -28,12 +28,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "localBackups", &vault.RaftSnapshotAgentConfigArgs{
+//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "local_backups", &vault.RaftSnapshotAgentConfigArgs{
+//				Name:            pulumi.String("local"),
 //				IntervalSeconds: pulumi.Int(86400),
-//				LocalMaxSpace:   pulumi.Int(10000000),
-//				PathPrefix:      pulumi.String("/opt/vault/snapshots/"),
 //				Retain:          pulumi.Int(7),
+//				PathPrefix:      pulumi.String("/opt/vault/snapshots/"),
 //				StorageType:     pulumi.String("local"),
+//				LocalMaxSpace:   pulumi.Int(10000000),
 //			})
 //			if err != nil {
 //				return err
@@ -68,7 +69,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vault.NewRaftSnapshotAgentConfig(ctx, "s3Backups", &vault.RaftSnapshotAgentConfigArgs{
+//			_, err = vault.NewRaftSnapshotAgentConfig(ctx, "s3_backups", &vault.RaftSnapshotAgentConfigArgs{
+//				Name:               pulumi.String("s3"),
 //				IntervalSeconds:    pulumi.Int(86400),
 //				Retain:             pulumi.Int(7),
 //				PathPrefix:         pulumi.String("/path/in/bucket"),
@@ -108,7 +110,8 @@ import (
 //			cfg := config.New(ctx, "")
 //			azureAccountName := cfg.RequireObject("azureAccountName")
 //			azureAccountKey := cfg.RequireObject("azureAccountKey")
-//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "azureBackups", &vault.RaftSnapshotAgentConfigArgs{
+//			_, err := vault.NewRaftSnapshotAgentConfig(ctx, "azure_backups", &vault.RaftSnapshotAgentConfigArgs{
+//				Name:               pulumi.String("azure_backup"),
 //				IntervalSeconds:    pulumi.Int(86400),
 //				Retain:             pulumi.Int(7),
 //				PathPrefix:         pulumi.String("/"),

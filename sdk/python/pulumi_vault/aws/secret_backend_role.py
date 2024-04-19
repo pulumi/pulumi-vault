@@ -576,6 +576,7 @@ class SecretBackendRole(pulumi.CustomResource):
             secret_key="AWS secret key")
         role = vault.aws.SecretBackendRole("role",
             backend=aws.path,
+            name="deploy",
             credential_type="iam_user",
             policy_document=\"\"\"{
           "Version": "2012-10-17",
@@ -667,6 +668,7 @@ class SecretBackendRole(pulumi.CustomResource):
             secret_key="AWS secret key")
         role = vault.aws.SecretBackendRole("role",
             backend=aws.path,
+            name="deploy",
             credential_type="iam_user",
             policy_document=\"\"\"{
           "Version": "2012-10-17",

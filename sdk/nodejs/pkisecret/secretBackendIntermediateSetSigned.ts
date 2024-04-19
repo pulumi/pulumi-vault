@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 86400,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const exampleSecretBackendRootCert = new vault.pkisecret.SecretBackendRootCert("exampleSecretBackendRootCert", {
+ * const example = new vault.pkisecret.SecretBackendRootCert("example", {
  *     backend: root.path,
  *     type: "internal",
  *     commonName: "RootOrg Root CA",
@@ -42,12 +42,12 @@ import * as utilities from "../utilities";
  *     locality: "San Francisco",
  *     province: "CA",
  * });
- * const exampleSecretBackendIntermediateCertRequest = new vault.pkisecret.SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", {
+ * const exampleSecretBackendIntermediateCertRequest = new vault.pkisecret.SecretBackendIntermediateCertRequest("example", {
  *     backend: intermediate.path,
- *     type: exampleSecretBackendRootCert.type,
+ *     type: example.type,
  *     commonName: "SubOrg Intermediate CA",
  * });
- * const exampleSecretBackendRootSignIntermediate = new vault.pkisecret.SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", {
+ * const exampleSecretBackendRootSignIntermediate = new vault.pkisecret.SecretBackendRootSignIntermediate("example", {
  *     backend: root.path,
  *     csr: exampleSecretBackendIntermediateCertRequest.csr,
  *     commonName: "SubOrg Intermediate CA",
@@ -59,7 +59,7 @@ import * as utilities from "../utilities";
  *     province: "CA",
  *     revoke: true,
  * });
- * const exampleSecretBackendIntermediateSetSigned = new vault.pkisecret.SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", {
+ * const exampleSecretBackendIntermediateSetSigned = new vault.pkisecret.SecretBackendIntermediateSetSigned("example", {
  *     backend: intermediate.path,
  *     certificate: exampleSecretBackendRootSignIntermediate.certificate,
  * });

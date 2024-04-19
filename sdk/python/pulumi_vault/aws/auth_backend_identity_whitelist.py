@@ -202,9 +202,9 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist("example",
+            backend=example.path,
             safety_buffer=3600)
         ```
         <!--End PulumiCodeChooser -->
@@ -249,9 +249,9 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_identity_whitelist = vault.aws.AuthBackendIdentityWhitelist("example",
+            backend=example.path,
             safety_buffer=3600)
         ```
         <!--End PulumiCodeChooser -->

@@ -34,6 +34,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     var role = new Vault.PkiSecret.SecretBackendRole("role", new()
     ///     {
     ///         Backend = pki.Path,
+    ///         Name = "my_role",
     ///         Ttl = "3600",
     ///         AllowIpSans = true,
     ///         KeyType = "rsa",

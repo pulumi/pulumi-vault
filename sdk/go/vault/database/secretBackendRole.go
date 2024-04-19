@@ -37,6 +37,7 @@ import (
 //			}
 //			postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
 //				Backend: db.Path,
+//				Name:    pulumi.String("postgres"),
 //				AllowedRoles: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("prod"),
@@ -50,6 +51,7 @@ import (
 //			}
 //			_, err = database.NewSecretBackendRole(ctx, "role", &database.SecretBackendRoleArgs{
 //				Backend: db.Path,
+//				Name:    pulumi.String("dev"),
 //				DbName:  postgres.Name,
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),

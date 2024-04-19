@@ -44,12 +44,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var alphanumeric = new PasswordPolicy(&#34;alphanumeric&#34;, PasswordPolicyArgs.builder()        
+ *             .name(&#34;alphanumeric&#34;)
  *             .policy(&#34;&#34;&#34;
  *     length = 20
  *     rule &#34;charset&#34; {
  *       charset = &#34;abcdefghijklmnopqrstuvwxyz0123456789&#34;
  *     }
- *   
  *             &#34;&#34;&#34;)
  *             .build());
  * 

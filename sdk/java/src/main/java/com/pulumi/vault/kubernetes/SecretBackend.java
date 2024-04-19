@@ -50,8 +50,12 @@ import javax.annotation.Nullable;
  *             .defaultLeaseTtlSeconds(43200)
  *             .maxLeaseTtlSeconds(86400)
  *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
- *             .kubernetesCaCert(Files.readString(Paths.get(&#34;/path/to/cert&#34;)))
- *             .serviceAccountJwt(Files.readString(Paths.get(&#34;/path/to/token&#34;)))
+ *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;/path/to/cert&#34;)
+ *                 .build()).result())
+ *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;/path/to/token&#34;)
+ *                 .build()).result())
  *             .disableLocalCaJwt(false)
  *             .build());
  * 

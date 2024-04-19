@@ -27,6 +27,8 @@ namespace Pulumi.Vault.Okta
     ///     var example = new Vault.Okta.AuthBackend("example", new()
     ///     {
     ///         Description = "Demonstration of the Terraform Okta auth backend",
+    ///         Organization = "example",
+    ///         Token = "something that should be kept secret",
     ///         Groups = new[]
     ///         {
     ///             new Vault.Okta.Inputs.AuthBackendGroupArgs
@@ -39,17 +41,15 @@ namespace Pulumi.Vault.Okta
     ///                 },
     ///             },
     ///         },
-    ///         Organization = "example",
-    ///         Token = "something that should be kept secret",
     ///         Users = new[]
     ///         {
     ///             new Vault.Okta.Inputs.AuthBackendUserArgs
     ///             {
+    ///                 Username = "bar",
     ///                 Groups = new[]
     ///                 {
     ///                     "foo",
     ///                 },
-    ///                 Username = "bar",
     ///             },
     ///         },
     ///     });

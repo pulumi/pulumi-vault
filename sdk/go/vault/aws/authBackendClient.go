@@ -27,14 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
 //				Type: pulumi.String("aws"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = aws.NewAuthBackendClient(ctx, "exampleAuthBackendClient", &aws.AuthBackendClientArgs{
-//				Backend:   exampleAuthBackend.Path,
+//			_, err = aws.NewAuthBackendClient(ctx, "example", &aws.AuthBackendClientArgs{
+//				Backend:   example.Path,
 //				AccessKey: pulumi.String("INSERT_AWS_ACCESS_KEY"),
 //				SecretKey: pulumi.String("INSERT_AWS_SECRET_KEY"),
 //			})

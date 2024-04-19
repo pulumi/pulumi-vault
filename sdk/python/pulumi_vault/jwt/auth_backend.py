@@ -782,10 +782,10 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.jwt.AuthBackend("example",
-            bound_issuer="https://myco.auth0.com/",
             description="Demonstration of the Terraform JWT auth backend",
+            path="jwt",
             oidc_discovery_url="https://myco.auth0.com/",
-            path="jwt")
+            bound_issuer="https://myco.auth0.com/")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -797,16 +797,16 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.jwt.AuthBackend("example",
-            bound_issuer="https://myco.auth0.com/",
             description="Demonstration of the Terraform JWT auth backend",
+            path="oidc",
+            type="oidc",
+            oidc_discovery_url="https://myco.auth0.com/",
             oidc_client_id="1234567890",
             oidc_client_secret="secret123456",
-            oidc_discovery_url="https://myco.auth0.com/",
-            path="oidc",
+            bound_issuer="https://myco.auth0.com/",
             tune=vault.jwt.AuthBackendTuneArgs(
                 listing_visibility="unauth",
-            ),
-            type="oidc")
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -821,13 +821,13 @@ class AuthBackend(pulumi.CustomResource):
             description="OIDC backend",
             oidc_discovery_url="https://accounts.google.com",
             path="oidc",
+            type="oidc",
             provider_config={
+                "provider": "gsuite",
                 "fetch_groups": "true",
                 "fetch_user_info": "true",
                 "groups_recurse_max_depth": "1",
-                "provider": "gsuite",
-            },
-            type="oidc")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -895,10 +895,10 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.jwt.AuthBackend("example",
-            bound_issuer="https://myco.auth0.com/",
             description="Demonstration of the Terraform JWT auth backend",
+            path="jwt",
             oidc_discovery_url="https://myco.auth0.com/",
-            path="jwt")
+            bound_issuer="https://myco.auth0.com/")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -910,16 +910,16 @@ class AuthBackend(pulumi.CustomResource):
         import pulumi_vault as vault
 
         example = vault.jwt.AuthBackend("example",
-            bound_issuer="https://myco.auth0.com/",
             description="Demonstration of the Terraform JWT auth backend",
+            path="oidc",
+            type="oidc",
+            oidc_discovery_url="https://myco.auth0.com/",
             oidc_client_id="1234567890",
             oidc_client_secret="secret123456",
-            oidc_discovery_url="https://myco.auth0.com/",
-            path="oidc",
+            bound_issuer="https://myco.auth0.com/",
             tune=vault.jwt.AuthBackendTuneArgs(
                 listing_visibility="unauth",
-            ),
-            type="oidc")
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -934,13 +934,13 @@ class AuthBackend(pulumi.CustomResource):
             description="OIDC backend",
             oidc_discovery_url="https://accounts.google.com",
             path="oidc",
+            type="oidc",
             provider_config={
+                "provider": "gsuite",
                 "fetch_groups": "true",
                 "fetch_user_info": "true",
                 "groups_recurse_max_depth": "1",
-                "provider": "gsuite",
-            },
-            type="oidc")
+            })
         ```
         <!--End PulumiCodeChooser -->
 

@@ -17,23 +17,25 @@ import * as utilities from "../utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
+ * import * as google from "@pulumi/google";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
- * const _this = new gcp.serviceaccount.Account("this", {accountId: "my-awesome-account"});
+ * const _this = new google.index.ServiceAccount("this", {accountId: "my-awesome-account"});
  * const gcp = new vault.gcp.SecretBackend("gcp", {
  *     path: "gcp",
- *     credentials: fs.readFileSync("credentials.json", "utf8"),
+ *     credentials: std.file({
+ *         input: "credentials.json",
+ *     }).then(invoke => invoke.result),
  * });
- * const staticAccount = new vault.gcp.SecretStaticAccount("staticAccount", {
+ * const staticAccount = new vault.gcp.SecretStaticAccount("static_account", {
  *     backend: gcp.path,
  *     staticAccount: "project_viewer",
  *     secretType: "access_token",
  *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  *     serviceAccountEmail: _this.email,
  *     bindings: [{
- *         resource: pulumi.interpolate`//cloudresourcemanager.googleapis.com/projects/${_this.project}`,
+ *         resource: `//cloudresourcemanager.googleapis.com/projects/${_this.project}`,
  *         roles: ["roles/viewer"],
  *     }],
  * });

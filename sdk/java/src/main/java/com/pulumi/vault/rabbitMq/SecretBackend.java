@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var rabbitmq = new SecretBackend(&#34;rabbitmq&#34;, SecretBackendArgs.builder()        
  *             .connectionUri(&#34;https://.....&#34;)
- *             .password(&#34;password&#34;)
  *             .username(&#34;user&#34;)
+ *             .password(&#34;password&#34;)
  *             .build());
  * 
  *     }

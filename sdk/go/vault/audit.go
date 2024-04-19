@@ -30,10 +30,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+//				Type: pulumi.String("file"),
 //				Options: pulumi.StringMap{
 //					"file_path": pulumi.String("C:/temp/audit.txt"),
 //				},
-//				Type: pulumi.String("file"),
 //			})
 //			if err != nil {
 //				return err
@@ -61,14 +61,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewAudit(ctx, "test", &vault.AuditArgs{
+//				Type:  pulumi.String("socket"),
+//				Path:  pulumi.String("app_socket"),
 //				Local: pulumi.Bool(false),
 //				Options: pulumi.StringMap{
 //					"address":     pulumi.String("127.0.0.1:8000"),
-//					"description": pulumi.String("application x socket"),
 //					"socket_type": pulumi.String("tcp"),
+//					"description": pulumi.String("application x socket"),
 //				},
-//				Path: pulumi.String("app_socket"),
-//				Type: pulumi.String("socket"),
 //			})
 //			if err != nil {
 //				return err

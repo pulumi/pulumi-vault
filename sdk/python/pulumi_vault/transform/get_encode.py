@@ -152,12 +152,14 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
         type="transform")
     ccn_fpe = vault.transform.Transformation("ccn-fpe",
         path=transform.path,
+        name="ccn-fpe",
         type="fpe",
         template="builtin/creditcardnumber",
         tweak_source="internal",
         allowed_roles=["payments"])
     payments = vault.transform.Role("payments",
         path=ccn_fpe.path,
+        name="payments",
         transformations=["ccn-fpe"])
     test = vault.transform.get_encode_output(path=payments.path,
         role_name="payments",
@@ -235,12 +237,14 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
         type="transform")
     ccn_fpe = vault.transform.Transformation("ccn-fpe",
         path=transform.path,
+        name="ccn-fpe",
         type="fpe",
         template="builtin/creditcardnumber",
         tweak_source="internal",
         allowed_roles=["payments"])
     payments = vault.transform.Role("payments",
         path=ccn_fpe.path,
+        name="payments",
         transformations=["ccn-fpe"])
     test = vault.transform.get_encode_output(path=payments.path,
         role_name="payments",

@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mountTransform = new Vault.Mount("mountTransform", new()
+    ///     var mountTransform = new Vault.Mount("mount_transform", new()
     ///     {
     ///         Path = "transform",
     ///         Type = "transform",
@@ -35,6 +35,7 @@ namespace Pulumi.Vault.Transform
     ///     var test = new Vault.Transform.Role("test", new()
     ///     {
     ///         Path = mountTransform.Path,
+    ///         Name = "payments",
     ///         Transformations = new[]
     ///         {
     ///             "ccn-fpe",

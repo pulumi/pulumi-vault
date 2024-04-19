@@ -30,6 +30,7 @@ namespace Pulumi.Vault
     /// {
     ///     var @global = new Vault.QuotaRateLimit("global", new()
     ///     {
+    ///         Name = "global",
     ///         Path = "",
     ///         Rate = 100,
     ///     });

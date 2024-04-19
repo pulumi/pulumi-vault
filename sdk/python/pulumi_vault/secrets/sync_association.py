@@ -239,16 +239,19 @@ class SyncAssociation(pulumi.CustomResource):
             description="KV Version 2 secret engine mount")
         token = vault.kv.SecretV2("token",
             mount=kvv2.path,
+            name="token",
             data_json=json.dumps({
                 "dev": "B!gS3cr3t",
                 "prod": "S3cureP4$$",
             }))
         gh = vault.secrets.SyncGhDestination("gh",
-            access_token=var["access_token"],
-            repository_owner=var["repo_owner"],
+            name="gh-dest",
+            access_token=access_token,
+            repository_owner=repo_owner,
             repository_name="repo-name-example",
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
-        gh_token = vault.secrets.SyncAssociation("ghToken",
+        gh_token = vault.secrets.SyncAssociation("gh_token",
+            name=gh.name,
             type=gh.type,
             mount=kvv2.path,
             secret_name=token.name)
@@ -289,16 +292,19 @@ class SyncAssociation(pulumi.CustomResource):
             description="KV Version 2 secret engine mount")
         token = vault.kv.SecretV2("token",
             mount=kvv2.path,
+            name="token",
             data_json=json.dumps({
                 "dev": "B!gS3cr3t",
                 "prod": "S3cureP4$$",
             }))
         gh = vault.secrets.SyncGhDestination("gh",
-            access_token=var["access_token"],
-            repository_owner=var["repo_owner"],
+            name="gh-dest",
+            access_token=access_token,
+            repository_owner=repo_owner,
             repository_name="repo-name-example",
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
-        gh_token = vault.secrets.SyncAssociation("ghToken",
+        gh_token = vault.secrets.SyncAssociation("gh_token",
+            name=gh.name,
             type=gh.type,
             mount=kvv2.path,
             secret_name=token.name)

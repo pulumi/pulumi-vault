@@ -906,13 +906,13 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         import pulumi_vault as vault
 
         root = vault.pki_secret.SecretBackendRootSignIntermediate("root",
-            backend=vault_mount["root"]["path"],
-            csr=vault_pki_secret_backend_intermediate_cert_request["intermediate"]["csr"],
+            backend=root_vault_mount["path"],
+            csr=intermediate["csr"],
             common_name="Intermediate CA",
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_intermediate_cert_request["intermediate"]]))
+            opts=pulumi.ResourceOptions(depends_on=[intermediate]))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -965,13 +965,13 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         import pulumi_vault as vault
 
         root = vault.pki_secret.SecretBackendRootSignIntermediate("root",
-            backend=vault_mount["root"]["path"],
-            csr=vault_pki_secret_backend_intermediate_cert_request["intermediate"]["csr"],
+            backend=root_vault_mount["path"],
+            csr=intermediate["csr"],
             common_name="Intermediate CA",
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_intermediate_cert_request["intermediate"]]))
+            opts=pulumi.ResourceOptions(depends_on=[intermediate]))
         ```
         <!--End PulumiCodeChooser -->
 

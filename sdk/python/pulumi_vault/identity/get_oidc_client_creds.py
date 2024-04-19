@@ -99,6 +99,7 @@ def get_oidc_client_creds(name: Optional[str] = None,
     import pulumi_vault as vault
 
     app = vault.identity.OidcClient("app",
+        name="application",
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
             "http://127.0.0.1:8251/callback",
@@ -144,6 +145,7 @@ def get_oidc_client_creds_output(name: Optional[pulumi.Input[str]] = None,
     import pulumi_vault as vault
 
     app = vault.identity.OidcClient("app",
+        name="application",
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
             "http://127.0.0.1:8251/callback",

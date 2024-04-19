@@ -19,15 +19,19 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     externalMemberGroupIds: true,
  *     metadata: {
  *         version: "2",
  *     },
  * });
- * const users = new vault.identity.Group("users", {metadata: {
- *     version: "2",
- * }});
+ * const users = new vault.identity.Group("users", {
+ *     name: "users",
+ *     metadata: {
+ *         version: "2",
+ *     },
+ * });
  * const members = new vault.identity.GroupMemberGroupIds("members", {
  *     exclusive: true,
  *     memberGroupIds: [users.id],
@@ -44,15 +48,19 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     externalMemberGroupIds: true,
  *     metadata: {
  *         version: "2",
  *     },
  * });
- * const users = new vault.identity.Group("users", {metadata: {
- *     version: "2",
- * }});
+ * const users = new vault.identity.Group("users", {
+ *     name: "users",
+ *     metadata: {
+ *         version: "2",
+ *     },
+ * });
  * const members = new vault.identity.GroupMemberGroupIds("members", {
  *     exclusive: false,
  *     memberGroupIds: [users.id],

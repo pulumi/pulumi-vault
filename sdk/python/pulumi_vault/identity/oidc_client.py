@@ -378,16 +378,18 @@ class OidcClient(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        test_oidc_assignment = vault.identity.OidcAssignment("testOidcAssignment",
+        test = vault.identity.OidcAssignment("test",
+            name="my-assignment",
             entity_ids=["ascbascas-2231a-sdfaa"],
             group_ids=["sajkdsad-32414-sfsada"])
-        test_oidc_client = vault.identity.OidcClient("testOidcClient",
+        test_oidc_client = vault.identity.OidcClient("test",
+            name="my-app",
             redirect_uris=[
                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
                 "http://127.0.0.1:8251/callback",
                 "http://127.0.0.1:8080/callback",
             ],
-            assignments=[test_oidc_assignment.name],
+            assignments=[test.name],
             id_token_ttl=2400,
             access_token_ttl=7200)
         ```
@@ -438,16 +440,18 @@ class OidcClient(pulumi.CustomResource):
         import pulumi
         import pulumi_vault as vault
 
-        test_oidc_assignment = vault.identity.OidcAssignment("testOidcAssignment",
+        test = vault.identity.OidcAssignment("test",
+            name="my-assignment",
             entity_ids=["ascbascas-2231a-sdfaa"],
             group_ids=["sajkdsad-32414-sfsada"])
-        test_oidc_client = vault.identity.OidcClient("testOidcClient",
+        test_oidc_client = vault.identity.OidcClient("test",
+            name="my-app",
             redirect_uris=[
                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
                 "http://127.0.0.1:8251/callback",
                 "http://127.0.0.1:8080/callback",
             ],
-            assignments=[test_oidc_assignment.name],
+            assignments=[test.name],
             id_token_ttl=2400,
             access_token_ttl=7200)
         ```

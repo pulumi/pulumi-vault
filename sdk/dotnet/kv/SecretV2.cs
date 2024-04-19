@@ -41,6 +41,7 @@ namespace Pulumi.Vault.kv
     ///     var example = new Vault.Kv.SecretV2("example", new()
     ///     {
     ///         Mount = kvv2.Path,
+    ///         Name = "secret",
     ///         Cas = 1,
     ///         DeleteAllVersions = true,
     ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;

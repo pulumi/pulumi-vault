@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleAuthBackend = new AuthBackend(&#34;exampleAuthBackend&#34;, AuthBackendArgs.builder()        
+ *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
  *             .type(&#34;aws&#34;)
  *             .build());
  * 
  *         var exampleAuthBackendIdentityWhitelist = new AuthBackendIdentityWhitelist(&#34;exampleAuthBackendIdentityWhitelist&#34;, AuthBackendIdentityWhitelistArgs.builder()        
- *             .backend(exampleAuthBackend.path())
+ *             .backend(example.path())
  *             .safetyBuffer(3600)
  *             .build());
  * 

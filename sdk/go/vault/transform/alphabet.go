@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+//			mountTransform, err := vault.NewMount(ctx, "mount_transform", &vault.MountArgs{
 //				Path: pulumi.String("transform"),
 //				Type: pulumi.String("transform"),
 //			})
@@ -41,6 +41,7 @@ import (
 //			}
 //			_, err = transform.NewAlphabet(ctx, "test", &transform.AlphabetArgs{
 //				Path:     mountTransform.Path,
+//				Name:     pulumi.String("numerics"),
 //				Alphabet: pulumi.String("0123456789"),
 //			})
 //			if err != nil {

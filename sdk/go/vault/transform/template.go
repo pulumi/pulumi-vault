@@ -52,6 +52,7 @@ import (
 //			}
 //			numerics, err := transform.NewAlphabet(ctx, "numerics", &transform.AlphabetArgs{
 //				Path:     transform.Path,
+//				Name:     pulumi.String("numerics"),
 //				Alphabet: pulumi.String("0123456789"),
 //			})
 //			if err != nil {
@@ -59,6 +60,7 @@ import (
 //			}
 //			_, err = transform.NewTemplate(ctx, "test", &transform.TemplateArgs{
 //				Path:         numerics.Path,
+//				Name:         pulumi.String("ccn"),
 //				Type:         pulumi.String("regex"),
 //				Pattern:      pulumi.String("(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})"),
 //				Alphabet:     pulumi.String("numerics"),

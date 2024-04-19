@@ -37,6 +37,7 @@ import (
 //			}
 //			example, err := terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
 //				Backend:      test.Backend,
+//				Name:         pulumi.String("test-role"),
 //				Organization: pulumi.String("example-organization-name"),
 //				TeamId:       pulumi.String("team-ieF4isC..."),
 //			})

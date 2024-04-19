@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * });
  * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
  *     path: transform.path,
+ *     name: "ccn-fpe",
  *     type: "fpe",
  *     template: "builtin/creditcardnumber",
  *     tweakSource: "internal",
@@ -29,6 +30,7 @@ import * as utilities from "../utilities";
  * });
  * const payments = new vault.transform.Role("payments", {
  *     path: ccn_fpe.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * const test = vault.transform.getEncodeOutput({
@@ -138,6 +140,7 @@ export interface GetEncodeResult {
  * });
  * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
  *     path: transform.path,
+ *     name: "ccn-fpe",
  *     type: "fpe",
  *     template: "builtin/creditcardnumber",
  *     tweakSource: "internal",
@@ -145,6 +148,7 @@ export interface GetEncodeResult {
  * });
  * const payments = new vault.transform.Role("payments", {
  *     path: ccn_fpe.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * const test = vault.transform.getEncodeOutput({

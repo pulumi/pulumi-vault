@@ -46,11 +46,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new AuthBackend(&#34;test&#34;, AuthBackendArgs.builder()        
+ *             .path(&#34;saml&#34;)
+ *             .idpMetadataUrl(&#34;https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata&#34;)
+ *             .entityId(&#34;https://my.vault/v1/auth/saml&#34;)
  *             .acsUrls(&#34;https://my.vault.primary/v1/auth/saml/callback&#34;)
  *             .defaultRole(&#34;admin&#34;)
- *             .entityId(&#34;https://my.vault/v1/auth/saml&#34;)
- *             .idpMetadataUrl(&#34;https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata&#34;)
- *             .path(&#34;saml&#34;)
  *             .build());
  * 
  *     }

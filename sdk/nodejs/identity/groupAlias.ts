@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const group = new vault.identity.Group("group", {
+ *     name: "test",
  *     type: "external",
  *     policies: ["test"],
  * });

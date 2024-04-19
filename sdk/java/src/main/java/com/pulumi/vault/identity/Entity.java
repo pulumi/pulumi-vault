@@ -43,8 +43,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new Entity(&#34;test&#34;, EntityArgs.builder()        
- *             .metadata(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *             .name(&#34;tester1&#34;)
  *             .policies(&#34;test&#34;)
+ *             .metadata(Map.of(&#34;foo&#34;, &#34;bar&#34;))
  *             .build());
  * 
  *     }

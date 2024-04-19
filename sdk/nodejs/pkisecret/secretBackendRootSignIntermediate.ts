@@ -15,14 +15,14 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * const root = new vault.pkisecret.SecretBackendRootSignIntermediate("root", {
- *     backend: vault_mount.root.path,
- *     csr: vault_pki_secret_backend_intermediate_cert_request.intermediate.csr,
+ *     backend: rootVaultMount.path,
+ *     csr: intermediate.csr,
  *     commonName: "Intermediate CA",
  *     excludeCnFromSans: true,
  *     ou: "My OU",
  *     organization: "My organization",
  * }, {
- *     dependsOn: [vault_pki_secret_backend_intermediate_cert_request.intermediate],
+ *     dependsOn: [intermediate],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

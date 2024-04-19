@@ -594,17 +594,19 @@ class SecretBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
             path="kubernetes",
             description="kubernetes secrets engine description",
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         sa_example = vault.kubernetes.SecretBackendRole("sa-example",
             backend=config.path,
+            name="service-account-name-role",
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
@@ -625,17 +627,19 @@ class SecretBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
             path="kubernetes",
             description="kubernetes secrets engine description",
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         name_example = vault.kubernetes.SecretBackendRole("name-example",
             backend=config.path,
+            name="service-account-name-role",
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
@@ -656,17 +660,19 @@ class SecretBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
             path="kubernetes",
             description="kubernetes secrets engine description",
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         rules_example = vault.kubernetes.SecretBackendRole("rules-example",
             backend=config.path,
+            name="service-account-name-role",
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
@@ -751,17 +757,19 @@ class SecretBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
             path="kubernetes",
             description="kubernetes secrets engine description",
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         sa_example = vault.kubernetes.SecretBackendRole("sa-example",
             backend=config.path,
+            name="service-account-name-role",
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
@@ -782,17 +790,19 @@ class SecretBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
             path="kubernetes",
             description="kubernetes secrets engine description",
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         name_example = vault.kubernetes.SecretBackendRole("name-example",
             backend=config.path,
+            name="service-account-name-role",
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,
@@ -813,17 +823,19 @@ class SecretBackendRole(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         config = vault.kubernetes.SecretBackend("config",
             path="kubernetes",
             description="kubernetes secrets engine description",
             kubernetes_host="https://127.0.0.1:61233",
-            kubernetes_ca_cert=(lambda path: open(path).read())("/path/to/cert"),
-            service_account_jwt=(lambda path: open(path).read())("/path/to/token"),
+            kubernetes_ca_cert=std.file(input="/path/to/cert").result,
+            service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         rules_example = vault.kubernetes.SecretBackendRole("rules-example",
             backend=config.path,
+            name="service-account-name-role",
             allowed_kubernetes_namespaces=["*"],
             token_max_ttl=43200,
             token_default_ttl=21600,

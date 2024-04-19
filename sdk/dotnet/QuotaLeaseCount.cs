@@ -32,8 +32,9 @@ namespace Pulumi.Vault
     /// {
     ///     var @global = new Vault.QuotaLeaseCount("global", new()
     ///     {
-    ///         MaxLeases = 100,
+    ///         Name = "global",
     ///         Path = "",
+    ///         MaxLeases = 100,
     ///     });
     /// 
     /// });

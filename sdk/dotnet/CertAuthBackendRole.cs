@@ -17,23 +17,27 @@ namespace Pulumi.Vault
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Std = Pulumi.Std;
     /// using Vault = Pulumi.Vault;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var certAuthBackend = new Vault.AuthBackend("certAuthBackend", new()
+    ///     var cert = new Vault.AuthBackend("cert", new()
     ///     {
     ///         Path = "cert",
     ///         Type = "cert",
     ///     });
     /// 
-    ///     var certCertAuthBackendRole = new Vault.CertAuthBackendRole("certCertAuthBackendRole", new()
+    ///     var certCertAuthBackendRole = new Vault.CertAuthBackendRole("cert", new()
     ///     {
-    ///         Certificate = File.ReadAllText("/path/to/certs/ca-cert.pem"),
-    ///         Backend = certAuthBackend.Path,
+    ///         Name = "foo",
+    ///         Certificate = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "/path/to/certs/ca-cert.pem",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         Backend = cert.Path,
     ///         AllowedNames = new[]
     ///         {
     ///             "foo.example.org",

@@ -10,10 +10,12 @@ import * as utilities from "../utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
- * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: fs.readFileSync("credentials.json", "utf8")});
+ * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: std.file({
+ *     input: "credentials.json",
+ * }).then(invoke => invoke.result)});
  * ```
  * <!--End PulumiCodeChooser -->
  */

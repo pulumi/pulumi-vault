@@ -43,8 +43,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var aws = new SyncAwsDestination(&#34;aws&#34;, SyncAwsDestinationArgs.builder()        
- *             .accessKeyId(var_.access_key_id())
- *             .secretAccessKey(var_.secret_access_key())
+ *             .name(&#34;aws-dest&#34;)
+ *             .accessKeyId(accessKeyId)
+ *             .secretAccessKey(secretAccessKey)
  *             .region(&#34;us-east-1&#34;)
  *             .roleArn(&#34;role-arn&#34;)
  *             .externalId(&#34;external-id&#34;)

@@ -322,11 +322,13 @@ class SyncGcpDestination(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         gcp = vault.secrets.SyncGcpDestination("gcp",
+            name="gcp-dest",
             project_id="gcp-project-id",
-            credentials=(lambda path: open(path).read())(var["credentials_file"]),
+            credentials=std.file(input=credentials_file).result,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
             custom_tags={
                 "foo": "bar",
@@ -373,11 +375,13 @@ class SyncGcpDestination(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         gcp = vault.secrets.SyncGcpDestination("gcp",
+            name="gcp-dest",
             project_id="gcp-project-id",
-            credentials=(lambda path: open(path).read())(var["credentials_file"]),
+            credentials=std.file(input=credentials_file).result,
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
             custom_tags={
                 "foo": "bar",

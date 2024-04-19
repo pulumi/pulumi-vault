@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var myOkta = new MfaOkta(&#34;myOkta&#34;, MfaOktaArgs.builder()        
+ *             .name(&#34;my_okta&#34;)
  *             .mountAccessor(userpass.accessor())
  *             .usernameFormat(&#34;user@example.com&#34;)
  *             .orgName(&#34;hashicorp&#34;)

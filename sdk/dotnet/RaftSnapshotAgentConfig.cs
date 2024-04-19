@@ -22,13 +22,14 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var localBackups = new Vault.RaftSnapshotAgentConfig("localBackups", new()
+    ///     var localBackups = new Vault.RaftSnapshotAgentConfig("local_backups", new()
     ///     {
+    ///         Name = "local",
     ///         IntervalSeconds = 86400,
-    ///         LocalMaxSpace = 10000000,
-    ///         PathPrefix = "/opt/vault/snapshots/",
     ///         Retain = 7,
+    ///         PathPrefix = "/opt/vault/snapshots/",
     ///         StorageType = "local",
+    ///         LocalMaxSpace = 10000000,
     ///     });
     /// 
     /// });
@@ -51,8 +52,9 @@ namespace Pulumi.Vault
     ///     var awsSecretAccessKey = config.RequireObject&lt;dynamic&gt;("awsSecretAccessKey");
     ///     var current = Aws.GetRegion.Invoke();
     /// 
-    ///     var s3Backups = new Vault.RaftSnapshotAgentConfig("s3Backups", new()
+    ///     var s3Backups = new Vault.RaftSnapshotAgentConfig("s3_backups", new()
     ///     {
+    ///         Name = "s3",
     ///         IntervalSeconds = 86400,
     ///         Retain = 7,
     ///         PathPrefix = "/path/in/bucket",
@@ -82,8 +84,9 @@ namespace Pulumi.Vault
     ///     var config = new Config();
     ///     var azureAccountName = config.RequireObject&lt;dynamic&gt;("azureAccountName");
     ///     var azureAccountKey = config.RequireObject&lt;dynamic&gt;("azureAccountKey");
-    ///     var azureBackups = new Vault.RaftSnapshotAgentConfig("azureBackups", new()
+    ///     var azureBackups = new Vault.RaftSnapshotAgentConfig("azure_backups", new()
     ///     {
+    ///         Name = "azure_backup",
     ///         IntervalSeconds = 86400,
     ///         Retain = 7,
     ///         PathPrefix = "/",

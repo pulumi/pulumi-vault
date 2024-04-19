@@ -44,7 +44,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new SecretBackendSign(&#34;test&#34;, SecretBackendSignArgs.builder()        
- *             .backend(vault_mount.pki().path())
+ *             .backend(pki.path())
+ *             .name(admin.name())
  *             .csr(&#34;&#34;&#34;
  * -----BEGIN CERTIFICATE REQUEST-----
  * MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
@@ -76,7 +77,7 @@ import javax.annotation.Nullable;
  *             &#34;&#34;&#34;)
  *             .commonName(&#34;test.my.domain&#34;)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vault_pki_secret_backend_role.admin())
+ *                 .dependsOn(admin)
  *                 .build());
  * 
  *     }

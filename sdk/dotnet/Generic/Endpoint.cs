@@ -43,7 +43,7 @@ namespace Pulumi.Vault.Generic
     ///         },
     ///     });
     /// 
-    ///     var u1Token = new Vault.Generic.Endpoint("u1Token", new()
+    ///     var u1Token = new Vault.Generic.Endpoint("u1_token", new()
     ///     {
     ///         Path = "auth/userpass/login/u1",
     ///         DisableRead = true,
@@ -60,7 +60,7 @@ namespace Pulumi.Vault.Generic
     ///         },
     ///     });
     /// 
-    ///     var u1Entity = new Vault.Generic.Endpoint("u1Entity", new()
+    ///     var u1Entity = new Vault.Generic.Endpoint("u1_entity", new()
     ///     {
     ///         DisableRead = true,
     ///         DisableDelete = true,

@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.aws.SecretBackendRole("role", {
  *     backend: aws.path,
+ *     name: "deploy",
  *     credentialType: "iam_user",
  *     policyDocument: `{
  *   "Version": "2012-10-17",
