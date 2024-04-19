@@ -77,7 +77,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Intermediate, 
+    ///             vault_mount.Intermediate,
     ///         },
     ///     });
     /// 

@@ -29,7 +29,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_pki_secret_backend_role.Admin, 
+    ///             vault_pki_secret_backend_role.Admin,
     ///         },
     ///     });
     /// 

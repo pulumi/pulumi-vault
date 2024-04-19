@@ -38,7 +38,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki, 
+    ///             vault_mount.Pki,
     ///         },
     ///     });
     /// 
