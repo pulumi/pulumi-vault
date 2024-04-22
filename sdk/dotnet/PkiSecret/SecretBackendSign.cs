@@ -58,7 +58,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             admin, 
+    ///             admin,
     ///         },
     ///     });
     /// 

@@ -35,7 +35,7 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             intermediate, 
+    ///             intermediate,
     ///         },
     ///     });
     /// 
