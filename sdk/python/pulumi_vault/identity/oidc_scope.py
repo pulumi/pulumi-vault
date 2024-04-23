@@ -183,7 +183,6 @@ class OidcScope(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -193,7 +192,6 @@ class OidcScope(pulumi.CustomResource):
             template="{\\"groups\\":{{identity.entity.groups.names}}}",
             description="Vault OIDC Groups Scope")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -225,7 +223,6 @@ class OidcScope(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -235,7 +232,6 @@ class OidcScope(pulumi.CustomResource):
             template="{\\"groups\\":{{identity.entity.groups.names}}}",
             description="Vault OIDC Groups Scope")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

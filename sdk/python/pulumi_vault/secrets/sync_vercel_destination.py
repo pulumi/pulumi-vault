@@ -337,7 +337,6 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -353,7 +352,6 @@ class SyncVercelDestination(pulumi.CustomResource):
             ],
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -389,7 +387,6 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -405,7 +402,6 @@ class SyncVercelDestination(pulumi.CustomResource):
             ],
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

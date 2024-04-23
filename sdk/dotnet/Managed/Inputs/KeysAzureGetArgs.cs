@@ -13,85 +13,79 @@ namespace Pulumi.Vault.Managed.Inputs
     public sealed class KeysAzureGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If no existing key can be found in 
-        /// the referenced backend, instructs Vault to generate a key within the backend.
+        /// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         /// </summary>
         [Input("allowGenerateKey")]
         public Input<bool>? AllowGenerateKey { get; set; }
 
         /// <summary>
-        /// Controls the ability for Vault to replace through
-        /// generation or importing a key into the configured backend even
-        /// if a key is present, if set to `false` those operations are forbidden
-        /// if a key exists.
+        /// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         /// </summary>
         [Input("allowReplaceKey")]
         public Input<bool>? AllowReplaceKey { get; set; }
 
         /// <summary>
-        /// Controls the ability for Vault to import a key to the
-        /// configured backend, if `false`, those operations will be forbidden.
+        /// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         /// </summary>
         [Input("allowStoreKey")]
         public Input<bool>? AllowStoreKey { get; set; }
 
         /// <summary>
-        /// If `true`, allows usage from any mount point within the
-        /// namespace.
+        /// Allow usage from any mount point within the namespace if 'true'
         /// </summary>
         [Input("anyMount")]
         public Input<bool>? AnyMount { get; set; }
 
         /// <summary>
-        /// The client id for credentials to query the Azure APIs.
+        /// The client id for credentials to query the Azure APIs
         /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
         /// <summary>
-        /// The client secret for credentials to query the Azure APIs.
+        /// The client secret for credentials to query the Azure APIs
         /// </summary>
         [Input("clientSecret", required: true)]
         public Input<string> ClientSecret { get; set; } = null!;
 
         /// <summary>
-        /// The Azure Cloud environment API endpoints to use.
+        /// The Azure Cloud environment API endpoints to use
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
         /// <summary>
-        /// The size in bits for an RSA key.
+        /// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
         /// </summary>
         [Input("keyBits")]
         public Input<string>? KeyBits { get; set; }
 
         /// <summary>
-        /// The Key Vault key to use for encryption and decryption.
+        /// The Key Vault key to use for encryption and decryption
         /// </summary>
         [Input("keyName", required: true)]
         public Input<string> KeyName { get; set; } = null!;
 
         /// <summary>
-        /// The type of key to use.
+        /// The type of key to use
         /// </summary>
         [Input("keyType", required: true)]
         public Input<string> KeyType { get; set; } = null!;
 
         /// <summary>
-        /// A unique lowercase name that serves as identifying the key.
+        /// A unique lowercase name that serves as identifying the key
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The Azure Key Vault resource's DNS Suffix to connect to.
+        /// The Azure Key Vault resource's DNS Suffix to connect to
         /// </summary>
         [Input("resource")]
         public Input<string>? Resource { get; set; }
 
         /// <summary>
-        /// The tenant id for the Azure Active Directory organization.
+        /// The tenant id for the Azure Active Directory organization
         /// </summary>
         [Input("tenantId", required: true)]
         public Input<string> TenantId { get; set; } = null!;
@@ -103,7 +97,7 @@ namespace Pulumi.Vault.Managed.Inputs
         public Input<string>? Uuid { get; set; }
 
         /// <summary>
-        /// The Key Vault vault to use for encryption and decryption.
+        /// The Key Vault vault to use the encryption keys for encryption and decryption
         /// </summary>
         [Input("vaultName", required: true)]
         public Input<string> VaultName { get; set; } = null!;

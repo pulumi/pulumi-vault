@@ -27,27 +27,15 @@ namespace Pulumi.Vault.Transit
 
     public sealed class GetEncryptArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-        /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
-        /// <summary>
-        /// Context for key derivation. This is required if key derivation is enabled for this key.
-        /// </summary>
         [Input("context")]
         public string? Context { get; set; }
 
-        /// <summary>
-        /// Specifies the name of the transit key to encrypt against.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
-        /// <summary>
-        /// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
-        /// </summary>
         [Input("keyVersion")]
         public int? KeyVersion { get; set; }
 
@@ -56,10 +44,6 @@ namespace Pulumi.Vault.Transit
 
         [Input("plaintext", required: true)]
         private string? _plaintext;
-
-        /// <summary>
-        /// Plaintext to be encoded.
-        /// </summary>
         public string? Plaintext
         {
             get => _plaintext;
@@ -74,27 +58,15 @@ namespace Pulumi.Vault.Transit
 
     public sealed class GetEncryptInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-        /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
-        /// <summary>
-        /// Context for key derivation. This is required if key derivation is enabled for this key.
-        /// </summary>
         [Input("context")]
         public Input<string>? Context { get; set; }
 
-        /// <summary>
-        /// Specifies the name of the transit key to encrypt against.
-        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
-        /// <summary>
-        /// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
-        /// </summary>
         [Input("keyVersion")]
         public Input<int>? KeyVersion { get; set; }
 
@@ -103,10 +75,6 @@ namespace Pulumi.Vault.Transit
 
         [Input("plaintext", required: true)]
         private Input<string>? _plaintext;
-
-        /// <summary>
-        /// Plaintext to be encoded.
-        /// </summary>
         public Input<string>? Plaintext
         {
             get => _plaintext;

@@ -25,17 +25,9 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.addGroupAliases);
     }
 
-    /**
-     * A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-     * 
-     */
     @Import(name="allowGceInference")
     private @Nullable Output<Boolean> allowGceInference;
 
-    /**
-     * @return A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-     * 
-     */
     public Optional<Output<Boolean>> allowGceInference() {
         return Optional.ofNullable(this.allowGceInference);
     }
@@ -55,32 +47,16 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.backend);
     }
 
-    /**
-     * The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-     * 
-     */
     @Import(name="boundInstanceGroups")
     private @Nullable Output<List<String>> boundInstanceGroups;
 
-    /**
-     * @return The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-     * 
-     */
     public Optional<Output<List<String>>> boundInstanceGroups() {
         return Optional.ofNullable(this.boundInstanceGroups);
     }
 
-    /**
-     * A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-     * 
-     */
     @Import(name="boundLabels")
     private @Nullable Output<List<String>> boundLabels;
 
-    /**
-     * @return A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-     * 
-     */
     public Optional<Output<List<String>>> boundLabels() {
         return Optional.ofNullable(this.boundLabels);
     }
@@ -100,17 +76,9 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.boundProjects);
     }
 
-    /**
-     * The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-     * 
-     */
     @Import(name="boundRegions")
     private @Nullable Output<List<String>> boundRegions;
 
-    /**
-     * @return The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-     * 
-     */
     public Optional<Output<List<String>>> boundRegions() {
         return Optional.ofNullable(this.boundRegions);
     }
@@ -130,32 +98,16 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.boundServiceAccounts);
     }
 
-    /**
-     * The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-     * 
-     */
     @Import(name="boundZones")
     private @Nullable Output<List<String>> boundZones;
 
-    /**
-     * @return The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-     * 
-     */
     public Optional<Output<List<String>>> boundZones() {
         return Optional.ofNullable(this.boundZones);
     }
 
-    /**
-     * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-     * 
-     */
     @Import(name="maxJwtExp")
     private @Nullable Output<String> maxJwtExp;
 
-    /**
-     * @return The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-     * 
-     */
     public Optional<Output<String>> maxJwtExp() {
         return Optional.ofNullable(this.maxJwtExp);
     }
@@ -197,18 +149,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     @Import(name="tokenBoundCidrs")
     private @Nullable Output<List<String>> tokenBoundCidrs;
 
     /**
-     * @return List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * @return Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     public Optional<Output<List<String>>> tokenBoundCidrs() {
@@ -216,20 +164,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     @Import(name="tokenExplicitMaxTtl")
     private @Nullable Output<Integer> tokenExplicitMaxTtl;
 
     /**
-     * @return If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * @return Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     public Optional<Output<Integer>> tokenExplicitMaxTtl() {
@@ -237,16 +179,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The maximum lifetime of the generated token
      * 
      */
     @Import(name="tokenMaxTtl")
     private @Nullable Output<Integer> tokenMaxTtl;
 
     /**
-     * @return The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The maximum lifetime of the generated token
      * 
      */
     public Optional<Output<Integer>> tokenMaxTtl() {
@@ -254,16 +194,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     @Import(name="tokenNoDefaultPolicy")
     private @Nullable Output<Boolean> tokenNoDefaultPolicy;
 
     /**
-     * @return If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * @return If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     public Optional<Output<Boolean>> tokenNoDefaultPolicy() {
@@ -271,16 +209,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     @Import(name="tokenNumUses")
     private @Nullable Output<Integer> tokenNumUses;
 
     /**
-     * @return The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     public Optional<Output<Integer>> tokenNumUses() {
@@ -288,20 +224,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * Generated Token&#39;s Period
      * 
      */
     @Import(name="tokenPeriod")
     private @Nullable Output<Integer> tokenPeriod;
 
     /**
-     * @return If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * @return Generated Token&#39;s Period
      * 
      */
     public Optional<Output<Integer>> tokenPeriod() {
@@ -309,16 +239,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token&#39;s Policies
      * 
      */
     @Import(name="tokenPolicies")
     private @Nullable Output<List<String>> tokenPolicies;
 
     /**
-     * @return List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * @return Generated Token&#39;s Policies
      * 
      */
     public Optional<Output<List<String>>> tokenPolicies() {
@@ -326,16 +254,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      * 
      */
     @Import(name="tokenTtl")
     private @Nullable Output<Integer> tokenTtl;
 
     /**
-     * @return The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The initial ttl of the token to generate in seconds
      * 
      */
     public Optional<Output<Integer>> tokenTtl() {
@@ -343,22 +269,14 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      * 
      */
     @Import(name="tokenType")
     private @Nullable Output<String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * @return The type of token to generate, service or batch
      * 
      */
     public Optional<Output<String>> tokenType() {
@@ -434,23 +352,11 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
             return addGroupAliases(Output.of(addGroupAliases));
         }
 
-        /**
-         * @param allowGceInference A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-         * 
-         * @return builder
-         * 
-         */
         public Builder allowGceInference(@Nullable Output<Boolean> allowGceInference) {
             $.allowGceInference = allowGceInference;
             return this;
         }
 
-        /**
-         * @param allowGceInference A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-         * 
-         * @return builder
-         * 
-         */
         public Builder allowGceInference(Boolean allowGceInference) {
             return allowGceInference(Output.of(allowGceInference));
         }
@@ -476,64 +382,28 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
             return backend(Output.of(backend));
         }
 
-        /**
-         * @param boundInstanceGroups The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundInstanceGroups(@Nullable Output<List<String>> boundInstanceGroups) {
             $.boundInstanceGroups = boundInstanceGroups;
             return this;
         }
 
-        /**
-         * @param boundInstanceGroups The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundInstanceGroups(List<String> boundInstanceGroups) {
             return boundInstanceGroups(Output.of(boundInstanceGroups));
         }
 
-        /**
-         * @param boundInstanceGroups The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundInstanceGroups(String... boundInstanceGroups) {
             return boundInstanceGroups(List.of(boundInstanceGroups));
         }
 
-        /**
-         * @param boundLabels A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundLabels(@Nullable Output<List<String>> boundLabels) {
             $.boundLabels = boundLabels;
             return this;
         }
 
-        /**
-         * @param boundLabels A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundLabels(List<String> boundLabels) {
             return boundLabels(Output.of(boundLabels));
         }
 
-        /**
-         * @param boundLabels A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundLabels(String... boundLabels) {
             return boundLabels(List.of(boundLabels));
         }
@@ -569,33 +439,15 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
             return boundProjects(List.of(boundProjects));
         }
 
-        /**
-         * @param boundRegions The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundRegions(@Nullable Output<List<String>> boundRegions) {
             $.boundRegions = boundRegions;
             return this;
         }
 
-        /**
-         * @param boundRegions The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundRegions(List<String> boundRegions) {
             return boundRegions(Output.of(boundRegions));
         }
 
-        /**
-         * @param boundRegions The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundRegions(String... boundRegions) {
             return boundRegions(List.of(boundRegions));
         }
@@ -631,54 +483,24 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
             return boundServiceAccounts(List.of(boundServiceAccounts));
         }
 
-        /**
-         * @param boundZones The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundZones(@Nullable Output<List<String>> boundZones) {
             $.boundZones = boundZones;
             return this;
         }
 
-        /**
-         * @param boundZones The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundZones(List<String> boundZones) {
             return boundZones(Output.of(boundZones));
         }
 
-        /**
-         * @param boundZones The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-         * 
-         * @return builder
-         * 
-         */
         public Builder boundZones(String... boundZones) {
             return boundZones(List.of(boundZones));
         }
 
-        /**
-         * @param maxJwtExp The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-         * 
-         * @return builder
-         * 
-         */
         public Builder maxJwtExp(@Nullable Output<String> maxJwtExp) {
             $.maxJwtExp = maxJwtExp;
             return this;
         }
 
-        /**
-         * @param maxJwtExp The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-         * 
-         * @return builder
-         * 
-         */
         public Builder maxJwtExp(String maxJwtExp) {
             return maxJwtExp(Output.of(maxJwtExp));
         }
@@ -732,9 +554,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenBoundCidrs List of CIDR blocks; if set, specifies blocks of IP
-         * addresses which can authenticate successfully, and ties the resulting token to these blocks
-         * as well.
+         * @param tokenBoundCidrs Specifies the blocks of IP addresses which are allowed to use the generated token
          * 
          * @return builder
          * 
@@ -745,9 +565,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenBoundCidrs List of CIDR blocks; if set, specifies blocks of IP
-         * addresses which can authenticate successfully, and ties the resulting token to these blocks
-         * as well.
+         * @param tokenBoundCidrs Specifies the blocks of IP addresses which are allowed to use the generated token
          * 
          * @return builder
          * 
@@ -757,9 +575,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenBoundCidrs List of CIDR blocks; if set, specifies blocks of IP
-         * addresses which can authenticate successfully, and ties the resulting token to these blocks
-         * as well.
+         * @param tokenBoundCidrs Specifies the blocks of IP addresses which are allowed to use the generated token
          * 
          * @return builder
          * 
@@ -769,10 +585,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenExplicitMaxTtl If set, will encode an
-         * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-         * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-         * `token_max_ttl` would otherwise allow a renewal.
+         * @param tokenExplicitMaxTtl Generated Token&#39;s Explicit Maximum TTL in seconds
          * 
          * @return builder
          * 
@@ -783,10 +596,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenExplicitMaxTtl If set, will encode an
-         * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-         * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-         * `token_max_ttl` would otherwise allow a renewal.
+         * @param tokenExplicitMaxTtl Generated Token&#39;s Explicit Maximum TTL in seconds
          * 
          * @return builder
          * 
@@ -796,8 +606,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenMaxTtl The maximum lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenMaxTtl The maximum lifetime of the generated token
          * 
          * @return builder
          * 
@@ -808,8 +617,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenMaxTtl The maximum lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenMaxTtl The maximum lifetime of the generated token
          * 
          * @return builder
          * 
@@ -819,8 +627,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenNoDefaultPolicy If set, the default policy will not be set on
-         * generated tokens; otherwise it will be added to the policies set in token_policies.
+         * @param tokenNoDefaultPolicy If true, the &#39;default&#39; policy will not automatically be added to generated tokens
          * 
          * @return builder
          * 
@@ -831,8 +638,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenNoDefaultPolicy If set, the default policy will not be set on
-         * generated tokens; otherwise it will be added to the policies set in token_policies.
+         * @param tokenNoDefaultPolicy If true, the &#39;default&#39; policy will not automatically be added to generated tokens
          * 
          * @return builder
          * 
@@ -842,8 +648,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenNumUses The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-         * of times a generated token may be used (within its lifetime); 0 means unlimited.
+         * @param tokenNumUses The maximum number of times a token may be used, a value of zero means unlimited
          * 
          * @return builder
          * 
@@ -854,8 +659,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenNumUses The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-         * of times a generated token may be used (within its lifetime); 0 means unlimited.
+         * @param tokenNumUses The maximum number of times a token may be used, a value of zero means unlimited
          * 
          * @return builder
          * 
@@ -865,10 +669,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenPeriod If set, indicates that the
-         * token generated using this role should never expire. The token should be renewed within the
-         * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-         * value of this field. Specified in seconds.
+         * @param tokenPeriod Generated Token&#39;s Period
          * 
          * @return builder
          * 
@@ -879,10 +680,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenPeriod If set, indicates that the
-         * token generated using this role should never expire. The token should be renewed within the
-         * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-         * value of this field. Specified in seconds.
+         * @param tokenPeriod Generated Token&#39;s Period
          * 
          * @return builder
          * 
@@ -892,8 +690,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenPolicies List of policies to encode onto generated tokens. Depending
-         * on the auth method, this list may be supplemented by user/group/other values.
+         * @param tokenPolicies Generated Token&#39;s Policies
          * 
          * @return builder
          * 
@@ -904,8 +701,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenPolicies List of policies to encode onto generated tokens. Depending
-         * on the auth method, this list may be supplemented by user/group/other values.
+         * @param tokenPolicies Generated Token&#39;s Policies
          * 
          * @return builder
          * 
@@ -915,8 +711,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenPolicies List of policies to encode onto generated tokens. Depending
-         * on the auth method, this list may be supplemented by user/group/other values.
+         * @param tokenPolicies Generated Token&#39;s Policies
          * 
          * @return builder
          * 
@@ -926,8 +721,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenTtl The incremental lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenTtl The initial ttl of the token to generate in seconds
          * 
          * @return builder
          * 
@@ -938,8 +732,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenTtl The incremental lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenTtl The initial ttl of the token to generate in seconds
          * 
          * @return builder
          * 
@@ -949,11 +742,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenType The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
+         * @param tokenType The type of token to generate, service or batch
          * 
          * @return builder
          * 
@@ -964,11 +753,7 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tokenType The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
+         * @param tokenType The type of token to generate, service or batch
          * 
          * @return builder
          * 

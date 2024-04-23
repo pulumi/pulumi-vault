@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetBackendIssuers(ctx *pulumi.Context, args *GetBackendIssuersArgs, opts ...pulumi.InvokeOption) (*GetBackendIssuersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBackendIssuersResult

@@ -12,7 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -77,13 +76,12 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             intermediateVaultMount, 
+    ///             intermediateVaultMount,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa")]
     public partial class SecretBackendConfigCa : global::Pulumi.CustomResource

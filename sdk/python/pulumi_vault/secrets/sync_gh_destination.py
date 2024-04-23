@@ -401,7 +401,6 @@ class SyncGhDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -413,7 +412,6 @@ class SyncGhDestination(pulumi.CustomResource):
             repository_name="repo-name-example",
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -457,7 +455,6 @@ class SyncGhDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -469,7 +466,6 @@ class SyncGhDestination(pulumi.CustomResource):
             repository_name="repo-name-example",
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

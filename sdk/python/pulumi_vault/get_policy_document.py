@@ -84,7 +84,6 @@ def get_policy_document(namespace: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -104,7 +103,6 @@ def get_policy_document(namespace: Optional[str] = None,
         name="example_policy",
         policy=example.hcl)
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['namespace'] = namespace
@@ -128,7 +126,6 @@ def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -148,6 +145,5 @@ def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] 
         name="example_policy",
         policy=example.hcl)
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...

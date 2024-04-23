@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetAuthBackendRoleId(ctx *pulumi.Context, args *GetAuthBackendRoleIdArgs, opts ...pulumi.InvokeOption) (*GetAuthBackendRoleIdResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthBackendRoleIdResult

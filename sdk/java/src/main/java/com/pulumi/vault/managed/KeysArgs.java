@@ -50,20 +50,14 @@ public final class KeysArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured namespace.
-     * *Available only for Vault Enterprise*.
+     * Target namespace. (requires Enterprise)
      * 
      */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
     /**
-     * @return The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured namespace.
-     * *Available only for Vault Enterprise*.
+     * @return Target namespace. (requires Enterprise)
      * 
      */
     public Optional<Output<String>> namespace() {
@@ -175,10 +169,7 @@ public final class KeysArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespace The namespace to provision the resource in.
-         * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured namespace.
-         * *Available only for Vault Enterprise*.
+         * @param namespace Target namespace. (requires Enterprise)
          * 
          * @return builder
          * 
@@ -189,10 +180,7 @@ public final class KeysArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespace The namespace to provision the resource in.
-         * The value should not contain leading or trailing forward slashes.
-         * The `namespace` is always relative to the provider&#39;s configured namespace.
-         * *Available only for Vault Enterprise*.
+         * @param namespace Target namespace. (requires Enterprise)
          * 
          * @return builder
          * 

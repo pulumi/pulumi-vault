@@ -186,7 +186,6 @@ class AuthBackendStsRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -197,7 +196,6 @@ class AuthBackendStsRole(pulumi.CustomResource):
             account_id="1234567890",
             sts_role="arn:aws:iam::1234567890:role/my-role")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -228,7 +226,6 @@ class AuthBackendStsRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -239,7 +236,6 @@ class AuthBackendStsRole(pulumi.CustomResource):
             account_id="1234567890",
             sts_role="arn:aws:iam::1234567890:role/my-role")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

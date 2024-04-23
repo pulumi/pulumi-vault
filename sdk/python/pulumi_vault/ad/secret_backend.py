@@ -1252,7 +1252,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1265,7 +1264,6 @@ class SecretBackend(pulumi.CustomResource):
             insecure_tls=True,
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1345,7 +1343,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1358,7 +1355,6 @@ class SecretBackend(pulumi.CustomResource):
             insecure_tls=True,
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

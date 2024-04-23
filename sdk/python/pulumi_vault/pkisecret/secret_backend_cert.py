@@ -735,7 +735,6 @@ class SecretBackendCert(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -746,7 +745,6 @@ class SecretBackendCert(pulumi.CustomResource):
             common_name="app.my.domain",
             opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -780,7 +778,6 @@ class SecretBackendCert(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -791,7 +788,6 @@ class SecretBackendCert(pulumi.CustomResource):
             common_name="app.my.domain",
             opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendCertArgs args: The arguments to use to populate this resource's properties.

@@ -22,24 +22,23 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? BucketName;
         /// <summary>
-        /// The hosts to connect to.
+        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         /// </summary>
         public readonly ImmutableArray<string> Hosts;
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Specifies whether to skip verification of the server certificate when using TLS.
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to authenticate with.
+        /// Specifies the password corresponding to the given username.
         /// </summary>
         public readonly string Password;
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Specifies whether to use TLS when connecting to Couchbase.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to authenticate with.
+        /// Specifies the username for Vault to use.
         /// </summary>
         public readonly string Username;
         /// <summary>

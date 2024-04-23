@@ -13,37 +13,31 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionMysqlGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        /// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         /// </summary>
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
 
         /// <summary>
-        /// A URL containing connection information. See
-        /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        /// for an example.
+        /// Connection string to use to connect to the database.
         /// </summary>
         [Input("connectionUrl")]
         public Input<string>? ConnectionUrl { get; set; }
 
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// Maximum number of seconds a connection may be reused.
         /// </summary>
         [Input("maxConnectionLifetime")]
         public Input<int>? MaxConnectionLifetime { get; set; }
 
         /// <summary>
-        /// The maximum number of idle connections to
-        /// maintain.
+        /// Maximum number of idle connections to the database.
         /// </summary>
         [Input("maxIdleConnections")]
         public Input<int>? MaxIdleConnections { get; set; }
 
         /// <summary>
-        /// The maximum number of open connections to
-        /// use.
+        /// Maximum number of open connections to the database.
         /// </summary>
         [Input("maxOpenConnections")]
         public Input<int>? MaxOpenConnections { get; set; }
@@ -52,7 +46,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password to authenticate with.
+        /// The root credential password used in the connection URL
         /// </summary>
         public Input<string>? Password
         {
@@ -68,7 +62,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _serviceAccountJson;
 
         /// <summary>
-        /// JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        /// A JSON encoded credential for use with IAM authorization
         /// </summary>
         public Input<string>? ServiceAccountJson
         {
@@ -103,13 +97,13 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The username to authenticate with.
+        /// The root credential username used in the connection URL
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
         /// <summary>
-        /// Template describing how dynamic usernames are generated.
+        /// Username generation template.
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }

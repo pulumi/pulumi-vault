@@ -15,7 +15,6 @@ import (
 //
 // ### Generic secret
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,13 +38,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### KV
 //
 // For this example, consider `example` as a path for a KV engine.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,7 +71,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Required Vault Capabilities
 //

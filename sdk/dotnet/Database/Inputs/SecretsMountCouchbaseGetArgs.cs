@@ -65,7 +65,7 @@ namespace Pulumi.Vault.Database.Inputs
         private InputList<string>? _hosts;
 
         /// <summary>
-        /// The hosts to connect to.
+        /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         /// </summary>
         public InputList<string> Hosts
         {
@@ -74,8 +74,7 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Specifies whether to skip verification of the server certificate when using TLS.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -90,7 +89,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// Specifies the password corresponding to the given username.
         /// </summary>
         public Input<string>? Password
         {
@@ -121,19 +120,19 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Specifies whether to use TLS when connecting to Couchbase.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// Specifies the username for Vault to use.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
         /// <summary>
-        /// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// Template describing how dynamic usernames are generated.
         /// </summary>
         [Input("usernameTemplate")]
         public Input<string>? UsernameTemplate { get; set; }

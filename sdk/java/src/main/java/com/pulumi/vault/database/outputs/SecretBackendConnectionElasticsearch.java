@@ -14,48 +14,47 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionElasticsearch {
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     private @Nullable String caCert;
     /**
-     * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
+     * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     private @Nullable String caPath;
     /**
-     * @return The path to the certificate for the Elasticsearch client to present for communication.
+     * @return The path to the certificate for the Elasticsearch client to present for communication
      * 
      */
     private @Nullable String clientCert;
     /**
-     * @return The path to the key for the Elasticsearch client to use for communication.
+     * @return The path to the key for the Elasticsearch client to use for communication
      * 
      */
     private @Nullable String clientKey;
     /**
-     * @return Whether to disable certificate verification.
+     * @return Whether to disable certificate verification
      * 
      */
     private @Nullable Boolean insecure;
     /**
-     * @return The password to authenticate with.
+     * @return The password to be used in the connection URL
      * 
      */
     private String password;
     /**
-     * @return This, if set, is used to set the SNI host when connecting via TLS.
+     * @return This, if set, is used to set the SNI host when connecting via TLS
      * 
      */
     private @Nullable String tlsServerName;
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The URL for Elasticsearch&#39;s API
      * 
      */
     private String url;
     /**
-     * @return The username to authenticate with.
+     * @return The username to be used in the connection URL
      * 
      */
     private String username;
@@ -67,64 +66,63 @@ public final class SecretBackendConnectionElasticsearch {
 
     private SecretBackendConnectionElasticsearch() {}
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     public Optional<String> caCert() {
         return Optional.ofNullable(this.caCert);
     }
     /**
-     * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
+     * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     public Optional<String> caPath() {
         return Optional.ofNullable(this.caPath);
     }
     /**
-     * @return The path to the certificate for the Elasticsearch client to present for communication.
+     * @return The path to the certificate for the Elasticsearch client to present for communication
      * 
      */
     public Optional<String> clientCert() {
         return Optional.ofNullable(this.clientCert);
     }
     /**
-     * @return The path to the key for the Elasticsearch client to use for communication.
+     * @return The path to the key for the Elasticsearch client to use for communication
      * 
      */
     public Optional<String> clientKey() {
         return Optional.ofNullable(this.clientKey);
     }
     /**
-     * @return Whether to disable certificate verification.
+     * @return Whether to disable certificate verification
      * 
      */
     public Optional<Boolean> insecure() {
         return Optional.ofNullable(this.insecure);
     }
     /**
-     * @return The password to authenticate with.
+     * @return The password to be used in the connection URL
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return This, if set, is used to set the SNI host when connecting via TLS.
+     * @return This, if set, is used to set the SNI host when connecting via TLS
      * 
      */
     public Optional<String> tlsServerName() {
         return Optional.ofNullable(this.tlsServerName);
     }
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The URL for Elasticsearch&#39;s API
      * 
      */
     public String url() {
         return this.url;
     }
     /**
-     * @return The username to authenticate with.
+     * @return The username to be used in the connection URL
      * 
      */
     public String username() {

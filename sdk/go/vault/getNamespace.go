@@ -15,7 +15,6 @@ import (
 //
 // ### Current namespace
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,11 +36,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Single namespace
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -65,11 +62,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Nested namespace
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -97,7 +92,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupNamespace(ctx *pulumi.Context, args *LookupNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupNamespaceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNamespaceResult

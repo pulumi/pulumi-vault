@@ -49,7 +49,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         /// </summary>
         public Input<string>? Password
         {
@@ -68,8 +68,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? PluginName { get; set; }
 
         /// <summary>
-        /// The AWS region where the ElastiCache cluster is hosted.
-        /// If omitted the plugin tries to infer the region from the environment.
+        /// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -87,8 +86,7 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
+        /// The configuration endpoint for the ElastiCache cluster to connect to.
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
@@ -97,7 +95,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _username;
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         /// </summary>
         public Input<string>? Username
         {

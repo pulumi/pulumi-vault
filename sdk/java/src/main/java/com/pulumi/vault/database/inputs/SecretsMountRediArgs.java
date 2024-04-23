@@ -39,14 +39,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     @Import(name="caCert")
     private @Nullable Output<String> caCert;
 
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     public Optional<Output<String>> caCert() {
@@ -73,14 +73,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The host to connect to.
+     * Specifies the host to connect to
      * 
      */
     @Import(name="host", required=true)
     private Output<String> host;
 
     /**
-     * @return The host to connect to.
+     * @return Specifies the host to connect to
      * 
      */
     public Output<String> host() {
@@ -88,16 +88,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Whether to skip verification of the server
-     * certificate when using TLS.
+     * Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     @Import(name="insecureTls")
     private @Nullable Output<Boolean> insecureTls;
 
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Output<Boolean>> insecureTls() {
@@ -120,14 +118,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * Specifies the password corresponding to the given username.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public Output<String> password() {
@@ -150,16 +148,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The default port to connect to if no port is specified as
-     * part of the host.
+     * The transport port to use to connect to Redis.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Redis.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -182,14 +178,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Whether to use TLS when connecting to Cassandra.
+     * Specifies whether to use TLS when connecting to Redis.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -197,14 +193,14 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * Specifies the username for Vault to use.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username for Vault to use.
      * 
      */
     public Output<String> username() {
@@ -299,7 +295,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+         * @param caCert The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
          * 
          * @return builder
          * 
@@ -310,7 +306,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+         * @param caCert The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
          * 
          * @return builder
          * 
@@ -345,7 +341,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param host The host to connect to.
+         * @param host Specifies the host to connect to
          * 
          * @return builder
          * 
@@ -356,7 +352,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param host The host to connect to.
+         * @param host Specifies the host to connect to
          * 
          * @return builder
          * 
@@ -366,8 +362,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Specifies whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -378,8 +373,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Specifies whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -410,7 +404,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -421,7 +415,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -452,8 +446,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Redis.
          * 
          * @return builder
          * 
@@ -464,8 +457,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Redis.
          * 
          * @return builder
          * 
@@ -506,7 +498,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Specifies whether to use TLS when connecting to Redis.
          * 
          * @return builder
          * 
@@ -517,7 +509,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Specifies whether to use TLS when connecting to Redis.
          * 
          * @return builder
          * 
@@ -527,7 +519,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username Specifies the username for Vault to use.
          * 
          * @return builder
          * 
@@ -538,7 +530,7 @@ public final class SecretsMountRediArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username Specifies the username for Vault to use.
          * 
          * @return builder
          * 

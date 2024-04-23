@@ -24,17 +24,12 @@ func GetEncrypt(ctx *pulumi.Context, args *GetEncryptArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getEncrypt.
 type GetEncryptArgs struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-	Backend string `pulumi:"backend"`
-	// Context for key derivation. This is required if key derivation is enabled for this key.
-	Context *string `pulumi:"context"`
-	// Specifies the name of the transit key to encrypt against.
-	Key string `pulumi:"key"`
-	// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
+	Backend    string  `pulumi:"backend"`
+	Context    *string `pulumi:"context"`
+	Key        string  `pulumi:"key"`
 	KeyVersion *int    `pulumi:"keyVersion"`
 	Namespace  *string `pulumi:"namespace"`
-	// Plaintext to be encoded.
-	Plaintext string `pulumi:"plaintext"`
+	Plaintext  string  `pulumi:"plaintext"`
 }
 
 // A collection of values returned by getEncrypt.
@@ -66,17 +61,12 @@ func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getEncrypt.
 type GetEncryptOutputArgs struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-	Backend pulumi.StringInput `pulumi:"backend"`
-	// Context for key derivation. This is required if key derivation is enabled for this key.
-	Context pulumi.StringPtrInput `pulumi:"context"`
-	// Specifies the name of the transit key to encrypt against.
-	Key pulumi.StringInput `pulumi:"key"`
-	// The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
+	Backend    pulumi.StringInput    `pulumi:"backend"`
+	Context    pulumi.StringPtrInput `pulumi:"context"`
+	Key        pulumi.StringInput    `pulumi:"key"`
 	KeyVersion pulumi.IntPtrInput    `pulumi:"keyVersion"`
 	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
-	// Plaintext to be encoded.
-	Plaintext pulumi.StringInput `pulumi:"plaintext"`
+	Plaintext  pulumi.StringInput    `pulumi:"plaintext"`
 }
 
 func (GetEncryptOutputArgs) ElementType() reflect.Type {

@@ -20,7 +20,6 @@ import (
 //
 // ### Exclusive Member Groups
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -68,11 +67,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Non-Exclusive Member Groups
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -120,7 +117,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type GroupMemberGroupIds struct {
 	pulumi.CustomResourceState
 

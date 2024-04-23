@@ -9,14 +9,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.identity.MfaPingid("example", {settingsFileBase64: "CnVzZV9iYXNlNjR[...]HBtCg=="});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

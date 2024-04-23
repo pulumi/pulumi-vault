@@ -179,7 +179,6 @@ def get_secret_v2(mount: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -204,7 +203,6 @@ def get_secret_v2(mount: Optional[str] = None,
     example = vault.kv.get_secret_v2_output(mount=kvv2.path,
         name=example_secret_v2.name)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -254,7 +252,6 @@ def get_secret_v2_output(mount: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -279,7 +276,6 @@ def get_secret_v2_output(mount: Optional[pulumi.Input[str]] = None,
     example = vault.kv.get_secret_v2_output(mount=kvv2.path,
         name=example_secret_v2.name)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

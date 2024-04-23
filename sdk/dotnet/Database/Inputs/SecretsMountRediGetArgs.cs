@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
@@ -46,14 +46,13 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The host to connect to.
+        /// Specifies the host to connect to
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Specifies whether to skip verification of the server certificate when using TLS.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -68,7 +67,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// Specifies the password corresponding to the given username.
         /// </summary>
         public Input<string>? Password
         {
@@ -87,8 +86,7 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<string>? PluginName { get; set; }
 
         /// <summary>
-        /// The default port to connect to if no port is specified as
-        /// part of the host.
+        /// The transport port to use to connect to Redis.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -106,13 +104,13 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Specifies whether to use TLS when connecting to Redis.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// Specifies the username for Vault to use.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

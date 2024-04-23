@@ -921,7 +921,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -940,7 +939,6 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_users="default,baz",
             cidr_list="0.0.0.0/0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -997,7 +995,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1016,7 +1013,6 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_users="default,baz",
             cidr_list="0.0.0.0/0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

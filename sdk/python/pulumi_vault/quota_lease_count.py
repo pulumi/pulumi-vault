@@ -245,7 +245,6 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -255,7 +254,6 @@ class QuotaLeaseCount(pulumi.CustomResource):
             path="",
             max_leases=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -300,7 +298,6 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -310,7 +307,6 @@ class QuotaLeaseCount(pulumi.CustomResource):
             path="",
             max_leases=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

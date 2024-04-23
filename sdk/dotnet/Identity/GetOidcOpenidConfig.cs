@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,7 +63,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOidcOpenidConfigResult> InvokeAsync(GetOidcOpenidConfigArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigArgs(), options.WithDefaults());
@@ -72,7 +70,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -122,7 +119,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOidcOpenidConfigResult> Invoke(GetOidcOpenidConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigInvokeArgs(), options.WithDefaults());

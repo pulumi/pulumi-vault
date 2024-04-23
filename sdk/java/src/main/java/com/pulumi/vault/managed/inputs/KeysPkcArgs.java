@@ -18,16 +18,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     public static final KeysPkcArgs Empty = new KeysPkcArgs();
 
     /**
-     * If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     @Import(name="allowGenerateKey")
     private @Nullable Output<Boolean> allowGenerateKey;
 
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     public Optional<Output<Boolean>> allowGenerateKey() {
@@ -35,20 +33,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     @Import(name="allowReplaceKey")
     private @Nullable Output<Boolean> allowReplaceKey;
 
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     public Optional<Output<Boolean>> allowReplaceKey() {
@@ -56,16 +48,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     @Import(name="allowStoreKey")
     private @Nullable Output<Boolean> allowStoreKey;
 
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     public Optional<Output<Boolean>> allowStoreKey() {
@@ -73,16 +63,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If `true`, allows usage from any mount point within the
-     * namespace.
+     * Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     @Import(name="anyMount")
     private @Nullable Output<Boolean> anyMount;
 
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     public Optional<Output<Boolean>> anyMount() {
@@ -90,16 +78,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * Supplies the curve value when using the &#39;CKM_ECDSA&#39; mechanism. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     @Import(name="curve")
     private @Nullable Output<String> curve;
 
     /**
-     * @return The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * @return Supplies the curve value when using the &#39;CKM_ECDSA&#39; mechanism. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<Output<String>> curve() {
@@ -107,16 +93,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Force all operations to open up a read-write session to
-     * the HSM.
+     * Force all operations to open up a read-write session to the HSM
      * 
      */
     @Import(name="forceRwSession")
     private @Nullable Output<String> forceRwSession;
 
     /**
-     * @return Force all operations to open up a read-write session to
-     * the HSM.
+     * @return Force all operations to open up a read-write session to the HSM
      * 
      */
     public Optional<Output<String>> forceRwSession() {
@@ -124,14 +108,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The size in bits for an RSA key.
+     * Supplies the size in bits of the key when using &#39;CKM_RSA_PKCS_PSS&#39;, &#39;CKM_RSA_PKCS_OAEP&#39; or &#39;CKM_RSA_PKCS&#39; as a value for &#39;mechanism&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     @Import(name="keyBits")
     private @Nullable Output<String> keyBits;
 
     /**
-     * @return The size in bits for an RSA key.
+     * @return Supplies the size in bits of the key when using &#39;CKM_RSA_PKCS_PSS&#39;, &#39;CKM_RSA_PKCS_OAEP&#39; or &#39;CKM_RSA_PKCS&#39; as a value for &#39;mechanism&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<Output<String>> keyBits() {
@@ -139,14 +123,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The id of a PKCS#11 key to use.
+     * The id of a PKCS#11 key to use
      * 
      */
     @Import(name="keyId", required=true)
     private Output<String> keyId;
 
     /**
-     * @return The id of a PKCS#11 key to use.
+     * @return The id of a PKCS#11 key to use
      * 
      */
     public Output<String> keyId() {
@@ -154,14 +138,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The label of the key to use.
+     * The label of the key to use
      * 
      */
     @Import(name="keyLabel", required=true)
     private Output<String> keyLabel;
 
     /**
-     * @return The label of the key to use.
+     * @return The label of the key to use
      * 
      */
     public Output<String> keyLabel() {
@@ -169,16 +153,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the kms_library stanza to use from Vault&#39;s config
-     * to lookup the local library path.
+     * The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     @Import(name="library", required=true)
     private Output<String> library;
 
     /**
-     * @return The name of the kms_library stanza to use from Vault&#39;s config
-     * to lookup the local library path.
+     * @return The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     public Output<String> library() {
@@ -186,16 +168,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The encryption/decryption mechanism to use, specified as a
-     * hexadecimal (prefixed by 0x) string.
+     * The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
      * 
      */
     @Import(name="mechanism", required=true)
     private Output<String> mechanism;
 
     /**
-     * @return The encryption/decryption mechanism to use, specified as a
-     * hexadecimal (prefixed by 0x) string.
+     * @return The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
      * 
      */
     public Output<String> mechanism() {
@@ -203,14 +183,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A unique lowercase name that serves as identifying the key.
+     * A unique lowercase name that serves as identifying the key
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     public Output<String> name() {
@@ -218,14 +198,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The PIN for login.
+     * The PIN for login
      * 
      */
     @Import(name="pin", required=true)
     private Output<String> pin;
 
     /**
-     * @return The PIN for login.
+     * @return The PIN for login
      * 
      */
     public Output<String> pin() {
@@ -233,16 +213,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The slot number to use, specified as a string in a decimal format
-     * (e.g. `2305843009213693953`).
+     * The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
     @Import(name="slot")
     private @Nullable Output<String> slot;
 
     /**
-     * @return The slot number to use, specified as a string in a decimal format
-     * (e.g. `2305843009213693953`).
+     * @return The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
     public Optional<Output<String>> slot() {
@@ -250,14 +228,14 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The slot token label to use.
+     * The slot token label to use
      * 
      */
     @Import(name="tokenLabel")
     private @Nullable Output<String> tokenLabel;
 
     /**
-     * @return The slot token label to use.
+     * @return The slot token label to use
      * 
      */
     public Optional<Output<String>> tokenLabel() {
@@ -319,8 +297,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowGenerateKey If no existing key can be found in
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * @param allowGenerateKey If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          * 
          * @return builder
          * 
@@ -331,8 +308,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowGenerateKey If no existing key can be found in
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * @param allowGenerateKey If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          * 
          * @return builder
          * 
@@ -342,10 +318,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowReplaceKey Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * @param allowReplaceKey Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          * 
          * @return builder
          * 
@@ -356,10 +329,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowReplaceKey Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * @param allowReplaceKey Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          * 
          * @return builder
          * 
@@ -369,8 +339,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowStoreKey Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * @param allowStoreKey Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
          * 
          * @return builder
          * 
@@ -381,8 +350,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowStoreKey Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * @param allowStoreKey Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
          * 
          * @return builder
          * 
@@ -392,8 +360,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param anyMount If `true`, allows usage from any mount point within the
-         * namespace.
+         * @param anyMount Allow usage from any mount point within the namespace if &#39;true&#39;
          * 
          * @return builder
          * 
@@ -404,8 +371,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param anyMount If `true`, allows usage from any mount point within the
-         * namespace.
+         * @param anyMount Allow usage from any mount point within the namespace if &#39;true&#39;
          * 
          * @return builder
          * 
@@ -415,8 +381,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve The curve to use for an ECDSA key. Used when `key_type`
-         * is `ECDSA`. Required if `allow_generate_key` is `true`.
+         * @param curve Supplies the curve value when using the &#39;CKM_ECDSA&#39; mechanism. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -427,8 +392,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve The curve to use for an ECDSA key. Used when `key_type`
-         * is `ECDSA`. Required if `allow_generate_key` is `true`.
+         * @param curve Supplies the curve value when using the &#39;CKM_ECDSA&#39; mechanism. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -438,8 +402,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceRwSession Force all operations to open up a read-write session to
-         * the HSM.
+         * @param forceRwSession Force all operations to open up a read-write session to the HSM
          * 
          * @return builder
          * 
@@ -450,8 +413,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceRwSession Force all operations to open up a read-write session to
-         * the HSM.
+         * @param forceRwSession Force all operations to open up a read-write session to the HSM
          * 
          * @return builder
          * 
@@ -461,7 +423,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits The size in bits for an RSA key.
+         * @param keyBits Supplies the size in bits of the key when using &#39;CKM_RSA_PKCS_PSS&#39;, &#39;CKM_RSA_PKCS_OAEP&#39; or &#39;CKM_RSA_PKCS&#39; as a value for &#39;mechanism&#39;. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -472,7 +434,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits The size in bits for an RSA key.
+         * @param keyBits Supplies the size in bits of the key when using &#39;CKM_RSA_PKCS_PSS&#39;, &#39;CKM_RSA_PKCS_OAEP&#39; or &#39;CKM_RSA_PKCS&#39; as a value for &#39;mechanism&#39;. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -482,7 +444,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyId The id of a PKCS#11 key to use.
+         * @param keyId The id of a PKCS#11 key to use
          * 
          * @return builder
          * 
@@ -493,7 +455,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyId The id of a PKCS#11 key to use.
+         * @param keyId The id of a PKCS#11 key to use
          * 
          * @return builder
          * 
@@ -503,7 +465,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyLabel The label of the key to use.
+         * @param keyLabel The label of the key to use
          * 
          * @return builder
          * 
@@ -514,7 +476,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyLabel The label of the key to use.
+         * @param keyLabel The label of the key to use
          * 
          * @return builder
          * 
@@ -524,8 +486,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param library The name of the kms_library stanza to use from Vault&#39;s config
-         * to lookup the local library path.
+         * @param library The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
          * 
          * @return builder
          * 
@@ -536,8 +497,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param library The name of the kms_library stanza to use from Vault&#39;s config
-         * to lookup the local library path.
+         * @param library The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
          * 
          * @return builder
          * 
@@ -547,8 +507,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mechanism The encryption/decryption mechanism to use, specified as a
-         * hexadecimal (prefixed by 0x) string.
+         * @param mechanism The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
          * 
          * @return builder
          * 
@@ -559,8 +518,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mechanism The encryption/decryption mechanism to use, specified as a
-         * hexadecimal (prefixed by 0x) string.
+         * @param mechanism The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
          * 
          * @return builder
          * 
@@ -570,7 +528,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique lowercase name that serves as identifying the key.
+         * @param name A unique lowercase name that serves as identifying the key
          * 
          * @return builder
          * 
@@ -581,7 +539,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique lowercase name that serves as identifying the key.
+         * @param name A unique lowercase name that serves as identifying the key
          * 
          * @return builder
          * 
@@ -591,7 +549,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pin The PIN for login.
+         * @param pin The PIN for login
          * 
          * @return builder
          * 
@@ -602,7 +560,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pin The PIN for login.
+         * @param pin The PIN for login
          * 
          * @return builder
          * 
@@ -612,8 +570,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param slot The slot number to use, specified as a string in a decimal format
-         * (e.g. `2305843009213693953`).
+         * @param slot The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
          * 
          * @return builder
          * 
@@ -624,8 +581,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param slot The slot number to use, specified as a string in a decimal format
-         * (e.g. `2305843009213693953`).
+         * @param slot The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
          * 
          * @return builder
          * 
@@ -635,7 +591,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenLabel The slot token label to use.
+         * @param tokenLabel The slot token label to use
          * 
          * @return builder
          * 
@@ -646,7 +602,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tokenLabel The slot token label to use.
+         * @param tokenLabel The slot token label to use
          * 
          * @return builder
          * 

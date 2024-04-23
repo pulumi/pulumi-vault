@@ -14,33 +14,31 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionRedis
     {
         /// <summary>
-        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        /// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         /// </summary>
         public readonly string? CaCert;
         /// <summary>
-        /// The host to connect to.
+        /// Specifies the host to connect to
         /// </summary>
         public readonly string Host;
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Specifies whether to skip verification of the server certificate when using TLS.
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to authenticate with.
+        /// Specifies the password corresponding to the given username.
         /// </summary>
         public readonly string Password;
         /// <summary>
-        /// The default port to connect to if no port is specified as
-        /// part of the host.
+        /// The transport port to use to connect to Redis.
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Specifies whether to use TLS when connecting to Redis.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to authenticate with.
+        /// Specifies the username for Vault to use.
         /// </summary>
         public readonly string Username;
 

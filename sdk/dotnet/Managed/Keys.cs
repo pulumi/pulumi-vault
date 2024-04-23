@@ -38,10 +38,7 @@ namespace Pulumi.Vault.Managed
         public Output<ImmutableArray<Outputs.KeysAzure>> Azures { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
-        /// *Available only for Vault Enterprise*.
+        /// Target namespace. (requires Enterprise)
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
@@ -123,10 +120,7 @@ namespace Pulumi.Vault.Managed
         }
 
         /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
-        /// *Available only for Vault Enterprise*.
+        /// Target namespace. (requires Enterprise)
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
@@ -176,10 +170,7 @@ namespace Pulumi.Vault.Managed
         }
 
         /// <summary>
-        /// The namespace to provision the resource in.
-        /// The value should not contain leading or trailing forward slashes.
-        /// The `namespace` is always relative to the provider's configured namespace.
-        /// *Available only for Vault Enterprise*.
+        /// Target namespace. (requires Enterprise)
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }

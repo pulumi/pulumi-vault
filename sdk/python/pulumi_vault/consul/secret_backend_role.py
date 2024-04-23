@@ -507,7 +507,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -522,7 +521,6 @@ class SecretBackendRole(pulumi.CustomResource):
             backend=test.path,
             consul_policies=["example-policy"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Note About Required Arguments
 
@@ -575,7 +573,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -590,7 +587,6 @@ class SecretBackendRole(pulumi.CustomResource):
             backend=test.path,
             consul_policies=["example-policy"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Note About Required Arguments
 

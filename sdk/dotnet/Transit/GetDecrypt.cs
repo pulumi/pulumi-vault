@@ -16,7 +16,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDecryptResult> InvokeAsync(GetDecryptArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptArgs(), options.WithDefaults());
@@ -44,7 +42,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,7 +59,6 @@ namespace Pulumi.Vault.Transit
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDecryptResult> Invoke(GetDecryptInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecryptResult>("vault:transit/getDecrypt:getDecrypt", args ?? new GetDecryptInvokeArgs(), options.WithDefaults());
@@ -71,27 +67,15 @@ namespace Pulumi.Vault.Transit
 
     public sealed class GetDecryptArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-        /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
-        /// <summary>
-        /// Ciphertext to be decoded.
-        /// </summary>
         [Input("ciphertext", required: true)]
         public string Ciphertext { get; set; } = null!;
 
-        /// <summary>
-        /// Context for key derivation. This is required if key derivation is enabled for this key.
-        /// </summary>
         [Input("context")]
         public string? Context { get; set; }
 
-        /// <summary>
-        /// Specifies the name of the transit key to decrypt against.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
@@ -106,27 +90,15 @@ namespace Pulumi.Vault.Transit
 
     public sealed class GetDecryptInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-        /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
-        /// <summary>
-        /// Ciphertext to be decoded.
-        /// </summary>
         [Input("ciphertext", required: true)]
         public Input<string> Ciphertext { get; set; } = null!;
 
-        /// <summary>
-        /// Context for key derivation. This is required if key derivation is enabled for this key.
-        /// </summary>
         [Input("context")]
         public Input<string>? Context { get; set; }
 
-        /// <summary>
-        /// Specifies the name of the transit key to decrypt against.
-        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

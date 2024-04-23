@@ -66,26 +66,19 @@ class KeysAw(dict):
                  region: Optional[str] = None,
                  uuid: Optional[str] = None):
         """
-        :param str access_key: The AWS access key to use.
-        :param str key_bits: The size in bits for an RSA key.
-        :param str key_type: The type of key to use.
-        :param str kms_key: An identifier for the key.
-        :param str name: A unique lowercase name that serves as identifying the key.
-        :param str secret_key: The AWS access key to use.
-        :param bool allow_generate_key: If no existing key can be found in 
-               the referenced backend, instructs Vault to generate a key within the backend.
-        :param bool allow_replace_key: Controls the ability for Vault to replace through
-               generation or importing a key into the configured backend even
-               if a key is present, if set to `false` those operations are forbidden
-               if a key exists.
-        :param bool allow_store_key: Controls the ability for Vault to import a key to the
-               configured backend, if `false`, those operations will be forbidden.
-        :param bool any_mount: If `true`, allows usage from any mount point within the
-               namespace.
-        :param str curve: The curve to use for an ECDSA key. Used when `key_type` 
-               is `ECDSA`. Required if `allow_generate_key` is `true`.
-        :param str endpoint: Used to specify a custom AWS endpoint.
-        :param str region: The AWS region where the keys are stored (or will be stored).
+        :param str access_key: The AWS access key to use
+        :param str key_bits: The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
+        :param str key_type: The type of key to use
+        :param str kms_key: An identifier for the key
+        :param str name: A unique lowercase name that serves as identifying the key
+        :param str secret_key: The AWS secret key to use
+        :param bool allow_generate_key: If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        :param bool allow_replace_key: Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        :param bool allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        :param bool any_mount: Allow usage from any mount point within the namespace if 'true'
+        :param str curve: The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
+        :param str endpoint: Used to specify a custom AWS endpoint
+        :param str region: The AWS region where the keys are stored (or will be stored)
         :param str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -115,7 +108,7 @@ class KeysAw(dict):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> str:
         """
-        The AWS access key to use.
+        The AWS access key to use
         """
         return pulumi.get(self, "access_key")
 
@@ -123,7 +116,7 @@ class KeysAw(dict):
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> str:
         """
-        The size in bits for an RSA key.
+        The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
         """
         return pulumi.get(self, "key_bits")
 
@@ -131,7 +124,7 @@ class KeysAw(dict):
     @pulumi.getter(name="keyType")
     def key_type(self) -> str:
         """
-        The type of key to use.
+        The type of key to use
         """
         return pulumi.get(self, "key_type")
 
@@ -139,7 +132,7 @@ class KeysAw(dict):
     @pulumi.getter(name="kmsKey")
     def kms_key(self) -> str:
         """
-        An identifier for the key.
+        An identifier for the key
         """
         return pulumi.get(self, "kms_key")
 
@@ -147,7 +140,7 @@ class KeysAw(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        A unique lowercase name that serves as identifying the key.
+        A unique lowercase name that serves as identifying the key
         """
         return pulumi.get(self, "name")
 
@@ -155,7 +148,7 @@ class KeysAw(dict):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> str:
         """
-        The AWS access key to use.
+        The AWS secret key to use
         """
         return pulumi.get(self, "secret_key")
 
@@ -163,8 +156,7 @@ class KeysAw(dict):
     @pulumi.getter(name="allowGenerateKey")
     def allow_generate_key(self) -> Optional[bool]:
         """
-        If no existing key can be found in 
-        the referenced backend, instructs Vault to generate a key within the backend.
+        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
@@ -172,10 +164,7 @@ class KeysAw(dict):
     @pulumi.getter(name="allowReplaceKey")
     def allow_replace_key(self) -> Optional[bool]:
         """
-        Controls the ability for Vault to replace through
-        generation or importing a key into the configured backend even
-        if a key is present, if set to `false` those operations are forbidden
-        if a key exists.
+        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
@@ -183,8 +172,7 @@ class KeysAw(dict):
     @pulumi.getter(name="allowStoreKey")
     def allow_store_key(self) -> Optional[bool]:
         """
-        Controls the ability for Vault to import a key to the
-        configured backend, if `false`, those operations will be forbidden.
+        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
@@ -192,8 +180,7 @@ class KeysAw(dict):
     @pulumi.getter(name="anyMount")
     def any_mount(self) -> Optional[bool]:
         """
-        If `true`, allows usage from any mount point within the
-        namespace.
+        Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
@@ -201,8 +188,7 @@ class KeysAw(dict):
     @pulumi.getter
     def curve(self) -> Optional[str]:
         """
-        The curve to use for an ECDSA key. Used when `key_type` 
-        is `ECDSA`. Required if `allow_generate_key` is `true`.
+        The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "curve")
 
@@ -210,7 +196,7 @@ class KeysAw(dict):
     @pulumi.getter
     def endpoint(self) -> Optional[str]:
         """
-        Used to specify a custom AWS endpoint.
+        Used to specify a custom AWS endpoint
         """
         return pulumi.get(self, "endpoint")
 
@@ -218,7 +204,7 @@ class KeysAw(dict):
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The AWS region where the keys are stored (or will be stored).
+        The AWS region where the keys are stored (or will be stored)
         """
         return pulumi.get(self, "region")
 
@@ -287,26 +273,20 @@ class KeysAzure(dict):
                  resource: Optional[str] = None,
                  uuid: Optional[str] = None):
         """
-        :param str client_id: The client id for credentials to query the Azure APIs.
-        :param str client_secret: The client secret for credentials to query the Azure APIs.
-        :param str key_name: The Key Vault key to use for encryption and decryption.
-        :param str key_type: The type of key to use.
-        :param str name: A unique lowercase name that serves as identifying the key.
-        :param str tenant_id: The tenant id for the Azure Active Directory organization.
-        :param str vault_name: The Key Vault vault to use for encryption and decryption.
-        :param bool allow_generate_key: If no existing key can be found in 
-               the referenced backend, instructs Vault to generate a key within the backend.
-        :param bool allow_replace_key: Controls the ability for Vault to replace through
-               generation or importing a key into the configured backend even
-               if a key is present, if set to `false` those operations are forbidden
-               if a key exists.
-        :param bool allow_store_key: Controls the ability for Vault to import a key to the
-               configured backend, if `false`, those operations will be forbidden.
-        :param bool any_mount: If `true`, allows usage from any mount point within the
-               namespace.
-        :param str environment: The Azure Cloud environment API endpoints to use.
-        :param str key_bits: The size in bits for an RSA key.
-        :param str resource: The Azure Key Vault resource's DNS Suffix to connect to.
+        :param str client_id: The client id for credentials to query the Azure APIs
+        :param str client_secret: The client secret for credentials to query the Azure APIs
+        :param str key_name: The Key Vault key to use for encryption and decryption
+        :param str key_type: The type of key to use
+        :param str name: A unique lowercase name that serves as identifying the key
+        :param str tenant_id: The tenant id for the Azure Active Directory organization
+        :param str vault_name: The Key Vault vault to use the encryption keys for encryption and decryption
+        :param bool allow_generate_key: If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        :param bool allow_replace_key: Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        :param bool allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        :param bool any_mount: Allow usage from any mount point within the namespace if 'true'
+        :param str environment: The Azure Cloud environment API endpoints to use
+        :param str key_bits: The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
+        :param str resource: The Azure Key Vault resource's DNS Suffix to connect to
         :param str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "client_id", client_id)
@@ -337,7 +317,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="clientId")
     def client_id(self) -> str:
         """
-        The client id for credentials to query the Azure APIs.
+        The client id for credentials to query the Azure APIs
         """
         return pulumi.get(self, "client_id")
 
@@ -345,7 +325,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> str:
         """
-        The client secret for credentials to query the Azure APIs.
+        The client secret for credentials to query the Azure APIs
         """
         return pulumi.get(self, "client_secret")
 
@@ -353,7 +333,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="keyName")
     def key_name(self) -> str:
         """
-        The Key Vault key to use for encryption and decryption.
+        The Key Vault key to use for encryption and decryption
         """
         return pulumi.get(self, "key_name")
 
@@ -361,7 +341,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="keyType")
     def key_type(self) -> str:
         """
-        The type of key to use.
+        The type of key to use
         """
         return pulumi.get(self, "key_type")
 
@@ -369,7 +349,7 @@ class KeysAzure(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        A unique lowercase name that serves as identifying the key.
+        A unique lowercase name that serves as identifying the key
         """
         return pulumi.get(self, "name")
 
@@ -377,7 +357,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> str:
         """
-        The tenant id for the Azure Active Directory organization.
+        The tenant id for the Azure Active Directory organization
         """
         return pulumi.get(self, "tenant_id")
 
@@ -385,7 +365,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="vaultName")
     def vault_name(self) -> str:
         """
-        The Key Vault vault to use for encryption and decryption.
+        The Key Vault vault to use the encryption keys for encryption and decryption
         """
         return pulumi.get(self, "vault_name")
 
@@ -393,8 +373,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="allowGenerateKey")
     def allow_generate_key(self) -> Optional[bool]:
         """
-        If no existing key can be found in 
-        the referenced backend, instructs Vault to generate a key within the backend.
+        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
@@ -402,10 +381,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="allowReplaceKey")
     def allow_replace_key(self) -> Optional[bool]:
         """
-        Controls the ability for Vault to replace through
-        generation or importing a key into the configured backend even
-        if a key is present, if set to `false` those operations are forbidden
-        if a key exists.
+        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
@@ -413,8 +389,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="allowStoreKey")
     def allow_store_key(self) -> Optional[bool]:
         """
-        Controls the ability for Vault to import a key to the
-        configured backend, if `false`, those operations will be forbidden.
+        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
@@ -422,8 +397,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="anyMount")
     def any_mount(self) -> Optional[bool]:
         """
-        If `true`, allows usage from any mount point within the
-        namespace.
+        Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
@@ -431,7 +405,7 @@ class KeysAzure(dict):
     @pulumi.getter
     def environment(self) -> Optional[str]:
         """
-        The Azure Cloud environment API endpoints to use.
+        The Azure Cloud environment API endpoints to use
         """
         return pulumi.get(self, "environment")
 
@@ -439,7 +413,7 @@ class KeysAzure(dict):
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> Optional[str]:
         """
-        The size in bits for an RSA key.
+        The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
         """
         return pulumi.get(self, "key_bits")
 
@@ -447,7 +421,7 @@ class KeysAzure(dict):
     @pulumi.getter
     def resource(self) -> Optional[str]:
         """
-        The Azure Key Vault resource's DNS Suffix to connect to.
+        The Azure Key Vault resource's DNS Suffix to connect to
         """
         return pulumi.get(self, "resource")
 
@@ -513,32 +487,21 @@ class KeysPkc(dict):
                  token_label: Optional[str] = None,
                  uuid: Optional[str] = None):
         """
-        :param str key_id: The id of a PKCS#11 key to use.
-        :param str key_label: The label of the key to use.
-        :param str library: The name of the kms_library stanza to use from Vault's config
-               to lookup the local library path.
-        :param str mechanism: The encryption/decryption mechanism to use, specified as a
-               hexadecimal (prefixed by 0x) string.
-        :param str name: A unique lowercase name that serves as identifying the key.
-        :param str pin: The PIN for login.
-        :param bool allow_generate_key: If no existing key can be found in 
-               the referenced backend, instructs Vault to generate a key within the backend.
-        :param bool allow_replace_key: Controls the ability for Vault to replace through
-               generation or importing a key into the configured backend even
-               if a key is present, if set to `false` those operations are forbidden
-               if a key exists.
-        :param bool allow_store_key: Controls the ability for Vault to import a key to the
-               configured backend, if `false`, those operations will be forbidden.
-        :param bool any_mount: If `true`, allows usage from any mount point within the
-               namespace.
-        :param str curve: The curve to use for an ECDSA key. Used when `key_type` 
-               is `ECDSA`. Required if `allow_generate_key` is `true`.
-        :param str force_rw_session: Force all operations to open up a read-write session to
-               the HSM.
-        :param str key_bits: The size in bits for an RSA key.
-        :param str slot: The slot number to use, specified as a string in a decimal format
-               (e.g. `2305843009213693953`).
-        :param str token_label: The slot token label to use.
+        :param str key_id: The id of a PKCS#11 key to use
+        :param str key_label: The label of the key to use
+        :param str library: The name of the kms_library stanza to use from Vault's config to lookup the local library path
+        :param str mechanism: The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
+        :param str name: A unique lowercase name that serves as identifying the key
+        :param str pin: The PIN for login
+        :param bool allow_generate_key: If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
+        :param bool allow_replace_key: Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
+        :param bool allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
+        :param bool any_mount: Allow usage from any mount point within the namespace if 'true'
+        :param str curve: Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
+        :param str force_rw_session: Force all operations to open up a read-write session to the HSM
+        :param str key_bits: Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
+        :param str slot: The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
+        :param str token_label: The slot token label to use
         :param str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "key_id", key_id)
@@ -572,7 +535,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="keyId")
     def key_id(self) -> str:
         """
-        The id of a PKCS#11 key to use.
+        The id of a PKCS#11 key to use
         """
         return pulumi.get(self, "key_id")
 
@@ -580,7 +543,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="keyLabel")
     def key_label(self) -> str:
         """
-        The label of the key to use.
+        The label of the key to use
         """
         return pulumi.get(self, "key_label")
 
@@ -588,8 +551,7 @@ class KeysPkc(dict):
     @pulumi.getter
     def library(self) -> str:
         """
-        The name of the kms_library stanza to use from Vault's config
-        to lookup the local library path.
+        The name of the kms_library stanza to use from Vault's config to lookup the local library path
         """
         return pulumi.get(self, "library")
 
@@ -597,8 +559,7 @@ class KeysPkc(dict):
     @pulumi.getter
     def mechanism(self) -> str:
         """
-        The encryption/decryption mechanism to use, specified as a
-        hexadecimal (prefixed by 0x) string.
+        The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
         """
         return pulumi.get(self, "mechanism")
 
@@ -606,7 +567,7 @@ class KeysPkc(dict):
     @pulumi.getter
     def name(self) -> str:
         """
-        A unique lowercase name that serves as identifying the key.
+        A unique lowercase name that serves as identifying the key
         """
         return pulumi.get(self, "name")
 
@@ -614,7 +575,7 @@ class KeysPkc(dict):
     @pulumi.getter
     def pin(self) -> str:
         """
-        The PIN for login.
+        The PIN for login
         """
         return pulumi.get(self, "pin")
 
@@ -622,8 +583,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="allowGenerateKey")
     def allow_generate_key(self) -> Optional[bool]:
         """
-        If no existing key can be found in 
-        the referenced backend, instructs Vault to generate a key within the backend.
+        If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
@@ -631,10 +591,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="allowReplaceKey")
     def allow_replace_key(self) -> Optional[bool]:
         """
-        Controls the ability for Vault to replace through
-        generation or importing a key into the configured backend even
-        if a key is present, if set to `false` those operations are forbidden
-        if a key exists.
+        Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
@@ -642,8 +599,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="allowStoreKey")
     def allow_store_key(self) -> Optional[bool]:
         """
-        Controls the ability for Vault to import a key to the
-        configured backend, if `false`, those operations will be forbidden.
+        Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
@@ -651,8 +607,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="anyMount")
     def any_mount(self) -> Optional[bool]:
         """
-        If `true`, allows usage from any mount point within the
-        namespace.
+        Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
@@ -660,8 +615,7 @@ class KeysPkc(dict):
     @pulumi.getter
     def curve(self) -> Optional[str]:
         """
-        The curve to use for an ECDSA key. Used when `key_type` 
-        is `ECDSA`. Required if `allow_generate_key` is `true`.
+        Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "curve")
 
@@ -669,8 +623,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="forceRwSession")
     def force_rw_session(self) -> Optional[str]:
         """
-        Force all operations to open up a read-write session to
-        the HSM.
+        Force all operations to open up a read-write session to the HSM
         """
         return pulumi.get(self, "force_rw_session")
 
@@ -678,7 +631,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> Optional[str]:
         """
-        The size in bits for an RSA key.
+        Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "key_bits")
 
@@ -686,8 +639,7 @@ class KeysPkc(dict):
     @pulumi.getter
     def slot(self) -> Optional[str]:
         """
-        The slot number to use, specified as a string in a decimal format
-        (e.g. `2305843009213693953`).
+        The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         """
         return pulumi.get(self, "slot")
 
@@ -695,7 +647,7 @@ class KeysPkc(dict):
     @pulumi.getter(name="tokenLabel")
     def token_label(self) -> Optional[str]:
         """
-        The slot token label to use.
+        The slot token label to use
         """
         return pulumi.get(self, "token_label")
 

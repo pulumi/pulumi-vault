@@ -297,7 +297,6 @@ class SecretRoleset(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_std as std
@@ -318,7 +317,6 @@ class SecretRoleset(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -354,7 +352,6 @@ class SecretRoleset(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_std as std
@@ -375,7 +372,6 @@ class SecretRoleset(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

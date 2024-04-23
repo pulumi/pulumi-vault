@@ -162,20 +162,17 @@ def get_secret(namespace: Optional[str] = None,
 
     ### Generic secret
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### KV
 
     For this example, consider `example` as a path for a KV engine.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -187,7 +184,6 @@ def get_secret(namespace: Optional[str] = None,
     example_creds = vault.generic.get_secret(path="example/creds")
     example_template = not_implemented("The template_file data resource is not yet supported.")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -243,20 +239,17 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
 
     ### Generic secret
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     rundeck_auth = vault.generic.get_secret(path="secret/rundeck_auth")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### KV
 
     For this example, consider `example` as a path for a KV engine.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -268,7 +261,6 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     example_creds = vault.generic.get_secret(path="example/creds")
     example_template = not_implemented("The template_file data resource is not yet supported.")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

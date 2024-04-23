@@ -39,16 +39,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Specifies the Redshift DSN.
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * Connection string to use to connect to the database.
      * 
      */
     @Import(name="connectionUrl")
     private @Nullable Output<String> connectionUrl;
 
     /**
-     * @return Specifies the Redshift DSN.
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<Output<String>> connectionUrl() {
@@ -56,18 +54,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * For Vault v1.9+. Set to true when the target is a
-     * Contained Database, e.g. AzureSQL.
-     * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+     * Set to true when the target is a Contained Database, e.g. AzureSQL.
      * 
      */
     @Import(name="containedDb")
     private @Nullable Output<Boolean> containedDb;
 
     /**
-     * @return For Vault v1.9+. Set to true when the target is a
-     * Contained Database, e.g. AzureSQL.
-     * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+     * @return Set to true when the target is a Contained Database, e.g. AzureSQL.
      * 
      */
     public Optional<Output<Boolean>> containedDb() {
@@ -94,14 +88,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Disable special character escaping in username and password.
+     * Disable special character escaping in username and password
      * 
      */
     @Import(name="disableEscaping")
     private @Nullable Output<Boolean> disableEscaping;
 
     /**
-     * @return Disable special character escaping in username and password.
+     * @return Disable special character escaping in username and password
      * 
      */
     public Optional<Output<Boolean>> disableEscaping() {
@@ -109,14 +103,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The maximum amount of time a connection may be reused.
+     * Maximum number of seconds a connection may be reused.
      * 
      */
     @Import(name="maxConnectionLifetime")
     private @Nullable Output<Integer> maxConnectionLifetime;
 
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Output<Integer>> maxConnectionLifetime() {
@@ -124,16 +118,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The maximum number of idle connections to
-     * the database.
+     * Maximum number of idle connections to the database.
      * 
      */
     @Import(name="maxIdleConnections")
     private @Nullable Output<Integer> maxIdleConnections;
 
     /**
-     * @return The maximum number of idle connections to
-     * the database.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxIdleConnections() {
@@ -141,16 +133,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The maximum number of open connections to
-     * the database.
+     * Maximum number of open connections to the database.
      * 
      */
     @Import(name="maxOpenConnections")
     private @Nullable Output<Integer> maxOpenConnections;
 
     /**
-     * @return The maximum number of open connections to
-     * the database.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxOpenConnections() {
@@ -173,14 +163,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The root credential password used in the connection URL
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<Output<String>> password() {
@@ -218,14 +208,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The root credential username used in the connection URL
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<Output<String>> username() {
@@ -233,14 +223,14 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Username generation template.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -337,8 +327,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param connectionUrl Specifies the Redshift DSN.
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -349,8 +338,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param connectionUrl Specifies the Redshift DSN.
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -360,9 +348,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param containedDb For Vault v1.9+. Set to true when the target is a
-         * Contained Database, e.g. AzureSQL.
-         * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         * @param containedDb Set to true when the target is a Contained Database, e.g. AzureSQL.
          * 
          * @return builder
          * 
@@ -373,9 +359,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param containedDb For Vault v1.9+. Set to true when the target is a
-         * Contained Database, e.g. AzureSQL.
-         * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         * @param containedDb Set to true when the target is a Contained Database, e.g. AzureSQL.
          * 
          * @return builder
          * 
@@ -410,7 +394,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param disableEscaping Disable special character escaping in username and password.
+         * @param disableEscaping Disable special character escaping in username and password
          * 
          * @return builder
          * 
@@ -421,7 +405,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param disableEscaping Disable special character escaping in username and password.
+         * @param disableEscaping Disable special character escaping in username and password
          * 
          * @return builder
          * 
@@ -431,7 +415,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -442,7 +426,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -452,8 +436,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * the database.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -464,8 +447,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * the database.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -475,8 +457,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * the database.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -487,8 +468,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * the database.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -519,7 +499,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -530,7 +510,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -592,7 +572,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -603,7 +583,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -613,7 +593,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 
@@ -624,7 +604,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 

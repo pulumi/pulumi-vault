@@ -40,45 +40,22 @@ class AuthBackendRoleArgs:
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[str] role: Name of the GCP role
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
-        :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -159,9 +136,6 @@ class AuthBackendRoleArgs:
     @property
     @pulumi.getter(name="allowGceInference")
     def allow_gce_inference(self) -> Optional[pulumi.Input[bool]]:
-        """
-        A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-        """
         return pulumi.get(self, "allow_gce_inference")
 
     @allow_gce_inference.setter
@@ -183,9 +157,6 @@ class AuthBackendRoleArgs:
     @property
     @pulumi.getter(name="boundInstanceGroups")
     def bound_instance_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        """
         return pulumi.get(self, "bound_instance_groups")
 
     @bound_instance_groups.setter
@@ -195,9 +166,6 @@ class AuthBackendRoleArgs:
     @property
     @pulumi.getter(name="boundLabels")
     def bound_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        """
         return pulumi.get(self, "bound_labels")
 
     @bound_labels.setter
@@ -219,9 +187,6 @@ class AuthBackendRoleArgs:
     @property
     @pulumi.getter(name="boundRegions")
     def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-        """
         return pulumi.get(self, "bound_regions")
 
     @bound_regions.setter
@@ -243,9 +208,6 @@ class AuthBackendRoleArgs:
     @property
     @pulumi.getter(name="boundZones")
     def bound_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        """
         return pulumi.get(self, "bound_zones")
 
     @bound_zones.setter
@@ -255,9 +217,6 @@ class AuthBackendRoleArgs:
     @property
     @pulumi.getter(name="maxJwtExp")
     def max_jwt_exp(self) -> Optional[pulumi.Input[str]]:
-        """
-        The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-        """
         return pulumi.get(self, "max_jwt_exp")
 
     @max_jwt_exp.setter
@@ -283,9 +242,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
+        Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -297,10 +254,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
+        Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -312,8 +266,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -325,8 +278,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
+        If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -338,8 +290,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-        of times a generated token may be used (within its lifetime); 0 means unlimited.
+        The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -351,10 +302,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
+        Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
@@ -366,8 +314,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
+        Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
@@ -379,8 +326,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -392,11 +338,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
+        The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
@@ -432,46 +374,23 @@ class _AuthBackendRoleState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
-        :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the GCP role
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
         """
         if add_group_aliases is not None:
@@ -531,9 +450,6 @@ class _AuthBackendRoleState:
     @property
     @pulumi.getter(name="allowGceInference")
     def allow_gce_inference(self) -> Optional[pulumi.Input[bool]]:
-        """
-        A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-        """
         return pulumi.get(self, "allow_gce_inference")
 
     @allow_gce_inference.setter
@@ -555,9 +471,6 @@ class _AuthBackendRoleState:
     @property
     @pulumi.getter(name="boundInstanceGroups")
     def bound_instance_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        """
         return pulumi.get(self, "bound_instance_groups")
 
     @bound_instance_groups.setter
@@ -567,9 +480,6 @@ class _AuthBackendRoleState:
     @property
     @pulumi.getter(name="boundLabels")
     def bound_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        """
         return pulumi.get(self, "bound_labels")
 
     @bound_labels.setter
@@ -591,9 +501,6 @@ class _AuthBackendRoleState:
     @property
     @pulumi.getter(name="boundRegions")
     def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-        """
         return pulumi.get(self, "bound_regions")
 
     @bound_regions.setter
@@ -615,9 +522,6 @@ class _AuthBackendRoleState:
     @property
     @pulumi.getter(name="boundZones")
     def bound_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        """
         return pulumi.get(self, "bound_zones")
 
     @bound_zones.setter
@@ -627,9 +531,6 @@ class _AuthBackendRoleState:
     @property
     @pulumi.getter(name="maxJwtExp")
     def max_jwt_exp(self) -> Optional[pulumi.Input[str]]:
-        """
-        The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-        """
         return pulumi.get(self, "max_jwt_exp")
 
     @max_jwt_exp.setter
@@ -667,9 +568,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
+        Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -681,10 +580,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
+        Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -696,8 +592,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -709,8 +604,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
+        If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -722,8 +616,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-        of times a generated token may be used (within its lifetime); 0 means unlimited.
+        The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -735,10 +628,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
+        Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
@@ -750,8 +640,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
+        Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
@@ -763,8 +652,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -776,11 +664,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="tokenType")
     def token_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
+        The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
@@ -834,7 +718,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -856,7 +739,6 @@ class AuthBackendRole(pulumi.CustomResource):
             ],
             add_group_aliases=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -868,46 +750,23 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the GCP role
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
         """
         ...
@@ -921,7 +780,6 @@ class AuthBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -943,7 +801,6 @@ class AuthBackendRole(pulumi.CustomResource):
             ],
             add_group_aliases=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1064,46 +921,23 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] allow_gce_inference: A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
         :param pulumi.Input[str] backend: Path to the mounted GCP auth backend
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_instance_groups: The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_labels: A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_projects: An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_regions: The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_service_accounts: GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_zones: The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        :param pulumi.Input[str] max_jwt_exp: The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role: Name of the GCP role
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[str] token_type: The type of token that should be generated. Can be `service`,
-               `batch`, or `default` to use the mount's tuned default (which unless changed will be
-               `service` tokens). For token store roles, there are two additional possibilities:
-               `default-service` and `default-batch` which specify the type to return unless the client
-               requests a different type at generation time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] type: Type of GCP authentication role (either `gce` or `iam`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1142,9 +976,6 @@ class AuthBackendRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="allowGceInference")
     def allow_gce_inference(self) -> pulumi.Output[bool]:
-        """
-        A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-        """
         return pulumi.get(self, "allow_gce_inference")
 
     @property
@@ -1158,17 +989,11 @@ class AuthBackendRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="boundInstanceGroups")
     def bound_instance_groups(self) -> pulumi.Output[Sequence[str]]:
-        """
-        The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-        """
         return pulumi.get(self, "bound_instance_groups")
 
     @property
     @pulumi.getter(name="boundLabels")
     def bound_labels(self) -> pulumi.Output[Sequence[str]]:
-        """
-        A comma-separated list of GCP labels formatted as `"key:value"` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL'd, we recommend that this be used in conjunction with other restrictions.
-        """
         return pulumi.get(self, "bound_labels")
 
     @property
@@ -1182,9 +1007,6 @@ class AuthBackendRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="boundRegions")
     def bound_regions(self) -> pulumi.Output[Sequence[str]]:
-        """
-        The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-        """
         return pulumi.get(self, "bound_regions")
 
     @property
@@ -1198,17 +1020,11 @@ class AuthBackendRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="boundZones")
     def bound_zones(self) -> pulumi.Output[Sequence[str]]:
-        """
-        The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-        """
         return pulumi.get(self, "bound_zones")
 
     @property
     @pulumi.getter(name="maxJwtExp")
     def max_jwt_exp(self) -> pulumi.Output[str]:
-        """
-        The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-        """
         return pulumi.get(self, "max_jwt_exp")
 
     @property
@@ -1234,9 +1050,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
+        Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -1244,10 +1058,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
+        Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -1255,8 +1066,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -1264,8 +1074,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
         """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
+        If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -1273,8 +1082,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> pulumi.Output[Optional[int]]:
         """
-        The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-        of times a generated token may be used (within its lifetime); 0 means unlimited.
+        The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -1282,10 +1090,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> pulumi.Output[Optional[int]]:
         """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
+        Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
@@ -1293,8 +1098,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
+        Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
@@ -1302,8 +1106,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -1311,11 +1114,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="tokenType")
     def token_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of token that should be generated. Can be `service`,
-        `batch`, or `default` to use the mount's tuned default (which unless changed will be
-        `service` tokens). For token store roles, there are two additional possibilities:
-        `default-service` and `default-batch` which specify the type to return unless the client
-        requests a different type at generation time.
+        The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 

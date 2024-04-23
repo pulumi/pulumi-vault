@@ -346,7 +346,6 @@ class MfaOkta(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -356,7 +355,6 @@ class MfaOkta(pulumi.CustomResource):
             api_token="token1",
             base_url="qux.baz.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -386,7 +384,6 @@ class MfaOkta(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -396,7 +393,6 @@ class MfaOkta(pulumi.CustomResource):
             api_token="token1",
             base_url="qux.baz.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

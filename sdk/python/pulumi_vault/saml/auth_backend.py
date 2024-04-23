@@ -445,7 +445,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -457,7 +456,6 @@ class AuthBackend(pulumi.CustomResource):
             acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
             default_role="admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -505,7 +503,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -517,7 +514,6 @@ class AuthBackend(pulumi.CustomResource):
             acs_urls=["https://my.vault.primary/v1/auth/saml/callback"],
             default_role="admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

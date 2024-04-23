@@ -14,7 +14,6 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,9 +26,7 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -45,7 +42,6 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAuthBackendsResult> InvokeAsync(GetAuthBackendsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsArgs(), options.WithDefaults());
@@ -53,7 +49,6 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -66,9 +61,7 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -84,7 +77,6 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAuthBackendsResult> Invoke(GetAuthBackendsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsInvokeArgs(), options.WithDefaults());

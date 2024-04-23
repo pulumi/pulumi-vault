@@ -92,23 +92,19 @@ def get_auth_backends(namespace: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     example = vault.get_auth_backends()
     ```
-    <!--End PulumiCodeChooser -->
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     example_filter = vault.get_auth_backends(type="kubernetes")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.
@@ -138,23 +134,19 @@ def get_auth_backends_output(namespace: Optional[pulumi.Input[Optional[str]]] = 
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     example = vault.get_auth_backends()
     ```
-    <!--End PulumiCodeChooser -->
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     example_filter = vault.get_auth_backends(type="kubernetes")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace of the target resource.

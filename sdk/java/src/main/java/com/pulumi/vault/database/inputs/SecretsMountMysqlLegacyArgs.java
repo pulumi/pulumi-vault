@@ -54,16 +54,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Specifies the Redshift DSN.
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * Connection string to use to connect to the database.
      * 
      */
     @Import(name="connectionUrl")
     private @Nullable Output<String> connectionUrl;
 
     /**
-     * @return Specifies the Redshift DSN.
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<Output<String>> connectionUrl() {
@@ -90,14 +88,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The maximum amount of time a connection may be reused.
+     * Maximum number of seconds a connection may be reused.
      * 
      */
     @Import(name="maxConnectionLifetime")
     private @Nullable Output<Integer> maxConnectionLifetime;
 
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Output<Integer>> maxConnectionLifetime() {
@@ -105,16 +103,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The maximum number of idle connections to
-     * the database.
+     * Maximum number of idle connections to the database.
      * 
      */
     @Import(name="maxIdleConnections")
     private @Nullable Output<Integer> maxIdleConnections;
 
     /**
-     * @return The maximum number of idle connections to
-     * the database.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxIdleConnections() {
@@ -122,16 +118,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The maximum number of open connections to
-     * the database.
+     * Maximum number of open connections to the database.
      * 
      */
     @Import(name="maxOpenConnections")
     private @Nullable Output<Integer> maxOpenConnections;
 
     /**
-     * @return The maximum number of open connections to
-     * the database.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxOpenConnections() {
@@ -154,14 +148,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The root credential password used in the connection URL
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<Output<String>> password() {
@@ -244,14 +238,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The root credential username used in the connection URL
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<Output<String>> username() {
@@ -259,14 +253,14 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Username generation template.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -386,8 +380,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param connectionUrl Specifies the Redshift DSN.
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -398,8 +391,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param connectionUrl Specifies the Redshift DSN.
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -434,7 +426,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -445,7 +437,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param maxConnectionLifetime The maximum amount of time a connection may be reused.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -455,8 +447,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * the database.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -467,8 +458,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * the database.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -478,8 +468,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * the database.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -490,8 +479,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * the database.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -522,7 +510,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -533,7 +521,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -658,7 +646,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -669,7 +657,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -679,7 +667,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 
@@ -690,7 +678,7 @@ public final class SecretsMountMysqlLegacyArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 

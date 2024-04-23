@@ -18,14 +18,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     public static final SecretBackendConnectionElasticsearchArgs Empty = new SecretBackendConnectionElasticsearchArgs();
 
     /**
-     * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     @Import(name="caCert")
     private @Nullable Output<String> caCert;
 
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     public Optional<Output<String>> caCert() {
@@ -33,14 +33,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
+     * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     @Import(name="caPath")
     private @Nullable Output<String> caPath;
 
     /**
-     * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
+     * @return The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity
      * 
      */
     public Optional<Output<String>> caPath() {
@@ -48,14 +48,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The path to the certificate for the Elasticsearch client to present for communication.
+     * The path to the certificate for the Elasticsearch client to present for communication
      * 
      */
     @Import(name="clientCert")
     private @Nullable Output<String> clientCert;
 
     /**
-     * @return The path to the certificate for the Elasticsearch client to present for communication.
+     * @return The path to the certificate for the Elasticsearch client to present for communication
      * 
      */
     public Optional<Output<String>> clientCert() {
@@ -63,14 +63,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The path to the key for the Elasticsearch client to use for communication.
+     * The path to the key for the Elasticsearch client to use for communication
      * 
      */
     @Import(name="clientKey")
     private @Nullable Output<String> clientKey;
 
     /**
-     * @return The path to the key for the Elasticsearch client to use for communication.
+     * @return The path to the key for the Elasticsearch client to use for communication
      * 
      */
     public Optional<Output<String>> clientKey() {
@@ -78,14 +78,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * Whether to disable certificate verification.
+     * Whether to disable certificate verification
      * 
      */
     @Import(name="insecure")
     private @Nullable Output<Boolean> insecure;
 
     /**
-     * @return Whether to disable certificate verification.
+     * @return Whether to disable certificate verification
      * 
      */
     public Optional<Output<Boolean>> insecure() {
@@ -93,14 +93,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The password to authenticate with.
+     * The password to be used in the connection URL
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The password to authenticate with.
+     * @return The password to be used in the connection URL
      * 
      */
     public Output<String> password() {
@@ -108,14 +108,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * This, if set, is used to set the SNI host when connecting via TLS.
+     * This, if set, is used to set the SNI host when connecting via TLS
      * 
      */
     @Import(name="tlsServerName")
     private @Nullable Output<String> tlsServerName;
 
     /**
-     * @return This, if set, is used to set the SNI host when connecting via TLS.
+     * @return This, if set, is used to set the SNI host when connecting via TLS
      * 
      */
     public Optional<Output<String>> tlsServerName() {
@@ -123,16 +123,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * The URL for Elasticsearch&#39;s API
      * 
      */
     @Import(name="url", required=true)
     private Output<String> url;
 
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The URL for Elasticsearch&#39;s API
      * 
      */
     public Output<String> url() {
@@ -140,14 +138,14 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
     }
 
     /**
-     * The username to authenticate with.
+     * The username to be used in the connection URL
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The username to authenticate with.
+     * @return The username to be used in the connection URL
      * 
      */
     public Output<String> username() {
@@ -203,7 +201,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity
          * 
          * @return builder
          * 
@@ -214,7 +212,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+         * @param caCert The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity
          * 
          * @return builder
          * 
@@ -224,7 +222,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param caPath The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
+         * @param caPath The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity
          * 
          * @return builder
          * 
@@ -235,7 +233,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param caPath The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity.
+         * @param caPath The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server&#39;s identity
          * 
          * @return builder
          * 
@@ -245,7 +243,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param clientCert The path to the certificate for the Elasticsearch client to present for communication.
+         * @param clientCert The path to the certificate for the Elasticsearch client to present for communication
          * 
          * @return builder
          * 
@@ -256,7 +254,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param clientCert The path to the certificate for the Elasticsearch client to present for communication.
+         * @param clientCert The path to the certificate for the Elasticsearch client to present for communication
          * 
          * @return builder
          * 
@@ -266,7 +264,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param clientKey The path to the key for the Elasticsearch client to use for communication.
+         * @param clientKey The path to the key for the Elasticsearch client to use for communication
          * 
          * @return builder
          * 
@@ -277,7 +275,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param clientKey The path to the key for the Elasticsearch client to use for communication.
+         * @param clientKey The path to the key for the Elasticsearch client to use for communication
          * 
          * @return builder
          * 
@@ -287,7 +285,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param insecure Whether to disable certificate verification.
+         * @param insecure Whether to disable certificate verification
          * 
          * @return builder
          * 
@@ -298,7 +296,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param insecure Whether to disable certificate verification.
+         * @param insecure Whether to disable certificate verification
          * 
          * @return builder
          * 
@@ -308,7 +306,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The password to be used in the connection URL
          * 
          * @return builder
          * 
@@ -319,7 +317,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The password to be used in the connection URL
          * 
          * @return builder
          * 
@@ -329,7 +327,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param tlsServerName This, if set, is used to set the SNI host when connecting via TLS.
+         * @param tlsServerName This, if set, is used to set the SNI host when connecting via TLS
          * 
          * @return builder
          * 
@@ -340,7 +338,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param tlsServerName This, if set, is used to set the SNI host when connecting via TLS.
+         * @param tlsServerName This, if set, is used to set the SNI host when connecting via TLS
          * 
          * @return builder
          * 
@@ -350,8 +348,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
-         * by trusted CA if used.
+         * @param url The URL for Elasticsearch&#39;s API
          * 
          * @return builder
          * 
@@ -362,8 +359,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
-         * by trusted CA if used.
+         * @param url The URL for Elasticsearch&#39;s API
          * 
          * @return builder
          * 
@@ -373,7 +369,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The username to be used in the connection URL
          * 
          * @return builder
          * 
@@ -384,7 +380,7 @@ public final class SecretBackendConnectionElasticsearchArgs extends com.pulumi.r
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The username to be used in the connection URL
          * 
          * @return builder
          * 

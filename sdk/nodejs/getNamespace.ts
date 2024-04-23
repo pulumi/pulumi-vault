@@ -9,18 +9,15 @@ import * as utilities from "./utilities";
  *
  * ### Current namespace
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const current = vault.getNamespace({});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Single namespace
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -29,11 +26,9 @@ import * as utilities from "./utilities";
  *     path: "ns1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Nested namespace
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -46,7 +41,6 @@ import * as utilities from "./utilities";
  * // -> foo/parent/child/
  * const pathFq = child.then(child => child.pathFq);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNamespace(args?: GetNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetNamespaceResult> {
     args = args || {};
@@ -109,18 +103,15 @@ export interface GetNamespaceResult {
  *
  * ### Current namespace
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const current = vault.getNamespace({});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Single namespace
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -129,11 +120,9 @@ export interface GetNamespaceResult {
  *     path: "ns1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Nested namespace
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -146,7 +135,6 @@ export interface GetNamespaceResult {
  * // -> foo/parent/child/
  * const pathFq = child.then(child => child.pathFq);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNamespaceOutput(args?: GetNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespaceResult> {
     return pulumi.output(args).apply((a: any) => getNamespace(a, opts))

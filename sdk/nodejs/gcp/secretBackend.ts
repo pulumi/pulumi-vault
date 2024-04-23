@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as std from "@pulumi/std";
@@ -17,7 +16,6 @@ import * as utilities from "../utilities";
  *     input: "credentials.json",
  * }).then(invoke => invoke.result)});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SecretBackend extends pulumi.CustomResource {
     /**

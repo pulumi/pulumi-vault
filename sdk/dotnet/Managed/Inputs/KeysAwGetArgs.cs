@@ -13,86 +13,79 @@ namespace Pulumi.Vault.Managed.Inputs
     public sealed class KeysAwGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The AWS access key to use.
+        /// The AWS access key to use
         /// </summary>
         [Input("accessKey", required: true)]
         public Input<string> AccessKey { get; set; } = null!;
 
         /// <summary>
-        /// If no existing key can be found in 
-        /// the referenced backend, instructs Vault to generate a key within the backend.
+        /// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         /// </summary>
         [Input("allowGenerateKey")]
         public Input<bool>? AllowGenerateKey { get; set; }
 
         /// <summary>
-        /// Controls the ability for Vault to replace through
-        /// generation or importing a key into the configured backend even
-        /// if a key is present, if set to `false` those operations are forbidden
-        /// if a key exists.
+        /// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         /// </summary>
         [Input("allowReplaceKey")]
         public Input<bool>? AllowReplaceKey { get; set; }
 
         /// <summary>
-        /// Controls the ability for Vault to import a key to the
-        /// configured backend, if `false`, those operations will be forbidden.
+        /// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         /// </summary>
         [Input("allowStoreKey")]
         public Input<bool>? AllowStoreKey { get; set; }
 
         /// <summary>
-        /// If `true`, allows usage from any mount point within the
-        /// namespace.
+        /// Allow usage from any mount point within the namespace if 'true'
         /// </summary>
         [Input("anyMount")]
         public Input<bool>? AnyMount { get; set; }
 
         /// <summary>
-        /// The curve to use for an ECDSA key. Used when `key_type` 
-        /// is `ECDSA`. Required if `allow_generate_key` is `true`.
+        /// The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
         /// </summary>
         [Input("curve")]
         public Input<string>? Curve { get; set; }
 
         /// <summary>
-        /// Used to specify a custom AWS endpoint.
+        /// Used to specify a custom AWS endpoint
         /// </summary>
         [Input("endpoint")]
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// The size in bits for an RSA key.
+        /// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
         /// </summary>
         [Input("keyBits", required: true)]
         public Input<string> KeyBits { get; set; } = null!;
 
         /// <summary>
-        /// The type of key to use.
+        /// The type of key to use
         /// </summary>
         [Input("keyType", required: true)]
         public Input<string> KeyType { get; set; } = null!;
 
         /// <summary>
-        /// An identifier for the key.
+        /// An identifier for the key
         /// </summary>
         [Input("kmsKey", required: true)]
         public Input<string> KmsKey { get; set; } = null!;
 
         /// <summary>
-        /// A unique lowercase name that serves as identifying the key.
+        /// A unique lowercase name that serves as identifying the key
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The AWS region where the keys are stored (or will be stored).
+        /// The AWS region where the keys are stored (or will be stored)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The AWS access key to use.
+        /// The AWS secret key to use
         /// </summary>
         [Input("secretKey", required: true)]
         public Input<string> SecretKey { get; set; } = null!;

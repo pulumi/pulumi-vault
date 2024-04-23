@@ -325,14 +325,12 @@ def get_group(alias_id: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     group = vault.identity.get_group(group_name="user")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -403,14 +401,12 @@ def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     group = vault.identity.get_group(group_name="user")
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

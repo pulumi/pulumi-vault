@@ -14,43 +14,39 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionInfluxdb
     {
         /// <summary>
-        /// The number of seconds to use as a connection
-        /// timeout.
+        /// The number of seconds to use as a connection timeout.
         /// </summary>
         public readonly int? ConnectTimeout;
         /// <summary>
-        /// The host to connect to.
+        /// Influxdb host to connect to.
         /// </summary>
         public readonly string Host;
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Whether to skip verification of the server certificate when using TLS.
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to authenticate with.
+        /// Specifies the password corresponding to the given username.
         /// </summary>
         public readonly string Password;
         /// <summary>
-        /// Concatenated PEM blocks configuring the certificate
-        /// chain.
+        /// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         /// </summary>
         public readonly string? PemBundle;
         /// <summary>
-        /// A JSON structure configuring the certificate chain.
+        /// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         /// </summary>
         public readonly string? PemJson;
         /// <summary>
-        /// The default port to connect to if no port is specified as
-        /// part of the host.
+        /// The transport port to use to connect to Influxdb.
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Whether to use TLS when connecting to Influxdb.
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to authenticate with.
+        /// Specifies the username to use for superuser access.
         /// </summary>
         public readonly string Username;
         /// <summary>
