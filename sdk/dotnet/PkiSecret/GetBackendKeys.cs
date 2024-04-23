@@ -14,7 +14,6 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -46,7 +45,6 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBackendKeysResult> InvokeAsync(GetBackendKeysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackendKeysResult>("vault:pkiSecret/getBackendKeys:getBackendKeys", args ?? new GetBackendKeysArgs(), options.WithDefaults());
@@ -54,7 +52,6 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -86,7 +83,6 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBackendKeysResult> Invoke(GetBackendKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendKeysResult>("vault:pkiSecret/getBackendKeys:getBackendKeys", args ?? new GetBackendKeysInvokeArgs(), options.WithDefaults());

@@ -49,14 +49,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * The hosts to connect to.
+     * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
     @Import(name="hosts", required=true)
     private Output<List<String>> hosts;
 
     /**
-     * @return The hosts to connect to.
+     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
     public Output<List<String>> hosts() {
@@ -64,16 +64,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * Whether to skip verification of the server
-     * certificate when using TLS.
+     * Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     @Import(name="insecureTls")
     private @Nullable Output<Boolean> insecureTls;
 
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Output<Boolean>> insecureTls() {
@@ -81,14 +79,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * The password to authenticate with.
+     * Specifies the password corresponding to the given username.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public Output<String> password() {
@@ -96,14 +94,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * Whether to use TLS when connecting to Cassandra.
+     * Specifies whether to use TLS when connecting to Couchbase.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Couchbase.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -111,14 +109,14 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
     }
 
     /**
-     * The username to authenticate with.
+     * Specifies the username for Vault to use.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username for Vault to use.
      * 
      */
     public Output<String> username() {
@@ -214,7 +212,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          * 
          * @return builder
          * 
@@ -225,7 +223,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          * 
          * @return builder
          * 
@@ -235,7 +233,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          * 
          * @return builder
          * 
@@ -245,8 +243,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Specifies whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -257,8 +254,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Specifies whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -268,7 +264,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -279,7 +275,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -289,7 +285,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Specifies whether to use TLS when connecting to Couchbase.
          * 
          * @return builder
          * 
@@ -300,7 +296,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Specifies whether to use TLS when connecting to Couchbase.
          * 
          * @return builder
          * 
@@ -310,7 +306,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username Specifies the username for Vault to use.
          * 
          * @return builder
          * 
@@ -321,7 +317,7 @@ public final class SecretBackendConnectionCouchbaseArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username Specifies the username for Vault to use.
          * 
          * @return builder
          * 

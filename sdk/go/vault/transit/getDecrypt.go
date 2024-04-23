@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDecrypt(ctx *pulumi.Context, args *GetDecryptArgs, opts ...pulumi.InvokeOption) (*GetDecryptResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDecryptResult
@@ -54,15 +52,11 @@ func GetDecrypt(ctx *pulumi.Context, args *GetDecryptArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getDecrypt.
 type GetDecryptArgs struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-	Backend string `pulumi:"backend"`
-	// Ciphertext to be decoded.
-	Ciphertext string `pulumi:"ciphertext"`
-	// Context for key derivation. This is required if key derivation is enabled for this key.
-	Context *string `pulumi:"context"`
-	// Specifies the name of the transit key to decrypt against.
-	Key       string  `pulumi:"key"`
-	Namespace *string `pulumi:"namespace"`
+	Backend    string  `pulumi:"backend"`
+	Ciphertext string  `pulumi:"ciphertext"`
+	Context    *string `pulumi:"context"`
+	Key        string  `pulumi:"key"`
+	Namespace  *string `pulumi:"namespace"`
 }
 
 // A collection of values returned by getDecrypt.
@@ -93,15 +87,11 @@ func GetDecryptOutput(ctx *pulumi.Context, args GetDecryptOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getDecrypt.
 type GetDecryptOutputArgs struct {
-	// The path the transit secret backend is mounted at, with no leading or trailing `/`.
-	Backend pulumi.StringInput `pulumi:"backend"`
-	// Ciphertext to be decoded.
-	Ciphertext pulumi.StringInput `pulumi:"ciphertext"`
-	// Context for key derivation. This is required if key derivation is enabled for this key.
-	Context pulumi.StringPtrInput `pulumi:"context"`
-	// Specifies the name of the transit key to decrypt against.
-	Key       pulumi.StringInput    `pulumi:"key"`
-	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	Backend    pulumi.StringInput    `pulumi:"backend"`
+	Ciphertext pulumi.StringInput    `pulumi:"ciphertext"`
+	Context    pulumi.StringPtrInput `pulumi:"context"`
+	Key        pulumi.StringInput    `pulumi:"key"`
+	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
 }
 
 func (GetDecryptOutputArgs) ElementType() reflect.Type {

@@ -14,74 +14,67 @@ import javax.annotation.Nullable;
 @CustomType
 public final class KeysAw {
     /**
-     * @return The AWS access key to use.
+     * @return The AWS access key to use
      * 
      */
     private String accessKey;
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     private @Nullable Boolean allowGenerateKey;
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     private @Nullable Boolean allowReplaceKey;
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     private @Nullable Boolean allowStoreKey;
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     private @Nullable Boolean anyMount;
     /**
-     * @return The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * @return The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     private @Nullable String curve;
     /**
-     * @return Used to specify a custom AWS endpoint.
+     * @return Used to specify a custom AWS endpoint
      * 
      */
     private @Nullable String endpoint;
     /**
-     * @return The size in bits for an RSA key.
+     * @return The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39;
      * 
      */
     private String keyBits;
     /**
-     * @return The type of key to use.
+     * @return The type of key to use
      * 
      */
     private String keyType;
     /**
-     * @return An identifier for the key.
+     * @return An identifier for the key
      * 
      */
     private String kmsKey;
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     private String name;
     /**
-     * @return The AWS region where the keys are stored (or will be stored).
+     * @return The AWS region where the keys are stored (or will be stored)
      * 
      */
     private @Nullable String region;
     /**
-     * @return The AWS access key to use.
+     * @return The AWS secret key to use
      * 
      */
     private String secretKey;
@@ -93,98 +86,91 @@ public final class KeysAw {
 
     private KeysAw() {}
     /**
-     * @return The AWS access key to use.
+     * @return The AWS access key to use
      * 
      */
     public String accessKey() {
         return this.accessKey;
     }
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     public Optional<Boolean> allowGenerateKey() {
         return Optional.ofNullable(this.allowGenerateKey);
     }
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     public Optional<Boolean> allowReplaceKey() {
         return Optional.ofNullable(this.allowReplaceKey);
     }
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     public Optional<Boolean> allowStoreKey() {
         return Optional.ofNullable(this.allowStoreKey);
     }
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     public Optional<Boolean> anyMount() {
         return Optional.ofNullable(this.anyMount);
     }
     /**
-     * @return The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * @return The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<String> curve() {
         return Optional.ofNullable(this.curve);
     }
     /**
-     * @return Used to specify a custom AWS endpoint.
+     * @return Used to specify a custom AWS endpoint
      * 
      */
     public Optional<String> endpoint() {
         return Optional.ofNullable(this.endpoint);
     }
     /**
-     * @return The size in bits for an RSA key.
+     * @return The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39;
      * 
      */
     public String keyBits() {
         return this.keyBits;
     }
     /**
-     * @return The type of key to use.
+     * @return The type of key to use
      * 
      */
     public String keyType() {
         return this.keyType;
     }
     /**
-     * @return An identifier for the key.
+     * @return An identifier for the key
      * 
      */
     public String kmsKey() {
         return this.kmsKey;
     }
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return The AWS region where the keys are stored (or will be stored).
+     * @return The AWS region where the keys are stored (or will be stored)
      * 
      */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
     /**
-     * @return The AWS access key to use.
+     * @return The AWS secret key to use
      * 
      */
     public String secretKey() {

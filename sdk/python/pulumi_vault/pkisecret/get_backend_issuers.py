@@ -104,7 +104,6 @@ def get_backend_issuers(backend: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -121,7 +120,6 @@ def get_backend_issuers(backend: Optional[str] = None,
         issuer_name="example")
     test = vault.pkiSecret.get_backend_issuers_output(backend=root.backend)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The path to the PKI secret backend to
@@ -153,7 +151,6 @@ def get_backend_issuers_output(backend: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -170,7 +167,6 @@ def get_backend_issuers_output(backend: Optional[pulumi.Input[str]] = None,
         issuer_name="example")
     test = vault.pkiSecret.get_backend_issuers_output(backend=root.backend)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The path to the PKI secret backend to

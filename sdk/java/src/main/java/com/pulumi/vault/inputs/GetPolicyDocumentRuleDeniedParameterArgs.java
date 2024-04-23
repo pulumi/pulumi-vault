@@ -15,32 +15,16 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
 
     public static final GetPolicyDocumentRuleDeniedParameterArgs Empty = new GetPolicyDocumentRuleDeniedParameterArgs();
 
-    /**
-     * name of permitted or denied parameter.
-     * 
-     */
     @Import(name="key", required=true)
     private Output<String> key;
 
-    /**
-     * @return name of permitted or denied parameter.
-     * 
-     */
     public Output<String> key() {
         return this.key;
     }
 
-    /**
-     * list of values what are permitted or denied by policy rule.
-     * 
-     */
     @Import(name="values", required=true)
     private Output<List<String>> values;
 
-    /**
-     * @return list of values what are permitted or denied by policy rule.
-     * 
-     */
     public Output<List<String>> values() {
         return this.values;
     }
@@ -70,54 +54,24 @@ public final class GetPolicyDocumentRuleDeniedParameterArgs extends com.pulumi.r
             $ = new GetPolicyDocumentRuleDeniedParameterArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param key name of permitted or denied parameter.
-         * 
-         * @return builder
-         * 
-         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
-        /**
-         * @param key name of permitted or denied parameter.
-         * 
-         * @return builder
-         * 
-         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
-        /**
-         * @param values list of values what are permitted or denied by policy rule.
-         * 
-         * @return builder
-         * 
-         */
         public Builder values(Output<List<String>> values) {
             $.values = values;
             return this;
         }
 
-        /**
-         * @param values list of values what are permitted or denied by policy rule.
-         * 
-         * @return builder
-         * 
-         */
         public Builder values(List<String> values) {
             return values(Output.of(values));
         }
 
-        /**
-         * @param values list of values what are permitted or denied by policy rule.
-         * 
-         * @return builder
-         * 
-         */
         public Builder values(String... values) {
             return values(List.of(values));
         }

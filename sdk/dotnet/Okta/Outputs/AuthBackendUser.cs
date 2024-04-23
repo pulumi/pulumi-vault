@@ -14,11 +14,11 @@ namespace Pulumi.Vault.Okta.Outputs
     public sealed class AuthBackendUser
     {
         /// <summary>
-        /// List of Okta groups to associate with this user
+        /// Groups within the Okta auth backend to associate with this user
         /// </summary>
         public readonly ImmutableArray<string> Groups;
         /// <summary>
-        /// Vault policies to associate with this group
+        /// Policies to associate with this user
         /// </summary>
         public readonly ImmutableArray<string> Policies;
         /// <summary>

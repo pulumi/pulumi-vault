@@ -29,10 +29,7 @@ type Keys struct {
 	Aws KeysAwArrayOutput `pulumi:"aws"`
 	// Configuration block for Azure Managed Keys
 	Azures KeysAzureArrayOutput `pulumi:"azures"`
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured namespace.
-	// *Available only for Vault Enterprise*.
+	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Configuration block for PKCS Managed Keys
 	Pkcs KeysPkcArrayOutput `pulumi:"pkcs"`
@@ -72,10 +69,7 @@ type keysState struct {
 	Aws []KeysAw `pulumi:"aws"`
 	// Configuration block for Azure Managed Keys
 	Azures []KeysAzure `pulumi:"azures"`
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured namespace.
-	// *Available only for Vault Enterprise*.
+	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Configuration block for PKCS Managed Keys
 	Pkcs []KeysPkc `pulumi:"pkcs"`
@@ -86,10 +80,7 @@ type KeysState struct {
 	Aws KeysAwArrayInput
 	// Configuration block for Azure Managed Keys
 	Azures KeysAzureArrayInput
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured namespace.
-	// *Available only for Vault Enterprise*.
+	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Configuration block for PKCS Managed Keys
 	Pkcs KeysPkcArrayInput
@@ -104,10 +95,7 @@ type keysArgs struct {
 	Aws []KeysAw `pulumi:"aws"`
 	// Configuration block for Azure Managed Keys
 	Azures []KeysAzure `pulumi:"azures"`
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured namespace.
-	// *Available only for Vault Enterprise*.
+	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Configuration block for PKCS Managed Keys
 	Pkcs []KeysPkc `pulumi:"pkcs"`
@@ -119,10 +107,7 @@ type KeysArgs struct {
 	Aws KeysAwArrayInput
 	// Configuration block for Azure Managed Keys
 	Azures KeysAzureArrayInput
-	// The namespace to provision the resource in.
-	// The value should not contain leading or trailing forward slashes.
-	// The `namespace` is always relative to the provider's configured namespace.
-	// *Available only for Vault Enterprise*.
+	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Configuration block for PKCS Managed Keys
 	Pkcs KeysPkcArrayInput
@@ -225,10 +210,7 @@ func (o KeysOutput) Azures() KeysAzureArrayOutput {
 	return o.ApplyT(func(v *Keys) KeysAzureArrayOutput { return v.Azures }).(KeysAzureArrayOutput)
 }
 
-// The namespace to provision the resource in.
-// The value should not contain leading or trailing forward slashes.
-// The `namespace` is always relative to the provider's configured namespace.
-// *Available only for Vault Enterprise*.
+// Target namespace. (requires Enterprise)
 func (o KeysOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Keys) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }

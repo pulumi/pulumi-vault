@@ -311,7 +311,6 @@ def get_auth_backend_role(backend: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -320,7 +319,6 @@ def get_auth_backend_role(backend: Optional[str] = None,
         role_name="my-role")
     pulumi.export("role-id", role.role_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".
@@ -416,7 +414,6 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -425,7 +422,6 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] 
         role_name="my-role")
     pulumi.export("role-id", role.role_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str backend: The unique name for the GCP backend from which to fetch the role. Defaults to "gcp".

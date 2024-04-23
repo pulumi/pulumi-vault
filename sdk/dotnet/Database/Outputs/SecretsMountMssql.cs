@@ -19,14 +19,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
-        /// Specifies the Redshift DSN. 
-        /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        /// Connection string to use to connect to the database.
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
-        /// For Vault v1.9+. Set to true when the target is a
-        /// Contained Database, e.g. AzureSQL.
-        /// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        /// Set to true when the target is a Contained Database, e.g. AzureSQL.
         /// </summary>
         public readonly bool? ContainedDb;
         /// <summary>
@@ -36,21 +33,19 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, object>? Data;
         /// <summary>
-        /// Disable special character escaping in username and password.
+        /// Disable special character escaping in username and password
         /// </summary>
         public readonly bool? DisableEscaping;
         /// <summary>
-        /// The maximum amount of time a connection may be reused.
+        /// Maximum number of seconds a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
-        /// The maximum number of idle connections to
-        /// the database.
+        /// Maximum number of idle connections to the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
-        /// The maximum number of open connections to
-        /// the database.
+        /// Maximum number of open connections to the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
@@ -58,7 +53,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The root credential password used in the connection URL
         /// </summary>
         public readonly string? Password;
         /// <summary>
@@ -70,11 +65,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// Username generation template.
         /// </summary>
         public readonly string? UsernameTemplate;
         /// <summary>

@@ -39,16 +39,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The number of seconds to use as a connection
-     * timeout.
+     * The number of seconds to use as a connection timeout.
      * 
      */
     @Import(name="connectTimeout")
     private @Nullable Output<Integer> connectTimeout;
 
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Output<Integer>> connectTimeout() {
@@ -75,14 +73,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The host to connect to.
+     * Influxdb host to connect to.
      * 
      */
     @Import(name="host", required=true)
     private Output<String> host;
 
     /**
-     * @return The host to connect to.
+     * @return Influxdb host to connect to.
      * 
      */
     public Output<String> host() {
@@ -90,16 +88,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Whether to skip verification of the server
-     * certificate when using TLS.
+     * Whether to skip verification of the server certificate when using TLS.
      * 
      */
     @Import(name="insecureTls")
     private @Nullable Output<Boolean> insecureTls;
 
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Output<Boolean>> insecureTls() {
@@ -122,14 +118,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * Specifies the password corresponding to the given username.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public Output<String> password() {
@@ -137,16 +133,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Concatenated PEM blocks configuring the certificate
-     * chain.
+     * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemBundle")
     private @Nullable Output<String> pemBundle;
 
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemBundle() {
@@ -154,14 +148,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * A JSON structure configuring the certificate chain.
+     * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemJson")
     private @Nullable Output<String> pemJson;
 
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemJson() {
@@ -184,16 +178,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The default port to connect to if no port is specified as
-     * part of the host.
+     * The transport port to use to connect to Influxdb.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Influxdb.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -216,14 +208,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Whether to use TLS when connecting to Cassandra.
+     * Whether to use TLS when connecting to Influxdb.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Influxdb.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -231,14 +223,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * Specifies the username to use for superuser access.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username to use for superuser access.
      * 
      */
     public Output<String> username() {
@@ -246,14 +238,14 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * Template describing how dynamic usernames are generated.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -351,8 +343,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -363,8 +354,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -399,7 +389,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param host The host to connect to.
+         * @param host Influxdb host to connect to.
          * 
          * @return builder
          * 
@@ -410,7 +400,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param host The host to connect to.
+         * @param host Influxdb host to connect to.
          * 
          * @return builder
          * 
@@ -420,8 +410,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -432,8 +421,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -464,7 +452,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -475,7 +463,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -485,8 +473,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -497,8 +484,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -508,7 +494,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -519,7 +505,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -550,8 +536,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Influxdb.
          * 
          * @return builder
          * 
@@ -562,8 +547,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Influxdb.
          * 
          * @return builder
          * 
@@ -604,7 +588,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Whether to use TLS when connecting to Influxdb.
          * 
          * @return builder
          * 
@@ -615,7 +599,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Whether to use TLS when connecting to Influxdb.
          * 
          * @return builder
          * 
@@ -625,7 +609,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username Specifies the username to use for superuser access.
          * 
          * @return builder
          * 
@@ -636,7 +620,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username Specifies the username to use for superuser access.
          * 
          * @return builder
          * 
@@ -646,7 +630,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 
@@ -657,7 +641,7 @@ public final class SecretsMountInfluxdbArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param usernameTemplate [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * @param usernameTemplate Template describing how dynamic usernames are generated.
          * 
          * @return builder
          * 

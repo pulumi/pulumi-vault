@@ -19,16 +19,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     public static final SecretBackendConnectionCassandraArgs Empty = new SecretBackendConnectionCassandraArgs();
 
     /**
-     * The number of seconds to use as a connection
-     * timeout.
+     * The number of seconds to use as a connection timeout.
      * 
      */
     @Import(name="connectTimeout")
     private @Nullable Output<Integer> connectTimeout;
 
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Output<Integer>> connectTimeout() {
@@ -36,14 +34,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * The hosts to connect to.
+     * Cassandra hosts to connect to.
      * 
      */
     @Import(name="hosts")
     private @Nullable Output<List<String>> hosts;
 
     /**
-     * @return The hosts to connect to.
+     * @return Cassandra hosts to connect to.
      * 
      */
     public Optional<Output<List<String>>> hosts() {
@@ -51,16 +49,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * Whether to skip verification of the server
-     * certificate when using TLS.
+     * Whether to skip verification of the server certificate when using TLS.
      * 
      */
     @Import(name="insecureTls")
     private @Nullable Output<Boolean> insecureTls;
 
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Output<Boolean>> insecureTls() {
@@ -68,14 +64,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * The password to authenticate with.
+     * The password to use when authenticating with Cassandra.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password to authenticate with.
+     * @return The password to use when authenticating with Cassandra.
      * 
      */
     public Optional<Output<String>> password() {
@@ -83,16 +79,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * Concatenated PEM blocks configuring the certificate
-     * chain.
+     * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemBundle")
     private @Nullable Output<String> pemBundle;
 
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemBundle() {
@@ -100,14 +94,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * A JSON structure configuring the certificate chain.
+     * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemJson")
     private @Nullable Output<String> pemJson;
 
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemJson() {
@@ -115,16 +109,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * The default port to connect to if no port is specified as
-     * part of the host.
+     * The transport port to use to connect to Cassandra.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Cassandra.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -162,14 +154,14 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
     }
 
     /**
-     * The username to authenticate with.
+     * The username to use when authenticating with Cassandra.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The username to authenticate with.
+     * @return The username to use when authenticating with Cassandra.
      * 
      */
     public Optional<Output<String>> username() {
@@ -210,8 +202,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -222,8 +213,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -233,7 +223,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts Cassandra hosts to connect to.
          * 
          * @return builder
          * 
@@ -244,7 +234,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts Cassandra hosts to connect to.
          * 
          * @return builder
          * 
@@ -254,7 +244,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts Cassandra hosts to connect to.
          * 
          * @return builder
          * 
@@ -264,8 +254,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -276,8 +265,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -287,7 +275,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The password to use when authenticating with Cassandra.
          * 
          * @return builder
          * 
@@ -298,7 +286,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The password to use when authenticating with Cassandra.
          * 
          * @return builder
          * 
@@ -308,8 +296,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -320,8 +307,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -331,7 +317,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -342,7 +328,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -352,8 +338,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Cassandra.
          * 
          * @return builder
          * 
@@ -364,8 +349,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Cassandra.
          * 
          * @return builder
          * 
@@ -417,7 +401,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The username to use when authenticating with Cassandra.
          * 
          * @return builder
          * 
@@ -428,7 +412,7 @@ public final class SecretBackendConnectionCassandraArgs extends com.pulumi.resou
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The username to use when authenticating with Cassandra.
          * 
          * @return builder
          * 

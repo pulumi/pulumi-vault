@@ -313,7 +313,6 @@ class QuotaRateLimit(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -323,7 +322,6 @@ class QuotaRateLimit(pulumi.CustomResource):
             path="",
             rate=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -369,7 +367,6 @@ class QuotaRateLimit(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -379,7 +376,6 @@ class QuotaRateLimit(pulumi.CustomResource):
             path="",
             rate=100)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

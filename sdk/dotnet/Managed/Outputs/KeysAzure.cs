@@ -14,61 +14,55 @@ namespace Pulumi.Vault.Managed.Outputs
     public sealed class KeysAzure
     {
         /// <summary>
-        /// If no existing key can be found in 
-        /// the referenced backend, instructs Vault to generate a key within the backend.
+        /// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         /// </summary>
         public readonly bool? AllowGenerateKey;
         /// <summary>
-        /// Controls the ability for Vault to replace through
-        /// generation or importing a key into the configured backend even
-        /// if a key is present, if set to `false` those operations are forbidden
-        /// if a key exists.
+        /// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         /// </summary>
         public readonly bool? AllowReplaceKey;
         /// <summary>
-        /// Controls the ability for Vault to import a key to the
-        /// configured backend, if `false`, those operations will be forbidden.
+        /// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         /// </summary>
         public readonly bool? AllowStoreKey;
         /// <summary>
-        /// If `true`, allows usage from any mount point within the
-        /// namespace.
+        /// Allow usage from any mount point within the namespace if 'true'
         /// </summary>
         public readonly bool? AnyMount;
         /// <summary>
-        /// The client id for credentials to query the Azure APIs.
+        /// The client id for credentials to query the Azure APIs
         /// </summary>
         public readonly string ClientId;
         /// <summary>
-        /// The client secret for credentials to query the Azure APIs.
+        /// The client secret for credentials to query the Azure APIs
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>
-        /// The Azure Cloud environment API endpoints to use.
+        /// The Azure Cloud environment API endpoints to use
         /// </summary>
         public readonly string? Environment;
         /// <summary>
-        /// The size in bits for an RSA key.
+        /// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
         /// </summary>
         public readonly string? KeyBits;
         /// <summary>
-        /// The Key Vault key to use for encryption and decryption.
+        /// The Key Vault key to use for encryption and decryption
         /// </summary>
         public readonly string KeyName;
         /// <summary>
-        /// The type of key to use.
+        /// The type of key to use
         /// </summary>
         public readonly string KeyType;
         /// <summary>
-        /// A unique lowercase name that serves as identifying the key.
+        /// A unique lowercase name that serves as identifying the key
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The Azure Key Vault resource's DNS Suffix to connect to.
+        /// The Azure Key Vault resource's DNS Suffix to connect to
         /// </summary>
         public readonly string? Resource;
         /// <summary>
-        /// The tenant id for the Azure Active Directory organization.
+        /// The tenant id for the Azure Active Directory organization
         /// </summary>
         public readonly string TenantId;
         /// <summary>
@@ -76,7 +70,7 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string? Uuid;
         /// <summary>
-        /// The Key Vault vault to use for encryption and decryption.
+        /// The Key Vault vault to use the encryption keys for encryption and decryption
         /// </summary>
         public readonly string VaultName;
 

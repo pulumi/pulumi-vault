@@ -15,62 +15,30 @@ public final class GetDecryptPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDecryptPlainArgs Empty = new GetDecryptPlainArgs();
 
-    /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     * 
-     */
     @Import(name="backend", required=true)
     private String backend;
 
-    /**
-     * @return The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     * 
-     */
     public String backend() {
         return this.backend;
     }
 
-    /**
-     * Ciphertext to be decoded.
-     * 
-     */
     @Import(name="ciphertext", required=true)
     private String ciphertext;
 
-    /**
-     * @return Ciphertext to be decoded.
-     * 
-     */
     public String ciphertext() {
         return this.ciphertext;
     }
 
-    /**
-     * Context for key derivation. This is required if key derivation is enabled for this key.
-     * 
-     */
     @Import(name="context")
     private @Nullable String context;
 
-    /**
-     * @return Context for key derivation. This is required if key derivation is enabled for this key.
-     * 
-     */
     public Optional<String> context() {
         return Optional.ofNullable(this.context);
     }
 
-    /**
-     * Specifies the name of the transit key to decrypt against.
-     * 
-     */
     @Import(name="key", required=true)
     private String key;
 
-    /**
-     * @return Specifies the name of the transit key to decrypt against.
-     * 
-     */
     public String key() {
         return this.key;
     }
@@ -110,45 +78,21 @@ public final class GetDecryptPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetDecryptPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param backend The path the transit secret backend is mounted at, with no leading or trailing `/`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(String backend) {
             $.backend = backend;
             return this;
         }
 
-        /**
-         * @param ciphertext Ciphertext to be decoded.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ciphertext(String ciphertext) {
             $.ciphertext = ciphertext;
             return this;
         }
 
-        /**
-         * @param context Context for key derivation. This is required if key derivation is enabled for this key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder context(@Nullable String context) {
             $.context = context;
             return this;
         }
 
-        /**
-         * @param key Specifies the name of the transit key to decrypt against.
-         * 
-         * @return builder
-         * 
-         */
         public Builder key(String key) {
             $.key = key;
             return this;

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ### Generic secret
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -18,13 +17,11 @@ import * as utilities from "../utilities";
  *     path: "secret/rundeck_auth",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### KV
  *
  * For this example, consider `example` as a path for a KV engine.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -38,7 +35,6 @@ import * as utilities from "../utilities";
  * });
  * const exampleTemplate = notImplemented("The template_file data resource is not yet supported.");
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *
@@ -130,7 +126,6 @@ export interface GetSecretResult {
  *
  * ### Generic secret
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -139,13 +134,11 @@ export interface GetSecretResult {
  *     path: "secret/rundeck_auth",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### KV
  *
  * For this example, consider `example` as a path for a KV engine.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -159,7 +152,6 @@ export interface GetSecretResult {
  * });
  * const exampleTemplate = notImplemented("The template_file data resource is not yet supported.");
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *

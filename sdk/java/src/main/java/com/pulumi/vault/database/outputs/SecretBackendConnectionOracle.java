@@ -14,122 +14,110 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionOracle {
     /**
-     * @return A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * @return Connection string to use to connect to the database.
      * 
      */
     private @Nullable String connectionUrl;
     /**
-     * @return Enable the built-in session disconnect mechanism.
+     * @return Set to true to disconnect any open sessions prior to running the revocation statements.
      * 
      */
     private @Nullable Boolean disconnectSessions;
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     private @Nullable Integer maxConnectionLifetime;
     /**
-     * @return The maximum number of idle connections to
-     * maintain.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     private @Nullable Integer maxIdleConnections;
     /**
-     * @return The maximum number of open connections to
-     * use.
+     * @return Maximum number of open connections to the database.
      * 
      */
     private @Nullable Integer maxOpenConnections;
     /**
-     * @return The password to authenticate with.
+     * @return The root credential password used in the connection URL
      * 
      */
     private @Nullable String password;
     /**
-     * @return Enable spliting statements after semi-colons.
+     * @return Set to true in order to split statements after semi-colons.
      * 
      */
     private @Nullable Boolean splitStatements;
     /**
-     * @return The username to authenticate with.
+     * @return The root credential username used in the connection URL
      * 
      */
     private @Nullable String username;
     /**
-     * @return Template describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionOracle() {}
     /**
-     * @return A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<String> connectionUrl() {
         return Optional.ofNullable(this.connectionUrl);
     }
     /**
-     * @return Enable the built-in session disconnect mechanism.
+     * @return Set to true to disconnect any open sessions prior to running the revocation statements.
      * 
      */
     public Optional<Boolean> disconnectSessions() {
         return Optional.ofNullable(this.disconnectSessions);
     }
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Integer> maxConnectionLifetime() {
         return Optional.ofNullable(this.maxConnectionLifetime);
     }
     /**
-     * @return The maximum number of idle connections to
-     * maintain.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Integer> maxIdleConnections() {
         return Optional.ofNullable(this.maxIdleConnections);
     }
     /**
-     * @return The maximum number of open connections to
-     * use.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Integer> maxOpenConnections() {
         return Optional.ofNullable(this.maxOpenConnections);
     }
     /**
-     * @return The password to authenticate with.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
     /**
-     * @return Enable spliting statements after semi-colons.
+     * @return Set to true in order to split statements after semi-colons.
      * 
      */
     public Optional<Boolean> splitStatements() {
         return Optional.ofNullable(this.splitStatements);
     }
     /**
-     * @return The username to authenticate with.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
     /**
-     * @return Template describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<String> usernameTemplate() {

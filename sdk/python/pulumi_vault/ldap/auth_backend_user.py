@@ -222,7 +222,6 @@ class AuthBackendUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -244,7 +243,6 @@ class AuthBackendUser(pulumi.CustomResource):
             ],
             backend=ldap.path)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -278,7 +276,6 @@ class AuthBackendUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -300,7 +297,6 @@ class AuthBackendUser(pulumi.CustomResource):
             ],
             backend=ldap.path)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

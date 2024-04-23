@@ -24,26 +24,11 @@ export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getEncrypt.
  */
 export interface GetEncryptArgs {
-    /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     */
     backend: string;
-    /**
-     * Context for key derivation. This is required if key derivation is enabled for this key.
-     */
     context?: string;
-    /**
-     * Specifies the name of the transit key to encrypt against.
-     */
     key: string;
-    /**
-     * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
-     */
     keyVersion?: number;
     namespace?: string;
-    /**
-     * Plaintext to be encoded.
-     */
     plaintext: string;
 }
 
@@ -77,25 +62,10 @@ export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getEncrypt.
  */
 export interface GetEncryptOutputArgs {
-    /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     */
     backend: pulumi.Input<string>;
-    /**
-     * Context for key derivation. This is required if key derivation is enabled for this key.
-     */
     context?: pulumi.Input<string>;
-    /**
-     * Specifies the name of the transit key to encrypt against.
-     */
     key: pulumi.Input<string>;
-    /**
-     * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `minEncryptionVersion`, if set.
-     */
     keyVersion?: pulumi.Input<number>;
     namespace?: pulumi.Input<string>;
-    /**
-     * Plaintext to be encoded.
-     */
     plaintext: pulumi.Input<string>;
 }

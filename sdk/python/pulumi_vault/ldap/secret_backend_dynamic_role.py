@@ -422,7 +422,6 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -451,7 +450,6 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         changetype: delete
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -506,7 +504,6 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -535,7 +532,6 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         changetype: delete
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

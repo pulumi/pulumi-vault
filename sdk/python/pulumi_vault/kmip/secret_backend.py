@@ -488,7 +488,6 @@ class SecretBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -506,7 +505,6 @@ class SecretBackend(pulumi.CustomResource):
             default_tls_client_key_bits=4096,
             default_tls_client_ttl=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -550,7 +548,6 @@ class SecretBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -568,7 +565,6 @@ class SecretBackend(pulumi.CustomResource):
             default_tls_client_key_bits=4096,
             default_tls_client_ttl=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

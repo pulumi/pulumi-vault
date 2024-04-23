@@ -17,62 +17,30 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetEncryptArgs Empty = new GetEncryptArgs();
 
-    /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     * 
-     */
     @Import(name="backend", required=true)
     private Output<String> backend;
 
-    /**
-     * @return The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     * 
-     */
     public Output<String> backend() {
         return this.backend;
     }
 
-    /**
-     * Context for key derivation. This is required if key derivation is enabled for this key.
-     * 
-     */
     @Import(name="context")
     private @Nullable Output<String> context;
 
-    /**
-     * @return Context for key derivation. This is required if key derivation is enabled for this key.
-     * 
-     */
     public Optional<Output<String>> context() {
         return Optional.ofNullable(this.context);
     }
 
-    /**
-     * Specifies the name of the transit key to encrypt against.
-     * 
-     */
     @Import(name="key", required=true)
     private Output<String> key;
 
-    /**
-     * @return Specifies the name of the transit key to encrypt against.
-     * 
-     */
     public Output<String> key() {
         return this.key;
     }
 
-    /**
-     * The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key&#39;s `min_encryption_version`, if set.
-     * 
-     */
     @Import(name="keyVersion")
     private @Nullable Output<Integer> keyVersion;
 
-    /**
-     * @return The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key&#39;s `min_encryption_version`, if set.
-     * 
-     */
     public Optional<Output<Integer>> keyVersion() {
         return Optional.ofNullable(this.keyVersion);
     }
@@ -84,17 +52,9 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.namespace);
     }
 
-    /**
-     * Plaintext to be encoded.
-     * 
-     */
     @Import(name="plaintext", required=true)
     private Output<String> plaintext;
 
-    /**
-     * @return Plaintext to be encoded.
-     * 
-     */
     public Output<String> plaintext() {
         return this.plaintext;
     }
@@ -128,86 +88,38 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetEncryptArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param backend The path the transit secret backend is mounted at, with no leading or trailing `/`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
-        /**
-         * @param backend The path the transit secret backend is mounted at, with no leading or trailing `/`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }
 
-        /**
-         * @param context Context for key derivation. This is required if key derivation is enabled for this key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder context(@Nullable Output<String> context) {
             $.context = context;
             return this;
         }
 
-        /**
-         * @param context Context for key derivation. This is required if key derivation is enabled for this key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder context(String context) {
             return context(Output.of(context));
         }
 
-        /**
-         * @param key Specifies the name of the transit key to encrypt against.
-         * 
-         * @return builder
-         * 
-         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
-        /**
-         * @param key Specifies the name of the transit key to encrypt against.
-         * 
-         * @return builder
-         * 
-         */
         public Builder key(String key) {
             return key(Output.of(key));
         }
 
-        /**
-         * @param keyVersion The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key&#39;s `min_encryption_version`, if set.
-         * 
-         * @return builder
-         * 
-         */
         public Builder keyVersion(@Nullable Output<Integer> keyVersion) {
             $.keyVersion = keyVersion;
             return this;
         }
 
-        /**
-         * @param keyVersion The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key&#39;s `min_encryption_version`, if set.
-         * 
-         * @return builder
-         * 
-         */
         public Builder keyVersion(Integer keyVersion) {
             return keyVersion(Output.of(keyVersion));
         }
@@ -221,23 +133,11 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
             return namespace(Output.of(namespace));
         }
 
-        /**
-         * @param plaintext Plaintext to be encoded.
-         * 
-         * @return builder
-         * 
-         */
         public Builder plaintext(Output<String> plaintext) {
             $.plaintext = plaintext;
             return this;
         }
 
-        /**
-         * @param plaintext Plaintext to be encoded.
-         * 
-         * @return builder
-         * 
-         */
         public Builder plaintext(String plaintext) {
             return plaintext(Output.of(plaintext));
         }

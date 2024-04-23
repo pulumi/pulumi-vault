@@ -292,7 +292,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -311,7 +310,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             role_name="alice",
             rotation_period=60)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -348,7 +346,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -367,7 +364,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             role_name="alice",
             rotation_period=60)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

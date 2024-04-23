@@ -3803,9 +3803,7 @@ func (o GetPolicyDocumentRuleArrayOutput) Index(i pulumi.IntInput) GetPolicyDocu
 }
 
 type GetPolicyDocumentRuleAllowedParameter struct {
-	// name of permitted or denied parameter.
-	Key string `pulumi:"key"`
-	// list of values what are permitted or denied by policy rule.
+	Key    string   `pulumi:"key"`
 	Values []string `pulumi:"values"`
 }
 
@@ -3821,9 +3819,7 @@ type GetPolicyDocumentRuleAllowedParameterInput interface {
 }
 
 type GetPolicyDocumentRuleAllowedParameterArgs struct {
-	// name of permitted or denied parameter.
-	Key pulumi.StringInput `pulumi:"key"`
-	// list of values what are permitted or denied by policy rule.
+	Key    pulumi.StringInput      `pulumi:"key"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -3878,12 +3874,10 @@ func (o GetPolicyDocumentRuleAllowedParameterOutput) ToGetPolicyDocumentRuleAllo
 	return o
 }
 
-// name of permitted or denied parameter.
 func (o GetPolicyDocumentRuleAllowedParameterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPolicyDocumentRuleAllowedParameter) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// list of values what are permitted or denied by policy rule.
 func (o GetPolicyDocumentRuleAllowedParameterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPolicyDocumentRuleAllowedParameter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -3909,9 +3903,7 @@ func (o GetPolicyDocumentRuleAllowedParameterArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetPolicyDocumentRuleDeniedParameter struct {
-	// name of permitted or denied parameter.
-	Key string `pulumi:"key"`
-	// list of values what are permitted or denied by policy rule.
+	Key    string   `pulumi:"key"`
 	Values []string `pulumi:"values"`
 }
 
@@ -3927,9 +3919,7 @@ type GetPolicyDocumentRuleDeniedParameterInput interface {
 }
 
 type GetPolicyDocumentRuleDeniedParameterArgs struct {
-	// name of permitted or denied parameter.
-	Key pulumi.StringInput `pulumi:"key"`
-	// list of values what are permitted or denied by policy rule.
+	Key    pulumi.StringInput      `pulumi:"key"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -3984,12 +3974,10 @@ func (o GetPolicyDocumentRuleDeniedParameterOutput) ToGetPolicyDocumentRuleDenie
 	return o
 }
 
-// name of permitted or denied parameter.
 func (o GetPolicyDocumentRuleDeniedParameterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPolicyDocumentRuleDeniedParameter) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// list of values what are permitted or denied by policy rule.
 func (o GetPolicyDocumentRuleDeniedParameterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetPolicyDocumentRuleDeniedParameter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }

@@ -14,32 +14,16 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
 
     public static final GetPolicyDocumentRuleAllowedParameter Empty = new GetPolicyDocumentRuleAllowedParameter();
 
-    /**
-     * name of permitted or denied parameter.
-     * 
-     */
     @Import(name="key", required=true)
     private String key;
 
-    /**
-     * @return name of permitted or denied parameter.
-     * 
-     */
     public String key() {
         return this.key;
     }
 
-    /**
-     * list of values what are permitted or denied by policy rule.
-     * 
-     */
     @Import(name="values", required=true)
     private List<String> values;
 
-    /**
-     * @return list of values what are permitted or denied by policy rule.
-     * 
-     */
     public List<String> values() {
         return this.values;
     }
@@ -69,34 +53,16 @@ public final class GetPolicyDocumentRuleAllowedParameter extends com.pulumi.reso
             $ = new GetPolicyDocumentRuleAllowedParameter(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param key name of permitted or denied parameter.
-         * 
-         * @return builder
-         * 
-         */
         public Builder key(String key) {
             $.key = key;
             return this;
         }
 
-        /**
-         * @param values list of values what are permitted or denied by policy rule.
-         * 
-         * @return builder
-         * 
-         */
         public Builder values(List<String> values) {
             $.values = values;
             return this;
         }
 
-        /**
-         * @param values list of values what are permitted or denied by policy rule.
-         * 
-         * @return builder
-         * 
-         */
         public Builder values(String... values) {
             return values(List.of(values));
         }

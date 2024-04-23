@@ -13,42 +13,28 @@ import java.util.Objects;
 @CustomType
 public final class SecretBackendRoleAllowedUserKeyConfig {
     /**
-     * @return A list of allowed key lengths as integers.
-     * For key types that do not support setting the length a value of `[0]` should be used.
-     * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-     * must be set to a single element list.
-     * 
-     * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+     * @return List of allowed key lengths, vault-1.10 and above
      * 
      */
     private List<Integer> lengths;
     /**
-     * @return The SSH public key type.\
-     * *Supported key types are:*
-     * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-     * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+     * @return Key type, choices:
+     * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
      * 
      */
     private String type;
 
     private SecretBackendRoleAllowedUserKeyConfig() {}
     /**
-     * @return A list of allowed key lengths as integers.
-     * For key types that do not support setting the length a value of `[0]` should be used.
-     * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-     * must be set to a single element list.
-     * 
-     * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
+     * @return List of allowed key lengths, vault-1.10 and above
      * 
      */
     public List<Integer> lengths() {
         return this.lengths;
     }
     /**
-     * @return The SSH public key type.\
-     * *Supported key types are:*
-     * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-     * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+     * @return Key type, choices:
+     * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
      * 
      */
     public String type() {

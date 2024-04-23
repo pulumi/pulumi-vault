@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as std from "@pulumi/std";
@@ -49,7 +48,6 @@ import * as utilities from "../utilities";
  *     ttl: "1h",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountTokenResult> {
 
@@ -144,7 +142,6 @@ export interface GetServiceAccountTokenResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as std from "@pulumi/std";
@@ -186,7 +183,6 @@ export interface GetServiceAccountTokenResult {
  *     ttl: "1h",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountTokenResult> {
     return pulumi.output(args).apply((a: any) => getServiceAccountToken(a, opts))

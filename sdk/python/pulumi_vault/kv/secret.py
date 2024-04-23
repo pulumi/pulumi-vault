@@ -176,7 +176,6 @@ class Secret(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -196,7 +195,6 @@ class Secret(pulumi.CustomResource):
                 "foo": "bar",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Required Vault Capabilities
 
@@ -237,7 +235,6 @@ class Secret(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
@@ -257,7 +254,6 @@ class Secret(pulumi.CustomResource):
                 "foo": "bar",
             }))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Required Vault Capabilities
 

@@ -119,13 +119,6 @@ def get_encrypt(backend: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptResult:
     """
     This is a data source which can be used to encrypt plaintext using a Vault Transit key.
-
-
-    :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
-    :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
-    :param str key: Specifies the name of the transit key to encrypt against.
-    :param int key_version: The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
-    :param str plaintext: Plaintext to be encoded.
     """
     __args__ = dict()
     __args__['backend'] = backend
@@ -158,12 +151,5 @@ def get_encrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncryptResult]:
     """
     This is a data source which can be used to encrypt plaintext using a Vault Transit key.
-
-
-    :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
-    :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
-    :param str key: Specifies the name of the transit key to encrypt against.
-    :param int key_version: The version of the key to use for encryption. If not set, uses the latest version. Must be greater than or equal to the key's `min_encryption_version`, if set.
-    :param str plaintext: Plaintext to be encoded.
     """
     ...

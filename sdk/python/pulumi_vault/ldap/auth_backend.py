@@ -78,27 +78,14 @@ class AuthBackendArgs:
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[str] tls_min_version: Minimum acceptable version of TLS
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[bool] use_token_groups: Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
@@ -448,9 +435,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
+        Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -462,10 +447,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
+        Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -477,8 +459,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -490,8 +471,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
+        If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -503,8 +483,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-        of times a generated token may be used (within its lifetime); 0 means unlimited.
+        The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -516,10 +495,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
+        Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
@@ -531,8 +507,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
+        Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
@@ -544,8 +519,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -706,27 +680,14 @@ class _AuthBackendState:
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[str] tls_min_version: Minimum acceptable version of TLS
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[str] url: The URL of the LDAP server
@@ -1080,9 +1041,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
+        Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -1094,10 +1053,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
+        Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -1109,8 +1065,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -1122,8 +1077,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
+        If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -1135,8 +1089,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> Optional[pulumi.Input[int]]:
         """
-        The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-        of times a generated token may be used (within its lifetime); 0 means unlimited.
+        The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -1148,10 +1101,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> Optional[pulumi.Input[int]]:
         """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
+        Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
@@ -1163,8 +1113,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
+        Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
@@ -1176,8 +1125,7 @@ class _AuthBackendState:
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
@@ -1330,7 +1278,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1345,7 +1292,6 @@ class AuthBackend(pulumi.CustomResource):
             groupdn="OU=Groups,DC=example,DC=org",
             groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1381,27 +1327,14 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[str] tls_min_version: Minimum acceptable version of TLS
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[str] url: The URL of the LDAP server
@@ -1422,7 +1355,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1437,7 +1369,6 @@ class AuthBackend(pulumi.CustomResource):
             groupdn="OU=Groups,DC=example,DC=org",
             groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1630,27 +1561,14 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[str] tls_min_version: Minimum acceptable version of TLS
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: List of CIDR blocks; if set, specifies blocks of IP
-               addresses which can authenticate successfully, and ties the resulting token to these blocks
-               as well.
-        :param pulumi.Input[int] token_explicit_max_ttl: If set, will encode an
-               [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-               onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-               `token_max_ttl` would otherwise allow a renewal.
-        :param pulumi.Input[int] token_max_ttl: The maximum lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
-        :param pulumi.Input[bool] token_no_default_policy: If set, the default policy will not be set on
-               generated tokens; otherwise it will be added to the policies set in token_policies.
-        :param pulumi.Input[int] token_num_uses: The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-               of times a generated token may be used (within its lifetime); 0 means unlimited.
-        :param pulumi.Input[int] token_period: If set, indicates that the
-               token generated using this role should never expire. The token should be renewed within the
-               duration specified by this value. At each renewal, the token's TTL will be set to the
-               value of this field. Specified in seconds.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: List of policies to encode onto generated tokens. Depending
-               on the auth method, this list may be supplemented by user/group/other values.
-        :param pulumi.Input[int] token_ttl: The incremental lifetime for generated tokens in number of seconds.
-               Its current value will be referenced at renewal time.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
         :param pulumi.Input[str] url: The URL of the LDAP server
@@ -1883,9 +1801,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenBoundCidrs")
     def token_bound_cidrs(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of CIDR blocks; if set, specifies blocks of IP
-        addresses which can authenticate successfully, and ties the resulting token to these blocks
-        as well.
+        Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
@@ -1893,10 +1809,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenExplicitMaxTtl")
     def token_explicit_max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        If set, will encode an
-        [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-        onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-        `token_max_ttl` would otherwise allow a renewal.
+        Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
@@ -1904,8 +1817,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenMaxTtl")
     def token_max_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        The maximum lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
@@ -1913,8 +1825,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenNoDefaultPolicy")
     def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
         """
-        If set, the default policy will not be set on
-        generated tokens; otherwise it will be added to the policies set in token_policies.
+        If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
@@ -1922,8 +1833,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenNumUses")
     def token_num_uses(self) -> pulumi.Output[Optional[int]]:
         """
-        The [maximum number](https://www.vaultproject.io/api-docs/ldap#token_num_uses)
-        of times a generated token may be used (within its lifetime); 0 means unlimited.
+        The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
@@ -1931,10 +1841,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenPeriod")
     def token_period(self) -> pulumi.Output[Optional[int]]:
         """
-        If set, indicates that the
-        token generated using this role should never expire. The token should be renewed within the
-        duration specified by this value. At each renewal, the token's TTL will be set to the
-        value of this field. Specified in seconds.
+        Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
@@ -1942,8 +1849,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenPolicies")
     def token_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        List of policies to encode onto generated tokens. Depending
-        on the auth method, this list may be supplemented by user/group/other values.
+        Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
@@ -1951,8 +1857,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenTtl")
     def token_ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        The incremental lifetime for generated tokens in number of seconds.
-        Its current value will be referenced at renewal time.
+        The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
