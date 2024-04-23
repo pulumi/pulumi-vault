@@ -40,13 +40,12 @@ public final class SecretsMountCouchbase {
      */
     private @Nullable Map<String,Object> data;
     /**
-     * @return The hosts to connect to.
+     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
     private List<String> hosts;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
@@ -56,7 +55,7 @@ public final class SecretsMountCouchbase {
      */
     private String name;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     private String password;
@@ -71,17 +70,17 @@ public final class SecretsMountCouchbase {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Couchbase.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username for Vault to use.
      * 
      */
     private String username;
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -125,15 +124,14 @@ public final class SecretsMountCouchbase {
         return this.data == null ? Map.of() : this.data;
     }
     /**
-     * @return The hosts to connect to.
+     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
     public List<String> hosts() {
         return this.hosts;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
@@ -147,7 +145,7 @@ public final class SecretsMountCouchbase {
         return this.name;
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public String password() {
@@ -168,21 +166,21 @@ public final class SecretsMountCouchbase {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Couchbase.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username for Vault to use.
      * 
      */
     public String username() {
         return this.username;
     }
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

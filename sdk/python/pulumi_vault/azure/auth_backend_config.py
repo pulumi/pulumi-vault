@@ -305,7 +305,6 @@ class AuthBackendConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -318,7 +317,6 @@ class AuthBackendConfig(pulumi.CustomResource):
             client_secret="01234567890123456789",
             resource="https://vault.hashicorp.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +355,6 @@ class AuthBackendConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -370,7 +367,6 @@ class AuthBackendConfig(pulumi.CustomResource):
             client_secret="01234567890123456789",
             resource="https://vault.hashicorp.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

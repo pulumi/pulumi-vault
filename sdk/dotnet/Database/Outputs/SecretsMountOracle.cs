@@ -19,8 +19,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> AllowedRoles;
         /// <summary>
-        /// Specifies the Redshift DSN. 
-        /// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        /// Connection string to use to connect to the database.
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
@@ -34,17 +33,15 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? DisconnectSessions;
         /// <summary>
-        /// The maximum amount of time a connection may be reused.
+        /// Maximum number of seconds a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
-        /// The maximum number of idle connections to
-        /// the database.
+        /// Maximum number of idle connections to the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
-        /// The maximum number of open connections to
-        /// the database.
+        /// Maximum number of open connections to the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
@@ -52,7 +49,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The root credential password used in the connection URL.
+        /// The root credential password used in the connection URL
         /// </summary>
         public readonly string? Password;
         /// <summary>
@@ -68,11 +65,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? SplitStatements;
         /// <summary>
-        /// The root credential username used in the connection URL.
+        /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        /// Username generation template.
         /// </summary>
         public readonly string? UsernameTemplate;
         /// <summary>

@@ -488,7 +488,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -509,7 +508,6 @@ class AuthBackend(pulumi.CustomResource):
                 groups=["foo"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -555,7 +553,6 @@ class AuthBackend(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -576,7 +573,6 @@ class AuthBackend(pulumi.CustomResource):
                 groups=["foo"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

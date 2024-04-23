@@ -25,28 +25,27 @@ public final class SecretBackendConnectionCouchbase {
      */
     private @Nullable String bucketName;
     /**
-     * @return The hosts to connect to.
+     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
     private List<String> hosts;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     private String password;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Couchbase.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username for Vault to use.
      * 
      */
     private String username;
@@ -72,36 +71,35 @@ public final class SecretBackendConnectionCouchbase {
         return Optional.ofNullable(this.bucketName);
     }
     /**
-     * @return The hosts to connect to.
+     * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
      */
     public List<String> hosts() {
         return this.hosts;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
     }
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Couchbase.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username for Vault to use.
      * 
      */
     public String username() {

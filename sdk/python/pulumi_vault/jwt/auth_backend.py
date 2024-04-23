@@ -776,7 +776,6 @@ class AuthBackend(pulumi.CustomResource):
 
         Manage JWT auth backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -787,11 +786,9 @@ class AuthBackend(pulumi.CustomResource):
             oidc_discovery_url="https://myco.auth0.com/",
             bound_issuer="https://myco.auth0.com/")
         ```
-        <!--End PulumiCodeChooser -->
 
         Manage OIDC auth backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -808,11 +805,9 @@ class AuthBackend(pulumi.CustomResource):
                 listing_visibility="unauth",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         Configuring the auth backend with a `provider_config:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -829,7 +824,6 @@ class AuthBackend(pulumi.CustomResource):
                 "groups_recurse_max_depth": "1",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -889,7 +883,6 @@ class AuthBackend(pulumi.CustomResource):
 
         Manage JWT auth backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -900,11 +893,9 @@ class AuthBackend(pulumi.CustomResource):
             oidc_discovery_url="https://myco.auth0.com/",
             bound_issuer="https://myco.auth0.com/")
         ```
-        <!--End PulumiCodeChooser -->
 
         Manage OIDC auth backend:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -921,11 +912,9 @@ class AuthBackend(pulumi.CustomResource):
                 listing_visibility="unauth",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         Configuring the auth backend with a `provider_config:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -942,7 +931,6 @@ class AuthBackend(pulumi.CustomResource):
                 "groups_recurse_max_depth": "1",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

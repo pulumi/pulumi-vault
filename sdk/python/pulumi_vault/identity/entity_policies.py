@@ -214,7 +214,6 @@ class EntityPolicies(pulumi.CustomResource):
 
         ### Exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -230,11 +229,9 @@ class EntityPolicies(pulumi.CustomResource):
             exclusive=True,
             entity_id=entity.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -254,7 +251,6 @@ class EntityPolicies(pulumi.CustomResource):
             exclusive=False,
             entity_id=entity.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -283,7 +279,6 @@ class EntityPolicies(pulumi.CustomResource):
 
         ### Exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -299,11 +294,9 @@ class EntityPolicies(pulumi.CustomResource):
             exclusive=True,
             entity_id=entity.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Policies
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -323,7 +316,6 @@ class EntityPolicies(pulumi.CustomResource):
             exclusive=False,
             entity_id=entity.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param EntityPoliciesArgs args: The arguments to use to populate this resource's properties.

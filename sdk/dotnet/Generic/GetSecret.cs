@@ -16,7 +16,6 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ### Generic secret
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,13 +31,11 @@ namespace Pulumi.Vault.Generic
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### KV 
         /// 
         /// For this example, consider `example` as a path for a KV engine.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,7 +59,6 @@ namespace Pulumi.Vault.Generic
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ## Required Vault Capabilities
         /// 
@@ -76,7 +72,6 @@ namespace Pulumi.Vault.Generic
         /// 
         /// ### Generic secret
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -92,13 +87,11 @@ namespace Pulumi.Vault.Generic
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### KV 
         /// 
         /// For this example, consider `example` as a path for a KV engine.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -122,7 +115,6 @@ namespace Pulumi.Vault.Generic
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ## Required Vault Capabilities
         /// 

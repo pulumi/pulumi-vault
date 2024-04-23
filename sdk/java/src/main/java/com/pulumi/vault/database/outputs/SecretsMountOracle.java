@@ -24,8 +24,7 @@ public final class SecretsMountOracle {
      */
     private @Nullable List<String> allowedRoles;
     /**
-     * @return Specifies the Redshift DSN.
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * @return Connection string to use to connect to the database.
      * 
      */
     private @Nullable String connectionUrl;
@@ -42,19 +41,17 @@ public final class SecretsMountOracle {
      */
     private @Nullable Boolean disconnectSessions;
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     private @Nullable Integer maxConnectionLifetime;
     /**
-     * @return The maximum number of idle connections to
-     * the database.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     private @Nullable Integer maxIdleConnections;
     /**
-     * @return The maximum number of open connections to
-     * the database.
+     * @return Maximum number of open connections to the database.
      * 
      */
     private @Nullable Integer maxOpenConnections;
@@ -64,7 +61,7 @@ public final class SecretsMountOracle {
      */
     private String name;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The root credential password used in the connection URL
      * 
      */
     private @Nullable String password;
@@ -84,12 +81,12 @@ public final class SecretsMountOracle {
      */
     private @Nullable Boolean splitStatements;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The root credential username used in the connection URL
      * 
      */
     private @Nullable String username;
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -110,8 +107,7 @@ public final class SecretsMountOracle {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
     /**
-     * @return Specifies the Redshift DSN.
-     * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<String> connectionUrl() {
@@ -134,23 +130,21 @@ public final class SecretsMountOracle {
         return Optional.ofNullable(this.disconnectSessions);
     }
     /**
-     * @return The maximum amount of time a connection may be reused.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Integer> maxConnectionLifetime() {
         return Optional.ofNullable(this.maxConnectionLifetime);
     }
     /**
-     * @return The maximum number of idle connections to
-     * the database.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Integer> maxIdleConnections() {
         return Optional.ofNullable(this.maxIdleConnections);
     }
     /**
-     * @return The maximum number of open connections to
-     * the database.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Integer> maxOpenConnections() {
@@ -164,7 +158,7 @@ public final class SecretsMountOracle {
         return this.name;
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<String> password() {
@@ -192,14 +186,14 @@ public final class SecretsMountOracle {
         return Optional.ofNullable(this.splitStatements);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<String> usernameTemplate() {

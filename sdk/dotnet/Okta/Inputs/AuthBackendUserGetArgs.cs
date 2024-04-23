@@ -16,7 +16,7 @@ namespace Pulumi.Vault.Okta.Inputs
         private InputList<string>? _groups;
 
         /// <summary>
-        /// List of Okta groups to associate with this user
+        /// Groups within the Okta auth backend to associate with this user
         /// </summary>
         public InputList<string> Groups
         {
@@ -28,7 +28,7 @@ namespace Pulumi.Vault.Okta.Inputs
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Vault policies to associate with this group
+        /// Policies to associate with this user
         /// </summary>
         public InputList<string> Policies
         {

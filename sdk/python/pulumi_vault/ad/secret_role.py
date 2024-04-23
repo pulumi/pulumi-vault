@@ -258,7 +258,6 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -276,7 +275,6 @@ class SecretRole(pulumi.CustomResource):
             service_account_name="Bob",
             ttl=60)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -310,7 +308,6 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -328,7 +325,6 @@ class SecretRole(pulumi.CustomResource):
             service_account_name="Bob",
             ttl=60)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

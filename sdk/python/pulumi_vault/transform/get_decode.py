@@ -142,7 +142,6 @@ def get_decode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -165,7 +164,6 @@ def get_decode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
         role_name="payments",
         value="9300-3376-4943-8903")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
@@ -225,7 +223,6 @@ def get_decode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
@@ -248,7 +245,6 @@ def get_decode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
         role_name="payments",
         value="9300-3376-4943-8903")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.

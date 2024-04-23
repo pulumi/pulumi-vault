@@ -39,16 +39,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The number of seconds to use as a connection
-     * timeout.
+     * The number of seconds to use as a connection timeout.
      * 
      */
     @Import(name="connectTimeout")
     private @Nullable Output<Integer> connectTimeout;
 
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Output<Integer>> connectTimeout() {
@@ -75,14 +73,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The hosts to connect to.
+     * Cassandra hosts to connect to.
      * 
      */
     @Import(name="hosts")
     private @Nullable Output<List<String>> hosts;
 
     /**
-     * @return The hosts to connect to.
+     * @return Cassandra hosts to connect to.
      * 
      */
     public Optional<Output<List<String>>> hosts() {
@@ -90,16 +88,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Whether to skip verification of the server
-     * certificate when using TLS.
+     * Whether to skip verification of the server certificate when using TLS.
      * 
      */
     @Import(name="insecureTls")
     private @Nullable Output<Boolean> insecureTls;
 
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Output<Boolean>> insecureTls() {
@@ -122,14 +118,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The password to use when authenticating with Cassandra.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to use when authenticating with Cassandra.
      * 
      */
     public Optional<Output<String>> password() {
@@ -137,16 +133,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Concatenated PEM blocks configuring the certificate
-     * chain.
+     * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemBundle")
     private @Nullable Output<String> pemBundle;
 
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemBundle() {
@@ -154,14 +148,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * A JSON structure configuring the certificate chain.
+     * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemJson")
     private @Nullable Output<String> pemJson;
 
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemJson() {
@@ -184,16 +178,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The default port to connect to if no port is specified as
-     * part of the host.
+     * The transport port to use to connect to Cassandra.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Cassandra.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -246,14 +238,14 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The username to use when authenticating with Cassandra.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to use when authenticating with Cassandra.
      * 
      */
     public Optional<Output<String>> username() {
@@ -351,8 +343,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -363,8 +354,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -399,7 +389,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts Cassandra hosts to connect to.
          * 
          * @return builder
          * 
@@ -410,7 +400,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts Cassandra hosts to connect to.
          * 
          * @return builder
          * 
@@ -420,7 +410,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hosts The hosts to connect to.
+         * @param hosts Cassandra hosts to connect to.
          * 
          * @return builder
          * 
@@ -430,8 +420,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -442,8 +431,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -474,7 +462,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to use when authenticating with Cassandra.
          * 
          * @return builder
          * 
@@ -485,7 +473,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The password to use when authenticating with Cassandra.
          * 
          * @return builder
          * 
@@ -495,8 +483,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -507,8 +494,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -518,7 +504,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -529,7 +515,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -560,8 +546,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Cassandra.
          * 
          * @return builder
          * 
@@ -572,8 +557,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Cassandra.
          * 
          * @return builder
          * 
@@ -656,7 +640,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to use when authenticating with Cassandra.
          * 
          * @return builder
          * 
@@ -667,7 +651,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The username to use when authenticating with Cassandra.
          * 
          * @return builder
          * 

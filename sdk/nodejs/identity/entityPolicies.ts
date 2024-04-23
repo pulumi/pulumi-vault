@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ### Exclusive Policies
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -29,11 +28,9 @@ import * as utilities from "../utilities";
  *     entityId: entity.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Non-exclusive Policies
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -56,7 +53,6 @@ import * as utilities from "../utilities";
  *     entityId: entity.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class EntityPolicies extends pulumi.CustomResource {
     /**

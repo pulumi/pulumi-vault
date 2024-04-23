@@ -746,7 +746,6 @@ class SecretRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -770,7 +769,6 @@ class SecretRole(pulumi.CustomResource):
             operation_create=True,
             operation_destroy=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -821,7 +819,6 @@ class SecretRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -845,7 +842,6 @@ class SecretRole(pulumi.CustomResource):
             operation_create=True,
             operation_destroy=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -19,16 +19,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     public static final SecretBackendConnectionInfluxdbArgs Empty = new SecretBackendConnectionInfluxdbArgs();
 
     /**
-     * The number of seconds to use as a connection
-     * timeout.
+     * The number of seconds to use as a connection timeout.
      * 
      */
     @Import(name="connectTimeout")
     private @Nullable Output<Integer> connectTimeout;
 
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Output<Integer>> connectTimeout() {
@@ -36,14 +34,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * The host to connect to.
+     * Influxdb host to connect to.
      * 
      */
     @Import(name="host", required=true)
     private Output<String> host;
 
     /**
-     * @return The host to connect to.
+     * @return Influxdb host to connect to.
      * 
      */
     public Output<String> host() {
@@ -51,16 +49,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * Whether to skip verification of the server
-     * certificate when using TLS.
+     * Whether to skip verification of the server certificate when using TLS.
      * 
      */
     @Import(name="insecureTls")
     private @Nullable Output<Boolean> insecureTls;
 
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Output<Boolean>> insecureTls() {
@@ -68,14 +64,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * The password to authenticate with.
+     * Specifies the password corresponding to the given username.
      * 
      */
     @Import(name="password", required=true)
     private Output<String> password;
 
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public Output<String> password() {
@@ -83,16 +79,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * Concatenated PEM blocks configuring the certificate
-     * chain.
+     * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemBundle")
     private @Nullable Output<String> pemBundle;
 
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemBundle() {
@@ -100,14 +94,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * A JSON structure configuring the certificate chain.
+     * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     @Import(name="pemJson")
     private @Nullable Output<String> pemJson;
 
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<Output<String>> pemJson() {
@@ -115,16 +109,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * The default port to connect to if no port is specified as
-     * part of the host.
+     * The transport port to use to connect to Influxdb.
      * 
      */
     @Import(name="port")
     private @Nullable Output<Integer> port;
 
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Influxdb.
      * 
      */
     public Optional<Output<Integer>> port() {
@@ -132,14 +124,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * Whether to use TLS when connecting to Cassandra.
+     * Whether to use TLS when connecting to Influxdb.
      * 
      */
     @Import(name="tls")
     private @Nullable Output<Boolean> tls;
 
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Influxdb.
      * 
      */
     public Optional<Output<Boolean>> tls() {
@@ -147,14 +139,14 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
     }
 
     /**
-     * The username to authenticate with.
+     * Specifies the username to use for superuser access.
      * 
      */
     @Import(name="username", required=true)
     private Output<String> username;
 
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username to use for superuser access.
      * 
      */
     public Output<String> username() {
@@ -210,8 +202,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -222,8 +213,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param connectTimeout The number of seconds to use as a connection
-         * timeout.
+         * @param connectTimeout The number of seconds to use as a connection timeout.
          * 
          * @return builder
          * 
@@ -233,7 +223,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param host The host to connect to.
+         * @param host Influxdb host to connect to.
          * 
          * @return builder
          * 
@@ -244,7 +234,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param host The host to connect to.
+         * @param host Influxdb host to connect to.
          * 
          * @return builder
          * 
@@ -254,8 +244,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -266,8 +255,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param insecureTls Whether to skip verification of the server
-         * certificate when using TLS.
+         * @param insecureTls Whether to skip verification of the server certificate when using TLS.
          * 
          * @return builder
          * 
@@ -277,7 +265,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -288,7 +276,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password Specifies the password corresponding to the given username.
          * 
          * @return builder
          * 
@@ -298,8 +286,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -310,8 +297,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param pemBundle Concatenated PEM blocks configuring the certificate
-         * chain.
+         * @param pemBundle Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -321,7 +307,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -332,7 +318,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param pemJson A JSON structure configuring the certificate chain.
+         * @param pemJson Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          * 
          * @return builder
          * 
@@ -342,8 +328,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Influxdb.
          * 
          * @return builder
          * 
@@ -354,8 +339,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param port The default port to connect to if no port is specified as
-         * part of the host.
+         * @param port The transport port to use to connect to Influxdb.
          * 
          * @return builder
          * 
@@ -365,7 +349,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Whether to use TLS when connecting to Influxdb.
          * 
          * @return builder
          * 
@@ -376,7 +360,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param tls Whether to use TLS when connecting to Cassandra.
+         * @param tls Whether to use TLS when connecting to Influxdb.
          * 
          * @return builder
          * 
@@ -386,7 +370,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username Specifies the username to use for superuser access.
          * 
          * @return builder
          * 
@@ -397,7 +381,7 @@ public final class SecretBackendConnectionInfluxdbArgs extends com.pulumi.resour
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username Specifies the username to use for superuser access.
          * 
          * @return builder
          * 

@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AuthBackendUser {
     /**
-     * @return List of Okta groups to associate with this user
+     * @return Groups within the Okta auth backend to associate with this user
      * 
      */
     private @Nullable List<String> groups;
     /**
-     * @return Vault policies to associate with this group
+     * @return Policies to associate with this user
      * 
      */
     private @Nullable List<String> policies;
@@ -30,14 +30,14 @@ public final class AuthBackendUser {
 
     private AuthBackendUser() {}
     /**
-     * @return List of Okta groups to associate with this user
+     * @return Groups within the Okta auth backend to associate with this user
      * 
      */
     public List<String> groups() {
         return this.groups == null ? List.of() : this.groups;
     }
     /**
-     * @return Vault policies to associate with this group
+     * @return Policies to associate with this user
      * 
      */
     public List<String> policies() {

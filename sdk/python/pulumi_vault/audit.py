@@ -254,7 +254,6 @@ class Audit(pulumi.CustomResource):
 
         ### File Audit Device)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -265,11 +264,9 @@ class Audit(pulumi.CustomResource):
                 "file_path": "C:/temp/audit.txt",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Socket Audit Device)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -284,7 +281,6 @@ class Audit(pulumi.CustomResource):
                 "description": "application x socket",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -319,7 +315,6 @@ class Audit(pulumi.CustomResource):
 
         ### File Audit Device)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -330,11 +325,9 @@ class Audit(pulumi.CustomResource):
                 "file_path": "C:/temp/audit.txt",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Socket Audit Device)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -349,7 +342,6 @@ class Audit(pulumi.CustomResource):
                 "description": "application x socket",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

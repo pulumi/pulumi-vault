@@ -430,7 +430,6 @@ class AuthBackendClient(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -441,7 +440,6 @@ class AuthBackendClient(pulumi.CustomResource):
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -489,7 +487,6 @@ class AuthBackendClient(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -500,7 +497,6 @@ class AuthBackendClient(pulumi.CustomResource):
             access_key="INSERT_AWS_ACCESS_KEY",
             secret_key="INSERT_AWS_SECRET_KEY")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

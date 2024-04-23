@@ -446,14 +446,12 @@ class MfaTotp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.identity.MfaTotp("example", issuer="issuer1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -486,14 +484,12 @@ class MfaTotp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.identity.MfaTotp("example", issuer="issuer1")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

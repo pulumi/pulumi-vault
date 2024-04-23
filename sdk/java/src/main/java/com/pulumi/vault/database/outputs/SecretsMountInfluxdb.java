@@ -24,8 +24,7 @@ public final class SecretsMountInfluxdb {
      */
     private @Nullable List<String> allowedRoles;
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     private @Nullable Integer connectTimeout;
@@ -37,13 +36,12 @@ public final class SecretsMountInfluxdb {
      */
     private @Nullable Map<String,Object> data;
     /**
-     * @return The host to connect to.
+     * @return Influxdb host to connect to.
      * 
      */
     private String host;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
@@ -53,18 +51,17 @@ public final class SecretsMountInfluxdb {
      */
     private String name;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     private String password;
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     private @Nullable String pemBundle;
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     private @Nullable String pemJson;
@@ -74,8 +71,7 @@ public final class SecretsMountInfluxdb {
      */
     private @Nullable String pluginName;
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Influxdb.
      * 
      */
     private @Nullable Integer port;
@@ -85,17 +81,17 @@ public final class SecretsMountInfluxdb {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Influxdb.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username to use for superuser access.
      * 
      */
     private String username;
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     private @Nullable String usernameTemplate;
@@ -116,8 +112,7 @@ public final class SecretsMountInfluxdb {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Integer> connectTimeout() {
@@ -133,15 +128,14 @@ public final class SecretsMountInfluxdb {
         return this.data == null ? Map.of() : this.data;
     }
     /**
-     * @return The host to connect to.
+     * @return Influxdb host to connect to.
      * 
      */
     public String host() {
         return this.host;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
@@ -155,22 +149,21 @@ public final class SecretsMountInfluxdb {
         return this.name;
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<String> pemBundle() {
         return Optional.ofNullable(this.pemBundle);
     }
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<String> pemJson() {
@@ -184,8 +177,7 @@ public final class SecretsMountInfluxdb {
         return Optional.ofNullable(this.pluginName);
     }
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Influxdb.
      * 
      */
     public Optional<Integer> port() {
@@ -199,21 +191,21 @@ public final class SecretsMountInfluxdb {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Influxdb.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username to use for superuser access.
      * 
      */
     public String username() {
         return this.username;
     }
     /**
-     * @return [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+     * @return Template describing how dynamic usernames are generated.
      * 
      */
     public Optional<String> usernameTemplate() {

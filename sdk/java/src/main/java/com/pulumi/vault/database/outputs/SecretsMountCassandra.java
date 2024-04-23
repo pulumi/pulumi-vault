@@ -24,8 +24,7 @@ public final class SecretsMountCassandra {
      */
     private @Nullable List<String> allowedRoles;
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     private @Nullable Integer connectTimeout;
@@ -37,13 +36,12 @@ public final class SecretsMountCassandra {
      */
     private @Nullable Map<String,Object> data;
     /**
-     * @return The hosts to connect to.
+     * @return Cassandra hosts to connect to.
      * 
      */
     private @Nullable List<String> hosts;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
@@ -53,18 +51,17 @@ public final class SecretsMountCassandra {
      */
     private String name;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to use when authenticating with Cassandra.
      * 
      */
     private @Nullable String password;
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     private @Nullable String pemBundle;
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     private @Nullable String pemJson;
@@ -74,8 +71,7 @@ public final class SecretsMountCassandra {
      */
     private @Nullable String pluginName;
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Cassandra.
      * 
      */
     private @Nullable Integer port;
@@ -95,7 +91,7 @@ public final class SecretsMountCassandra {
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to use when authenticating with Cassandra.
      * 
      */
     private @Nullable String username;
@@ -116,8 +112,7 @@ public final class SecretsMountCassandra {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Integer> connectTimeout() {
@@ -133,15 +128,14 @@ public final class SecretsMountCassandra {
         return this.data == null ? Map.of() : this.data;
     }
     /**
-     * @return The hosts to connect to.
+     * @return Cassandra hosts to connect to.
      * 
      */
     public List<String> hosts() {
         return this.hosts == null ? List.of() : this.hosts;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
@@ -155,22 +149,21 @@ public final class SecretsMountCassandra {
         return this.name;
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The password to use when authenticating with Cassandra.
      * 
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<String> pemBundle() {
         return Optional.ofNullable(this.pemBundle);
     }
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<String> pemJson() {
@@ -184,8 +177,7 @@ public final class SecretsMountCassandra {
         return Optional.ofNullable(this.pluginName);
     }
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Cassandra.
      * 
      */
     public Optional<Integer> port() {
@@ -213,7 +205,7 @@ public final class SecretsMountCassandra {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The username to use when authenticating with Cassandra.
      * 
      */
     public Optional<String> username() {

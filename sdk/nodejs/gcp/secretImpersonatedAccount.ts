@@ -12,7 +12,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as google from "@pulumi/google";
@@ -33,7 +32,6 @@ import * as utilities from "../utilities";
  *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

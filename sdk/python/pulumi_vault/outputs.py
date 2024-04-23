@@ -277,27 +277,17 @@ class GetPolicyDocumentRuleAllowedParameterResult(dict):
     def __init__(__self__, *,
                  key: str,
                  values: Sequence[str]):
-        """
-        :param str key: name of permitted or denied parameter.
-        :param Sequence[str] values: list of values what are permitted or denied by policy rule.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        name of permitted or denied parameter.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
-        """
-        list of values what are permitted or denied by policy rule.
-        """
         return pulumi.get(self, "values")
 
 
@@ -306,27 +296,17 @@ class GetPolicyDocumentRuleDeniedParameterResult(dict):
     def __init__(__self__, *,
                  key: str,
                  values: Sequence[str]):
-        """
-        :param str key: name of permitted or denied parameter.
-        :param Sequence[str] values: list of values what are permitted or denied by policy rule.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        name of permitted or denied parameter.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
-        """
-        list of values what are permitted or denied by policy rule.
-        """
         return pulumi.get(self, "values")
 
 

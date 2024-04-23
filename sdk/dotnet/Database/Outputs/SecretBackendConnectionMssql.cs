@@ -14,48 +14,39 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionMssql
     {
         /// <summary>
-        /// A URL containing connection information. See
-        /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        /// for an example.
+        /// Connection string to use to connect to the database.
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
-        /// For Vault v1.9+. Set to true when the target is a
-        /// Contained Database, e.g. AzureSQL.
-        /// See the [Vault
-        /// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        /// Set to true when the target is a Contained Database, e.g. AzureSQL.
         /// </summary>
         public readonly bool? ContainedDb;
         /// <summary>
-        /// Disable special character escaping in username and password.
+        /// Disable special character escaping in username and password
         /// </summary>
         public readonly bool? DisableEscaping;
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// Maximum number of seconds a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
-        /// The maximum number of idle connections to
-        /// maintain.
+        /// Maximum number of idle connections to the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
-        /// The maximum number of open connections to
-        /// use.
+        /// Maximum number of open connections to the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
-        /// The password to authenticate with.
+        /// The root credential password used in the connection URL
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// The username to authenticate with.
+        /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// Template describing how dynamic usernames are generated.
+        /// Username generation template.
         /// </summary>
         public readonly string? UsernameTemplate;
 

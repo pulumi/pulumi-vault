@@ -14,7 +14,6 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -31,7 +30,6 @@ namespace Pulumi.Vault
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetRaftAutopilotStateResult> InvokeAsync(GetRaftAutopilotStateArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRaftAutopilotStateResult>("vault:index/getRaftAutopilotState:getRaftAutopilotState", args ?? new GetRaftAutopilotStateArgs(), options.WithDefaults());
@@ -39,7 +37,6 @@ namespace Pulumi.Vault
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -56,7 +53,6 @@ namespace Pulumi.Vault
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetRaftAutopilotStateResult> Invoke(GetRaftAutopilotStateInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRaftAutopilotStateResult>("vault:index/getRaftAutopilotState:getRaftAutopilotState", args ?? new GetRaftAutopilotStateInvokeArgs(), options.WithDefaults());

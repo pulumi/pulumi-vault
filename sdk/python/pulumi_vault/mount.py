@@ -493,7 +493,6 @@ class Mount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -503,9 +502,7 @@ class Mount(pulumi.CustomResource):
             type="generic",
             description="This is an example mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -519,9 +516,7 @@ class Mount(pulumi.CustomResource):
             },
             description="This is an example KV Version 2 secret engine mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -534,9 +529,7 @@ class Mount(pulumi.CustomResource):
                 "convergent_encryption": False,
             })
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -548,7 +541,6 @@ class Mount(pulumi.CustomResource):
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -588,7 +580,6 @@ class Mount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -598,9 +589,7 @@ class Mount(pulumi.CustomResource):
             type="generic",
             description="This is an example mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -614,9 +603,7 @@ class Mount(pulumi.CustomResource):
             },
             description="This is an example KV Version 2 secret engine mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -629,9 +616,7 @@ class Mount(pulumi.CustomResource):
                 "convergent_encryption": False,
             })
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -643,7 +628,6 @@ class Mount(pulumi.CustomResource):
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

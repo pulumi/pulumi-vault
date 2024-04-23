@@ -360,7 +360,6 @@ class MfaTotp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -373,7 +372,6 @@ class MfaTotp(pulumi.CustomResource):
             digits=8,
             key_size=20)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -414,7 +412,6 @@ class MfaTotp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -427,7 +424,6 @@ class MfaTotp(pulumi.CustomResource):
             digits=8,
             key_size=20)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

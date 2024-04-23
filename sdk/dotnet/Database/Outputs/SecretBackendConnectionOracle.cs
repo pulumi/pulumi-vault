@@ -14,45 +14,39 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionOracle
     {
         /// <summary>
-        /// A URL containing connection information. See
-        /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        /// for an example.
+        /// Connection string to use to connect to the database.
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
-        /// Enable the built-in session disconnect mechanism.
+        /// Set to true to disconnect any open sessions prior to running the revocation statements.
         /// </summary>
         public readonly bool? DisconnectSessions;
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// Maximum number of seconds a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
-        /// The maximum number of idle connections to
-        /// maintain.
+        /// Maximum number of idle connections to the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
-        /// The maximum number of open connections to
-        /// use.
+        /// Maximum number of open connections to the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
-        /// The password to authenticate with.
+        /// The root credential password used in the connection URL
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// Enable spliting statements after semi-colons.
+        /// Set to true in order to split statements after semi-colons.
         /// </summary>
         public readonly bool? SplitStatements;
         /// <summary>
-        /// The username to authenticate with.
+        /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// Template describing how dynamic usernames are generated.
+        /// Username generation template.
         /// </summary>
         public readonly string? UsernameTemplate;
 

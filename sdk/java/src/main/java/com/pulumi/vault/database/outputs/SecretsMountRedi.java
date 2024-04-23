@@ -24,7 +24,7 @@ public final class SecretsMountRedi {
      */
     private @Nullable List<String> allowedRoles;
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     private @Nullable String caCert;
@@ -36,13 +36,12 @@ public final class SecretsMountRedi {
      */
     private @Nullable Map<String,Object> data;
     /**
-     * @return The host to connect to.
+     * @return Specifies the host to connect to
      * 
      */
     private String host;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
@@ -52,7 +51,7 @@ public final class SecretsMountRedi {
      */
     private String name;
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     private String password;
@@ -62,8 +61,7 @@ public final class SecretsMountRedi {
      */
     private @Nullable String pluginName;
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Redis.
      * 
      */
     private @Nullable Integer port;
@@ -73,12 +71,12 @@ public final class SecretsMountRedi {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username for Vault to use.
      * 
      */
     private String username;
@@ -99,7 +97,7 @@ public final class SecretsMountRedi {
         return this.allowedRoles == null ? List.of() : this.allowedRoles;
     }
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     public Optional<String> caCert() {
@@ -115,15 +113,14 @@ public final class SecretsMountRedi {
         return this.data == null ? Map.of() : this.data;
     }
     /**
-     * @return The host to connect to.
+     * @return Specifies the host to connect to
      * 
      */
     public String host() {
         return this.host;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
@@ -137,7 +134,7 @@ public final class SecretsMountRedi {
         return this.name;
     }
     /**
-     * @return The root credential password used in the connection URL.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public String password() {
@@ -151,8 +148,7 @@ public final class SecretsMountRedi {
         return Optional.ofNullable(this.pluginName);
     }
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Redis.
      * 
      */
     public Optional<Integer> port() {
@@ -166,14 +162,14 @@ public final class SecretsMountRedi {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The root credential username used in the connection URL.
+     * @return Specifies the username for Vault to use.
      * 
      */
     public String username() {

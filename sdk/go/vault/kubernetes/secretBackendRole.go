@@ -16,7 +16,6 @@ import (
 //
 // Example using `serviceAccountName` mode:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,11 +78,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Example using `kubernetesRoleName` mode:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -146,11 +143,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // Example using `generatedRoleRules` mode:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -214,7 +209,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -13,43 +13,37 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionMysqlRds {
     /**
-     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * @return Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
      * 
      */
     private @Nullable String authType;
     /**
-     * @return A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * @return Connection string to use to connect to the database.
      * 
      */
     private @Nullable String connectionUrl;
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     private @Nullable Integer maxConnectionLifetime;
     /**
-     * @return The maximum number of idle connections to
-     * maintain.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     private @Nullable Integer maxIdleConnections;
     /**
-     * @return The maximum number of open connections to
-     * use.
+     * @return Maximum number of open connections to the database.
      * 
      */
     private @Nullable Integer maxOpenConnections;
     /**
-     * @return The password to authenticate with.
+     * @return The root credential password used in the connection URL
      * 
      */
     private @Nullable String password;
     /**
-     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * @return A JSON encoded credential for use with IAM authorization
      * 
      */
     private @Nullable String serviceAccountJson;
@@ -64,67 +58,61 @@ public final class SecretBackendConnectionMysqlRds {
      */
     private @Nullable String tlsCertificateKey;
     /**
-     * @return The username to authenticate with.
+     * @return The root credential username used in the connection URL
      * 
      */
     private @Nullable String username;
     /**
-     * @return Template describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     private @Nullable String usernameTemplate;
 
     private SecretBackendConnectionMysqlRds() {}
     /**
-     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * @return Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
      * 
      */
     public Optional<String> authType() {
         return Optional.ofNullable(this.authType);
     }
     /**
-     * @return A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<String> connectionUrl() {
         return Optional.ofNullable(this.connectionUrl);
     }
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Integer> maxConnectionLifetime() {
         return Optional.ofNullable(this.maxConnectionLifetime);
     }
     /**
-     * @return The maximum number of idle connections to
-     * maintain.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Integer> maxIdleConnections() {
         return Optional.ofNullable(this.maxIdleConnections);
     }
     /**
-     * @return The maximum number of open connections to
-     * use.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Integer> maxOpenConnections() {
         return Optional.ofNullable(this.maxOpenConnections);
     }
     /**
-     * @return The password to authenticate with.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
     /**
-     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * @return A JSON encoded credential for use with IAM authorization
      * 
      */
     public Optional<String> serviceAccountJson() {
@@ -145,14 +133,14 @@ public final class SecretBackendConnectionMysqlRds {
         return Optional.ofNullable(this.tlsCertificateKey);
     }
     /**
-     * @return The username to authenticate with.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
     /**
-     * @return Template describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<String> usernameTemplate() {

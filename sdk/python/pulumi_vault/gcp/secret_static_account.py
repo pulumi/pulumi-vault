@@ -299,7 +299,6 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_google as google
@@ -321,7 +320,6 @@ class SecretStaticAccount(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -358,7 +356,6 @@ class SecretStaticAccount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_google as google
@@ -380,7 +377,6 @@ class SecretStaticAccount(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -623,7 +623,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_std as std
@@ -639,7 +638,6 @@ class SecretBackend(pulumi.CustomResource):
             service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -688,7 +686,6 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_std as std
@@ -704,7 +701,6 @@ class SecretBackend(pulumi.CustomResource):
             service_account_jwt=std.file(input="/path/to/token").result,
             disable_local_ca_jwt=False)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -37,8 +37,8 @@ class AuthBackendGroup(dict):
                  group_name: str,
                  policies: Sequence[str]):
         """
-        :param str group_name: Name of the group within the Okta
-        :param Sequence[str] policies: Vault policies to associate with this group
+        :param str group_name: Name of the Okta group
+        :param Sequence[str] policies: Policies to associate with this group
         """
         pulumi.set(__self__, "group_name", group_name)
         pulumi.set(__self__, "policies", policies)
@@ -47,7 +47,7 @@ class AuthBackendGroup(dict):
     @pulumi.getter(name="groupName")
     def group_name(self) -> str:
         """
-        Name of the group within the Okta
+        Name of the Okta group
         """
         return pulumi.get(self, "group_name")
 
@@ -55,7 +55,7 @@ class AuthBackendGroup(dict):
     @pulumi.getter
     def policies(self) -> Sequence[str]:
         """
-        Vault policies to associate with this group
+        Policies to associate with this group
         """
         return pulumi.get(self, "policies")
 
@@ -68,8 +68,8 @@ class AuthBackendUser(dict):
                  policies: Optional[Sequence[str]] = None):
         """
         :param str username: Name of the user within Okta
-        :param Sequence[str] groups: List of Okta groups to associate with this user
-        :param Sequence[str] policies: Vault policies to associate with this group
+        :param Sequence[str] groups: Groups within the Okta auth backend to associate with this user
+        :param Sequence[str] policies: Policies to associate with this user
         """
         pulumi.set(__self__, "username", username)
         if groups is not None:
@@ -89,7 +89,7 @@ class AuthBackendUser(dict):
     @pulumi.getter
     def groups(self) -> Optional[Sequence[str]]:
         """
-        List of Okta groups to associate with this user
+        Groups within the Okta auth backend to associate with this user
         """
         return pulumi.get(self, "groups")
 
@@ -97,7 +97,7 @@ class AuthBackendUser(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[str]]:
         """
-        Vault policies to associate with this group
+        Policies to associate with this user
         """
         return pulumi.get(self, "policies")
 

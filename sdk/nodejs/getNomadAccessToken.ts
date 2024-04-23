@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -31,7 +30,6 @@ import * as utilities from "./utilities";
  *     role: role,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetNomadAccessTokenResult> {
 
@@ -90,7 +88,6 @@ export interface GetNomadAccessTokenResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -114,7 +111,6 @@ export interface GetNomadAccessTokenResult {
  *     role: role,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNomadAccessTokenOutput(args: GetNomadAccessTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNomadAccessTokenResult> {
     return pulumi.output(args).apply((a: any) => getNomadAccessToken(a, opts))

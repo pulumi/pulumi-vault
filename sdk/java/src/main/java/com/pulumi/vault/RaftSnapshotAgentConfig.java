@@ -173,32 +173,28 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.awsAccessKeyId);
     }
     /**
-     * `&lt;required&gt;` - S3 bucket to write snapshots to.
+     * S3 bucket to write snapshots to.
      * 
      */
     @Export(name="awsS3Bucket", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3Bucket;
 
     /**
-     * @return `&lt;required&gt;` - S3 bucket to write snapshots to.
+     * @return S3 bucket to write snapshots to.
      * 
      */
     public Output<Optional<String>> awsS3Bucket() {
         return Codegen.optional(this.awsS3Bucket);
     }
     /**
-     * Disable TLS for the S3 endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `aws_s3_endpoint`.
+     * Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      * 
      */
     @Export(name="awsS3DisableTls", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> awsS3DisableTls;
 
     /**
-     * @return Disable TLS for the S3 endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `aws_s3_endpoint`.
+     * @return Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      * 
      */
     public Output<Optional<Boolean>> awsS3DisableTls() {
@@ -219,60 +215,56 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.awsS3EnableKms);
     }
     /**
-     * AWS endpoint. This is typically only set when
-     * using a non-AWS S3 implementation like Minio.
+     * AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      * 
      */
     @Export(name="awsS3Endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3Endpoint;
 
     /**
-     * @return AWS endpoint. This is typically only set when
-     * using a non-AWS S3 implementation like Minio.
+     * @return AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      * 
      */
     public Output<Optional<String>> awsS3Endpoint() {
         return Codegen.optional(this.awsS3Endpoint);
     }
     /**
-     * Use the endpoint/bucket URL style
-     * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+     * Use the endpoint/bucket URL style instead of bucket.endpoint.
      * 
      */
     @Export(name="awsS3ForcePathStyle", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> awsS3ForcePathStyle;
 
     /**
-     * @return Use the endpoint/bucket URL style
-     * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+     * @return Use the endpoint/bucket URL style instead of bucket.endpoint.
      * 
      */
     public Output<Optional<Boolean>> awsS3ForcePathStyle() {
         return Codegen.optional(this.awsS3ForcePathStyle);
     }
     /**
-     * Use named KMS key, when `aws_s3_enable_kms = true`
+     * Use named KMS key, when aws_s3_enable_kms=true
      * 
      */
     @Export(name="awsS3KmsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3KmsKey;
 
     /**
-     * @return Use named KMS key, when `aws_s3_enable_kms = true`
+     * @return Use named KMS key, when aws_s3_enable_kms=true
      * 
      */
     public Output<Optional<String>> awsS3KmsKey() {
         return Codegen.optional(this.awsS3KmsKey);
     }
     /**
-     * `&lt;required&gt;` - AWS region bucket is in.
+     * AWS region bucket is in.
      * 
      */
     @Export(name="awsS3Region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsS3Region;
 
     /**
-     * @return `&lt;required&gt;` - AWS region bucket is in.
+     * @return AWS region bucket is in.
      * 
      */
     public Output<Optional<String>> awsS3Region() {
@@ -363,32 +355,28 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.azureBlobEnvironment);
     }
     /**
-     * `&lt;required&gt;` - Azure container name to write
-     * snapshots to.
+     * Azure container name to write snapshots to.
      * 
      */
     @Export(name="azureContainerName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureContainerName;
 
     /**
-     * @return `&lt;required&gt;` - Azure container name to write
-     * snapshots to.
+     * @return Azure container name to write snapshots to.
      * 
      */
     public Output<Optional<String>> azureContainerName() {
         return Codegen.optional(this.azureContainerName);
     }
     /**
-     * Azure blob storage endpoint. This is typically
-     * only set when using a non-Azure implementation like Azurite.
+     * Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      * 
      */
     @Export(name="azureEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> azureEndpoint;
 
     /**
-     * @return Azure blob storage endpoint. This is typically
-     * only set when using a non-Azure implementation like Azurite.
+     * @return Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      * 
      */
     public Output<Optional<String>> azureEndpoint() {
@@ -413,48 +401,42 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.filePrefix);
     }
     /**
-     * Disable TLS for the GCS endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `google_endpoint`.
+     * Disable TLS for the GCS endpoint.
      * 
      */
     @Export(name="googleDisableTls", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> googleDisableTls;
 
     /**
-     * @return Disable TLS for the GCS endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `google_endpoint`.
+     * @return Disable TLS for the GCS endpoint.
      * 
      */
     public Output<Optional<Boolean>> googleDisableTls() {
         return Codegen.optional(this.googleDisableTls);
     }
     /**
-     * GCS endpoint. This is typically only set when
-     * using a non-Google GCS implementation like fake-gcs-server.
+     * GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      * 
      */
     @Export(name="googleEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> googleEndpoint;
 
     /**
-     * @return GCS endpoint. This is typically only set when
-     * using a non-Google GCS implementation like fake-gcs-server.
+     * @return GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      * 
      */
     public Output<Optional<String>> googleEndpoint() {
         return Codegen.optional(this.googleEndpoint);
     }
     /**
-     * `&lt;required&gt;` - GCS bucket to write snapshots to.
+     * GCS bucket to write snapshots to.
      * 
      */
     @Export(name="googleGcsBucket", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> googleGcsBucket;
 
     /**
-     * @return `&lt;required&gt;` - GCS bucket to write snapshots to.
+     * @return GCS bucket to write snapshots to.
      * 
      */
     public Output<Optional<String>> googleGcsBucket() {
@@ -462,7 +444,6 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     }
     /**
      * Google service account key in JSON format.
-     * The raw value looks like this:
      * 
      */
     @Export(name="googleServiceAccountKey", refs={String.class}, tree="[0]")
@@ -470,7 +451,6 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
 
     /**
      * @return Google service account key in JSON format.
-     * The raw value looks like this:
      * 
      */
     public Output<Optional<String>> googleServiceAccountKey() {
@@ -491,18 +471,14 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
         return this.intervalSeconds;
     }
     /**
-     * For `storage_type = local`, the maximum
-     * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-     * space left in this allowance.
+     * The maximum space, in bytes, to use for snapshots.
      * 
      */
     @Export(name="localMaxSpace", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> localMaxSpace;
 
     /**
-     * @return For `storage_type = local`, the maximum
-     * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-     * space left in this allowance.
+     * @return The maximum space, in bytes, to use for snapshots.
      * 
      */
     public Output<Optional<Integer>> localMaxSpace() {

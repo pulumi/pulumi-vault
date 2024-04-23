@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,7 +19,6 @@ import * as utilities from "../utilities";
  *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): Promise<GetDecryptResult> {
 
@@ -38,21 +36,9 @@ export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): P
  * A collection of arguments for invoking getDecrypt.
  */
 export interface GetDecryptArgs {
-    /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     */
     backend: string;
-    /**
-     * Ciphertext to be decoded.
-     */
     ciphertext: string;
-    /**
-     * Context for key derivation. This is required if key derivation is enabled for this key.
-     */
     context?: string;
-    /**
-     * Specifies the name of the transit key to decrypt against.
-     */
     key: string;
     namespace?: string;
 }
@@ -80,7 +66,6 @@ export interface GetDecryptResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -91,7 +76,6 @@ export interface GetDecryptResult {
  *     ciphertext: "vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecryptResult> {
     return pulumi.output(args).apply((a: any) => getDecrypt(a, opts))
@@ -101,21 +85,9 @@ export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.Invok
  * A collection of arguments for invoking getDecrypt.
  */
 export interface GetDecryptOutputArgs {
-    /**
-     * The path the transit secret backend is mounted at, with no leading or trailing `/`.
-     */
     backend: pulumi.Input<string>;
-    /**
-     * Ciphertext to be decoded.
-     */
     ciphertext: pulumi.Input<string>;
-    /**
-     * Context for key derivation. This is required if key derivation is enabled for this key.
-     */
     context?: pulumi.Input<string>;
-    /**
-     * Specifies the name of the transit key to decrypt against.
-     */
     key: pulumi.Input<string>;
     namespace?: pulumi.Input<string>;
 }

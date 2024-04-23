@@ -14,35 +14,31 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionCassandra
     {
         /// <summary>
-        /// The number of seconds to use as a connection
-        /// timeout.
+        /// The number of seconds to use as a connection timeout.
         /// </summary>
         public readonly int? ConnectTimeout;
         /// <summary>
-        /// The hosts to connect to.
+        /// Cassandra hosts to connect to.
         /// </summary>
         public readonly ImmutableArray<string> Hosts;
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Whether to skip verification of the server certificate when using TLS.
         /// </summary>
         public readonly bool? InsecureTls;
         /// <summary>
-        /// The password to authenticate with.
+        /// The password to use when authenticating with Cassandra.
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// Concatenated PEM blocks configuring the certificate
-        /// chain.
+        /// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         /// </summary>
         public readonly string? PemBundle;
         /// <summary>
-        /// A JSON structure configuring the certificate chain.
+        /// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         /// </summary>
         public readonly string? PemJson;
         /// <summary>
-        /// The default port to connect to if no port is specified as
-        /// part of the host.
+        /// The transport port to use to connect to Cassandra.
         /// </summary>
         public readonly int? Port;
         /// <summary>
@@ -54,7 +50,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly bool? Tls;
         /// <summary>
-        /// The username to authenticate with.
+        /// The username to use when authenticating with Cassandra.
         /// </summary>
         public readonly string? Username;
 

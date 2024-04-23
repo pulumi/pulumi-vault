@@ -13,7 +13,6 @@ namespace Pulumi.Vault
     /// ## Example Usage
     /// 
     /// ### Local Storage
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,10 +33,8 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### AWS S3
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -68,11 +65,9 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Azure BLOB
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -98,7 +93,6 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -118,15 +112,13 @@ namespace Pulumi.Vault
         public Output<string?> AwsAccessKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// `&lt;required&gt;` - S3 bucket to write snapshots to.
+        /// S3 bucket to write snapshots to.
         /// </summary>
         [Output("awsS3Bucket")]
         public Output<string?> AwsS3Bucket { get; private set; } = null!;
 
         /// <summary>
-        /// Disable TLS for the S3 endpoint. This
-        /// should only be used for testing purposes, typically in conjunction with
-        /// `aws_s3_endpoint`.
+        /// Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         /// </summary>
         [Output("awsS3DisableTls")]
         public Output<bool?> AwsS3DisableTls { get; private set; } = null!;
@@ -138,27 +130,25 @@ namespace Pulumi.Vault
         public Output<bool?> AwsS3EnableKms { get; private set; } = null!;
 
         /// <summary>
-        /// AWS endpoint. This is typically only set when
-        /// using a non-AWS S3 implementation like Minio.
+        /// AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         /// </summary>
         [Output("awsS3Endpoint")]
         public Output<string?> AwsS3Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Use the endpoint/bucket URL style
-        /// instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+        /// Use the endpoint/bucket URL style instead of bucket.endpoint.
         /// </summary>
         [Output("awsS3ForcePathStyle")]
         public Output<bool?> AwsS3ForcePathStyle { get; private set; } = null!;
 
         /// <summary>
-        /// Use named KMS key, when `aws_s3_enable_kms = true`
+        /// Use named KMS key, when aws_s3_enable_kms=true
         /// </summary>
         [Output("awsS3KmsKey")]
         public Output<string?> AwsS3KmsKey { get; private set; } = null!;
 
         /// <summary>
-        /// `&lt;required&gt;` - AWS region bucket is in.
+        /// AWS region bucket is in.
         /// </summary>
         [Output("awsS3Region")]
         public Output<string?> AwsS3Region { get; private set; } = null!;
@@ -200,15 +190,13 @@ namespace Pulumi.Vault
         public Output<string?> AzureBlobEnvironment { get; private set; } = null!;
 
         /// <summary>
-        /// `&lt;required&gt;` - Azure container name to write
-        /// snapshots to.
+        /// Azure container name to write snapshots to.
         /// </summary>
         [Output("azureContainerName")]
         public Output<string?> AzureContainerName { get; private set; } = null!;
 
         /// <summary>
-        /// Azure blob storage endpoint. This is typically
-        /// only set when using a non-Azure implementation like Azurite.
+        /// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         /// </summary>
         [Output("azureEndpoint")]
         public Output<string?> AzureEndpoint { get; private set; } = null!;
@@ -222,44 +210,25 @@ namespace Pulumi.Vault
         public Output<string?> FilePrefix { get; private set; } = null!;
 
         /// <summary>
-        /// Disable TLS for the GCS endpoint. This
-        /// should only be used for testing purposes, typically in conjunction with
-        /// `google_endpoint`.
+        /// Disable TLS for the GCS endpoint.
         /// </summary>
         [Output("googleDisableTls")]
         public Output<bool?> GoogleDisableTls { get; private set; } = null!;
 
         /// <summary>
-        /// GCS endpoint. This is typically only set when
-        /// using a non-Google GCS implementation like fake-gcs-server.
+        /// GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         /// </summary>
         [Output("googleEndpoint")]
         public Output<string?> GoogleEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// `&lt;required&gt;` - GCS bucket to write snapshots to.
+        /// GCS bucket to write snapshots to.
         /// </summary>
         [Output("googleGcsBucket")]
         public Output<string?> GoogleGcsBucket { get; private set; } = null!;
 
         /// <summary>
-        /// Google service account key in JSON format. 
-        /// The raw value looks like this:
-        /// 
-        /// ```json
-        /// {
-        /// "type": "service_account",
-        /// "project_id": "project-id",
-        /// "private_key_id": "key-id",
-        /// "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
-        /// "client_email": "service-account-email",
-        /// "client_id": "client-id",
-        /// "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        /// "token_uri": "https://accounts.google.com/o/oauth2/token",
-        /// "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        /// "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-        /// }
-        /// ```
+        /// Google service account key in JSON format.
         /// </summary>
         [Output("googleServiceAccountKey")]
         public Output<string?> GoogleServiceAccountKey { get; private set; } = null!;
@@ -271,9 +240,7 @@ namespace Pulumi.Vault
         public Output<int> IntervalSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// For `storage_type = local`, the maximum
-        /// space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-        /// space left in this allowance.
+        /// The maximum space, in bytes, to use for snapshots.
         /// </summary>
         [Output("localMaxSpace")]
         public Output<int?> LocalMaxSpace { get; private set; } = null!;
@@ -371,15 +338,13 @@ namespace Pulumi.Vault
         public Input<string>? AwsAccessKeyId { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - S3 bucket to write snapshots to.
+        /// S3 bucket to write snapshots to.
         /// </summary>
         [Input("awsS3Bucket")]
         public Input<string>? AwsS3Bucket { get; set; }
 
         /// <summary>
-        /// Disable TLS for the S3 endpoint. This
-        /// should only be used for testing purposes, typically in conjunction with
-        /// `aws_s3_endpoint`.
+        /// Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         /// </summary>
         [Input("awsS3DisableTls")]
         public Input<bool>? AwsS3DisableTls { get; set; }
@@ -391,27 +356,25 @@ namespace Pulumi.Vault
         public Input<bool>? AwsS3EnableKms { get; set; }
 
         /// <summary>
-        /// AWS endpoint. This is typically only set when
-        /// using a non-AWS S3 implementation like Minio.
+        /// AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         /// </summary>
         [Input("awsS3Endpoint")]
         public Input<string>? AwsS3Endpoint { get; set; }
 
         /// <summary>
-        /// Use the endpoint/bucket URL style
-        /// instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+        /// Use the endpoint/bucket URL style instead of bucket.endpoint.
         /// </summary>
         [Input("awsS3ForcePathStyle")]
         public Input<bool>? AwsS3ForcePathStyle { get; set; }
 
         /// <summary>
-        /// Use named KMS key, when `aws_s3_enable_kms = true`
+        /// Use named KMS key, when aws_s3_enable_kms=true
         /// </summary>
         [Input("awsS3KmsKey")]
         public Input<string>? AwsS3KmsKey { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - AWS region bucket is in.
+        /// AWS region bucket is in.
         /// </summary>
         [Input("awsS3Region")]
         public Input<string>? AwsS3Region { get; set; }
@@ -453,15 +416,13 @@ namespace Pulumi.Vault
         public Input<string>? AzureBlobEnvironment { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - Azure container name to write
-        /// snapshots to.
+        /// Azure container name to write snapshots to.
         /// </summary>
         [Input("azureContainerName")]
         public Input<string>? AzureContainerName { get; set; }
 
         /// <summary>
-        /// Azure blob storage endpoint. This is typically
-        /// only set when using a non-Azure implementation like Azurite.
+        /// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         /// </summary>
         [Input("azureEndpoint")]
         public Input<string>? AzureEndpoint { get; set; }
@@ -475,44 +436,25 @@ namespace Pulumi.Vault
         public Input<string>? FilePrefix { get; set; }
 
         /// <summary>
-        /// Disable TLS for the GCS endpoint. This
-        /// should only be used for testing purposes, typically in conjunction with
-        /// `google_endpoint`.
+        /// Disable TLS for the GCS endpoint.
         /// </summary>
         [Input("googleDisableTls")]
         public Input<bool>? GoogleDisableTls { get; set; }
 
         /// <summary>
-        /// GCS endpoint. This is typically only set when
-        /// using a non-Google GCS implementation like fake-gcs-server.
+        /// GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         /// </summary>
         [Input("googleEndpoint")]
         public Input<string>? GoogleEndpoint { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - GCS bucket to write snapshots to.
+        /// GCS bucket to write snapshots to.
         /// </summary>
         [Input("googleGcsBucket")]
         public Input<string>? GoogleGcsBucket { get; set; }
 
         /// <summary>
-        /// Google service account key in JSON format. 
-        /// The raw value looks like this:
-        /// 
-        /// ```json
-        /// {
-        /// "type": "service_account",
-        /// "project_id": "project-id",
-        /// "private_key_id": "key-id",
-        /// "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
-        /// "client_email": "service-account-email",
-        /// "client_id": "client-id",
-        /// "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        /// "token_uri": "https://accounts.google.com/o/oauth2/token",
-        /// "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        /// "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-        /// }
-        /// ```
+        /// Google service account key in JSON format.
         /// </summary>
         [Input("googleServiceAccountKey")]
         public Input<string>? GoogleServiceAccountKey { get; set; }
@@ -524,9 +466,7 @@ namespace Pulumi.Vault
         public Input<int> IntervalSeconds { get; set; } = null!;
 
         /// <summary>
-        /// For `storage_type = local`, the maximum
-        /// space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-        /// space left in this allowance.
+        /// The maximum space, in bytes, to use for snapshots.
         /// </summary>
         [Input("localMaxSpace")]
         public Input<int>? LocalMaxSpace { get; set; }
@@ -586,15 +526,13 @@ namespace Pulumi.Vault
         public Input<string>? AwsAccessKeyId { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - S3 bucket to write snapshots to.
+        /// S3 bucket to write snapshots to.
         /// </summary>
         [Input("awsS3Bucket")]
         public Input<string>? AwsS3Bucket { get; set; }
 
         /// <summary>
-        /// Disable TLS for the S3 endpoint. This
-        /// should only be used for testing purposes, typically in conjunction with
-        /// `aws_s3_endpoint`.
+        /// Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         /// </summary>
         [Input("awsS3DisableTls")]
         public Input<bool>? AwsS3DisableTls { get; set; }
@@ -606,27 +544,25 @@ namespace Pulumi.Vault
         public Input<bool>? AwsS3EnableKms { get; set; }
 
         /// <summary>
-        /// AWS endpoint. This is typically only set when
-        /// using a non-AWS S3 implementation like Minio.
+        /// AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         /// </summary>
         [Input("awsS3Endpoint")]
         public Input<string>? AwsS3Endpoint { get; set; }
 
         /// <summary>
-        /// Use the endpoint/bucket URL style
-        /// instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+        /// Use the endpoint/bucket URL style instead of bucket.endpoint.
         /// </summary>
         [Input("awsS3ForcePathStyle")]
         public Input<bool>? AwsS3ForcePathStyle { get; set; }
 
         /// <summary>
-        /// Use named KMS key, when `aws_s3_enable_kms = true`
+        /// Use named KMS key, when aws_s3_enable_kms=true
         /// </summary>
         [Input("awsS3KmsKey")]
         public Input<string>? AwsS3KmsKey { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - AWS region bucket is in.
+        /// AWS region bucket is in.
         /// </summary>
         [Input("awsS3Region")]
         public Input<string>? AwsS3Region { get; set; }
@@ -668,15 +604,13 @@ namespace Pulumi.Vault
         public Input<string>? AzureBlobEnvironment { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - Azure container name to write
-        /// snapshots to.
+        /// Azure container name to write snapshots to.
         /// </summary>
         [Input("azureContainerName")]
         public Input<string>? AzureContainerName { get; set; }
 
         /// <summary>
-        /// Azure blob storage endpoint. This is typically
-        /// only set when using a non-Azure implementation like Azurite.
+        /// Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         /// </summary>
         [Input("azureEndpoint")]
         public Input<string>? AzureEndpoint { get; set; }
@@ -690,44 +624,25 @@ namespace Pulumi.Vault
         public Input<string>? FilePrefix { get; set; }
 
         /// <summary>
-        /// Disable TLS for the GCS endpoint. This
-        /// should only be used for testing purposes, typically in conjunction with
-        /// `google_endpoint`.
+        /// Disable TLS for the GCS endpoint.
         /// </summary>
         [Input("googleDisableTls")]
         public Input<bool>? GoogleDisableTls { get; set; }
 
         /// <summary>
-        /// GCS endpoint. This is typically only set when
-        /// using a non-Google GCS implementation like fake-gcs-server.
+        /// GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         /// </summary>
         [Input("googleEndpoint")]
         public Input<string>? GoogleEndpoint { get; set; }
 
         /// <summary>
-        /// `&lt;required&gt;` - GCS bucket to write snapshots to.
+        /// GCS bucket to write snapshots to.
         /// </summary>
         [Input("googleGcsBucket")]
         public Input<string>? GoogleGcsBucket { get; set; }
 
         /// <summary>
-        /// Google service account key in JSON format. 
-        /// The raw value looks like this:
-        /// 
-        /// ```json
-        /// {
-        /// "type": "service_account",
-        /// "project_id": "project-id",
-        /// "private_key_id": "key-id",
-        /// "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpQ ... /WZs=\n-----END RSA PRIVATE KEY-----\n",
-        /// "client_email": "service-account-email",
-        /// "client_id": "client-id",
-        /// "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        /// "token_uri": "https://accounts.google.com/o/oauth2/token",
-        /// "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        /// "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-        /// }
-        /// ```
+        /// Google service account key in JSON format.
         /// </summary>
         [Input("googleServiceAccountKey")]
         public Input<string>? GoogleServiceAccountKey { get; set; }
@@ -739,9 +654,7 @@ namespace Pulumi.Vault
         public Input<int>? IntervalSeconds { get; set; }
 
         /// <summary>
-        /// For `storage_type = local`, the maximum
-        /// space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-        /// space left in this allowance.
+        /// The maximum space, in bytes, to use for snapshots.
         /// </summary>
         [Input("localMaxSpace")]
         public Input<int>? LocalMaxSpace { get; set; }

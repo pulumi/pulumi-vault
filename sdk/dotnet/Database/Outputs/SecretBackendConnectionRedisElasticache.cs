@@ -14,20 +14,19 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionRedisElasticache
     {
         /// <summary>
-        /// The password to authenticate with.
+        /// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+        /// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
+        /// The configuration endpoint for the ElastiCache cluster to connect to.
         /// </summary>
         public readonly string Url;
         /// <summary>
-        /// The username to authenticate with.
+        /// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         /// </summary>
         public readonly string? Username;
 

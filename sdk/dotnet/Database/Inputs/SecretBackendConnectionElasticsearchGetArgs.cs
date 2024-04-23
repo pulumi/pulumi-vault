@@ -13,31 +13,31 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionElasticsearchGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        /// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
         /// </summary>
         [Input("caCert")]
         public Input<string>? CaCert { get; set; }
 
         /// <summary>
-        /// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        /// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         /// </summary>
         [Input("caPath")]
         public Input<string>? CaPath { get; set; }
 
         /// <summary>
-        /// The path to the certificate for the Elasticsearch client to present for communication.
+        /// The path to the certificate for the Elasticsearch client to present for communication
         /// </summary>
         [Input("clientCert")]
         public Input<string>? ClientCert { get; set; }
 
         /// <summary>
-        /// The path to the key for the Elasticsearch client to use for communication.
+        /// The path to the key for the Elasticsearch client to use for communication
         /// </summary>
         [Input("clientKey")]
         public Input<string>? ClientKey { get; set; }
 
         /// <summary>
-        /// Whether to disable certificate verification.
+        /// Whether to disable certificate verification
         /// </summary>
         [Input("insecure")]
         public Input<bool>? Insecure { get; set; }
@@ -46,7 +46,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password to authenticate with.
+        /// The password to be used in the connection URL
         /// </summary>
         public Input<string>? Password
         {
@@ -59,20 +59,19 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// This, if set, is used to set the SNI host when connecting via TLS.
+        /// This, if set, is used to set the SNI host when connecting via TLS
         /// </summary>
         [Input("tlsServerName")]
         public Input<string>? TlsServerName { get; set; }
 
         /// <summary>
-        /// The URL for Elasticsearch's API. https requires certificate
-        /// by trusted CA if used.
+        /// The URL for Elasticsearch's API
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 
         /// <summary>
-        /// The username to authenticate with.
+        /// The username to be used in the connection URL
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

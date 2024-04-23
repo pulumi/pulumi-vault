@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -68,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetOidcPublicKeys(ctx *pulumi.Context, args *GetOidcPublicKeysArgs, opts ...pulumi.InvokeOption) (*GetOidcPublicKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcPublicKeysResult
