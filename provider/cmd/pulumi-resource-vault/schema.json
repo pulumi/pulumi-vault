@@ -4623,8 +4623,7 @@
         "description": "The provider type for the vault package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
             "addAddressToEnv": {
-                "type": "string",
-                "description": "If true, adds the value of the `address` argument to the Terraform process environment.\n"
+                "type": "string"
             },
             "address": {
                 "type": "string",
@@ -4754,8 +4753,7 @@
         ],
         "inputProperties": {
             "addAddressToEnv": {
-                "type": "string",
-                "description": "If true, adds the value of the `address` argument to the Terraform process environment.\n"
+                "type": "string"
             },
             "address": {
                 "type": "string",
@@ -6829,8 +6827,7 @@
                     "description": "The duration in seconds the token will be valid, relative\nto the time in `lease_start_time`.\n"
                 },
                 "leaseStartTime": {
-                    "type": "string",
-                    "description": "Time at which the lease was read, using the clock of the system where Terraform was running\n"
+                    "type": "string"
                 },
                 "metadata": {
                     "type": "object",
@@ -6991,8 +6988,7 @@
                         "description": "The duration in seconds the token will be valid, relative\nto the time in `lease_start_time`.\n"
                     },
                     "leaseStartTime": {
-                        "type": "string",
-                        "description": "Time at which the lease was read, using the clock of the system where Terraform was running\n"
+                        "type": "string"
                     },
                     "metadata": {
                         "type": "object",
@@ -29283,16 +29279,13 @@
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.terraformcloud.SecretBackend(\"test\", {\n    backend: \"terraform\",\n    description: \"Manages the Terraform Cloud backend\",\n    token: \"V0idfhi2iksSDU234ucdbi2nidsi...\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.terraformcloud.SecretBackend(\"test\",\n    backend=\"terraform\",\n    description=\"Manages the Terraform Cloud backend\",\n    token=\"V0idfhi2iksSDU234ucdbi2nidsi...\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Vault.TerraformCloud.SecretBackend(\"test\", new()\n    {\n        Backend = \"terraform\",\n        Description = \"Manages the Terraform Cloud backend\",\n        Token = \"V0idfhi2iksSDU234ucdbi2nidsi...\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/terraformcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := terraformcloud.NewSecretBackend(ctx, \"test\", \u0026terraformcloud.SecretBackendArgs{\n\t\t\tBackend:     pulumi.String(\"terraform\"),\n\t\t\tDescription: pulumi.String(\"Manages the Terraform Cloud backend\"),\n\t\t\tToken:       pulumi.String(\"V0idfhi2iksSDU234ucdbi2nidsi...\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.terraformcloud.SecretBackend;\nimport com.pulumi.vault.terraformcloud.SecretBackendArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SecretBackend(\"test\", SecretBackendArgs.builder()        \n            .backend(\"terraform\")\n            .description(\"Manages the Terraform Cloud backend\")\n            .token(\"V0idfhi2iksSDU234ucdbi2nidsi...\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: vault:terraformcloud:SecretBackend\n    properties:\n      backend: terraform\n      description: Manages the Terraform Cloud backend\n      token: V0idfhi2iksSDU234ucdbi2nidsi...\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nTerraform Cloud secret backends can be imported using the `backend`, e.g.\n\n```sh\n$ pulumi import vault:terraformcloud/secretBackend:SecretBackend example terraform\n```\n",
             "properties": {
                 "address": {
-                    "type": "string",
-                    "description": "Specifies the address of the Terraform Cloud instance, provided as \"host:port\" like \"127.0.0.1:8500\".\n"
+                    "type": "string"
                 },
                 "backend": {
-                    "type": "string",
-                    "description": "Unique name of the Vault Terraform Cloud mount to configure\n"
+                    "type": "string"
                 },
                 "basePath": {
-                    "type": "string",
-                    "description": "Specifies the base path for the Terraform Cloud or Enterprise API.\n"
+                    "type": "string"
                 },
                 "defaultLeaseTtlSeconds": {
                     "type": "integer",
@@ -29316,22 +29309,18 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "Specifies the Terraform Cloud access token to use.\n",
                     "secret": true
                 }
             },
             "inputProperties": {
                 "address": {
-                    "type": "string",
-                    "description": "Specifies the address of the Terraform Cloud instance, provided as \"host:port\" like \"127.0.0.1:8500\".\n"
+                    "type": "string"
                 },
                 "backend": {
-                    "type": "string",
-                    "description": "Unique name of the Vault Terraform Cloud mount to configure\n"
+                    "type": "string"
                 },
                 "basePath": {
-                    "type": "string",
-                    "description": "Specifies the base path for the Terraform Cloud or Enterprise API.\n"
+                    "type": "string"
                 },
                 "defaultLeaseTtlSeconds": {
                     "type": "integer",
@@ -29356,7 +29345,6 @@
                 },
                 "token": {
                     "type": "string",
-                    "description": "Specifies the Terraform Cloud access token to use.\n",
                     "secret": true
                 }
             },
@@ -29364,16 +29352,13 @@
                 "description": "Input properties used for looking up and filtering SecretBackend resources.\n",
                 "properties": {
                     "address": {
-                        "type": "string",
-                        "description": "Specifies the address of the Terraform Cloud instance, provided as \"host:port\" like \"127.0.0.1:8500\".\n"
+                        "type": "string"
                     },
                     "backend": {
-                        "type": "string",
-                        "description": "Unique name of the Vault Terraform Cloud mount to configure\n"
+                        "type": "string"
                     },
                     "basePath": {
-                        "type": "string",
-                        "description": "Specifies the base path for the Terraform Cloud or Enterprise API.\n"
+                        "type": "string"
                     },
                     "defaultLeaseTtlSeconds": {
                         "type": "integer",
@@ -29398,7 +29383,6 @@
                     },
                     "token": {
                         "type": "string",
-                        "description": "Specifies the Terraform Cloud access token to use.\n",
                         "secret": true
                     }
                 },
@@ -29409,8 +29393,7 @@
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.terraformcloud.SecretBackend(\"test\", {\n    backend: \"terraform\",\n    description: \"Manages the Terraform Cloud backend\",\n    token: \"V0idfhi2iksSDU234ucdbi2nidsi...\",\n});\nconst example = new vault.terraformcloud.SecretRole(\"example\", {\n    backend: test.backend,\n    name: \"test-role\",\n    organization: \"example-organization-name\",\n    teamId: \"team-ieF4isC...\",\n});\nconst token = new vault.terraformcloud.SecretCreds(\"token\", {\n    backend: test.backend,\n    role: example.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.terraformcloud.SecretBackend(\"test\",\n    backend=\"terraform\",\n    description=\"Manages the Terraform Cloud backend\",\n    token=\"V0idfhi2iksSDU234ucdbi2nidsi...\")\nexample = vault.terraformcloud.SecretRole(\"example\",\n    backend=test.backend,\n    name=\"test-role\",\n    organization=\"example-organization-name\",\n    team_id=\"team-ieF4isC...\")\ntoken = vault.terraformcloud.SecretCreds(\"token\",\n    backend=test.backend,\n    role=example.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Vault.TerraformCloud.SecretBackend(\"test\", new()\n    {\n        Backend = \"terraform\",\n        Description = \"Manages the Terraform Cloud backend\",\n        Token = \"V0idfhi2iksSDU234ucdbi2nidsi...\",\n    });\n\n    var example = new Vault.TerraformCloud.SecretRole(\"example\", new()\n    {\n        Backend = test.Backend,\n        Name = \"test-role\",\n        Organization = \"example-organization-name\",\n        TeamId = \"team-ieF4isC...\",\n    });\n\n    var token = new Vault.TerraformCloud.SecretCreds(\"token\", new()\n    {\n        Backend = test.Backend,\n        Role = example.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/terraformcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := terraformcloud.NewSecretBackend(ctx, \"test\", \u0026terraformcloud.SecretBackendArgs{\n\t\t\tBackend:     pulumi.String(\"terraform\"),\n\t\t\tDescription: pulumi.String(\"Manages the Terraform Cloud backend\"),\n\t\t\tToken:       pulumi.String(\"V0idfhi2iksSDU234ucdbi2nidsi...\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := terraformcloud.NewSecretRole(ctx, \"example\", \u0026terraformcloud.SecretRoleArgs{\n\t\t\tBackend:      test.Backend,\n\t\t\tName:         pulumi.String(\"test-role\"),\n\t\t\tOrganization: pulumi.String(\"example-organization-name\"),\n\t\t\tTeamId:       pulumi.String(\"team-ieF4isC...\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = terraformcloud.NewSecretCreds(ctx, \"token\", \u0026terraformcloud.SecretCredsArgs{\n\t\t\tBackend: test.Backend,\n\t\t\tRole:    example.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.terraformcloud.SecretBackend;\nimport com.pulumi.vault.terraformcloud.SecretBackendArgs;\nimport com.pulumi.vault.terraformcloud.SecretRole;\nimport com.pulumi.vault.terraformcloud.SecretRoleArgs;\nimport com.pulumi.vault.terraformcloud.SecretCreds;\nimport com.pulumi.vault.terraformcloud.SecretCredsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SecretBackend(\"test\", SecretBackendArgs.builder()        \n            .backend(\"terraform\")\n            .description(\"Manages the Terraform Cloud backend\")\n            .token(\"V0idfhi2iksSDU234ucdbi2nidsi...\")\n            .build());\n\n        var example = new SecretRole(\"example\", SecretRoleArgs.builder()        \n            .backend(test.backend())\n            .name(\"test-role\")\n            .organization(\"example-organization-name\")\n            .teamId(\"team-ieF4isC...\")\n            .build());\n\n        var token = new SecretCreds(\"token\", SecretCredsArgs.builder()        \n            .backend(test.backend())\n            .role(example.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: vault:terraformcloud:SecretBackend\n    properties:\n      backend: terraform\n      description: Manages the Terraform Cloud backend\n      token: V0idfhi2iksSDU234ucdbi2nidsi...\n  example:\n    type: vault:terraformcloud:SecretRole\n    properties:\n      backend: ${test.backend}\n      name: test-role\n      organization: example-organization-name\n      teamId: team-ieF4isC...\n  token:\n    type: vault:terraformcloud:SecretCreds\n    properties:\n      backend: ${test.backend}\n      role: ${example.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "backend": {
-                    "type": "string",
-                    "description": "Terraform Cloud secret backend to generate tokens from\n"
+                    "type": "string"
                 },
                 "leaseId": {
                     "type": "string",
@@ -29454,8 +29437,7 @@
             ],
             "inputProperties": {
                 "backend": {
-                    "type": "string",
-                    "description": "Terraform Cloud secret backend to generate tokens from\n"
+                    "type": "string"
                 },
                 "namespace": {
                     "type": "string",
@@ -29476,8 +29458,7 @@
                 "description": "Input properties used for looking up and filtering SecretCreds resources.\n",
                 "properties": {
                     "backend": {
-                        "type": "string",
-                        "description": "Terraform Cloud secret backend to generate tokens from\n"
+                        "type": "string"
                     },
                     "leaseId": {
                         "type": "string",
@@ -29519,36 +29500,31 @@
             "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.terraformcloud.SecretBackend(\"test\", {\n    backend: \"terraform\",\n    description: \"Manages the Terraform Cloud backend\",\n    token: \"V0idfhi2iksSDU234ucdbi2nidsi...\",\n});\nconst example = new vault.terraformcloud.SecretRole(\"example\", {\n    backend: test.backend,\n    name: \"test-role\",\n    organization: \"example-organization-name\",\n    teamId: \"team-ieF4isC...\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.terraformcloud.SecretBackend(\"test\",\n    backend=\"terraform\",\n    description=\"Manages the Terraform Cloud backend\",\n    token=\"V0idfhi2iksSDU234ucdbi2nidsi...\")\nexample = vault.terraformcloud.SecretRole(\"example\",\n    backend=test.backend,\n    name=\"test-role\",\n    organization=\"example-organization-name\",\n    team_id=\"team-ieF4isC...\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Vault.TerraformCloud.SecretBackend(\"test\", new()\n    {\n        Backend = \"terraform\",\n        Description = \"Manages the Terraform Cloud backend\",\n        Token = \"V0idfhi2iksSDU234ucdbi2nidsi...\",\n    });\n\n    var example = new Vault.TerraformCloud.SecretRole(\"example\", new()\n    {\n        Backend = test.Backend,\n        Name = \"test-role\",\n        Organization = \"example-organization-name\",\n        TeamId = \"team-ieF4isC...\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/terraformcloud\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := terraformcloud.NewSecretBackend(ctx, \"test\", \u0026terraformcloud.SecretBackendArgs{\n\t\t\tBackend:     pulumi.String(\"terraform\"),\n\t\t\tDescription: pulumi.String(\"Manages the Terraform Cloud backend\"),\n\t\t\tToken:       pulumi.String(\"V0idfhi2iksSDU234ucdbi2nidsi...\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = terraformcloud.NewSecretRole(ctx, \"example\", \u0026terraformcloud.SecretRoleArgs{\n\t\t\tBackend:      test.Backend,\n\t\t\tName:         pulumi.String(\"test-role\"),\n\t\t\tOrganization: pulumi.String(\"example-organization-name\"),\n\t\t\tTeamId:       pulumi.String(\"team-ieF4isC...\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.terraformcloud.SecretBackend;\nimport com.pulumi.vault.terraformcloud.SecretBackendArgs;\nimport com.pulumi.vault.terraformcloud.SecretRole;\nimport com.pulumi.vault.terraformcloud.SecretRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new SecretBackend(\"test\", SecretBackendArgs.builder()        \n            .backend(\"terraform\")\n            .description(\"Manages the Terraform Cloud backend\")\n            .token(\"V0idfhi2iksSDU234ucdbi2nidsi...\")\n            .build());\n\n        var example = new SecretRole(\"example\", SecretRoleArgs.builder()        \n            .backend(test.backend())\n            .name(\"test-role\")\n            .organization(\"example-organization-name\")\n            .teamId(\"team-ieF4isC...\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: vault:terraformcloud:SecretBackend\n    properties:\n      backend: terraform\n      description: Manages the Terraform Cloud backend\n      token: V0idfhi2iksSDU234ucdbi2nidsi...\n  example:\n    type: vault:terraformcloud:SecretRole\n    properties:\n      backend: ${test.backend}\n      name: test-role\n      organization: example-organization-name\n      teamId: team-ieF4isC...\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nTerraform Cloud secret backend roles can be imported using the `backend`, `/roles/`, and the `name` e.g.\n\n```sh\n$ pulumi import vault:terraformcloud/secretRole:SecretRole example terraform/roles/my-role\n```\n",
             "properties": {
                 "backend": {
-                    "type": "string",
-                    "description": "The path of the Terraform Cloud Secret Backend the role belongs to.\n"
+                    "type": "string"
                 },
                 "maxTtl": {
                     "type": "integer",
                     "description": "Maximum TTL for leases associated with this role, in seconds.\n"
                 },
                 "name": {
-                    "type": "string",
-                    "description": "The name of an existing role against which to create this Terraform Cloud credential\n"
+                    "type": "string"
                 },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
                 },
                 "organization": {
-                    "type": "string",
-                    "description": "Name of the Terraform Cloud or Enterprise organization\n"
+                    "type": "string"
                 },
                 "teamId": {
-                    "type": "string",
-                    "description": "ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)\n"
+                    "type": "string"
                 },
                 "ttl": {
                     "type": "integer",
                     "description": "Specifies the TTL for this role.\n"
                 },
                 "userId": {
-                    "type": "string",
-                    "description": "ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)\n"
+                    "type": "string"
                 }
             },
             "required": [
@@ -29557,7 +29533,6 @@
             "inputProperties": {
                 "backend": {
                     "type": "string",
-                    "description": "The path of the Terraform Cloud Secret Backend the role belongs to.\n",
                     "willReplaceOnChanges": true
                 },
                 "maxTtl": {
@@ -29566,7 +29541,6 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of an existing role against which to create this Terraform Cloud credential\n",
                     "willReplaceOnChanges": true
                 },
                 "namespace": {
@@ -29575,20 +29549,17 @@
                     "willReplaceOnChanges": true
                 },
                 "organization": {
-                    "type": "string",
-                    "description": "Name of the Terraform Cloud or Enterprise organization\n"
+                    "type": "string"
                 },
                 "teamId": {
-                    "type": "string",
-                    "description": "ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)\n"
+                    "type": "string"
                 },
                 "ttl": {
                     "type": "integer",
                     "description": "Specifies the TTL for this role.\n"
                 },
                 "userId": {
-                    "type": "string",
-                    "description": "ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)\n"
+                    "type": "string"
                 }
             },
             "stateInputs": {
@@ -29596,7 +29567,6 @@
                 "properties": {
                     "backend": {
                         "type": "string",
-                        "description": "The path of the Terraform Cloud Secret Backend the role belongs to.\n",
                         "willReplaceOnChanges": true
                     },
                     "maxTtl": {
@@ -29605,7 +29575,6 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of an existing role against which to create this Terraform Cloud credential\n",
                         "willReplaceOnChanges": true
                     },
                     "namespace": {
@@ -29614,20 +29583,17 @@
                         "willReplaceOnChanges": true
                     },
                     "organization": {
-                        "type": "string",
-                        "description": "Name of the Terraform Cloud or Enterprise organization\n"
+                        "type": "string"
                     },
                     "teamId": {
-                        "type": "string",
-                        "description": "ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)\n"
+                        "type": "string"
                     },
                     "ttl": {
                         "type": "integer",
                         "description": "Specifies the TTL for this role.\n"
                     },
                     "userId": {
-                        "type": "string",
-                        "description": "ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)\n"
+                        "type": "string"
                     }
                 },
                 "type": "object"
