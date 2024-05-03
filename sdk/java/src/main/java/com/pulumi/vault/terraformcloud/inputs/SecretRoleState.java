@@ -16,17 +16,9 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
 
     public static final SecretRoleState Empty = new SecretRoleState();
 
-    /**
-     * The path of the Terraform Cloud Secret Backend the role belongs to.
-     * 
-     */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
-    /**
-     * @return The path of the Terraform Cloud Secret Backend the role belongs to.
-     * 
-     */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -46,17 +38,9 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.maxTtl);
     }
 
-    /**
-     * The name of an existing role against which to create this Terraform Cloud credential
-     * 
-     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
-    /**
-     * @return The name of an existing role against which to create this Terraform Cloud credential
-     * 
-     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -82,32 +66,16 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.namespace);
     }
 
-    /**
-     * Name of the Terraform Cloud or Enterprise organization
-     * 
-     */
     @Import(name="organization")
     private @Nullable Output<String> organization;
 
-    /**
-     * @return Name of the Terraform Cloud or Enterprise organization
-     * 
-     */
     public Optional<Output<String>> organization() {
         return Optional.ofNullable(this.organization);
     }
 
-    /**
-     * ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     * 
-     */
     @Import(name="teamId")
     private @Nullable Output<String> teamId;
 
-    /**
-     * @return ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     * 
-     */
     public Optional<Output<String>> teamId() {
         return Optional.ofNullable(this.teamId);
     }
@@ -127,17 +95,9 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.ttl);
     }
 
-    /**
-     * ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     * 
-     */
     @Import(name="userId")
     private @Nullable Output<String> userId;
 
-    /**
-     * @return ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     * 
-     */
     public Optional<Output<String>> userId() {
         return Optional.ofNullable(this.userId);
     }
@@ -173,23 +133,11 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             $ = new SecretRoleState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param backend The path of the Terraform Cloud Secret Backend the role belongs to.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(@Nullable Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
-        /**
-         * @param backend The path of the Terraform Cloud Secret Backend the role belongs to.
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }
@@ -215,23 +163,11 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return maxTtl(Output.of(maxTtl));
         }
 
-        /**
-         * @param name The name of an existing role against which to create this Terraform Cloud credential
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name The name of an existing role against which to create this Terraform Cloud credential
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
@@ -263,44 +199,20 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return namespace(Output.of(namespace));
         }
 
-        /**
-         * @param organization Name of the Terraform Cloud or Enterprise organization
-         * 
-         * @return builder
-         * 
-         */
         public Builder organization(@Nullable Output<String> organization) {
             $.organization = organization;
             return this;
         }
 
-        /**
-         * @param organization Name of the Terraform Cloud or Enterprise organization
-         * 
-         * @return builder
-         * 
-         */
         public Builder organization(String organization) {
             return organization(Output.of(organization));
         }
 
-        /**
-         * @param teamId ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-         * 
-         * @return builder
-         * 
-         */
         public Builder teamId(@Nullable Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
-        /**
-         * @param teamId ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-         * 
-         * @return builder
-         * 
-         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }
@@ -326,23 +238,11 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
             return ttl(Output.of(ttl));
         }
 
-        /**
-         * @param userId ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-         * 
-         * @return builder
-         * 
-         */
         public Builder userId(@Nullable Output<String> userId) {
             $.userId = userId;
             return this;
         }
 
-        /**
-         * @param userId ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-         * 
-         * @return builder
-         * 
-         */
         public Builder userId(String userId) {
             return userId(Output.of(userId));
         }

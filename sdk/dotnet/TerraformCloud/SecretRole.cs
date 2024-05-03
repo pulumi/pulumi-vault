@@ -49,9 +49,6 @@ namespace Pulumi.Vault.TerraformCloud
     [VaultResourceType("vault:terraformcloud/secretRole:SecretRole")]
     public partial class SecretRole : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The path of the Terraform Cloud Secret Backend the role belongs to.
-        /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
@@ -61,9 +58,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("maxTtl")]
         public Output<int?> MaxTtl { get; private set; } = null!;
 
-        /// <summary>
-        /// The name of an existing role against which to create this Terraform Cloud credential
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -76,15 +70,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
-        /// <summary>
-        /// Name of the Terraform Cloud or Enterprise organization
-        /// </summary>
         [Output("organization")]
         public Output<string?> Organization { get; private set; } = null!;
 
-        /// <summary>
-        /// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-        /// </summary>
         [Output("teamId")]
         public Output<string?> TeamId { get; private set; } = null!;
 
@@ -94,9 +82,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
 
-        /// <summary>
-        /// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-        /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
 
@@ -146,9 +131,6 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretRoleArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The path of the Terraform Cloud Secret Backend the role belongs to.
-        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
@@ -158,9 +140,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
-        /// <summary>
-        /// The name of an existing role against which to create this Terraform Cloud credential
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -173,15 +152,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
-        /// <summary>
-        /// Name of the Terraform Cloud or Enterprise organization
-        /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
 
-        /// <summary>
-        /// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -191,9 +164,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
-        /// <summary>
-        /// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
@@ -205,9 +175,6 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretRoleState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The path of the Terraform Cloud Secret Backend the role belongs to.
-        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
@@ -217,9 +184,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("maxTtl")]
         public Input<int>? MaxTtl { get; set; }
 
-        /// <summary>
-        /// The name of an existing role against which to create this Terraform Cloud credential
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -232,15 +196,9 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
-        /// <summary>
-        /// Name of the Terraform Cloud or Enterprise organization
-        /// </summary>
         [Input("organization")]
         public Input<string>? Organization { get; set; }
 
-        /// <summary>
-        /// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-        /// </summary>
         [Input("teamId")]
         public Input<string>? TeamId { get; set; }
 
@@ -250,9 +208,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
-        /// <summary>
-        /// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 

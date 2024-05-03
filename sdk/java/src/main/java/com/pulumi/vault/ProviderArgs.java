@@ -34,17 +34,9 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProviderArgs Empty = new ProviderArgs();
 
-    /**
-     * If true, adds the value of the `address` argument to the Terraform process environment.
-     * 
-     */
     @Import(name="addAddressToEnv")
     private @Nullable Output<String> addAddressToEnv;
 
-    /**
-     * @return If true, adds the value of the `address` argument to the Terraform process environment.
-     * 
-     */
     public Optional<Output<String>> addAddressToEnv() {
         return Optional.ofNullable(this.addAddressToEnv);
     }
@@ -547,23 +539,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param addAddressToEnv If true, adds the value of the `address` argument to the Terraform process environment.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addAddressToEnv(@Nullable Output<String> addAddressToEnv) {
             $.addAddressToEnv = addAddressToEnv;
             return this;
         }
 
-        /**
-         * @param addAddressToEnv If true, adds the value of the `address` argument to the Terraform process environment.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addAddressToEnv(String addAddressToEnv) {
             return addAddressToEnv(Output.of(addAddressToEnv));
         }

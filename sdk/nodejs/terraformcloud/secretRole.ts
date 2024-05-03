@@ -60,17 +60,11 @@ export class SecretRole extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretRole.__pulumiType;
     }
 
-    /**
-     * The path of the Terraform Cloud Secret Backend the role belongs to.
-     */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     public readonly maxTtl!: pulumi.Output<number | undefined>;
-    /**
-     * The name of an existing role against which to create this Terraform Cloud credential
-     */
     public readonly name!: pulumi.Output<string>;
     /**
      * The namespace to provision the resource in.
@@ -79,21 +73,12 @@ export class SecretRole extends pulumi.CustomResource {
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
-    /**
-     * Name of the Terraform Cloud or Enterprise organization
-     */
     public readonly organization!: pulumi.Output<string | undefined>;
-    /**
-     * ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     */
     public readonly teamId!: pulumi.Output<string | undefined>;
     /**
      * Specifies the TTL for this role.
      */
     public readonly ttl!: pulumi.Output<number | undefined>;
-    /**
-     * ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     */
     public readonly userId!: pulumi.Output<string | undefined>;
 
     /**
@@ -137,17 +122,11 @@ export class SecretRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretRole resources.
  */
 export interface SecretRoleState {
-    /**
-     * The path of the Terraform Cloud Secret Backend the role belongs to.
-     */
     backend?: pulumi.Input<string>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     maxTtl?: pulumi.Input<number>;
-    /**
-     * The name of an existing role against which to create this Terraform Cloud credential
-     */
     name?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
@@ -156,21 +135,12 @@ export interface SecretRoleState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
-    /**
-     * Name of the Terraform Cloud or Enterprise organization
-     */
     organization?: pulumi.Input<string>;
-    /**
-     * ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     */
     teamId?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role.
      */
     ttl?: pulumi.Input<number>;
-    /**
-     * ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     */
     userId?: pulumi.Input<string>;
 }
 
@@ -178,17 +148,11 @@ export interface SecretRoleState {
  * The set of arguments for constructing a SecretRole resource.
  */
 export interface SecretRoleArgs {
-    /**
-     * The path of the Terraform Cloud Secret Backend the role belongs to.
-     */
     backend?: pulumi.Input<string>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
     maxTtl?: pulumi.Input<number>;
-    /**
-     * The name of an existing role against which to create this Terraform Cloud credential
-     */
     name?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
@@ -197,20 +161,11 @@ export interface SecretRoleArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
-    /**
-     * Name of the Terraform Cloud or Enterprise organization
-     */
     organization?: pulumi.Input<string>;
-    /**
-     * ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     */
     teamId?: pulumi.Input<string>;
     /**
      * Specifies the TTL for this role.
      */
     ttl?: pulumi.Input<number>;
-    /**
-     * ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     */
     userId?: pulumi.Input<string>;
 }
