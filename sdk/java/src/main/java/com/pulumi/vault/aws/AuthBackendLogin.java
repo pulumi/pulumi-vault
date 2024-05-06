@@ -255,17 +255,9 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     public Output<Integer> leaseDuration() {
         return this.leaseDuration;
     }
-    /**
-     * Time at which the lease was read, using the clock of the system where Terraform was running
-     * 
-     */
     @Export(name="leaseStartTime", refs={String.class}, tree="[0]")
     private Output<String> leaseStartTime;
 
-    /**
-     * @return Time at which the lease was read, using the clock of the system where Terraform was running
-     * 
-     */
     public Output<String> leaseStartTime() {
         return this.leaseStartTime;
     }

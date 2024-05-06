@@ -17,47 +17,23 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final SecretBackendArgs Empty = new SecretBackendArgs();
 
-    /**
-     * Specifies the address of the Terraform Cloud instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
-     * 
-     */
     @Import(name="address")
     private @Nullable Output<String> address;
 
-    /**
-     * @return Specifies the address of the Terraform Cloud instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
-     * 
-     */
     public Optional<Output<String>> address() {
         return Optional.ofNullable(this.address);
     }
 
-    /**
-     * Unique name of the Vault Terraform Cloud mount to configure
-     * 
-     */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
-    /**
-     * @return Unique name of the Vault Terraform Cloud mount to configure
-     * 
-     */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
     }
 
-    /**
-     * Specifies the base path for the Terraform Cloud or Enterprise API.
-     * 
-     */
     @Import(name="basePath")
     private @Nullable Output<String> basePath;
 
-    /**
-     * @return Specifies the base path for the Terraform Cloud or Enterprise API.
-     * 
-     */
     public Optional<Output<String>> basePath() {
         return Optional.ofNullable(this.basePath);
     }
@@ -147,17 +123,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.namespace);
     }
 
-    /**
-     * Specifies the Terraform Cloud access token to use.
-     * 
-     */
     @Import(name="token")
     private @Nullable Output<String> token;
 
-    /**
-     * @return Specifies the Terraform Cloud access token to use.
-     * 
-     */
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
     }
@@ -194,65 +162,29 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
             $ = new SecretBackendArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param address Specifies the address of the Terraform Cloud instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder address(@Nullable Output<String> address) {
             $.address = address;
             return this;
         }
 
-        /**
-         * @param address Specifies the address of the Terraform Cloud instance, provided as &#34;host:port&#34; like &#34;127.0.0.1:8500&#34;.
-         * 
-         * @return builder
-         * 
-         */
         public Builder address(String address) {
             return address(Output.of(address));
         }
 
-        /**
-         * @param backend Unique name of the Vault Terraform Cloud mount to configure
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(@Nullable Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
-        /**
-         * @param backend Unique name of the Vault Terraform Cloud mount to configure
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }
 
-        /**
-         * @param basePath Specifies the base path for the Terraform Cloud or Enterprise API.
-         * 
-         * @return builder
-         * 
-         */
         public Builder basePath(@Nullable Output<String> basePath) {
             $.basePath = basePath;
             return this;
         }
 
-        /**
-         * @param basePath Specifies the base path for the Terraform Cloud or Enterprise API.
-         * 
-         * @return builder
-         * 
-         */
         public Builder basePath(String basePath) {
             return basePath(Output.of(basePath));
         }
@@ -372,23 +304,11 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
             return namespace(Output.of(namespace));
         }
 
-        /**
-         * @param token Specifies the Terraform Cloud access token to use.
-         * 
-         * @return builder
-         * 
-         */
         public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
         }
 
-        /**
-         * @param token Specifies the Terraform Cloud access token to use.
-         * 
-         * @return builder
-         * 
-         */
         public Builder token(String token) {
             return token(Output.of(token));
         }

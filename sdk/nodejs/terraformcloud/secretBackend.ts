@@ -54,17 +54,8 @@ export class SecretBackend extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretBackend.__pulumiType;
     }
 
-    /**
-     * Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-     */
     public readonly address!: pulumi.Output<string | undefined>;
-    /**
-     * Unique name of the Vault Terraform Cloud mount to configure
-     */
     public readonly backend!: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the base path for the Terraform Cloud or Enterprise API.
-     */
     public readonly basePath!: pulumi.Output<string | undefined>;
     /**
      * The default TTL for credentials issued by this backend.
@@ -91,9 +82,6 @@ export class SecretBackend extends pulumi.CustomResource {
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
-    /**
-     * Specifies the Terraform Cloud access token to use.
-     */
     public readonly token!: pulumi.Output<string | undefined>;
 
     /**
@@ -141,17 +129,8 @@ export class SecretBackend extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretBackend resources.
  */
 export interface SecretBackendState {
-    /**
-     * Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Unique name of the Vault Terraform Cloud mount to configure
-     */
     backend?: pulumi.Input<string>;
-    /**
-     * Specifies the base path for the Terraform Cloud or Enterprise API.
-     */
     basePath?: pulumi.Input<string>;
     /**
      * The default TTL for credentials issued by this backend.
@@ -178,9 +157,6 @@ export interface SecretBackendState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
-    /**
-     * Specifies the Terraform Cloud access token to use.
-     */
     token?: pulumi.Input<string>;
 }
 
@@ -188,17 +164,8 @@ export interface SecretBackendState {
  * The set of arguments for constructing a SecretBackend resource.
  */
 export interface SecretBackendArgs {
-    /**
-     * Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-     */
     address?: pulumi.Input<string>;
-    /**
-     * Unique name of the Vault Terraform Cloud mount to configure
-     */
     backend?: pulumi.Input<string>;
-    /**
-     * Specifies the base path for the Terraform Cloud or Enterprise API.
-     */
     basePath?: pulumi.Input<string>;
     /**
      * The default TTL for credentials issued by this backend.
@@ -225,8 +192,5 @@ export interface SecretBackendArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
-    /**
-     * Specifies the Terraform Cloud access token to use.
-     */
     token?: pulumi.Input<string>;
 }

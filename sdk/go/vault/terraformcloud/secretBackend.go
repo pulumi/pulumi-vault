@@ -49,11 +49,8 @@ import (
 type SecretBackend struct {
 	pulumi.CustomResourceState
 
-	// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-	Address pulumi.StringPtrOutput `pulumi:"address"`
-	// Unique name of the Vault Terraform Cloud mount to configure
-	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// Specifies the base path for the Terraform Cloud or Enterprise API.
+	Address  pulumi.StringPtrOutput `pulumi:"address"`
+	Backend  pulumi.StringPtrOutput `pulumi:"backend"`
 	BasePath pulumi.StringPtrOutput `pulumi:"basePath"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
@@ -70,8 +67,7 @@ type SecretBackend struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// Specifies the Terraform Cloud access token to use.
-	Token pulumi.StringPtrOutput `pulumi:"token"`
+	Token     pulumi.StringPtrOutput `pulumi:"token"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -111,11 +107,8 @@ func GetSecretBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackend resources.
 type secretBackendState struct {
-	// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-	Address *string `pulumi:"address"`
-	// Unique name of the Vault Terraform Cloud mount to configure
-	Backend *string `pulumi:"backend"`
-	// Specifies the base path for the Terraform Cloud or Enterprise API.
+	Address  *string `pulumi:"address"`
+	Backend  *string `pulumi:"backend"`
 	BasePath *string `pulumi:"basePath"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
@@ -132,16 +125,12 @@ type secretBackendState struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Specifies the Terraform Cloud access token to use.
-	Token *string `pulumi:"token"`
+	Token     *string `pulumi:"token"`
 }
 
 type SecretBackendState struct {
-	// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-	Address pulumi.StringPtrInput
-	// Unique name of the Vault Terraform Cloud mount to configure
-	Backend pulumi.StringPtrInput
-	// Specifies the base path for the Terraform Cloud or Enterprise API.
+	Address  pulumi.StringPtrInput
+	Backend  pulumi.StringPtrInput
 	BasePath pulumi.StringPtrInput
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
@@ -158,8 +147,7 @@ type SecretBackendState struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Specifies the Terraform Cloud access token to use.
-	Token pulumi.StringPtrInput
+	Token     pulumi.StringPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -167,11 +155,8 @@ func (SecretBackendState) ElementType() reflect.Type {
 }
 
 type secretBackendArgs struct {
-	// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-	Address *string `pulumi:"address"`
-	// Unique name of the Vault Terraform Cloud mount to configure
-	Backend *string `pulumi:"backend"`
-	// Specifies the base path for the Terraform Cloud or Enterprise API.
+	Address  *string `pulumi:"address"`
+	Backend  *string `pulumi:"backend"`
 	BasePath *string `pulumi:"basePath"`
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
@@ -188,17 +173,13 @@ type secretBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
-	// Specifies the Terraform Cloud access token to use.
-	Token *string `pulumi:"token"`
+	Token     *string `pulumi:"token"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
 type SecretBackendArgs struct {
-	// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-	Address pulumi.StringPtrInput
-	// Unique name of the Vault Terraform Cloud mount to configure
-	Backend pulumi.StringPtrInput
-	// Specifies the base path for the Terraform Cloud or Enterprise API.
+	Address  pulumi.StringPtrInput
+	Backend  pulumi.StringPtrInput
 	BasePath pulumi.StringPtrInput
 	// The default TTL for credentials issued by this backend.
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
@@ -215,8 +196,7 @@ type SecretBackendArgs struct {
 	// The `namespace` is always relative to the provider's configured namespace.
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
-	// Specifies the Terraform Cloud access token to use.
-	Token pulumi.StringPtrInput
+	Token     pulumi.StringPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {
@@ -306,17 +286,14 @@ func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
 func (o SecretBackendOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// Unique name of the Vault Terraform Cloud mount to configure
 func (o SecretBackendOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the base path for the Terraform Cloud or Enterprise API.
 func (o SecretBackendOutput) BasePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.BasePath }).(pulumi.StringPtrOutput)
 }
@@ -351,7 +328,6 @@ func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Terraform Cloud access token to use.
 func (o SecretBackendOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
