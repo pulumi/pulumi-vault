@@ -15,17 +15,9 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
 
     public static final SecretCredsState Empty = new SecretCredsState();
 
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     * 
-     */
     @Import(name="backend")
     private @Nullable Output<String> backend;
 
-    /**
-     * @return Terraform Cloud secret backend to generate tokens from
-     * 
-     */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
     }
@@ -178,23 +170,11 @@ public final class SecretCredsState extends com.pulumi.resources.ResourceArgs {
             $ = new SecretCredsState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param backend Terraform Cloud secret backend to generate tokens from
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(@Nullable Output<String> backend) {
             $.backend = backend;
             return this;
         }
 
-        /**
-         * @param backend Terraform Cloud secret backend to generate tokens from
-         * 
-         * @return builder
-         * 
-         */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
         }

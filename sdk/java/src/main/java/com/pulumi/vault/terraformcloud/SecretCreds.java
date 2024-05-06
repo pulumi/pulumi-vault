@@ -70,17 +70,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:terraformcloud/secretCreds:SecretCreds")
 public class SecretCreds extends com.pulumi.resources.CustomResource {
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     * 
-     */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
-    /**
-     * @return Terraform Cloud secret backend to generate tokens from
-     * 
-     */
     public Output<String> backend() {
         return this.backend;
     }
