@@ -58,7 +58,6 @@ import (
 type SecretCreds struct {
 	pulumi.CustomResourceState
 
-	// Terraform Cloud secret backend to generate tokens from
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// The lease associated with the token. Only user tokens will have a
 	// Vault lease associated with them.
@@ -123,7 +122,6 @@ func GetSecretCreds(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretCreds resources.
 type secretCredsState struct {
-	// Terraform Cloud secret backend to generate tokens from
 	Backend *string `pulumi:"backend"`
 	// The lease associated with the token. Only user tokens will have a
 	// Vault lease associated with them.
@@ -148,7 +146,6 @@ type secretCredsState struct {
 }
 
 type SecretCredsState struct {
-	// Terraform Cloud secret backend to generate tokens from
 	Backend pulumi.StringPtrInput
 	// The lease associated with the token. Only user tokens will have a
 	// Vault lease associated with them.
@@ -177,7 +174,6 @@ func (SecretCredsState) ElementType() reflect.Type {
 }
 
 type secretCredsArgs struct {
-	// Terraform Cloud secret backend to generate tokens from
 	Backend string `pulumi:"backend"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -190,7 +186,6 @@ type secretCredsArgs struct {
 
 // The set of arguments for constructing a SecretCreds resource.
 type SecretCredsArgs struct {
-	// Terraform Cloud secret backend to generate tokens from
 	Backend pulumi.StringInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -288,7 +283,6 @@ func (o SecretCredsOutput) ToSecretCredsOutputWithContext(ctx context.Context) S
 	return o
 }
 
-// Terraform Cloud secret backend to generate tokens from
 func (o SecretCredsOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretCreds) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }

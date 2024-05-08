@@ -56,9 +56,6 @@ export class SecretCreds extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretCreds.__pulumiType;
     }
 
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     */
     public readonly backend!: pulumi.Output<string>;
     /**
      * The lease associated with the token. Only user tokens will have a 
@@ -144,9 +141,6 @@ export class SecretCreds extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretCreds resources.
  */
 export interface SecretCredsState {
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     */
     backend?: pulumi.Input<string>;
     /**
      * The lease associated with the token. Only user tokens will have a 
@@ -188,9 +182,6 @@ export interface SecretCredsState {
  * The set of arguments for constructing a SecretCreds resource.
  */
 export interface SecretCredsArgs {
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     */
     backend: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.

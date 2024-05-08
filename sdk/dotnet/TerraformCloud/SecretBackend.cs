@@ -41,21 +41,12 @@ namespace Pulumi.Vault.TerraformCloud
     [VaultResourceType("vault:terraformcloud/secretBackend:SecretBackend")]
     public partial class SecretBackend : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-        /// </summary>
         [Output("address")]
         public Output<string?> Address { get; private set; } = null!;
 
-        /// <summary>
-        /// Unique name of the Vault Terraform Cloud mount to configure
-        /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies the base path for the Terraform Cloud or Enterprise API.
-        /// </summary>
         [Output("basePath")]
         public Output<string?> BasePath { get; private set; } = null!;
 
@@ -94,9 +85,6 @@ namespace Pulumi.Vault.TerraformCloud
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies the Terraform Cloud access token to use.
-        /// </summary>
         [Output("token")]
         public Output<string?> Token { get; private set; } = null!;
 
@@ -150,21 +138,12 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretBackendArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-        /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
-        /// <summary>
-        /// Unique name of the Vault Terraform Cloud mount to configure
-        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        /// <summary>
-        /// Specifies the base path for the Terraform Cloud or Enterprise API.
-        /// </summary>
         [Input("basePath")]
         public Input<string>? BasePath { get; set; }
 
@@ -205,10 +184,6 @@ namespace Pulumi.Vault.TerraformCloud
 
         [Input("token")]
         private Input<string>? _token;
-
-        /// <summary>
-        /// Specifies the Terraform Cloud access token to use.
-        /// </summary>
         public Input<string>? Token
         {
             get => _token;
@@ -227,21 +202,12 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretBackendState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Specifies the address of the Terraform Cloud instance, provided as "host:port" like "127.0.0.1:8500".
-        /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
-        /// <summary>
-        /// Unique name of the Vault Terraform Cloud mount to configure
-        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
-        /// <summary>
-        /// Specifies the base path for the Terraform Cloud or Enterprise API.
-        /// </summary>
         [Input("basePath")]
         public Input<string>? BasePath { get; set; }
 
@@ -282,10 +248,6 @@ namespace Pulumi.Vault.TerraformCloud
 
         [Input("token")]
         private Input<string>? _token;
-
-        /// <summary>
-        /// Specifies the Terraform Cloud access token to use.
-        /// </summary>
         public Input<string>? Token
         {
             get => _token;
