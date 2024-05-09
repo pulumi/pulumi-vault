@@ -24,17 +24,12 @@ class SecretRoleArgs:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
-        :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
-        :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
-        :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
-        :param pulumi.Input[str] user_id: ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -56,9 +51,6 @@ class SecretRoleArgs:
     @property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
-        """
-        The path of the Terraform Cloud Secret Backend the role belongs to.
-        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -80,9 +72,6 @@ class SecretRoleArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of an existing role against which to create this Terraform Cloud credential
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -107,9 +96,6 @@ class SecretRoleArgs:
     @property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Terraform Cloud or Enterprise organization
-        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -119,9 +105,6 @@ class SecretRoleArgs:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -143,9 +126,6 @@ class SecretRoleArgs:
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-        """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -166,17 +146,12 @@ class _SecretRoleState:
                  user_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
-        :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
-        :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
-        :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
-        :param pulumi.Input[str] user_id: ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -198,9 +173,6 @@ class _SecretRoleState:
     @property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
-        """
-        The path of the Terraform Cloud Secret Backend the role belongs to.
-        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -222,9 +194,6 @@ class _SecretRoleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of an existing role against which to create this Terraform Cloud credential
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -249,9 +218,6 @@ class _SecretRoleState:
     @property
     @pulumi.getter
     def organization(self) -> Optional[pulumi.Input[str]]:
-        """
-        Name of the Terraform Cloud or Enterprise organization
-        """
         return pulumi.get(self, "organization")
 
     @organization.setter
@@ -261,9 +227,6 @@ class _SecretRoleState:
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-        """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
@@ -285,9 +248,6 @@ class _SecretRoleState:
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-        """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
@@ -337,17 +297,12 @@ class SecretRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
-        :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
-        :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
-        :param pulumi.Input[str] user_id: ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
         """
         ...
     @overload
@@ -446,17 +401,12 @@ class SecretRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: The path of the Terraform Cloud Secret Backend the role belongs to.
         :param pulumi.Input[int] max_ttl: Maximum TTL for leases associated with this role, in seconds.
-        :param pulumi.Input[str] name: The name of an existing role against which to create this Terraform Cloud credential
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization: Name of the Terraform Cloud or Enterprise organization
-        :param pulumi.Input[str] team_id: ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
         :param pulumi.Input[int] ttl: Specifies the TTL for this role.
-        :param pulumi.Input[str] user_id: ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -475,9 +425,6 @@ class SecretRole(pulumi.CustomResource):
     @property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[str]]:
-        """
-        The path of the Terraform Cloud Secret Backend the role belongs to.
-        """
         return pulumi.get(self, "backend")
 
     @property
@@ -491,9 +438,6 @@ class SecretRole(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        The name of an existing role against which to create this Terraform Cloud credential
-        """
         return pulumi.get(self, "name")
 
     @property
@@ -510,17 +454,11 @@ class SecretRole(pulumi.CustomResource):
     @property
     @pulumi.getter
     def organization(self) -> pulumi.Output[Optional[str]]:
-        """
-        Name of the Terraform Cloud or Enterprise organization
-        """
         return pulumi.get(self, "organization")
 
     @property
     @pulumi.getter(name="teamId")
     def team_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-        """
         return pulumi.get(self, "team_id")
 
     @property
@@ -534,8 +472,5 @@ class SecretRole(pulumi.CustomResource):
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-        """
         return pulumi.get(self, "user_id")
 
