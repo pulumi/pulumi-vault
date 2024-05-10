@@ -47,9 +47,6 @@ namespace Pulumi.Vault.TerraformCloud
     [VaultResourceType("vault:terraformcloud/secretCreds:SecretCreds")]
     public partial class SecretCreds : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Terraform Cloud secret backend to generate tokens from
-        /// </summary>
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
@@ -152,9 +149,6 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretCredsArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Terraform Cloud secret backend to generate tokens from
-        /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
@@ -181,9 +175,6 @@ namespace Pulumi.Vault.TerraformCloud
 
     public sealed class SecretCredsState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Terraform Cloud secret backend to generate tokens from
-        /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 

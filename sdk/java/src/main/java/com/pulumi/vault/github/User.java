@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,21 +47,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .organization(&#34;myorg&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *             .organization("myorg")
  *             .build());
  * 
- *         var tfUser = new User(&#34;tfUser&#34;, UserArgs.builder()        
+ *         var tfUser = new User("tfUser", UserArgs.builder()        
  *             .backend(example.id())
- *             .user(&#34;john.doe&#34;)
+ *             .user("john.doe")
  *             .policies(            
- *                 &#34;developer&#34;,
- *                 &#34;read-only&#34;)
+ *                 "developer",
+ *                 "read-only")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -20,7 +20,8 @@ public final class AppRoleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -42,14 +43,15 @@ public final class AppRoleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var role = AppRoleFunctions.getAuthBackendRoleId(GetAuthBackendRoleIdArgs.builder()
-     *             .backend(&#34;my-approle-backend&#34;)
-     *             .roleName(&#34;my-role&#34;)
+     *             .backend("my-approle-backend")
+     *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export(&#34;role-id&#34;, role.applyValue(getAuthBackendRoleIdResult -&gt; getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -62,7 +64,8 @@ public final class AppRoleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -84,14 +87,15 @@ public final class AppRoleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var role = AppRoleFunctions.getAuthBackendRoleId(GetAuthBackendRoleIdArgs.builder()
-     *             .backend(&#34;my-approle-backend&#34;)
-     *             .roleName(&#34;my-role&#34;)
+     *             .backend("my-approle-backend")
+     *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export(&#34;role-id&#34;, role.applyValue(getAuthBackendRoleIdResult -&gt; getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -104,7 +108,8 @@ public final class AppRoleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -126,14 +131,15 @@ public final class AppRoleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var role = AppRoleFunctions.getAuthBackendRoleId(GetAuthBackendRoleIdArgs.builder()
-     *             .backend(&#34;my-approle-backend&#34;)
-     *             .roleName(&#34;my-role&#34;)
+     *             .backend("my-approle-backend")
+     *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export(&#34;role-id&#34;, role.applyValue(getAuthBackendRoleIdResult -&gt; getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -146,7 +152,8 @@ public final class AppRoleFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -168,14 +175,15 @@ public final class AppRoleFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var role = AppRoleFunctions.getAuthBackendRoleId(GetAuthBackendRoleIdArgs.builder()
-     *             .backend(&#34;my-approle-backend&#34;)
-     *             .roleName(&#34;my-role&#34;)
+     *             .backend("my-approle-backend")
+     *             .roleName("my-role")
      *             .build());
      * 
-     *         ctx.export(&#34;role-id&#34;, role.applyValue(getAuthBackendRoleIdResult -&gt; getAuthBackendRoleIdResult.roleId()));
+     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

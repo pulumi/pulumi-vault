@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * Role for JWT backend:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,32 +53,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var jwt = new AuthBackend(&#34;jwt&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;jwt&#34;)
+ *         var jwt = new AuthBackend("jwt", AuthBackendArgs.builder()        
+ *             .path("jwt")
  *             .build());
  * 
- *         var example = new AuthBackendRole(&#34;example&#34;, AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
  *             .backend(jwt.path())
- *             .roleName(&#34;test-role&#34;)
+ *             .roleName("test-role")
  *             .tokenPolicies(            
- *                 &#34;default&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
- *             .boundAudiences(&#34;https://myco.test&#34;)
- *             .boundClaims(Map.of(&#34;color&#34;, &#34;red,green,blue&#34;))
- *             .userClaim(&#34;https://vault/user&#34;)
- *             .roleType(&#34;jwt&#34;)
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
+ *             .boundAudiences("https://myco.test")
+ *             .boundClaims(Map.of("color", "red,green,blue"))
+ *             .userClaim("https://vault/user")
+ *             .roleType("jwt")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Role for OIDC backend:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -100,26 +103,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var oidc = new AuthBackend(&#34;oidc&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;oidc&#34;)
- *             .defaultRole(&#34;test-role&#34;)
+ *         var oidc = new AuthBackend("oidc", AuthBackendArgs.builder()        
+ *             .path("oidc")
+ *             .defaultRole("test-role")
  *             .build());
  * 
- *         var example = new AuthBackendRole(&#34;example&#34;, AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
  *             .backend(oidc.path())
- *             .roleName(&#34;test-role&#34;)
+ *             .roleName("test-role")
  *             .tokenPolicies(            
- *                 &#34;default&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
- *             .userClaim(&#34;https://vault/user&#34;)
- *             .roleType(&#34;oidc&#34;)
- *             .allowedRedirectUris(&#34;http://localhost:8200/ui/vault/auth/oidc/oidc/callback&#34;)
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
+ *             .userClaim("https://vault/user")
+ *             .roleType("oidc")
+ *             .allowedRedirectUris("http://localhost:8200/ui/vault/auth/oidc/oidc/callback")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

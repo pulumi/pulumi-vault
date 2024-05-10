@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,25 +44,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackendRootCert(&#34;test&#34;, SecretBackendRootCertArgs.builder()        
+ *         var test = new SecretBackendRootCert("test", SecretBackendRootCertArgs.builder()        
  *             .backend(pki.path())
- *             .type(&#34;internal&#34;)
- *             .commonName(&#34;Root CA&#34;)
- *             .ttl(&#34;315360000&#34;)
- *             .format(&#34;pem&#34;)
- *             .privateKeyFormat(&#34;der&#34;)
- *             .keyType(&#34;rsa&#34;)
+ *             .type("internal")
+ *             .commonName("Root CA")
+ *             .ttl("315360000")
+ *             .format("pem")
+ *             .privateKeyFormat("der")
+ *             .keyType("rsa")
  *             .keyBits(4096)
  *             .excludeCnFromSans(true)
- *             .ou(&#34;My OU&#34;)
- *             .organization(&#34;My organization&#34;)
+ *             .ou("My OU")
+ *             .organization("My organization")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(pki)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

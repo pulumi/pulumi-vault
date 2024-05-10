@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,18 +49,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;aws&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *             .type("aws")
  *             .build());
  * 
- *         var exampleAuthBackendIdentityWhitelist = new AuthBackendIdentityWhitelist(&#34;exampleAuthBackendIdentityWhitelist&#34;, AuthBackendIdentityWhitelistArgs.builder()        
+ *         var exampleAuthBackendIdentityWhitelist = new AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", AuthBackendIdentityWhitelistArgs.builder()        
  *             .backend(example.path())
  *             .safetyBuffer(3600)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

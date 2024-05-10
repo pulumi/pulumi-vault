@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,15 +49,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var global = new QuotaRateLimit(&#34;global&#34;, QuotaRateLimitArgs.builder()        
- *             .name(&#34;global&#34;)
- *             .path(&#34;&#34;)
+ *         var global = new QuotaRateLimit("global", QuotaRateLimitArgs.builder()        
+ *             .name("global")
+ *             .path("")
  *             .rate(100)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

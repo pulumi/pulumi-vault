@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,34 +45,35 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mongo = new Mount(&#34;mongo&#34;, MountArgs.builder()        
- *             .path(&#34;%s&#34;)
- *             .type(&#34;mongodbatlas&#34;)
- *             .description(&#34;MongoDB Atlas secret engine mount&#34;)
+ *         var mongo = new Mount("mongo", MountArgs.builder()        
+ *             .path("%s")
+ *             .type("mongodbatlas")
+ *             .description("MongoDB Atlas secret engine mount")
  *             .build());
  * 
- *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
  *             .mount(mongo.path())
- *             .privateKey(&#34;privateKey&#34;)
- *             .publicKey(&#34;publicKey&#34;)
+ *             .privateKey("privateKey")
+ *             .publicKey("publicKey")
  *             .build());
  * 
- *         var role = new SecretRole(&#34;role&#34;, SecretRoleArgs.builder()        
+ *         var role = new SecretRole("role", SecretRoleArgs.builder()        
  *             .mount(mongo.path())
- *             .name(&#34;tf-test-role&#34;)
- *             .organizationId(&#34;7cf5a45a9ccf6400e60981b7&#34;)
- *             .projectId(&#34;5cf5a45a9ccf6400e60981b6&#34;)
- *             .roles(&#34;ORG_READ_ONLY&#34;)
- *             .ipAddresses(&#34;192.168.1.5, 192.168.1.6&#34;)
- *             .cidrBlocks(&#34;192.168.1.3/35&#34;)
- *             .projectRoles(&#34;GROUP_READ_ONLY&#34;)
- *             .ttl(&#34;60&#34;)
- *             .maxTtl(&#34;120&#34;)
+ *             .name("tf-test-role")
+ *             .organizationId("7cf5a45a9ccf6400e60981b7")
+ *             .projectId("5cf5a45a9ccf6400e60981b6")
+ *             .roles("ORG_READ_ONLY")
+ *             .ipAddresses("192.168.1.5, 192.168.1.6")
+ *             .cidrBlocks("192.168.1.3/35")
+ *             .projectRoles("GROUP_READ_ONLY")
+ *             .ttl("60")
+ *             .maxTtl("120")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

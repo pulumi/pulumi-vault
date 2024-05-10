@@ -36,7 +36,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -58,12 +59,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackend(GetAuthBackendArgs.builder()
-     *             .path(&#34;userpass&#34;)
+     *             .path("userpass")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -74,7 +76,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -96,12 +99,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackend(GetAuthBackendArgs.builder()
-     *             .path(&#34;userpass&#34;)
+     *             .path("userpass")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -112,7 +116,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -134,12 +139,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackend(GetAuthBackendArgs.builder()
-     *             .path(&#34;userpass&#34;)
+     *             .path("userpass")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -150,7 +156,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -172,12 +179,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getAuthBackend(GetAuthBackendArgs.builder()
-     *             .path(&#34;userpass&#34;)
+     *             .path("userpass")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -188,7 +196,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -213,11 +222,13 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -239,12 +250,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
-     *             .type(&#34;kubernetes&#34;)
+     *             .type("kubernetes")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -255,7 +267,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -280,11 +293,13 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -306,12 +321,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
-     *             .type(&#34;kubernetes&#34;)
+     *             .type("kubernetes")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -322,7 +338,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -347,11 +364,13 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -373,12 +392,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
-     *             .type(&#34;kubernetes&#34;)
+     *             .type("kubernetes")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -389,7 +409,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -414,11 +435,13 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -440,12 +463,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
-     *             .type(&#34;kubernetes&#34;)
+     *             .type("kubernetes")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -456,7 +480,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -481,11 +506,13 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -507,12 +534,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
-     *             .type(&#34;kubernetes&#34;)
+     *             .type("kubernetes")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -523,7 +551,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -548,11 +577,13 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -574,12 +605,13 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example-filter = VaultFunctions.getAuthBackends(GetAuthBackendsArgs.builder()
-     *             .type(&#34;kubernetes&#34;)
+     *             .type("kubernetes")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -592,7 +624,8 @@ public final class VaultFunctions {
      * ### Current namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -617,13 +650,15 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Single namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -645,18 +680,20 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .path(&#34;ns1&#34;)
+     *             .path("ns1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -678,18 +715,19 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .path(&#34;child&#34;)
+     *             .namespace("parent")
+     *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
      * 
-     *         // -&gt; foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     *         // -> foo/parent/child/
+     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -702,7 +740,8 @@ public final class VaultFunctions {
      * ### Current namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -727,13 +766,15 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Single namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -755,18 +796,20 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .path(&#34;ns1&#34;)
+     *             .path("ns1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -788,18 +831,19 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .path(&#34;child&#34;)
+     *             .namespace("parent")
+     *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
      * 
-     *         // -&gt; foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     *         // -> foo/parent/child/
+     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -812,7 +856,8 @@ public final class VaultFunctions {
      * ### Current namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -837,13 +882,15 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Single namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -865,18 +912,20 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .path(&#34;ns1&#34;)
+     *             .path("ns1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -898,18 +947,19 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .path(&#34;child&#34;)
+     *             .namespace("parent")
+     *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
      * 
-     *         // -&gt; foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     *         // -> foo/parent/child/
+     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -922,7 +972,8 @@ public final class VaultFunctions {
      * ### Current namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -947,13 +998,15 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Single namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -975,18 +1028,20 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .path(&#34;ns1&#34;)
+     *             .path("ns1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1008,18 +1063,19 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .path(&#34;child&#34;)
+     *             .namespace("parent")
+     *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
      * 
-     *         // -&gt; foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     *         // -> foo/parent/child/
+     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1032,7 +1088,8 @@ public final class VaultFunctions {
      * ### Current namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1057,13 +1114,15 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Single namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1085,18 +1144,20 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .path(&#34;ns1&#34;)
+     *             .path("ns1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1118,18 +1179,19 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .path(&#34;child&#34;)
+     *             .namespace("parent")
+     *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
      * 
-     *         // -&gt; foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     *         // -> foo/parent/child/
+     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1142,7 +1204,8 @@ public final class VaultFunctions {
      * ### Current namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1167,13 +1230,15 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Single namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1195,18 +1260,20 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ns1 = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .path(&#34;ns1&#34;)
+     *             .path("ns1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1228,18 +1295,19 @@ public final class VaultFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var child = VaultFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .namespace(&#34;parent&#34;)
-     *             .path(&#34;child&#34;)
+     *             .namespace("parent")
+     *             .path("child")
      *             .build());
      * 
-     *         final var fullPath = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.id());
+     *         final var fullPath = child.applyValue(getNamespaceResult -> getNamespaceResult.id());
      * 
-     *         // -&gt; foo/parent/child/
-     *         final var pathFq = child.applyValue(getNamespaceResult -&gt; getNamespaceResult.pathFq());
+     *         // -> foo/parent/child/
+     *         final var pathFq = child.applyValue(getNamespaceResult -> getNamespaceResult.pathFq());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1252,7 +1320,8 @@ public final class VaultFunctions {
      * ### Child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1277,7 +1346,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
@@ -1297,7 +1367,8 @@ public final class VaultFunctions {
      * ### Child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1322,7 +1393,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
@@ -1342,7 +1414,8 @@ public final class VaultFunctions {
      * ### Child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1367,7 +1440,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
@@ -1387,7 +1461,8 @@ public final class VaultFunctions {
      * ### Child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1412,7 +1487,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
@@ -1432,7 +1508,8 @@ public final class VaultFunctions {
      * ### Child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1457,7 +1534,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
@@ -1477,7 +1555,8 @@ public final class VaultFunctions {
      * ### Child namespaces
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1502,7 +1581,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Nested namespace
@@ -1520,7 +1600,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1545,20 +1626,20 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
-     *             .backend(&#34;nomad&#34;)
-     *             .description(&#34;test description&#34;)
-     *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
-     *             .maxLeaseTtlSeconds(&#34;7200&#34;)
-     *             .address(&#34;https://127.0.0.1:4646&#34;)
-     *             .token(&#34;ae20ceaa-...&#34;)
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *             .backend("nomad")
+     *             .description("test description")
+     *             .defaultLeaseTtlSeconds("3600")
+     *             .maxLeaseTtlSeconds("7200")
+     *             .address("https://127.0.0.1:4646")
+     *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole(&#34;test&#34;, NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
      *             .backend(config.backend())
-     *             .role(&#34;test&#34;)
-     *             .type(&#34;client&#34;)
-     *             .policies(&#34;readonly&#34;)
+     *             .role("test")
+     *             .type("client")
+     *             .policies("readonly")
      *             .build());
      * 
      *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
@@ -1568,7 +1649,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1579,7 +1661,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1604,20 +1687,20 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
-     *             .backend(&#34;nomad&#34;)
-     *             .description(&#34;test description&#34;)
-     *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
-     *             .maxLeaseTtlSeconds(&#34;7200&#34;)
-     *             .address(&#34;https://127.0.0.1:4646&#34;)
-     *             .token(&#34;ae20ceaa-...&#34;)
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *             .backend("nomad")
+     *             .description("test description")
+     *             .defaultLeaseTtlSeconds("3600")
+     *             .maxLeaseTtlSeconds("7200")
+     *             .address("https://127.0.0.1:4646")
+     *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole(&#34;test&#34;, NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
      *             .backend(config.backend())
-     *             .role(&#34;test&#34;)
-     *             .type(&#34;client&#34;)
-     *             .policies(&#34;readonly&#34;)
+     *             .role("test")
+     *             .type("client")
+     *             .policies("readonly")
      *             .build());
      * 
      *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
@@ -1627,7 +1710,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1638,7 +1722,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1663,20 +1748,20 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
-     *             .backend(&#34;nomad&#34;)
-     *             .description(&#34;test description&#34;)
-     *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
-     *             .maxLeaseTtlSeconds(&#34;7200&#34;)
-     *             .address(&#34;https://127.0.0.1:4646&#34;)
-     *             .token(&#34;ae20ceaa-...&#34;)
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *             .backend("nomad")
+     *             .description("test description")
+     *             .defaultLeaseTtlSeconds("3600")
+     *             .maxLeaseTtlSeconds("7200")
+     *             .address("https://127.0.0.1:4646")
+     *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole(&#34;test&#34;, NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
      *             .backend(config.backend())
-     *             .role(&#34;test&#34;)
-     *             .type(&#34;client&#34;)
-     *             .policies(&#34;readonly&#34;)
+     *             .role("test")
+     *             .type("client")
+     *             .policies("readonly")
      *             .build());
      * 
      *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
@@ -1686,7 +1771,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1697,7 +1783,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1722,20 +1809,20 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
-     *             .backend(&#34;nomad&#34;)
-     *             .description(&#34;test description&#34;)
-     *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
-     *             .maxLeaseTtlSeconds(&#34;7200&#34;)
-     *             .address(&#34;https://127.0.0.1:4646&#34;)
-     *             .token(&#34;ae20ceaa-...&#34;)
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *             .backend("nomad")
+     *             .description("test description")
+     *             .defaultLeaseTtlSeconds("3600")
+     *             .maxLeaseTtlSeconds("7200")
+     *             .address("https://127.0.0.1:4646")
+     *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole(&#34;test&#34;, NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
      *             .backend(config.backend())
-     *             .role(&#34;test&#34;)
-     *             .type(&#34;client&#34;)
-     *             .policies(&#34;readonly&#34;)
+     *             .role("test")
+     *             .type("client")
+     *             .policies("readonly")
      *             .build());
      * 
      *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
@@ -1745,7 +1832,8 @@ public final class VaultFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1758,7 +1846,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1783,25 +1872,26 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
-     *                 .path(&#34;secret/*&#34;)
+     *                 .path("secret/*")
      *                 .capabilities(                
-     *                     &#34;create&#34;,
-     *                     &#34;read&#34;,
-     *                     &#34;update&#34;,
-     *                     &#34;delete&#34;,
-     *                     &#34;list&#34;)
-     *                 .description(&#34;allow all on secrets&#34;)
+     *                     "create",
+     *                     "read",
+     *                     "update",
+     *                     "delete",
+     *                     "list")
+     *                 .description("allow all on secrets")
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .name(&#34;example_policy&#34;)
-     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *             .name("example_policy")
+     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1814,7 +1904,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1839,25 +1930,26 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
-     *                 .path(&#34;secret/*&#34;)
+     *                 .path("secret/*")
      *                 .capabilities(                
-     *                     &#34;create&#34;,
-     *                     &#34;read&#34;,
-     *                     &#34;update&#34;,
-     *                     &#34;delete&#34;,
-     *                     &#34;list&#34;)
-     *                 .description(&#34;allow all on secrets&#34;)
+     *                     "create",
+     *                     "read",
+     *                     "update",
+     *                     "delete",
+     *                     "list")
+     *                 .description("allow all on secrets")
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .name(&#34;example_policy&#34;)
-     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *             .name("example_policy")
+     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1870,7 +1962,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1895,25 +1988,26 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
-     *                 .path(&#34;secret/*&#34;)
+     *                 .path("secret/*")
      *                 .capabilities(                
-     *                     &#34;create&#34;,
-     *                     &#34;read&#34;,
-     *                     &#34;update&#34;,
-     *                     &#34;delete&#34;,
-     *                     &#34;list&#34;)
-     *                 .description(&#34;allow all on secrets&#34;)
+     *                     "create",
+     *                     "read",
+     *                     "update",
+     *                     "delete",
+     *                     "list")
+     *                 .description("allow all on secrets")
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .name(&#34;example_policy&#34;)
-     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *             .name("example_policy")
+     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1926,7 +2020,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1951,25 +2046,26 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
-     *                 .path(&#34;secret/*&#34;)
+     *                 .path("secret/*")
      *                 .capabilities(                
-     *                     &#34;create&#34;,
-     *                     &#34;read&#34;,
-     *                     &#34;update&#34;,
-     *                     &#34;delete&#34;,
-     *                     &#34;list&#34;)
-     *                 .description(&#34;allow all on secrets&#34;)
+     *                     "create",
+     *                     "read",
+     *                     "update",
+     *                     "delete",
+     *                     "list")
+     *                 .description("allow all on secrets")
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .name(&#34;example_policy&#34;)
-     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *             .name("example_policy")
+     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1982,7 +2078,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2007,25 +2104,26 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
-     *                 .path(&#34;secret/*&#34;)
+     *                 .path("secret/*")
      *                 .capabilities(                
-     *                     &#34;create&#34;,
-     *                     &#34;read&#34;,
-     *                     &#34;update&#34;,
-     *                     &#34;delete&#34;,
-     *                     &#34;list&#34;)
-     *                 .description(&#34;allow all on secrets&#34;)
+     *                     "create",
+     *                     "read",
+     *                     "update",
+     *                     "delete",
+     *                     "list")
+     *                 .description("allow all on secrets")
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .name(&#34;example_policy&#34;)
-     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *             .name("example_policy")
+     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2038,7 +2136,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2063,25 +2162,26 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = VaultFunctions.getPolicyDocument(GetPolicyDocumentArgs.builder()
      *             .rules(GetPolicyDocumentRuleArgs.builder()
-     *                 .path(&#34;secret/*&#34;)
+     *                 .path("secret/*")
      *                 .capabilities(                
-     *                     &#34;create&#34;,
-     *                     &#34;read&#34;,
-     *                     &#34;update&#34;,
-     *                     &#34;delete&#34;,
-     *                     &#34;list&#34;)
-     *                 .description(&#34;allow all on secrets&#34;)
+     *                     "create",
+     *                     "read",
+     *                     "update",
+     *                     "delete",
+     *                     "list")
+     *                 .description("allow all on secrets")
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy(&#34;examplePolicy&#34;, PolicyArgs.builder()        
-     *             .name(&#34;example_policy&#34;)
-     *             .policy(example.applyValue(getPolicyDocumentResult -&gt; getPolicyDocumentResult.hcl()))
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *             .name("example_policy")
+     *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2092,7 +2192,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2115,10 +2216,11 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var main = VaultFunctions.getRaftAutopilotState();
      * 
-     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2129,7 +2231,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2152,10 +2255,11 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var main = VaultFunctions.getRaftAutopilotState();
      * 
-     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2166,7 +2270,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2189,10 +2294,11 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var main = VaultFunctions.getRaftAutopilotState();
      * 
-     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2203,7 +2309,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2226,10 +2333,11 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var main = VaultFunctions.getRaftAutopilotState();
      * 
-     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2240,7 +2348,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2263,10 +2372,11 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var main = VaultFunctions.getRaftAutopilotState();
      * 
-     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2277,7 +2387,8 @@ public final class VaultFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2300,10 +2411,11 @@ public final class VaultFunctions {
      *     public static void stack(Context ctx) {
      *         final var main = VaultFunctions.getRaftAutopilotState();
      * 
-     *         ctx.export(&#34;failure-tolerance&#34;, main.applyValue(getRaftAutopilotStateResult -&gt; getRaftAutopilotStateResult.failureTolerance()));
+     *         ctx.export("failure-tolerance", main.applyValue(getRaftAutopilotStateResult -> getRaftAutopilotStateResult.failureTolerance()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

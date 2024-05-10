@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,15 +43,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var groups = new OidcScope(&#34;groups&#34;, OidcScopeArgs.builder()        
- *             .name(&#34;groups&#34;)
- *             .template(&#34;{\&#34;groups\&#34;:{{identity.entity.groups.names}}}&#34;)
- *             .description(&#34;Vault OIDC Groups Scope&#34;)
+ *         var groups = new OidcScope("groups", OidcScopeArgs.builder()        
+ *             .name("groups")
+ *             .template("{\"groups\":{{identity.entity.groups.names}}}")
+ *             .description("Vault OIDC Groups Scope")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

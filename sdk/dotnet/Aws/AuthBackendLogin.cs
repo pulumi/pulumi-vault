@@ -85,9 +85,6 @@ namespace Pulumi.Vault.Aws
         [Output("leaseDuration")]
         public Output<int> LeaseDuration { get; private set; } = null!;
 
-        /// <summary>
-        /// Time at which the lease was read, using the clock of the system where Terraform was running
-        /// </summary>
         [Output("leaseStartTime")]
         public Output<string> LeaseStartTime { get; private set; } = null!;
 
@@ -369,9 +366,6 @@ namespace Pulumi.Vault.Aws
         [Input("leaseDuration")]
         public Input<int>? LeaseDuration { get; set; }
 
-        /// <summary>
-        /// Time at which the lease was read, using the clock of the system where Terraform was running
-        /// </summary>
         [Input("leaseStartTime")]
         public Input<string>? LeaseStartTime { get; set; }
 

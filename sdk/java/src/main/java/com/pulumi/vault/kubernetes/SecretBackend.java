@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,24 +45,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;kubernetes&#34;)
- *             .description(&#34;kubernetes secrets engine description&#34;)
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+ *             .path("kubernetes")
+ *             .description("kubernetes secrets engine description")
  *             .defaultLeaseTtlSeconds(43200)
  *             .maxLeaseTtlSeconds(86400)
- *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
+ *             .kubernetesHost("https://127.0.0.1:61233")
  *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
- *                 .input(&#34;/path/to/cert&#34;)
+ *                 .input("/path/to/cert")
  *                 .build()).result())
  *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
- *                 .input(&#34;/path/to/token&#34;)
+ *                 .input("/path/to/token")
  *                 .build()).result())
  *             .disableLocalCaJwt(false)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -20,7 +20,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -42,12 +43,13 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### KV
@@ -71,7 +73,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -93,12 +96,13 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### KV
@@ -122,7 +126,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -144,12 +149,13 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### KV
@@ -173,7 +179,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -195,12 +202,13 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### KV

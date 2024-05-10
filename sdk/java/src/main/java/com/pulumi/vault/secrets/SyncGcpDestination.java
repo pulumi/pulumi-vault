@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,19 +43,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcp = new SyncGcpDestination(&#34;gcp&#34;, SyncGcpDestinationArgs.builder()        
- *             .name(&#34;gcp-dest&#34;)
- *             .projectId(&#34;gcp-project-id&#34;)
+ *         var gcp = new SyncGcpDestination("gcp", SyncGcpDestinationArgs.builder()        
+ *             .name("gcp-dest")
+ *             .projectId("gcp-project-id")
  *             .credentials(StdFunctions.file(FileArgs.builder()
  *                 .input(credentialsFile)
  *                 .build()).result())
- *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
- *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .customTags(Map.of("foo", "bar"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

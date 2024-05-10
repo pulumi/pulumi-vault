@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,29 +48,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
- *             .path(&#34;pki&#34;)
- *             .type(&#34;pki&#34;)
+ *         var pki = new Mount("pki", MountArgs.builder()        
+ *             .path("pki")
+ *             .type("pki")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+ *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
  *             .backend(pki.path())
- *             .name(&#34;my_role&#34;)
+ *             .name("my_role")
  *             .ttl(3600)
  *             .allowIpSans(true)
- *             .keyType(&#34;rsa&#34;)
+ *             .keyType("rsa")
  *             .keyBits(4096)
  *             .allowedDomains(            
- *                 &#34;example.com&#34;,
- *                 &#34;my.domain&#34;)
+ *                 "example.com",
+ *                 "my.domain")
  *             .allowSubdomains(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

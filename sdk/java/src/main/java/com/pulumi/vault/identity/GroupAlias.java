@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,26 +48,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
- *             .name(&#34;test&#34;)
- *             .type(&#34;external&#34;)
- *             .policies(&#34;test&#34;)
+ *         var group = new Group("group", GroupArgs.builder()        
+ *             .name("test")
+ *             .type("external")
+ *             .policies("test")
  *             .build());
  * 
- *         var github = new AuthBackend(&#34;github&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;github&#34;)
- *             .path(&#34;github&#34;)
+ *         var github = new AuthBackend("github", AuthBackendArgs.builder()        
+ *             .type("github")
+ *             .path("github")
  *             .build());
  * 
- *         var group_alias = new GroupAlias(&#34;group-alias&#34;, GroupAliasArgs.builder()        
- *             .name(&#34;Github_Team_Slug&#34;)
+ *         var group_alias = new GroupAlias("group-alias", GroupAliasArgs.builder()        
+ *             .name("Github_Team_Slug")
  *             .mountAccessor(github.accessor())
  *             .canonicalId(group.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

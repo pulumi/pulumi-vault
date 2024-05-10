@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,23 +47,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackendRole(&#34;example&#34;, AuthBackendRoleArgs.builder()        
- *             .roleName(&#34;my-role&#34;)
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *             .roleName("my-role")
  *             .allowedPolicies(            
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
- *             .disallowedPolicies(&#34;default&#34;)
- *             .allowedEntityAliases(&#34;test_entity&#34;)
+ *                 "dev",
+ *                 "test")
+ *             .disallowedPolicies("default")
+ *             .allowedEntityAliases("test_entity")
  *             .orphan(true)
- *             .tokenPeriod(&#34;86400&#34;)
+ *             .tokenPeriod("86400")
  *             .renewable(true)
- *             .tokenExplicitMaxTtl(&#34;115200&#34;)
- *             .pathSuffix(&#34;path-suffix&#34;)
+ *             .tokenExplicitMaxTtl("115200")
+ *             .pathSuffix("path-suffix")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

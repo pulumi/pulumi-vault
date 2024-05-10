@@ -17,7 +17,8 @@ public final class SecretBackendRolePolicyIdentifier {
      * 
      * Example usage:
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -40,38 +41,39 @@ public final class SecretBackendRolePolicyIdentifier {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
      *             .defaultLeaseTtlSeconds(3600)
      *             .maxLeaseTtlSeconds(86400)
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
      *             .backend(pki.path())
-     *             .name(&#34;my_role&#34;)
+     *             .name("my_role")
      *             .ttl(3600)
      *             .allowIpSans(true)
-     *             .keyType(&#34;rsa&#34;)
+     *             .keyType("rsa")
      *             .keyBits(4096)
      *             .allowedDomains(            
-     *                 &#34;example.com&#34;,
-     *                 &#34;my.domain&#34;)
+     *                 "example.com",
+     *                 "my.domain")
      *             .allowSubdomains(true)
      *             .policyIdentifiers(            
      *                 Map.ofEntries(
-     *                     Map.entry(&#34;oid&#34;, &#34;1.3.6.1.4.1.7.8&#34;),
-     *                     Map.entry(&#34;notice&#34;, &#34;I am a user Notice&#34;)
+     *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
+     *                     Map.entry("notice", "I am a user Notice")
      *                 ),
      *                 Map.ofEntries(
-     *                     Map.entry(&#34;oid&#34;, &#34;1.3.6.1.4.1.44947.1.2.4&#34;),
-     *                     Map.entry(&#34;cps&#34;, &#34;https://example.com&#34;)
+     *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
+     *                     Map.entry("cps", "https://example.com")
      *                 ))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -93,7 +95,8 @@ public final class SecretBackendRolePolicyIdentifier {
      * 
      * Example usage:
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -116,38 +119,39 @@ public final class SecretBackendRolePolicyIdentifier {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
      *             .defaultLeaseTtlSeconds(3600)
      *             .maxLeaseTtlSeconds(86400)
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
      *             .backend(pki.path())
-     *             .name(&#34;my_role&#34;)
+     *             .name("my_role")
      *             .ttl(3600)
      *             .allowIpSans(true)
-     *             .keyType(&#34;rsa&#34;)
+     *             .keyType("rsa")
      *             .keyBits(4096)
      *             .allowedDomains(            
-     *                 &#34;example.com&#34;,
-     *                 &#34;my.domain&#34;)
+     *                 "example.com",
+     *                 "my.domain")
      *             .allowSubdomains(true)
      *             .policyIdentifiers(            
      *                 Map.ofEntries(
-     *                     Map.entry(&#34;oid&#34;, &#34;1.3.6.1.4.1.7.8&#34;),
-     *                     Map.entry(&#34;notice&#34;, &#34;I am a user Notice&#34;)
+     *                     Map.entry("oid", "1.3.6.1.4.1.7.8"),
+     *                     Map.entry("notice", "I am a user Notice")
      *                 ),
      *                 Map.ofEntries(
-     *                     Map.entry(&#34;oid&#34;, &#34;1.3.6.1.4.1.44947.1.2.4&#34;),
-     *                     Map.entry(&#34;cps&#34;, &#34;https://example.com&#34;)
+     *                     Map.entry("oid", "1.3.6.1.4.1.44947.1.2.4"),
+     *                     Map.entry("cps", "https://example.com")
      *                 ))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

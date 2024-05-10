@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,18 +47,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var autopilot = new RaftAutopilot(&#34;autopilot&#34;, RaftAutopilotArgs.builder()        
+ *         var autopilot = new RaftAutopilot("autopilot", RaftAutopilotArgs.builder()        
  *             .cleanupDeadServers(true)
- *             .deadServerLastContactThreshold(&#34;24h0m0s&#34;)
- *             .lastContactThreshold(&#34;10s&#34;)
+ *             .deadServerLastContactThreshold("24h0m0s")
+ *             .lastContactThreshold("10s")
  *             .maxTrailingLogs(1000)
  *             .minQuorum(3)
- *             .serverStabilizationTime(&#34;10s&#34;)
+ *             .serverStabilizationTime("10s")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

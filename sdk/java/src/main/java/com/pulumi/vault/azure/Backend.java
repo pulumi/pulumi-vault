@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ### *Vault-1.9 And Above*
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,24 +44,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new Backend(&#34;azure&#34;, BackendArgs.builder()        
+ *         var azure = new Backend("azure", BackendArgs.builder()        
  *             .useMicrosoftGraphApi(true)
- *             .subscriptionId(&#34;11111111-2222-3333-4444-111111111111&#34;)
- *             .tenantId(&#34;11111111-2222-3333-4444-222222222222&#34;)
- *             .clientId(&#34;11111111-2222-3333-4444-333333333333&#34;)
- *             .clientSecret(&#34;12345678901234567890&#34;)
- *             .environment(&#34;AzurePublicCloud&#34;)
+ *             .subscriptionId("11111111-2222-3333-4444-111111111111")
+ *             .tenantId("11111111-2222-3333-4444-222222222222")
+ *             .clientId("11111111-2222-3333-4444-333333333333")
+ *             .clientSecret("12345678901234567890")
+ *             .environment("AzurePublicCloud")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### *Vault-1.8 And Below*
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -81,18 +84,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new Backend(&#34;azure&#34;, BackendArgs.builder()        
+ *         var azure = new Backend("azure", BackendArgs.builder()        
  *             .useMicrosoftGraphApi(false)
- *             .subscriptionId(&#34;11111111-2222-3333-4444-111111111111&#34;)
- *             .tenantId(&#34;11111111-2222-3333-4444-222222222222&#34;)
- *             .clientId(&#34;11111111-2222-3333-4444-333333333333&#34;)
- *             .clientSecret(&#34;12345678901234567890&#34;)
- *             .environment(&#34;AzurePublicCloud&#34;)
+ *             .subscriptionId("11111111-2222-3333-4444-111111111111")
+ *             .tenantId("11111111-2222-3333-4444-222222222222")
+ *             .clientId("11111111-2222-3333-4444-333333333333")
+ *             .clientSecret("12345678901234567890")
+ *             .environment("AzurePublicCloud")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

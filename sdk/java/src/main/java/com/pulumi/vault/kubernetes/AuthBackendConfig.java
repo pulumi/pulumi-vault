@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,25 +48,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kubernetes = new AuthBackend(&#34;kubernetes&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;kubernetes&#34;)
+ *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()        
+ *             .type("kubernetes")
  *             .build());
  * 
- *         var example = new AuthBackendConfig(&#34;example&#34;, AuthBackendConfigArgs.builder()        
+ *         var example = new AuthBackendConfig("example", AuthBackendConfigArgs.builder()        
  *             .backend(kubernetes.path())
- *             .kubernetesHost(&#34;http://example.com:443&#34;)
- *             .kubernetesCaCert(&#34;&#34;&#34;
+ *             .kubernetesHost("http://example.com:443")
+ *             .kubernetesCaCert("""
  * -----BEGIN CERTIFICATE-----
  * example
- * -----END CERTIFICATE-----            &#34;&#34;&#34;)
- *             .tokenReviewerJwt(&#34;ZXhhbXBsZQo=&#34;)
- *             .issuer(&#34;api&#34;)
- *             .disableIssValidation(&#34;true&#34;)
+ * -----END CERTIFICATE-----            """)
+ *             .tokenReviewerJwt("ZXhhbXBsZQo=")
+ *             .issuer("api")
+ *             .disableIssValidation("true")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

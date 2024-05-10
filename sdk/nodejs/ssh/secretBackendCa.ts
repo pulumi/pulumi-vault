@@ -70,7 +70,7 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     public readonly privateKey!: pulumi.Output<string>;
     /**
@@ -131,7 +131,7 @@ export interface SecretBackendCaState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -160,7 +160,7 @@ export interface SecretBackendCaArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     privateKey?: pulumi.Input<string>;
     /**

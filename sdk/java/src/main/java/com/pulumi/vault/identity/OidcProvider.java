@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,51 +54,52 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OidcKey(&#34;test&#34;, OidcKeyArgs.builder()        
- *             .name(&#34;my-key&#34;)
- *             .allowedClientIds(&#34;*&#34;)
+ *         var test = new OidcKey("test", OidcKeyArgs.builder()        
+ *             .name("my-key")
+ *             .allowedClientIds("*")
  *             .rotationPeriod(3600)
  *             .verificationTtl(3600)
  *             .build());
  * 
- *         var testOidcAssignment = new OidcAssignment(&#34;testOidcAssignment&#34;, OidcAssignmentArgs.builder()        
- *             .name(&#34;my-assignment&#34;)
- *             .entityIds(&#34;fake-ascbascas-2231a-sdfaa&#34;)
- *             .groupIds(&#34;fake-sajkdsad-32414-sfsada&#34;)
+ *         var testOidcAssignment = new OidcAssignment("testOidcAssignment", OidcAssignmentArgs.builder()        
+ *             .name("my-assignment")
+ *             .entityIds("fake-ascbascas-2231a-sdfaa")
+ *             .groupIds("fake-sajkdsad-32414-sfsada")
  *             .build());
  * 
- *         var testOidcClient = new OidcClient(&#34;testOidcClient&#34;, OidcClientArgs.builder()        
- *             .name(&#34;application&#34;)
+ *         var testOidcClient = new OidcClient("testOidcClient", OidcClientArgs.builder()        
+ *             .name("application")
  *             .key(test.name())
  *             .redirectUris(            
- *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
- *                 &#34;http://127.0.0.1:8251/callback&#34;,
- *                 &#34;http://127.0.0.1:8080/callback&#34;)
+ *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+ *                 "http://127.0.0.1:8251/callback",
+ *                 "http://127.0.0.1:8080/callback")
  *             .assignments(testOidcAssignment.name())
  *             .idTokenTtl(2400)
  *             .accessTokenTtl(7200)
  *             .build());
  * 
- *         var testOidcScope = new OidcScope(&#34;testOidcScope&#34;, OidcScopeArgs.builder()        
- *             .name(&#34;groups&#34;)
+ *         var testOidcScope = new OidcScope("testOidcScope", OidcScopeArgs.builder()        
+ *             .name("groups")
  *             .template(serializeJson(
  *                 jsonObject(
- *                     jsonProperty(&#34;groups&#34;, &#34;{{identity.entity.groups.names}}&#34;)
+ *                     jsonProperty("groups", "{{identity.entity.groups.names}}")
  *                 )))
- *             .description(&#34;Groups scope.&#34;)
+ *             .description("Groups scope.")
  *             .build());
  * 
- *         var testOidcProvider = new OidcProvider(&#34;testOidcProvider&#34;, OidcProviderArgs.builder()        
- *             .name(&#34;my-provider&#34;)
+ *         var testOidcProvider = new OidcProvider("testOidcProvider", OidcProviderArgs.builder()        
+ *             .name("my-provider")
  *             .httpsEnabled(false)
- *             .issuerHost(&#34;127.0.0.1:8200&#34;)
+ *             .issuerHost("127.0.0.1:8200")
  *             .allowedClientIds(testOidcClient.clientId())
  *             .scopesSupporteds(testOidcScope.name())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

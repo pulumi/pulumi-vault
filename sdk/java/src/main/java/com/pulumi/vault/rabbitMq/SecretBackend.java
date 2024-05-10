@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,15 +43,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var rabbitmq = new SecretBackend(&#34;rabbitmq&#34;, SecretBackendArgs.builder()        
- *             .connectionUri(&#34;https://.....&#34;)
- *             .username(&#34;user&#34;)
- *             .password(&#34;password&#34;)
+ *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()        
+ *             .connectionUri("https://.....")
+ *             .username("user")
+ *             .password("password")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

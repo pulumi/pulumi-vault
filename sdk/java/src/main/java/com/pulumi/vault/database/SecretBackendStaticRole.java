@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,44 +51,45 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var db = new Mount(&#34;db&#34;, MountArgs.builder()        
- *             .path(&#34;postgres&#34;)
- *             .type(&#34;database&#34;)
+ *         var db = new Mount("db", MountArgs.builder()        
+ *             .path("postgres")
+ *             .type("database")
  *             .build());
  * 
- *         var postgres = new SecretBackendConnection(&#34;postgres&#34;, SecretBackendConnectionArgs.builder()        
+ *         var postgres = new SecretBackendConnection("postgres", SecretBackendConnectionArgs.builder()        
  *             .backend(db.path())
- *             .name(&#34;postgres&#34;)
- *             .allowedRoles(&#34;*&#34;)
+ *             .name("postgres")
+ *             .allowedRoles("*")
  *             .postgresql(SecretBackendConnectionPostgresqlArgs.builder()
- *                 .connectionUrl(&#34;postgres://username:password@host:port/database&#34;)
+ *                 .connectionUrl("postgres://username:password{@literal @}host:port/database")
  *                 .build())
  *             .build());
  * 
  *         // configure a static role with period-based rotations
- *         var periodRole = new SecretBackendStaticRole(&#34;periodRole&#34;, SecretBackendStaticRoleArgs.builder()        
+ *         var periodRole = new SecretBackendStaticRole("periodRole", SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
- *             .name(&#34;my-period-role&#34;)
+ *             .name("my-period-role")
  *             .dbName(postgres.name())
- *             .username(&#34;example&#34;)
- *             .rotationPeriod(&#34;3600&#34;)
- *             .rotationStatements(&#34;ALTER USER \&#34;{{name}}\&#34; WITH PASSWORD &#39;{{password}}&#39;;&#34;)
+ *             .username("example")
+ *             .rotationPeriod("3600")
+ *             .rotationStatements("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';")
  *             .build());
  * 
  *         // configure a static role with schedule-based rotations
- *         var scheduleRole = new SecretBackendStaticRole(&#34;scheduleRole&#34;, SecretBackendStaticRoleArgs.builder()        
+ *         var scheduleRole = new SecretBackendStaticRole("scheduleRole", SecretBackendStaticRoleArgs.builder()        
  *             .backend(db.path())
- *             .name(&#34;my-schedule-role&#34;)
+ *             .name("my-schedule-role")
  *             .dbName(postgres.name())
- *             .username(&#34;example&#34;)
- *             .rotationSchedule(&#34;0 0 * * SAT&#34;)
- *             .rotationWindow(&#34;172800&#34;)
- *             .rotationStatements(&#34;ALTER USER \&#34;{{name}}\&#34; WITH PASSWORD &#39;{{password}}&#39;;&#34;)
+ *             .username("example")
+ *             .rotationSchedule("0 0 * * SAT")
+ *             .rotationWindow("172800")
+ *             .rotationStatements("ALTER USER \"{{name}}\" WITH PASSWORD '{{password}}';")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

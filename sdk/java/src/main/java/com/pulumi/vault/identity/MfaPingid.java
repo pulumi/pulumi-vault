@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,13 +43,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaPingid(&#34;example&#34;, MfaPingidArgs.builder()        
- *             .settingsFileBase64(&#34;CnVzZV9iYXNlNjR[...]HBtCg==&#34;)
+ *         var example = new MfaPingid("example", MfaPingidArgs.builder()        
+ *             .settingsFileBase64("CnVzZV9iYXNlNjR[...]HBtCg==")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

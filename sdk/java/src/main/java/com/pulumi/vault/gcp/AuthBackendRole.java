@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,28 +47,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcp = new AuthBackend(&#34;gcp&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;gcp&#34;)
- *             .type(&#34;gcp&#34;)
+ *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()        
+ *             .path("gcp")
+ *             .type("gcp")
  *             .build());
  * 
- *         var test = new AuthBackendRole(&#34;test&#34;, AuthBackendRoleArgs.builder()        
+ *         var test = new AuthBackendRole("test", AuthBackendRoleArgs.builder()        
  *             .backend(gcp.path())
- *             .role(&#34;test&#34;)
- *             .type(&#34;iam&#34;)
- *             .boundServiceAccounts(&#34;test&#34;)
- *             .boundProjects(&#34;test&#34;)
+ *             .role("test")
+ *             .type("iam")
+ *             .boundServiceAccounts("test")
+ *             .boundProjects("test")
  *             .tokenTtl(300)
  *             .tokenMaxTtl(600)
  *             .tokenPolicies(            
- *                 &#34;policy_a&#34;,
- *                 &#34;policy_b&#34;)
+ *                 "policy_a",
+ *                 "policy_b")
  *             .addGroupAliases(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,35 +55,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
- *             .path(&#34;kvv2&#34;)
- *             .type(&#34;kv&#34;)
- *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
- *             .description(&#34;KV Version 2 secret engine mount&#34;)
+ *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+ *             .path("kvv2")
+ *             .type("kv")
+ *             .options(Map.of("version", "2"))
+ *             .description("KV Version 2 secret engine mount")
  *             .build());
  * 
- *         var example = new SecretV2(&#34;example&#34;, SecretV2Args.builder()        
+ *         var example = new SecretV2("example", SecretV2Args.builder()        
  *             .mount(kvv2.path())
- *             .name(&#34;secret&#34;)
+ *             .name("secret")
  *             .cas(1)
  *             .deleteAllVersions(true)
  *             .dataJson(serializeJson(
  *                 jsonObject(
- *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
- *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+ *                     jsonProperty("zip", "zap"),
+ *                     jsonProperty("foo", "bar")
  *                 )))
  *             .customMetadata(SecretV2CustomMetadataArgs.builder()
  *                 .maxVersions(5)
  *                 .data(Map.ofEntries(
- *                     Map.entry(&#34;foo&#34;, &#34;vault@example.com&#34;),
- *                     Map.entry(&#34;bar&#34;, &#34;12345&#34;)
+ *                     Map.entry("foo", "vault{@literal @}example.com"),
+ *                     Map.entry("bar", "12345")
  *                 ))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Required Vault Capabilities

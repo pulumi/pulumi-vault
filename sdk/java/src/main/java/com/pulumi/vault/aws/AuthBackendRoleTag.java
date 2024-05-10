@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,38 +48,39 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend(&#34;aws&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;%s&#34;)
- *             .type(&#34;aws&#34;)
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()        
+ *             .path("%s")
+ *             .type("aws")
  *             .build());
  * 
- *         var role = new AuthBackendRole(&#34;role&#34;, AuthBackendRoleArgs.builder()        
+ *         var role = new AuthBackendRole("role", AuthBackendRoleArgs.builder()        
  *             .backend(aws.path())
- *             .role(&#34;%s&#34;)
- *             .authType(&#34;ec2&#34;)
- *             .boundAccountId(&#34;123456789012&#34;)
+ *             .role("%s")
+ *             .authType("ec2")
+ *             .boundAccountId("123456789012")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;,
- *                 &#34;qa&#34;,
- *                 &#34;test&#34;)
- *             .roleTag(&#34;VaultRoleTag&#34;)
+ *                 "dev",
+ *                 "prod",
+ *                 "qa",
+ *                 "test")
+ *             .roleTag("VaultRoleTag")
  *             .build());
  * 
- *         var test = new AuthBackendRoleTag(&#34;test&#34;, AuthBackendRoleTagArgs.builder()        
+ *         var test = new AuthBackendRoleTag("test", AuthBackendRoleTagArgs.builder()        
  *             .backend(aws.path())
  *             .role(role.role())
  *             .policies(            
- *                 &#34;prod&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
- *             .maxTtl(&#34;1h&#34;)
- *             .instanceId(&#34;i-1234567&#34;)
+ *                 "prod",
+ *                 "dev",
+ *                 "test")
+ *             .maxTtl("1h")
+ *             .instanceId("i-1234567")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

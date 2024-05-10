@@ -19,7 +19,6 @@ class SecretCredsArgs:
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretCreds resource.
-        :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] role: Name of the role.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -34,9 +33,6 @@ class SecretCredsArgs:
     @property
     @pulumi.getter
     def backend(self) -> pulumi.Input[str]:
-        """
-        Terraform Cloud secret backend to generate tokens from
-        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -84,7 +80,6 @@ class _SecretCredsState:
                  token_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretCreds resources.
-        :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a 
                Vault lease associated with them.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -119,9 +114,6 @@ class _SecretCredsState:
     @property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
-        """
-        Terraform Cloud secret backend to generate tokens from
-        """
         return pulumi.get(self, "backend")
 
     @backend.setter
@@ -251,7 +243,6 @@ class SecretCreds(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -351,7 +342,6 @@ class SecretCreds(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend: Terraform Cloud secret backend to generate tokens from
         :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a 
                Vault lease associated with them.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -383,9 +373,6 @@ class SecretCreds(pulumi.CustomResource):
     @property
     @pulumi.getter
     def backend(self) -> pulumi.Output[str]:
-        """
-        Terraform Cloud secret backend to generate tokens from
-        """
         return pulumi.get(self, "backend")
 
     @property

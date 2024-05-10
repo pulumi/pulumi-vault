@@ -18,7 +18,8 @@ public final class AzureFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -40,7 +41,7 @@ public final class AzureFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var creds = AzureFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .role(&#34;my-role&#34;)
+     *             .role("my-role")
      *             .validateCreds(true)
      *             .numSequentialSuccesses(8)
      *             .numSecondsBetweenTests(1)
@@ -49,7 +50,8 @@ public final class AzureFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Caveats
@@ -66,7 +68,8 @@ public final class AzureFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -88,7 +91,7 @@ public final class AzureFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var creds = AzureFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .role(&#34;my-role&#34;)
+     *             .role("my-role")
      *             .validateCreds(true)
      *             .numSequentialSuccesses(8)
      *             .numSecondsBetweenTests(1)
@@ -97,7 +100,8 @@ public final class AzureFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Caveats
@@ -114,7 +118,8 @@ public final class AzureFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -136,7 +141,7 @@ public final class AzureFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var creds = AzureFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .role(&#34;my-role&#34;)
+     *             .role("my-role")
      *             .validateCreds(true)
      *             .numSequentialSuccesses(8)
      *             .numSecondsBetweenTests(1)
@@ -145,7 +150,8 @@ public final class AzureFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Caveats
@@ -162,7 +168,8 @@ public final class AzureFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -184,7 +191,7 @@ public final class AzureFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var creds = AzureFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .role(&#34;my-role&#34;)
+     *             .role("my-role")
      *             .validateCreds(true)
      *             .numSequentialSuccesses(8)
      *             .numSecondsBetweenTests(1)
@@ -193,7 +200,8 @@ public final class AzureFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Caveats

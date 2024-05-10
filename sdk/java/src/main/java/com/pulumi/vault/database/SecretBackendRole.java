@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,32 +49,33 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var db = new Mount(&#34;db&#34;, MountArgs.builder()        
- *             .path(&#34;postgres&#34;)
- *             .type(&#34;database&#34;)
+ *         var db = new Mount("db", MountArgs.builder()        
+ *             .path("postgres")
+ *             .type("database")
  *             .build());
  * 
- *         var postgres = new SecretBackendConnection(&#34;postgres&#34;, SecretBackendConnectionArgs.builder()        
+ *         var postgres = new SecretBackendConnection("postgres", SecretBackendConnectionArgs.builder()        
  *             .backend(db.path())
- *             .name(&#34;postgres&#34;)
+ *             .name("postgres")
  *             .allowedRoles(            
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
+ *                 "dev",
+ *                 "prod")
  *             .postgresql(SecretBackendConnectionPostgresqlArgs.builder()
- *                 .connectionUrl(&#34;postgres://username:password@host:port/database&#34;)
+ *                 .connectionUrl("postgres://username:password{@literal @}host:port/database")
  *                 .build())
  *             .build());
  * 
- *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+ *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
  *             .backend(db.path())
- *             .name(&#34;dev&#34;)
+ *             .name("dev")
  *             .dbName(postgres.name())
- *             .creationStatements(&#34;CREATE ROLE \&#34;{{name}}\&#34; WITH LOGIN PASSWORD &#39;{{password}}&#39; VALID UNTIL &#39;{{expiration}}&#39;;&#34;)
+ *             .creationStatements("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

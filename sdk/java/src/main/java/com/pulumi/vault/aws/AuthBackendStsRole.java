@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,19 +42,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend(&#34;aws&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;aws&#34;)
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()        
+ *             .type("aws")
  *             .build());
  * 
- *         var role = new AuthBackendStsRole(&#34;role&#34;, AuthBackendStsRoleArgs.builder()        
+ *         var role = new AuthBackendStsRole("role", AuthBackendStsRoleArgs.builder()        
  *             .backend(aws.path())
- *             .accountId(&#34;1234567890&#34;)
- *             .stsRole(&#34;arn:aws:iam::1234567890:role/my-role&#34;)
+ *             .accountId("1234567890")
+ *             .stsRole("arn:aws:iam::1234567890:role/my-role")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
