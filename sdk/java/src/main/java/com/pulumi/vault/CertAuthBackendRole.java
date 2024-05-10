@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,28 +47,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cert = new AuthBackend(&#34;cert&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;cert&#34;)
- *             .type(&#34;cert&#34;)
+ *         var cert = new AuthBackend("cert", AuthBackendArgs.builder()        
+ *             .path("cert")
+ *             .type("cert")
  *             .build());
  * 
- *         var certCertAuthBackendRole = new CertAuthBackendRole(&#34;certCertAuthBackendRole&#34;, CertAuthBackendRoleArgs.builder()        
- *             .name(&#34;foo&#34;)
+ *         var certCertAuthBackendRole = new CertAuthBackendRole("certCertAuthBackendRole", CertAuthBackendRoleArgs.builder()        
+ *             .name("foo")
  *             .certificate(StdFunctions.file(FileArgs.builder()
- *                 .input(&#34;/path/to/certs/ca-cert.pem&#34;)
+ *                 .input("/path/to/certs/ca-cert.pem")
  *                 .build()).result())
  *             .backend(cert.path())
  *             .allowedNames(            
- *                 &#34;foo.example.org&#34;,
- *                 &#34;baz.example.org&#34;)
+ *                 "foo.example.org",
+ *                 "baz.example.org")
  *             .tokenTtl(300)
  *             .tokenMaxTtl(600)
- *             .tokenPolicies(&#34;foo&#34;)
+ *             .tokenPolicies("foo")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

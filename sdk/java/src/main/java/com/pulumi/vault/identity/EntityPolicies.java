@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ### Exclusive Policies
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,28 +48,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var entity = new Entity(&#34;entity&#34;, EntityArgs.builder()        
- *             .name(&#34;entity&#34;)
+ *         var entity = new Entity("entity", EntityArgs.builder()        
+ *             .name("entity")
  *             .externalPolicies(true)
  *             .build());
  * 
- *         var policies = new EntityPolicies(&#34;policies&#34;, EntityPoliciesArgs.builder()        
+ *         var policies = new EntityPolicies("policies", EntityPoliciesArgs.builder()        
  *             .policies(            
- *                 &#34;default&#34;,
- *                 &#34;test&#34;)
+ *                 "default",
+ *                 "test")
  *             .exclusive(true)
  *             .entityId(entity.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Non-exclusive Policies
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -91,28 +94,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var entity = new Entity(&#34;entity&#34;, EntityArgs.builder()        
- *             .name(&#34;entity&#34;)
+ *         var entity = new Entity("entity", EntityArgs.builder()        
+ *             .name("entity")
  *             .externalPolicies(true)
  *             .build());
  * 
- *         var default_ = new EntityPolicies(&#34;default&#34;, EntityPoliciesArgs.builder()        
+ *         var default_ = new EntityPolicies("default", EntityPoliciesArgs.builder()        
  *             .policies(            
- *                 &#34;default&#34;,
- *                 &#34;test&#34;)
+ *                 "default",
+ *                 "test")
  *             .exclusive(false)
  *             .entityId(entity.id())
  *             .build());
  * 
- *         var others = new EntityPolicies(&#34;others&#34;, EntityPoliciesArgs.builder()        
- *             .policies(&#34;others&#34;)
+ *         var others = new EntityPolicies("others", EntityPoliciesArgs.builder()        
+ *             .policies("others")
  *             .exclusive(false)
  *             .entityId(entity.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

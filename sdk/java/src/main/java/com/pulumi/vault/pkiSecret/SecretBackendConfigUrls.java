@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,22 +46,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new Mount(&#34;root&#34;, MountArgs.builder()        
- *             .path(&#34;pki-root&#34;)
- *             .type(&#34;pki&#34;)
- *             .description(&#34;root PKI&#34;)
+ *         var root = new Mount("root", MountArgs.builder()        
+ *             .path("pki-root")
+ *             .type("pki")
+ *             .description("root PKI")
  *             .defaultLeaseTtlSeconds(8640000)
  *             .maxLeaseTtlSeconds(8640000)
  *             .build());
  * 
- *         var example = new SecretBackendConfigUrls(&#34;example&#34;, SecretBackendConfigUrlsArgs.builder()        
+ *         var example = new SecretBackendConfigUrls("example", SecretBackendConfigUrlsArgs.builder()        
  *             .backend(root.path())
- *             .issuingCertificates(&#34;http://127.0.0.1:8200/v1/pki/ca&#34;)
+ *             .issuingCertificates("http://127.0.0.1:8200/v1/pki/ca")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

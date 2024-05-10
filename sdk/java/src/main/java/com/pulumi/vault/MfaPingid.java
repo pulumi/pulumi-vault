@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,22 +48,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var settingsFile = config.get(&#34;settingsFile&#34;);
- *         var userpass = new AuthBackend(&#34;userpass&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;userpass&#34;)
- *             .path(&#34;userpass&#34;)
+ *         final var settingsFile = config.get("settingsFile");
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *             .type("userpass")
+ *             .path("userpass")
  *             .build());
  * 
- *         var myPingid = new MfaPingid(&#34;myPingid&#34;, MfaPingidArgs.builder()        
- *             .name(&#34;my_pingid&#34;)
+ *         var myPingid = new MfaPingid("myPingid", MfaPingidArgs.builder()        
+ *             .name("my_pingid")
  *             .mountAccessor(userpass.accessor())
- *             .usernameFormat(&#34;user@example.com&#34;)
+ *             .usernameFormat("user{@literal @}example.com")
  *             .settingsFileBase64(settingsFile)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -242,7 +244,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
     }
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names.
-     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
      * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
@@ -255,7 +257,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
 
     /**
      * @return `(string)` - A format string for mapping Identity names to MFA method names.
-     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
      * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity

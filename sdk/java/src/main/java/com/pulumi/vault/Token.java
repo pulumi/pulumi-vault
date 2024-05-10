@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,21 +44,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Token(&#34;example&#34;, TokenArgs.builder()        
- *             .roleName(&#34;app&#34;)
+ *         var example = new Token("example", TokenArgs.builder()        
+ *             .roleName("app")
  *             .policies(            
- *                 &#34;policy1&#34;,
- *                 &#34;policy2&#34;)
+ *                 "policy1",
+ *                 "policy2")
  *             .renewable(true)
- *             .ttl(&#34;24h&#34;)
+ *             .ttl("24h")
  *             .renewMinLease(43200)
  *             .renewIncrement(86400)
- *             .metadata(Map.of(&#34;purpose&#34;, &#34;service-account&#34;))
+ *             .metadata(Map.of("purpose", "service-account"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * 
  * ### Local Storage
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,23 +43,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var localBackups = new RaftSnapshotAgentConfig(&#34;localBackups&#34;, RaftSnapshotAgentConfigArgs.builder()        
- *             .name(&#34;local&#34;)
+ *         var localBackups = new RaftSnapshotAgentConfig("localBackups", RaftSnapshotAgentConfigArgs.builder()        
+ *             .name("local")
  *             .intervalSeconds(86400)
  *             .retain(7)
- *             .pathPrefix(&#34;/opt/vault/snapshots/&#34;)
- *             .storageType(&#34;local&#34;)
+ *             .pathPrefix("/opt/vault/snapshots/")
+ *             .storageType("local")
  *             .localMaxSpace(10000000)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### AWS S3
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -82,18 +85,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var awsAccessKeyId = config.get(&#34;awsAccessKeyId&#34;);
- *         final var awsSecretAccessKey = config.get(&#34;awsSecretAccessKey&#34;);
+ *         final var awsAccessKeyId = config.get("awsAccessKeyId");
+ *         final var awsSecretAccessKey = config.get("awsSecretAccessKey");
  *         final var current = AwsFunctions.getRegion();
  * 
- *         var s3Backups = new RaftSnapshotAgentConfig(&#34;s3Backups&#34;, RaftSnapshotAgentConfigArgs.builder()        
- *             .name(&#34;s3&#34;)
+ *         var s3Backups = new RaftSnapshotAgentConfig("s3Backups", RaftSnapshotAgentConfigArgs.builder()        
+ *             .name("s3")
  *             .intervalSeconds(86400)
  *             .retain(7)
- *             .pathPrefix(&#34;/path/in/bucket&#34;)
- *             .storageType(&#34;aws-s3&#34;)
- *             .awsS3Bucket(&#34;my-bucket&#34;)
- *             .awsS3Region(current.applyValue(getRegionResult -&gt; getRegionResult.name()))
+ *             .pathPrefix("/path/in/bucket")
+ *             .storageType("aws-s3")
+ *             .awsS3Bucket("my-bucket")
+ *             .awsS3Region(current.applyValue(getRegionResult -> getRegionResult.name()))
  *             .awsAccessKeyId(awsAccessKeyId)
  *             .awsSecretAccessKey(awsSecretAccessKey)
  *             .awsS3EnableKms(true)
@@ -101,13 +104,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Azure BLOB
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -129,22 +134,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var azureAccountName = config.get(&#34;azureAccountName&#34;);
- *         final var azureAccountKey = config.get(&#34;azureAccountKey&#34;);
- *         var azureBackups = new RaftSnapshotAgentConfig(&#34;azureBackups&#34;, RaftSnapshotAgentConfigArgs.builder()        
- *             .name(&#34;azure_backup&#34;)
+ *         final var azureAccountName = config.get("azureAccountName");
+ *         final var azureAccountKey = config.get("azureAccountKey");
+ *         var azureBackups = new RaftSnapshotAgentConfig("azureBackups", RaftSnapshotAgentConfigArgs.builder()        
+ *             .name("azure_backup")
  *             .intervalSeconds(86400)
  *             .retain(7)
- *             .pathPrefix(&#34;/&#34;)
- *             .storageType(&#34;azure-blob&#34;)
- *             .azureContainerName(&#34;vault-blob&#34;)
+ *             .pathPrefix("/")
+ *             .storageType("azure-blob")
+ *             .azureContainerName("vault-blob")
  *             .azureAccountName(azureAccountName)
  *             .azureAccountKey(azureAccountKey)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

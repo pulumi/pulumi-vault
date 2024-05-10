@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,32 +52,33 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new ServiceAccount(&#34;this&#34;, ServiceAccountArgs.builder()        
- *             .accountId(&#34;my-awesome-account&#34;)
+ *         var this_ = new ServiceAccount("this", ServiceAccountArgs.builder()        
+ *             .accountId("my-awesome-account")
  *             .build());
  * 
- *         var gcp = new SecretBackend(&#34;gcp&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;gcp&#34;)
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()        
+ *             .path("gcp")
  *             .credentials(StdFunctions.file(FileArgs.builder()
- *                 .input(&#34;credentials.json&#34;)
+ *                 .input("credentials.json")
  *                 .build()).result())
  *             .build());
  * 
- *         var staticAccount = new SecretStaticAccount(&#34;staticAccount&#34;, SecretStaticAccountArgs.builder()        
+ *         var staticAccount = new SecretStaticAccount("staticAccount", SecretStaticAccountArgs.builder()        
  *             .backend(gcp.path())
- *             .staticAccount(&#34;project_viewer&#34;)
- *             .secretType(&#34;access_token&#34;)
- *             .tokenScopes(&#34;https://www.googleapis.com/auth/cloud-platform&#34;)
+ *             .staticAccount("project_viewer")
+ *             .secretType("access_token")
+ *             .tokenScopes("https://www.googleapis.com/auth/cloud-platform")
  *             .serviceAccountEmail(this_.email())
  *             .bindings(SecretStaticAccountBindingArgs.builder()
- *                 .resource(String.format(&#34;//cloudresourcemanager.googleapis.com/projects/%s&#34;, this_.project()))
- *                 .roles(&#34;roles/viewer&#34;)
+ *                 .resource(String.format("//cloudresourcemanager.googleapis.com/projects/%s", this_.project()))
+ *                 .roles("roles/viewer")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,28 +48,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .name(&#34;internal&#34;)
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()        
+ *             .name("internal")
+ *             .type("internal")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
+ *                 "dev",
+ *                 "test")
  *             .build());
  * 
- *         var test = new Entity(&#34;test&#34;, EntityArgs.builder()        
- *             .name(&#34;test&#34;)
- *             .policies(&#34;test&#34;)
+ *         var test = new Entity("test", EntityArgs.builder()        
+ *             .name("test")
+ *             .policies("test")
  *             .build());
  * 
- *         var default_ = new OidcAssignment(&#34;default&#34;, OidcAssignmentArgs.builder()        
- *             .name(&#34;assignment&#34;)
+ *         var default_ = new OidcAssignment("default", OidcAssignmentArgs.builder()        
+ *             .name("assignment")
  *             .entityIds(test.id())
  *             .groupIds(internal.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

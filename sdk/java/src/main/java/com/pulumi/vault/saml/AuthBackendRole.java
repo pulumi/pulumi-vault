@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,27 +51,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;saml&#34;)
- *             .idpMetadataUrl(&#34;https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata&#34;)
- *             .entityId(&#34;https://my.vault/v1/auth/saml&#34;)
- *             .acsUrls(&#34;https://my.vault.primary/v1/auth/saml/callback&#34;)
- *             .defaultRole(&#34;default-role&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *             .path("saml")
+ *             .idpMetadataUrl("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata")
+ *             .entityId("https://my.vault/v1/auth/saml")
+ *             .acsUrls("https://my.vault.primary/v1/auth/saml/callback")
+ *             .defaultRole("default-role")
  *             .build());
  * 
- *         var exampleAuthBackendRole = new AuthBackendRole(&#34;exampleAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
+ *         var exampleAuthBackendRole = new AuthBackendRole("exampleAuthBackendRole", AuthBackendRoleArgs.builder()        
  *             .path(example.path())
- *             .name(&#34;my-role&#34;)
- *             .groupsAttribute(&#34;groups&#34;)
- *             .boundAttributes(Map.of(&#34;group&#34;, &#34;admin&#34;))
- *             .boundSubjects(&#34;*example.com&#34;)
- *             .tokenPolicies(&#34;writer&#34;)
+ *             .name("my-role")
+ *             .groupsAttribute("groups")
+ *             .boundAttributes(Map.of("group", "admin"))
+ *             .boundSubjects("*example.com")
+ *             .tokenPolicies("writer")
  *             .tokenTtl(86400)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -30,7 +30,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -56,19 +57,19 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret(&#34;secret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/secret&#34;, path)))
+     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -78,7 +79,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -93,7 +95,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -119,19 +122,19 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret(&#34;secret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/secret&#34;, path)))
+     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -141,7 +144,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -156,7 +160,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -182,19 +187,19 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret(&#34;secret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/secret&#34;, path)))
+     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -204,7 +209,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -219,7 +225,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -245,19 +252,19 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret(&#34;secret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/secret&#34;, path)))
+     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -267,7 +274,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -282,7 +290,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -308,20 +317,20 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -332,7 +341,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -347,7 +357,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -373,20 +384,20 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -397,7 +408,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -412,7 +424,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -438,20 +451,20 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -462,7 +475,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -477,7 +491,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -503,20 +518,20 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -527,7 +542,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -542,7 +558,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -568,22 +585,22 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2(&#34;exampleSecretV2&#34;, SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;secret&#34;)
+     *             .name("secret")
      *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -594,7 +611,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -609,7 +627,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -635,22 +654,22 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2(&#34;exampleSecretV2&#34;, SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;secret&#34;)
+     *             .name("secret")
      *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -661,7 +680,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -676,7 +696,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -702,22 +723,22 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2(&#34;exampleSecretV2&#34;, SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;secret&#34;)
+     *             .name("secret")
      *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -728,7 +749,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -743,7 +765,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -769,22 +792,22 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2(&#34;exampleSecretV2&#34;, SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;secret&#34;)
+     *             .name("secret")
      *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -795,7 +818,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -810,7 +834,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -836,26 +861,26 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret(&#34;awsSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/aws-secret&#34;, path)))
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret(&#34;azureSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/azure-secret&#34;, path)))
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -865,7 +890,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -880,7 +906,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -906,26 +933,26 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret(&#34;awsSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/aws-secret&#34;, path)))
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret(&#34;azureSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/azure-secret&#34;, path)))
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -935,7 +962,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -950,7 +978,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -976,26 +1005,26 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret(&#34;awsSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/aws-secret&#34;, path)))
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret(&#34;azureSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/azure-secret&#34;, path)))
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -1005,7 +1034,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -1020,7 +1050,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1046,26 +1077,26 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv1&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
-     *             .description(&#34;KV Version 1 secret engine mount&#34;)
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret(&#34;awsSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/aws-secret&#34;, path)))
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret(&#34;azureSecret&#34;, SecretArgs.builder()        
-     *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/azure-secret&#34;, path)))
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
@@ -1075,7 +1106,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -1090,7 +1122,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1116,37 +1149,37 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2(&#34;azureSecret&#34;, SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;azure_secret&#34;)
+     *             .name("azure_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2(&#34;nestedSecret&#34;, SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -&gt; String.format(&#34;%s/dev&#34;, name)))
+     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;password&#34;, &#34;test&#34;)
+     *                     jsonProperty("password", "test")
      *                 )))
      *             .build());
      * 
@@ -1161,7 +1194,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -1176,7 +1210,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1202,37 +1237,37 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2(&#34;azureSecret&#34;, SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;azure_secret&#34;)
+     *             .name("azure_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2(&#34;nestedSecret&#34;, SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -&gt; String.format(&#34;%s/dev&#34;, name)))
+     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;password&#34;, &#34;test&#34;)
+     *                     jsonProperty("password", "test")
      *                 )))
      *             .build());
      * 
@@ -1247,7 +1282,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -1262,7 +1298,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1288,37 +1325,37 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2(&#34;azureSecret&#34;, SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;azure_secret&#34;)
+     *             .name("azure_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2(&#34;nestedSecret&#34;, SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -&gt; String.format(&#34;%s/dev&#34;, name)))
+     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;password&#34;, &#34;test&#34;)
+     *                     jsonProperty("password", "test")
      *                 )))
      *             .build());
      * 
@@ -1333,7 +1370,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -1348,7 +1386,8 @@ public final class KvFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1374,37 +1413,37 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
-     *             .path(&#34;kvv2&#34;)
-     *             .type(&#34;kv&#34;)
-     *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
-     *             .description(&#34;KV Version 2 secret engine mount&#34;)
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2(&#34;awsSecret&#34;, SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;aws_secret&#34;)
+     *             .name("aws_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;)
+     *                     jsonProperty("zip", "zap")
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2(&#34;azureSecret&#34;, SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(&#34;azure_secret&#34;)
+     *             .name("azure_secret")
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+     *                     jsonProperty("foo", "bar")
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2(&#34;nestedSecret&#34;, SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
      *             .mount(kvv2.path())
-     *             .name(azureSecret.name().applyValue(name -&gt; String.format(&#34;%s/dev&#34;, name)))
+     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
-     *                     jsonProperty(&#34;password&#34;, &#34;test&#34;)
+     *                     jsonProperty("password", "test")
      *                 )))
      *             .build());
      * 
@@ -1419,7 +1458,8 @@ public final class KvFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities

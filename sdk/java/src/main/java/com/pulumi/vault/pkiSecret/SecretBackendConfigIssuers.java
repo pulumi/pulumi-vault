@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,27 +47,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
- *             .path(&#34;pki&#34;)
- *             .type(&#34;pki&#34;)
+ *         var pki = new Mount("pki", MountArgs.builder()        
+ *             .path("pki")
+ *             .type("pki")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+ *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
  *             .backend(pki.path())
- *             .type(&#34;internal&#34;)
- *             .commonName(&#34;test&#34;)
- *             .ttl(&#34;86400&#34;)
+ *             .type("internal")
+ *             .commonName("test")
+ *             .ttl("86400")
  *             .build());
  * 
- *         var example = new SecretBackendIssuer(&#34;example&#34;, SecretBackendIssuerArgs.builder()        
+ *         var example = new SecretBackendIssuer("example", SecretBackendIssuerArgs.builder()        
  *             .backend(root.backend())
  *             .issuerRef(root.issuerId())
- *             .issuerName(&#34;example-issuer&#34;)
+ *             .issuerName("example-issuer")
  *             .build());
  * 
- *         var config = new SecretBackendConfigIssuers(&#34;config&#34;, SecretBackendConfigIssuersArgs.builder()        
+ *         var config = new SecretBackendConfigIssuers("config", SecretBackendConfigIssuersArgs.builder()        
  *             .backend(pki.path())
  *             .default_(example.issuerId())
  *             .defaultFollowsLatestIssuer(true)
@@ -74,7 +75,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

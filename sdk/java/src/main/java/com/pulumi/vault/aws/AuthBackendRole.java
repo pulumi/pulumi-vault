@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,33 +51,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend(&#34;aws&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;aws&#34;)
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()        
+ *             .type("aws")
  *             .build());
  * 
- *         var example = new AuthBackendRole(&#34;example&#34;, AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
  *             .backend(aws.path())
- *             .role(&#34;test-role&#34;)
- *             .authType(&#34;iam&#34;)
- *             .boundAmiIds(&#34;ami-8c1be5f6&#34;)
- *             .boundAccountIds(&#34;123456789012&#34;)
- *             .boundVpcIds(&#34;vpc-b61106d4&#34;)
- *             .boundSubnetIds(&#34;vpc-133128f1&#34;)
- *             .boundIamRoleArns(&#34;arn:aws:iam::123456789012:role/MyRole&#34;)
- *             .boundIamInstanceProfileArns(&#34;arn:aws:iam::123456789012:instance-profile/MyProfile&#34;)
- *             .inferredEntityType(&#34;ec2_instance&#34;)
- *             .inferredAwsRegion(&#34;us-east-1&#34;)
+ *             .role("test-role")
+ *             .authType("iam")
+ *             .boundAmiIds("ami-8c1be5f6")
+ *             .boundAccountIds("123456789012")
+ *             .boundVpcIds("vpc-b61106d4")
+ *             .boundSubnetIds("vpc-133128f1")
+ *             .boundIamRoleArns("arn:aws:iam::123456789012:role/MyRole")
+ *             .boundIamInstanceProfileArns("arn:aws:iam::123456789012:instance-profile/MyProfile")
+ *             .inferredEntityType("ec2_instance")
+ *             .inferredAwsRegion("us-east-1")
  *             .tokenTtl(60)
  *             .tokenMaxTtl(120)
  *             .tokenPolicies(            
- *                 &#34;default&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -27,7 +27,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -52,18 +53,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
@@ -73,7 +74,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -84,7 +86,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -109,18 +112,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
@@ -130,7 +133,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -141,7 +145,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -166,18 +171,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
@@ -187,7 +192,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -198,7 +204,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -223,18 +230,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
@@ -244,7 +251,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -255,7 +263,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -280,18 +289,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendIssuers(GetBackendIssuersArgs.builder()
@@ -300,7 +309,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -311,7 +321,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -336,18 +347,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendIssuers(GetBackendIssuersArgs.builder()
@@ -356,7 +367,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -367,7 +379,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -392,18 +405,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendIssuers(GetBackendIssuersArgs.builder()
@@ -412,7 +425,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -423,7 +437,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -448,18 +463,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .issuerName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendIssuers(GetBackendIssuersArgs.builder()
@@ -468,7 +483,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -479,7 +495,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -504,18 +521,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .keyName(&#34;example&#34;)
-     *             .keyType(&#34;rsa&#34;)
-     *             .keyBits(&#34;4096&#34;)
+     *             .type("internal")
+     *             .keyName("example")
+     *             .keyType("rsa")
+     *             .keyBits("4096")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
@@ -525,7 +542,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -536,7 +554,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -561,18 +580,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .keyName(&#34;example&#34;)
-     *             .keyType(&#34;rsa&#34;)
-     *             .keyBits(&#34;4096&#34;)
+     *             .type("internal")
+     *             .keyName("example")
+     *             .keyType("rsa")
+     *             .keyBits("4096")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
@@ -582,7 +601,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -593,7 +613,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -618,18 +639,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .keyName(&#34;example&#34;)
-     *             .keyType(&#34;rsa&#34;)
-     *             .keyBits(&#34;4096&#34;)
+     *             .type("internal")
+     *             .keyName("example")
+     *             .keyType("rsa")
+     *             .keyBits("4096")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
@@ -639,7 +660,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -650,7 +672,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -675,18 +698,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .keyName(&#34;example&#34;)
-     *             .keyType(&#34;rsa&#34;)
-     *             .keyBits(&#34;4096&#34;)
+     *             .type("internal")
+     *             .keyName("example")
+     *             .keyType("rsa")
+     *             .keyBits("4096")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
@@ -696,7 +719,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -707,7 +731,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -732,18 +757,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .keyName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .keyName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKeys(GetBackendKeysArgs.builder()
@@ -752,7 +777,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -763,7 +789,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -788,18 +815,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .keyName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .keyName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKeys(GetBackendKeysArgs.builder()
@@ -808,7 +835,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -819,7 +847,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -844,18 +873,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .keyName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .keyName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKeys(GetBackendKeysArgs.builder()
@@ -864,7 +893,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -875,7 +905,8 @@ public final class PkiSecretFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -900,18 +931,18 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
-     *             .path(&#34;pki&#34;)
-     *             .type(&#34;pki&#34;)
-     *             .description(&#34;PKI secret engine mount&#34;)
+     *         var pki = new Mount("pki", MountArgs.builder()        
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert(&#34;root&#34;, SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
      *             .backend(pki.path())
-     *             .type(&#34;internal&#34;)
-     *             .commonName(&#34;example&#34;)
-     *             .ttl(&#34;86400&#34;)
-     *             .keyName(&#34;example&#34;)
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .keyName("example")
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKeys(GetBackendKeysArgs.builder()
@@ -920,7 +951,8 @@ public final class PkiSecretFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

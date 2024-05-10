@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,25 +44,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
- *             .backend(&#34;nomad&#34;)
- *             .description(&#34;test description&#34;)
- *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
- *             .maxLeaseTtlSeconds(&#34;7200&#34;)
- *             .address(&#34;https://127.0.0.1:4646&#34;)
- *             .token(&#34;ae20ceaa-...&#34;)
+ *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+ *             .backend("nomad")
+ *             .description("test description")
+ *             .defaultLeaseTtlSeconds("3600")
+ *             .maxLeaseTtlSeconds("7200")
+ *             .address("https://127.0.0.1:4646")
+ *             .token("ae20ceaa-...")
  *             .build());
  * 
- *         var test = new NomadSecretRole(&#34;test&#34;, NomadSecretRoleArgs.builder()        
+ *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
  *             .backend(config.backend())
- *             .role(&#34;test&#34;)
- *             .type(&#34;client&#34;)
- *             .policies(&#34;readonly&#34;)
+ *             .role("test")
+ *             .type("client")
+ *             .policies("readonly")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

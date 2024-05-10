@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ### Internal Group
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,24 +49,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .name(&#34;internal&#34;)
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()        
+ *             .name("internal")
+ *             .type("internal")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *                 "dev",
+ *                 "test")
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### External Group
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -86,16 +89,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
- *             .name(&#34;external&#34;)
- *             .type(&#34;external&#34;)
- *             .policies(&#34;test&#34;)
- *             .metadata(Map.of(&#34;version&#34;, &#34;1&#34;))
+ *         var group = new Group("group", GroupArgs.builder()        
+ *             .name("external")
+ *             .type("external")
+ *             .policies("test")
+ *             .metadata(Map.of("version", "1"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Caveats
@@ -105,7 +109,8 @@ import javax.annotation.Nullable;
  * 
  * This sort of pattern should be avoided:
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -126,27 +131,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .name(&#34;internal&#34;)
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()        
+ *             .name("internal")
+ *             .type("internal")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *                 "dev",
+ *                 "test")
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var internalGroup = new Group(&#34;internalGroup&#34;, GroupArgs.builder()        
- *             .name(&#34;Internal&#34;)
- *             .type(&#34;internal&#34;)
+ *         var internalGroup = new Group("internalGroup", GroupArgs.builder()        
+ *             .name("Internal")
+ *             .type("internal")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *                 "dev",
+ *                 "test")
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

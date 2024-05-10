@@ -30,7 +30,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -52,12 +53,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
-     *             .entityName(&#34;entity_12345&#34;)
+     *             .entityName("entity_12345")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -72,7 +74,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -94,12 +97,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
-     *             .entityName(&#34;entity_12345&#34;)
+     *             .entityName("entity_12345")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -114,7 +118,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -136,12 +141,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
-     *             .entityName(&#34;entity_12345&#34;)
+     *             .entityName("entity_12345")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -156,7 +162,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -178,12 +185,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
-     *             .entityName(&#34;entity_12345&#34;)
+     *             .entityName("entity_12345")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -198,7 +206,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -220,12 +229,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
-     *             .entityName(&#34;entity_12345&#34;)
+     *             .entityName("entity_12345")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -240,7 +250,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -262,12 +273,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
-     *             .entityName(&#34;entity_12345&#34;)
+     *             .entityName("entity_12345")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -282,7 +294,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -304,12 +317,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
-     *             .groupName(&#34;user&#34;)
+     *             .groupName("user")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -324,7 +338,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -346,12 +361,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
-     *             .groupName(&#34;user&#34;)
+     *             .groupName("user")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -366,7 +382,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -388,12 +405,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
-     *             .groupName(&#34;user&#34;)
+     *             .groupName("user")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -408,7 +426,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -430,12 +449,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
-     *             .groupName(&#34;user&#34;)
+     *             .groupName("user")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -450,7 +470,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -472,12 +493,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
-     *             .groupName(&#34;user&#34;)
+     *             .groupName("user")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -492,7 +514,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -514,12 +537,13 @@ public final class IdentityFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
-     *             .groupName(&#34;user&#34;)
+     *             .groupName("user")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ## Required Vault Capabilities
@@ -534,7 +558,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -557,12 +582,12 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
@@ -573,7 +598,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -584,7 +610,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -607,12 +634,12 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
@@ -623,7 +650,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -634,7 +662,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -657,12 +686,12 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
@@ -673,7 +702,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -684,7 +714,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -707,12 +738,12 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
@@ -723,7 +754,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -734,7 +766,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -761,26 +794,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -790,7 +823,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -801,7 +835,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -828,26 +863,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -857,7 +892,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -868,7 +904,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -895,26 +932,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -924,7 +961,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -935,7 +973,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -962,26 +1001,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -991,7 +1030,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1002,7 +1042,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1029,26 +1070,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -1058,7 +1099,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1069,7 +1111,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1096,26 +1139,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -1125,7 +1168,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1136,7 +1180,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1163,26 +1208,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -1192,7 +1237,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1203,7 +1249,8 @@ public final class IdentityFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1230,26 +1277,26 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
-     *             .name(&#34;key&#34;)
-     *             .allowedClientIds(&#34;*&#34;)
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *             .name("key")
+     *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient(&#34;app&#34;, OidcClientArgs.builder()        
-     *             .name(&#34;application&#34;)
+     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
-     *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
-     *                 &#34;http://127.0.0.1:8251/callback&#34;,
-     *                 &#34;http://127.0.0.1:8080/callback&#34;)
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
      *             .idTokenTtl(2400)
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider(&#34;provider&#34;, OidcProviderArgs.builder()        
-     *             .name(&#34;provider&#34;)
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
      * 
@@ -1259,7 +1306,8 @@ public final class IdentityFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

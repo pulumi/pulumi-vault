@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ### Exclusive Member Groups
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,19 +50,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .name(&#34;internal&#34;)
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()        
+ *             .name("internal")
+ *             .type("internal")
  *             .externalMemberGroupIds(true)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var users = new Group(&#34;users&#34;, GroupArgs.builder()        
- *             .name(&#34;users&#34;)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *         var users = new Group("users", GroupArgs.builder()        
+ *             .name("users")
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var members = new GroupMemberGroupIds(&#34;members&#34;, GroupMemberGroupIdsArgs.builder()        
+ *         var members = new GroupMemberGroupIds("members", GroupMemberGroupIdsArgs.builder()        
  *             .exclusive(true)
  *             .memberGroupIds(users.id())
  *             .groupId(internal.id())
@@ -69,13 +70,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Non-Exclusive Member Groups
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -98,19 +101,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .name(&#34;internal&#34;)
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()        
+ *             .name("internal")
+ *             .type("internal")
  *             .externalMemberGroupIds(true)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var users = new Group(&#34;users&#34;, GroupArgs.builder()        
- *             .name(&#34;users&#34;)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *         var users = new Group("users", GroupArgs.builder()        
+ *             .name("users")
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var members = new GroupMemberGroupIds(&#34;members&#34;, GroupMemberGroupIdsArgs.builder()        
+ *         var members = new GroupMemberGroupIds("members", GroupMemberGroupIdsArgs.builder()        
  *             .exclusive(false)
  *             .memberGroupIds(users.id())
  *             .groupId(internal.id())
@@ -118,7 +121,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,20 +47,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var alicloud = new AuthBackend(&#34;alicloud&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;alicloud&#34;)
- *             .path(&#34;alicloud&#34;)
+ *         var alicloud = new AuthBackend("alicloud", AuthBackendArgs.builder()        
+ *             .type("alicloud")
+ *             .path("alicloud")
  *             .build());
  * 
- *         var alicloudAuthBackendRole = new AuthBackendRole(&#34;alicloudAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
+ *         var alicloudAuthBackendRole = new AuthBackendRole("alicloudAuthBackendRole", AuthBackendRoleArgs.builder()        
  *             .backend(alicloud.path())
- *             .role(&#34;example&#34;)
- *             .arn(&#34;acs:ram:123456:tf:role/foobar&#34;)
+ *             .role("example")
+ *             .arn("acs:ram:123456:tf:role/foobar")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

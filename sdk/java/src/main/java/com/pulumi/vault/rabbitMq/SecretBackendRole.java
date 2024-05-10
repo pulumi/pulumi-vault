@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,35 +47,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var rabbitmq = new SecretBackend(&#34;rabbitmq&#34;, SecretBackendArgs.builder()        
- *             .connectionUri(&#34;https://.....&#34;)
- *             .username(&#34;user&#34;)
- *             .password(&#34;password&#34;)
+ *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()        
+ *             .connectionUri("https://.....")
+ *             .username("user")
+ *             .password("password")
  *             .build());
  * 
- *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+ *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
  *             .backend(rabbitmq.path())
- *             .name(&#34;deploy&#34;)
- *             .tags(&#34;tag1,tag2&#34;)
+ *             .name("deploy")
+ *             .tags("tag1,tag2")
  *             .vhosts(SecretBackendRoleVhostArgs.builder()
- *                 .host(&#34;/&#34;)
- *                 .configure(&#34;&#34;)
- *                 .read(&#34;.*&#34;)
- *                 .write(&#34;&#34;)
+ *                 .host("/")
+ *                 .configure("")
+ *                 .read(".*")
+ *                 .write("")
  *                 .build())
  *             .vhostTopics(SecretBackendRoleVhostTopicArgs.builder()
  *                 .vhosts(SecretBackendRoleVhostTopicVhostArgs.builder()
- *                     .topic(&#34;amq.topic&#34;)
- *                     .read(&#34;.*&#34;)
- *                     .write(&#34;&#34;)
+ *                     .topic("amq.topic")
+ *                     .read(".*")
+ *                     .write("")
  *                     .build())
- *                 .host(&#34;/&#34;)
+ *                 .host("/")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

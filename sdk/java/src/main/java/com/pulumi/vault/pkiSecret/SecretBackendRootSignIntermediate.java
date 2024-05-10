@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,20 +46,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new SecretBackendRootSignIntermediate(&#34;root&#34;, SecretBackendRootSignIntermediateArgs.builder()        
+ *         var root = new SecretBackendRootSignIntermediate("root", SecretBackendRootSignIntermediateArgs.builder()        
  *             .backend(rootVaultMount.path())
  *             .csr(intermediate.csr())
- *             .commonName(&#34;Intermediate CA&#34;)
+ *             .commonName("Intermediate CA")
  *             .excludeCnFromSans(true)
- *             .ou(&#34;My OU&#34;)
- *             .organization(&#34;My organization&#34;)
+ *             .ou("My OU")
+ *             .organization("My organization")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(intermediate)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

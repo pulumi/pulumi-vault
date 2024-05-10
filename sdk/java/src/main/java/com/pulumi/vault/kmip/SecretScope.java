@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,20 +47,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var default_ = new SecretBackend(&#34;default&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;kmip&#34;)
- *             .description(&#34;Vault KMIP backend&#34;)
+ *         var default_ = new SecretBackend("default", SecretBackendArgs.builder()        
+ *             .path("kmip")
+ *             .description("Vault KMIP backend")
  *             .build());
  * 
- *         var dev = new SecretScope(&#34;dev&#34;, SecretScopeArgs.builder()        
+ *         var dev = new SecretScope("dev", SecretScopeArgs.builder()        
  *             .path(default_.path())
- *             .scope(&#34;dev&#34;)
+ *             .scope("dev")
  *             .force(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

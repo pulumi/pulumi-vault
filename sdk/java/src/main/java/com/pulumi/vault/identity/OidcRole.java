@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * role&#39;s Client ID to allow the role to use the key.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,21 +49,22 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var key = config.get(&#34;key&#34;).orElse(&#34;key&#34;);
- *         var role = new OidcRole(&#34;role&#34;, OidcRoleArgs.builder()        
- *             .name(&#34;role&#34;)
+ *         final var key = config.get("key").orElse("key");
+ *         var role = new OidcRole("role", OidcRoleArgs.builder()        
+ *             .name("role")
  *             .key(key)
  *             .build());
  * 
- *         var keyOidcKey = new OidcKey(&#34;keyOidcKey&#34;, OidcKeyArgs.builder()        
+ *         var keyOidcKey = new OidcKey("keyOidcKey", OidcKeyArgs.builder()        
  *             .name(key)
- *             .algorithm(&#34;RS256&#34;)
+ *             .algorithm("RS256")
  *             .allowedClientIds(role.clientId())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * If you want to create the key first before creating the role, you can use a separate
@@ -70,7 +72,8 @@ import javax.annotation.Nullable;
  * the key.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -95,24 +98,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
- *             .name(&#34;key&#34;)
- *             .algorithm(&#34;RS256&#34;)
+ *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+ *             .name("key")
+ *             .algorithm("RS256")
  *             .build());
  * 
- *         var role = new OidcRole(&#34;role&#34;, OidcRoleArgs.builder()        
- *             .name(&#34;role&#34;)
+ *         var role = new OidcRole("role", OidcRoleArgs.builder()        
+ *             .name("role")
  *             .key(key.name())
  *             .build());
  * 
- *         var roleOidcKeyAllowedClientID = new OidcKeyAllowedClientID(&#34;roleOidcKeyAllowedClientID&#34;, OidcKeyAllowedClientIDArgs.builder()        
+ *         var roleOidcKeyAllowedClientID = new OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", OidcKeyAllowedClientIDArgs.builder()        
  *             .keyName(key.name())
  *             .allowedClientId(role.clientId())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

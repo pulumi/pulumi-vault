@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,14 +50,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
- *             .path(&#34;kvv2&#34;)
- *             .type(&#34;kv&#34;)
- *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
- *             .description(&#34;KV Version 2 secret engine mount&#34;)
+ *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+ *             .path("kvv2")
+ *             .type("kv")
+ *             .options(Map.of("version", "2"))
+ *             .description("KV Version 2 secret engine mount")
  *             .build());
  * 
- *         var example = new SecretBackendV2(&#34;example&#34;, SecretBackendV2Args.builder()        
+ *         var example = new SecretBackendV2("example", SecretBackendV2Args.builder()        
  *             .mount(kvv2.path())
  *             .maxVersions(5)
  *             .deleteVersionAfter(12600)
@@ -65,7 +66,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Required Vault Capabilities

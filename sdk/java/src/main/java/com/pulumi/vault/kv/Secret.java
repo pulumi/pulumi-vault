@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,25 +51,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv1 = new Mount(&#34;kvv1&#34;, MountArgs.builder()        
- *             .path(&#34;kvv1&#34;)
- *             .type(&#34;kv&#34;)
- *             .options(Map.of(&#34;version&#34;, &#34;1&#34;))
- *             .description(&#34;KV Version 1 secret engine mount&#34;)
+ *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+ *             .path("kvv1")
+ *             .type("kv")
+ *             .options(Map.of("version", "1"))
+ *             .description("KV Version 1 secret engine mount")
  *             .build());
  * 
- *         var secret = new Secret(&#34;secret&#34;, SecretArgs.builder()        
- *             .path(kvv1.path().applyValue(path -&gt; String.format(&#34;%s/secret&#34;, path)))
+ *         var secret = new Secret("secret", SecretArgs.builder()        
+ *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
  *             .dataJson(serializeJson(
  *                 jsonObject(
- *                     jsonProperty(&#34;zip&#34;, &#34;zap&#34;),
- *                     jsonProperty(&#34;foo&#34;, &#34;bar&#34;)
+ *                     jsonProperty("zip", "zap"),
+ *                     jsonProperty("foo", "bar")
  *                 )))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Required Vault Capabilities

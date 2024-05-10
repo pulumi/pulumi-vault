@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,22 +43,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
- *             .backend(&#34;terraform&#34;)
- *             .description(&#34;Manages the Terraform Cloud backend&#34;)
- *             .token(&#34;V0idfhi2iksSDU234ucdbi2nidsi...&#34;)
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()        
+ *             .backend("terraform")
+ *             .description("Manages the Terraform Cloud backend")
+ *             .token("V0idfhi2iksSDU234ucdbi2nidsi...")
  *             .build());
  * 
- *         var example = new SecretRole(&#34;example&#34;, SecretRoleArgs.builder()        
+ *         var example = new SecretRole("example", SecretRoleArgs.builder()        
  *             .backend(test.backend())
- *             .name(&#34;test-role&#34;)
- *             .organization(&#34;example-organization-name&#34;)
- *             .teamId(&#34;team-ieF4isC...&#34;)
+ *             .name("test-role")
+ *             .organization("example-organization-name")
+ *             .teamId("team-ieF4isC...")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -71,17 +73,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:terraformcloud/secretRole:SecretRole")
 public class SecretRole extends com.pulumi.resources.CustomResource {
-    /**
-     * The path of the Terraform Cloud Secret Backend the role belongs to.
-     * 
-     */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backend;
 
-    /**
-     * @return The path of the Terraform Cloud Secret Backend the role belongs to.
-     * 
-     */
     public Output<Optional<String>> backend() {
         return Codegen.optional(this.backend);
     }
@@ -99,17 +93,9 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> maxTtl() {
         return Codegen.optional(this.maxTtl);
     }
-    /**
-     * The name of an existing role against which to create this Terraform Cloud credential
-     * 
-     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
-    /**
-     * @return The name of an existing role against which to create this Terraform Cloud credential
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
@@ -133,31 +119,15 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
     }
-    /**
-     * Name of the Terraform Cloud or Enterprise organization
-     * 
-     */
     @Export(name="organization", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> organization;
 
-    /**
-     * @return Name of the Terraform Cloud or Enterprise organization
-     * 
-     */
     public Output<Optional<String>> organization() {
         return Codegen.optional(this.organization);
     }
-    /**
-     * ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     * 
-     */
     @Export(name="teamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> teamId;
 
-    /**
-     * @return ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-     * 
-     */
     public Output<Optional<String>> teamId() {
         return Codegen.optional(this.teamId);
     }
@@ -175,17 +145,9 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> ttl() {
         return Codegen.optional(this.ttl);
     }
-    /**
-     * ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     * 
-     */
     @Export(name="userId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userId;
 
-    /**
-     * @return ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
-     * 
-     */
     public Output<Optional<String>> userId() {
         return Codegen.optional(this.userId);
     }

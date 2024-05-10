@@ -21,7 +21,8 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -46,26 +47,26 @@ public final class AwsFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend(&#34;aws&#34;, SecretBackendArgs.builder()        
-     *             .accessKey(&#34;AKIA.....&#34;)
-     *             .secretKey(&#34;SECRETKEYFROMAWS&#34;)
+     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+     *             .accessKey("AKIA.....")
+     *             .secretKey("SECRETKEYFROMAWS")
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
-     *             .name(&#34;test&#34;)
-     *             .policy(&#34;&#34;&#34;
+     *             .name("test")
+     *             .policy("""
      * {
-     *   &#34;Version&#34;: &#34;2012-10-17&#34;,
-     *   &#34;Statement&#34;: [
+     *   "Version": "2012-10-17",
+     *   "Statement": [
      *     {
-     *       &#34;Effect&#34;: &#34;Allow&#34;,
-     *       &#34;Action&#34;: &#34;iam:*&#34;,
-     *       &#34;Resource&#34;: &#34;*&#34;
+     *       "Effect": "Allow",
+     *       "Action": "iam:*",
+     *       "Resource": "*"
      *     }
      *   ]
      * }
-     *             &#34;&#34;&#34;)
+     *             """)
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
@@ -76,7 +77,8 @@ public final class AwsFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -87,7 +89,8 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -112,26 +115,26 @@ public final class AwsFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend(&#34;aws&#34;, SecretBackendArgs.builder()        
-     *             .accessKey(&#34;AKIA.....&#34;)
-     *             .secretKey(&#34;SECRETKEYFROMAWS&#34;)
+     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+     *             .accessKey("AKIA.....")
+     *             .secretKey("SECRETKEYFROMAWS")
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
-     *             .name(&#34;test&#34;)
-     *             .policy(&#34;&#34;&#34;
+     *             .name("test")
+     *             .policy("""
      * {
-     *   &#34;Version&#34;: &#34;2012-10-17&#34;,
-     *   &#34;Statement&#34;: [
+     *   "Version": "2012-10-17",
+     *   "Statement": [
      *     {
-     *       &#34;Effect&#34;: &#34;Allow&#34;,
-     *       &#34;Action&#34;: &#34;iam:*&#34;,
-     *       &#34;Resource&#34;: &#34;*&#34;
+     *       "Effect": "Allow",
+     *       "Action": "iam:*",
+     *       "Resource": "*"
      *     }
      *   ]
      * }
-     *             &#34;&#34;&#34;)
+     *             """)
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
@@ -142,7 +145,8 @@ public final class AwsFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -153,7 +157,8 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -178,26 +183,26 @@ public final class AwsFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend(&#34;aws&#34;, SecretBackendArgs.builder()        
-     *             .accessKey(&#34;AKIA.....&#34;)
-     *             .secretKey(&#34;SECRETKEYFROMAWS&#34;)
+     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+     *             .accessKey("AKIA.....")
+     *             .secretKey("SECRETKEYFROMAWS")
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
-     *             .name(&#34;test&#34;)
-     *             .policy(&#34;&#34;&#34;
+     *             .name("test")
+     *             .policy("""
      * {
-     *   &#34;Version&#34;: &#34;2012-10-17&#34;,
-     *   &#34;Statement&#34;: [
+     *   "Version": "2012-10-17",
+     *   "Statement": [
      *     {
-     *       &#34;Effect&#34;: &#34;Allow&#34;,
-     *       &#34;Action&#34;: &#34;iam:*&#34;,
-     *       &#34;Resource&#34;: &#34;*&#34;
+     *       "Effect": "Allow",
+     *       "Action": "iam:*",
+     *       "Resource": "*"
      *     }
      *   ]
      * }
-     *             &#34;&#34;&#34;)
+     *             """)
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
@@ -208,7 +213,8 @@ public final class AwsFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -219,7 +225,8 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -244,26 +251,26 @@ public final class AwsFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend(&#34;aws&#34;, SecretBackendArgs.builder()        
-     *             .accessKey(&#34;AKIA.....&#34;)
-     *             .secretKey(&#34;SECRETKEYFROMAWS&#34;)
+     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+     *             .accessKey("AKIA.....")
+     *             .secretKey("SECRETKEYFROMAWS")
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
      *             .backend(aws.path())
-     *             .name(&#34;test&#34;)
-     *             .policy(&#34;&#34;&#34;
+     *             .name("test")
+     *             .policy("""
      * {
-     *   &#34;Version&#34;: &#34;2012-10-17&#34;,
-     *   &#34;Statement&#34;: [
+     *   "Version": "2012-10-17",
+     *   "Statement": [
      *     {
-     *       &#34;Effect&#34;: &#34;Allow&#34;,
-     *       &#34;Action&#34;: &#34;iam:*&#34;,
-     *       &#34;Resource&#34;: &#34;*&#34;
+     *       "Effect": "Allow",
+     *       "Action": "iam:*",
+     *       "Resource": "*"
      *     }
      *   ]
      * }
-     *             &#34;&#34;&#34;)
+     *             """)
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
@@ -274,7 +281,8 @@ public final class AwsFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

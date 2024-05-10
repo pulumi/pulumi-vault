@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,15 +43,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Entity(&#34;test&#34;, EntityArgs.builder()        
- *             .name(&#34;tester1&#34;)
- *             .policies(&#34;test&#34;)
- *             .metadata(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *         var test = new Entity("test", EntityArgs.builder()        
+ *             .name("tester1")
+ *             .policies("test")
+ *             .metadata(Map.of("foo", "bar"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

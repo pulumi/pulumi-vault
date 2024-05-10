@@ -35,7 +35,8 @@ import javax.annotation.Nullable;
  * assistance escaping your own custom regex, see String Literals.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -60,30 +61,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
- *             .path(&#34;transform&#34;)
- *             .type(&#34;transform&#34;)
+ *         var transform = new Mount("transform", MountArgs.builder()        
+ *             .path("transform")
+ *             .type("transform")
  *             .build());
  * 
- *         var numerics = new Alphabet(&#34;numerics&#34;, AlphabetArgs.builder()        
+ *         var numerics = new Alphabet("numerics", AlphabetArgs.builder()        
  *             .path(transform.path())
- *             .name(&#34;numerics&#34;)
- *             .alphabet(&#34;0123456789&#34;)
+ *             .name("numerics")
+ *             .alphabet("0123456789")
  *             .build());
  * 
- *         var test = new Template(&#34;test&#34;, TemplateArgs.builder()        
+ *         var test = new Template("test", TemplateArgs.builder()        
  *             .path(numerics.path())
- *             .name(&#34;ccn&#34;)
- *             .type(&#34;regex&#34;)
- *             .pattern(&#34;(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})&#34;)
- *             .alphabet(&#34;numerics&#34;)
- *             .encodeFormat(&#34;$1-$2-$3-$4&#34;)
- *             .decodeFormats(Map.of(&#34;last-four-digits&#34;, &#34;$4&#34;))
+ *             .name("ccn")
+ *             .type("regex")
+ *             .pattern("(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})")
+ *             .alphabet("numerics")
+ *             .encodeFormat("$1-$2-$3-$4")
+ *             .decodeFormats(Map.of("last-four-digits", "$4"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

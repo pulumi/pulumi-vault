@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,21 +43,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new SecretBackend(&#34;aws&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;my-aws&#34;)
- *             .description(&#34;Obtain AWS credentials.&#34;)
+ *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+ *             .path("my-aws")
+ *             .description("Obtain AWS credentials.")
  *             .build());
  * 
- *         var role = new SecretBackendStaticRole(&#34;role&#34;, SecretBackendStaticRoleArgs.builder()        
+ *         var role = new SecretBackendStaticRole("role", SecretBackendStaticRoleArgs.builder()        
  *             .backend(aws.path())
- *             .name(&#34;test&#34;)
- *             .username(&#34;my-test-user&#34;)
- *             .rotationPeriod(&#34;3600&#34;)
+ *             .name("test")
+ *             .username("my-test-user")
+ *             .rotationPeriod("3600")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

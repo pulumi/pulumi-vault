@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -56,46 +57,47 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend(&#34;aws&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;aws&#34;)
- *             .path(&#34;aws&#34;)
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()        
+ *             .type("aws")
+ *             .path("aws")
  *             .build());
  * 
- *         var example = new AuthBackendClient(&#34;example&#34;, AuthBackendClientArgs.builder()        
+ *         var example = new AuthBackendClient("example", AuthBackendClientArgs.builder()        
  *             .backend(aws.path())
- *             .accessKey(&#34;123456789012&#34;)
- *             .secretKey(&#34;AWSSECRETKEYGOESHERE&#34;)
+ *             .accessKey("123456789012")
+ *             .secretKey("AWSSECRETKEYGOESHERE")
  *             .build());
  * 
- *         var exampleAuthBackendRole = new AuthBackendRole(&#34;exampleAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
+ *         var exampleAuthBackendRole = new AuthBackendRole("exampleAuthBackendRole", AuthBackendRoleArgs.builder()        
  *             .backend(aws.path())
- *             .role(&#34;test-role&#34;)
- *             .authType(&#34;ec2&#34;)
- *             .boundAmiId(&#34;ami-8c1be5f6&#34;)
- *             .boundAccountId(&#34;123456789012&#34;)
- *             .boundVpcId(&#34;vpc-b61106d4&#34;)
- *             .boundSubnetId(&#34;vpc-133128f1&#34;)
- *             .boundIamInstanceProfileArns(&#34;arn:aws:iam::123456789012:instance-profile/MyProfile&#34;)
+ *             .role("test-role")
+ *             .authType("ec2")
+ *             .boundAmiId("ami-8c1be5f6")
+ *             .boundAccountId("123456789012")
+ *             .boundVpcId("vpc-b61106d4")
+ *             .boundSubnetId("vpc-133128f1")
+ *             .boundIamInstanceProfileArns("arn:aws:iam::123456789012:instance-profile/MyProfile")
  *             .ttl(60)
  *             .maxTtl(120)
  *             .tokenPolicies(            
- *                 &#34;default&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(example)
  *                 .build());
  * 
- *         var exampleAuthBackendLogin = new AuthBackendLogin(&#34;exampleAuthBackendLogin&#34;, AuthBackendLoginArgs.builder()        
+ *         var exampleAuthBackendLogin = new AuthBackendLogin("exampleAuthBackendLogin", AuthBackendLoginArgs.builder()        
  *             .backend(exampleVaultAuthBackend.path())
  *             .role(exampleAuthBackendRole.role())
- *             .identity(&#34;BASE64ENCODEDIDENTITYDOCUMENT&#34;)
- *             .signature(&#34;BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE&#34;)
+ *             .identity("BASE64ENCODEDIDENTITYDOCUMENT")
+ *             .signature("BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
@@ -255,17 +257,9 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     public Output<Integer> leaseDuration() {
         return this.leaseDuration;
     }
-    /**
-     * Time at which the lease was read, using the clock of the system where Terraform was running
-     * 
-     */
     @Export(name="leaseStartTime", refs={String.class}, tree="[0]")
     private Output<String> leaseStartTime;
 
-    /**
-     * @return Time at which the lease was read, using the clock of the system where Terraform was running
-     * 
-     */
     public Output<String> leaseStartTime() {
         return this.leaseStartTime;
     }

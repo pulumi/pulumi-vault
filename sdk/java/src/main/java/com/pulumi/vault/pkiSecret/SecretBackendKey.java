@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,24 +45,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
- *             .path(&#34;pki&#34;)
- *             .type(&#34;pki&#34;)
+ *         var pki = new Mount("pki", MountArgs.builder()        
+ *             .path("pki")
+ *             .type("pki")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
+ *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
  *             .mount(pki.path())
- *             .type(&#34;exported&#34;)
- *             .keyName(&#34;example-key&#34;)
- *             .keyType(&#34;rsa&#34;)
- *             .keyBits(&#34;2048&#34;)
+ *             .type("exported")
+ *             .keyName("example-key")
+ *             .keyType("rsa")
+ *             .keyBits("2048")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

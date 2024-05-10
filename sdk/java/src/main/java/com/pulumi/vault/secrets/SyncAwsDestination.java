@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,20 +43,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new SyncAwsDestination(&#34;aws&#34;, SyncAwsDestinationArgs.builder()        
- *             .name(&#34;aws-dest&#34;)
+ *         var aws = new SyncAwsDestination("aws", SyncAwsDestinationArgs.builder()        
+ *             .name("aws-dest")
  *             .accessKeyId(accessKeyId)
  *             .secretAccessKey(secretAccessKey)
- *             .region(&#34;us-east-1&#34;)
- *             .roleArn(&#34;role-arn&#34;)
- *             .externalId(&#34;external-id&#34;)
- *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
- *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *             .region("us-east-1")
+ *             .roleArn("role-arn")
+ *             .externalId("external-id")
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .customTags(Map.of("foo", "bar"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

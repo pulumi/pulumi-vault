@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,22 +47,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var userpass = new AuthBackend(&#34;userpass&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;userpass&#34;)
- *             .path(&#34;userpass&#34;)
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *             .type("userpass")
+ *             .path("userpass")
  *             .build());
  * 
- *         var myDuo = new MfaDuo(&#34;myDuo&#34;, MfaDuoArgs.builder()        
- *             .name(&#34;my_duo&#34;)
+ *         var myDuo = new MfaDuo("myDuo", MfaDuoArgs.builder()        
+ *             .name("my_duo")
  *             .mountAccessor(userpass.accessor())
- *             .secretKey(&#34;8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz&#34;)
- *             .integrationKey(&#34;BIACEUEAXI20BNWTEYXT&#34;)
- *             .apiHostname(&#34;api-2b5c39f5.duosecurity.com&#34;)
+ *             .secretKey("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")
+ *             .integrationKey("BIACEUEAXI20BNWTEYXT")
+ *             .apiHostname("api-2b5c39f5.duosecurity.com")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -180,7 +182,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
         return this.secretKey;
     }
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`. If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
+     * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`. If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
      * - alias.metadata.`&lt;key&gt;`: The value of the Alias&#39;s metadata parameter
@@ -191,7 +193,7 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> usernameFormat;
 
     /**
-     * @return `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`. If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
+     * @return `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`. If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
      * - alias.metadata.`&lt;key&gt;`: The value of the Alias&#39;s metadata parameter

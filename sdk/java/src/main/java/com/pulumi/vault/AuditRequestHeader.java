@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,14 +48,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var xForwardedFor = new AuditRequestHeader(&#34;xForwardedFor&#34;, AuditRequestHeaderArgs.builder()        
- *             .name(&#34;X-Forwarded-For&#34;)
+ *         var xForwardedFor = new AuditRequestHeader("xForwardedFor", AuditRequestHeaderArgs.builder()        
+ *             .name("X-Forwarded-For")
  *             .hmac(false)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

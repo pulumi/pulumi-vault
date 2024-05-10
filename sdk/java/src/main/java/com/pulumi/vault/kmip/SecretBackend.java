@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,22 +47,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var default_ = new SecretBackend(&#34;default&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;kmip&#34;)
- *             .description(&#34;Vault KMIP backend&#34;)
+ *         var default_ = new SecretBackend("default", SecretBackendArgs.builder()        
+ *             .path("kmip")
+ *             .description("Vault KMIP backend")
  *             .listenAddrs(            
- *                 &#34;127.0.0.1:5696&#34;,
- *                 &#34;127.0.0.1:8080&#34;)
- *             .tlsCaKeyType(&#34;rsa&#34;)
+ *                 "127.0.0.1:5696",
+ *                 "127.0.0.1:8080")
+ *             .tlsCaKeyType("rsa")
  *             .tlsCaKeyBits(4096)
- *             .defaultTlsClientKeyType(&#34;rsa&#34;)
+ *             .defaultTlsClientKeyType("rsa")
  *             .defaultTlsClientKeyBits(4096)
  *             .defaultTlsClientTtl(86400)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,22 +48,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var userpass = new AuthBackend(&#34;userpass&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;userpass&#34;)
- *             .path(&#34;userpass&#34;)
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *             .type("userpass")
+ *             .path("userpass")
  *             .build());
  * 
- *         var myOkta = new MfaOkta(&#34;myOkta&#34;, MfaOktaArgs.builder()        
- *             .name(&#34;my_okta&#34;)
+ *         var myOkta = new MfaOkta("myOkta", MfaOktaArgs.builder()        
+ *             .name("my_okta")
  *             .mountAccessor(userpass.accessor())
- *             .usernameFormat(&#34;user@example.com&#34;)
- *             .orgName(&#34;hashicorp&#34;)
- *             .apiToken(&#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9&#34;)
+ *             .usernameFormat("user{@literal @}example.com")
+ *             .orgName("hashicorp")
+ *             .apiToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -188,7 +190,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
     }
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names.
-     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
      * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
@@ -201,7 +203,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
 
     /**
      * @return `(string)` - A format string for mapping Identity names to MFA method names.
-     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
      * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
