@@ -51,12 +51,14 @@
                 "transit": "Transit",
                 "vault": "Vault"
             },
-            "compatibility": "tfbridge20"
+            "compatibility": "tfbridge20",
+            "respectSchemaVersion": true
         },
         "go": {
             "importBasePath": "github.com/pulumi/pulumi-vault/sdk/v6/go/vault",
             "generateResourceContainerTypes": true,
-            "generateExtraInputTypes": true
+            "generateExtraInputTypes": true,
+            "respectSchemaVersion": true
         },
         "nodejs": {
             "packageDescription": "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
@@ -69,7 +71,8 @@
                 "@types/node": "^10.0.0"
             },
             "compatibility": "tfbridge20",
-            "disableUnionOutputTypes": true
+            "disableUnionOutputTypes": true,
+            "respectSchemaVersion": true
         },
         "python": {
             "requires": {
@@ -77,6 +80,7 @@
             },
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-vault)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-vault` repo](https://github.com/pulumi/pulumi-vault/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-vault` repo](https://github.com/hashicorp/terraform-provider-vault/issues).",
             "compatibility": "tfbridge20",
+            "respectSchemaVersion": true,
             "pyproject": {
                 "enabled": true
             }
