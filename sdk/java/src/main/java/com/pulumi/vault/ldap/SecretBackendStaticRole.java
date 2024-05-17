@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .path("my-custom-ldap")
  *             .binddn("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net")
  *             .bindpass("SuperSecretPassw0rd")
@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *             .userdn("CN=Users,DC=corp,DC=example,DC=net")
  *             .build());
  * 
- *         var role = new SecretBackendStaticRole("role", SecretBackendStaticRoleArgs.builder()        
+ *         var role = new SecretBackendStaticRole("role", SecretBackendStaticRoleArgs.builder()
  *             .mount(config.path())
  *             .username("alice")
  *             .dn("cn=alice,ou=Users,DC=corp,DC=example,DC=net")

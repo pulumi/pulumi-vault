@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackendIntermediateCertRequest("test", SecretBackendIntermediateCertRequestArgs.builder()        
+ *         var test = new SecretBackendIntermediateCertRequest("test", SecretBackendIntermediateCertRequestArgs.builder()
  *             .backend(pki.path())
  *             .type("internal")
  *             .commonName("app.my.domain")

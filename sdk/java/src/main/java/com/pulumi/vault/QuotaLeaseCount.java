@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var global = new QuotaLeaseCount("global", QuotaLeaseCountArgs.builder()        
+ *         var global = new QuotaLeaseCount("global", QuotaLeaseCountArgs.builder()
  *             .name("global")
  *             .path("")
  *             .maxLeases(100)

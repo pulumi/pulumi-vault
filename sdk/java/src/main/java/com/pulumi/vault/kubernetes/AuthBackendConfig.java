@@ -48,11 +48,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()        
+ *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()
  *             .type("kubernetes")
  *             .build());
  * 
- *         var example = new AuthBackendConfig("example", AuthBackendConfigArgs.builder()        
+ *         var example = new AuthBackendConfig("example", AuthBackendConfigArgs.builder()
  *             .backend(kubernetes.path())
  *             .kubernetesHost("http://example.com:443")
  *             .kubernetesCaCert("""

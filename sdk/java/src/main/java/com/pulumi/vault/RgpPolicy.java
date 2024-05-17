@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var allow_all = new RgpPolicy("allow-all", RgpPolicyArgs.builder()        
+ *         var allow_all = new RgpPolicy("allow-all", RgpPolicyArgs.builder()
  *             .name("allow-all")
  *             .enforcementLevel("soft-mandatory")
  *             .policy("""

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var allow_all = new EgpPolicy("allow-all", EgpPolicyArgs.builder()        
+ *         var allow_all = new EgpPolicy("allow-all", EgpPolicyArgs.builder()
  *             .name("allow-all")
  *             .paths("*")
  *             .enforcementLevel("soft-mandatory")

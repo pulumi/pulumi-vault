@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .roleName("my-role")
  *             .allowedPolicies(            
  *                 "dev",

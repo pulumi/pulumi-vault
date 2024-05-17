@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaOkta("example", MfaOktaArgs.builder()        
+ *         var example = new MfaOkta("example", MfaOktaArgs.builder()
  *             .orgName("org1")
  *             .apiToken("token1")
  *             .baseUrl("qux.baz.com")

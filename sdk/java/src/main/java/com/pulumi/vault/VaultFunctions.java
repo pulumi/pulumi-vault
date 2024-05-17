@@ -1626,7 +1626,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
      *             .defaultLeaseTtlSeconds("3600")
@@ -1635,7 +1635,7 @@ public final class VaultFunctions {
      *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()
      *             .backend(config.backend())
      *             .role("test")
      *             .type("client")
@@ -1687,7 +1687,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
      *             .defaultLeaseTtlSeconds("3600")
@@ -1696,7 +1696,7 @@ public final class VaultFunctions {
      *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()
      *             .backend(config.backend())
      *             .role("test")
      *             .type("client")
@@ -1748,7 +1748,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
      *             .defaultLeaseTtlSeconds("3600")
@@ -1757,7 +1757,7 @@ public final class VaultFunctions {
      *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()
      *             .backend(config.backend())
      *             .role("test")
      *             .type("client")
@@ -1809,7 +1809,7 @@ public final class VaultFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+     *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
      *             .backend("nomad")
      *             .description("test description")
      *             .defaultLeaseTtlSeconds("3600")
@@ -1818,7 +1818,7 @@ public final class VaultFunctions {
      *             .token("ae20ceaa-...")
      *             .build());
      * 
-     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
+     *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()
      *             .backend(config.backend())
      *             .role("test")
      *             .type("client")
@@ -1883,7 +1883,7 @@ public final class VaultFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
      *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
@@ -1941,7 +1941,7 @@ public final class VaultFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
      *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
@@ -1999,7 +1999,7 @@ public final class VaultFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
      *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
@@ -2057,7 +2057,7 @@ public final class VaultFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
      *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
@@ -2115,7 +2115,7 @@ public final class VaultFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
      *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());
@@ -2173,7 +2173,7 @@ public final class VaultFunctions {
      *                 .build())
      *             .build());
      * 
-     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()        
+     *         var examplePolicy = new Policy("examplePolicy", PolicyArgs.builder()
      *             .name("example_policy")
      *             .policy(example.applyValue(getPolicyDocumentResult -> getPolicyDocumentResult.hcl()))
      *             .build());

@@ -582,7 +582,7 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .redirectUris(            
      *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -634,7 +634,7 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .redirectUris(            
      *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -686,7 +686,7 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .redirectUris(            
      *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -738,7 +738,7 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .redirectUris(            
      *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -794,14 +794,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -812,7 +812,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -863,14 +863,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -881,7 +881,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -932,14 +932,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -950,7 +950,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -1001,14 +1001,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -1019,7 +1019,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -1070,14 +1070,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -1088,7 +1088,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -1139,14 +1139,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -1157,7 +1157,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -1208,14 +1208,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -1226,7 +1226,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());
@@ -1277,14 +1277,14 @@ public final class IdentityFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var key = new OidcKey("key", OidcKeyArgs.builder()        
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
      *             .name("key")
      *             .allowedClientIds("*")
      *             .rotationPeriod(3600)
      *             .verificationTtl(3600)
      *             .build());
      * 
-     *         var app = new OidcClient("app", OidcClientArgs.builder()        
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
      *             .name("application")
      *             .key(key.name())
      *             .redirectUris(            
@@ -1295,7 +1295,7 @@ public final class IdentityFunctions {
      *             .accessTokenTtl(7200)
      *             .build());
      * 
-     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()        
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
      *             .allowedClientIds(test.clientId())
      *             .build());

@@ -54,20 +54,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new OidcKey("test", OidcKeyArgs.builder()        
+ *         var test = new OidcKey("test", OidcKeyArgs.builder()
  *             .name("my-key")
  *             .allowedClientIds("*")
  *             .rotationPeriod(3600)
  *             .verificationTtl(3600)
  *             .build());
  * 
- *         var testOidcAssignment = new OidcAssignment("testOidcAssignment", OidcAssignmentArgs.builder()        
+ *         var testOidcAssignment = new OidcAssignment("testOidcAssignment", OidcAssignmentArgs.builder()
  *             .name("my-assignment")
  *             .entityIds("fake-ascbascas-2231a-sdfaa")
  *             .groupIds("fake-sajkdsad-32414-sfsada")
  *             .build());
  * 
- *         var testOidcClient = new OidcClient("testOidcClient", OidcClientArgs.builder()        
+ *         var testOidcClient = new OidcClient("testOidcClient", OidcClientArgs.builder()
  *             .name("application")
  *             .key(test.name())
  *             .redirectUris(            
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  *             .accessTokenTtl(7200)
  *             .build());
  * 
- *         var testOidcScope = new OidcScope("testOidcScope", OidcScopeArgs.builder()        
+ *         var testOidcScope = new OidcScope("testOidcScope", OidcScopeArgs.builder()
  *             .name("groups")
  *             .template(serializeJson(
  *                 jsonObject(
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *             .description("Groups scope.")
  *             .build());
  * 
- *         var testOidcProvider = new OidcProvider("testOidcProvider", OidcProviderArgs.builder()        
+ *         var testOidcProvider = new OidcProvider("testOidcProvider", OidcProviderArgs.builder()
  *             .name("my-provider")
  *             .httpsEnabled(false)
  *             .issuerHost("127.0.0.1:8200")

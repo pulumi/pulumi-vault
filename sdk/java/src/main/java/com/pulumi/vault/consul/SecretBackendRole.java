@@ -47,14 +47,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend("test", SecretBackendArgs.builder()        
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
  *             .path("consul")
  *             .description("Manages the Consul backend")
  *             .address("127.0.0.1:8500")
  *             .token("4240861b-ce3d-8530-115a-521ff070dd29")
  *             .build());
  * 
- *         var example = new SecretBackendRole("example", SecretBackendRoleArgs.builder()        
+ *         var example = new SecretBackendRole("example", SecretBackendRoleArgs.builder()
  *             .name("test-role")
  *             .backend(test.path())
  *             .consulPolicies("example-policy")

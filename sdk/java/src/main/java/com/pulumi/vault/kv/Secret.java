@@ -51,14 +51,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+ *         var kvv1 = new Mount("kvv1", MountArgs.builder()
  *             .path("kvv1")
  *             .type("kv")
  *             .options(Map.of("version", "1"))
  *             .description("KV Version 1 secret engine mount")
  *             .build());
  * 
- *         var secret = new Secret("secret", SecretArgs.builder()        
+ *         var secret = new Secret("secret", SecretArgs.builder()
  *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
  *             .dataJson(serializeJson(
  *                 jsonObject(

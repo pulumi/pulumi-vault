@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new SyncAwsDestination("aws", SyncAwsDestinationArgs.builder()        
+ *         var aws = new SyncAwsDestination("aws", SyncAwsDestinationArgs.builder()
  *             .name("aws-dest")
  *             .accessKeyId(accessKeyId)
  *             .secretAccessKey(secretAccessKey)

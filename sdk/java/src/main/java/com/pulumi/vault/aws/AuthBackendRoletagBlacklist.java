@@ -46,11 +46,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .type("aws")
  *             .build());
  * 
- *         var exampleAuthBackendRoletagBlacklist = new AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", AuthBackendRoletagBlacklistArgs.builder()        
+ *         var exampleAuthBackendRoletagBlacklist = new AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", AuthBackendRoletagBlacklistArgs.builder()
  *             .backend(example.path())
  *             .safetyBuffer(360)
  *             .build());

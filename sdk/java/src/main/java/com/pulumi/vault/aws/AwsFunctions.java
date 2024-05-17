@@ -21,64 +21,6 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.aws.SecretBackend;
-     * import com.pulumi.vault.aws.SecretBackendArgs;
-     * import com.pulumi.vault.aws.SecretBackendRole;
-     * import com.pulumi.vault.aws.SecretBackendRoleArgs;
-     * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
-     *             .accessKey("AKIA.....")
-     *             .secretKey("SECRETKEYFROMAWS")
-     *             .build());
-     * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
-     *             .backend(aws.path())
-     *             .name("test")
-     *             .policy("""
-     * {
-     *   "Version": "2012-10-17",
-     *   "Statement": [
-     *     {
-     *       "Effect": "Allow",
-     *       "Action": "iam:*",
-     *       "Resource": "*"
-     *     }
-     *   ]
-     * }
-     *             """)
-     *             .build());
-     * 
-     *         // generally, these blocks would be in a different module
-     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .backend(aws.path())
-     *             .role(role.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -89,64 +31,6 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.aws.SecretBackend;
-     * import com.pulumi.vault.aws.SecretBackendArgs;
-     * import com.pulumi.vault.aws.SecretBackendRole;
-     * import com.pulumi.vault.aws.SecretBackendRoleArgs;
-     * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
-     *             .accessKey("AKIA.....")
-     *             .secretKey("SECRETKEYFROMAWS")
-     *             .build());
-     * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
-     *             .backend(aws.path())
-     *             .name("test")
-     *             .policy("""
-     * {
-     *   "Version": "2012-10-17",
-     *   "Statement": [
-     *     {
-     *       "Effect": "Allow",
-     *       "Action": "iam:*",
-     *       "Resource": "*"
-     *     }
-     *   ]
-     * }
-     *             """)
-     *             .build());
-     * 
-     *         // generally, these blocks would be in a different module
-     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .backend(aws.path())
-     *             .role(role.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -157,64 +41,6 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.aws.SecretBackend;
-     * import com.pulumi.vault.aws.SecretBackendArgs;
-     * import com.pulumi.vault.aws.SecretBackendRole;
-     * import com.pulumi.vault.aws.SecretBackendRoleArgs;
-     * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
-     *             .accessKey("AKIA.....")
-     *             .secretKey("SECRETKEYFROMAWS")
-     *             .build());
-     * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
-     *             .backend(aws.path())
-     *             .name("test")
-     *             .policy("""
-     * {
-     *   "Version": "2012-10-17",
-     *   "Statement": [
-     *     {
-     *       "Effect": "Allow",
-     *       "Action": "iam:*",
-     *       "Resource": "*"
-     *     }
-     *   ]
-     * }
-     *             """)
-     *             .build());
-     * 
-     *         // generally, these blocks would be in a different module
-     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .backend(aws.path())
-     *             .role(role.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -225,64 +51,6 @@ public final class AwsFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.vault.aws.SecretBackend;
-     * import com.pulumi.vault.aws.SecretBackendArgs;
-     * import com.pulumi.vault.aws.SecretBackendRole;
-     * import com.pulumi.vault.aws.SecretBackendRoleArgs;
-     * import com.pulumi.vault.aws.AwsFunctions;
-     * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
-     *             .accessKey("AKIA.....")
-     *             .secretKey("SECRETKEYFROMAWS")
-     *             .build());
-     * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
-     *             .backend(aws.path())
-     *             .name("test")
-     *             .policy("""
-     * {
-     *   "Version": "2012-10-17",
-     *   "Statement": [
-     *     {
-     *       "Effect": "Allow",
-     *       "Action": "iam:*",
-     *       "Resource": "*"
-     *     }
-     *   ]
-     * }
-     *             """)
-     *             .build());
-     * 
-     *         // generally, these blocks would be in a different module
-     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *             .backend(aws.path())
-     *             .role(role.name())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

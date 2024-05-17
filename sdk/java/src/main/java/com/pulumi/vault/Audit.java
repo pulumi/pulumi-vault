@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Audit("test", AuditArgs.builder()        
+ *         var test = new Audit("test", AuditArgs.builder()
  *             .type("file")
  *             .options(Map.of("file_path", "C:/temp/audit.txt"))
  *             .build());
@@ -80,7 +80,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Audit("test", AuditArgs.builder()        
+ *         var test = new Audit("test", AuditArgs.builder()
  *             .type("socket")
  *             .path("app_socket")
  *             .local(false)

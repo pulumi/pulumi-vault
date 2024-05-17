@@ -50,19 +50,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .externalMemberGroupIds(true)
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var users = new Group("users", GroupArgs.builder()        
+ *         var users = new Group("users", GroupArgs.builder()
  *             .name("users")
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var members = new GroupMemberGroupIds("members", GroupMemberGroupIdsArgs.builder()        
+ *         var members = new GroupMemberGroupIds("members", GroupMemberGroupIdsArgs.builder()
  *             .exclusive(true)
  *             .memberGroupIds(users.id())
  *             .groupId(internal.id())
@@ -101,19 +101,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .externalMemberGroupIds(true)
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var users = new Group("users", GroupArgs.builder()        
+ *         var users = new Group("users", GroupArgs.builder()
  *             .name("users")
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var members = new GroupMemberGroupIds("members", GroupMemberGroupIdsArgs.builder()        
+ *         var members = new GroupMemberGroupIds("members", GroupMemberGroupIdsArgs.builder()
  *             .exclusive(false)
  *             .memberGroupIds(users.id())
  *             .groupId(internal.id())

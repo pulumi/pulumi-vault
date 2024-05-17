@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var globalConfig = new SyncConfig("globalConfig", SyncConfigArgs.builder()        
+ *         var globalConfig = new SyncConfig("globalConfig", SyncConfigArgs.builder()
  *             .disabled(true)
  *             .queueCapacity(500000)
  *             .build());

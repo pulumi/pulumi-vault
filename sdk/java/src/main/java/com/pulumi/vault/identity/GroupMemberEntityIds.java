@@ -50,18 +50,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .externalMemberEntityIds(true)
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var user = new Entity("user", EntityArgs.builder()        
+ *         var user = new Entity("user", EntityArgs.builder()
  *             .name("user")
  *             .build());
  * 
- *         var members = new GroupMemberEntityIds("members", GroupMemberEntityIdsArgs.builder()        
+ *         var members = new GroupMemberEntityIds("members", GroupMemberEntityIdsArgs.builder()
  *             .exclusive(true)
  *             .memberEntityIds(user.id())
  *             .groupId(internal.id())
@@ -102,26 +102,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .externalMemberEntityIds(true)
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var testUser = new Entity("testUser", EntityArgs.builder()        
+ *         var testUser = new Entity("testUser", EntityArgs.builder()
  *             .name("test")
  *             .build());
  * 
- *         var secondTestUser = new Entity("secondTestUser", EntityArgs.builder()        
+ *         var secondTestUser = new Entity("secondTestUser", EntityArgs.builder()
  *             .name("second_test")
  *             .build());
  * 
- *         var devUser = new Entity("devUser", EntityArgs.builder()        
+ *         var devUser = new Entity("devUser", EntityArgs.builder()
  *             .name("dev")
  *             .build());
  * 
- *         var test = new GroupMemberEntityIds("test", GroupMemberEntityIdsArgs.builder()        
+ *         var test = new GroupMemberEntityIds("test", GroupMemberEntityIdsArgs.builder()
  *             .memberEntityIds(            
  *                 testUser.id(),
  *                 secondTestUser.id())
@@ -129,7 +129,7 @@ import javax.annotation.Nullable;
  *             .groupId(internal.id())
  *             .build());
  * 
- *         var others = new GroupMemberEntityIds("others", GroupMemberEntityIdsArgs.builder()        
+ *         var others = new GroupMemberEntityIds("others", GroupMemberEntityIdsArgs.builder()
  *             .memberEntityIds(devUser.id())
  *             .exclusive(false)
  *             .groupId(internal.id())

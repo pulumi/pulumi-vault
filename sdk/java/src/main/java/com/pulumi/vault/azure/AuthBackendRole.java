@@ -51,11 +51,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new AuthBackend("azure", AuthBackendArgs.builder()        
+ *         var azure = new AuthBackend("azure", AuthBackendArgs.builder()
  *             .type("azure")
  *             .build());
  * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(azure.path())
  *             .role("test-role")
  *             .boundSubscriptionIds("11111111-2222-3333-4444-555555555555")

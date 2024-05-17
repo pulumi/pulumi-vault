@@ -47,11 +47,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .organization("myorg")
  *             .build());
  * 
- *         var tfDevs = new Team("tfDevs", TeamArgs.builder()        
+ *         var tfDevs = new Team("tfDevs", TeamArgs.builder()
  *             .backend(example.id())
  *             .team("terraform-developers")
  *             .policies(            

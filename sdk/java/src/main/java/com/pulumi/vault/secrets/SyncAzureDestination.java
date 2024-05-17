@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var az = new SyncAzureDestination("az", SyncAzureDestinationArgs.builder()        
+ *         var az = new SyncAzureDestination("az", SyncAzureDestinationArgs.builder()
  *             .name("az-dest")
  *             .keyVaultUri(keyVaultUri)
  *             .clientId(clientId)

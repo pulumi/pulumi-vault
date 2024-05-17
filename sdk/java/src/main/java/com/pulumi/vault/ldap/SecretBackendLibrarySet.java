@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .path("ldap")
  *             .binddn("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net")
  *             .bindpass("SuperSecretPassw0rd")
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *             .userdn("CN=Users,DC=corp,DC=example,DC=net")
  *             .build());
  * 
- *         var qa = new SecretBackendLibrarySet("qa", SecretBackendLibrarySetArgs.builder()        
+ *         var qa = new SecretBackendLibrarySet("qa", SecretBackendLibrarySetArgs.builder()
  *             .mount(config.path())
  *             .name("qa")
  *             .serviceAccountNames(            

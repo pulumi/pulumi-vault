@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transit = new Mount("transit", MountArgs.builder()        
+ *         var transit = new Mount("transit", MountArgs.builder()
  *             .path("transit")
  *             .type("transit")
  *             .description("Example description")
@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var cfg = new SecretCacheConfig("cfg", SecretCacheConfigArgs.builder()        
+ *         var cfg = new SecretCacheConfig("cfg", SecretCacheConfigArgs.builder()
  *             .backend(transit.path())
  *             .size(500)
  *             .build());

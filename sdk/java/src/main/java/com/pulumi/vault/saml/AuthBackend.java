@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AuthBackend("test", AuthBackendArgs.builder()        
+ *         var test = new AuthBackend("test", AuthBackendArgs.builder()
  *             .path("saml")
  *             .idpMetadataUrl("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata")
  *             .entityId("https://my.vault/v1/auth/saml")

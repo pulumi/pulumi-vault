@@ -44,12 +44,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+ *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()
  *             .accessKey("AKIA.....")
  *             .secretKey("AWS secret key")
  *             .build());
  * 
- *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+ *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
  *             .backend(aws.path())
  *             .name("deploy")
  *             .credentialType("iam_user")

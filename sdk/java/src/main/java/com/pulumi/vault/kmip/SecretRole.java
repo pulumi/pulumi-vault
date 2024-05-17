@@ -50,18 +50,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var default_ = new SecretBackend("default", SecretBackendArgs.builder()        
+ *         var default_ = new SecretBackend("default", SecretBackendArgs.builder()
  *             .path("kmip")
  *             .description("Vault KMIP backend")
  *             .build());
  * 
- *         var dev = new SecretScope("dev", SecretScopeArgs.builder()        
+ *         var dev = new SecretScope("dev", SecretScopeArgs.builder()
  *             .path(default_.path())
  *             .scope("dev")
  *             .force(true)
  *             .build());
  * 
- *         var admin = new SecretRole("admin", SecretRoleArgs.builder()        
+ *         var admin = new SecretRole("admin", SecretRoleArgs.builder()
  *             .path(dev.path())
  *             .scope(dev.scope())
  *             .role("admin")

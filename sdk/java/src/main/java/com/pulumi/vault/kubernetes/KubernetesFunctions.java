@@ -140,7 +140,7 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
      *             .path("kubernetes")
      *             .description("kubernetes secrets engine description")
      *             .kubernetesHost("https://127.0.0.1:61233")
@@ -153,7 +153,7 @@ public final class KubernetesFunctions {
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
      *             .name("service-account-name-role")
      *             .allowedKubernetesNamespaces("*")
@@ -218,7 +218,7 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
      *             .path("kubernetes")
      *             .description("kubernetes secrets engine description")
      *             .kubernetesHost("https://127.0.0.1:61233")
@@ -231,7 +231,7 @@ public final class KubernetesFunctions {
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
      *             .name("service-account-name-role")
      *             .allowedKubernetesNamespaces("*")
@@ -296,7 +296,7 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
      *             .path("kubernetes")
      *             .description("kubernetes secrets engine description")
      *             .kubernetesHost("https://127.0.0.1:61233")
@@ -309,7 +309,7 @@ public final class KubernetesFunctions {
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
      *             .name("service-account-name-role")
      *             .allowedKubernetesNamespaces("*")
@@ -374,7 +374,7 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
      *             .path("kubernetes")
      *             .description("kubernetes secrets engine description")
      *             .kubernetesHost("https://127.0.0.1:61233")
@@ -387,7 +387,7 @@ public final class KubernetesFunctions {
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
      *             .name("service-account-name-role")
      *             .allowedKubernetesNamespaces("*")
