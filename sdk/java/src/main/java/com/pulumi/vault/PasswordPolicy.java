@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var alphanumeric = new PasswordPolicy("alphanumeric", PasswordPolicyArgs.builder()        
+ *         var alphanumeric = new PasswordPolicy("alphanumeric", PasswordPolicyArgs.builder()
  *             .name("alphanumeric")
  *             .policy("""
  *     length = 20

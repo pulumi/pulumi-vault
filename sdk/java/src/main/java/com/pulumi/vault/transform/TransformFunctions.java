@@ -53,12 +53,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -67,7 +67,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -125,12 +125,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -139,7 +139,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -197,12 +197,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -211,7 +211,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -269,12 +269,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -283,7 +283,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -341,12 +341,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -355,7 +355,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -413,12 +413,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -427,7 +427,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -485,12 +485,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -499,7 +499,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")
@@ -557,12 +557,12 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount("transform", MountArgs.builder()        
+     *         var transform = new Mount("transform", MountArgs.builder()
      *             .path("transform")
      *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
      *             .name("ccn-fpe")
      *             .type("fpe")
@@ -571,7 +571,7 @@ public final class TransformFunctions {
      *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role("payments", RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
      *             .name("payments")
      *             .transformations("ccn-fpe")

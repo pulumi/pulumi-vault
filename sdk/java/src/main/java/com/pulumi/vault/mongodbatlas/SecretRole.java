@@ -45,19 +45,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mongo = new Mount("mongo", MountArgs.builder()        
+ *         var mongo = new Mount("mongo", MountArgs.builder()
  *             .path("%s")
  *             .type("mongodbatlas")
  *             .description("MongoDB Atlas secret engine mount")
  *             .build());
  * 
- *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .mount(mongo.path())
  *             .privateKey("privateKey")
  *             .publicKey("publicKey")
  *             .build());
  * 
- *         var role = new SecretRole("role", SecretRoleArgs.builder()        
+ *         var role = new SecretRole("role", SecretRoleArgs.builder()
  *             .mount(mongo.path())
  *             .name("tf-test-role")
  *             .organizationId("7cf5a45a9ccf6400e60981b7")

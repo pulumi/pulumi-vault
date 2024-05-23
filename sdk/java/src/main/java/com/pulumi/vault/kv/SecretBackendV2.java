@@ -50,14 +50,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+ *         var kvv2 = new Mount("kvv2", MountArgs.builder()
  *             .path("kvv2")
  *             .type("kv")
  *             .options(Map.of("version", "2"))
  *             .description("KV Version 2 secret engine mount")
  *             .build());
  * 
- *         var example = new SecretBackendV2("example", SecretBackendV2Args.builder()        
+ *         var example = new SecretBackendV2("example", SecretBackendV2Args.builder()
  *             .mount(kvv2.path())
  *             .maxVersions(5)
  *             .deleteVersionAfter(12600)

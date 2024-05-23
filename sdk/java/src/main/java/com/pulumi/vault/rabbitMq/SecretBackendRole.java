@@ -47,13 +47,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()        
+ *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()
  *             .connectionUri("https://.....")
  *             .username("user")
  *             .password("password")
  *             .build());
  * 
- *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+ *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
  *             .backend(rabbitmq.path())
  *             .name("deploy")
  *             .tags("tag1,tag2")

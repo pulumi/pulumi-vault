@@ -47,11 +47,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Mount("example", MountArgs.builder()        
+ *         var example = new Mount("example", MountArgs.builder()
  *             .type("ssh")
  *             .build());
  * 
- *         var foo = new SecretBackendCa("foo", SecretBackendCaArgs.builder()        
+ *         var foo = new SecretBackendCa("foo", SecretBackendCaArgs.builder()
  *             .backend(example.path())
  *             .build());
  * 

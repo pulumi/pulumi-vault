@@ -42,11 +42,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()        
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()
  *             .type("aws")
  *             .build());
  * 
- *         var role = new AuthBackendStsRole("role", AuthBackendStsRoleArgs.builder()        
+ *         var role = new AuthBackendStsRole("role", AuthBackendStsRoleArgs.builder()
  *             .backend(aws.path())
  *             .accountId("1234567890")
  *             .stsRole("arn:aws:iam::1234567890:role/my-role")

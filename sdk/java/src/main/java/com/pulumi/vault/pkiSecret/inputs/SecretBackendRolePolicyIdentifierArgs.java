@@ -45,14 +45,14 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .defaultLeaseTtlSeconds(3600)
      *             .maxLeaseTtlSeconds(86400)
      *             .build());
      * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(pki.path())
      *             .name("my_role")
      *             .ttl(3600)
@@ -113,14 +113,14 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .defaultLeaseTtlSeconds(3600)
      *             .maxLeaseTtlSeconds(86400)
      *             .build());
      * 
-     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(pki.path())
      *             .name("my_role")
      *             .ttl(3600)
@@ -238,14 +238,14 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          *     }
          * 
          *     public static void stack(Context ctx) {
-         *         var pki = new Mount("pki", MountArgs.builder()        
+         *         var pki = new Mount("pki", MountArgs.builder()
          *             .path("pki")
          *             .type("pki")
          *             .defaultLeaseTtlSeconds(3600)
          *             .maxLeaseTtlSeconds(86400)
          *             .build());
          * 
-         *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+         *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
          *             .backend(pki.path())
          *             .name("my_role")
          *             .ttl(3600)
@@ -310,14 +310,14 @@ public final class SecretBackendRolePolicyIdentifierArgs extends com.pulumi.reso
          *     }
          * 
          *     public static void stack(Context ctx) {
-         *         var pki = new Mount("pki", MountArgs.builder()        
+         *         var pki = new Mount("pki", MountArgs.builder()
          *             .path("pki")
          *             .type("pki")
          *             .defaultLeaseTtlSeconds(3600)
          *             .maxLeaseTtlSeconds(86400)
          *             .build());
          * 
-         *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()        
+         *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
          *             .backend(pki.path())
          *             .name("my_role")
          *             .ttl(3600)

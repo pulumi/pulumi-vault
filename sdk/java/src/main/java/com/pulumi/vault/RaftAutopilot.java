@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var autopilot = new RaftAutopilot("autopilot", RaftAutopilotArgs.builder()        
+ *         var autopilot = new RaftAutopilot("autopilot", RaftAutopilotArgs.builder()
  *             .cleanupDeadServers(true)
  *             .deadServerLastContactThreshold("24h0m0s")
  *             .lastContactThreshold("10s")

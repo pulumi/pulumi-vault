@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .backend("ad")
  *             .binddn("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net")
  *             .bindpass("SuperSecretPassw0rd")

@@ -55,14 +55,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+ *         var kvv2 = new Mount("kvv2", MountArgs.builder()
  *             .path("kvv2")
  *             .type("kv")
  *             .options(Map.of("version", "2"))
  *             .description("KV Version 2 secret engine mount")
  *             .build());
  * 
- *         var example = new SecretV2("example", SecretV2Args.builder()        
+ *         var example = new SecretV2("example", SecretV2Args.builder()
  *             .mount(kvv2.path())
  *             .name("secret")
  *             .cas(1)

@@ -45,20 +45,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend("test", SecretBackendArgs.builder()        
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
  *             .backend("terraform")
  *             .description("Manages the Terraform Cloud backend")
  *             .token("V0idfhi2iksSDU234ucdbi2nidsi...")
  *             .build());
  * 
- *         var example = new SecretRole("example", SecretRoleArgs.builder()        
+ *         var example = new SecretRole("example", SecretRoleArgs.builder()
  *             .backend(test.backend())
  *             .name("test-role")
  *             .organization("example-organization-name")
  *             .teamId("team-ieF4isC...")
  *             .build());
  * 
- *         var token = new SecretCreds("token", SecretCredsArgs.builder()        
+ *         var token = new SecretCreds("token", SecretCredsArgs.builder()
  *             .backend(test.backend())
  *             .role(example.name())
  *             .build());

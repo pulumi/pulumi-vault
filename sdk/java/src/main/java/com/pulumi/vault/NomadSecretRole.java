@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+ *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
  *             .backend("nomad")
  *             .description("test description")
  *             .defaultLeaseTtlSeconds("3600")
@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *             .token("ae20ceaa-...")
  *             .build());
  * 
- *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()        
+ *         var test = new NomadSecretRole("test", NomadSecretRoleArgs.builder()
  *             .backend(config.backend())
  *             .role("test")
  *             .type("client")

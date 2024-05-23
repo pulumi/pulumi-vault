@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var app = new SecretBackendCert("app", SecretBackendCertArgs.builder()        
+ *         var app = new SecretBackendCert("app", SecretBackendCertArgs.builder()
  *             .backend(intermediate.path())
  *             .name(test.name())
  *             .commonName("app.my.domain")

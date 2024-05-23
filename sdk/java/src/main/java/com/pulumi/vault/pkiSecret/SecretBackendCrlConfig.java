@@ -45,14 +45,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki = new Mount("pki", MountArgs.builder()        
+ *         var pki = new Mount("pki", MountArgs.builder()
  *             .path("%s")
  *             .type("pki")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var crlConfig = new SecretBackendCrlConfig("crlConfig", SecretBackendCrlConfigArgs.builder()        
+ *         var crlConfig = new SecretBackendCrlConfig("crlConfig", SecretBackendCrlConfigArgs.builder()
  *             .backend(pki.path())
  *             .expiry("72h")
  *             .disable(false)

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()        
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()
  *             .credentials(StdFunctions.file(FileArgs.builder()
  *                 .input("credentials.json")
  *                 .build()).result())

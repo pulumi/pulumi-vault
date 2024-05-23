@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Mount("example", MountArgs.builder()        
+ *         var example = new Mount("example", MountArgs.builder()
  *             .path("dummy")
  *             .type("generic")
  *             .description("This is an example mount")
@@ -82,7 +82,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2_example = new Mount("kvv2-example", MountArgs.builder()        
+ *         var kvv2_example = new Mount("kvv2-example", MountArgs.builder()
  *             .path("version2-example")
  *             .type("kv-v2")
  *             .options(Map.ofEntries(
@@ -121,7 +121,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transit_example = new Mount("transit-example", MountArgs.builder()        
+ *         var transit_example = new Mount("transit-example", MountArgs.builder()
  *             .path("transit-example")
  *             .type("transit")
  *             .description("This is an example transit secret engine mount")
@@ -157,7 +157,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki_example = new Mount("pki-example", MountArgs.builder()        
+ *         var pki_example = new Mount("pki-example", MountArgs.builder()
  *             .path("pki-example")
  *             .type("pki")
  *             .description("This is an example PKI mount")

@@ -51,14 +51,14 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         final var project = "my-awesome-project";
  * 
- *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()        
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()
  *             .path("gcp")
  *             .credentials(StdFunctions.file(FileArgs.builder()
  *                 .input("credentials.json")
  *                 .build()).result())
  *             .build());
  * 
- *         var roleset = new SecretRoleset("roleset", SecretRolesetArgs.builder()        
+ *         var roleset = new SecretRoleset("roleset", SecretRolesetArgs.builder()
  *             .backend(gcp.path())
  *             .roleset("project_viewer")
  *             .secretType("access_token")

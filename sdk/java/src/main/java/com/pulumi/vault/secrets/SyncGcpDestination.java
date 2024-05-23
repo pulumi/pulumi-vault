@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcp = new SyncGcpDestination("gcp", SyncGcpDestinationArgs.builder()        
+ *         var gcp = new SyncGcpDestination("gcp", SyncGcpDestinationArgs.builder()
  *             .name("gcp-dest")
  *             .projectId("gcp-project-id")
  *             .credentials(StdFunctions.file(FileArgs.builder()

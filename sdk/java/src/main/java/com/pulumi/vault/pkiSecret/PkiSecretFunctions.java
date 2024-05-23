@@ -53,13 +53,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -112,13 +112,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -171,13 +171,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -230,13 +230,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -289,13 +289,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -347,13 +347,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -405,13 +405,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -463,13 +463,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -521,13 +521,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .keyName("example")
@@ -580,13 +580,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .keyName("example")
@@ -639,13 +639,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .keyName("example")
@@ -698,13 +698,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .keyName("example")
@@ -757,13 +757,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -815,13 +815,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -873,13 +873,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")
@@ -931,13 +931,13 @@ public final class PkiSecretFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var pki = new Mount("pki", MountArgs.builder()        
+     *         var pki = new Mount("pki", MountArgs.builder()
      *             .path("pki")
      *             .type("pki")
      *             .description("PKI secret engine mount")
      *             .build());
      * 
-     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
      *             .backend(pki.path())
      *             .type("internal")
      *             .commonName("example")

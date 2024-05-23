@@ -51,12 +51,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var db = new Mount("db", MountArgs.builder()        
+ *         var db = new Mount("db", MountArgs.builder()
  *             .path("postgres")
  *             .type("database")
  *             .build());
  * 
- *         var postgres = new SecretBackendConnection("postgres", SecretBackendConnectionArgs.builder()        
+ *         var postgres = new SecretBackendConnection("postgres", SecretBackendConnectionArgs.builder()
  *             .backend(db.path())
  *             .name("postgres")
  *             .allowedRoles("*")
@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // configure a static role with period-based rotations
- *         var periodRole = new SecretBackendStaticRole("periodRole", SecretBackendStaticRoleArgs.builder()        
+ *         var periodRole = new SecretBackendStaticRole("periodRole", SecretBackendStaticRoleArgs.builder()
  *             .backend(db.path())
  *             .name("my-period-role")
  *             .dbName(postgres.name())
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // configure a static role with schedule-based rotations
- *         var scheduleRole = new SecretBackendStaticRole("scheduleRole", SecretBackendStaticRoleArgs.builder()        
+ *         var scheduleRole = new SecretBackendStaticRole("scheduleRole", SecretBackendStaticRoleArgs.builder()
  *             .backend(db.path())
  *             .name("my-schedule-role")
  *             .dbName(postgres.name())
