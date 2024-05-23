@@ -48,18 +48,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var group = new Group("group", GroupArgs.builder()        
+ *         var group = new Group("group", GroupArgs.builder()
  *             .name("test")
  *             .type("external")
  *             .policies("test")
  *             .build());
  * 
- *         var github = new AuthBackend("github", AuthBackendArgs.builder()        
+ *         var github = new AuthBackend("github", AuthBackendArgs.builder()
  *             .type("github")
  *             .path("github")
  *             .build());
  * 
- *         var group_alias = new GroupAlias("group-alias", GroupAliasArgs.builder()        
+ *         var group_alias = new GroupAlias("group-alias", GroupAliasArgs.builder()
  *             .name("Github_Team_Slug")
  *             .mountAccessor(github.accessor())
  *             .canonicalId(group.id())

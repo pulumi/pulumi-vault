@@ -67,7 +67,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var db = new SecretsMount("db", SecretsMountArgs.builder()        
+ *         var db = new SecretsMount("db", SecretsMountArgs.builder()
  *             .path("db")
  *             .mssqls(SecretsMountMssqlArgs.builder()
  *                 .name("db1")
@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var dev1 = new SecretBackendRole("dev1", SecretBackendRoleArgs.builder()        
+ *         var dev1 = new SecretBackendRole("dev1", SecretBackendRoleArgs.builder()
  *             .name("dev1")
  *             .backend(db.path())
  *             .dbName(db.mssqls().applyValue(mssqls -> mssqls[0].name()))
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  *                 "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];")
  *             .build());
  * 
- *         var dev2 = new SecretBackendRole("dev2", SecretBackendRoleArgs.builder()        
+ *         var dev2 = new SecretBackendRole("dev2", SecretBackendRoleArgs.builder()
  *             .name("dev2")
  *             .backend(db.path())
  *             .dbName(db.postgresqls().applyValue(postgresqls -> postgresqls[0].name()))

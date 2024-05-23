@@ -52,18 +52,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new ServiceAccount("this", ServiceAccountArgs.builder()        
+ *         var this_ = new ServiceAccount("this", ServiceAccountArgs.builder()
  *             .accountId("my-awesome-account")
  *             .build());
  * 
- *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()        
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()
  *             .path("gcp")
  *             .credentials(StdFunctions.file(FileArgs.builder()
  *                 .input("credentials.json")
  *                 .build()).result())
  *             .build());
  * 
- *         var staticAccount = new SecretStaticAccount("staticAccount", SecretStaticAccountArgs.builder()        
+ *         var staticAccount = new SecretStaticAccount("staticAccount", SecretStaticAccountArgs.builder()
  *             .backend(gcp.path())
  *             .staticAccount("project_viewer")
  *             .secretType("access_token")

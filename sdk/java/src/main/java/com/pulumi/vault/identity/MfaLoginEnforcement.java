@@ -45,14 +45,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaDuo("example", MfaDuoArgs.builder()        
+ *         var example = new MfaDuo("example", MfaDuoArgs.builder()
  *             .secretKey("secret-key")
  *             .integrationKey("int-key")
  *             .apiHostname("foo.baz")
  *             .pushInfo("push-info")
  *             .build());
  * 
- *         var exampleMfaLoginEnforcement = new MfaLoginEnforcement("exampleMfaLoginEnforcement", MfaLoginEnforcementArgs.builder()        
+ *         var exampleMfaLoginEnforcement = new MfaLoginEnforcement("exampleMfaLoginEnforcement", MfaLoginEnforcementArgs.builder()
  *             .name("default")
  *             .mfaMethodIds(example.methodId())
  *             .build());

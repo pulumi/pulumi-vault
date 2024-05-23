@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new Mount("root", MountArgs.builder()        
+ *         var root = new Mount("root", MountArgs.builder()
  *             .path("pki-root")
  *             .type("pki")
  *             .description("root PKI")
@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(8640000)
  *             .build());
  * 
- *         var example = new SecretBackendConfigUrls("example", SecretBackendConfigUrlsArgs.builder()        
+ *         var example = new SecretBackendConfigUrls("example", SecretBackendConfigUrlsArgs.builder()
  *             .backend(root.path())
  *             .issuingCertificates("http://127.0.0.1:8200/v1/pki/ca")
  *             .build());

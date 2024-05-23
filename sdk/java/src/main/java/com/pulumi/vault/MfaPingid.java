@@ -49,12 +49,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
  *         final var settingsFile = config.get("settingsFile");
- *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .path("userpass")
  *             .build());
  * 
- *         var myPingid = new MfaPingid("myPingid", MfaPingidArgs.builder()        
+ *         var myPingid = new MfaPingid("myPingid", MfaPingidArgs.builder()
  *             .name("my_pingid")
  *             .mountAccessor(userpass.accessor())
  *             .usernameFormat("user{@literal @}example.com")

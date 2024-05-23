@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var github_apps = new SyncGithubApps("github-apps", SyncGithubAppsArgs.builder()        
+ *         var github_apps = new SyncGithubApps("github-apps", SyncGithubAppsArgs.builder()
  *             .name("gh-apps")
  *             .appId(appId)
  *             .privateKey(StdFunctions.file(FileArgs.builder()

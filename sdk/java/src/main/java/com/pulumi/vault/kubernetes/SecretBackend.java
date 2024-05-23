@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend("config", SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .path("kubernetes")
  *             .description("kubernetes secrets engine description")
  *             .defaultLeaseTtlSeconds(43200)

@@ -65,12 +65,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var db = new Mount("db", MountArgs.builder()        
+ *         var db = new Mount("db", MountArgs.builder()
  *             .path("postgres")
  *             .type("database")
  *             .build());
  * 
- *         var postgres = new SecretBackendConnection("postgres", SecretBackendConnectionArgs.builder()        
+ *         var postgres = new SecretBackendConnection("postgres", SecretBackendConnectionArgs.builder()
  *             .backend(db.path())
  *             .name("postgres")
  *             .allowedRoles(            

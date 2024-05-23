@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Token("example", TokenArgs.builder()        
+ *         var example = new Token("example", TokenArgs.builder()
  *             .roleName("app")
  *             .policies(            
  *                 "policy1",

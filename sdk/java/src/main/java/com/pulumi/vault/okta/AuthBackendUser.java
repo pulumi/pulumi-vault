@@ -46,12 +46,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .path("user_okta")
  *             .organization("dummy")
  *             .build());
  * 
- *         var foo = new AuthBackendUser("foo", AuthBackendUserArgs.builder()        
+ *         var foo = new AuthBackendUser("foo", AuthBackendUserArgs.builder()
  *             .path(example.path())
  *             .username("foo")
  *             .groups(            

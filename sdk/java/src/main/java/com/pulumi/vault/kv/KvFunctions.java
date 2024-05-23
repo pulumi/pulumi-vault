@@ -57,14 +57,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *         var secret = new Secret("secret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -122,14 +122,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *         var secret = new Secret("secret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -187,14 +187,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *         var secret = new Secret("secret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -252,14 +252,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var secret = new Secret("secret", SecretArgs.builder()        
+     *         var secret = new Secret("secret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -317,14 +317,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -384,14 +384,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -451,14 +451,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -518,14 +518,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -585,14 +585,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
      *             .cas(1)
@@ -654,14 +654,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
      *             .cas(1)
@@ -723,14 +723,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
      *             .cas(1)
@@ -792,14 +792,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()        
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
      *             .cas(1)
@@ -861,14 +861,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -876,7 +876,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -933,14 +933,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -948,7 +948,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -1005,14 +1005,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -1020,7 +1020,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -1077,14 +1077,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv1 = new Mount("kvv1", MountArgs.builder()        
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
      *             .path("kvv1")
      *             .type("kv")
      *             .options(Map.of("version", "1"))
      *             .description("KV Version 1 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()        
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -1092,7 +1092,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()        
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
      *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -1149,14 +1149,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -1165,7 +1165,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("azure_secret")
      *             .dataJson(serializeJson(
@@ -1174,7 +1174,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
@@ -1237,14 +1237,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -1253,7 +1253,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("azure_secret")
      *             .dataJson(serializeJson(
@@ -1262,7 +1262,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
@@ -1325,14 +1325,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -1341,7 +1341,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("azure_secret")
      *             .dataJson(serializeJson(
@@ -1350,7 +1350,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(
@@ -1413,14 +1413,14 @@ public final class KvFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
      *             .path("kvv2")
      *             .type("kv")
      *             .options(Map.of("version", "2"))
      *             .description("KV Version 2 secret engine mount")
      *             .build());
      * 
-     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()        
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("aws_secret")
      *             .dataJson(serializeJson(
@@ -1429,7 +1429,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()        
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("azure_secret")
      *             .dataJson(serializeJson(
@@ -1438,7 +1438,7 @@ public final class KvFunctions {
      *                 )))
      *             .build());
      * 
-     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()        
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
      *             .dataJson(serializeJson(

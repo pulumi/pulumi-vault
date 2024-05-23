@@ -49,11 +49,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var approle = new AuthBackend("approle", AuthBackendArgs.builder()        
+ *         var approle = new AuthBackend("approle", AuthBackendArgs.builder()
  *             .type("approle")
  *             .build());
  * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(approle.path())
  *             .roleName("test-role")
  *             .tokenPolicies(            

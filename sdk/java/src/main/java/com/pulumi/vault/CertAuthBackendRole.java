@@ -47,12 +47,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var cert = new AuthBackend("cert", AuthBackendArgs.builder()        
+ *         var cert = new AuthBackend("cert", AuthBackendArgs.builder()
  *             .path("cert")
  *             .type("cert")
  *             .build());
  * 
- *         var certCertAuthBackendRole = new CertAuthBackendRole("certCertAuthBackendRole", CertAuthBackendRoleArgs.builder()        
+ *         var certCertAuthBackendRole = new CertAuthBackendRole("certCertAuthBackendRole", CertAuthBackendRoleArgs.builder()
  *             .name("foo")
  *             .certificate(StdFunctions.file(FileArgs.builder()
  *                 .input("/path/to/certs/ca-cert.pem")

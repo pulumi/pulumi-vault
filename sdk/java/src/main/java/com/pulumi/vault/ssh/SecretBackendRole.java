@@ -50,18 +50,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Mount("example", MountArgs.builder()        
+ *         var example = new Mount("example", MountArgs.builder()
  *             .type("ssh")
  *             .build());
  * 
- *         var foo = new SecretBackendRole("foo", SecretBackendRoleArgs.builder()        
+ *         var foo = new SecretBackendRole("foo", SecretBackendRoleArgs.builder()
  *             .name("my-role")
  *             .backend(example.path())
  *             .keyType("ca")
  *             .allowUserCertificates(true)
  *             .build());
  * 
- *         var bar = new SecretBackendRole("bar", SecretBackendRoleArgs.builder()        
+ *         var bar = new SecretBackendRole("bar", SecretBackendRoleArgs.builder()
  *             .name("otp-role")
  *             .backend(example.path())
  *             .keyType("otp")

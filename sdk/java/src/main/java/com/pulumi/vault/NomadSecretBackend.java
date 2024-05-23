@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()        
+ *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
  *             .backend("nomad")
  *             .description("test description")
  *             .defaultLeaseTtlSeconds("3600")

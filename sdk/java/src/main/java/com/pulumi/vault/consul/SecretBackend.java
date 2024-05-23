@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend("test", SecretBackendArgs.builder()        
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
  *             .path("consul")
  *             .description("Manages the Consul backend")
  *             .address("127.0.0.1:8500")
@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend("test", SecretBackendArgs.builder()        
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
  *             .path("consul")
  *             .description("Bootstrap the Consul backend")
  *             .address("127.0.0.1:8500")

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaPingid("example", MfaPingidArgs.builder()        
+ *         var example = new MfaPingid("example", MfaPingidArgs.builder()
  *             .settingsFileBase64("CnVzZV9iYXNlNjR[...]HBtCg==")
  *             .build());
  * 

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myTotp = new MfaTotp("myTotp", MfaTotpArgs.builder()        
+ *         var myTotp = new MfaTotp("myTotp", MfaTotpArgs.builder()
  *             .name("my_totp")
  *             .issuer("hashicorp")
  *             .period(60)

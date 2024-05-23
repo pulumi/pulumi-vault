@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var server = new Oidc("server", OidcArgs.builder()        
+ *         var server = new Oidc("server", OidcArgs.builder()
  *             .issuer("https://www.acme.com")
  *             .build());
  * 
