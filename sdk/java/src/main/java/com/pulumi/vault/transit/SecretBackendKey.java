@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transit = new Mount("transit", MountArgs.builder()        
+ *         var transit = new Mount("transit", MountArgs.builder()
  *             .path("transit")
  *             .type("transit")
  *             .description("Example description")
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()        
+ *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
  *             .backend(transit.path())
  *             .name("my_key")
  *             .build());

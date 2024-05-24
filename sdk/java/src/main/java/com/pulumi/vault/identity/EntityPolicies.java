@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var entity = new Entity("entity", EntityArgs.builder()        
+ *         var entity = new Entity("entity", EntityArgs.builder()
  *             .name("entity")
  *             .externalPolicies(true)
  *             .build());
  * 
- *         var policies = new EntityPolicies("policies", EntityPoliciesArgs.builder()        
+ *         var policies = new EntityPolicies("policies", EntityPoliciesArgs.builder()
  *             .policies(            
  *                 "default",
  *                 "test")
@@ -94,12 +94,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var entity = new Entity("entity", EntityArgs.builder()        
+ *         var entity = new Entity("entity", EntityArgs.builder()
  *             .name("entity")
  *             .externalPolicies(true)
  *             .build());
  * 
- *         var default_ = new EntityPolicies("default", EntityPoliciesArgs.builder()        
+ *         var default_ = new EntityPolicies("default", EntityPoliciesArgs.builder()
  *             .policies(            
  *                 "default",
  *                 "test")
@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  *             .entityId(entity.id())
  *             .build());
  * 
- *         var others = new EntityPolicies("others", EntityPoliciesArgs.builder()        
+ *         var others = new EntityPolicies("others", EntityPoliciesArgs.builder()
  *             .policies("others")
  *             .exclusive(false)
  *             .entityId(entity.id())

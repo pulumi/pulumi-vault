@@ -47,12 +47,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var alicloud = new AuthBackend("alicloud", AuthBackendArgs.builder()        
+ *         var alicloud = new AuthBackend("alicloud", AuthBackendArgs.builder()
  *             .type("alicloud")
  *             .path("alicloud")
  *             .build());
  * 
- *         var alicloudAuthBackendRole = new AuthBackendRole("alicloudAuthBackendRole", AuthBackendRoleArgs.builder()        
+ *         var alicloudAuthBackendRole = new AuthBackendRole("alicloudAuthBackendRole", AuthBackendRoleArgs.builder()
  *             .backend(alicloud.path())
  *             .role("example")
  *             .arn("acs:ram:123456:tf:role/foobar")

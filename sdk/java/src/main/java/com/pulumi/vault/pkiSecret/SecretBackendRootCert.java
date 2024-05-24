@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackendRootCert("test", SecretBackendRootCertArgs.builder()        
+ *         var test = new SecretBackendRootCert("test", SecretBackendRootCertArgs.builder()
  *             .backend(pki.path())
  *             .type("internal")
  *             .commonName("Root CA")

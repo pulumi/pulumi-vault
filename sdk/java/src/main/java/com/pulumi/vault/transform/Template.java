@@ -61,18 +61,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transform = new Mount("transform", MountArgs.builder()        
+ *         var transform = new Mount("transform", MountArgs.builder()
  *             .path("transform")
  *             .type("transform")
  *             .build());
  * 
- *         var numerics = new Alphabet("numerics", AlphabetArgs.builder()        
+ *         var numerics = new Alphabet("numerics", AlphabetArgs.builder()
  *             .path(transform.path())
  *             .name("numerics")
  *             .alphabet("0123456789")
  *             .build());
  * 
- *         var test = new Template("test", TemplateArgs.builder()        
+ *         var test = new Template("test", TemplateArgs.builder()
  *             .path(numerics.path())
  *             .name("ccn")
  *             .type("regex")

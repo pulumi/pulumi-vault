@@ -47,14 +47,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new Backend("azure", BackendArgs.builder()        
+ *         var azure = new Backend("azure", BackendArgs.builder()
  *             .subscriptionId(subscriptionId)
  *             .tenantId(tenantId)
  *             .clientSecret(clientSecret)
  *             .clientId(clientId)
  *             .build());
  * 
- *         var generatedRole = new BackendRole("generatedRole", BackendRoleArgs.builder()        
+ *         var generatedRole = new BackendRole("generatedRole", BackendRoleArgs.builder()
  *             .backend(azure.path())
  *             .role("generated_role")
  *             .signInAudience("AzureADMyOrg")
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var existingObjectId = new BackendRole("existingObjectId", BackendRoleArgs.builder()        
+ *         var existingObjectId = new BackendRole("existingObjectId", BackendRoleArgs.builder()
  *             .backend(azure.path())
  *             .role("existing_object_id")
  *             .applicationObjectId("11111111-2222-3333-4444-44444444444")

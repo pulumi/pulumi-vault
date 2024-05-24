@@ -47,11 +47,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .organization("myorg")
  *             .build());
  * 
- *         var tfUser = new User("tfUser", UserArgs.builder()        
+ *         var tfUser = new User("tfUser", UserArgs.builder()
  *             .backend(example.id())
  *             .user("john.doe")
  *             .policies(            

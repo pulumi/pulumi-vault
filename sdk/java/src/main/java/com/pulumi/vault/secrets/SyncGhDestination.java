@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gh = new SyncGhDestination("gh", SyncGhDestinationArgs.builder()        
+ *         var gh = new SyncGhDestination("gh", SyncGhDestinationArgs.builder()
  *             .name("gh-dest")
  *             .accessToken(accessToken)
  *             .repositoryOwner(repoOwner)

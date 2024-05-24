@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var ldap = new AuthBackend("ldap", AuthBackendArgs.builder()        
+ *         var ldap = new AuthBackend("ldap", AuthBackendArgs.builder()
  *             .path("ldap")
  *             .url("ldaps://dc-01.example.org")
  *             .userdn("OU=Users,OU=Accounts,DC=example,DC=org")
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  *             .groupfilter("(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))")
  *             .build());
  * 
- *         var user = new AuthBackendUser("user", AuthBackendUserArgs.builder()        
+ *         var user = new AuthBackendUser("user", AuthBackendUserArgs.builder()
  *             .username("test-user")
  *             .policies(            
  *                 "dba",

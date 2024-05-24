@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var localBackups = new RaftSnapshotAgentConfig("localBackups", RaftSnapshotAgentConfigArgs.builder()        
+ *         var localBackups = new RaftSnapshotAgentConfig("localBackups", RaftSnapshotAgentConfigArgs.builder()
  *             .name("local")
  *             .intervalSeconds(86400)
  *             .retain(7)
@@ -89,7 +89,7 @@ import javax.annotation.Nullable;
  *         final var awsSecretAccessKey = config.get("awsSecretAccessKey");
  *         final var current = AwsFunctions.getRegion();
  * 
- *         var s3Backups = new RaftSnapshotAgentConfig("s3Backups", RaftSnapshotAgentConfigArgs.builder()        
+ *         var s3Backups = new RaftSnapshotAgentConfig("s3Backups", RaftSnapshotAgentConfigArgs.builder()
  *             .name("s3")
  *             .intervalSeconds(86400)
  *             .retain(7)
@@ -136,7 +136,7 @@ import javax.annotation.Nullable;
  *         final var config = ctx.config();
  *         final var azureAccountName = config.get("azureAccountName");
  *         final var azureAccountKey = config.get("azureAccountKey");
- *         var azureBackups = new RaftSnapshotAgentConfig("azureBackups", RaftSnapshotAgentConfigArgs.builder()        
+ *         var azureBackups = new RaftSnapshotAgentConfig("azureBackups", RaftSnapshotAgentConfigArgs.builder()
  *             .name("azure_backup")
  *             .intervalSeconds(86400)
  *             .retain(7)

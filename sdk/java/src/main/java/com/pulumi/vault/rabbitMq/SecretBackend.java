@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()        
+ *         var rabbitmq = new SecretBackend("rabbitmq", SecretBackendArgs.builder()
  *             .connectionUri("https://.....")
  *             .username("user")
  *             .password("password")

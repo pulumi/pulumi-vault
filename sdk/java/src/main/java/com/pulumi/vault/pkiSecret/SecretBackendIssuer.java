@@ -46,21 +46,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki = new Mount("pki", MountArgs.builder()        
+ *         var pki = new Mount("pki", MountArgs.builder()
  *             .path("pki")
  *             .type("pki")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()        
+ *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
  *             .backend(pki.path())
  *             .type("internal")
  *             .commonName("test")
  *             .ttl("86400")
  *             .build());
  * 
- *         var example = new SecretBackendIssuer("example", SecretBackendIssuerArgs.builder()        
+ *         var example = new SecretBackendIssuer("example", SecretBackendIssuerArgs.builder()
  *             .backend(root.backend())
  *             .issuerRef(root.issuerId())
  *             .issuerName("example-issuer")

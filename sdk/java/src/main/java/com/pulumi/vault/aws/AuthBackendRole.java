@@ -51,11 +51,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()        
+ *         var aws = new AuthBackend("aws", AuthBackendArgs.builder()
  *             .type("aws")
  *             .build());
  * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(aws.path())
  *             .role("test-role")
  *             .authType("iam")

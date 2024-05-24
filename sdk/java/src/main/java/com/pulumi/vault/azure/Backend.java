@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new Backend("azure", BackendArgs.builder()        
+ *         var azure = new Backend("azure", BackendArgs.builder()
  *             .useMicrosoftGraphApi(true)
  *             .subscriptionId("11111111-2222-3333-4444-111111111111")
  *             .tenantId("11111111-2222-3333-4444-222222222222")
@@ -84,7 +84,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new Backend("azure", BackendArgs.builder()        
+ *         var azure = new Backend("azure", BackendArgs.builder()
  *             .useMicrosoftGraphApi(false)
  *             .subscriptionId("11111111-2222-3333-4444-111111111111")
  *             .tenantId("11111111-2222-3333-4444-222222222222")

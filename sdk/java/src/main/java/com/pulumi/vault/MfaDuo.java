@@ -47,12 +47,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .path("userpass")
  *             .build());
  * 
- *         var myDuo = new MfaDuo("myDuo", MfaDuoArgs.builder()        
+ *         var myDuo = new MfaDuo("myDuo", MfaDuoArgs.builder()
  *             .name("my_duo")
  *             .mountAccessor(userpass.accessor())
  *             .secretKey("8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz")

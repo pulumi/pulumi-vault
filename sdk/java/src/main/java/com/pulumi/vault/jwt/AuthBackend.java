@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .description("Demonstration of the Terraform JWT auth backend")
  *             .path("jwt")
  *             .oidcDiscoveryUrl("https://myco.auth0.com/")
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .description("Demonstration of the Terraform JWT auth backend")
  *             .path("oidc")
  *             .type("oidc")
@@ -132,7 +132,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gsuite = new AuthBackend("gsuite", AuthBackendArgs.builder()        
+ *         var gsuite = new AuthBackend("gsuite", AuthBackendArgs.builder()
  *             .description("OIDC backend")
  *             .oidcDiscoveryUrl("https://accounts.google.com")
  *             .path("oidc")

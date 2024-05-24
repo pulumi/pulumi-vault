@@ -49,14 +49,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2 = new Mount("kvv2", MountArgs.builder()        
+ *         var kvv2 = new Mount("kvv2", MountArgs.builder()
  *             .path("kvv2")
  *             .type("kv")
  *             .options(Map.of("version", "2"))
  *             .description("KV Version 2 secret engine mount")
  *             .build());
  * 
- *         var token = new SecretV2("token", SecretV2Args.builder()        
+ *         var token = new SecretV2("token", SecretV2Args.builder()
  *             .mount(kvv2.path())
  *             .name("token")
  *             .dataJson(serializeJson(
@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *                 )))
  *             .build());
  * 
- *         var gh = new SyncGhDestination("gh", SyncGhDestinationArgs.builder()        
+ *         var gh = new SyncGhDestination("gh", SyncGhDestinationArgs.builder()
  *             .name("gh-dest")
  *             .accessToken(accessToken)
  *             .repositoryOwner(repoOwner)
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
  *             .build());
  * 
- *         var ghToken = new SyncAssociation("ghToken", SyncAssociationArgs.builder()        
+ *         var ghToken = new SyncAssociation("ghToken", SyncAssociationArgs.builder()
  *             .name(gh.name())
  *             .type(gh.type())
  *             .mount(kvv2.path())

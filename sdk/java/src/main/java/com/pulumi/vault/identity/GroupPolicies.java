@@ -48,14 +48,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .externalPolicies(true)
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var policies = new GroupPolicies("policies", GroupPoliciesArgs.builder()        
+ *         var policies = new GroupPolicies("policies", GroupPoliciesArgs.builder()
  *             .policies(            
  *                 "default",
  *                 "test")
@@ -96,14 +96,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .externalPolicies(true)
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var default_ = new GroupPolicies("default", GroupPoliciesArgs.builder()        
+ *         var default_ = new GroupPolicies("default", GroupPoliciesArgs.builder()
  *             .policies(            
  *                 "default",
  *                 "test")
@@ -111,7 +111,7 @@ import javax.annotation.Nullable;
  *             .groupId(internal.id())
  *             .build());
  * 
- *         var others = new GroupPolicies("others", GroupPoliciesArgs.builder()        
+ *         var others = new GroupPolicies("others", GroupPoliciesArgs.builder()
  *             .policies("others")
  *             .exclusive(false)
  *             .groupId(internal.id())

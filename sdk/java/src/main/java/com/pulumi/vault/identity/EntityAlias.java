@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EntityAlias("test", EntityAliasArgs.builder()        
+ *         var test = new EntityAlias("test", EntityAliasArgs.builder()
  *             .name("user_1")
  *             .mountAccessor("token_1f2bd5")
  *             .canonicalId("49877D63-07AD-4B85-BDA8-B61626C477E8")
