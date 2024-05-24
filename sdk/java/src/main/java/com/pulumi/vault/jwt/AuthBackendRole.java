@@ -53,11 +53,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var jwt = new AuthBackend("jwt", AuthBackendArgs.builder()        
+ *         var jwt = new AuthBackend("jwt", AuthBackendArgs.builder()
  *             .path("jwt")
  *             .build());
  * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(jwt.path())
  *             .roleName("test-role")
  *             .tokenPolicies(            
@@ -103,12 +103,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var oidc = new AuthBackend("oidc", AuthBackendArgs.builder()        
+ *         var oidc = new AuthBackend("oidc", AuthBackendArgs.builder()
  *             .path("oidc")
  *             .defaultRole("test-role")
  *             .build());
  * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(oidc.path())
  *             .roleName("test-role")
  *             .tokenPolicies(            

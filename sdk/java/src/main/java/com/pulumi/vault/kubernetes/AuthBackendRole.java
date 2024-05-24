@@ -49,11 +49,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()        
+ *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()
  *             .type("kubernetes")
  *             .build());
  * 
- *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(kubernetes.path())
  *             .roleName("example-role")
  *             .boundServiceAccountNames("example")

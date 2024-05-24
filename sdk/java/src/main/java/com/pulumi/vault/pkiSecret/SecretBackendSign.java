@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackendSign("test", SecretBackendSignArgs.builder()        
+ *         var test = new SecretBackendSign("test", SecretBackendSignArgs.builder()
  *             .backend(pki.path())
  *             .name(admin.name())
  *             .csr("""

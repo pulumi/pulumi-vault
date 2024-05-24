@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var xForwardedFor = new AuditRequestHeader("xForwardedFor", AuditRequestHeaderArgs.builder()        
+ *         var xForwardedFor = new AuditRequestHeader("xForwardedFor", AuditRequestHeaderArgs.builder()
  *             .name("X-Forwarded-For")
  *             .hmac(false)
  *             .build());

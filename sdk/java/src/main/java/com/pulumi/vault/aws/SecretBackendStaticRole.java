@@ -43,12 +43,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()        
+ *         var aws = new SecretBackend("aws", SecretBackendArgs.builder()
  *             .path("my-aws")
  *             .description("Obtain AWS credentials.")
  *             .build());
  * 
- *         var role = new SecretBackendStaticRole("role", SecretBackendStaticRoleArgs.builder()        
+ *         var role = new SecretBackendStaticRole("role", SecretBackendStaticRoleArgs.builder()
  *             .backend(aws.path())
  *             .name("test")
  *             .username("my-test-user")

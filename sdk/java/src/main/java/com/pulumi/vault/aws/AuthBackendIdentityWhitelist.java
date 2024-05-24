@@ -49,11 +49,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .type("aws")
  *             .build());
  * 
- *         var exampleAuthBackendIdentityWhitelist = new AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", AuthBackendIdentityWhitelistArgs.builder()        
+ *         var exampleAuthBackendIdentityWhitelist = new AuthBackendIdentityWhitelist("exampleAuthBackendIdentityWhitelist", AuthBackendIdentityWhitelistArgs.builder()
  *             .backend(example.path())
  *             .safetyBuffer(3600)
  *             .build());

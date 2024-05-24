@@ -46,12 +46,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mountTransform = new Mount("mountTransform", MountArgs.builder()        
+ *         var mountTransform = new Mount("mountTransform", MountArgs.builder()
  *             .path("transform")
  *             .type("transform")
  *             .build());
  * 
- *         var test = new Alphabet("test", AlphabetArgs.builder()        
+ *         var test = new Alphabet("test", AlphabetArgs.builder()
  *             .path(mountTransform.path())
  *             .name("numerics")
  *             .alphabet("0123456789")

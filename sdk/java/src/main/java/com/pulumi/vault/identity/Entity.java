@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Entity("test", EntityArgs.builder()        
+ *         var test = new Entity("test", EntityArgs.builder()
  *             .name("tester1")
  *             .policies("test")
  *             .metadata(Map.of("foo", "bar"))

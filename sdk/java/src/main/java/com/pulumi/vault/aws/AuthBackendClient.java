@@ -44,11 +44,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .type("aws")
  *             .build());
  * 
- *         var exampleAuthBackendClient = new AuthBackendClient("exampleAuthBackendClient", AuthBackendClientArgs.builder()        
+ *         var exampleAuthBackendClient = new AuthBackendClient("exampleAuthBackendClient", AuthBackendClientArgs.builder()
  *             .backend(example.path())
  *             .accessKey("INSERT_AWS_ACCESS_KEY")
  *             .secretKey("INSERT_AWS_SECRET_KEY")

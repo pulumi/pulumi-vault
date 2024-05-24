@@ -47,12 +47,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()        
+ *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()
  *             .path("gcp")
  *             .type("gcp")
  *             .build());
  * 
- *         var test = new AuthBackendRole("test", AuthBackendRoleArgs.builder()        
+ *         var test = new AuthBackendRole("test", AuthBackendRoleArgs.builder()
  *             .backend(gcp.path())
  *             .role("test")
  *             .type("iam")

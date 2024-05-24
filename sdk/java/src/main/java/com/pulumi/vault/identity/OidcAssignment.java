@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .policies(            
@@ -56,12 +56,12 @@ import javax.annotation.Nullable;
  *                 "test")
  *             .build());
  * 
- *         var test = new Entity("test", EntityArgs.builder()        
+ *         var test = new Entity("test", EntityArgs.builder()
  *             .name("test")
  *             .policies("test")
  *             .build());
  * 
- *         var default_ = new OidcAssignment("default", OidcAssignmentArgs.builder()        
+ *         var default_ = new OidcAssignment("default", OidcAssignmentArgs.builder()
  *             .name("assignment")
  *             .entityIds(test.id())
  *             .groupIds(internal.id())

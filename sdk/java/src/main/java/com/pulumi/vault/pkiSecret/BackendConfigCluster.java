@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new Mount("root", MountArgs.builder()        
+ *         var root = new Mount("root", MountArgs.builder()
  *             .path("pki-root")
  *             .type("pki")
  *             .description("root PKI")
@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(8640000)
  *             .build());
  * 
- *         var example = new BackendConfigCluster("example", BackendConfigClusterArgs.builder()        
+ *         var example = new BackendConfigCluster("example", BackendConfigClusterArgs.builder()
  *             .backend(root.path())
  *             .path("http://127.0.0.1:8200/v1/pki-root")
  *             .aiaPath("http://127.0.0.1:8200/v1/pki-root")

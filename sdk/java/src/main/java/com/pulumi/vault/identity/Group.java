@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .policies(            
@@ -89,7 +89,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var group = new Group("group", GroupArgs.builder()        
+ *         var group = new Group("group", GroupArgs.builder()
  *             .name("external")
  *             .type("external")
  *             .policies("test")
@@ -131,7 +131,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group("internal", GroupArgs.builder()        
+ *         var internal = new Group("internal", GroupArgs.builder()
  *             .name("internal")
  *             .type("internal")
  *             .policies(            
@@ -140,7 +140,7 @@ import javax.annotation.Nullable;
  *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var internalGroup = new Group("internalGroup", GroupArgs.builder()        
+ *         var internalGroup = new Group("internalGroup", GroupArgs.builder()
  *             .name("Internal")
  *             .type("internal")
  *             .policies(            

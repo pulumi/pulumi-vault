@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var ldap = new AuthBackend("ldap", AuthBackendArgs.builder()        
+ *         var ldap = new AuthBackend("ldap", AuthBackendArgs.builder()
  *             .path("ldap")
  *             .url("ldaps://dc-01.example.org")
  *             .userdn("OU=Users,OU=Accounts,DC=example,DC=org")

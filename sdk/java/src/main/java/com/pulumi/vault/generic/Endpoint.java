@@ -46,11 +46,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .build());
  * 
- *         var u1 = new Endpoint("u1", EndpointArgs.builder()        
+ *         var u1 = new Endpoint("u1", EndpointArgs.builder()
  *             .path("auth/userpass/users/u1")
  *             .ignoreAbsentFields(true)
  *             .dataJson("""
@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(userpass)
  *                 .build());
  * 
- *         var u1Token = new Endpoint("u1Token", EndpointArgs.builder()        
+ *         var u1Token = new Endpoint("u1Token", EndpointArgs.builder()
  *             .path("auth/userpass/login/u1")
  *             .disableRead(true)
  *             .disableDelete(true)
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(u1)
  *                 .build());
  * 
- *         var u1Entity = new Endpoint("u1Entity", EndpointArgs.builder()        
+ *         var u1Entity = new Endpoint("u1Entity", EndpointArgs.builder()
  *             .disableRead(true)
  *             .disableDelete(true)
  *             .path("identity/lookup/entity")

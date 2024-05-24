@@ -43,11 +43,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend("example", AuthBackendArgs.builder()        
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
  *             .type("azure")
  *             .build());
  * 
- *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()        
+ *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
  *             .backend(example.path())
  *             .tenantId("11111111-2222-3333-4444-555555555555")
  *             .clientId("11111111-2222-3333-4444-555555555555")

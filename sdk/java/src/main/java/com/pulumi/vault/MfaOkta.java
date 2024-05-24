@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()        
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .path("userpass")
  *             .build());
  * 
- *         var myOkta = new MfaOkta("myOkta", MfaOktaArgs.builder()        
+ *         var myOkta = new MfaOkta("myOkta", MfaOktaArgs.builder()
  *             .name("my_okta")
  *             .mountAccessor(userpass.accessor())
  *             .usernameFormat("user{@literal @}example.com")

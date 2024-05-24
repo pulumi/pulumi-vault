@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new Mount("root", MountArgs.builder()        
+ *         var root = new Mount("root", MountArgs.builder()
  *             .path("pki-root")
  *             .type("pki")
  *             .description("root")
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(8640000)
  *             .build());
  * 
- *         var intermediate = new Mount("intermediate", MountArgs.builder()        
+ *         var intermediate = new Mount("intermediate", MountArgs.builder()
  *             .path("pki-int")
  *             .type(root.type())
  *             .description("intermediate")
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var example = new SecretBackendRootCert("example", SecretBackendRootCertArgs.builder()        
+ *         var example = new SecretBackendRootCert("example", SecretBackendRootCertArgs.builder()
  *             .backend(root.path())
  *             .type("internal")
  *             .commonName("RootOrg Root CA")
@@ -82,13 +82,13 @@ import javax.annotation.Nullable;
  *             .province("CA")
  *             .build());
  * 
- *         var exampleSecretBackendIntermediateCertRequest = new SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", SecretBackendIntermediateCertRequestArgs.builder()        
+ *         var exampleSecretBackendIntermediateCertRequest = new SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", SecretBackendIntermediateCertRequestArgs.builder()
  *             .backend(intermediate.path())
  *             .type(example.type())
  *             .commonName("SubOrg Intermediate CA")
  *             .build());
  * 
- *         var exampleSecretBackendRootSignIntermediate = new SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", SecretBackendRootSignIntermediateArgs.builder()        
+ *         var exampleSecretBackendRootSignIntermediate = new SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", SecretBackendRootSignIntermediateArgs.builder()
  *             .backend(root.path())
  *             .csr(exampleSecretBackendIntermediateCertRequest.csr())
  *             .commonName("SubOrg Intermediate CA")
@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
  *             .revoke(true)
  *             .build());
  * 
- *         var exampleSecretBackendIntermediateSetSigned = new SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", SecretBackendIntermediateSetSignedArgs.builder()        
+ *         var exampleSecretBackendIntermediateSetSigned = new SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", SecretBackendIntermediateSetSignedArgs.builder()
  *             .backend(intermediate.path())
  *             .certificate(exampleSecretBackendRootSignIntermediate.certificate())
  *             .build());
