@@ -23,7 +23,6 @@ const defaultBaselineVersion = "6.1.0"
 
 var programs = []string{
 	"test-programs/index_authbackend",
-	"test-programs/.DS_Store",
 	"test-programs/index_policy",
 	"test-programs/index_token",
 	"test-programs/identity_group",
