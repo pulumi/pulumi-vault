@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,42 +45,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
- *             .backend(&#34;terraform&#34;)
- *             .description(&#34;Manages the Terraform Cloud backend&#34;)
- *             .token(&#34;V0idfhi2iksSDU234ucdbi2nidsi...&#34;)
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
+ *             .backend("terraform")
+ *             .description("Manages the Terraform Cloud backend")
+ *             .token("V0idfhi2iksSDU234ucdbi2nidsi...")
  *             .build());
  * 
- *         var example = new SecretRole(&#34;example&#34;, SecretRoleArgs.builder()        
+ *         var example = new SecretRole("example", SecretRoleArgs.builder()
  *             .backend(test.backend())
- *             .organization(&#34;example-organization-name&#34;)
- *             .teamId(&#34;team-ieF4isC...&#34;)
+ *             .name("test-role")
+ *             .organization("example-organization-name")
+ *             .teamId("team-ieF4isC...")
  *             .build());
  * 
- *         var token = new SecretCreds(&#34;token&#34;, SecretCredsArgs.builder()        
+ *         var token = new SecretCreds("token", SecretCredsArgs.builder()
  *             .backend(test.backend())
  *             .role(example.name())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="vault:terraformcloud/secretCreds:SecretCreds")
 public class SecretCreds extends com.pulumi.resources.CustomResource {
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     * 
-     */
     @Export(name="backend", refs={String.class}, tree="[0]")
     private Output<String> backend;
 
-    /**
-     * @return Terraform Cloud secret backend to generate tokens from
-     * 
-     */
     public Output<String> backend() {
         return this.backend;
     }

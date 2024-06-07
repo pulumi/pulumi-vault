@@ -498,24 +498,6 @@ class AuthBackend(pulumi.CustomResource):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        gcp = vault.gcp.AuthBackend("gcp",
-            credentials=(lambda path: open(path).read())("vault-gcp-credentials.json"),
-            custom_endpoint=vault.gcp.AuthBackendCustomEndpointArgs(
-                api="www.googleapis.com",
-                iam="iam.googleapis.com",
-                crm="cloudresourcemanager.googleapis.com",
-                compute="compute.googleapis.com",
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
-
         ## Import
 
         GCP authentication backends can be imported using the backend name, e.g.
@@ -559,24 +541,6 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        gcp = vault.gcp.AuthBackend("gcp",
-            credentials=(lambda path: open(path).read())("vault-gcp-credentials.json"),
-            custom_endpoint=vault.gcp.AuthBackendCustomEndpointArgs(
-                api="www.googleapis.com",
-                iam="iam.googleapis.com",
-                crm="cloudresourcemanager.googleapis.com",
-                compute="compute.googleapis.com",
-            ))
-        ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

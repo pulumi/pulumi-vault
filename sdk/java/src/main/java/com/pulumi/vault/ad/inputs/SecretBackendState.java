@@ -472,14 +472,14 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Enables userPrincipalDomain login with [username]@UPNDomain.
+     * Enables userPrincipalDomain login with [username]{@literal @}UPNDomain.
      * 
      */
     @Import(name="upndomain")
     private @Nullable Output<String> upndomain;
 
     /**
-     * @return Enables userPrincipalDomain login with [username]@UPNDomain.
+     * @return Enables userPrincipalDomain login with [username]{@literal @}UPNDomain.
      * 
      */
     public Optional<Output<String>> upndomain() {
@@ -1255,7 +1255,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param upndomain Enables userPrincipalDomain login with [username]@UPNDomain.
+         * @param upndomain Enables userPrincipalDomain login with [username]{@literal @}UPNDomain.
          * 
          * @return builder
          * 
@@ -1266,7 +1266,7 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param upndomain Enables userPrincipalDomain login with [username]@UPNDomain.
+         * @param upndomain Enables userPrincipalDomain login with [username]{@literal @}UPNDomain.
          * 
          * @return builder
          * 

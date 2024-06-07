@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,8 +22,9 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var vercel = new Vault.Secrets.SyncVercelDestination("vercel", new()
     ///     {
-    ///         AccessToken = @var.Access_token,
-    ///         ProjectId = @var.Project_id,
+    ///         Name = "vercel-dest",
+    ///         AccessToken = accessToken,
+    ///         ProjectId = projectId,
     ///         DeploymentEnvironments = new[]
     ///         {
     ///             "development",
@@ -36,7 +36,6 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

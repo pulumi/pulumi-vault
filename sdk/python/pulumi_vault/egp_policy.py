@@ -214,21 +214,19 @@ class EgpPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         allow_all = vault.EgpPolicy("allow-all",
-            enforcement_level="soft-mandatory",
+            name="allow-all",
             paths=["*"],
+            enforcement_level="soft-mandatory",
             policy=\"\"\"main = rule {
           true
         }
-
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,21 +252,19 @@ class EgpPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         allow_all = vault.EgpPolicy("allow-all",
-            enforcement_level="soft-mandatory",
+            name="allow-all",
             paths=["*"],
+            enforcement_level="soft-mandatory",
             policy=\"\"\"main = rule {
           true
         }
-
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param EgpPolicyArgs args: The arguments to use to populate this resource's properties.

@@ -15,7 +15,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,6 +25,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         Policies = new[]
     ///         {
@@ -36,6 +36,7 @@ namespace Pulumi.Vault.Identity
     /// 
     ///     var test = new Vault.Identity.Entity("test", new()
     ///     {
+    ///         Name = "test",
     ///         Policies = new[]
     ///         {
     ///             "test",
@@ -44,6 +45,7 @@ namespace Pulumi.Vault.Identity
     /// 
     ///     var @default = new Vault.Identity.OidcAssignment("default", new()
     ///     {
+    ///         Name = "assignment",
     ///         EntityIds = new[]
     ///         {
     ///             test.Id,
@@ -56,7 +58,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,20 +19,23 @@ import * as utilities from "../utilities";
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ * const awsSecret = new vault.kv.SecretV2("aws_secret", {
  *     mount: kvv2.path,
+ *     name: "aws_secret",
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *     }),
  * });
- * const azureSecret = new vault.kv.SecretV2("azureSecret", {
+ * const azureSecret = new vault.kv.SecretV2("azure_secret", {
  *     mount: kvv2.path,
+ *     name: "azure_secret",
  *     dataJson: JSON.stringify({
  *         foo: "bar",
  *     }),
  * });
- * const nestedSecret = new vault.kv.SecretV2("nestedSecret", {
+ * const nestedSecret = new vault.kv.SecretV2("nested_secret", {
  *     mount: kvv2.path,
+ *     name: pulumi.interpolate`${azureSecret.name}/dev`,
  *     dataJson: JSON.stringify({
  *         password: "test",
  *     }),
@@ -43,10 +45,9 @@ import * as utilities from "../utilities";
  * });
  * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsListV2Output({
  *     mount: path,
- *     name: vault_kv_secret_v2.test_2.name,
+ *     name: test2.name,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *
@@ -109,7 +110,6 @@ export interface GetSecretsListV2Result {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -122,20 +122,23 @@ export interface GetSecretsListV2Result {
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ * const awsSecret = new vault.kv.SecretV2("aws_secret", {
  *     mount: kvv2.path,
+ *     name: "aws_secret",
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *     }),
  * });
- * const azureSecret = new vault.kv.SecretV2("azureSecret", {
+ * const azureSecret = new vault.kv.SecretV2("azure_secret", {
  *     mount: kvv2.path,
+ *     name: "azure_secret",
  *     dataJson: JSON.stringify({
  *         foo: "bar",
  *     }),
  * });
- * const nestedSecret = new vault.kv.SecretV2("nestedSecret", {
+ * const nestedSecret = new vault.kv.SecretV2("nested_secret", {
  *     mount: kvv2.path,
+ *     name: pulumi.interpolate`${azureSecret.name}/dev`,
  *     dataJson: JSON.stringify({
  *         password: "test",
  *     }),
@@ -145,10 +148,9 @@ export interface GetSecretsListV2Result {
  * });
  * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsListV2Output({
  *     mount: path,
- *     name: vault_kv_secret_v2.test_2.name,
+ *     name: test2.name,
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *

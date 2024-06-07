@@ -14,29 +14,25 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type SecretBackendConnectionCassandra struct {
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// The hosts to connect to.
+	// Cassandra hosts to connect to.
 	Hosts []string `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// The password to use when authenticating with Cassandra.
 	Password *string `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle *string `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson *string `pulumi:"pemJson"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Cassandra.
 	Port *int `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion *int `pulumi:"protocolVersion"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
-	// The username to authenticate with.
+	// The username to use when authenticating with Cassandra.
 	Username *string `pulumi:"username"`
 }
 
@@ -52,29 +48,25 @@ type SecretBackendConnectionCassandraInput interface {
 }
 
 type SecretBackendConnectionCassandraArgs struct {
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// The hosts to connect to.
+	// Cassandra hosts to connect to.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// The password to use when authenticating with Cassandra.
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Cassandra.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The username to authenticate with.
+	// The username to use when authenticating with Cassandra.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -155,41 +147,37 @@ func (o SecretBackendConnectionCassandraOutput) ToSecretBackendConnectionCassand
 	}).(SecretBackendConnectionCassandraPtrOutput)
 }
 
-// The number of seconds to use as a connection
-// timeout.
+// The number of seconds to use as a connection timeout.
 func (o SecretBackendConnectionCassandraOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
-// The hosts to connect to.
+// Cassandra hosts to connect to.
 func (o SecretBackendConnectionCassandraOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// The password to use when authenticating with Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Concatenated PEM blocks configuring the certificate
-// chain.
+// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionCassandraOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
 }
 
-// A JSON structure configuring the certificate chain.
+// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionCassandraOutput) PemJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -204,7 +192,7 @@ func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// The username to use when authenticating with Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -233,8 +221,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) Elem() SecretBackendConnectio
 	}).(SecretBackendConnectionCassandraOutput)
 }
 
-// The number of seconds to use as a connection
-// timeout.
+// The number of seconds to use as a connection timeout.
 func (o SecretBackendConnectionCassandraPtrOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *int {
 		if v == nil {
@@ -244,7 +231,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) ConnectTimeout() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// The hosts to connect to.
+// Cassandra hosts to connect to.
 func (o SecretBackendConnectionCassandraPtrOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) []string {
 		if v == nil {
@@ -254,8 +241,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) Hosts() pulumi.StringArrayOut
 	}).(pulumi.StringArrayOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionCassandraPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *bool {
 		if v == nil {
@@ -265,7 +251,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) InsecureTls() pulumi.BoolPtrO
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// The password to use when authenticating with Cassandra.
 func (o SecretBackendConnectionCassandraPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
 		if v == nil {
@@ -275,8 +261,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) Password() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Concatenated PEM blocks configuring the certificate
-// chain.
+// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionCassandraPtrOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
 		if v == nil {
@@ -286,7 +271,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) PemBundle() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// A JSON structure configuring the certificate chain.
+// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionCassandraPtrOutput) PemJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
 		if v == nil {
@@ -296,8 +281,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) PemJson() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Cassandra.
 func (o SecretBackendConnectionCassandraPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *int {
 		if v == nil {
@@ -327,7 +311,7 @@ func (o SecretBackendConnectionCassandraPtrOutput) Tls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// The username to use when authenticating with Cassandra.
 func (o SecretBackendConnectionCassandraPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *string {
 		if v == nil {
@@ -342,16 +326,15 @@ type SecretBackendConnectionCouchbase struct {
 	Base64Pem *string `pulumi:"base64Pem"`
 	// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
 	BucketName *string `pulumi:"bucketName"`
-	// The hosts to connect to.
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 	Hosts []string `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Couchbase.
 	Tls *bool `pulumi:"tls"`
-	// The username to authenticate with.
+	// Specifies the username for Vault to use.
 	Username string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
@@ -373,16 +356,15 @@ type SecretBackendConnectionCouchbaseArgs struct {
 	Base64Pem pulumi.StringPtrInput `pulumi:"base64Pem"`
 	// Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
 	BucketName pulumi.StringPtrInput `pulumi:"bucketName"`
-	// The hosts to connect to.
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Couchbase.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The username to authenticate with.
+	// Specifies the username for Vault to use.
 	Username pulumi.StringInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
@@ -475,28 +457,27 @@ func (o SecretBackendConnectionCouchbaseOutput) BucketName() pulumi.StringPtrOut
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) *string { return v.BucketName }).(pulumi.StringPtrOutput)
 }
 
-// The hosts to connect to.
+// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 func (o SecretBackendConnectionCouchbaseOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) []string { return v.Hosts }).(pulumi.StringArrayOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Specifies whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionCouchbaseOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// Specifies the password corresponding to the given username.
 func (o SecretBackendConnectionCouchbaseOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Specifies whether to use TLS when connecting to Couchbase.
 func (o SecretBackendConnectionCouchbaseOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// Specifies the username for Vault to use.
 func (o SecretBackendConnectionCouchbaseOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCouchbase) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -550,7 +531,7 @@ func (o SecretBackendConnectionCouchbasePtrOutput) BucketName() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// The hosts to connect to.
+// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 func (o SecretBackendConnectionCouchbasePtrOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCouchbase) []string {
 		if v == nil {
@@ -560,8 +541,7 @@ func (o SecretBackendConnectionCouchbasePtrOutput) Hosts() pulumi.StringArrayOut
 	}).(pulumi.StringArrayOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Specifies whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionCouchbasePtrOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCouchbase) *bool {
 		if v == nil {
@@ -571,7 +551,7 @@ func (o SecretBackendConnectionCouchbasePtrOutput) InsecureTls() pulumi.BoolPtrO
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// Specifies the password corresponding to the given username.
 func (o SecretBackendConnectionCouchbasePtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCouchbase) *string {
 		if v == nil {
@@ -581,7 +561,7 @@ func (o SecretBackendConnectionCouchbasePtrOutput) Password() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Specifies whether to use TLS when connecting to Couchbase.
 func (o SecretBackendConnectionCouchbasePtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCouchbase) *bool {
 		if v == nil {
@@ -591,7 +571,7 @@ func (o SecretBackendConnectionCouchbasePtrOutput) Tls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// Specifies the username for Vault to use.
 func (o SecretBackendConnectionCouchbasePtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionCouchbase) *string {
 		if v == nil {
@@ -612,24 +592,23 @@ func (o SecretBackendConnectionCouchbasePtrOutput) UsernameTemplate() pulumi.Str
 }
 
 type SecretBackendConnectionElasticsearch struct {
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 	CaCert *string `pulumi:"caCert"`
-	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 	CaPath *string `pulumi:"caPath"`
-	// The path to the certificate for the Elasticsearch client to present for communication.
+	// The path to the certificate for the Elasticsearch client to present for communication
 	ClientCert *string `pulumi:"clientCert"`
-	// The path to the key for the Elasticsearch client to use for communication.
+	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey *string `pulumi:"clientKey"`
-	// Whether to disable certificate verification.
+	// Whether to disable certificate verification
 	Insecure *bool `pulumi:"insecure"`
-	// The password to authenticate with.
+	// The password to be used in the connection URL
 	Password string `pulumi:"password"`
-	// This, if set, is used to set the SNI host when connecting via TLS.
+	// This, if set, is used to set the SNI host when connecting via TLS
 	TlsServerName *string `pulumi:"tlsServerName"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The URL for Elasticsearch's API
 	Url string `pulumi:"url"`
-	// The username to authenticate with.
+	// The username to be used in the connection URL
 	Username string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
@@ -647,24 +626,23 @@ type SecretBackendConnectionElasticsearchInput interface {
 }
 
 type SecretBackendConnectionElasticsearchArgs struct {
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
-	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 	CaPath pulumi.StringPtrInput `pulumi:"caPath"`
-	// The path to the certificate for the Elasticsearch client to present for communication.
+	// The path to the certificate for the Elasticsearch client to present for communication
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
-	// The path to the key for the Elasticsearch client to use for communication.
+	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
-	// Whether to disable certificate verification.
+	// Whether to disable certificate verification
 	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
-	// The password to authenticate with.
+	// The password to be used in the connection URL
 	Password pulumi.StringInput `pulumi:"password"`
-	// This, if set, is used to set the SNI host when connecting via TLS.
+	// This, if set, is used to set the SNI host when connecting via TLS
 	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The URL for Elasticsearch's API
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username to authenticate with.
+	// The username to be used in the connection URL
 	Username pulumi.StringInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
@@ -747,48 +725,47 @@ func (o SecretBackendConnectionElasticsearchOutput) ToSecretBackendConnectionEla
 	}).(SecretBackendConnectionElasticsearchPtrOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 func (o SecretBackendConnectionElasticsearchOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 func (o SecretBackendConnectionElasticsearchOutput) CaPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.CaPath }).(pulumi.StringPtrOutput)
 }
 
-// The path to the certificate for the Elasticsearch client to present for communication.
+// The path to the certificate for the Elasticsearch client to present for communication
 func (o SecretBackendConnectionElasticsearchOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The path to the key for the Elasticsearch client to use for communication.
+// The path to the key for the Elasticsearch client to use for communication
 func (o SecretBackendConnectionElasticsearchOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable certificate verification.
+// Whether to disable certificate verification
 func (o SecretBackendConnectionElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// The password to be used in the connection URL
 func (o SecretBackendConnectionElasticsearchOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// This, if set, is used to set the SNI host when connecting via TLS.
+// This, if set, is used to set the SNI host when connecting via TLS
 func (o SecretBackendConnectionElasticsearchOutput) TlsServerName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The URL for Elasticsearch's API
 func (o SecretBackendConnectionElasticsearchOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username to authenticate with.
+// The username to be used in the connection URL
 func (o SecretBackendConnectionElasticsearchOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -822,7 +799,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Elem() SecretBackendConne
 	}).(SecretBackendConnectionElasticsearchOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 func (o SecretBackendConnectionElasticsearchPtrOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -832,7 +809,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) CaCert() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 func (o SecretBackendConnectionElasticsearchPtrOutput) CaPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -842,7 +819,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) CaPath() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// The path to the certificate for the Elasticsearch client to present for communication.
+// The path to the certificate for the Elasticsearch client to present for communication
 func (o SecretBackendConnectionElasticsearchPtrOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -852,7 +829,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) ClientCert() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// The path to the key for the Elasticsearch client to use for communication.
+// The path to the key for the Elasticsearch client to use for communication
 func (o SecretBackendConnectionElasticsearchPtrOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -862,7 +839,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) ClientKey() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to disable certificate verification.
+// Whether to disable certificate verification
 func (o SecretBackendConnectionElasticsearchPtrOutput) Insecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *bool {
 		if v == nil {
@@ -872,7 +849,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Insecure() pulumi.BoolPtr
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// The password to be used in the connection URL
 func (o SecretBackendConnectionElasticsearchPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -882,7 +859,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Password() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// This, if set, is used to set the SNI host when connecting via TLS.
+// This, if set, is used to set the SNI host when connecting via TLS
 func (o SecretBackendConnectionElasticsearchPtrOutput) TlsServerName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -892,8 +869,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) TlsServerName() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The URL for Elasticsearch's API
 func (o SecretBackendConnectionElasticsearchPtrOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -903,7 +879,7 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) Url() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The username to be used in the connection URL
 func (o SecretBackendConnectionElasticsearchPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *string {
 		if v == nil {
@@ -924,25 +900,19 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) UsernameTemplate() pulumi
 }
 
 type SecretBackendConnectionHana struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 }
 
@@ -958,25 +928,19 @@ type SecretBackendConnectionHanaInput interface {
 }
 
 type SecretBackendConnectionHanaArgs struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -1057,43 +1021,37 @@ func (o SecretBackendConnectionHanaOutput) ToSecretBackendConnectionHanaPtrOutpu
 	}).(SecretBackendConnectionHanaPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionHanaOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionHanaOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionHanaOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionHanaOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionHana) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -1122,10 +1080,7 @@ func (o SecretBackendConnectionHanaPtrOutput) Elem() SecretBackendConnectionHana
 	}).(SecretBackendConnectionHanaOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
 		if v == nil {
@@ -1135,7 +1090,7 @@ func (o SecretBackendConnectionHanaPtrOutput) ConnectionUrl() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionHanaPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *bool {
 		if v == nil {
@@ -1145,8 +1100,7 @@ func (o SecretBackendConnectionHanaPtrOutput) DisableEscaping() pulumi.BoolPtrOu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionHanaPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *int {
 		if v == nil {
@@ -1156,8 +1110,7 @@ func (o SecretBackendConnectionHanaPtrOutput) MaxConnectionLifetime() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionHanaPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *int {
 		if v == nil {
@@ -1167,8 +1120,7 @@ func (o SecretBackendConnectionHanaPtrOutput) MaxIdleConnections() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionHanaPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *int {
 		if v == nil {
@@ -1178,7 +1130,7 @@ func (o SecretBackendConnectionHanaPtrOutput) MaxOpenConnections() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionHanaPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
 		if v == nil {
@@ -1188,7 +1140,7 @@ func (o SecretBackendConnectionHanaPtrOutput) Password() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionHanaPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionHana) *string {
 		if v == nil {
@@ -1199,27 +1151,23 @@ func (o SecretBackendConnectionHanaPtrOutput) Username() pulumi.StringPtrOutput 
 }
 
 type SecretBackendConnectionInfluxdb struct {
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
-	// The host to connect to.
+	// Influxdb host to connect to.
 	Host string `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle *string `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson *string `pulumi:"pemJson"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Influxdb.
 	Port *int `pulumi:"port"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Influxdb.
 	Tls *bool `pulumi:"tls"`
-	// The username to authenticate with.
+	// Specifies the username to use for superuser access.
 	Username string `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
@@ -1237,27 +1185,23 @@ type SecretBackendConnectionInfluxdbInput interface {
 }
 
 type SecretBackendConnectionInfluxdbArgs struct {
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
-	// The host to connect to.
+	// Influxdb host to connect to.
 	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Influxdb.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Influxdb.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The username to authenticate with.
+	// Specifies the username to use for superuser access.
 	Username pulumi.StringInput `pulumi:"username"`
 	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
@@ -1340,51 +1284,47 @@ func (o SecretBackendConnectionInfluxdbOutput) ToSecretBackendConnectionInfluxdb
 	}).(SecretBackendConnectionInfluxdbPtrOutput)
 }
 
-// The number of seconds to use as a connection
-// timeout.
+// The number of seconds to use as a connection timeout.
 func (o SecretBackendConnectionInfluxdbOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
 
-// The host to connect to.
+// Influxdb host to connect to.
 func (o SecretBackendConnectionInfluxdbOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionInfluxdbOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// Specifies the password corresponding to the given username.
 func (o SecretBackendConnectionInfluxdbOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Concatenated PEM blocks configuring the certificate
-// chain.
+// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionInfluxdbOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
 }
 
-// A JSON structure configuring the certificate chain.
+// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionInfluxdbOutput) PemJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *string { return v.PemJson }).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Influxdb.
 func (o SecretBackendConnectionInfluxdbOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Influxdb.
 func (o SecretBackendConnectionInfluxdbOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// Specifies the username to use for superuser access.
 func (o SecretBackendConnectionInfluxdbOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionInfluxdb) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -1418,8 +1358,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) Elem() SecretBackendConnection
 	}).(SecretBackendConnectionInfluxdbOutput)
 }
 
-// The number of seconds to use as a connection
-// timeout.
+// The number of seconds to use as a connection timeout.
 func (o SecretBackendConnectionInfluxdbPtrOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *int {
 		if v == nil {
@@ -1429,7 +1368,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) ConnectTimeout() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
-// The host to connect to.
+// Influxdb host to connect to.
 func (o SecretBackendConnectionInfluxdbPtrOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
 		if v == nil {
@@ -1439,8 +1378,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) Host() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionInfluxdbPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *bool {
 		if v == nil {
@@ -1450,7 +1388,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) InsecureTls() pulumi.BoolPtrOu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// Specifies the password corresponding to the given username.
 func (o SecretBackendConnectionInfluxdbPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
 		if v == nil {
@@ -1460,8 +1398,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Concatenated PEM blocks configuring the certificate
-// chain.
+// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionInfluxdbPtrOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
 		if v == nil {
@@ -1471,7 +1408,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) PemBundle() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// A JSON structure configuring the certificate chain.
+// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretBackendConnectionInfluxdbPtrOutput) PemJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
 		if v == nil {
@@ -1481,8 +1418,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) PemJson() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Influxdb.
 func (o SecretBackendConnectionInfluxdbPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *int {
 		if v == nil {
@@ -1492,7 +1428,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Influxdb.
 func (o SecretBackendConnectionInfluxdbPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *bool {
 		if v == nil {
@@ -1502,7 +1438,7 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) Tls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// Specifies the username to use for superuser access.
 func (o SecretBackendConnectionInfluxdbPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionInfluxdb) *string {
 		if v == nil {
@@ -1523,25 +1459,19 @@ func (o SecretBackendConnectionInfluxdbPtrOutput) UsernameTemplate() pulumi.Stri
 }
 
 type SecretBackendConnectionMongodb struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -1557,25 +1487,19 @@ type SecretBackendConnectionMongodbInput interface {
 }
 
 type SecretBackendConnectionMongodbArgs struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -1656,43 +1580,37 @@ func (o SecretBackendConnectionMongodbOutput) ToSecretBackendConnectionMongodbPt
 	}).(SecretBackendConnectionMongodbPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMongodbOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMongodbOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMongodbOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMongodbOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMongodbOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMongodbOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMongodb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -1721,10 +1639,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) Elem() SecretBackendConnectionM
 	}).(SecretBackendConnectionMongodbOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMongodbPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
 		if v == nil {
@@ -1734,8 +1649,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) ConnectionUrl() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMongodbPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *int {
 		if v == nil {
@@ -1745,8 +1659,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxConnectionLifetime() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMongodbPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *int {
 		if v == nil {
@@ -1756,8 +1669,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxIdleConnections() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *int {
 		if v == nil {
@@ -1767,7 +1679,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) MaxOpenConnections() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMongodbPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
 		if v == nil {
@@ -1777,7 +1689,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) Password() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMongodbPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
 		if v == nil {
@@ -1787,7 +1699,7 @@ func (o SecretBackendConnectionMongodbPtrOutput) Username() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMongodbPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMongodb) *string {
 		if v == nil {
@@ -1973,32 +1885,23 @@ func (o SecretBackendConnectionMongodbatlasPtrOutput) PublicKey() pulumi.StringP
 }
 
 type SecretBackendConnectionMssql struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// For Vault v1.9+. Set to true when the target is a
-	// Contained Database, e.g. AzureSQL.
-	// See the [Vault
-	// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	// Set to true when the target is a Contained Database, e.g. AzureSQL.
 	ContainedDb *bool `pulumi:"containedDb"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -2014,32 +1917,23 @@ type SecretBackendConnectionMssqlInput interface {
 }
 
 type SecretBackendConnectionMssqlArgs struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// For Vault v1.9+. Set to true when the target is a
-	// Contained Database, e.g. AzureSQL.
-	// See the [Vault
-	// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	// Set to true when the target is a Contained Database, e.g. AzureSQL.
 	ContainedDb pulumi.BoolPtrInput `pulumi:"containedDb"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -2120,56 +2014,47 @@ func (o SecretBackendConnectionMssqlOutput) ToSecretBackendConnectionMssqlPtrOut
 	}).(SecretBackendConnectionMssqlPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMssqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// For Vault v1.9+. Set to true when the target is a
-// Contained Database, e.g. AzureSQL.
-// See the [Vault
-// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+// Set to true when the target is a Contained Database, e.g. AzureSQL.
 func (o SecretBackendConnectionMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *bool { return v.ContainedDb }).(pulumi.BoolPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionMssqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMssqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMssqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMssqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMssqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMssqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMssql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -2198,10 +2083,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) Elem() SecretBackendConnectionMss
 	}).(SecretBackendConnectionMssqlOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMssqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
 		if v == nil {
@@ -2211,10 +2093,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) ConnectionUrl() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// For Vault v1.9+. Set to true when the target is a
-// Contained Database, e.g. AzureSQL.
-// See the [Vault
-// docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+// Set to true when the target is a Contained Database, e.g. AzureSQL.
 func (o SecretBackendConnectionMssqlPtrOutput) ContainedDb() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *bool {
 		if v == nil {
@@ -2224,7 +2103,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) ContainedDb() pulumi.BoolPtrOutpu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionMssqlPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *bool {
 		if v == nil {
@@ -2234,8 +2113,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) DisableEscaping() pulumi.BoolPtrO
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMssqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *int {
 		if v == nil {
@@ -2245,8 +2123,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) MaxConnectionLifetime() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMssqlPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *int {
 		if v == nil {
@@ -2256,8 +2133,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) MaxIdleConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMssqlPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *int {
 		if v == nil {
@@ -2267,7 +2143,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) MaxOpenConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMssqlPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
 		if v == nil {
@@ -2277,7 +2153,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMssqlPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
 		if v == nil {
@@ -2287,7 +2163,7 @@ func (o SecretBackendConnectionMssqlPtrOutput) Username() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMssqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMssql) *string {
 		if v == nil {
@@ -2298,33 +2174,27 @@ func (o SecretBackendConnectionMssqlPtrOutput) UsernameTemplate() pulumi.StringP
 }
 
 type SecretBackendConnectionMysql struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -2340,33 +2210,27 @@ type SecretBackendConnectionMysqlInput interface {
 }
 
 type SecretBackendConnectionMysqlArgs struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -2447,43 +2311,37 @@ func (o SecretBackendConnectionMysqlOutput) ToSecretBackendConnectionMysqlPtrOut
 	}).(SecretBackendConnectionMysqlPtrOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -2498,12 +2356,12 @@ func (o SecretBackendConnectionMysqlOutput) TlsCertificateKey() pulumi.StringPtr
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -2532,7 +2390,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) Elem() SecretBackendConnectionMys
 	}).(SecretBackendConnectionMysqlOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlPtrOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
 		if v == nil {
@@ -2542,10 +2400,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) AuthType() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
 		if v == nil {
@@ -2555,8 +2410,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) ConnectionUrl() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *int {
 		if v == nil {
@@ -2566,8 +2420,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) MaxConnectionLifetime() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *int {
 		if v == nil {
@@ -2577,8 +2430,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) MaxIdleConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *int {
 		if v == nil {
@@ -2588,7 +2440,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) MaxOpenConnections() pulumi.IntPt
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
 		if v == nil {
@@ -2598,7 +2450,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
 		if v == nil {
@@ -2628,7 +2480,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) TlsCertificateKey() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
 		if v == nil {
@@ -2638,7 +2490,7 @@ func (o SecretBackendConnectionMysqlPtrOutput) Username() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysql) *string {
 		if v == nil {
@@ -2649,33 +2501,27 @@ func (o SecretBackendConnectionMysqlPtrOutput) UsernameTemplate() pulumi.StringP
 }
 
 type SecretBackendConnectionMysqlAurora struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -2691,33 +2537,27 @@ type SecretBackendConnectionMysqlAuroraInput interface {
 }
 
 type SecretBackendConnectionMysqlAuroraArgs struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -2798,43 +2638,37 @@ func (o SecretBackendConnectionMysqlAuroraOutput) ToSecretBackendConnectionMysql
 	}).(SecretBackendConnectionMysqlAuroraPtrOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlAuroraOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlAuroraOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlAuroraOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlAuroraOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlAuroraOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -2849,12 +2683,12 @@ func (o SecretBackendConnectionMysqlAuroraOutput) TlsCertificateKey() pulumi.Str
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlAuroraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlAuroraOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlAurora) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -2883,7 +2717,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Elem() SecretBackendConnect
 	}).(SecretBackendConnectionMysqlAuroraOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
 		if v == nil {
@@ -2893,10 +2727,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) AuthType() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
 		if v == nil {
@@ -2906,8 +2737,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) ConnectionUrl() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *int {
 		if v == nil {
@@ -2917,8 +2747,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxConnectionLifetime() pul
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *int {
 		if v == nil {
@@ -2928,8 +2757,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxIdleConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *int {
 		if v == nil {
@@ -2939,7 +2767,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) MaxOpenConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
 		if v == nil {
@@ -2949,7 +2777,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
 		if v == nil {
@@ -2979,7 +2807,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) TlsCertificateKey() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
 		if v == nil {
@@ -2989,7 +2817,7 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) Username() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlAuroraPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlAurora) *string {
 		if v == nil {
@@ -3000,33 +2828,27 @@ func (o SecretBackendConnectionMysqlAuroraPtrOutput) UsernameTemplate() pulumi.S
 }
 
 type SecretBackendConnectionMysqlLegacy struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -3042,33 +2864,27 @@ type SecretBackendConnectionMysqlLegacyInput interface {
 }
 
 type SecretBackendConnectionMysqlLegacyArgs struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -3149,43 +2965,37 @@ func (o SecretBackendConnectionMysqlLegacyOutput) ToSecretBackendConnectionMysql
 	}).(SecretBackendConnectionMysqlLegacyPtrOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlLegacyOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlLegacyOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlLegacyOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlLegacyOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlLegacyOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -3200,12 +3010,12 @@ func (o SecretBackendConnectionMysqlLegacyOutput) TlsCertificateKey() pulumi.Str
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlLegacyOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlLegacyOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlLegacy) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -3234,7 +3044,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Elem() SecretBackendConnect
 	}).(SecretBackendConnectionMysqlLegacyOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
 		if v == nil {
@@ -3244,10 +3054,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) AuthType() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
 		if v == nil {
@@ -3257,8 +3064,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) ConnectionUrl() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *int {
 		if v == nil {
@@ -3268,8 +3074,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxConnectionLifetime() pul
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *int {
 		if v == nil {
@@ -3279,8 +3084,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxIdleConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *int {
 		if v == nil {
@@ -3290,7 +3094,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) MaxOpenConnections() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
 		if v == nil {
@@ -3300,7 +3104,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Password() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
 		if v == nil {
@@ -3330,7 +3134,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) TlsCertificateKey() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
 		if v == nil {
@@ -3340,7 +3144,7 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) Username() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlLegacyPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlLegacy) *string {
 		if v == nil {
@@ -3351,33 +3155,27 @@ func (o SecretBackendConnectionMysqlLegacyPtrOutput) UsernameTemplate() pulumi.S
 }
 
 type SecretBackendConnectionMysqlRds struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -3393,33 +3191,27 @@ type SecretBackendConnectionMysqlRdsInput interface {
 }
 
 type SecretBackendConnectionMysqlRdsArgs struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
 	// x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -3500,43 +3292,37 @@ func (o SecretBackendConnectionMysqlRdsOutput) ToSecretBackendConnectionMysqlRds
 	}).(SecretBackendConnectionMysqlRdsPtrOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlRdsOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlRdsOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlRdsOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlRdsOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlRdsOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlRdsOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlRdsOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
@@ -3551,12 +3337,12 @@ func (o SecretBackendConnectionMysqlRdsOutput) TlsCertificateKey() pulumi.String
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlRdsOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlRdsOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionMysqlRds) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -3585,7 +3371,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Elem() SecretBackendConnection
 	}).(SecretBackendConnectionMysqlRdsOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionMysqlRdsPtrOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
 		if v == nil {
@@ -3595,10 +3381,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) AuthType() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
 		if v == nil {
@@ -3608,8 +3391,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) ConnectionUrl() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *int {
 		if v == nil {
@@ -3619,8 +3401,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxConnectionLifetime() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *int {
 		if v == nil {
@@ -3630,8 +3411,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxIdleConnections() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *int {
 		if v == nil {
@@ -3641,7 +3421,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) MaxOpenConnections() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionMysqlRdsPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
 		if v == nil {
@@ -3651,7 +3431,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionMysqlRdsPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
 		if v == nil {
@@ -3681,7 +3461,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) TlsCertificateKey() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionMysqlRdsPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
 		if v == nil {
@@ -3691,7 +3471,7 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) Username() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionMysqlRdsPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionMysqlRds) *string {
 		if v == nil {
@@ -3702,29 +3482,23 @@ func (o SecretBackendConnectionMysqlRdsPtrOutput) UsernameTemplate() pulumi.Stri
 }
 
 type SecretBackendConnectionOracle struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Enable the built-in session disconnect mechanism.
+	// Set to true to disconnect any open sessions prior to running the revocation statements.
 	DisconnectSessions *bool `pulumi:"disconnectSessions"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// Enable spliting statements after semi-colons.
+	// Set to true in order to split statements after semi-colons.
 	SplitStatements *bool `pulumi:"splitStatements"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -3740,29 +3514,23 @@ type SecretBackendConnectionOracleInput interface {
 }
 
 type SecretBackendConnectionOracleArgs struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Enable the built-in session disconnect mechanism.
+	// Set to true to disconnect any open sessions prior to running the revocation statements.
 	DisconnectSessions pulumi.BoolPtrInput `pulumi:"disconnectSessions"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Enable spliting statements after semi-colons.
+	// Set to true in order to split statements after semi-colons.
 	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -3843,53 +3611,47 @@ func (o SecretBackendConnectionOracleOutput) ToSecretBackendConnectionOraclePtrO
 	}).(SecretBackendConnectionOraclePtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionOracleOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Enable the built-in session disconnect mechanism.
+// Set to true to disconnect any open sessions prior to running the revocation statements.
 func (o SecretBackendConnectionOracleOutput) DisconnectSessions() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.DisconnectSessions }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionOracleOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionOracleOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionOracleOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Enable spliting statements after semi-colons.
+// Set to true in order to split statements after semi-colons.
 func (o SecretBackendConnectionOracleOutput) SplitStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *bool { return v.SplitStatements }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionOracleOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionOracleOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionOracle) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -3918,10 +3680,7 @@ func (o SecretBackendConnectionOraclePtrOutput) Elem() SecretBackendConnectionOr
 	}).(SecretBackendConnectionOracleOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionOraclePtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
 		if v == nil {
@@ -3931,7 +3690,7 @@ func (o SecretBackendConnectionOraclePtrOutput) ConnectionUrl() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable the built-in session disconnect mechanism.
+// Set to true to disconnect any open sessions prior to running the revocation statements.
 func (o SecretBackendConnectionOraclePtrOutput) DisconnectSessions() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *bool {
 		if v == nil {
@@ -3941,8 +3700,7 @@ func (o SecretBackendConnectionOraclePtrOutput) DisconnectSessions() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionOraclePtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *int {
 		if v == nil {
@@ -3952,8 +3710,7 @@ func (o SecretBackendConnectionOraclePtrOutput) MaxConnectionLifetime() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionOraclePtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *int {
 		if v == nil {
@@ -3963,8 +3720,7 @@ func (o SecretBackendConnectionOraclePtrOutput) MaxIdleConnections() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionOraclePtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *int {
 		if v == nil {
@@ -3974,7 +3730,7 @@ func (o SecretBackendConnectionOraclePtrOutput) MaxOpenConnections() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionOraclePtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
 		if v == nil {
@@ -3984,7 +3740,7 @@ func (o SecretBackendConnectionOraclePtrOutput) Password() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Enable spliting statements after semi-colons.
+// Set to true in order to split statements after semi-colons.
 func (o SecretBackendConnectionOraclePtrOutput) SplitStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *bool {
 		if v == nil {
@@ -3994,7 +3750,7 @@ func (o SecretBackendConnectionOraclePtrOutput) SplitStatements() pulumi.BoolPtr
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionOraclePtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
 		if v == nil {
@@ -4004,7 +3760,7 @@ func (o SecretBackendConnectionOraclePtrOutput) Username() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionOraclePtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionOracle) *string {
 		if v == nil {
@@ -4015,31 +3771,25 @@ func (o SecretBackendConnectionOraclePtrOutput) UsernameTemplate() pulumi.String
 }
 
 type SecretBackendConnectionPostgresql struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -4055,31 +3805,25 @@ type SecretBackendConnectionPostgresqlInput interface {
 }
 
 type SecretBackendConnectionPostgresqlArgs struct {
-	// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -4160,58 +3904,52 @@ func (o SecretBackendConnectionPostgresqlOutput) ToSecretBackendConnectionPostgr
 	}).(SecretBackendConnectionPostgresqlPtrOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionPostgresqlOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionPostgresqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionPostgresqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionPostgresqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionPostgresqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionPostgresqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -4240,7 +3978,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Elem() SecretBackendConnecti
 	}).(SecretBackendConnectionPostgresqlOutput)
 }
 
-// Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 func (o SecretBackendConnectionPostgresqlPtrOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
 		if v == nil {
@@ -4250,10 +3988,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) AuthType() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
 		if v == nil {
@@ -4263,7 +3998,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ConnectionUrl() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionPostgresqlPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *bool {
 		if v == nil {
@@ -4273,8 +4008,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) DisableEscaping() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *int {
 		if v == nil {
@@ -4284,8 +4018,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) MaxConnectionLifetime() pulu
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *int {
 		if v == nil {
@@ -4295,8 +4028,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) MaxIdleConnections() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionPostgresqlPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *int {
 		if v == nil {
@@ -4306,7 +4038,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) MaxOpenConnections() pulumi.
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionPostgresqlPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
 		if v == nil {
@@ -4316,7 +4048,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Password() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+// A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionPostgresqlPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
 		if v == nil {
@@ -4326,7 +4058,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ServiceAccountJson() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionPostgresqlPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
 		if v == nil {
@@ -4336,7 +4068,7 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Username() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionPostgresqlPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
 		if v == nil {
@@ -4347,21 +4079,19 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) UsernameTemplate() pulumi.St
 }
 
 type SecretBackendConnectionRedis struct {
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 	CaCert *string `pulumi:"caCert"`
-	// The host to connect to.
+	// Specifies the host to connect to
 	Host string `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Redis.
 	Port *int `pulumi:"port"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
-	// The username to authenticate with.
+	// Specifies the username for Vault to use.
 	Username string `pulumi:"username"`
 }
 
@@ -4377,21 +4107,19 @@ type SecretBackendConnectionRedisInput interface {
 }
 
 type SecretBackendConnectionRedisArgs struct {
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
-	// The host to connect to.
+	// Specifies the host to connect to
 	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
-	// The password to authenticate with.
+	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Redis.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The username to authenticate with.
+	// Specifies the username for Vault to use.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -4472,39 +4200,37 @@ func (o SecretBackendConnectionRedisOutput) ToSecretBackendConnectionRedisPtrOut
 	}).(SecretBackendConnectionRedisPtrOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 func (o SecretBackendConnectionRedisOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// The host to connect to.
+// Specifies the host to connect to
 func (o SecretBackendConnectionRedisOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Specifies whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionRedisOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// Specifies the password corresponding to the given username.
 func (o SecretBackendConnectionRedisOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Redis.
 func (o SecretBackendConnectionRedisOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Specifies whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionRedisOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// Specifies the username for Vault to use.
 func (o SecretBackendConnectionRedisOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedis) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -4533,7 +4259,7 @@ func (o SecretBackendConnectionRedisPtrOutput) Elem() SecretBackendConnectionRed
 	}).(SecretBackendConnectionRedisOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 func (o SecretBackendConnectionRedisPtrOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
 		if v == nil {
@@ -4543,7 +4269,7 @@ func (o SecretBackendConnectionRedisPtrOutput) CaCert() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The host to connect to.
+// Specifies the host to connect to
 func (o SecretBackendConnectionRedisPtrOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
 		if v == nil {
@@ -4553,8 +4279,7 @@ func (o SecretBackendConnectionRedisPtrOutput) Host() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Specifies whether to skip verification of the server certificate when using TLS.
 func (o SecretBackendConnectionRedisPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *bool {
 		if v == nil {
@@ -4564,7 +4289,7 @@ func (o SecretBackendConnectionRedisPtrOutput) InsecureTls() pulumi.BoolPtrOutpu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The password to authenticate with.
+// Specifies the password corresponding to the given username.
 func (o SecretBackendConnectionRedisPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
 		if v == nil {
@@ -4574,8 +4299,7 @@ func (o SecretBackendConnectionRedisPtrOutput) Password() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Redis.
 func (o SecretBackendConnectionRedisPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *int {
 		if v == nil {
@@ -4585,7 +4309,7 @@ func (o SecretBackendConnectionRedisPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Specifies whether to use TLS when connecting to Redis.
 func (o SecretBackendConnectionRedisPtrOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *bool {
 		if v == nil {
@@ -4595,7 +4319,7 @@ func (o SecretBackendConnectionRedisPtrOutput) Tls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The username to authenticate with.
+// Specifies the username for Vault to use.
 func (o SecretBackendConnectionRedisPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedis) *string {
 		if v == nil {
@@ -4606,14 +4330,13 @@ func (o SecretBackendConnectionRedisPtrOutput) Username() pulumi.StringPtrOutput
 }
 
 type SecretBackendConnectionRedisElasticache struct {
-	// The password to authenticate with.
+	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Password *string `pulumi:"password"`
-	// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+	// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 	Region *string `pulumi:"region"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url string `pulumi:"url"`
-	// The username to authenticate with.
+	// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Username *string `pulumi:"username"`
 }
 
@@ -4629,14 +4352,13 @@ type SecretBackendConnectionRedisElasticacheInput interface {
 }
 
 type SecretBackendConnectionRedisElasticacheArgs struct {
-	// The password to authenticate with.
+	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+	// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url pulumi.StringInput `pulumi:"url"`
-	// The username to authenticate with.
+	// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -4717,23 +4439,22 @@ func (o SecretBackendConnectionRedisElasticacheOutput) ToSecretBackendConnection
 	}).(SecretBackendConnectionRedisElasticachePtrOutput)
 }
 
-// The password to authenticate with.
+// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 func (o SecretBackendConnectionRedisElasticacheOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 func (o SecretBackendConnectionRedisElasticacheOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The configuration endpoint for the ElastiCache cluster to connect to.
 func (o SecretBackendConnectionRedisElasticacheOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The username to authenticate with.
+// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 func (o SecretBackendConnectionRedisElasticacheOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedisElasticache) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -4762,7 +4483,7 @@ func (o SecretBackendConnectionRedisElasticachePtrOutput) Elem() SecretBackendCo
 	}).(SecretBackendConnectionRedisElasticacheOutput)
 }
 
-// The password to authenticate with.
+// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 func (o SecretBackendConnectionRedisElasticachePtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
 		if v == nil {
@@ -4772,7 +4493,7 @@ func (o SecretBackendConnectionRedisElasticachePtrOutput) Password() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 func (o SecretBackendConnectionRedisElasticachePtrOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
 		if v == nil {
@@ -4782,8 +4503,7 @@ func (o SecretBackendConnectionRedisElasticachePtrOutput) Region() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The configuration endpoint for the ElastiCache cluster to connect to.
 func (o SecretBackendConnectionRedisElasticachePtrOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
 		if v == nil {
@@ -4793,7 +4513,7 @@ func (o SecretBackendConnectionRedisElasticachePtrOutput) Url() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 func (o SecretBackendConnectionRedisElasticachePtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedisElasticache) *string {
 		if v == nil {
@@ -4804,27 +4524,21 @@ func (o SecretBackendConnectionRedisElasticachePtrOutput) Username() pulumi.Stri
 }
 
 type SecretBackendConnectionRedshift struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -4840,27 +4554,21 @@ type SecretBackendConnectionRedshiftInput interface {
 }
 
 type SecretBackendConnectionRedshiftArgs struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -4941,48 +4649,42 @@ func (o SecretBackendConnectionRedshiftOutput) ToSecretBackendConnectionRedshift
 	}).(SecretBackendConnectionRedshiftPtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionRedshiftOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionRedshiftOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionRedshiftOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionRedshiftOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionRedshiftOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionRedshiftOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionRedshiftOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionRedshiftOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionRedshift) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -5011,10 +4713,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) Elem() SecretBackendConnection
 	}).(SecretBackendConnectionRedshiftOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionRedshiftPtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *string {
 		if v == nil {
@@ -5024,7 +4723,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) ConnectionUrl() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretBackendConnectionRedshiftPtrOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *bool {
 		if v == nil {
@@ -5034,8 +4733,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) DisableEscaping() pulumi.BoolP
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionRedshiftPtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *int {
 		if v == nil {
@@ -5045,8 +4743,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) MaxConnectionLifetime() pulumi
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionRedshiftPtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *int {
 		if v == nil {
@@ -5056,8 +4753,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) MaxIdleConnections() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionRedshiftPtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *int {
 		if v == nil {
@@ -5067,7 +4763,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) MaxOpenConnections() pulumi.In
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionRedshiftPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *string {
 		if v == nil {
@@ -5077,7 +4773,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) Password() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionRedshiftPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *string {
 		if v == nil {
@@ -5087,7 +4783,7 @@ func (o SecretBackendConnectionRedshiftPtrOutput) Username() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionRedshiftPtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionRedshift) *string {
 		if v == nil {
@@ -5098,25 +4794,19 @@ func (o SecretBackendConnectionRedshiftPtrOutput) UsernameTemplate() pulumi.Stri
 }
 
 type SecretBackendConnectionSnowflake struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
 
@@ -5132,25 +4822,19 @@ type SecretBackendConnectionSnowflakeInput interface {
 }
 
 type SecretBackendConnectionSnowflakeArgs struct {
-	// A URL containing connection information. See
-	// the [Vault
-	// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-	// for an example.
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// The maximum number of seconds to keep
-	// a connection alive for.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// maintain.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// use.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
-	// The password to authenticate with.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// The username to authenticate with.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// Template describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 }
 
@@ -5231,43 +4915,37 @@ func (o SecretBackendConnectionSnowflakeOutput) ToSecretBackendConnectionSnowfla
 	}).(SecretBackendConnectionSnowflakePtrOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionSnowflakeOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionSnowflakeOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionSnowflakeOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionSnowflakeOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionSnowflakeOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionSnowflakeOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionSnowflake) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -5296,10 +4974,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) Elem() SecretBackendConnectio
 	}).(SecretBackendConnectionSnowflakeOutput)
 }
 
-// A URL containing connection information. See
-// the [Vault
-// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-// for an example.
+// Connection string to use to connect to the database.
 func (o SecretBackendConnectionSnowflakePtrOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
 		if v == nil {
@@ -5309,8 +4984,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) ConnectionUrl() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum number of seconds to keep
-// a connection alive for.
+// Maximum number of seconds a connection may be reused.
 func (o SecretBackendConnectionSnowflakePtrOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
 		if v == nil {
@@ -5320,8 +4994,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) MaxConnectionLifetime() pulum
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// maintain.
+// Maximum number of idle connections to the database.
 func (o SecretBackendConnectionSnowflakePtrOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
 		if v == nil {
@@ -5331,8 +5004,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) MaxIdleConnections() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// use.
+// Maximum number of open connections to the database.
 func (o SecretBackendConnectionSnowflakePtrOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *int {
 		if v == nil {
@@ -5342,7 +5014,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) MaxOpenConnections() pulumi.I
 	}).(pulumi.IntPtrOutput)
 }
 
-// The password to authenticate with.
+// The root credential password used in the connection URL
 func (o SecretBackendConnectionSnowflakePtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
 		if v == nil {
@@ -5352,7 +5024,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) Password() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// The username to authenticate with.
+// The root credential username used in the connection URL
 func (o SecretBackendConnectionSnowflakePtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
 		if v == nil {
@@ -5362,7 +5034,7 @@ func (o SecretBackendConnectionSnowflakePtrOutput) Username() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
-// Template describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretBackendConnectionSnowflakePtrOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionSnowflake) *string {
 		if v == nil {
@@ -5376,31 +5048,27 @@ type SecretsMountCassandra struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The hosts to connect to.
+	// Cassandra hosts to connect to.
 	Hosts []string `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The password to use when authenticating with Cassandra.
 	Password *string `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle *string `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson *string `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Cassandra.
 	Port *int `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion *int `pulumi:"protocolVersion"`
@@ -5408,7 +5076,7 @@ type SecretsMountCassandra struct {
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// The username to use when authenticating with Cassandra.
 	Username *string `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -5430,31 +5098,27 @@ type SecretsMountCassandraArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The hosts to connect to.
+	// Cassandra hosts to connect to.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The password to use when authenticating with Cassandra.
 	Password pulumi.StringPtrInput `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Cassandra.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
@@ -5462,7 +5126,7 @@ type SecretsMountCassandraArgs struct {
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// The username to use when authenticating with Cassandra.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -5526,8 +5190,7 @@ func (o SecretsMountCassandraOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// The number of seconds to use as a connection
-// timeout.
+// The number of seconds to use as a connection timeout.
 func (o SecretsMountCassandraOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
@@ -5539,13 +5202,12 @@ func (o SecretsMountCassandraOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The hosts to connect to.
+// Cassandra hosts to connect to.
 func (o SecretsMountCassandraOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.Hosts }).(pulumi.StringArrayOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Whether to skip verification of the server certificate when using TLS.
 func (o SecretsMountCassandraOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
@@ -5555,18 +5217,17 @@ func (o SecretsMountCassandraOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The password to use when authenticating with Cassandra.
 func (o SecretsMountCassandraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// Concatenated PEM blocks configuring the certificate
-// chain.
+// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretsMountCassandraOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
 }
 
-// A JSON structure configuring the certificate chain.
+// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretsMountCassandraOutput) PemJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PemJson }).(pulumi.StringPtrOutput)
 }
@@ -5576,8 +5237,7 @@ func (o SecretsMountCassandraOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.PluginName }).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Cassandra.
 func (o SecretsMountCassandraOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -5597,7 +5257,7 @@ func (o SecretsMountCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The username to use when authenticating with Cassandra.
 func (o SecretsMountCassandraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -5640,24 +5300,23 @@ type SecretsMountCouchbase struct {
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The hosts to connect to.
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 	Hosts []string `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Couchbase.
 	Tls *bool `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// Specifies the username for Vault to use.
 	Username string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -5687,24 +5346,23 @@ type SecretsMountCouchbaseArgs struct {
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The hosts to connect to.
+	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Couchbase.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// Specifies the username for Vault to use.
 	Username pulumi.StringInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -5785,13 +5443,12 @@ func (o SecretsMountCouchbaseOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The hosts to connect to.
+// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 func (o SecretsMountCouchbaseOutput) Hosts() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) []string { return v.Hosts }).(pulumi.StringArrayOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Specifies whether to skip verification of the server certificate when using TLS.
 func (o SecretsMountCouchbaseOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
@@ -5801,7 +5458,7 @@ func (o SecretsMountCouchbaseOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// Specifies the password corresponding to the given username.
 func (o SecretsMountCouchbaseOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -5816,17 +5473,17 @@ func (o SecretsMountCouchbaseOutput) RootRotationStatements() pulumi.StringArray
 	return o.ApplyT(func(v SecretsMountCouchbase) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Specifies whether to use TLS when connecting to Couchbase.
 func (o SecretsMountCouchbaseOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// Specifies the username for Vault to use.
 func (o SecretsMountCouchbaseOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Template describing how dynamic usernames are generated.
 func (o SecretsMountCouchbaseOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountCouchbase) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -5861,36 +5518,35 @@ type SecretsMountElasticsearch struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 	CaCert *string `pulumi:"caCert"`
-	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 	CaPath *string `pulumi:"caPath"`
-	// The path to the certificate for the Elasticsearch client to present for communication.
+	// The path to the certificate for the Elasticsearch client to present for communication
 	ClientCert *string `pulumi:"clientCert"`
-	// The path to the key for the Elasticsearch client to use for communication.
+	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey *string `pulumi:"clientKey"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// Whether to disable certificate verification.
+	// Whether to disable certificate verification
 	Insecure *bool `pulumi:"insecure"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The password to be used in the connection URL
 	Password string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// This, if set, is used to set the SNI host when connecting via TLS.
+	// This, if set, is used to set the SNI host when connecting via TLS
 	TlsServerName *string `pulumi:"tlsServerName"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The URL for Elasticsearch's API
 	Url string `pulumi:"url"`
-	// The root credential username used in the connection URL.
+	// The username to be used in the connection URL
 	Username string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -5912,36 +5568,35 @@ type SecretsMountElasticsearchArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
-	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+	// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 	CaPath pulumi.StringPtrInput `pulumi:"caPath"`
-	// The path to the certificate for the Elasticsearch client to present for communication.
+	// The path to the certificate for the Elasticsearch client to present for communication
 	ClientCert pulumi.StringPtrInput `pulumi:"clientCert"`
-	// The path to the key for the Elasticsearch client to use for communication.
+	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// Whether to disable certificate verification.
+	// Whether to disable certificate verification
 	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The password to be used in the connection URL
 	Password pulumi.StringInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// This, if set, is used to set the SNI host when connecting via TLS.
+	// This, if set, is used to set the SNI host when connecting via TLS
 	TlsServerName pulumi.StringPtrInput `pulumi:"tlsServerName"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The URL for Elasticsearch's API
 	Url pulumi.StringInput `pulumi:"url"`
-	// The root credential username used in the connection URL.
+	// The username to be used in the connection URL
 	Username pulumi.StringInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6005,22 +5660,22 @@ func (o SecretsMountElasticsearchOutput) AllowedRoles() pulumi.StringArrayOutput
 	return o.ApplyT(func(v SecretsMountElasticsearch) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
 func (o SecretsMountElasticsearchOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
 
-// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+// The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
 func (o SecretsMountElasticsearchOutput) CaPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.CaPath }).(pulumi.StringPtrOutput)
 }
 
-// The path to the certificate for the Elasticsearch client to present for communication.
+// The path to the certificate for the Elasticsearch client to present for communication
 func (o SecretsMountElasticsearchOutput) ClientCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
 }
 
-// The path to the key for the Elasticsearch client to use for communication.
+// The path to the key for the Elasticsearch client to use for communication
 func (o SecretsMountElasticsearchOutput) ClientKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
 }
@@ -6032,7 +5687,7 @@ func (o SecretsMountElasticsearchOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// Whether to disable certificate verification.
+// Whether to disable certificate verification
 func (o SecretsMountElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
 }
@@ -6042,7 +5697,7 @@ func (o SecretsMountElasticsearchOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The password to be used in the connection URL
 func (o SecretsMountElasticsearchOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -6057,23 +5712,22 @@ func (o SecretsMountElasticsearchOutput) RootRotationStatements() pulumi.StringA
 	return o.ApplyT(func(v SecretsMountElasticsearch) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// This, if set, is used to set the SNI host when connecting via TLS.
+// This, if set, is used to set the SNI host when connecting via TLS
 func (o SecretsMountElasticsearchOutput) TlsServerName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.TlsServerName }).(pulumi.StringPtrOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The URL for Elasticsearch's API
 func (o SecretsMountElasticsearchOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The root credential username used in the connection URL.
+// The username to be used in the connection URL
 func (o SecretsMountElasticsearchOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Template describing how dynamic usernames are generated.
 func (o SecretsMountElasticsearchOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountElasticsearch) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -6108,32 +5762,29 @@ type SecretsMountHana struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6155,32 +5806,29 @@ type SecretsMountHanaArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6244,8 +5892,7 @@ func (o SecretsMountHanaOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountHana) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -6257,24 +5904,22 @@ func (o SecretsMountHanaOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountHana) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretsMountHanaOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountHanaOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountHanaOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountHanaOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -6284,7 +5929,7 @@ func (o SecretsMountHanaOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountHana) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountHanaOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -6299,7 +5944,7 @@ func (o SecretsMountHanaOutput) RootRotationStatements() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v SecretsMountHana) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountHanaOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountHana) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -6334,39 +5979,35 @@ type SecretsMountInfluxdb struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout *int `pulumi:"connectTimeout"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The host to connect to.
+	// Influxdb host to connect to.
 	Host string `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle *string `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson *string `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Influxdb.
 	Port *int `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Influxdb.
 	Tls *bool `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// Specifies the username to use for superuser access.
 	Username string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Template describing how dynamic usernames are generated.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6388,39 +6029,35 @@ type SecretsMountInfluxdbArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// The number of seconds to use as a connection
-	// timeout.
+	// The number of seconds to use as a connection timeout.
 	ConnectTimeout pulumi.IntPtrInput `pulumi:"connectTimeout"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The host to connect to.
+	// Influxdb host to connect to.
 	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
-	// Concatenated PEM blocks configuring the certificate
-	// chain.
+	// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemBundle pulumi.StringPtrInput `pulumi:"pemBundle"`
-	// A JSON structure configuring the certificate chain.
+	// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 	PemJson pulumi.StringPtrInput `pulumi:"pemJson"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Influxdb.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Whether to use TLS when connecting to Influxdb.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// Specifies the username to use for superuser access.
 	Username pulumi.StringInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Template describing how dynamic usernames are generated.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6484,8 +6121,7 @@ func (o SecretsMountInfluxdbOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// The number of seconds to use as a connection
-// timeout.
+// The number of seconds to use as a connection timeout.
 func (o SecretsMountInfluxdbOutput) ConnectTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *int { return v.ConnectTimeout }).(pulumi.IntPtrOutput)
 }
@@ -6497,13 +6133,12 @@ func (o SecretsMountInfluxdbOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The host to connect to.
+// Influxdb host to connect to.
 func (o SecretsMountInfluxdbOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Whether to skip verification of the server certificate when using TLS.
 func (o SecretsMountInfluxdbOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
@@ -6513,18 +6148,17 @@ func (o SecretsMountInfluxdbOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// Specifies the password corresponding to the given username.
 func (o SecretsMountInfluxdbOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// Concatenated PEM blocks configuring the certificate
-// chain.
+// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretsMountInfluxdbOutput) PemBundle() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PemBundle }).(pulumi.StringPtrOutput)
 }
 
-// A JSON structure configuring the certificate chain.
+// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
 func (o SecretsMountInfluxdbOutput) PemJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PemJson }).(pulumi.StringPtrOutput)
 }
@@ -6534,8 +6168,7 @@ func (o SecretsMountInfluxdbOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.PluginName }).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Influxdb.
 func (o SecretsMountInfluxdbOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -6545,17 +6178,17 @@ func (o SecretsMountInfluxdbOutput) RootRotationStatements() pulumi.StringArrayO
 	return o.ApplyT(func(v SecretsMountInfluxdb) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Whether to use TLS when connecting to Influxdb.
 func (o SecretsMountInfluxdbOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// Specifies the username to use for superuser access.
 func (o SecretsMountInfluxdbOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) string { return v.Username }).(pulumi.StringOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Template describing how dynamic usernames are generated.
 func (o SecretsMountInfluxdbOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountInfluxdb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -6590,32 +6223,29 @@ type SecretsMountMongodb struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6637,32 +6267,29 @@ type SecretsMountMongodbArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -6726,8 +6353,7 @@ func (o SecretsMountMongodbOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountMongodbOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -6739,19 +6365,17 @@ func (o SecretsMountMongodbOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountMongodbOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountMongodbOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountMongodbOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -6761,7 +6385,7 @@ func (o SecretsMountMongodbOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountMongodbOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -6776,12 +6400,12 @@ func (o SecretsMountMongodbOutput) RootRotationStatements() pulumi.StringArrayOu
 	return o.ApplyT(func(v SecretsMountMongodb) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountMongodbOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountMongodbOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMongodb) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -6997,38 +6621,33 @@ type SecretsMountMssql struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
-	// For Vault v1.9+. Set to true when the target is a
-	// Contained Database, e.g. AzureSQL.
-	// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	// Set to true when the target is a Contained Database, e.g. AzureSQL.
 	ContainedDb *bool `pulumi:"containedDb"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7050,38 +6669,33 @@ type SecretsMountMssqlArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
-	// For Vault v1.9+. Set to true when the target is a
-	// Contained Database, e.g. AzureSQL.
-	// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+	// Set to true when the target is a Contained Database, e.g. AzureSQL.
 	ContainedDb pulumi.BoolPtrInput `pulumi:"containedDb"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7145,15 +6759,12 @@ func (o SecretsMountMssqlOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountMssql) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountMssqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
 
-// For Vault v1.9+. Set to true when the target is a
-// Contained Database, e.g. AzureSQL.
-// See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+// Set to true when the target is a Contained Database, e.g. AzureSQL.
 func (o SecretsMountMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.ContainedDb }).(pulumi.BoolPtrOutput)
 }
@@ -7165,24 +6776,22 @@ func (o SecretsMountMssqlOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMssql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretsMountMssqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountMssqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountMssqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountMssqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -7192,7 +6801,7 @@ func (o SecretsMountMssqlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMssql) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountMssqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -7207,12 +6816,12 @@ func (o SecretsMountMssqlOutput) RootRotationStatements() pulumi.StringArrayOutp
 	return o.ApplyT(func(v SecretsMountMssql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountMssqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountMssqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMssql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -7249,24 +6858,21 @@ type SecretsMountMysql struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
@@ -7278,9 +6884,9 @@ type SecretsMountMysql struct {
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7304,24 +6910,21 @@ type SecretsMountMysqlArgs struct {
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -7333,9 +6936,9 @@ type SecretsMountMysqlArgs struct {
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7404,8 +7007,7 @@ func (o SecretsMountMysqlOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -7417,19 +7019,17 @@ func (o SecretsMountMysqlOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMysql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountMysqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountMysqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountMysqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -7439,7 +7039,7 @@ func (o SecretsMountMysqlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysql) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountMysqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -7469,12 +7069,12 @@ func (o SecretsMountMysqlOutput) TlsCertificateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountMysqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountMysqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -7511,24 +7111,21 @@ type SecretsMountMysqlAurora struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
@@ -7540,9 +7137,9 @@ type SecretsMountMysqlAurora struct {
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7566,24 +7163,21 @@ type SecretsMountMysqlAuroraArgs struct {
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -7595,9 +7189,9 @@ type SecretsMountMysqlAuroraArgs struct {
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7666,8 +7260,7 @@ func (o SecretsMountMysqlAuroraOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -7679,19 +7272,17 @@ func (o SecretsMountMysqlAuroraOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountMysqlAuroraOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountMysqlAuroraOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountMysqlAuroraOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -7701,7 +7292,7 @@ func (o SecretsMountMysqlAuroraOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountMysqlAuroraOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -7731,12 +7322,12 @@ func (o SecretsMountMysqlAuroraOutput) TlsCertificateKey() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountMysqlAuroraOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountMysqlAuroraOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlAurora) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -7773,24 +7364,21 @@ type SecretsMountMysqlLegacy struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
@@ -7802,9 +7390,9 @@ type SecretsMountMysqlLegacy struct {
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7828,24 +7416,21 @@ type SecretsMountMysqlLegacyArgs struct {
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -7857,9 +7442,9 @@ type SecretsMountMysqlLegacyArgs struct {
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -7928,8 +7513,7 @@ func (o SecretsMountMysqlLegacyOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -7941,19 +7525,17 @@ func (o SecretsMountMysqlLegacyOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountMysqlLegacyOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountMysqlLegacyOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountMysqlLegacyOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -7963,7 +7545,7 @@ func (o SecretsMountMysqlLegacyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountMysqlLegacyOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -7993,12 +7575,12 @@ func (o SecretsMountMysqlLegacyOutput) TlsCertificateKey() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountMysqlLegacyOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountMysqlLegacyOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlLegacy) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -8035,24 +7617,21 @@ type SecretsMountMysqlRd struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
@@ -8064,9 +7643,9 @@ type SecretsMountMysqlRd struct {
 	TlsCa *string `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey *string `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8090,24 +7669,21 @@ type SecretsMountMysqlRdArgs struct {
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -8119,9 +7695,9 @@ type SecretsMountMysqlRdArgs struct {
 	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
 	// x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
 	TlsCertificateKey pulumi.StringPtrInput `pulumi:"tlsCertificateKey"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8190,8 +7766,7 @@ func (o SecretsMountMysqlRdOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountMysqlRdOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -8203,19 +7778,17 @@ func (o SecretsMountMysqlRdOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountMysqlRdOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountMysqlRdOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountMysqlRdOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -8225,7 +7798,7 @@ func (o SecretsMountMysqlRdOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountMysqlRdOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -8255,12 +7828,12 @@ func (o SecretsMountMysqlRdOutput) TlsCertificateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.TlsCertificateKey }).(pulumi.StringPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountMysqlRdOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountMysqlRdOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountMysqlRd) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -8295,8 +7868,7 @@ type SecretsMountOracle struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
@@ -8304,17 +7876,15 @@ type SecretsMountOracle struct {
 	Data map[string]interface{} `pulumi:"data"`
 	// Set to true to disconnect any open sessions prior to running the revocation statements.
 	DisconnectSessions *bool `pulumi:"disconnectSessions"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
@@ -8322,9 +7892,9 @@ type SecretsMountOracle struct {
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements *bool `pulumi:"splitStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8346,8 +7916,7 @@ type SecretsMountOracleArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
@@ -8355,17 +7924,15 @@ type SecretsMountOracleArgs struct {
 	Data pulumi.MapInput `pulumi:"data"`
 	// Set to true to disconnect any open sessions prior to running the revocation statements.
 	DisconnectSessions pulumi.BoolPtrInput `pulumi:"disconnectSessions"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -8373,9 +7940,9 @@ type SecretsMountOracleArgs struct {
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// Set to true in order to split statements after semi-colons.
 	SplitStatements pulumi.BoolPtrInput `pulumi:"splitStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8439,8 +8006,7 @@ func (o SecretsMountOracleOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountOracle) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountOracleOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -8457,19 +8023,17 @@ func (o SecretsMountOracleOutput) DisconnectSessions() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.DisconnectSessions }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountOracleOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountOracleOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountOracleOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -8479,7 +8043,7 @@ func (o SecretsMountOracleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountOracle) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountOracleOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -8499,12 +8063,12 @@ func (o SecretsMountOracleOutput) SplitStatements() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *bool { return v.SplitStatements }).(pulumi.BoolPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountOracleOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountOracleOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountOracle) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -8541,26 +8105,23 @@ type SecretsMountPostgresql struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType *string `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
@@ -8568,9 +8129,9 @@ type SecretsMountPostgresql struct {
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8594,26 +8155,23 @@ type SecretsMountPostgresqlArgs struct {
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
 	// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
 	AuthType pulumi.StringPtrInput `pulumi:"authType"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
@@ -8621,9 +8179,9 @@ type SecretsMountPostgresqlArgs struct {
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8692,8 +8250,7 @@ func (o SecretsMountPostgresqlOutput) AuthType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -8705,24 +8262,22 @@ func (o SecretsMountPostgresqlOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretsMountPostgresqlOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountPostgresqlOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountPostgresqlOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountPostgresqlOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -8732,7 +8287,7 @@ func (o SecretsMountPostgresqlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountPostgresqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -8752,12 +8307,12 @@ func (o SecretsMountPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountPostgresqlOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountPostgresqlOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -8792,31 +8347,29 @@ type SecretsMountRedi struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 	CaCert *string `pulumi:"caCert"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The host to connect to.
+	// Specifies the host to connect to
 	Host string `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls *bool `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// Specifies the password corresponding to the given username.
 	Password string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Redis.
 	Port *int `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Redis.
 	Tls *bool `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// Specifies the username for Vault to use.
 	Username string `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8838,31 +8391,29 @@ type SecretsMountRediArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+	// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 	CaCert pulumi.StringPtrInput `pulumi:"caCert"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The host to connect to.
+	// Specifies the host to connect to
 	Host pulumi.StringInput `pulumi:"host"`
-	// Whether to skip verification of the server
-	// certificate when using TLS.
+	// Specifies whether to skip verification of the server certificate when using TLS.
 	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// Specifies the password corresponding to the given username.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
-	// The default port to connect to if no port is specified as
-	// part of the host.
+	// The transport port to use to connect to Redis.
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// Whether to use TLS when connecting to Cassandra.
+	// Specifies whether to use TLS when connecting to Redis.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
-	// The root credential username used in the connection URL.
+	// Specifies the username for Vault to use.
 	Username pulumi.StringInput `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -8926,7 +8477,7 @@ func (o SecretsMountRediOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountRedi) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+// The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
 func (o SecretsMountRediOutput) CaCert() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *string { return v.CaCert }).(pulumi.StringPtrOutput)
 }
@@ -8938,13 +8489,12 @@ func (o SecretsMountRediOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountRedi) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The host to connect to.
+// Specifies the host to connect to
 func (o SecretsMountRediOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedi) string { return v.Host }).(pulumi.StringOutput)
 }
 
-// Whether to skip verification of the server
-// certificate when using TLS.
+// Specifies whether to skip verification of the server certificate when using TLS.
 func (o SecretsMountRediOutput) InsecureTls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
 }
@@ -8954,7 +8504,7 @@ func (o SecretsMountRediOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedi) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// Specifies the password corresponding to the given username.
 func (o SecretsMountRediOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedi) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -8964,8 +8514,7 @@ func (o SecretsMountRediOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *string { return v.PluginName }).(pulumi.StringPtrOutput)
 }
 
-// The default port to connect to if no port is specified as
-// part of the host.
+// The transport port to use to connect to Redis.
 func (o SecretsMountRediOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
@@ -8975,12 +8524,12 @@ func (o SecretsMountRediOutput) RootRotationStatements() pulumi.StringArrayOutpu
 	return o.ApplyT(func(v SecretsMountRedi) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// Whether to use TLS when connecting to Cassandra.
+// Specifies whether to use TLS when connecting to Redis.
 func (o SecretsMountRediOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedi) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
 }
 
-// The root credential username used in the connection URL.
+// Specifies the username for Vault to use.
 func (o SecretsMountRediOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedi) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -9021,19 +8570,17 @@ type SecretsMountRedisElasticach struct {
 	Data map[string]interface{} `pulumi:"data"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
-	// The AWS region where the ElastiCache cluster is hosted.
-	// If omitted the plugin tries to infer the region from the environment.
+	// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 	Region *string `pulumi:"region"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url string `pulumi:"url"`
-	// The root credential username used in the connection URL.
+	// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Username *string `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -9061,19 +8608,17 @@ type SecretsMountRedisElasticachArgs struct {
 	Data pulumi.MapInput `pulumi:"data"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
-	// The AWS region where the ElastiCache cluster is hosted.
-	// If omitted the plugin tries to infer the region from the environment.
+	// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// The URL for Elasticsearch's API. https requires certificate
-	// by trusted CA if used.
+	// The configuration endpoint for the ElastiCache cluster to connect to.
 	Url pulumi.StringInput `pulumi:"url"`
-	// The root credential username used in the connection URL.
+	// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -9149,7 +8694,7 @@ func (o SecretsMountRedisElasticachOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 func (o SecretsMountRedisElasticachOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -9159,8 +8704,7 @@ func (o SecretsMountRedisElasticachOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.PluginName }).(pulumi.StringPtrOutput)
 }
 
-// The AWS region where the ElastiCache cluster is hosted.
-// If omitted the plugin tries to infer the region from the environment.
+// The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
 func (o SecretsMountRedisElasticachOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
@@ -9170,13 +8714,12 @@ func (o SecretsMountRedisElasticachOutput) RootRotationStatements() pulumi.Strin
 	return o.ApplyT(func(v SecretsMountRedisElasticach) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// The URL for Elasticsearch's API. https requires certificate
-// by trusted CA if used.
+// The configuration endpoint for the ElastiCache cluster to connect to.
 func (o SecretsMountRedisElasticachOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) string { return v.Url }).(pulumi.StringOutput)
 }
 
-// The root credential username used in the connection URL.
+// The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
 func (o SecretsMountRedisElasticachOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedisElasticach) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
@@ -9211,34 +8754,31 @@ type SecretsMountRedshift struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -9260,34 +8800,31 @@ type SecretsMountRedshiftArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// Disable special character escaping in username and password.
+	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -9351,8 +8888,7 @@ func (o SecretsMountRedshiftOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountRedshiftOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -9364,24 +8900,22 @@ func (o SecretsMountRedshiftOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// Disable special character escaping in username and password.
+// Disable special character escaping in username and password
 func (o SecretsMountRedshiftOutput) DisableEscaping() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *bool { return v.DisableEscaping }).(pulumi.BoolPtrOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountRedshiftOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountRedshiftOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountRedshiftOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -9391,7 +8925,7 @@ func (o SecretsMountRedshiftOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountRedshiftOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -9406,12 +8940,12 @@ func (o SecretsMountRedshiftOutput) RootRotationStatements() pulumi.StringArrayO
 	return o.ApplyT(func(v SecretsMountRedshift) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountRedshiftOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountRedshiftOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountRedshift) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }
@@ -9446,32 +8980,29 @@ type SecretsMountSnowflake struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles []string `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data map[string]interface{} `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections *int `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -9493,32 +9024,29 @@ type SecretsMountSnowflakeArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.
 	AllowedRoles pulumi.StringArrayInput `pulumi:"allowedRoles"`
-	// Specifies the Redshift DSN.
-	// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+	// Connection string to use to connect to the database.
 	ConnectionUrl pulumi.StringPtrInput `pulumi:"connectionUrl"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
 	Data pulumi.MapInput `pulumi:"data"`
-	// The maximum amount of time a connection may be reused.
+	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
-	// The maximum number of idle connections to
-	// the database.
+	// Maximum number of idle connections to the database.
 	MaxIdleConnections pulumi.IntPtrInput `pulumi:"maxIdleConnections"`
-	// The maximum number of open connections to
-	// the database.
+	// Maximum number of open connections to the database.
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The root credential password used in the connection URL.
+	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
-	// The root credential username used in the connection URL.
+	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
-	// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+	// Username generation template.
 	UsernameTemplate pulumi.StringPtrInput `pulumi:"usernameTemplate"`
 	// Whether the connection should be verified on
 	// initial configuration or not.
@@ -9582,8 +9110,7 @@ func (o SecretsMountSnowflakeOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) []string { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
-// Specifies the Redshift DSN.
-// See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+// Connection string to use to connect to the database.
 func (o SecretsMountSnowflakeOutput) ConnectionUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.ConnectionUrl }).(pulumi.StringPtrOutput)
 }
@@ -9595,19 +9122,17 @@ func (o SecretsMountSnowflakeOutput) Data() pulumi.MapOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
 }
 
-// The maximum amount of time a connection may be reused.
+// Maximum number of seconds a connection may be reused.
 func (o SecretsMountSnowflakeOutput) MaxConnectionLifetime() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxConnectionLifetime }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of idle connections to
-// the database.
+// Maximum number of idle connections to the database.
 func (o SecretsMountSnowflakeOutput) MaxIdleConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxIdleConnections }).(pulumi.IntPtrOutput)
 }
 
-// The maximum number of open connections to
-// the database.
+// Maximum number of open connections to the database.
 func (o SecretsMountSnowflakeOutput) MaxOpenConnections() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *int { return v.MaxOpenConnections }).(pulumi.IntPtrOutput)
 }
@@ -9617,7 +9142,7 @@ func (o SecretsMountSnowflakeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The root credential password used in the connection URL.
+// The root credential password used in the connection URL
 func (o SecretsMountSnowflakeOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -9632,12 +9157,12 @@ func (o SecretsMountSnowflakeOutput) RootRotationStatements() pulumi.StringArray
 	return o.ApplyT(func(v SecretsMountSnowflake) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
-// The root credential username used in the connection URL.
+// The root credential username used in the connection URL
 func (o SecretsMountSnowflakeOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
-// [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+// Username generation template.
 func (o SecretsMountSnowflakeOutput) UsernameTemplate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountSnowflake) *string { return v.UsernameTemplate }).(pulumi.StringPtrOutput)
 }

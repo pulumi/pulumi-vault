@@ -12,6 +12,64 @@ import (
 )
 
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kv"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
+//				Path: pulumi.String("kvv2"),
+//				Type: pulumi.String("kv"),
+//				Options: pulumi.Map{
+//					"version": pulumi.Any("2"),
+//				},
+//				Description: pulumi.String("KV Version 2 secret engine mount"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"zip": "zap",
+//				"foo": "bar",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			exampleSecretV2, err := kv.NewSecretV2(ctx, "example", &kv.SecretV2Args{
+//				Mount:             kvv2.Path,
+//				Name:              pulumi.String("secret"),
+//				Cas:               pulumi.Int(1),
+//				DeleteAllVersions: pulumi.Bool(true),
+//				DataJson:          pulumi.String(json0),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = kv.LookupSecretV2Output(ctx, kv.GetSecretV2OutputArgs{
+//				Mount: kvv2.Path,
+//				Name:  exampleSecretV2.Name,
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Required Vault Capabilities
+//
+// Use of this resource requires the `read` capability on the given path.
 func LookupSecretV2(ctx *pulumi.Context, args *LookupSecretV2Args, opts ...pulumi.InvokeOption) (*LookupSecretV2Result, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretV2Result

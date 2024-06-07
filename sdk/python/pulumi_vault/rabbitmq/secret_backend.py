@@ -461,17 +461,15 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
             connection_uri="https://.....",
-            password="password",
-            username="user")
+            username="user",
+            password="password")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -513,17 +511,15 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         rabbitmq = vault.rabbit_mq.SecretBackend("rabbitmq",
             connection_uri="https://.....",
-            password="password",
-            username="user")
+            username="user",
+            password="password")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

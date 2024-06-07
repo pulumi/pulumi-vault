@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,14 +19,14 @@ import * as utilities from "./utilities";
  *     type: "userpass",
  *     path: "userpass",
  * });
- * const myDuo = new vault.MfaDuo("myDuo", {
+ * const myDuo = new vault.MfaDuo("my_duo", {
+ *     name: "my_duo",
  *     mountAccessor: userpass.accessor,
  *     secretKey: "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
  *     integrationKey: "BIACEUEAXI20BNWTEYXT",
  *     apiHostname: "api-2b5c39f5.duosecurity.com",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

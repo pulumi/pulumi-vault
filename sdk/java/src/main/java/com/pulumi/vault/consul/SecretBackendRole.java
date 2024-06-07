@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,21 +47,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;consul&#34;)
- *             .description(&#34;Manages the Consul backend&#34;)
- *             .address(&#34;127.0.0.1:8500&#34;)
- *             .token(&#34;4240861b-ce3d-8530-115a-521ff070dd29&#34;)
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
+ *             .path("consul")
+ *             .description("Manages the Consul backend")
+ *             .address("127.0.0.1:8500")
+ *             .token("4240861b-ce3d-8530-115a-521ff070dd29")
  *             .build());
  * 
- *         var example = new SecretBackendRole(&#34;example&#34;, SecretBackendRoleArgs.builder()        
+ *         var example = new SecretBackendRole("example", SecretBackendRoleArgs.builder()
+ *             .name("test-role")
  *             .backend(test.path())
- *             .consulPolicies(&#34;example-policy&#34;)
+ *             .consulPolicies("example-policy")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Note About Required Arguments

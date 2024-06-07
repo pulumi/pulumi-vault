@@ -18,7 +18,6 @@ import (
 //
 // ### Exclusive Policies
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name:             pulumi.String("internal"),
 //				Type:             pulumi.String("internal"),
 //				ExternalPolicies: pulumi.Bool(true),
 //				Metadata: pulumi.StringMap{
@@ -57,11 +57,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Non-exclusive Policies
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -75,6 +73,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name:             pulumi.String("internal"),
 //				Type:             pulumi.String("internal"),
 //				ExternalPolicies: pulumi.Bool(true),
 //				Metadata: pulumi.StringMap{
@@ -110,7 +109,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type GroupPolicies struct {
 	pulumi.CustomResourceState
 

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,28 +47,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gcp = new AuthBackend(&#34;gcp&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;gcp&#34;)
- *             .type(&#34;gcp&#34;)
+ *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()
+ *             .path("gcp")
+ *             .type("gcp")
  *             .build());
  * 
- *         var test = new AuthBackendRole(&#34;test&#34;, AuthBackendRoleArgs.builder()        
+ *         var test = new AuthBackendRole("test", AuthBackendRoleArgs.builder()
  *             .backend(gcp.path())
- *             .role(&#34;test&#34;)
- *             .type(&#34;iam&#34;)
- *             .boundServiceAccounts(&#34;test&#34;)
- *             .boundProjects(&#34;test&#34;)
+ *             .role("test")
+ *             .type("iam")
+ *             .boundServiceAccounts("test")
+ *             .boundProjects("test")
  *             .tokenTtl(300)
  *             .tokenMaxTtl(600)
  *             .tokenPolicies(            
- *                 &#34;policy_a&#34;,
- *                 &#34;policy_b&#34;)
+ *                 "policy_a",
+ *                 "policy_b")
  *             .addGroupAliases(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -87,17 +89,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     public Output<Boolean> addGroupAliases() {
         return this.addGroupAliases;
     }
-    /**
-     * A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-     * 
-     */
     @Export(name="allowGceInference", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> allowGceInference;
 
-    /**
-     * @return A flag to determine if this role should allow GCE instances to authenticate by inferring service accounts from the GCE identity metadata token.
-     * 
-     */
     public Output<Boolean> allowGceInference() {
         return this.allowGceInference;
     }
@@ -115,31 +109,15 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> backend() {
         return Codegen.optional(this.backend);
     }
-    /**
-     * The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-     * 
-     */
     @Export(name="boundInstanceGroups", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundInstanceGroups;
 
-    /**
-     * @return The instance groups that an authorized instance must belong to in order to be authenticated. If specified, either `bound_zones` or `bound_regions` must be set too.
-     * 
-     */
     public Output<List<String>> boundInstanceGroups() {
         return this.boundInstanceGroups;
     }
-    /**
-     * A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-     * 
-     */
     @Export(name="boundLabels", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundLabels;
 
-    /**
-     * @return A comma-separated list of GCP labels formatted as `&#34;key:value&#34;` strings that must be set on authorized GCE instances. Because GCP labels are not currently ACL&#39;d, we recommend that this be used in conjunction with other restrictions.
-     * 
-     */
     public Output<List<String>> boundLabels() {
         return this.boundLabels;
     }
@@ -157,17 +135,9 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<String>>> boundProjects() {
         return Codegen.optional(this.boundProjects);
     }
-    /**
-     * The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-     * 
-     */
     @Export(name="boundRegions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundRegions;
 
-    /**
-     * @return The list of regions that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.
-     * 
-     */
     public Output<List<String>> boundRegions() {
         return this.boundRegions;
     }
@@ -185,31 +155,15 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     public Output<List<String>> boundServiceAccounts() {
         return this.boundServiceAccounts;
     }
-    /**
-     * The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-     * 
-     */
     @Export(name="boundZones", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> boundZones;
 
-    /**
-     * @return The list of zones that a GCE instance must belong to in order to be authenticated. If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.
-     * 
-     */
     public Output<List<String>> boundZones() {
         return this.boundZones;
     }
-    /**
-     * The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-     * 
-     */
     @Export(name="maxJwtExp", refs={String.class}, tree="[0]")
     private Output<String> maxJwtExp;
 
-    /**
-     * @return The number of seconds past the time of authentication that the login param JWT must expire within. For example, if a user attempts to login with a token that expires within an hour and this is set to 15 minutes, Vault will return an error prompting the user to create a new signed JWT with a shorter `exp`. The GCE metadata tokens currently do not allow the `exp` claim to be customized.
-     * 
-     */
     public Output<String> maxJwtExp() {
         return this.maxJwtExp;
     }
@@ -248,160 +202,126 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.role;
     }
     /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
-     * @return List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * @return Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     public Output<Optional<List<String>>> tokenBoundCidrs() {
         return Codegen.optional(this.tokenBoundCidrs);
     }
     /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
-     * @return If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * @return Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     public Output<Optional<Integer>> tokenExplicitMaxTtl() {
         return Codegen.optional(this.tokenExplicitMaxTtl);
     }
     /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The maximum lifetime of the generated token
      * 
      */
     @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
-     * @return The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The maximum lifetime of the generated token
      * 
      */
     public Output<Optional<Integer>> tokenMaxTtl() {
         return Codegen.optional(this.tokenMaxTtl);
     }
     /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
-     * @return If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * @return If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     public Output<Optional<Boolean>> tokenNoDefaultPolicy() {
         return Codegen.optional(this.tokenNoDefaultPolicy);
     }
     /**
-     * The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
-     * @return The [maximum number](https://www.vaultproject.io/api-docs/gcp#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     public Output<Optional<Integer>> tokenNumUses() {
         return Codegen.optional(this.tokenNumUses);
     }
     /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * Generated Token&#39;s Period
      * 
      */
     @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
-     * @return If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * @return Generated Token&#39;s Period
      * 
      */
     public Output<Optional<Integer>> tokenPeriod() {
         return Codegen.optional(this.tokenPeriod);
     }
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token&#39;s Policies
      * 
      */
     @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
-     * @return List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * @return Generated Token&#39;s Policies
      * 
      */
     public Output<Optional<List<String>>> tokenPolicies() {
         return Codegen.optional(this.tokenPolicies);
     }
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      * 
      */
     @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
-     * @return The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The initial ttl of the token to generate in seconds
      * 
      */
     public Output<Optional<Integer>> tokenTtl() {
         return Codegen.optional(this.tokenTtl);
     }
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      * 
      */
     @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * @return The type of token to generate, service or batch
      * 
      */
     public Output<Optional<String>> tokenType() {

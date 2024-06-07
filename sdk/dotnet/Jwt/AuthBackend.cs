@@ -17,7 +17,6 @@ namespace Pulumi.Vault.Jwt
     /// 
     /// Manage JWT auth backend:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -28,19 +27,17 @@ namespace Pulumi.Vault.Jwt
     /// {
     ///     var example = new Vault.Jwt.AuthBackend("example", new()
     ///     {
-    ///         BoundIssuer = "https://myco.auth0.com/",
     ///         Description = "Demonstration of the Terraform JWT auth backend",
-    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
     ///         Path = "jwt",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
+    ///         BoundIssuer = "https://myco.auth0.com/",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Manage OIDC auth backend:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -51,26 +48,24 @@ namespace Pulumi.Vault.Jwt
     /// {
     ///     var example = new Vault.Jwt.AuthBackend("example", new()
     ///     {
-    ///         BoundIssuer = "https://myco.auth0.com/",
     ///         Description = "Demonstration of the Terraform JWT auth backend",
+    ///         Path = "oidc",
+    ///         Type = "oidc",
+    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
     ///         OidcClientId = "1234567890",
     ///         OidcClientSecret = "secret123456",
-    ///         OidcDiscoveryUrl = "https://myco.auth0.com/",
-    ///         Path = "oidc",
+    ///         BoundIssuer = "https://myco.auth0.com/",
     ///         Tune = new Vault.Jwt.Inputs.AuthBackendTuneArgs
     ///         {
     ///             ListingVisibility = "unauth",
     ///         },
-    ///         Type = "oidc",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Configuring the auth backend with a `provider_config:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -84,19 +79,18 @@ namespace Pulumi.Vault.Jwt
     ///         Description = "OIDC backend",
     ///         OidcDiscoveryUrl = "https://accounts.google.com",
     ///         Path = "oidc",
+    ///         Type = "oidc",
     ///         ProviderConfig = 
     ///         {
+    ///             { "provider", "gsuite" },
     ///             { "fetch_groups", "true" },
     ///             { "fetch_user_info", "true" },
     ///             { "groups_recurse_max_depth", "1" },
-    ///             { "provider", "gsuite" },
     ///         },
-    ///         Type = "oidc",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

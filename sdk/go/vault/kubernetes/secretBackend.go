@@ -14,37 +14,39 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
-//	"os"
-//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/kubernetes"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/cert",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, &std.FileArgs{
+//				Input: "/path/to/token",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewSecretBackend(ctx, "config", &kubernetes.SecretBackendArgs{
 //				Path:                   pulumi.String("kubernetes"),
 //				Description:            pulumi.String("kubernetes secrets engine description"),
 //				DefaultLeaseTtlSeconds: pulumi.Int(43200),
 //				MaxLeaseTtlSeconds:     pulumi.Int(86400),
 //				KubernetesHost:         pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:       readFileOrPanic("/path/to/cert"),
-//				ServiceAccountJwt:      readFileOrPanic("/path/to/token"),
+//				KubernetesCaCert:       invokeFile.Result,
+//				ServiceAccountJwt:      invokeFile1.Result,
 //				DisableLocalCaJwt:      pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -55,7 +57,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

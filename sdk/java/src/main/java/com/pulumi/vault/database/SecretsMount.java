@@ -41,7 +41,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -66,45 +67,48 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var db = new SecretsMount(&#34;db&#34;, SecretsMountArgs.builder()        
- *             .path(&#34;db&#34;)
+ *         var db = new SecretsMount("db", SecretsMountArgs.builder()
+ *             .path("db")
  *             .mssqls(SecretsMountMssqlArgs.builder()
- *                 .name(&#34;db1&#34;)
- *                 .username(&#34;sa&#34;)
- *                 .password(&#34;super_secret_1&#34;)
- *                 .connectionUrl(&#34;sqlserver://{{username}}:{{password}}@127.0.0.1:1433&#34;)
- *                 .allowedRoles(&#34;dev1&#34;)
+ *                 .name("db1")
+ *                 .username("sa")
+ *                 .password("super_secret_1")
+ *                 .connectionUrl("sqlserver://{{username}}:{{password}}{@literal @}127.0.0.1:1433")
+ *                 .allowedRoles("dev1")
  *                 .build())
  *             .postgresqls(SecretsMountPostgresqlArgs.builder()
- *                 .name(&#34;db2&#34;)
- *                 .username(&#34;postgres&#34;)
- *                 .password(&#34;super_secret_2&#34;)
- *                 .connectionUrl(&#34;postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres&#34;)
+ *                 .name("db2")
+ *                 .username("postgres")
+ *                 .password("super_secret_2")
+ *                 .connectionUrl("postgresql://{{username}}:{{password}}{@literal @}127.0.0.1:5432/postgres")
  *                 .verifyConnection(true)
- *                 .allowedRoles(&#34;dev2&#34;)
+ *                 .allowedRoles("dev2")
  *                 .build())
  *             .build());
  * 
- *         var dev1 = new SecretBackendRole(&#34;dev1&#34;, SecretBackendRoleArgs.builder()        
+ *         var dev1 = new SecretBackendRole("dev1", SecretBackendRoleArgs.builder()
+ *             .name("dev1")
  *             .backend(db.path())
- *             .dbName(db.mssqls().applyValue(mssqls -&gt; mssqls[0].name()))
+ *             .dbName(db.mssqls().applyValue(mssqls -> mssqls[0].name()))
  *             .creationStatements(            
- *                 &#34;CREATE LOGIN [{{name}}] WITH PASSWORD = &#39;{{password}}&#39;;&#34;,
- *                 &#34;CREATE USER [{{name}}] FOR LOGIN [{{name}}];&#34;,
- *                 &#34;GRANT SELECT ON SCHEMA::dbo TO [{{name}}];&#34;)
+ *                 "CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';",
+ *                 "CREATE USER [{{name}}] FOR LOGIN [{{name}}];",
+ *                 "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];")
  *             .build());
  * 
- *         var dev2 = new SecretBackendRole(&#34;dev2&#34;, SecretBackendRoleArgs.builder()        
+ *         var dev2 = new SecretBackendRole("dev2", SecretBackendRoleArgs.builder()
+ *             .name("dev2")
  *             .backend(db.path())
- *             .dbName(db.postgresqls().applyValue(postgresqls -&gt; postgresqls[0].name()))
+ *             .dbName(db.postgresqls().applyValue(postgresqls -> postgresqls[0].name()))
  *             .creationStatements(            
- *                 &#34;CREATE ROLE \&#34;{{name}}\&#34; WITH LOGIN PASSWORD &#39;{{password}}&#39; VALID UNTIL &#39;{{expiration}}&#39;;&#34;,
- *                 &#34;GRANT SELECT ON ALL TABLES IN SCHEMA public TO \&#34;{{name}}\&#34;;&#34;)
+ *                 "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
+ *                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,12 +30,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.NewMfaTotp(ctx, "myTotp", &vault.MfaTotpArgs{
+//			_, err := vault.NewMfaTotp(ctx, "my_totp", &vault.MfaTotpArgs{
+//				Name:      pulumi.String("my_totp"),
+//				Issuer:    pulumi.String("hashicorp"),
+//				Period:    pulumi.Int(60),
 //				Algorithm: pulumi.String("SHA256"),
 //				Digits:    pulumi.Int(8),
-//				Issuer:    pulumi.String("hashicorp"),
 //				KeySize:   pulumi.Int(20),
-//				Period:    pulumi.Int(60),
 //			})
 //			if err != nil {
 //				return err
@@ -46,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

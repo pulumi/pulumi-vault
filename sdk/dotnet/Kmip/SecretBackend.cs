@@ -16,7 +16,6 @@ namespace Pulumi.Vault.Kmip
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,23 +26,22 @@ namespace Pulumi.Vault.Kmip
     /// {
     ///     var @default = new Vault.Kmip.SecretBackend("default", new()
     ///     {
-    ///         DefaultTlsClientKeyBits = 4096,
-    ///         DefaultTlsClientKeyType = "rsa",
-    ///         DefaultTlsClientTtl = 86400,
+    ///         Path = "kmip",
     ///         Description = "Vault KMIP backend",
     ///         ListenAddrs = new[]
     ///         {
     ///             "127.0.0.1:5696",
     ///             "127.0.0.1:8080",
     ///         },
-    ///         Path = "kmip",
-    ///         TlsCaKeyBits = 4096,
     ///         TlsCaKeyType = "rsa",
+    ///         TlsCaKeyBits = 4096,
+    ///         DefaultTlsClientKeyType = "rsa",
+    ///         DefaultTlsClientKeyBits = 4096,
+    ///         DefaultTlsClientTtl = 86400,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

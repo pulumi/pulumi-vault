@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,17 +46,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new AuthBackend(&#34;test&#34;, AuthBackendArgs.builder()        
- *             .acsUrls(&#34;https://my.vault.primary/v1/auth/saml/callback&#34;)
- *             .defaultRole(&#34;admin&#34;)
- *             .entityId(&#34;https://my.vault/v1/auth/saml&#34;)
- *             .idpMetadataUrl(&#34;https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata&#34;)
- *             .path(&#34;saml&#34;)
+ *         var test = new AuthBackend("test", AuthBackendArgs.builder()
+ *             .path("saml")
+ *             .idpMetadataUrl("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata")
+ *             .entityId("https://my.vault/v1/auth/saml")
+ *             .acsUrls("https://my.vault.primary/v1/auth/saml/callback")
+ *             .defaultRole("admin")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,6 +35,7 @@ import (
 //			}
 //			_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
 //				Backend:        aws.Path,
+//				Name:           pulumi.String("deploy"),
 //				CredentialType: pulumi.String("iam_user"),
 //				PolicyDocument: pulumi.String(`{
 //	  "Version": "2012-10-17",
@@ -59,7 +59,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

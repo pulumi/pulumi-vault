@@ -16,14 +16,14 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
     public static final AuthBackendGroupArgs Empty = new AuthBackendGroupArgs();
 
     /**
-     * Name of the group within the Okta
+     * Name of the Okta group
      * 
      */
     @Import(name="groupName", required=true)
     private Output<String> groupName;
 
     /**
-     * @return Name of the group within the Okta
+     * @return Name of the Okta group
      * 
      */
     public Output<String> groupName() {
@@ -31,14 +31,14 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Vault policies to associate with this group
+     * Policies to associate with this group
      * 
      */
     @Import(name="policies", required=true)
     private Output<List<String>> policies;
 
     /**
-     * @return Vault policies to associate with this group
+     * @return Policies to associate with this group
      * 
      */
     public Output<List<String>> policies() {
@@ -71,7 +71,7 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param groupName Name of the group within the Okta
+         * @param groupName Name of the Okta group
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param groupName Name of the group within the Okta
+         * @param groupName Name of the Okta group
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param policies Vault policies to associate with this group
+         * @param policies Policies to associate with this group
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param policies Vault policies to associate with this group
+         * @param policies Policies to associate with this group
          * 
          * @return builder
          * 
@@ -113,7 +113,7 @@ public final class AuthBackendGroupArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param policies Vault policies to associate with this group
+         * @param policies Policies to associate with this group
          * 
          * @return builder
          * 

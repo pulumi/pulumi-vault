@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			examplePolicyDocument, err := vault.GetPolicyDocument(ctx, &vault.GetPolicyDocumentArgs{
+//			example, err := vault.GetPolicyDocument(ctx, &vault.GetPolicyDocumentArgs{
 //				Rules: []vault.GetPolicyDocumentRule{
 //					{
 //						Path: "secret/*",
@@ -46,8 +45,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vault.NewPolicy(ctx, "examplePolicy", &vault.PolicyArgs{
-//				Policy: pulumi.String(examplePolicyDocument.Hcl),
+//			_, err = vault.NewPolicy(ctx, "example", &vault.PolicyArgs{
+//				Name:   pulumi.String("example_policy"),
+//				Policy: pulumi.String(example.Hcl),
 //			})
 //			if err != nil {
 //				return err
@@ -57,7 +57,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetPolicyDocument(ctx *pulumi.Context, args *GetPolicyDocumentArgs, opts ...pulumi.InvokeOption) (*GetPolicyDocumentResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPolicyDocumentResult

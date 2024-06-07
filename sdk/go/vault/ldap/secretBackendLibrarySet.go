@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +39,7 @@ import (
 //			}
 //			_, err = ldap.NewSecretBackendLibrarySet(ctx, "qa", &ldap.SecretBackendLibrarySetArgs{
 //				Mount: config.Path,
+//				Name:  pulumi.String("qa"),
 //				ServiceAccountNames: pulumi.StringArray{
 //					pulumi.String("Bob"),
 //					pulumi.String("Mary"),
@@ -56,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

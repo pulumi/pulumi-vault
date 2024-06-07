@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,8 +27,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := secrets.NewSyncVercelDestination(ctx, "vercel", &secrets.SyncVercelDestinationArgs{
-//				AccessToken: pulumi.Any(_var.Access_token),
-//				ProjectId:   pulumi.Any(_var.Project_id),
+//				Name:        pulumi.String("vercel-dest"),
+//				AccessToken: pulumi.Any(accessToken),
+//				ProjectId:   pulumi.Any(projectId),
 //				DeploymentEnvironments: pulumi.StringArray{
 //					pulumi.String("development"),
 //					pulumi.String("preview"),
@@ -45,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

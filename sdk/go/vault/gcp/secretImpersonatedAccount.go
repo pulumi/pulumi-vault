@@ -19,44 +19,40 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
 // import (
 //
-//	"os"
-//
-//	"github.com/pulumi/pulumi-gcp/sdk/v5/go/gcp/serviceAccount"
+//	"github.com/pulumi/pulumi-google/sdk/v1/go/google"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			this, err := serviceAccount.NewAccount(ctx, "this", &serviceAccount.AccountArgs{
-//				AccountId: pulumi.String("my-awesome-account"),
+//			this, err := index.NewServiceAccount(ctx, "this", &index.ServiceAccountArgs{
+//				AccountId: "my-awesome-account",
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "credentials.json",
+//			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
 //				Path:        pulumi.String("gcp"),
-//				Credentials: readFileOrPanic("credentials.json"),
+//				Credentials: invokeFile.Result,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = gcp.NewSecretImpersonatedAccount(ctx, "impersonatedAccount", &gcp.SecretImpersonatedAccountArgs{
+//			_, err = gcp.NewSecretImpersonatedAccount(ctx, "impersonated_account", &gcp.SecretImpersonatedAccountArgs{
 //				Backend:             gcp.Path,
 //				ImpersonatedAccount: pulumi.String("this"),
 //				ServiceAccountEmail: this.Email,
@@ -72,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

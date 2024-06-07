@@ -606,7 +606,6 @@ class SecretBackendKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -617,9 +616,10 @@ class SecretBackendKey(pulumi.CustomResource):
             description="Example description",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
-        key = vault.transit.SecretBackendKey("key", backend=transit.path)
+        key = vault.transit.SecretBackendKey("key",
+            backend=transit.path,
+            name="my_key")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -662,7 +662,6 @@ class SecretBackendKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -673,9 +672,10 @@ class SecretBackendKey(pulumi.CustomResource):
             description="Example description",
             default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=86400)
-        key = vault.transit.SecretBackendKey("key", backend=transit.path)
+        key = vault.transit.SecretBackendKey("key",
+            backend=transit.path,
+            name="my_key")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

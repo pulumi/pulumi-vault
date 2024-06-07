@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,18 +43,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var az = new SyncAzureDestination(&#34;az&#34;, SyncAzureDestinationArgs.builder()        
- *             .keyVaultUri(var_.key_vault_uri())
- *             .clientId(var_.client_id())
- *             .clientSecret(var_.client_secret())
- *             .tenantId(var_.tenant_id())
- *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
- *             .customTags(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *         var az = new SyncAzureDestination("az", SyncAzureDestinationArgs.builder()
+ *             .name("az-dest")
+ *             .keyVaultUri(keyVaultUri)
+ *             .clientId(clientId)
+ *             .clientSecret(clientSecret)
+ *             .tenantId(tenantId)
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .customTags(Map.of("foo", "bar"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

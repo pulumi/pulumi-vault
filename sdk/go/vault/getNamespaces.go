@@ -15,7 +15,6 @@ import (
 //
 // ### Child namespaces
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,38 +36,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Nested namespace
-//
-// To fetch the details of nested namespaces:
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			children, err := vault.GetNamespaces(ctx, &vault.GetNamespacesArgs{
-//				Namespace: pulumi.StringRef("parent"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_ := "TODO: For expression"
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func GetNamespaces(ctx *pulumi.Context, args *GetNamespacesArgs, opts ...pulumi.InvokeOption) (*GetNamespacesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNamespacesResult

@@ -17,7 +17,6 @@ namespace Pulumi.Vault.Transform
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,7 +25,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mountTransform = new Vault.Mount("mountTransform", new()
+    ///     var mountTransform = new Vault.Mount("mount_transform", new()
     ///     {
     ///         Path = "transform",
     ///         Type = "transform",
@@ -35,6 +34,7 @@ namespace Pulumi.Vault.Transform
     ///     var test = new Vault.Transform.Role("test", new()
     ///     {
     ///         Path = mountTransform.Path,
+    ///         Name = "payments",
     ///         Transformations = new[]
     ///         {
     ///             "ccn-fpe",
@@ -43,7 +43,6 @@ namespace Pulumi.Vault.Transform
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:transform/role:Role")]
     public partial class Role : global::Pulumi.CustomResource

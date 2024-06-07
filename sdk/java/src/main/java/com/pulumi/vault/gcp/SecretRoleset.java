@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,28 +49,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         final var project = &#34;my-awesome-project&#34;;
+ *         final var project = "my-awesome-project";
  * 
- *         var gcp = new SecretBackend(&#34;gcp&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;gcp&#34;)
- *             .credentials(Files.readString(Paths.get(&#34;credentials.json&#34;)))
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()
+ *             .path("gcp")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input("credentials.json")
+ *                 .build()).result())
  *             .build());
  * 
- *         var roleset = new SecretRoleset(&#34;roleset&#34;, SecretRolesetArgs.builder()        
+ *         var roleset = new SecretRoleset("roleset", SecretRolesetArgs.builder()
  *             .backend(gcp.path())
- *             .roleset(&#34;project_viewer&#34;)
- *             .secretType(&#34;access_token&#34;)
+ *             .roleset("project_viewer")
+ *             .secretType("access_token")
  *             .project(project)
- *             .tokenScopes(&#34;https://www.googleapis.com/auth/cloud-platform&#34;)
+ *             .tokenScopes("https://www.googleapis.com/auth/cloud-platform")
  *             .bindings(SecretRolesetBindingArgs.builder()
- *                 .resource(String.format(&#34;//cloudresourcemanager.googleapis.com/projects/%s&#34;, project))
- *                 .roles(&#34;roles/viewer&#34;)
+ *                 .resource(String.format("//cloudresourcemanager.googleapis.com/projects/%s", project))
+ *                 .roles("roles/viewer")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

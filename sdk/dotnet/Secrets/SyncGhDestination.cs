@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,15 +22,15 @@ namespace Pulumi.Vault.Secrets
     /// {
     ///     var gh = new Vault.Secrets.SyncGhDestination("gh", new()
     ///     {
-    ///         AccessToken = @var.Access_token,
-    ///         RepositoryOwner = @var.Repo_owner,
+    ///         Name = "gh-dest",
+    ///         AccessToken = accessToken,
+    ///         RepositoryOwner = repoOwner,
     ///         RepositoryName = "repo-name-example",
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

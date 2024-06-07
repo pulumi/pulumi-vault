@@ -13,7 +13,7 @@ namespace Pulumi.Vault.Okta.Inputs
     public sealed class AuthBackendGroupGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the group within the Okta
+        /// Name of the Okta group
         /// </summary>
         [Input("groupName", required: true)]
         public Input<string> GroupName { get; set; } = null!;
@@ -22,7 +22,7 @@ namespace Pulumi.Vault.Okta.Inputs
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Vault policies to associate with this group
+        /// Policies to associate with this group
         /// </summary>
         public InputList<string> Policies
         {

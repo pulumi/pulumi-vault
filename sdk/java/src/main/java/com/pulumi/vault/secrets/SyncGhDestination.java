@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,16 +42,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gh = new SyncGhDestination(&#34;gh&#34;, SyncGhDestinationArgs.builder()        
- *             .accessToken(var_.access_token())
- *             .repositoryOwner(var_.repo_owner())
- *             .repositoryName(&#34;repo-name-example&#34;)
- *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
+ *         var gh = new SyncGhDestination("gh", SyncGhDestinationArgs.builder()
+ *             .name("gh-dest")
+ *             .accessToken(accessToken)
+ *             .repositoryOwner(repoOwner)
+ *             .repositoryName("repo-name-example")
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

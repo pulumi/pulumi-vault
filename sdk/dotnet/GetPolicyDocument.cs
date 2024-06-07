@@ -16,7 +16,6 @@ namespace Pulumi.Vault
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -25,7 +24,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var examplePolicyDocument = Vault.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -45,14 +44,14 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Policy("examplePolicy", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
-        ///         PolicyContents = examplePolicyDocument.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///         Name = "example_policy",
+        ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetPolicyDocumentResult> InvokeAsync(GetPolicyDocumentArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentArgs(), options.WithDefaults());
@@ -62,7 +61,6 @@ namespace Pulumi.Vault
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -71,7 +69,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var examplePolicyDocument = Vault.GetPolicyDocument.Invoke(new()
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
         ///     {
         ///         Rules = new[]
         ///         {
@@ -91,14 +89,14 @@ namespace Pulumi.Vault
         ///         },
         ///     });
         /// 
-        ///     var examplePolicy = new Vault.Policy("examplePolicy", new()
+        ///     var examplePolicy = new Vault.Policy("example", new()
         ///     {
-        ///         PolicyContents = examplePolicyDocument.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///         Name = "example_policy",
+        ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetPolicyDocumentResult> Invoke(GetPolicyDocumentInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentInvokeArgs(), options.WithDefaults());

@@ -16,7 +16,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,17 +26,16 @@ namespace Pulumi.Vault
     /// {
     ///     var alphanumeric = new Vault.PasswordPolicy("alphanumeric", new()
     ///     {
+    ///         Name = "alphanumeric",
     ///         Policy = @"    length = 20
     ///     rule ""charset"" {
     ///       charset = ""abcdefghijklmnopqrstuvwxyz0123456789""
     ///     }
-    ///   
     /// ",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

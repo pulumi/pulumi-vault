@@ -566,7 +566,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -576,6 +575,7 @@ class SecretBackendRole(pulumi.CustomResource):
             secret_key="AWS secret key")
         role = vault.aws.SecretBackendRole("role",
             backend=aws.path,
+            name="deploy",
             credential_type="iam_user",
             policy_document=\"\"\"{
           "Version": "2012-10-17",
@@ -589,7 +589,6 @@ class SecretBackendRole(pulumi.CustomResource):
         }
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -657,7 +656,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -667,6 +665,7 @@ class SecretBackendRole(pulumi.CustomResource):
             secret_key="AWS secret key")
         role = vault.aws.SecretBackendRole("role",
             backend=aws.path,
+            name="deploy",
             credential_type="iam_user",
             policy_document=\"\"\"{
           "Version": "2012-10-17",
@@ -680,7 +679,6 @@ class SecretBackendRole(pulumi.CustomResource):
         }
         \"\"\")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

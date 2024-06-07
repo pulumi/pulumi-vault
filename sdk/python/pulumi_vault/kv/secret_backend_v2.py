@@ -226,7 +226,6 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -244,7 +243,6 @@ class SecretBackendV2(pulumi.CustomResource):
             delete_version_after=12600,
             cas_required=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Required Vault Capabilities
 
@@ -290,7 +288,6 @@ class SecretBackendV2(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -308,7 +305,6 @@ class SecretBackendV2(pulumi.CustomResource):
             delete_version_after=12600,
             cas_required=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Required Vault Capabilities
 

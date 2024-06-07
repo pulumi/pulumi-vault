@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,21 +43,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleAuthBackend = new AuthBackend(&#34;exampleAuthBackend&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;azure&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("azure")
  *             .build());
  * 
- *         var exampleAuthBackendConfig = new AuthBackendConfig(&#34;exampleAuthBackendConfig&#34;, AuthBackendConfigArgs.builder()        
- *             .backend(exampleAuthBackend.path())
- *             .tenantId(&#34;11111111-2222-3333-4444-555555555555&#34;)
- *             .clientId(&#34;11111111-2222-3333-4444-555555555555&#34;)
- *             .clientSecret(&#34;01234567890123456789&#34;)
- *             .resource(&#34;https://vault.hashicorp.com&#34;)
+ *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
+ *             .backend(example.path())
+ *             .tenantId("11111111-2222-3333-4444-555555555555")
+ *             .clientId("11111111-2222-3333-4444-555555555555")
+ *             .clientSecret("01234567890123456789")
+ *             .resource("https://vault.hashicorp.com")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

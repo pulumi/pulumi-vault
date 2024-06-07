@@ -18,14 +18,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     public static final KeysAwArgs Empty = new KeysAwArgs();
 
     /**
-     * The AWS access key to use.
+     * The AWS access key to use
      * 
      */
     @Import(name="accessKey", required=true)
     private Output<String> accessKey;
 
     /**
-     * @return The AWS access key to use.
+     * @return The AWS access key to use
      * 
      */
     public Output<String> accessKey() {
@@ -33,16 +33,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     @Import(name="allowGenerateKey")
     private @Nullable Output<Boolean> allowGenerateKey;
 
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     public Optional<Output<Boolean>> allowGenerateKey() {
@@ -50,20 +48,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     @Import(name="allowReplaceKey")
     private @Nullable Output<Boolean> allowReplaceKey;
 
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     public Optional<Output<Boolean>> allowReplaceKey() {
@@ -71,16 +63,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     @Import(name="allowStoreKey")
     private @Nullable Output<Boolean> allowStoreKey;
 
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     public Optional<Output<Boolean>> allowStoreKey() {
@@ -88,16 +78,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If `true`, allows usage from any mount point within the
-     * namespace.
+     * Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     @Import(name="anyMount")
     private @Nullable Output<Boolean> anyMount;
 
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     public Optional<Output<Boolean>> anyMount() {
@@ -105,16 +93,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     @Import(name="curve")
     private @Nullable Output<String> curve;
 
     /**
-     * @return The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * @return The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<Output<String>> curve() {
@@ -122,14 +108,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Used to specify a custom AWS endpoint.
+     * Used to specify a custom AWS endpoint
      * 
      */
     @Import(name="endpoint")
     private @Nullable Output<String> endpoint;
 
     /**
-     * @return Used to specify a custom AWS endpoint.
+     * @return Used to specify a custom AWS endpoint
      * 
      */
     public Optional<Output<String>> endpoint() {
@@ -137,14 +123,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The size in bits for an RSA key.
+     * The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39;
      * 
      */
     @Import(name="keyBits", required=true)
     private Output<String> keyBits;
 
     /**
-     * @return The size in bits for an RSA key.
+     * @return The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39;
      * 
      */
     public Output<String> keyBits() {
@@ -152,14 +138,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of key to use.
+     * The type of key to use
      * 
      */
     @Import(name="keyType", required=true)
     private Output<String> keyType;
 
     /**
-     * @return The type of key to use.
+     * @return The type of key to use
      * 
      */
     public Output<String> keyType() {
@@ -167,14 +153,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * An identifier for the key.
+     * An identifier for the key
      * 
      */
     @Import(name="kmsKey", required=true)
     private Output<String> kmsKey;
 
     /**
-     * @return An identifier for the key.
+     * @return An identifier for the key
      * 
      */
     public Output<String> kmsKey() {
@@ -182,14 +168,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A unique lowercase name that serves as identifying the key.
+     * A unique lowercase name that serves as identifying the key
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     public Output<String> name() {
@@ -197,14 +183,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The AWS region where the keys are stored (or will be stored).
+     * The AWS region where the keys are stored (or will be stored)
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The AWS region where the keys are stored (or will be stored).
+     * @return The AWS region where the keys are stored (or will be stored)
      * 
      */
     public Optional<Output<String>> region() {
@@ -212,14 +198,14 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The AWS access key to use.
+     * The AWS secret key to use
      * 
      */
     @Import(name="secretKey", required=true)
     private Output<String> secretKey;
 
     /**
-     * @return The AWS access key to use.
+     * @return The AWS secret key to use
      * 
      */
     public Output<String> secretKey() {
@@ -279,7 +265,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accessKey The AWS access key to use.
+         * @param accessKey The AWS access key to use
          * 
          * @return builder
          * 
@@ -290,7 +276,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accessKey The AWS access key to use.
+         * @param accessKey The AWS access key to use
          * 
          * @return builder
          * 
@@ -300,8 +286,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowGenerateKey If no existing key can be found in
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * @param allowGenerateKey If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          * 
          * @return builder
          * 
@@ -312,8 +297,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowGenerateKey If no existing key can be found in
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * @param allowGenerateKey If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          * 
          * @return builder
          * 
@@ -323,10 +307,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowReplaceKey Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * @param allowReplaceKey Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          * 
          * @return builder
          * 
@@ -337,10 +318,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowReplaceKey Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * @param allowReplaceKey Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          * 
          * @return builder
          * 
@@ -350,8 +328,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowStoreKey Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * @param allowStoreKey Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
          * 
          * @return builder
          * 
@@ -362,8 +339,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowStoreKey Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * @param allowStoreKey Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
          * 
          * @return builder
          * 
@@ -373,8 +349,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param anyMount If `true`, allows usage from any mount point within the
-         * namespace.
+         * @param anyMount Allow usage from any mount point within the namespace if &#39;true&#39;
          * 
          * @return builder
          * 
@@ -385,8 +360,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param anyMount If `true`, allows usage from any mount point within the
-         * namespace.
+         * @param anyMount Allow usage from any mount point within the namespace if &#39;true&#39;
          * 
          * @return builder
          * 
@@ -396,8 +370,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve The curve to use for an ECDSA key. Used when `key_type`
-         * is `ECDSA`. Required if `allow_generate_key` is `true`.
+         * @param curve The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -408,8 +381,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param curve The curve to use for an ECDSA key. Used when `key_type`
-         * is `ECDSA`. Required if `allow_generate_key` is `true`.
+         * @param curve The curve to use for an ECDSA key. Used when key_type is &#39;ECDSA&#39;. Required if &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -419,7 +391,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoint Used to specify a custom AWS endpoint.
+         * @param endpoint Used to specify a custom AWS endpoint
          * 
          * @return builder
          * 
@@ -430,7 +402,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param endpoint Used to specify a custom AWS endpoint.
+         * @param endpoint Used to specify a custom AWS endpoint
          * 
          * @return builder
          * 
@@ -440,7 +412,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits The size in bits for an RSA key.
+         * @param keyBits The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39;
          * 
          * @return builder
          * 
@@ -451,7 +423,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits The size in bits for an RSA key.
+         * @param keyBits The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39;
          * 
          * @return builder
          * 
@@ -461,7 +433,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyType The type of key to use.
+         * @param keyType The type of key to use
          * 
          * @return builder
          * 
@@ -472,7 +444,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyType The type of key to use.
+         * @param keyType The type of key to use
          * 
          * @return builder
          * 
@@ -482,7 +454,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kmsKey An identifier for the key.
+         * @param kmsKey An identifier for the key
          * 
          * @return builder
          * 
@@ -493,7 +465,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kmsKey An identifier for the key.
+         * @param kmsKey An identifier for the key
          * 
          * @return builder
          * 
@@ -503,7 +475,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique lowercase name that serves as identifying the key.
+         * @param name A unique lowercase name that serves as identifying the key
          * 
          * @return builder
          * 
@@ -514,7 +486,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique lowercase name that serves as identifying the key.
+         * @param name A unique lowercase name that serves as identifying the key
          * 
          * @return builder
          * 
@@ -524,7 +496,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The AWS region where the keys are stored (or will be stored).
+         * @param region The AWS region where the keys are stored (or will be stored)
          * 
          * @return builder
          * 
@@ -535,7 +507,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The AWS region where the keys are stored (or will be stored).
+         * @param region The AWS region where the keys are stored (or will be stored)
          * 
          * @return builder
          * 
@@ -545,7 +517,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretKey The AWS access key to use.
+         * @param secretKey The AWS secret key to use
          * 
          * @return builder
          * 
@@ -556,7 +528,7 @@ public final class KeysAwArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secretKey The AWS access key to use.
+         * @param secretKey The AWS secret key to use
          * 
          * @return builder
          * 

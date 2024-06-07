@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,27 +50,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Mount(&#34;example&#34;, MountArgs.builder()        
- *             .type(&#34;ssh&#34;)
+ *         var example = new Mount("example", MountArgs.builder()
+ *             .type("ssh")
  *             .build());
  * 
- *         var foo = new SecretBackendRole(&#34;foo&#34;, SecretBackendRoleArgs.builder()        
+ *         var foo = new SecretBackendRole("foo", SecretBackendRoleArgs.builder()
+ *             .name("my-role")
  *             .backend(example.path())
- *             .keyType(&#34;ca&#34;)
+ *             .keyType("ca")
  *             .allowUserCertificates(true)
  *             .build());
  * 
- *         var bar = new SecretBackendRole(&#34;bar&#34;, SecretBackendRoleArgs.builder()        
+ *         var bar = new SecretBackendRole("bar", SecretBackendRoleArgs.builder()
+ *             .name("otp-role")
  *             .backend(example.path())
- *             .keyType(&#34;otp&#34;)
- *             .defaultUser(&#34;default&#34;)
- *             .allowedUsers(&#34;default,baz&#34;)
- *             .cidrList(&#34;0.0.0.0/0&#34;)
+ *             .keyType("otp")
+ *             .defaultUser("default")
+ *             .allowedUsers("default,baz")
+ *             .cidrList("0.0.0.0/0")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

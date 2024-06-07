@@ -12,7 +12,6 @@ namespace Pulumi.Vault.RabbitMQ
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,6 +30,7 @@ namespace Pulumi.Vault.RabbitMQ
     ///     var role = new Vault.RabbitMQ.SecretBackendRole("role", new()
     ///     {
     ///         Backend = rabbitmq.Path,
+    ///         Name = "deploy",
     ///         Tags = "tag1,tag2",
     ///         Vhosts = new[]
     ///         {
@@ -62,7 +62,6 @@ namespace Pulumi.Vault.RabbitMQ
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,13 +25,12 @@ namespace Pulumi.Vault.Identity
     ///     var example = new Vault.Identity.MfaDuo("example", new()
     ///     {
     ///         ApiHostname = "api-xxxxxxxx.duosecurity.com",
-    ///         IntegrationKey = "secret-int-key",
     ///         SecretKey = "secret-key",
+    ///         IntegrationKey = "secret-int-key",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

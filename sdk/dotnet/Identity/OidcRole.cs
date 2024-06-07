@@ -17,7 +17,6 @@ namespace Pulumi.Vault.Identity
     /// exist before the role can be used to issue tokens. You must also configure the key with the
     /// role's Client ID to allow the role to use the key.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,14 +26,17 @@ namespace Pulumi.Vault.Identity
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
+    ///     // Name of the OIDC Key
     ///     var key = config.Get("key") ?? "key";
     ///     var role = new Vault.Identity.OidcRole("role", new()
     ///     {
+    ///         Name = "role",
     ///         Key = key,
     ///     });
     /// 
-    ///     var keyOidcKey = new Vault.Identity.OidcKey("keyOidcKey", new()
+    ///     var keyOidcKey = new Vault.Identity.OidcKey("key", new()
     ///     {
+    ///         Name = key,
     ///         Algorithm = "RS256",
     ///         AllowedClientIds = new[]
     ///         {
@@ -44,13 +46,11 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// If you want to create the key first before creating the role, you can use a separate
     /// resource to configure the allowed Client ID on
     /// the key.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,23 +61,24 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var key = new Vault.Identity.OidcKey("key", new()
     ///     {
+    ///         Name = "key",
     ///         Algorithm = "RS256",
     ///     });
     /// 
-    ///     var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new()
+    ///     var role = new Vault.Identity.OidcRole("role", new()
     ///     {
+    ///         Name = "role",
     ///         Key = key.Name,
     ///     });
     /// 
-    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new()
+    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("role", new()
     ///     {
     ///         KeyName = key.Name,
-    ///         AllowedClientId = roleOidcRole.ClientId,
+    ///         AllowedClientId = role.ClientId,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

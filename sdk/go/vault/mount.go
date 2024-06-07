@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,9 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewMount(ctx, "example", &vault.MountArgs{
-//				Description: pulumi.String("This is an example mount"),
 //				Path:        pulumi.String("dummy"),
 //				Type:        pulumi.String("generic"),
+//				Description: pulumi.String("This is an example mount"),
 //			})
 //			if err != nil {
 //				return err
@@ -42,9 +41,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -58,13 +55,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewMount(ctx, "kvv2-example", &vault.MountArgs{
-//				Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
-//				Options: pulumi.Map{
-//					"type":    pulumi.Any("kv-v2"),
-//					"version": pulumi.Any("2"),
-//				},
 //				Path: pulumi.String("version2-example"),
 //				Type: pulumi.String("kv-v2"),
+//				Options: pulumi.Map{
+//					"version": pulumi.Any("2"),
+//					"type":    pulumi.Any("kv-v2"),
+//				},
+//				Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
 //			})
 //			if err != nil {
 //				return err
@@ -74,9 +71,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -90,12 +85,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewMount(ctx, "transit-example", &vault.MountArgs{
+//				Path:        pulumi.String("transit-example"),
+//				Type:        pulumi.String("transit"),
 //				Description: pulumi.String("This is an example transit secret engine mount"),
 //				Options: pulumi.Map{
 //					"convergent_encryption": pulumi.Any(false),
 //				},
-//				Path: pulumi.String("transit-example"),
-//				Type: pulumi.String("transit"),
 //			})
 //			if err != nil {
 //				return err
@@ -105,9 +100,7 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -121,11 +114,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewMount(ctx, "pki-example", &vault.MountArgs{
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
-//				Description:            pulumi.String("This is an example PKI mount"),
-//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
 //				Path:                   pulumi.String("pki-example"),
 //				Type:                   pulumi.String("pki"),
+//				Description:            pulumi.String("This is an example PKI mount"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
+//				MaxLeaseTtlSeconds:     pulumi.Int(86400),
 //			})
 //			if err != nil {
 //				return err
@@ -135,7 +128,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -13,52 +13,50 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionRedisElasticache {
     /**
-     * @return The password to authenticate with.
+     * @return The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     private @Nullable String password;
     /**
-     * @return The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+     * @return The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
      * 
      */
     private @Nullable String region;
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     private String url;
     /**
-     * @return The username to authenticate with.
+     * @return The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     private @Nullable String username;
 
     private SecretBackendConnectionRedisElasticache() {}
     /**
-     * @return The password to authenticate with.
+     * @return The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }
     /**
-     * @return The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+     * @return The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
      * 
      */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     public String url() {
         return this.url;
     }
     /**
-     * @return The username to authenticate with.
+     * @return The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     public Optional<String> username() {

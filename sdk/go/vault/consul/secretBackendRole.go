@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = consul.NewSecretBackendRole(ctx, "example", &consul.SecretBackendRoleArgs{
+//				Name:    pulumi.String("test-role"),
 //				Backend: test.Path,
 //				ConsulPolicies: pulumi.StringArray{
 //					pulumi.String("example-policy"),
@@ -51,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Note About Required Arguments
 //

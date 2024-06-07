@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,14 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
 //				Type: pulumi.String("azure"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = azure.NewAuthBackendConfig(ctx, "exampleAuthBackendConfig", &azure.AuthBackendConfigArgs{
-//				Backend:      exampleAuthBackend.Path,
+//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
+//				Backend:      example.Path,
 //				TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
 //				ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
 //				ClientSecret: pulumi.String("01234567890123456789"),
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

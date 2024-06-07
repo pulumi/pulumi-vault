@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,7 +30,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := okta.NewAuthBackend(ctx, "example", &okta.AuthBackendArgs{
-//				Description: pulumi.String("Demonstration of the Terraform Okta auth backend"),
+//				Description:  pulumi.String("Demonstration of the Terraform Okta auth backend"),
+//				Organization: pulumi.String("example"),
+//				Token:        pulumi.String("something that should be kept secret"),
 //				Groups: okta.AuthBackendGroupTypeArray{
 //					&okta.AuthBackendGroupTypeArgs{
 //						GroupName: pulumi.String("foo"),
@@ -41,14 +42,12 @@ import (
 //						},
 //					},
 //				},
-//				Organization: pulumi.String("example"),
-//				Token:        pulumi.String("something that should be kept secret"),
 //				Users: okta.AuthBackendUserTypeArray{
 //					&okta.AuthBackendUserTypeArgs{
+//						Username: pulumi.String("bar"),
 //						Groups: pulumi.StringArray{
 //							pulumi.String("foo"),
 //						},
-//						Username: pulumi.String("bar"),
 //					},
 //				},
 //			})
@@ -60,7 +59,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

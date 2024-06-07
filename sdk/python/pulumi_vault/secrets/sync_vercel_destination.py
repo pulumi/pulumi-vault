@@ -337,14 +337,14 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         vercel = vault.secrets.SyncVercelDestination("vercel",
-            access_token=var["access_token"],
-            project_id=var["project_id"],
+            name="vercel-dest",
+            access_token=access_token,
+            project_id=project_id,
             deployment_environments=[
                 "development",
                 "preview",
@@ -352,7 +352,6 @@ class SyncVercelDestination(pulumi.CustomResource):
             ],
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -388,14 +387,14 @@ class SyncVercelDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         vercel = vault.secrets.SyncVercelDestination("vercel",
-            access_token=var["access_token"],
-            project_id=var["project_id"],
+            name="vercel-dest",
+            access_token=access_token,
+            project_id=project_id,
             deployment_environments=[
                 "development",
                 "preview",
@@ -403,7 +402,6 @@ class SyncVercelDestination(pulumi.CustomResource):
             ],
             secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

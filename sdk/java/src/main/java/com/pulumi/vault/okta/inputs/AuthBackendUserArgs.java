@@ -18,14 +18,14 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
     public static final AuthBackendUserArgs Empty = new AuthBackendUserArgs();
 
     /**
-     * List of Okta groups to associate with this user
+     * Groups within the Okta auth backend to associate with this user
      * 
      */
     @Import(name="groups")
     private @Nullable Output<List<String>> groups;
 
     /**
-     * @return List of Okta groups to associate with this user
+     * @return Groups within the Okta auth backend to associate with this user
      * 
      */
     public Optional<Output<List<String>>> groups() {
@@ -33,14 +33,14 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Vault policies to associate with this group
+     * Policies to associate with this user
      * 
      */
     @Import(name="policies")
     private @Nullable Output<List<String>> policies;
 
     /**
-     * @return Vault policies to associate with this group
+     * @return Policies to associate with this user
      * 
      */
     public Optional<Output<List<String>>> policies() {
@@ -89,7 +89,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param groups List of Okta groups to associate with this user
+         * @param groups Groups within the Okta auth backend to associate with this user
          * 
          * @return builder
          * 
@@ -100,7 +100,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param groups List of Okta groups to associate with this user
+         * @param groups Groups within the Okta auth backend to associate with this user
          * 
          * @return builder
          * 
@@ -110,7 +110,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param groups List of Okta groups to associate with this user
+         * @param groups Groups within the Okta auth backend to associate with this user
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param policies Vault policies to associate with this group
+         * @param policies Policies to associate with this user
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param policies Vault policies to associate with this group
+         * @param policies Policies to associate with this user
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class AuthBackendUserArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param policies Vault policies to associate with this group
+         * @param policies Policies to associate with this user
          * 
          * @return builder
          * 

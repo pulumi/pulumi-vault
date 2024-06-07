@@ -25,7 +25,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -52,33 +53,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .roleName("payments")
+     *             .value("9300-3376-4943-8903")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -93,7 +97,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -120,33 +125,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .roleName("payments")
+     *             .value("9300-3376-4943-8903")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -161,7 +169,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -188,33 +197,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .roleName("payments")
+     *             .value("9300-3376-4943-8903")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -229,7 +241,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -256,33 +269,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .value(&#34;9300-3376-4943-8903&#34;)
+     *             .roleName("payments")
+     *             .value("9300-3376-4943-8903")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -297,7 +313,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -324,33 +341,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .roleName("payments")
+     *             .batchInputs(Map.of("value", "1111-2222-3333-4444"))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -365,7 +385,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -392,33 +413,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .roleName("payments")
+     *             .batchInputs(Map.of("value", "1111-2222-3333-4444"))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -433,7 +457,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -460,33 +485,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .roleName("payments")
+     *             .batchInputs(Map.of("value", "1111-2222-3333-4444"))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -501,7 +529,8 @@ public final class TransformFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -528,33 +557,36 @@ public final class TransformFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var transform = new Mount(&#34;transform&#34;, MountArgs.builder()        
-     *             .path(&#34;transform&#34;)
-     *             .type(&#34;transform&#34;)
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
      *             .build());
      * 
-     *         var ccn_fpe = new Transformation(&#34;ccn-fpe&#34;, TransformationArgs.builder()        
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
      *             .path(transform.path())
-     *             .type(&#34;fpe&#34;)
-     *             .template(&#34;builtin/creditcardnumber&#34;)
-     *             .tweakSource(&#34;internal&#34;)
-     *             .allowedRoles(&#34;payments&#34;)
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
      *             .build());
      * 
-     *         var payments = new Role(&#34;payments&#34;, RoleArgs.builder()        
+     *         var payments = new Role("payments", RoleArgs.builder()
      *             .path(ccn_fpe.path())
-     *             .transformations(&#34;ccn-fpe&#34;)
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
      *             .build());
      * 
      *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
      *             .path(payments.path())
-     *             .roleName(&#34;payments&#34;)
-     *             .batchInputs(Map.of(&#34;value&#34;, &#34;1111-2222-3333-4444&#34;))
+     *             .roleName("payments")
+     *             .batchInputs(Map.of("value", "1111-2222-3333-4444"))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

@@ -11,21 +11,19 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const allow_all = new vault.RgpPolicy("allow-all", {
+ *     name: "allow-all",
  *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule {
  *   true
  * }
- *
  * `,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class RgpPolicy extends pulumi.CustomResource {
     /**

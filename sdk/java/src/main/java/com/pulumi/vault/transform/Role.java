@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,19 +48,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mountTransform = new Mount(&#34;mountTransform&#34;, MountArgs.builder()        
- *             .path(&#34;transform&#34;)
- *             .type(&#34;transform&#34;)
+ *         var mountTransform = new Mount("mountTransform", MountArgs.builder()
+ *             .path("transform")
+ *             .type("transform")
  *             .build());
  * 
- *         var test = new Role(&#34;test&#34;, RoleArgs.builder()        
+ *         var test = new Role("test", RoleArgs.builder()
  *             .path(mountTransform.path())
- *             .transformations(&#34;ccn-fpe&#34;)
+ *             .name("payments")
+ *             .transformations("ccn-fpe")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -247,7 +247,6 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -262,7 +261,6 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             backend=root.path,
             issuing_certificates=["http://127.0.0.1:8200/v1/pki/ca"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -297,7 +295,6 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -312,7 +309,6 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             backend=root.path,
             issuing_certificates=["http://127.0.0.1:8200/v1/pki/ca"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

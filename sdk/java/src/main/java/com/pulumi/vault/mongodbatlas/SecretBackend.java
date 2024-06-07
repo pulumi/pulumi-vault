@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,21 +42,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mongo = new Mount(&#34;mongo&#34;, MountArgs.builder()        
- *             .path(&#34;mongodbatlas&#34;)
- *             .type(&#34;mongodbatlas&#34;)
- *             .description(&#34;MongoDB Atlas secret engine mount&#34;)
+ *         var mongo = new Mount("mongo", MountArgs.builder()
+ *             .path("mongodbatlas")
+ *             .type("mongodbatlas")
+ *             .description("MongoDB Atlas secret engine mount")
  *             .build());
  * 
- *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .mount(mongo.path())
- *             .privateKey(&#34;privateKey&#34;)
- *             .publicKey(&#34;publicKey&#34;)
+ *             .privateKey("privateKey")
+ *             .publicKey("publicKey")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

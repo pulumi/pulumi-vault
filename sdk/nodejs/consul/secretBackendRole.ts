@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,11 +20,11 @@ import * as utilities from "../utilities";
  *     token: "4240861b-ce3d-8530-115a-521ff070dd29",
  * });
  * const example = new vault.consul.SecretBackendRole("example", {
+ *     name: "test-role",
  *     backend: test.path,
  *     consulPolicies: ["example-policy"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Note About Required Arguments
  *

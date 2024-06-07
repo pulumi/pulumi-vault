@@ -297,15 +297,15 @@ class SecretRoleset(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         project = "my-awesome-project"
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
+            credentials=std.file(input="credentials.json").result)
         roleset = vault.gcp.SecretRoleset("roleset",
             backend=gcp.path,
             roleset="project_viewer",
@@ -317,7 +317,6 @@ class SecretRoleset(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -353,15 +352,15 @@ class SecretRoleset(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
+        import pulumi_std as std
         import pulumi_vault as vault
 
         project = "my-awesome-project"
         gcp = vault.gcp.SecretBackend("gcp",
             path="gcp",
-            credentials=(lambda path: open(path).read())("credentials.json"))
+            credentials=std.file(input="credentials.json").result)
         roleset = vault.gcp.SecretRoleset("roleset",
             backend=gcp.path,
             roleset="project_viewer",
@@ -373,7 +372,6 @@ class SecretRoleset(pulumi.CustomResource):
                 roles=["roles/viewer"],
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

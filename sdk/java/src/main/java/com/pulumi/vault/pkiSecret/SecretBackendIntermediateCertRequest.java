@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,17 +44,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackendIntermediateCertRequest(&#34;test&#34;, SecretBackendIntermediateCertRequestArgs.builder()        
- *             .backend(vault_mount.pki().path())
- *             .type(&#34;internal&#34;)
- *             .commonName(&#34;app.my.domain&#34;)
+ *         var test = new SecretBackendIntermediateCertRequest("test", SecretBackendIntermediateCertRequestArgs.builder()
+ *             .backend(pki.path())
+ *             .type("internal")
+ *             .commonName("app.my.domain")
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vault_mount.pki())
+ *                 .dependsOn(pki)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

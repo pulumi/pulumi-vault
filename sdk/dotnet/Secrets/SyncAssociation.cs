@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Secrets
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,6 +35,7 @@ namespace Pulumi.Vault.Secrets
     ///     var token = new Vault.Kv.SecretV2("token", new()
     ///     {
     ///         Mount = kvv2.Path,
+    ///         Name = "token",
     ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["dev"] = "B!gS3cr3t",
@@ -45,14 +45,16 @@ namespace Pulumi.Vault.Secrets
     /// 
     ///     var gh = new Vault.Secrets.SyncGhDestination("gh", new()
     ///     {
-    ///         AccessToken = @var.Access_token,
-    ///         RepositoryOwner = @var.Repo_owner,
+    ///         Name = "gh-dest",
+    ///         AccessToken = accessToken,
+    ///         RepositoryOwner = repoOwner,
     ///         RepositoryName = "repo-name-example",
     ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
     ///     });
     /// 
-    ///     var ghToken = new Vault.Secrets.SyncAssociation("ghToken", new()
+    ///     var ghToken = new Vault.Secrets.SyncAssociation("gh_token", new()
     ///     {
+    ///         Name = gh.Name,
     ///         Type = gh.Type,
     ///         Mount = kvv2.Path,
     ///         SecretName = token.Name,
@@ -60,7 +62,6 @@ namespace Pulumi.Vault.Secrets
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:secrets/syncAssociation:SyncAssociation")]
     public partial class SyncAssociation : global::Pulumi.CustomResource

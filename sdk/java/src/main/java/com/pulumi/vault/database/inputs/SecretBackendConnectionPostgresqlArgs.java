@@ -18,14 +18,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     public static final SecretBackendConnectionPostgresqlArgs Empty = new SecretBackendConnectionPostgresqlArgs();
 
     /**
-     * Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
      * 
      */
     @Import(name="authType")
     private @Nullable Output<String> authType;
 
     /**
-     * @return Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+     * @return Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
      * 
      */
     public Optional<Output<String>> authType() {
@@ -33,20 +33,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * Connection string to use to connect to the database.
      * 
      */
     @Import(name="connectionUrl")
     private @Nullable Output<String> connectionUrl;
 
     /**
-     * @return A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<Output<String>> connectionUrl() {
@@ -54,14 +48,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * Disable special character escaping in username and password.
+     * Disable special character escaping in username and password
      * 
      */
     @Import(name="disableEscaping")
     private @Nullable Output<Boolean> disableEscaping;
 
     /**
-     * @return Disable special character escaping in username and password.
+     * @return Disable special character escaping in username and password
      * 
      */
     public Optional<Output<Boolean>> disableEscaping() {
@@ -69,16 +63,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * The maximum number of seconds to keep
-     * a connection alive for.
+     * Maximum number of seconds a connection may be reused.
      * 
      */
     @Import(name="maxConnectionLifetime")
     private @Nullable Output<Integer> maxConnectionLifetime;
 
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Output<Integer>> maxConnectionLifetime() {
@@ -86,16 +78,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * The maximum number of idle connections to
-     * maintain.
+     * Maximum number of idle connections to the database.
      * 
      */
     @Import(name="maxIdleConnections")
     private @Nullable Output<Integer> maxIdleConnections;
 
     /**
-     * @return The maximum number of idle connections to
-     * maintain.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxIdleConnections() {
@@ -103,16 +93,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * The maximum number of open connections to
-     * use.
+     * Maximum number of open connections to the database.
      * 
      */
     @Import(name="maxOpenConnections")
     private @Nullable Output<Integer> maxOpenConnections;
 
     /**
-     * @return The maximum number of open connections to
-     * use.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxOpenConnections() {
@@ -120,14 +108,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * The password to authenticate with.
+     * The root credential password used in the connection URL
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password to authenticate with.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<Output<String>> password() {
@@ -135,14 +123,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * A JSON encoded credential for use with IAM authorization
      * 
      */
     @Import(name="serviceAccountJson")
     private @Nullable Output<String> serviceAccountJson;
 
     /**
-     * @return JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+     * @return A JSON encoded credential for use with IAM authorization
      * 
      */
     public Optional<Output<String>> serviceAccountJson() {
@@ -150,14 +138,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * The username to authenticate with.
+     * The root credential username used in the connection URL
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The username to authenticate with.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<Output<String>> username() {
@@ -165,14 +153,14 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
-     * Template describing how dynamic usernames are generated.
+     * Username generation template.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return Template describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -213,7 +201,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param authType Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+         * @param authType Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
          * 
          * @return builder
          * 
@@ -224,7 +212,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param authType Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+         * @param authType Specify alternative authorization type. (Only &#39;gcp_iam&#39; is valid currently)
          * 
          * @return builder
          * 
@@ -234,10 +222,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param connectionUrl A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -248,10 +233,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param connectionUrl A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -261,7 +243,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param disableEscaping Disable special character escaping in username and password.
+         * @param disableEscaping Disable special character escaping in username and password
          * 
          * @return builder
          * 
@@ -272,7 +254,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param disableEscaping Disable special character escaping in username and password.
+         * @param disableEscaping Disable special character escaping in username and password
          * 
          * @return builder
          * 
@@ -282,8 +264,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param maxConnectionLifetime The maximum number of seconds to keep
-         * a connection alive for.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -294,8 +275,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param maxConnectionLifetime The maximum number of seconds to keep
-         * a connection alive for.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -305,8 +285,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * maintain.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -317,8 +296,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * maintain.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -328,8 +306,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * use.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -340,8 +317,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * use.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -351,7 +327,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -362,7 +338,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -372,7 +348,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param serviceAccountJson JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+         * @param serviceAccountJson A JSON encoded credential for use with IAM authorization
          * 
          * @return builder
          * 
@@ -383,7 +359,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param serviceAccountJson JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+         * @param serviceAccountJson A JSON encoded credential for use with IAM authorization
          * 
          * @return builder
          * 
@@ -393,7 +369,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -404,7 +380,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -414,7 +390,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 
@@ -425,7 +401,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         }
 
         /**
-         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 

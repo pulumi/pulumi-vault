@@ -7,23 +7,21 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new vault.NomadSecretBackend("config", {
- *     address: "https://127.0.0.1:4646",
  *     backend: "nomad",
- *     defaultLeaseTtlSeconds: 3600,
  *     description: "test description",
+ *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 7200,
  *     maxTtl: 240,
+ *     address: "https://127.0.0.1:4646",
  *     token: "ae20ceaa-...",
  *     ttl: 120,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

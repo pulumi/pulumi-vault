@@ -298,7 +298,6 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -312,6 +311,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         qa = vault.ldap.SecretBackendLibrarySet("qa",
             mount=config.path,
+            name="qa",
             service_account_names=[
                 "Bob",
                 "Mary",
@@ -320,7 +320,6 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
             disable_check_in_enforcement=True,
             max_ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,7 +356,6 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -371,6 +369,7 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         qa = vault.ldap.SecretBackendLibrarySet("qa",
             mount=config.path,
+            name="qa",
             service_account_names=[
                 "Bob",
                 "Mary",
@@ -379,7 +378,6 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
             disable_check_in_enforcement=True,
             max_ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

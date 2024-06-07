@@ -9,18 +9,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.identity.MfaOkta("example", {
+ *     orgName: "org1",
  *     apiToken: "token1",
  *     baseUrl: "qux.baz.com",
- *     orgName: "org1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

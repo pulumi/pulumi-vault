@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,19 +46,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var mountTransform = new Mount(&#34;mountTransform&#34;, MountArgs.builder()        
- *             .path(&#34;transform&#34;)
- *             .type(&#34;transform&#34;)
+ *         var mountTransform = new Mount("mountTransform", MountArgs.builder()
+ *             .path("transform")
+ *             .type("transform")
  *             .build());
  * 
- *         var test = new Alphabet(&#34;test&#34;, AlphabetArgs.builder()        
+ *         var test = new Alphabet("test", AlphabetArgs.builder()
  *             .path(mountTransform.path())
- *             .alphabet(&#34;0123456789&#34;)
+ *             .name("numerics")
+ *             .alphabet("0123456789")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -12,7 +12,6 @@ namespace Pulumi.Vault.AD
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,14 +25,13 @@ namespace Pulumi.Vault.AD
     ///         Backend = "ad",
     ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
     ///         Bindpass = "SuperSecretPassw0rd",
-    ///         InsecureTls = true,
     ///         Url = "ldaps://ad",
+    ///         InsecureTls = true,
     ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

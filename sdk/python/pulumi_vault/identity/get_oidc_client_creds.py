@@ -93,12 +93,12 @@ def get_oidc_client_creds(name: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     app = vault.identity.OidcClient("app",
+        name="application",
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
             "http://127.0.0.1:8251/callback",
@@ -108,7 +108,6 @@ def get_oidc_client_creds(name: Optional[str] = None,
         access_token_ttl=7200)
     creds = vault.identity.get_oidc_client_creds_output(name=app.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the OIDC Client in Vault.
@@ -138,12 +137,12 @@ def get_oidc_client_creds_output(name: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     app = vault.identity.OidcClient("app",
+        name="application",
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
             "http://127.0.0.1:8251/callback",
@@ -153,7 +152,6 @@ def get_oidc_client_creds_output(name: Optional[pulumi.Input[str]] = None,
         access_token_ttl=7200)
     creds = vault.identity.get_oidc_client_creds_output(name=app.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the OIDC Client in Vault.

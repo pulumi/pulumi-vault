@@ -14,14 +14,15 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const xForwardedFor = new vault.AuditRequestHeader("xForwardedFor", {hmac: false});
+ * const xForwardedFor = new vault.AuditRequestHeader("x_forwarded_for", {
+ *     name: "X-Forwarded-For",
+ *     hmac: false,
+ * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AuditRequestHeader extends pulumi.CustomResource {
     /**

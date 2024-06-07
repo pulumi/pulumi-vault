@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,22 +45,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
- *             .path(&#34;%s&#34;)
- *             .type(&#34;pki&#34;)
+ *         var pki = new Mount("pki", MountArgs.builder()
+ *             .path("%s")
+ *             .type("pki")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var crlConfig = new SecretBackendCrlConfig(&#34;crlConfig&#34;, SecretBackendCrlConfigArgs.builder()        
+ *         var crlConfig = new SecretBackendCrlConfig("crlConfig", SecretBackendCrlConfigArgs.builder()
  *             .backend(pki.path())
- *             .expiry(&#34;72h&#34;)
+ *             .expiry("72h")
  *             .disable(false)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

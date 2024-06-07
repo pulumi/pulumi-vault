@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,13 +19,13 @@ import * as utilities from "../utilities";
  *     },
  *     description: "KV Version 1 secret engine mount",
  * });
- * const awsSecret = new vault.kv.Secret("awsSecret", {
+ * const awsSecret = new vault.kv.Secret("aws_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/aws-secret`,
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *     }),
  * });
- * const azureSecret = new vault.kv.Secret("azureSecret", {
+ * const azureSecret = new vault.kv.Secret("azure_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/azure-secret`,
  *     dataJson: JSON.stringify({
  *         foo: "bar",
@@ -36,7 +35,6 @@ import * as utilities from "../utilities";
  *     path: kvv1.path,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *
@@ -86,7 +84,6 @@ export interface GetSecretsListResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -99,13 +96,13 @@ export interface GetSecretsListResult {
  *     },
  *     description: "KV Version 1 secret engine mount",
  * });
- * const awsSecret = new vault.kv.Secret("awsSecret", {
+ * const awsSecret = new vault.kv.Secret("aws_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/aws-secret`,
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *     }),
  * });
- * const azureSecret = new vault.kv.Secret("azureSecret", {
+ * const azureSecret = new vault.kv.Secret("azure_secret", {
  *     path: pulumi.interpolate`${kvv1.path}/azure-secret`,
  *     dataJson: JSON.stringify({
  *         foo: "bar",
@@ -115,7 +112,6 @@ export interface GetSecretsListResult {
  *     path: kvv1.path,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *

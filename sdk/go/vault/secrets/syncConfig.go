@@ -20,7 +20,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := secrets.NewSyncConfig(ctx, "globalConfig", &secrets.SyncConfigArgs{
+//			_, err := secrets.NewSyncConfig(ctx, "global_config", &secrets.SyncConfigArgs{
 //				Disabled:      pulumi.Bool(true),
 //				QueueCapacity: pulumi.Int(500000),
 //			})
@@ -45,7 +44,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

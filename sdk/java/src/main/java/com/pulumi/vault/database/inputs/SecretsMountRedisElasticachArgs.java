@@ -72,14 +72,14 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The root credential password used in the connection URL.
+     * The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The root credential password used in the connection URL.
+     * @return The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     public Optional<Output<String>> password() {
@@ -102,16 +102,14 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The AWS region where the ElastiCache cluster is hosted.
-     * If omitted the plugin tries to infer the region from the environment.
+     * The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The AWS region where the ElastiCache cluster is hosted.
-     * If omitted the plugin tries to infer the region from the environment.
+     * @return The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
      * 
      */
     public Optional<Output<String>> region() {
@@ -134,16 +132,14 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     @Import(name="url", required=true)
     private Output<String> url;
 
     /**
-     * @return The URL for Elasticsearch&#39;s API. https requires certificate
-     * by trusted CA if used.
+     * @return The configuration endpoint for the ElastiCache cluster to connect to.
      * 
      */
     public Output<String> url() {
@@ -151,14 +147,14 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
     }
 
     /**
-     * The root credential username used in the connection URL.
+     * The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The root credential username used in the connection URL.
+     * @return The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
      * 
      */
     public Optional<Output<String>> username() {
@@ -296,7 +292,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          * 
          * @return builder
          * 
@@ -307,7 +303,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param password The root credential password used in the connection URL.
+         * @param password The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          * 
          * @return builder
          * 
@@ -338,8 +334,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param region The AWS region where the ElastiCache cluster is hosted.
-         * If omitted the plugin tries to infer the region from the environment.
+         * @param region The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          * 
          * @return builder
          * 
@@ -350,8 +345,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param region The AWS region where the ElastiCache cluster is hosted.
-         * If omitted the plugin tries to infer the region from the environment.
+         * @param region The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          * 
          * @return builder
          * 
@@ -392,8 +386,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
-         * by trusted CA if used.
+         * @param url The configuration endpoint for the ElastiCache cluster to connect to.
          * 
          * @return builder
          * 
@@ -404,8 +397,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param url The URL for Elasticsearch&#39;s API. https requires certificate
-         * by trusted CA if used.
+         * @param url The configuration endpoint for the ElastiCache cluster to connect to.
          * 
          * @return builder
          * 
@@ -415,7 +407,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          * 
          * @return builder
          * 
@@ -426,7 +418,7 @@ public final class SecretsMountRedisElasticachArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param username The root credential username used in the connection URL.
+         * @param username The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          * 
          * @return builder
          * 

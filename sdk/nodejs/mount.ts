@@ -9,66 +9,58 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.Mount("example", {
- *     description: "This is an example mount",
  *     path: "dummy",
  *     type: "generic",
+ *     description: "This is an example mount",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const kvv2_example = new vault.Mount("kvv2-example", {
- *     description: "This is an example KV Version 2 secret engine mount",
- *     options: {
- *         type: "kv-v2",
- *         version: "2",
- *     },
  *     path: "version2-example",
  *     type: "kv-v2",
+ *     options: {
+ *         version: "2",
+ *         type: "kv-v2",
+ *     },
+ *     description: "This is an example KV Version 2 secret engine mount",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const transit_example = new vault.Mount("transit-example", {
+ *     path: "transit-example",
+ *     type: "transit",
  *     description: "This is an example transit secret engine mount",
  *     options: {
  *         convergent_encryption: false,
  *     },
- *     path: "transit-example",
- *     type: "transit",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const pki_example = new vault.Mount("pki-example", {
- *     defaultLeaseTtlSeconds: 3600,
- *     description: "This is an example PKI mount",
- *     maxLeaseTtlSeconds: 86400,
  *     path: "pki-example",
  *     type: "pki",
+ *     description: "This is an example PKI mount",
+ *     defaultLeaseTtlSeconds: 3600,
+ *     maxLeaseTtlSeconds: 86400,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

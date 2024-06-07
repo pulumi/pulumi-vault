@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			u1Token, err := generic.NewEndpoint(ctx, "u1Token", &generic.EndpointArgs{
+//			u1Token, err := generic.NewEndpoint(ctx, "u1_token", &generic.EndpointArgs{
 //				Path:          pulumi.String("auth/userpass/login/u1"),
 //				DisableRead:   pulumi.Bool(true),
 //				DisableDelete: pulumi.Bool(true),
@@ -55,7 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			u1Entity, err := generic.NewEndpoint(ctx, "u1Entity", &generic.EndpointArgs{
+//			u1Entity, err := generic.NewEndpoint(ctx, "u1_entity", &generic.EndpointArgs{
 //				DisableRead:        pulumi.Bool(true),
 //				DisableDelete:      pulumi.Bool(true),
 //				Path:               pulumi.String("identity/lookup/entity"),
@@ -78,7 +77,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Required Vault Capabilities
 //

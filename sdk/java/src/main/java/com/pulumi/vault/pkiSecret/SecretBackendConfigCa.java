@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,9 +42,9 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var intermediate = new SecretBackendConfigCa(&#34;intermediate&#34;, SecretBackendConfigCaArgs.builder()        
- *             .backend(vault_mount.intermediate().path())
- *             .pemBundle(&#34;&#34;&#34;
+ *         var intermediate = new SecretBackendConfigCa("intermediate", SecretBackendConfigCaArgs.builder()
+ *             .backend(intermediateVaultMount.path())
+ *             .pemBundle("""
  * -----BEGIN RSA PRIVATE KEY-----
  * MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
  * 5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -92,14 +93,15 @@ import javax.annotation.Nullable;
  * +hbmbwkwQa/JrLb5SWcBDOXSgtn1Li3XF5AQQBBjA3pOlyBXqnI94Irw89Lv9uPT
  * MUR4qFxeUOW/GJGccMUd
  * -----END CERTIFICATE-----
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vault_mount.intermediate())
+ *                 .dependsOn(intermediateVaultMount)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

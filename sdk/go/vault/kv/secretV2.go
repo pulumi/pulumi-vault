@@ -19,7 +19,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -56,6 +55,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = kv.NewSecretV2(ctx, "example", &kv.SecretV2Args{
 //				Mount:             kvv2.Path,
+//				Name:              pulumi.String("secret"),
 //				Cas:               pulumi.Int(1),
 //				DeleteAllVersions: pulumi.Bool(true),
 //				DataJson:          pulumi.String(json0),
@@ -75,7 +75,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Required Vault Capabilities
 //

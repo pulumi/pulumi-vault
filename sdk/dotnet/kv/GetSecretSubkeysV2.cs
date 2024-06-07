@@ -14,7 +14,6 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,9 +34,10 @@ namespace Pulumi.Vault.kv
         ///         Description = "KV Version 2 secret engine mount",
         ///     });
         /// 
-        ///     var awsSecret = new Vault.Kv.SecretV2("awsSecret", new()
+        ///     var awsSecret = new Vault.Kv.SecretV2("aws_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = "aws_secret",
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["zip"] = "zap",
@@ -53,7 +53,6 @@ namespace Pulumi.Vault.kv
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ## Required Vault Capabilities
         /// 
@@ -65,7 +64,6 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -86,9 +84,10 @@ namespace Pulumi.Vault.kv
         ///         Description = "KV Version 2 secret engine mount",
         ///     });
         /// 
-        ///     var awsSecret = new Vault.Kv.SecretV2("awsSecret", new()
+        ///     var awsSecret = new Vault.Kv.SecretV2("aws_secret", new()
         ///     {
         ///         Mount = kvv2.Path,
+        ///         Name = "aws_secret",
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
         ///             ["zip"] = "zap",
@@ -104,7 +103,6 @@ namespace Pulumi.Vault.kv
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ## Required Vault Capabilities
         /// 

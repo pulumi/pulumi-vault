@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,11 +31,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewEgpPolicy(ctx, "allow-all", &vault.EgpPolicyArgs{
-//				EnforcementLevel: pulumi.String("soft-mandatory"),
+//				Name: pulumi.String("allow-all"),
 //				Paths: pulumi.StringArray{
 //					pulumi.String("*"),
 //				},
-//				Policy: pulumi.String("main = rule {\n  true\n}\n\n"),
+//				EnforcementLevel: pulumi.String("soft-mandatory"),
+//				Policy:           pulumi.String("main = rule {\n  true\n}\n"),
 //			})
 //			if err != nil {
 //				return err
@@ -46,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type EgpPolicy struct {
 	pulumi.CustomResourceState
 

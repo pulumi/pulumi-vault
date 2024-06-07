@@ -15,7 +15,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,13 +25,13 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var groups = new Vault.Identity.OidcScope("groups", new()
     ///     {
-    ///         Description = "Vault OIDC Groups Scope",
+    ///         Name = "groups",
     ///         Template = "{\"groups\":{{identity.entity.groups.names}}}",
+    ///         Description = "Vault OIDC Groups Scope",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

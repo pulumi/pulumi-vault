@@ -1051,20 +1051,18 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         config = vault.ldap.SecretBackend("config",
+            path="my-custom-ldap",
             binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
             bindpass="SuperSecretPassw0rd",
-            insecure_tls=True,
-            path="my-custom-ldap",
             url="ldaps://localhost",
+            insecure_tls=True,
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1126,20 +1124,18 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         config = vault.ldap.SecretBackend("config",
+            path="my-custom-ldap",
             binddn="CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
             bindpass="SuperSecretPassw0rd",
-            insecure_tls=True,
-            path="my-custom-ldap",
             url="ldaps://localhost",
+            insecure_tls=True,
             userdn="CN=Users,DC=corp,DC=example,DC=net")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

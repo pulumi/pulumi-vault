@@ -20,7 +20,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -42,13 +43,25 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
      * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args) {
@@ -60,7 +73,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -82,13 +96,25 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
      * 
      */
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args) {
@@ -100,7 +126,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -122,13 +149,25 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
      * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args, InvokeOptions options) {
@@ -140,7 +179,8 @@ public final class GenericFunctions {
      * ### Generic secret
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -162,13 +202,25 @@ public final class GenericFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var rundeckAuth = GenericFunctions.getSecret(GetSecretArgs.builder()
-     *             .path(&#34;secret/rundeck_auth&#34;)
+     *             .path("secret/rundeck_auth")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### KV
+     * 
+     * For this example, consider `example` as a path for a KV engine.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
      * 
      */
     public static CompletableFuture<GetSecretResult> getSecretPlain(GetSecretPlainArgs args, InvokeOptions options) {

@@ -258,18 +258,20 @@ class OidcKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        key = vault.identity.OidcKey("key", algorithm="RS256")
-        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
-        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+        key = vault.identity.OidcKey("key",
+            name="key",
+            algorithm="RS256")
+        role = vault.identity.OidcRole("role",
+            name="role",
+            key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("role",
             key_name=key.name,
-            allowed_client_id=role_oidc_role.client_id)
+            allowed_client_id=role.client_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -303,18 +305,20 @@ class OidcKey(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        key = vault.identity.OidcKey("key", algorithm="RS256")
-        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
-        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+        key = vault.identity.OidcKey("key",
+            name="key",
+            algorithm="RS256")
+        role = vault.identity.OidcRole("role",
+            name="role",
+            key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("role",
             key_name=key.name,
-            allowed_client_id=role_oidc_role.client_id)
+            allowed_client_id=role.client_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

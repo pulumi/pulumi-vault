@@ -175,6 +175,24 @@ def get_backend_issuer(backend: Optional[str] = None,
     """
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    pki = vault.Mount("pki",
+        path="pki",
+        type="pki",
+        description="PKI secret engine mount")
+    root = vault.pki_secret.SecretBackendRootCert("root",
+        backend=pki.path,
+        type="internal",
+        common_name="example",
+        ttl="86400",
+        issuer_name="example")
+    example = root.issuer_id.apply(lambda issuer_id: vault.pkiSecret.get_backend_issuer_output(backend=root.path,
+        issuer_ref=issuer_id))
+    ```
+
 
     :param str backend: The path to the PKI secret backend to
            read the issuer from, with no leading or trailing `/`s.
@@ -213,6 +231,24 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendIssuerResult]:
     """
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_vault as vault
+
+    pki = vault.Mount("pki",
+        path="pki",
+        type="pki",
+        description="PKI secret engine mount")
+    root = vault.pki_secret.SecretBackendRootCert("root",
+        backend=pki.path,
+        type="internal",
+        common_name="example",
+        ttl="86400",
+        issuer_name="example")
+    example = root.issuer_id.apply(lambda issuer_id: vault.pkiSecret.get_backend_issuer_output(backend=root.path,
+        issuer_ref=issuer_id))
+    ```
 
 
     :param str backend: The path to the PKI secret backend to

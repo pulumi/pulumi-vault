@@ -7,12 +7,12 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const app = new vault.identity.OidcClient("app", {
+ *     name: "application",
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
  *         "http://127.0.0.1:8251/callback",
@@ -25,7 +25,6 @@ import * as utilities from "../utilities";
  *     name: app.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOidcClientCreds(args: GetOidcClientCredsArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcClientCredsResult> {
 
@@ -76,12 +75,12 @@ export interface GetOidcClientCredsResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const app = new vault.identity.OidcClient("app", {
+ *     name: "application",
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
  *         "http://127.0.0.1:8251/callback",
@@ -94,7 +93,6 @@ export interface GetOidcClientCredsResult {
  *     name: app.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOidcClientCredsOutput(args: GetOidcClientCredsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcClientCredsResult> {
     return pulumi.output(args).apply((a: any) => getOidcClientCreds(a, opts))

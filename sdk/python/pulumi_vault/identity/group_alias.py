@@ -181,12 +181,12 @@ class GroupAlias(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
+            name="test",
             type="external",
             policies=["test"])
         github = vault.AuthBackend("github",
@@ -197,7 +197,6 @@ class GroupAlias(pulumi.CustomResource):
             mount_accessor=github.accessor,
             canonical_id=group.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -236,12 +235,12 @@ class GroupAlias(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         group = vault.identity.Group("group",
+            name="test",
             type="external",
             policies=["test"])
         github = vault.AuthBackend("github",
@@ -252,7 +251,6 @@ class GroupAlias(pulumi.CustomResource):
             mount_accessor=github.accessor,
             canonical_id=group.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

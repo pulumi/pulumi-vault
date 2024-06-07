@@ -11,21 +11,20 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const mountTransform = new vault.Mount("mountTransform", {
+ * const mountTransform = new vault.Mount("mount_transform", {
  *     path: "transform",
  *     type: "transform",
  * });
  * const test = new vault.transform.Alphabet("test", {
  *     path: mountTransform.path,
+ *     name: "numerics",
  *     alphabet: "0123456789",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Alphabet extends pulumi.CustomResource {
     /**

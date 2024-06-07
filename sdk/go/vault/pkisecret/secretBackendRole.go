@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,6 +40,7 @@ import (
 //			}
 //			_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
 //				Backend:     pki.Path,
+//				Name:        pulumi.String("my_role"),
 //				Ttl:         pulumi.String("3600"),
 //				AllowIpSans: pulumi.Bool(true),
 //				KeyType:     pulumi.String("rsa"),
@@ -59,7 +59,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

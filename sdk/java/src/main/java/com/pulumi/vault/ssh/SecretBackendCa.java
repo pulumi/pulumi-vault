@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,17 +47,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Mount(&#34;example&#34;, MountArgs.builder()        
- *             .type(&#34;ssh&#34;)
+ *         var example = new Mount("example", MountArgs.builder()
+ *             .type("ssh")
  *             .build());
  * 
- *         var foo = new SecretBackendCa(&#34;foo&#34;, SecretBackendCaArgs.builder()        
+ *         var foo = new SecretBackendCa("foo", SecretBackendCaArgs.builder()
  *             .backend(example.path())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

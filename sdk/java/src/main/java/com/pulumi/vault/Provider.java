@@ -22,17 +22,9 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:vault")
 public class Provider extends com.pulumi.resources.ProviderResource {
-    /**
-     * If true, adds the value of the `address` argument to the Terraform process environment.
-     * 
-     */
     @Export(name="addAddressToEnv", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> addAddressToEnv;
 
-    /**
-     * @return If true, adds the value of the `address` argument to the Terraform process environment.
-     * 
-     */
     public Output<Optional<String>> addAddressToEnv() {
         return Codegen.optional(this.addAddressToEnv);
     }

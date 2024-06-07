@@ -11,12 +11,12 @@ import * as utilities from "../utilities";
  *
  * ### Exclusive Policies
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     externalPolicies: true,
  *     metadata: {
@@ -32,16 +32,15 @@ import * as utilities from "../utilities";
  *     groupId: internal.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Non-exclusive Policies
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const internal = new vault.identity.Group("internal", {
+ *     name: "internal",
  *     type: "internal",
  *     externalPolicies: true,
  *     metadata: {
@@ -62,7 +61,6 @@ import * as utilities from "../utilities";
  *     groupId: internal.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class GroupPolicies extends pulumi.CustomResource {
     /**

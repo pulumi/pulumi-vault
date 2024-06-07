@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -47,7 +46,7 @@ import (
 //			}
 //			_ = key.KeyId.ApplyT(func(keyId string) (pkisecret.GetBackendKeyResult, error) {
 //				return pkiSecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
-//					Backend: vault_mount.Key.Path,
+//					Backend: keyVaultMount.Path,
 //					KeyRef:  keyId,
 //				}, nil), nil
 //			}).(pkisecret.GetBackendKeyResultOutput)
@@ -56,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetBackendKey(ctx *pulumi.Context, args *GetBackendKeyArgs, opts ...pulumi.InvokeOption) (*GetBackendKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBackendKeyResult

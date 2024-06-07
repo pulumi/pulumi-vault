@@ -16,7 +16,6 @@ namespace Pulumi.Vault.Saml
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,19 +26,18 @@ namespace Pulumi.Vault.Saml
     /// {
     ///     var test = new Vault.Saml.AuthBackend("test", new()
     ///     {
+    ///         Path = "saml",
+    ///         IdpMetadataUrl = "https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
+    ///         EntityId = "https://my.vault/v1/auth/saml",
     ///         AcsUrls = new[]
     ///         {
     ///             "https://my.vault.primary/v1/auth/saml/callback",
     ///         },
     ///         DefaultRole = "admin",
-    ///         EntityId = "https://my.vault/v1/auth/saml",
-    ///         IdpMetadataUrl = "https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata",
-    ///         Path = "saml",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

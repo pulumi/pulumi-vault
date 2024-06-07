@@ -12,7 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,7 +22,7 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var intermediate = new Vault.PkiSecret.SecretBackendConfigCa("intermediate", new()
     ///     {
-    ///         Backend = vault_mount.Intermediate.Path,
+    ///         Backend = intermediateVaultMount.Path,
     ///         PemBundle = @"-----BEGIN RSA PRIVATE KEY-----
     /// MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
     /// 5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -77,13 +76,12 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Intermediate, 
+    ///             intermediateVaultMount,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa")]
     public partial class SecretBackendConfigCa : global::Pulumi.CustomResource

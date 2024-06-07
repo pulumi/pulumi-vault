@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,6 +40,7 @@ import (
 //			}
 //			postgres, err := database.NewSecretBackendConnection(ctx, "postgres", &database.SecretBackendConnectionArgs{
 //				Backend: db.Path,
+//				Name:    pulumi.String("postgres"),
 //				AllowedRoles: pulumi.StringArray{
 //					pulumi.String("*"),
 //				},
@@ -52,8 +52,9 @@ import (
 //				return err
 //			}
 //			// configure a static role with period-based rotations
-//			_, err = database.NewSecretBackendStaticRole(ctx, "periodRole", &database.SecretBackendStaticRoleArgs{
+//			_, err = database.NewSecretBackendStaticRole(ctx, "period_role", &database.SecretBackendStaticRoleArgs{
 //				Backend:        db.Path,
+//				Name:           pulumi.String("my-period-role"),
 //				DbName:         postgres.Name,
 //				Username:       pulumi.String("example"),
 //				RotationPeriod: pulumi.Int(3600),
@@ -65,8 +66,9 @@ import (
 //				return err
 //			}
 //			// configure a static role with schedule-based rotations
-//			_, err = database.NewSecretBackendStaticRole(ctx, "scheduleRole", &database.SecretBackendStaticRoleArgs{
+//			_, err = database.NewSecretBackendStaticRole(ctx, "schedule_role", &database.SecretBackendStaticRoleArgs{
 //				Backend:          db.Path,
+//				Name:             pulumi.String("my-schedule-role"),
 //				DbName:           postgres.Name,
 //				Username:         pulumi.String("example"),
 //				RotationSchedule: pulumi.String("0 0 * * SAT"),
@@ -83,7 +85,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

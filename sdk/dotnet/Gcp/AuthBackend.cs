@@ -12,34 +12,6 @@ namespace Pulumi.Vault.Gcp
     /// <summary>
     /// Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
     /// 
-    /// ## Example Usage
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.IO;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var gcp = new Vault.Gcp.AuthBackend("gcp", new()
-    ///     {
-    ///         Credentials = File.ReadAllText("vault-gcp-credentials.json"),
-    ///         CustomEndpoint = new Vault.Gcp.Inputs.AuthBackendCustomEndpointArgs
-    ///         {
-    ///             Api = "www.googleapis.com",
-    ///             Iam = "iam.googleapis.com",
-    ///             Crm = "cloudresourcemanager.googleapis.com",
-    ///             Compute = "compute.googleapis.com",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
     /// ## Import
     /// 
     /// GCP authentication backends can be imported using the backend name, e.g.

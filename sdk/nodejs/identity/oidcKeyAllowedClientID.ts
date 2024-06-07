@@ -7,19 +7,23 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const key = new vault.identity.OidcKey("key", {algorithm: "RS256"});
- * const roleOidcRole = new vault.identity.OidcRole("roleOidcRole", {key: key.name});
- * const roleOidcKeyAllowedClientID = new vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", {
+ * const key = new vault.identity.OidcKey("key", {
+ *     name: "key",
+ *     algorithm: "RS256",
+ * });
+ * const role = new vault.identity.OidcRole("role", {
+ *     name: "role",
+ *     key: key.name,
+ * });
+ * const roleOidcKeyAllowedClientID = new vault.identity.OidcKeyAllowedClientID("role", {
  *     keyName: key.name,
- *     allowedClientId: roleOidcRole.clientId,
+ *     allowedClientId: role.clientId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class OidcKeyAllowedClientID extends pulumi.CustomResource {
     /**

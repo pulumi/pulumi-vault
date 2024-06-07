@@ -22,63 +22,6 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.aws.AuthBackendRole;
- * import com.pulumi.vault.aws.AuthBackendRoleArgs;
- * import com.pulumi.vault.aws.AuthBackendRoleTag;
- * import com.pulumi.vault.aws.AuthBackendRoleTagArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend(&#34;aws&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;%s&#34;)
- *             .type(&#34;aws&#34;)
- *             .build());
- * 
- *         var role = new AuthBackendRole(&#34;role&#34;, AuthBackendRoleArgs.builder()        
- *             .backend(aws.path())
- *             .role(&#34;%s&#34;)
- *             .authType(&#34;ec2&#34;)
- *             .boundAccountId(&#34;123456789012&#34;)
- *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;,
- *                 &#34;qa&#34;,
- *                 &#34;test&#34;)
- *             .roleTag(&#34;VaultRoleTag&#34;)
- *             .build());
- * 
- *         var test = new AuthBackendRoleTag(&#34;test&#34;, AuthBackendRoleTagArgs.builder()        
- *             .backend(aws.path())
- *             .role(role.role())
- *             .policies(            
- *                 &#34;prod&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;test&#34;)
- *             .maxTtl(&#34;1h&#34;)
- *             .instanceId(&#34;i-1234567&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

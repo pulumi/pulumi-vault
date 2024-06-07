@@ -17,20 +17,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     public static final SecretBackendConnectionMongodbArgs Empty = new SecretBackendConnectionMongodbArgs();
 
     /**
-     * A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * Connection string to use to connect to the database.
      * 
      */
     @Import(name="connectionUrl")
     private @Nullable Output<String> connectionUrl;
 
     /**
-     * @return A URL containing connection information. See
-     * the [Vault
-     * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-     * for an example.
+     * @return Connection string to use to connect to the database.
      * 
      */
     public Optional<Output<String>> connectionUrl() {
@@ -38,16 +32,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
-     * The maximum number of seconds to keep
-     * a connection alive for.
+     * Maximum number of seconds a connection may be reused.
      * 
      */
     @Import(name="maxConnectionLifetime")
     private @Nullable Output<Integer> maxConnectionLifetime;
 
     /**
-     * @return The maximum number of seconds to keep
-     * a connection alive for.
+     * @return Maximum number of seconds a connection may be reused.
      * 
      */
     public Optional<Output<Integer>> maxConnectionLifetime() {
@@ -55,16 +47,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
-     * The maximum number of idle connections to
-     * maintain.
+     * Maximum number of idle connections to the database.
      * 
      */
     @Import(name="maxIdleConnections")
     private @Nullable Output<Integer> maxIdleConnections;
 
     /**
-     * @return The maximum number of idle connections to
-     * maintain.
+     * @return Maximum number of idle connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxIdleConnections() {
@@ -72,16 +62,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
-     * The maximum number of open connections to
-     * use.
+     * Maximum number of open connections to the database.
      * 
      */
     @Import(name="maxOpenConnections")
     private @Nullable Output<Integer> maxOpenConnections;
 
     /**
-     * @return The maximum number of open connections to
-     * use.
+     * @return Maximum number of open connections to the database.
      * 
      */
     public Optional<Output<Integer>> maxOpenConnections() {
@@ -89,14 +77,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
-     * The password to authenticate with.
+     * The root credential password used in the connection URL
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return The password to authenticate with.
+     * @return The root credential password used in the connection URL
      * 
      */
     public Optional<Output<String>> password() {
@@ -104,14 +92,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
-     * The username to authenticate with.
+     * The root credential username used in the connection URL
      * 
      */
     @Import(name="username")
     private @Nullable Output<String> username;
 
     /**
-     * @return The username to authenticate with.
+     * @return The root credential username used in the connection URL
      * 
      */
     public Optional<Output<String>> username() {
@@ -119,14 +107,14 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
     }
 
     /**
-     * Template describing how dynamic usernames are generated.
+     * Username generation template.
      * 
      */
     @Import(name="usernameTemplate")
     private @Nullable Output<String> usernameTemplate;
 
     /**
-     * @return Template describing how dynamic usernames are generated.
+     * @return Username generation template.
      * 
      */
     public Optional<Output<String>> usernameTemplate() {
@@ -164,10 +152,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param connectionUrl A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -178,10 +163,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param connectionUrl A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * @param connectionUrl Connection string to use to connect to the database.
          * 
          * @return builder
          * 
@@ -191,8 +173,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param maxConnectionLifetime The maximum number of seconds to keep
-         * a connection alive for.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -203,8 +184,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param maxConnectionLifetime The maximum number of seconds to keep
-         * a connection alive for.
+         * @param maxConnectionLifetime Maximum number of seconds a connection may be reused.
          * 
          * @return builder
          * 
@@ -214,8 +194,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * maintain.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -226,8 +205,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param maxIdleConnections The maximum number of idle connections to
-         * maintain.
+         * @param maxIdleConnections Maximum number of idle connections to the database.
          * 
          * @return builder
          * 
@@ -237,8 +215,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * use.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -249,8 +226,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param maxOpenConnections The maximum number of open connections to
-         * use.
+         * @param maxOpenConnections Maximum number of open connections to the database.
          * 
          * @return builder
          * 
@@ -260,7 +236,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -271,7 +247,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param password The password to authenticate with.
+         * @param password The root credential password used in the connection URL
          * 
          * @return builder
          * 
@@ -281,7 +257,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -292,7 +268,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param username The username to authenticate with.
+         * @param username The root credential username used in the connection URL
          * 
          * @return builder
          * 
@@ -302,7 +278,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 
@@ -313,7 +289,7 @@ public final class SecretBackendConnectionMongodbArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param usernameTemplate Template describing how dynamic usernames are generated.
+         * @param usernameTemplate Username generation template.
          * 
          * @return builder
          * 

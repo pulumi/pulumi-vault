@@ -114,7 +114,8 @@ public final class KubernetesFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -139,42 +140,48 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
-     *             .path(&#34;kubernetes&#34;)
-     *             .description(&#34;kubernetes secrets engine description&#34;)
-     *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
-     *             .kubernetesCaCert(Files.readString(Paths.get(&#34;/path/to/cert&#34;)))
-     *             .serviceAccountJwt(Files.readString(Paths.get(&#34;/path/to/token&#34;)))
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
+     *             .path("kubernetes")
+     *             .description("kubernetes secrets engine description")
+     *             .kubernetesHost("https://127.0.0.1:61233")
+     *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/cert")
+     *                 .build()).result())
+     *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/token")
+     *                 .build()).result())
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
-     *             .allowedKubernetesNamespaces(&#34;*&#34;)
+     *             .name("service-account-name-role")
+     *             .allowedKubernetesNamespaces("*")
      *             .tokenMaxTtl(43200)
      *             .tokenDefaultTtl(21600)
-     *             .serviceAccountName(&#34;test-service-account-with-generated-token&#34;)
+     *             .serviceAccountName("test-service-account-with-generated-token")
      *             .extraLabels(Map.ofEntries(
-     *                 Map.entry(&#34;id&#34;, &#34;abc123&#34;),
-     *                 Map.entry(&#34;name&#34;, &#34;some_name&#34;)
+     *                 Map.entry("id", "abc123"),
+     *                 Map.entry("name", "some_name")
      *             ))
      *             .extraAnnotations(Map.ofEntries(
-     *                 Map.entry(&#34;env&#34;, &#34;development&#34;),
-     *                 Map.entry(&#34;location&#34;, &#34;earth&#34;)
+     *                 Map.entry("env", "development"),
+     *                 Map.entry("location", "earth")
      *             ))
      *             .build());
      * 
      *         final var token = KubernetesFunctions.getServiceAccountToken(GetServiceAccountTokenArgs.builder()
      *             .backend(config.path())
      *             .role(role.name())
-     *             .kubernetesNamespace(&#34;test&#34;)
+     *             .kubernetesNamespace("test")
      *             .clusterRoleBinding(false)
-     *             .ttl(&#34;1h&#34;)
+     *             .ttl("1h")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -185,7 +192,8 @@ public final class KubernetesFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -210,42 +218,48 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
-     *             .path(&#34;kubernetes&#34;)
-     *             .description(&#34;kubernetes secrets engine description&#34;)
-     *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
-     *             .kubernetesCaCert(Files.readString(Paths.get(&#34;/path/to/cert&#34;)))
-     *             .serviceAccountJwt(Files.readString(Paths.get(&#34;/path/to/token&#34;)))
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
+     *             .path("kubernetes")
+     *             .description("kubernetes secrets engine description")
+     *             .kubernetesHost("https://127.0.0.1:61233")
+     *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/cert")
+     *                 .build()).result())
+     *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/token")
+     *                 .build()).result())
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
-     *             .allowedKubernetesNamespaces(&#34;*&#34;)
+     *             .name("service-account-name-role")
+     *             .allowedKubernetesNamespaces("*")
      *             .tokenMaxTtl(43200)
      *             .tokenDefaultTtl(21600)
-     *             .serviceAccountName(&#34;test-service-account-with-generated-token&#34;)
+     *             .serviceAccountName("test-service-account-with-generated-token")
      *             .extraLabels(Map.ofEntries(
-     *                 Map.entry(&#34;id&#34;, &#34;abc123&#34;),
-     *                 Map.entry(&#34;name&#34;, &#34;some_name&#34;)
+     *                 Map.entry("id", "abc123"),
+     *                 Map.entry("name", "some_name")
      *             ))
      *             .extraAnnotations(Map.ofEntries(
-     *                 Map.entry(&#34;env&#34;, &#34;development&#34;),
-     *                 Map.entry(&#34;location&#34;, &#34;earth&#34;)
+     *                 Map.entry("env", "development"),
+     *                 Map.entry("location", "earth")
      *             ))
      *             .build());
      * 
      *         final var token = KubernetesFunctions.getServiceAccountToken(GetServiceAccountTokenArgs.builder()
      *             .backend(config.path())
      *             .role(role.name())
-     *             .kubernetesNamespace(&#34;test&#34;)
+     *             .kubernetesNamespace("test")
      *             .clusterRoleBinding(false)
-     *             .ttl(&#34;1h&#34;)
+     *             .ttl("1h")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -256,7 +270,8 @@ public final class KubernetesFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -281,42 +296,48 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
-     *             .path(&#34;kubernetes&#34;)
-     *             .description(&#34;kubernetes secrets engine description&#34;)
-     *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
-     *             .kubernetesCaCert(Files.readString(Paths.get(&#34;/path/to/cert&#34;)))
-     *             .serviceAccountJwt(Files.readString(Paths.get(&#34;/path/to/token&#34;)))
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
+     *             .path("kubernetes")
+     *             .description("kubernetes secrets engine description")
+     *             .kubernetesHost("https://127.0.0.1:61233")
+     *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/cert")
+     *                 .build()).result())
+     *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/token")
+     *                 .build()).result())
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
-     *             .allowedKubernetesNamespaces(&#34;*&#34;)
+     *             .name("service-account-name-role")
+     *             .allowedKubernetesNamespaces("*")
      *             .tokenMaxTtl(43200)
      *             .tokenDefaultTtl(21600)
-     *             .serviceAccountName(&#34;test-service-account-with-generated-token&#34;)
+     *             .serviceAccountName("test-service-account-with-generated-token")
      *             .extraLabels(Map.ofEntries(
-     *                 Map.entry(&#34;id&#34;, &#34;abc123&#34;),
-     *                 Map.entry(&#34;name&#34;, &#34;some_name&#34;)
+     *                 Map.entry("id", "abc123"),
+     *                 Map.entry("name", "some_name")
      *             ))
      *             .extraAnnotations(Map.ofEntries(
-     *                 Map.entry(&#34;env&#34;, &#34;development&#34;),
-     *                 Map.entry(&#34;location&#34;, &#34;earth&#34;)
+     *                 Map.entry("env", "development"),
+     *                 Map.entry("location", "earth")
      *             ))
      *             .build());
      * 
      *         final var token = KubernetesFunctions.getServiceAccountToken(GetServiceAccountTokenArgs.builder()
      *             .backend(config.path())
      *             .role(role.name())
-     *             .kubernetesNamespace(&#34;test&#34;)
+     *             .kubernetesNamespace("test")
      *             .clusterRoleBinding(false)
-     *             .ttl(&#34;1h&#34;)
+     *             .ttl("1h")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -327,7 +348,8 @@ public final class KubernetesFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -352,42 +374,48 @@ public final class KubernetesFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
-     *             .path(&#34;kubernetes&#34;)
-     *             .description(&#34;kubernetes secrets engine description&#34;)
-     *             .kubernetesHost(&#34;https://127.0.0.1:61233&#34;)
-     *             .kubernetesCaCert(Files.readString(Paths.get(&#34;/path/to/cert&#34;)))
-     *             .serviceAccountJwt(Files.readString(Paths.get(&#34;/path/to/token&#34;)))
+     *         var config = new SecretBackend("config", SecretBackendArgs.builder()
+     *             .path("kubernetes")
+     *             .description("kubernetes secrets engine description")
+     *             .kubernetesHost("https://127.0.0.1:61233")
+     *             .kubernetesCaCert(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/cert")
+     *                 .build()).result())
+     *             .serviceAccountJwt(StdFunctions.file(FileArgs.builder()
+     *                 .input("/path/to/token")
+     *                 .build()).result())
      *             .disableLocalCaJwt(false)
      *             .build());
      * 
-     *         var role = new SecretBackendRole(&#34;role&#34;, SecretBackendRoleArgs.builder()        
+     *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
      *             .backend(config.path())
-     *             .allowedKubernetesNamespaces(&#34;*&#34;)
+     *             .name("service-account-name-role")
+     *             .allowedKubernetesNamespaces("*")
      *             .tokenMaxTtl(43200)
      *             .tokenDefaultTtl(21600)
-     *             .serviceAccountName(&#34;test-service-account-with-generated-token&#34;)
+     *             .serviceAccountName("test-service-account-with-generated-token")
      *             .extraLabels(Map.ofEntries(
-     *                 Map.entry(&#34;id&#34;, &#34;abc123&#34;),
-     *                 Map.entry(&#34;name&#34;, &#34;some_name&#34;)
+     *                 Map.entry("id", "abc123"),
+     *                 Map.entry("name", "some_name")
      *             ))
      *             .extraAnnotations(Map.ofEntries(
-     *                 Map.entry(&#34;env&#34;, &#34;development&#34;),
-     *                 Map.entry(&#34;location&#34;, &#34;earth&#34;)
+     *                 Map.entry("env", "development"),
+     *                 Map.entry("location", "earth")
      *             ))
      *             .build());
      * 
      *         final var token = KubernetesFunctions.getServiceAccountToken(GetServiceAccountTokenArgs.builder()
      *             .backend(config.path())
      *             .role(role.name())
-     *             .kubernetesNamespace(&#34;test&#34;)
+     *             .kubernetesNamespace("test")
      *             .clusterRoleBinding(false)
-     *             .ttl(&#34;1h&#34;)
+     *             .ttl("1h")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

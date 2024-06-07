@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,6 +23,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.pkisecret.SecretBackendRole("role", {
  *     backend: pki.path,
+ *     name: "my_role",
  *     ttl: "3600",
  *     allowIpSans: true,
  *     keyType: "rsa",
@@ -35,7 +35,6 @@ import * as utilities from "../utilities";
  *     allowSubdomains: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

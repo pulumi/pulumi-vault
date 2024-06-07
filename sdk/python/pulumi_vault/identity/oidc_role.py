@@ -270,38 +270,42 @@ class OidcRole(pulumi.CustomResource):
         exist before the role can be used to issue tokens. You must also configure the key with the
         role's Client ID to allow the role to use the key.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         config = pulumi.Config()
+        # Name of the OIDC Key
         key = config.get("key")
         if key is None:
             key = "key"
-        role = vault.identity.OidcRole("role", key=key)
-        key_oidc_key = vault.identity.OidcKey("keyOidcKey",
+        role = vault.identity.OidcRole("role",
+            name="role",
+            key=key)
+        key_oidc_key = vault.identity.OidcKey("key",
+            name=key,
             algorithm="RS256",
             allowed_client_ids=[role.client_id])
         ```
-        <!--End PulumiCodeChooser -->
 
         If you want to create the key first before creating the role, you can use a separate
         resource to configure the allowed Client ID on
         the key.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        key = vault.identity.OidcKey("key", algorithm="RS256")
-        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
-        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+        key = vault.identity.OidcKey("key",
+            name="key",
+            algorithm="RS256")
+        role = vault.identity.OidcRole("role",
+            name="role",
+            key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("role",
             key_name=key.name,
-            allowed_client_id=role_oidc_role.client_id)
+            allowed_client_id=role.client_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -342,38 +346,42 @@ class OidcRole(pulumi.CustomResource):
         exist before the role can be used to issue tokens. You must also configure the key with the
         role's Client ID to allow the role to use the key.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         config = pulumi.Config()
+        # Name of the OIDC Key
         key = config.get("key")
         if key is None:
             key = "key"
-        role = vault.identity.OidcRole("role", key=key)
-        key_oidc_key = vault.identity.OidcKey("keyOidcKey",
+        role = vault.identity.OidcRole("role",
+            name="role",
+            key=key)
+        key_oidc_key = vault.identity.OidcKey("key",
+            name=key,
             algorithm="RS256",
             allowed_client_ids=[role.client_id])
         ```
-        <!--End PulumiCodeChooser -->
 
         If you want to create the key first before creating the role, you can use a separate
         resource to configure the allowed Client ID on
         the key.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        key = vault.identity.OidcKey("key", algorithm="RS256")
-        role_oidc_role = vault.identity.OidcRole("roleOidcRole", key=key.name)
-        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID",
+        key = vault.identity.OidcKey("key",
+            name="key",
+            algorithm="RS256")
+        role = vault.identity.OidcRole("role",
+            name="role",
+            key=key.name)
+        role_oidc_key_allowed_client_id = vault.identity.OidcKeyAllowedClientID("role",
             key_name=key.name,
-            allowed_client_id=role_oidc_role.client_id)
+            allowed_client_id=role.client_id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

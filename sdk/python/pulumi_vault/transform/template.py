@@ -334,7 +334,6 @@ class Template(pulumi.CustomResource):
         backslashes must be escaped to appear correctly in Vault. For further
         assistance escaping your own custom regex, see String Literals.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -344,9 +343,11 @@ class Template(pulumi.CustomResource):
             type="transform")
         numerics = vault.transform.Alphabet("numerics",
             path=transform.path,
+            name="numerics",
             alphabet="0123456789")
         test = vault.transform.Template("test",
             path=numerics.path,
+            name="ccn",
             type="regex",
             pattern="(\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})",
             alphabet="numerics",
@@ -355,7 +356,6 @@ class Template(pulumi.CustomResource):
                 "last-four-digits": "$4",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -397,7 +397,6 @@ class Template(pulumi.CustomResource):
         backslashes must be escaped to appear correctly in Vault. For further
         assistance escaping your own custom regex, see String Literals.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -407,9 +406,11 @@ class Template(pulumi.CustomResource):
             type="transform")
         numerics = vault.transform.Alphabet("numerics",
             path=transform.path,
+            name="numerics",
             alphabet="0123456789")
         test = vault.transform.Template("test",
             path=numerics.path,
+            name="ccn",
             type="regex",
             pattern="(\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})[- ](\\\\d{4})",
             alphabet="numerics",
@@ -418,7 +419,6 @@ class Template(pulumi.CustomResource):
                 "last-four-digits": "$4",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param TemplateArgs args: The arguments to use to populate this resource's properties.

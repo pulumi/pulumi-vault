@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Transit
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,11 +34,11 @@ namespace Pulumi.Vault.Transit
     ///     var key = new Vault.Transit.SecretBackendKey("key", new()
     ///     {
     ///         Backend = transit.Path,
+    ///         Name = "my_key",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

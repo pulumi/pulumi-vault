@@ -15,51 +15,47 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionInfluxdb {
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     private @Nullable Integer connectTimeout;
     /**
-     * @return The host to connect to.
+     * @return Influxdb host to connect to.
      * 
      */
     private String host;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     private String password;
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     private @Nullable String pemBundle;
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     private @Nullable String pemJson;
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Influxdb.
      * 
      */
     private @Nullable Integer port;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Influxdb.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username to use for superuser access.
      * 
      */
     private String username;
@@ -71,67 +67,63 @@ public final class SecretBackendConnectionInfluxdb {
 
     private SecretBackendConnectionInfluxdb() {}
     /**
-     * @return The number of seconds to use as a connection
-     * timeout.
+     * @return The number of seconds to use as a connection timeout.
      * 
      */
     public Optional<Integer> connectTimeout() {
         return Optional.ofNullable(this.connectTimeout);
     }
     /**
-     * @return The host to connect to.
+     * @return Influxdb host to connect to.
      * 
      */
     public String host() {
         return this.host;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
     }
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return Concatenated PEM blocks configuring the certificate
-     * chain.
+     * @return Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<String> pemBundle() {
         return Optional.ofNullable(this.pemBundle);
     }
     /**
-     * @return A JSON structure configuring the certificate chain.
+     * @return Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
      * 
      */
     public Optional<String> pemJson() {
         return Optional.ofNullable(this.pemJson);
     }
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Influxdb.
      * 
      */
     public Optional<Integer> port() {
         return Optional.ofNullable(this.port);
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Whether to use TLS when connecting to Influxdb.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username to use for superuser access.
      * 
      */
     public String username() {

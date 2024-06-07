@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := pkiSecret.NewSecretBackendSign(ctx, "test", &pkiSecret.SecretBackendSignArgs{
-//				Backend: pulumi.Any(vault_mount.Pki.Path),
+//				Backend: pulumi.Any(pki.Path),
+//				Name:    pulumi.Any(admin.Name),
 //				Csr: pulumi.String(`-----BEGIN CERTIFICATE REQUEST-----
 //
 // MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
@@ -61,7 +61,7 @@ import (
 //
 //				CommonName: pulumi.String("test.my.domain"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_pki_secret_backend_role.Admin,
+//				admin,
 //			}))
 //			if err != nil {
 //				return err
@@ -71,7 +71,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type SecretBackendSign struct {
 	pulumi.CustomResourceState
 

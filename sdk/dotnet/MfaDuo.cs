@@ -16,7 +16,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,8 +30,9 @@ namespace Pulumi.Vault
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myDuo = new Vault.MfaDuo("myDuo", new()
+    ///     var myDuo = new Vault.MfaDuo("my_duo", new()
     ///     {
+    ///         Name = "my_duo",
     ///         MountAccessor = userpass.Accessor,
     ///         SecretKey = "8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
     ///         IntegrationKey = "BIACEUEAXI20BNWTEYXT",
@@ -41,7 +41,6 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

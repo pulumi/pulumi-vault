@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,9 +20,11 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const key = new vault.transit.SecretBackendKey("key", {backend: transit.path});
+ * const key = new vault.transit.SecretBackendKey("key", {
+ *     backend: transit.path,
+ *     name: "my_key",
+ * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

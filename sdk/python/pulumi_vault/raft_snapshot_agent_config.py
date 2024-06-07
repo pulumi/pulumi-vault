@@ -53,56 +53,29 @@ class RaftSnapshotAgentConfigArgs:
                or "google-gcs". The remaining parameters described below are all specific to
                the selected `storage_type` and prefixed accordingly.
         :param pulumi.Input[str] aws_access_key_id: AWS access key ID.
-        :param pulumi.Input[str] aws_s3_bucket: `<required>` - S3 bucket to write snapshots to.
-        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `aws_s3_endpoint`.
+        :param pulumi.Input[str] aws_s3_bucket: S3 bucket to write snapshots to.
+        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         :param pulumi.Input[bool] aws_s3_enable_kms: Use KMS to encrypt bucket contents.
-        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when
-               using a non-AWS S3 implementation like Minio.
-        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style
-               instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
-        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when `aws_s3_enable_kms = true`
-        :param pulumi.Input[str] aws_s3_region: `<required>` - AWS region bucket is in.
+        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
+        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style instead of bucket.endpoint.
+        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when aws_s3_enable_kms=true
+        :param pulumi.Input[str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[str] aws_session_token: AWS session token.
         :param pulumi.Input[str] azure_account_key: Azure account key.
         :param pulumi.Input[str] azure_account_name: Azure account name.
         :param pulumi.Input[str] azure_blob_environment: Azure blob environment.
-        :param pulumi.Input[str] azure_container_name: `<required>` - Azure container name to write
-               snapshots to.
-        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically
-               only set when using a non-Azure implementation like Azurite.
+        :param pulumi.Input[str] azure_container_name: Azure container name to write snapshots to.
+        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[str] file_prefix: Within the directory or bucket
                prefix given by `path_prefix`, the file or object name of snapshot files
                will start with this string.
-        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `google_endpoint`.
-        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when
-               using a non-Google GCS implementation like fake-gcs-server.
-        :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
-        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
-               The raw value looks like this:
-               
-               ```json
-               {
-               "type": "service_account",
-               "project_id": "project-id",
-               "private_key_id": "key-id",
-               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-               "client_email": "service-account-email",
-               "client_id": "client-id",
-               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-               "token_uri": "https://accounts.google.com/o/oauth2/token",
-               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-               }
-               ```
-        :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
-               space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-               space left in this allowance.
+        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint.
+        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
+        :param pulumi.Input[str] google_gcs_bucket: GCS bucket to write snapshots to.
+        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format.
+        :param pulumi.Input[int] local_max_space: The maximum space, in bytes, to use for snapshots.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -223,7 +196,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="awsS3Bucket")
     def aws_s3_bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - S3 bucket to write snapshots to.
+        S3 bucket to write snapshots to.
         """
         return pulumi.get(self, "aws_s3_bucket")
 
@@ -235,9 +208,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="awsS3DisableTls")
     def aws_s3_disable_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable TLS for the S3 endpoint. This
-        should only be used for testing purposes, typically in conjunction with
-        `aws_s3_endpoint`.
+        Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         """
         return pulumi.get(self, "aws_s3_disable_tls")
 
@@ -261,8 +232,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="awsS3Endpoint")
     def aws_s3_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        AWS endpoint. This is typically only set when
-        using a non-AWS S3 implementation like Minio.
+        AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         """
         return pulumi.get(self, "aws_s3_endpoint")
 
@@ -274,8 +244,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="awsS3ForcePathStyle")
     def aws_s3_force_path_style(self) -> Optional[pulumi.Input[bool]]:
         """
-        Use the endpoint/bucket URL style
-        instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+        Use the endpoint/bucket URL style instead of bucket.endpoint.
         """
         return pulumi.get(self, "aws_s3_force_path_style")
 
@@ -287,7 +256,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="awsS3KmsKey")
     def aws_s3_kms_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Use named KMS key, when `aws_s3_enable_kms = true`
+        Use named KMS key, when aws_s3_enable_kms=true
         """
         return pulumi.get(self, "aws_s3_kms_key")
 
@@ -299,7 +268,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="awsS3Region")
     def aws_s3_region(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - AWS region bucket is in.
+        AWS region bucket is in.
         """
         return pulumi.get(self, "aws_s3_region")
 
@@ -383,8 +352,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="azureContainerName")
     def azure_container_name(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - Azure container name to write
-        snapshots to.
+        Azure container name to write snapshots to.
         """
         return pulumi.get(self, "azure_container_name")
 
@@ -396,8 +364,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="azureEndpoint")
     def azure_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        Azure blob storage endpoint. This is typically
-        only set when using a non-Azure implementation like Azurite.
+        Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         """
         return pulumi.get(self, "azure_endpoint")
 
@@ -423,9 +390,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="googleDisableTls")
     def google_disable_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable TLS for the GCS endpoint. This
-        should only be used for testing purposes, typically in conjunction with
-        `google_endpoint`.
+        Disable TLS for the GCS endpoint.
         """
         return pulumi.get(self, "google_disable_tls")
 
@@ -437,8 +402,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="googleEndpoint")
     def google_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        GCS endpoint. This is typically only set when
-        using a non-Google GCS implementation like fake-gcs-server.
+        GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         """
         return pulumi.get(self, "google_endpoint")
 
@@ -450,7 +414,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="googleGcsBucket")
     def google_gcs_bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - GCS bucket to write snapshots to.
+        GCS bucket to write snapshots to.
         """
         return pulumi.get(self, "google_gcs_bucket")
 
@@ -462,23 +426,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="googleServiceAccountKey")
     def google_service_account_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Google service account key in JSON format. 
-        The raw value looks like this:
-
-        ```json
-        {
-        "type": "service_account",
-        "project_id": "project-id",
-        "private_key_id": "key-id",
-        "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-        "client_email": "service-account-email",
-        "client_id": "client-id",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://accounts.google.com/o/oauth2/token",
-        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-        }
-        ```
+        Google service account key in JSON format.
         """
         return pulumi.get(self, "google_service_account_key")
 
@@ -490,9 +438,7 @@ class RaftSnapshotAgentConfigArgs:
     @pulumi.getter(name="localMaxSpace")
     def local_max_space(self) -> Optional[pulumi.Input[int]]:
         """
-        For `storage_type = local`, the maximum
-        space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-        space left in this allowance.
+        The maximum space, in bytes, to use for snapshots.
         """
         return pulumi.get(self, "local_max_space")
 
@@ -576,57 +522,30 @@ class _RaftSnapshotAgentConfigState:
         """
         Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
         :param pulumi.Input[str] aws_access_key_id: AWS access key ID.
-        :param pulumi.Input[str] aws_s3_bucket: `<required>` - S3 bucket to write snapshots to.
-        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `aws_s3_endpoint`.
+        :param pulumi.Input[str] aws_s3_bucket: S3 bucket to write snapshots to.
+        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         :param pulumi.Input[bool] aws_s3_enable_kms: Use KMS to encrypt bucket contents.
-        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when
-               using a non-AWS S3 implementation like Minio.
-        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style
-               instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
-        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when `aws_s3_enable_kms = true`
-        :param pulumi.Input[str] aws_s3_region: `<required>` - AWS region bucket is in.
+        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
+        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style instead of bucket.endpoint.
+        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when aws_s3_enable_kms=true
+        :param pulumi.Input[str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[str] aws_session_token: AWS session token.
         :param pulumi.Input[str] azure_account_key: Azure account key.
         :param pulumi.Input[str] azure_account_name: Azure account name.
         :param pulumi.Input[str] azure_blob_environment: Azure blob environment.
-        :param pulumi.Input[str] azure_container_name: `<required>` - Azure container name to write
-               snapshots to.
-        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically
-               only set when using a non-Azure implementation like Azurite.
+        :param pulumi.Input[str] azure_container_name: Azure container name to write snapshots to.
+        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[str] file_prefix: Within the directory or bucket
                prefix given by `path_prefix`, the file or object name of snapshot files
                will start with this string.
-        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `google_endpoint`.
-        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when
-               using a non-Google GCS implementation like fake-gcs-server.
-        :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
-        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
-               The raw value looks like this:
-               
-               ```json
-               {
-               "type": "service_account",
-               "project_id": "project-id",
-               "private_key_id": "key-id",
-               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-               "client_email": "service-account-email",
-               "client_id": "client-id",
-               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-               "token_uri": "https://accounts.google.com/o/oauth2/token",
-               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-               }
-               ```
+        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint.
+        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
+        :param pulumi.Input[str] google_gcs_bucket: GCS bucket to write snapshots to.
+        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format.
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
-        :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
-               space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-               space left in this allowance.
+        :param pulumi.Input[int] local_max_space: The maximum space, in bytes, to use for snapshots.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -716,7 +635,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="awsS3Bucket")
     def aws_s3_bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - S3 bucket to write snapshots to.
+        S3 bucket to write snapshots to.
         """
         return pulumi.get(self, "aws_s3_bucket")
 
@@ -728,9 +647,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="awsS3DisableTls")
     def aws_s3_disable_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable TLS for the S3 endpoint. This
-        should only be used for testing purposes, typically in conjunction with
-        `aws_s3_endpoint`.
+        Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         """
         return pulumi.get(self, "aws_s3_disable_tls")
 
@@ -754,8 +671,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="awsS3Endpoint")
     def aws_s3_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        AWS endpoint. This is typically only set when
-        using a non-AWS S3 implementation like Minio.
+        AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         """
         return pulumi.get(self, "aws_s3_endpoint")
 
@@ -767,8 +683,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="awsS3ForcePathStyle")
     def aws_s3_force_path_style(self) -> Optional[pulumi.Input[bool]]:
         """
-        Use the endpoint/bucket URL style
-        instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+        Use the endpoint/bucket URL style instead of bucket.endpoint.
         """
         return pulumi.get(self, "aws_s3_force_path_style")
 
@@ -780,7 +695,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="awsS3KmsKey")
     def aws_s3_kms_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Use named KMS key, when `aws_s3_enable_kms = true`
+        Use named KMS key, when aws_s3_enable_kms=true
         """
         return pulumi.get(self, "aws_s3_kms_key")
 
@@ -792,7 +707,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="awsS3Region")
     def aws_s3_region(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - AWS region bucket is in.
+        AWS region bucket is in.
         """
         return pulumi.get(self, "aws_s3_region")
 
@@ -876,8 +791,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="azureContainerName")
     def azure_container_name(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - Azure container name to write
-        snapshots to.
+        Azure container name to write snapshots to.
         """
         return pulumi.get(self, "azure_container_name")
 
@@ -889,8 +803,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="azureEndpoint")
     def azure_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        Azure blob storage endpoint. This is typically
-        only set when using a non-Azure implementation like Azurite.
+        Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         """
         return pulumi.get(self, "azure_endpoint")
 
@@ -916,9 +829,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="googleDisableTls")
     def google_disable_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable TLS for the GCS endpoint. This
-        should only be used for testing purposes, typically in conjunction with
-        `google_endpoint`.
+        Disable TLS for the GCS endpoint.
         """
         return pulumi.get(self, "google_disable_tls")
 
@@ -930,8 +841,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="googleEndpoint")
     def google_endpoint(self) -> Optional[pulumi.Input[str]]:
         """
-        GCS endpoint. This is typically only set when
-        using a non-Google GCS implementation like fake-gcs-server.
+        GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         """
         return pulumi.get(self, "google_endpoint")
 
@@ -943,7 +853,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="googleGcsBucket")
     def google_gcs_bucket(self) -> Optional[pulumi.Input[str]]:
         """
-        `<required>` - GCS bucket to write snapshots to.
+        GCS bucket to write snapshots to.
         """
         return pulumi.get(self, "google_gcs_bucket")
 
@@ -955,23 +865,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="googleServiceAccountKey")
     def google_service_account_key(self) -> Optional[pulumi.Input[str]]:
         """
-        Google service account key in JSON format. 
-        The raw value looks like this:
-
-        ```json
-        {
-        "type": "service_account",
-        "project_id": "project-id",
-        "private_key_id": "key-id",
-        "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-        "client_email": "service-account-email",
-        "client_id": "client-id",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://accounts.google.com/o/oauth2/token",
-        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-        }
-        ```
+        Google service account key in JSON format.
         """
         return pulumi.get(self, "google_service_account_key")
 
@@ -995,9 +889,7 @@ class _RaftSnapshotAgentConfigState:
     @pulumi.getter(name="localMaxSpace")
     def local_max_space(self) -> Optional[pulumi.Input[int]]:
         """
-        For `storage_type = local`, the maximum
-        space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-        space left in this allowance.
+        The maximum space, in bytes, to use for snapshots.
         """
         return pulumi.get(self, "local_max_space")
 
@@ -1114,22 +1006,20 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         ## Example Usage
 
         ### Local Storage
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        local_backups = vault.RaftSnapshotAgentConfig("localBackups",
+        local_backups = vault.RaftSnapshotAgentConfig("local_backups",
+            name="local",
             interval_seconds=86400,
-            local_max_space=10000000,
-            path_prefix="/opt/vault/snapshots/",
             retain=7,
-            storage_type="local")
+            path_prefix="/opt/vault/snapshots/",
+            storage_type="local",
+            local_max_space=10000000)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### AWS S3
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1139,7 +1029,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         aws_access_key_id = config.require_object("awsAccessKeyId")
         aws_secret_access_key = config.require_object("awsSecretAccessKey")
         current = aws.get_region()
-        s3_backups = vault.RaftSnapshotAgentConfig("s3Backups",
+        s3_backups = vault.RaftSnapshotAgentConfig("s3_backups",
+            name="s3",
             interval_seconds=86400,
             retain=7,
             path_prefix="/path/in/bucket",
@@ -1150,11 +1041,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_enable_kms=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Azure BLOB
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1162,7 +1051,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         config = pulumi.Config()
         azure_account_name = config.require_object("azureAccountName")
         azure_account_key = config.require_object("azureAccountKey")
-        azure_backups = vault.RaftSnapshotAgentConfig("azureBackups",
+        azure_backups = vault.RaftSnapshotAgentConfig("azure_backups",
+            name="azure_backup",
             interval_seconds=86400,
             retain=7,
             path_prefix="/",
@@ -1171,7 +1061,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             azure_account_name=azure_account_name,
             azure_account_key=azure_account_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1184,57 +1073,30 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_access_key_id: AWS access key ID.
-        :param pulumi.Input[str] aws_s3_bucket: `<required>` - S3 bucket to write snapshots to.
-        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `aws_s3_endpoint`.
+        :param pulumi.Input[str] aws_s3_bucket: S3 bucket to write snapshots to.
+        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         :param pulumi.Input[bool] aws_s3_enable_kms: Use KMS to encrypt bucket contents.
-        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when
-               using a non-AWS S3 implementation like Minio.
-        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style
-               instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
-        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when `aws_s3_enable_kms = true`
-        :param pulumi.Input[str] aws_s3_region: `<required>` - AWS region bucket is in.
+        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
+        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style instead of bucket.endpoint.
+        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when aws_s3_enable_kms=true
+        :param pulumi.Input[str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[str] aws_session_token: AWS session token.
         :param pulumi.Input[str] azure_account_key: Azure account key.
         :param pulumi.Input[str] azure_account_name: Azure account name.
         :param pulumi.Input[str] azure_blob_environment: Azure blob environment.
-        :param pulumi.Input[str] azure_container_name: `<required>` - Azure container name to write
-               snapshots to.
-        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically
-               only set when using a non-Azure implementation like Azurite.
+        :param pulumi.Input[str] azure_container_name: Azure container name to write snapshots to.
+        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[str] file_prefix: Within the directory or bucket
                prefix given by `path_prefix`, the file or object name of snapshot files
                will start with this string.
-        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `google_endpoint`.
-        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when
-               using a non-Google GCS implementation like fake-gcs-server.
-        :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
-        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
-               The raw value looks like this:
-               
-               ```json
-               {
-               "type": "service_account",
-               "project_id": "project-id",
-               "private_key_id": "key-id",
-               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-               "client_email": "service-account-email",
-               "client_id": "client-id",
-               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-               "token_uri": "https://accounts.google.com/o/oauth2/token",
-               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-               }
-               ```
+        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint.
+        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
+        :param pulumi.Input[str] google_gcs_bucket: GCS bucket to write snapshots to.
+        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format.
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
-        :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
-               space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-               space left in this allowance.
+        :param pulumi.Input[int] local_max_space: The maximum space, in bytes, to use for snapshots.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1261,22 +1123,20 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         ## Example Usage
 
         ### Local Storage
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        local_backups = vault.RaftSnapshotAgentConfig("localBackups",
+        local_backups = vault.RaftSnapshotAgentConfig("local_backups",
+            name="local",
             interval_seconds=86400,
-            local_max_space=10000000,
-            path_prefix="/opt/vault/snapshots/",
             retain=7,
-            storage_type="local")
+            path_prefix="/opt/vault/snapshots/",
+            storage_type="local",
+            local_max_space=10000000)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### AWS S3
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1286,7 +1146,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         aws_access_key_id = config.require_object("awsAccessKeyId")
         aws_secret_access_key = config.require_object("awsSecretAccessKey")
         current = aws.get_region()
-        s3_backups = vault.RaftSnapshotAgentConfig("s3Backups",
+        s3_backups = vault.RaftSnapshotAgentConfig("s3_backups",
+            name="s3",
             interval_seconds=86400,
             retain=7,
             path_prefix="/path/in/bucket",
@@ -1297,11 +1158,9 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_enable_kms=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Azure BLOB
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1309,7 +1168,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         config = pulumi.Config()
         azure_account_name = config.require_object("azureAccountName")
         azure_account_key = config.require_object("azureAccountKey")
-        azure_backups = vault.RaftSnapshotAgentConfig("azureBackups",
+        azure_backups = vault.RaftSnapshotAgentConfig("azure_backups",
+            name="azure_backup",
             interval_seconds=86400,
             retain=7,
             path_prefix="/",
@@ -1318,7 +1178,6 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             azure_account_name=azure_account_name,
             azure_account_key=azure_account_key)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1460,57 +1319,30 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] aws_access_key_id: AWS access key ID.
-        :param pulumi.Input[str] aws_s3_bucket: `<required>` - S3 bucket to write snapshots to.
-        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `aws_s3_endpoint`.
+        :param pulumi.Input[str] aws_s3_bucket: S3 bucket to write snapshots to.
+        :param pulumi.Input[bool] aws_s3_disable_tls: Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         :param pulumi.Input[bool] aws_s3_enable_kms: Use KMS to encrypt bucket contents.
-        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when
-               using a non-AWS S3 implementation like Minio.
-        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style
-               instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
-        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when `aws_s3_enable_kms = true`
-        :param pulumi.Input[str] aws_s3_region: `<required>` - AWS region bucket is in.
+        :param pulumi.Input[str] aws_s3_endpoint: AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
+        :param pulumi.Input[bool] aws_s3_force_path_style: Use the endpoint/bucket URL style instead of bucket.endpoint.
+        :param pulumi.Input[str] aws_s3_kms_key: Use named KMS key, when aws_s3_enable_kms=true
+        :param pulumi.Input[str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[str] aws_secret_access_key: AWS secret access key.
         :param pulumi.Input[str] aws_session_token: AWS session token.
         :param pulumi.Input[str] azure_account_key: Azure account key.
         :param pulumi.Input[str] azure_account_name: Azure account name.
         :param pulumi.Input[str] azure_blob_environment: Azure blob environment.
-        :param pulumi.Input[str] azure_container_name: `<required>` - Azure container name to write
-               snapshots to.
-        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically
-               only set when using a non-Azure implementation like Azurite.
+        :param pulumi.Input[str] azure_container_name: Azure container name to write snapshots to.
+        :param pulumi.Input[str] azure_endpoint: Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         :param pulumi.Input[str] file_prefix: Within the directory or bucket
                prefix given by `path_prefix`, the file or object name of snapshot files
                will start with this string.
-        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint. This
-               should only be used for testing purposes, typically in conjunction with
-               `google_endpoint`.
-        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when
-               using a non-Google GCS implementation like fake-gcs-server.
-        :param pulumi.Input[str] google_gcs_bucket: `<required>` - GCS bucket to write snapshots to.
-        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format. 
-               The raw value looks like this:
-               
-               ```json
-               {
-               "type": "service_account",
-               "project_id": "project-id",
-               "private_key_id": "key-id",
-               "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-               "client_email": "service-account-email",
-               "client_id": "client-id",
-               "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-               "token_uri": "https://accounts.google.com/o/oauth2/token",
-               "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-               "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-               }
-               ```
+        :param pulumi.Input[bool] google_disable_tls: Disable TLS for the GCS endpoint.
+        :param pulumi.Input[str] google_endpoint: GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
+        :param pulumi.Input[str] google_gcs_bucket: GCS bucket to write snapshots to.
+        :param pulumi.Input[str] google_service_account_key: Google service account key in JSON format.
         :param pulumi.Input[int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
-        :param pulumi.Input[int] local_max_space: For `storage_type = local`, the maximum
-               space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-               space left in this allowance.
+        :param pulumi.Input[int] local_max_space: The maximum space, in bytes, to use for snapshots.
         :param pulumi.Input[str] name: `<required>` – Name of the configuration to modify.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1573,7 +1405,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="awsS3Bucket")
     def aws_s3_bucket(self) -> pulumi.Output[Optional[str]]:
         """
-        `<required>` - S3 bucket to write snapshots to.
+        S3 bucket to write snapshots to.
         """
         return pulumi.get(self, "aws_s3_bucket")
 
@@ -1581,9 +1413,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="awsS3DisableTls")
     def aws_s3_disable_tls(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disable TLS for the S3 endpoint. This
-        should only be used for testing purposes, typically in conjunction with
-        `aws_s3_endpoint`.
+        Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         """
         return pulumi.get(self, "aws_s3_disable_tls")
 
@@ -1599,8 +1429,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="awsS3Endpoint")
     def aws_s3_endpoint(self) -> pulumi.Output[Optional[str]]:
         """
-        AWS endpoint. This is typically only set when
-        using a non-AWS S3 implementation like Minio.
+        AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         """
         return pulumi.get(self, "aws_s3_endpoint")
 
@@ -1608,8 +1437,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="awsS3ForcePathStyle")
     def aws_s3_force_path_style(self) -> pulumi.Output[Optional[bool]]:
         """
-        Use the endpoint/bucket URL style
-        instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+        Use the endpoint/bucket URL style instead of bucket.endpoint.
         """
         return pulumi.get(self, "aws_s3_force_path_style")
 
@@ -1617,7 +1445,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="awsS3KmsKey")
     def aws_s3_kms_key(self) -> pulumi.Output[Optional[str]]:
         """
-        Use named KMS key, when `aws_s3_enable_kms = true`
+        Use named KMS key, when aws_s3_enable_kms=true
         """
         return pulumi.get(self, "aws_s3_kms_key")
 
@@ -1625,7 +1453,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="awsS3Region")
     def aws_s3_region(self) -> pulumi.Output[Optional[str]]:
         """
-        `<required>` - AWS region bucket is in.
+        AWS region bucket is in.
         """
         return pulumi.get(self, "aws_s3_region")
 
@@ -1681,8 +1509,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="azureContainerName")
     def azure_container_name(self) -> pulumi.Output[Optional[str]]:
         """
-        `<required>` - Azure container name to write
-        snapshots to.
+        Azure container name to write snapshots to.
         """
         return pulumi.get(self, "azure_container_name")
 
@@ -1690,8 +1517,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="azureEndpoint")
     def azure_endpoint(self) -> pulumi.Output[Optional[str]]:
         """
-        Azure blob storage endpoint. This is typically
-        only set when using a non-Azure implementation like Azurite.
+        Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         """
         return pulumi.get(self, "azure_endpoint")
 
@@ -1709,9 +1535,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="googleDisableTls")
     def google_disable_tls(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disable TLS for the GCS endpoint. This
-        should only be used for testing purposes, typically in conjunction with
-        `google_endpoint`.
+        Disable TLS for the GCS endpoint.
         """
         return pulumi.get(self, "google_disable_tls")
 
@@ -1719,8 +1543,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="googleEndpoint")
     def google_endpoint(self) -> pulumi.Output[Optional[str]]:
         """
-        GCS endpoint. This is typically only set when
-        using a non-Google GCS implementation like fake-gcs-server.
+        GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         """
         return pulumi.get(self, "google_endpoint")
 
@@ -1728,7 +1551,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="googleGcsBucket")
     def google_gcs_bucket(self) -> pulumi.Output[Optional[str]]:
         """
-        `<required>` - GCS bucket to write snapshots to.
+        GCS bucket to write snapshots to.
         """
         return pulumi.get(self, "google_gcs_bucket")
 
@@ -1736,23 +1559,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="googleServiceAccountKey")
     def google_service_account_key(self) -> pulumi.Output[Optional[str]]:
         """
-        Google service account key in JSON format. 
-        The raw value looks like this:
-
-        ```json
-        {
-        "type": "service_account",
-        "project_id": "project-id",
-        "private_key_id": "key-id",
-        "private_key": "-----BEGIN RSA PRIVATE KEY-----\\nMIIEpQ ... /WZs=\\n-----END RSA PRIVATE KEY-----\\n",
-        "client_email": "service-account-email",
-        "client_id": "client-id",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://accounts.google.com/o/oauth2/token",
-        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-account-email"
-        }
-        ```
+        Google service account key in JSON format.
         """
         return pulumi.get(self, "google_service_account_key")
 
@@ -1768,9 +1575,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     @pulumi.getter(name="localMaxSpace")
     def local_max_space(self) -> pulumi.Output[Optional[int]]:
         """
-        For `storage_type = local`, the maximum
-        space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-        space left in this allowance.
+        The maximum space, in bytes, to use for snapshots.
         """
         return pulumi.get(self, "local_max_space")
 

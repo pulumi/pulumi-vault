@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,8 +30,8 @@ import (
 //				Backend:     pulumi.String("ad"),
 //				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
 //				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-//				InsecureTls: pulumi.Bool(true),
 //				Url:         pulumi.String("ldaps://ad"),
+//				InsecureTls: pulumi.Bool(true),
 //				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
 //			})
 //			if err != nil {
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

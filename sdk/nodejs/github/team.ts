@@ -11,13 +11,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
- * const tfDevs = new vault.github.Team("tfDevs", {
+ * const tfDevs = new vault.github.Team("tf_devs", {
  *     backend: example.id,
  *     team: "terraform-developers",
  *     policies: [
@@ -26,7 +25,6 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

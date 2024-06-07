@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,22 +44,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var key = new OidcKey(&#34;key&#34;, OidcKeyArgs.builder()        
- *             .algorithm(&#34;RS256&#34;)
+ *         var key = new OidcKey("key", OidcKeyArgs.builder()
+ *             .name("key")
+ *             .algorithm("RS256")
  *             .build());
  * 
- *         var roleOidcRole = new OidcRole(&#34;roleOidcRole&#34;, OidcRoleArgs.builder()        
+ *         var role = new OidcRole("role", OidcRoleArgs.builder()
+ *             .name("role")
  *             .key(key.name())
  *             .build());
  * 
- *         var roleOidcKeyAllowedClientID = new OidcKeyAllowedClientID(&#34;roleOidcKeyAllowedClientID&#34;, OidcKeyAllowedClientIDArgs.builder()        
+ *         var roleOidcKeyAllowedClientID = new OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", OidcKeyAllowedClientIDArgs.builder()
  *             .keyName(key.name())
- *             .allowedClientId(roleOidcRole.clientId())
+ *             .allowedClientId(role.clientId())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

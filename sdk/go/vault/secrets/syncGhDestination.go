@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -27,8 +26,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := secrets.NewSyncGhDestination(ctx, "gh", &secrets.SyncGhDestinationArgs{
-//				AccessToken:        pulumi.Any(_var.Access_token),
-//				RepositoryOwner:    pulumi.Any(_var.Repo_owner),
+//				Name:               pulumi.String("gh-dest"),
+//				AccessToken:        pulumi.Any(accessToken),
+//				RepositoryOwner:    pulumi.Any(repoOwner),
 //				RepositoryName:     pulumi.String("repo-name-example"),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
 //			})
@@ -40,7 +40,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -10,27 +10,27 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const testOidcAssignment = new vault.identity.OidcAssignment("testOidcAssignment", {
+ * const test = new vault.identity.OidcAssignment("test", {
+ *     name: "my-assignment",
  *     entityIds: ["ascbascas-2231a-sdfaa"],
  *     groupIds: ["sajkdsad-32414-sfsada"],
  * });
- * const testOidcClient = new vault.identity.OidcClient("testOidcClient", {
+ * const testOidcClient = new vault.identity.OidcClient("test", {
+ *     name: "my-app",
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
  *         "http://127.0.0.1:8251/callback",
  *         "http://127.0.0.1:8080/callback",
  *     ],
- *     assignments: [testOidcAssignment.name],
+ *     assignments: [test.name],
  *     idTokenTtl: 2400,
  *     accessTokenTtl: 7200,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

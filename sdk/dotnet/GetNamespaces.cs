@@ -16,7 +16,6 @@ namespace Pulumi.Vault
         /// 
         /// ### Child namespaces
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -29,13 +28,11 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Nested namespace
         /// 
         /// To fetch the details of nested namespaces:
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -49,18 +46,20 @@ namespace Pulumi.Vault
         ///         Namespace = "parent",
         ///     });
         /// 
-        ///     var child = .Select(__value =&gt; 
-        ///     {
+        ///     var child = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key;
+        ///     }, item =&gt; {
+        ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,
         ///         });
-        ///     }).ToList();
+        ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNamespacesResult> InvokeAsync(GetNamespacesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNamespacesResult>("vault:index/getNamespaces:getNamespaces", args ?? new GetNamespacesArgs(), options.WithDefaults());
@@ -70,7 +69,6 @@ namespace Pulumi.Vault
         /// 
         /// ### Child namespaces
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -83,13 +81,11 @@ namespace Pulumi.Vault
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Nested namespace
         /// 
         /// To fetch the details of nested namespaces:
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -103,18 +99,20 @@ namespace Pulumi.Vault
         ///         Namespace = "parent",
         ///     });
         /// 
-        ///     var child = .Select(__value =&gt; 
-        ///     {
+        ///     var child = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key;
+        ///     }, item =&gt; {
+        ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,
         ///         });
-        ///     }).ToList();
+        ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNamespacesResult> Invoke(GetNamespacesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespacesResult>("vault:index/getNamespaces:getNamespaces", args ?? new GetNamespacesInvokeArgs(), options.WithDefaults());

@@ -7,14 +7,14 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const vercel = new vault.secrets.SyncVercelDestination("vercel", {
- *     accessToken: _var.access_token,
- *     projectId: _var.project_id,
+ *     name: "vercel-dest",
+ *     accessToken: accessToken,
+ *     projectId: projectId,
  *     deploymentEnvironments: [
  *         "development",
  *         "preview",
@@ -23,7 +23,6 @@ import * as utilities from "../utilities";
  *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

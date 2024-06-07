@@ -11,22 +11,20 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const allow_all = new vault.EgpPolicy("allow-all", {
- *     enforcementLevel: "soft-mandatory",
+ *     name: "allow-all",
  *     paths: ["*"],
+ *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule {
  *   true
  * }
- *
  * `,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class EgpPolicy extends pulumi.CustomResource {
     /**

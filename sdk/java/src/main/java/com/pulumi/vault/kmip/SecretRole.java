@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,22 +50,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var default_ = new SecretBackend(&#34;default&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;kmip&#34;)
- *             .description(&#34;Vault KMIP backend&#34;)
+ *         var default_ = new SecretBackend("default", SecretBackendArgs.builder()
+ *             .path("kmip")
+ *             .description("Vault KMIP backend")
  *             .build());
  * 
- *         var dev = new SecretScope(&#34;dev&#34;, SecretScopeArgs.builder()        
+ *         var dev = new SecretScope("dev", SecretScopeArgs.builder()
  *             .path(default_.path())
- *             .scope(&#34;dev&#34;)
+ *             .scope("dev")
  *             .force(true)
  *             .build());
  * 
- *         var admin = new SecretRole(&#34;admin&#34;, SecretRoleArgs.builder()        
+ *         var admin = new SecretRole("admin", SecretRoleArgs.builder()
  *             .path(dev.path())
  *             .scope(dev.scope())
- *             .role(&#34;admin&#34;)
- *             .tlsClientKeyType(&#34;ec&#34;)
+ *             .role("admin")
+ *             .tlsClientKeyType("ec")
  *             .tlsClientKeyBits(256)
  *             .operationActivate(true)
  *             .operationGet(true)
@@ -75,7 +76,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -197,17 +197,15 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("example",
+            backend=example.path,
             safety_buffer=360)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,17 +232,15 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="aws")
-        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_roletag_blacklist = vault.aws.AuthBackendRoletagBlacklist("example",
+            backend=example.path,
             safety_buffer=360)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AuthBackendRoletagBlacklistArgs args: The arguments to use to populate this resource's properties.

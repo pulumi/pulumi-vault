@@ -14,7 +14,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,8 +24,8 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var root = new Vault.PkiSecret.SecretBackendRootSignIntermediate("root", new()
     ///     {
-    ///         Backend = vault_mount.Root.Path,
-    ///         Csr = vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr,
+    ///         Backend = rootVaultMount.Path,
+    ///         Csr = intermediate.Csr,
     ///         CommonName = "Intermediate CA",
     ///         ExcludeCnFromSans = true,
     ///         Ou = "My OU",
@@ -35,13 +34,12 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_pki_secret_backend_intermediate_cert_request.Intermediate, 
+    ///             intermediate,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate")]
     public partial class SecretBackendRootSignIntermediate : global::Pulumi.CustomResource

@@ -21,7 +21,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -35,6 +34,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewQuotaRateLimit(ctx, "global", &vault.QuotaRateLimitArgs{
+//				Name: pulumi.String("global"),
 //				Path: pulumi.String(""),
 //				Rate: pulumi.Float64(100),
 //			})
@@ -46,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

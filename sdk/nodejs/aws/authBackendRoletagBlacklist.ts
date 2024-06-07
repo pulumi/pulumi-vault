@@ -9,18 +9,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const exampleAuthBackend = new vault.AuthBackend("exampleAuthBackend", {type: "aws"});
- * const exampleAuthBackendRoletagBlacklist = new vault.aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", {
- *     backend: exampleAuthBackend.path,
+ * const example = new vault.AuthBackend("example", {type: "aws"});
+ * const exampleAuthBackendRoletagBlacklist = new vault.aws.AuthBackendRoletagBlacklist("example", {
+ *     backend: example.path,
  *     safetyBuffer: 360,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AuthBackendRoletagBlacklist extends pulumi.CustomResource {
     /**

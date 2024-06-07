@@ -12,7 +12,6 @@ namespace Pulumi.Vault.AD
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,6 +33,7 @@ namespace Pulumi.Vault.AD
     ///     var qa = new Vault.AD.SecretLibrary("qa", new()
     ///     {
     ///         Backend = config.Backend,
+    ///         Name = "qa",
     ///         ServiceAccountNames = new[]
     ///         {
     ///             "Bob",
@@ -46,7 +46,6 @@ namespace Pulumi.Vault.AD
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

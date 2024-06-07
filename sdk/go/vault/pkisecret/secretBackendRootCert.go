@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := pkiSecret.NewSecretBackendRootCert(ctx, "test", &pkiSecret.SecretBackendRootCertArgs{
-//				Backend:           pulumi.Any(vault_mount.Pki.Path),
+//				Backend:           pulumi.Any(pki.Path),
 //				Type:              pulumi.String("internal"),
 //				CommonName:        pulumi.String("Root CA"),
 //				Ttl:               pulumi.String("315360000"),
@@ -40,7 +39,7 @@ import (
 //				Ou:                pulumi.String("My OU"),
 //				Organization:      pulumi.String("My organization"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_mount.Pki,
+//				pki,
 //			}))
 //			if err != nil {
 //				return err
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type SecretBackendRootCert struct {
 	pulumi.CustomResourceState
 

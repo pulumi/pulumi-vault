@@ -12,38 +12,45 @@ import * as utilities from "../utilities";
  * exist before the role can be used to issue tokens. You must also configure the key with the
  * role's Client ID to allow the role to use the key.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new pulumi.Config();
+ * // Name of the OIDC Key
  * const key = config.get("key") || "key";
- * const role = new vault.identity.OidcRole("role", {key: key});
- * const keyOidcKey = new vault.identity.OidcKey("keyOidcKey", {
+ * const role = new vault.identity.OidcRole("role", {
+ *     name: "role",
+ *     key: key,
+ * });
+ * const keyOidcKey = new vault.identity.OidcKey("key", {
+ *     name: key,
  *     algorithm: "RS256",
  *     allowedClientIds: [role.clientId],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * If you want to create the key first before creating the role, you can use a separate
  * resource to configure the allowed Client ID on
  * the key.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const key = new vault.identity.OidcKey("key", {algorithm: "RS256"});
- * const roleOidcRole = new vault.identity.OidcRole("roleOidcRole", {key: key.name});
- * const roleOidcKeyAllowedClientID = new vault.identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", {
+ * const key = new vault.identity.OidcKey("key", {
+ *     name: "key",
+ *     algorithm: "RS256",
+ * });
+ * const role = new vault.identity.OidcRole("role", {
+ *     name: "role",
+ *     key: key.name,
+ * });
+ * const roleOidcKeyAllowedClientID = new vault.identity.OidcKeyAllowedClientID("role", {
  *     keyName: key.name,
- *     allowedClientId: roleOidcRole.clientId,
+ *     allowedClientId: role.clientId,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

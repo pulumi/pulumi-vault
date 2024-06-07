@@ -530,32 +530,28 @@ class SecretBackend(pulumi.CustomResource):
         ## Example Usage
 
         ### Creating a standard backend resource:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.consul.SecretBackend("test",
-            address="127.0.0.1:8500",
-            description="Manages the Consul backend",
             path="consul",
+            description="Manages the Consul backend",
+            address="127.0.0.1:8500",
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Creating a backend resource to bootstrap a new Consul instance:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.consul.SecretBackend("test",
-            address="127.0.0.1:8500",
-            bootstrap=True,
+            path="consul",
             description="Bootstrap the Consul backend",
-            path="consul")
+            address="127.0.0.1:8500",
+            bootstrap=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -600,32 +596,28 @@ class SecretBackend(pulumi.CustomResource):
         ## Example Usage
 
         ### Creating a standard backend resource:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.consul.SecretBackend("test",
-            address="127.0.0.1:8500",
-            description="Manages the Consul backend",
             path="consul",
+            description="Manages the Consul backend",
+            address="127.0.0.1:8500",
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Creating a backend resource to bootstrap a new Consul instance:
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.consul.SecretBackend("test",
-            address="127.0.0.1:8500",
-            bootstrap=True,
+            path="consul",
             description="Bootstrap the Consul backend",
-            path="consul")
+            address="127.0.0.1:8500",
+            bootstrap=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

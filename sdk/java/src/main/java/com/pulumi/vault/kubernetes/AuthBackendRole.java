@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,26 +49,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kubernetes = new AuthBackend(&#34;kubernetes&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;kubernetes&#34;)
+ *         var kubernetes = new AuthBackend("kubernetes", AuthBackendArgs.builder()
+ *             .type("kubernetes")
  *             .build());
  * 
- *         var example = new AuthBackendRole(&#34;example&#34;, AuthBackendRoleArgs.builder()        
+ *         var example = new AuthBackendRole("example", AuthBackendRoleArgs.builder()
  *             .backend(kubernetes.path())
- *             .roleName(&#34;example-role&#34;)
- *             .boundServiceAccountNames(&#34;example&#34;)
- *             .boundServiceAccountNamespaces(&#34;example&#34;)
+ *             .roleName("example-role")
+ *             .boundServiceAccountNames("example")
+ *             .boundServiceAccountNamespaces("example")
  *             .tokenTtl(3600)
  *             .tokenPolicies(            
- *                 &#34;default&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
- *             .audience(&#34;vault&#34;)
+ *                 "default",
+ *                 "dev",
+ *                 "prod")
+ *             .audience("vault")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -196,122 +198,98 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.roleName;
     }
     /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
-     * @return List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * @return Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     public Output<Optional<List<String>>> tokenBoundCidrs() {
         return Codegen.optional(this.tokenBoundCidrs);
     }
     /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
-     * @return If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * @return Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     public Output<Optional<Integer>> tokenExplicitMaxTtl() {
         return Codegen.optional(this.tokenExplicitMaxTtl);
     }
     /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The maximum lifetime of the generated token
      * 
      */
     @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
-     * @return The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The maximum lifetime of the generated token
      * 
      */
     public Output<Optional<Integer>> tokenMaxTtl() {
         return Codegen.optional(this.tokenMaxTtl);
     }
     /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
-     * @return If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * @return If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     public Output<Optional<Boolean>> tokenNoDefaultPolicy() {
         return Codegen.optional(this.tokenNoDefaultPolicy);
     }
     /**
-     * The [maximum number](https://www.vaultproject.io/api-docs/kubernetes#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenNumUses;
 
     /**
-     * @return The [maximum number](https://www.vaultproject.io/api-docs/kubernetes#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     public Output<Optional<Integer>> tokenNumUses() {
         return Codegen.optional(this.tokenNumUses);
     }
     /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * Generated Token&#39;s Period
      * 
      */
     @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
-     * @return If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * @return Generated Token&#39;s Period
      * 
      */
     public Output<Optional<Integer>> tokenPeriod() {
         return Codegen.optional(this.tokenPeriod);
     }
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token&#39;s Policies
      * 
      */
     @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
-     * @return List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * @return Generated Token&#39;s Policies
      * 
      */
     public Output<Optional<List<String>>> tokenPolicies() {
@@ -332,22 +310,14 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tokenTtl);
     }
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      * 
      */
     @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * @return The type of token to generate, service or batch
      * 
      */
     public Output<Optional<String>> tokenType() {

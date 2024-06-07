@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Azure
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,13 +22,13 @@ namespace Pulumi.Vault.Azure
     /// {
     ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
-    ///         SubscriptionId = @var.Subscription_id,
-    ///         TenantId = @var.Tenant_id,
-    ///         ClientSecret = @var.Client_secret,
-    ///         ClientId = @var.Client_id,
+    ///         SubscriptionId = subscriptionId,
+    ///         TenantId = tenantId,
+    ///         ClientSecret = clientSecret,
+    ///         ClientId = clientId,
     ///     });
     /// 
-    ///     var generatedRole = new Vault.Azure.BackendRole("generatedRole", new()
+    ///     var generatedRole = new Vault.Azure.BackendRole("generated_role", new()
     ///     {
     ///         Backend = azure.Path,
     ///         Role = "generated_role",
@@ -46,12 +45,12 @@ namespace Pulumi.Vault.Azure
     ///             new Vault.Azure.Inputs.BackendRoleAzureRoleArgs
     ///             {
     ///                 RoleName = "Reader",
-    ///                 Scope = $"/subscriptions/{@var.Subscription_id}/resourceGroups/azure-vault-group",
+    ///                 Scope = $"/subscriptions/{subscriptionId}/resourceGroups/azure-vault-group",
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var existingObjectId = new Vault.Azure.BackendRole("existingObjectId", new()
+    ///     var existingObjectId = new Vault.Azure.BackendRole("existing_object_id", new()
     ///     {
     ///         Backend = azure.Path,
     ///         Role = "existing_object_id",
@@ -62,7 +61,6 @@ namespace Pulumi.Vault.Azure
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:azure/backendRole:BackendRole")]
     public partial class BackendRole : global::Pulumi.CustomResource

@@ -18,7 +18,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ### Exclusive Member Groups
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,6 +28,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalMemberGroupIds = true,
     ///         Metadata = 
@@ -39,6 +39,7 @@ namespace Pulumi.Vault.Identity
     /// 
     ///     var users = new Vault.Identity.Group("users", new()
     ///     {
+    ///         Name = "users",
     ///         Metadata = 
     ///         {
     ///             { "version", "2" },
@@ -57,11 +58,9 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Non-Exclusive Member Groups
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -72,6 +71,7 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
+    ///         Name = "internal",
     ///         Type = "internal",
     ///         ExternalMemberGroupIds = true,
     ///         Metadata = 
@@ -82,6 +82,7 @@ namespace Pulumi.Vault.Identity
     /// 
     ///     var users = new Vault.Identity.Group("users", new()
     ///     {
+    ///         Name = "users",
     ///         Metadata = 
     ///         {
     ///             { "version", "2" },
@@ -100,7 +101,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:identity/groupMemberGroupIds:GroupMemberGroupIds")]
     public partial class GroupMemberGroupIds : global::Pulumi.CustomResource

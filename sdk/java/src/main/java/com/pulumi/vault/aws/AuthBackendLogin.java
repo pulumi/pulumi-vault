@@ -28,74 +28,6 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.AuthBackend;
- * import com.pulumi.vault.AuthBackendArgs;
- * import com.pulumi.vault.aws.AuthBackendClient;
- * import com.pulumi.vault.aws.AuthBackendClientArgs;
- * import com.pulumi.vault.aws.AuthBackendRole;
- * import com.pulumi.vault.aws.AuthBackendRoleArgs;
- * import com.pulumi.vault.aws.AuthBackendLogin;
- * import com.pulumi.vault.aws.AuthBackendLoginArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var aws = new AuthBackend(&#34;aws&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;aws&#34;)
- *             .path(&#34;aws&#34;)
- *             .build());
- * 
- *         var exampleAuthBackendClient = new AuthBackendClient(&#34;exampleAuthBackendClient&#34;, AuthBackendClientArgs.builder()        
- *             .backend(aws.path())
- *             .accessKey(&#34;123456789012&#34;)
- *             .secretKey(&#34;AWSSECRETKEYGOESHERE&#34;)
- *             .build());
- * 
- *         var exampleAuthBackendRole = new AuthBackendRole(&#34;exampleAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
- *             .backend(aws.path())
- *             .role(&#34;test-role&#34;)
- *             .authType(&#34;ec2&#34;)
- *             .boundAmiId(&#34;ami-8c1be5f6&#34;)
- *             .boundAccountId(&#34;123456789012&#34;)
- *             .boundVpcId(&#34;vpc-b61106d4&#34;)
- *             .boundSubnetId(&#34;vpc-133128f1&#34;)
- *             .boundIamInstanceProfileArns(&#34;arn:aws:iam::123456789012:instance-profile/MyProfile&#34;)
- *             .ttl(60)
- *             .maxTtl(120)
- *             .tokenPolicies(            
- *                 &#34;default&#34;,
- *                 &#34;dev&#34;,
- *                 &#34;prod&#34;)
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(&#34;vault_aws_auth_backend_client.example&#34;)
- *                 .build());
- * 
- *         var exampleAuthBackendLogin = new AuthBackendLogin(&#34;exampleAuthBackendLogin&#34;, AuthBackendLoginArgs.builder()        
- *             .backend(vault_auth_backend.example().path())
- *             .role(exampleAuthBackendRole.role())
- *             .identity(&#34;BASE64ENCODEDIDENTITYDOCUMENT&#34;)
- *             .signature(&#34;BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
@@ -255,17 +187,9 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
     public Output<Integer> leaseDuration() {
         return this.leaseDuration;
     }
-    /**
-     * Time at which the lease was read, using the clock of the system where Terraform was running
-     * 
-     */
     @Export(name="leaseStartTime", refs={String.class}, tree="[0]")
     private Output<String> leaseStartTime;
 
-    /**
-     * @return Time at which the lease was read, using the clock of the system where Terraform was running
-     * 
-     */
     public Output<String> leaseStartTime() {
         return this.leaseStartTime;
     }

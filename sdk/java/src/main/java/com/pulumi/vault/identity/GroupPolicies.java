@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ### Exclusive Policies
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,29 +48,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()
+ *             .name("internal")
+ *             .type("internal")
  *             .externalPolicies(true)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var policies = new GroupPolicies(&#34;policies&#34;, GroupPoliciesArgs.builder()        
+ *         var policies = new GroupPolicies("policies", GroupPoliciesArgs.builder()
  *             .policies(            
- *                 &#34;default&#34;,
- *                 &#34;test&#34;)
+ *                 "default",
+ *                 "test")
  *             .exclusive(true)
  *             .groupId(internal.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Non-exclusive Policies
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -92,29 +96,31 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()
+ *             .name("internal")
+ *             .type("internal")
  *             .externalPolicies(true)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var default_ = new GroupPolicies(&#34;default&#34;, GroupPoliciesArgs.builder()        
+ *         var default_ = new GroupPolicies("default", GroupPoliciesArgs.builder()
  *             .policies(            
- *                 &#34;default&#34;,
- *                 &#34;test&#34;)
+ *                 "default",
+ *                 "test")
  *             .exclusive(false)
  *             .groupId(internal.id())
  *             .build());
  * 
- *         var others = new GroupPolicies(&#34;others&#34;, GroupPoliciesArgs.builder()        
- *             .policies(&#34;others&#34;)
+ *         var others = new GroupPolicies("others", GroupPoliciesArgs.builder()
+ *             .policies("others")
  *             .exclusive(false)
  *             .groupId(internal.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

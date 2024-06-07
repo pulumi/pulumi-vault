@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -28,7 +27,6 @@ import * as utilities from "../utilities";
  *     backend: root.backend,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBackendIssuers(args: GetBackendIssuersArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendIssuersResult> {
 
@@ -83,7 +81,6 @@ export interface GetBackendIssuersResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -104,7 +101,6 @@ export interface GetBackendIssuersResult {
  *     backend: root.backend,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getBackendIssuersOutput(args: GetBackendIssuersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendIssuersResult> {
     return pulumi.output(args).apply((a: any) => getBackendIssuers(a, opts))

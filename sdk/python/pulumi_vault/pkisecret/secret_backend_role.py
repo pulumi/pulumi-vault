@@ -1593,7 +1593,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1605,6 +1604,7 @@ class SecretBackendRole(pulumi.CustomResource):
             max_lease_ttl_seconds=86400)
         role = vault.pki_secret.SecretBackendRole("role",
             backend=pki.path,
+            name="my_role",
             ttl="3600",
             allow_ip_sans=True,
             key_type="rsa",
@@ -1615,7 +1615,6 @@ class SecretBackendRole(pulumi.CustomResource):
             ],
             allow_subdomains=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1694,7 +1693,6 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1706,6 +1704,7 @@ class SecretBackendRole(pulumi.CustomResource):
             max_lease_ttl_seconds=86400)
         role = vault.pki_secret.SecretBackendRole("role",
             backend=pki.path,
+            name="my_role",
             ttl="3600",
             allow_ip_sans=True,
             key_type="rsa",
@@ -1716,7 +1715,6 @@ class SecretBackendRole(pulumi.CustomResource):
             ],
             allow_subdomains=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

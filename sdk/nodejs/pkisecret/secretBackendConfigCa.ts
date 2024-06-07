@@ -7,13 +7,12 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const intermediate = new vault.pkisecret.SecretBackendConfigCa("intermediate", {
- *     backend: vault_mount.intermediate.path,
+ *     backend: intermediateVaultMount.path,
  *     pemBundle: `-----BEGIN RSA PRIVATE KEY-----
  * MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
  * 5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -64,10 +63,9 @@ import * as utilities from "../utilities";
  * -----END CERTIFICATE-----
  * `,
  * }, {
- *     dependsOn: [vault_mount.intermediate],
+ *     dependsOn: [intermediateVaultMount],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SecretBackendConfigCa extends pulumi.CustomResource {
     /**

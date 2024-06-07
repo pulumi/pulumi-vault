@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,19 +22,19 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var test = new Vault.Identity.Entity("test", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "foo", "bar" },
-    ///         },
+    ///         Name = "tester1",
     ///         Policies = new[]
     ///         {
     ///             "test",
+    ///         },
+    ///         Metadata = 
+    ///         {
+    ///             { "foo", "bar" },
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

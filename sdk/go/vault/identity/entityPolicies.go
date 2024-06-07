@@ -18,7 +18,6 @@ import (
 //
 // ### Exclusive Policies
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
+//				Name:             pulumi.String("entity"),
 //				ExternalPolicies: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -53,11 +53,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Non-exclusive Policies
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -71,6 +69,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			entity, err := identity.NewEntity(ctx, "entity", &identity.EntityArgs{
+//				Name:             pulumi.String("entity"),
 //				ExternalPolicies: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -102,7 +101,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type EntityPolicies struct {
 	pulumi.CustomResourceState
 

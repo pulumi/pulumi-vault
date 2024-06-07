@@ -14,33 +14,10 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type SecretBackendRoleAllowedUserKeyConfig struct {
-	// A list of allowed key lengths as integers.
-	// For key types that do not support setting the length a value of `[0]` should be used.
-	// Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-	// must be set to a single element list.
-	//
-	// Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
+	// List of allowed key lengths, vault-1.10 and above
 	Lengths []int `pulumi:"lengths"`
-	// The SSH public key type.\
-	// *Supported key types are:*
-	// `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-	// `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+	// Key type, choices:
+	// rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
 	Type string `pulumi:"type"`
 }
 
@@ -56,33 +33,10 @@ type SecretBackendRoleAllowedUserKeyConfigInput interface {
 }
 
 type SecretBackendRoleAllowedUserKeyConfigArgs struct {
-	// A list of allowed key lengths as integers.
-	// For key types that do not support setting the length a value of `[0]` should be used.
-	// Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-	// must be set to a single element list.
-	//
-	// Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-	//
-	// <!--Start PulumiCodeChooser -->
-	// ```go
-	// package main
-	//
-	// import (
-	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	// )
-	//
-	// func main() {
-	// 	pulumi.Run(func(ctx *pulumi.Context) error {
-	// 		return nil
-	// 	})
-	// }
-	// ```
-	// <!--End PulumiCodeChooser -->
+	// List of allowed key lengths, vault-1.10 and above
 	Lengths pulumi.IntArrayInput `pulumi:"lengths"`
-	// The SSH public key type.\
-	// *Supported key types are:*
-	// `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-	// `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+	// Key type, choices:
+	// rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -137,39 +91,13 @@ func (o SecretBackendRoleAllowedUserKeyConfigOutput) ToSecretBackendRoleAllowedU
 	return o
 }
 
-// A list of allowed key lengths as integers.
-// For key types that do not support setting the length a value of `[0]` should be used.
-// Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-// must be set to a single element list.
-//
-// Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
+// List of allowed key lengths, vault-1.10 and above
 func (o SecretBackendRoleAllowedUserKeyConfigOutput) Lengths() pulumi.IntArrayOutput {
 	return o.ApplyT(func(v SecretBackendRoleAllowedUserKeyConfig) []int { return v.Lengths }).(pulumi.IntArrayOutput)
 }
 
-// The SSH public key type.\
-// *Supported key types are:*
-// `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-// `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+// Key type, choices:
+// rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
 func (o SecretBackendRoleAllowedUserKeyConfigOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretBackendRoleAllowedUserKeyConfig) string { return v.Type }).(pulumi.StringOutput)
 }

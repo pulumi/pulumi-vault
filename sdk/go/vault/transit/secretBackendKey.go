@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,6 +41,7 @@ import (
 //			}
 //			_, err = transit.NewSecretBackendKey(ctx, "key", &transit.SecretBackendKeyArgs{
 //				Backend: transit.Path,
+//				Name:    pulumi.String("my_key"),
 //			})
 //			if err != nil {
 //				return err
@@ -51,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

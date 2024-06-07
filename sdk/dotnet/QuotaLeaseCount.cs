@@ -21,7 +21,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,13 +31,13 @@ namespace Pulumi.Vault
     /// {
     ///     var @global = new Vault.QuotaLeaseCount("global", new()
     ///     {
-    ///         MaxLeases = 100,
+    ///         Name = "global",
     ///         Path = "",
+    ///         MaxLeases = 100,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -14,38 +14,31 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type KeysAw struct {
-	// The AWS access key to use.
+	// The AWS access key to use
 	AccessKey string `pulumi:"accessKey"`
-	// If no existing key can be found in
-	// the referenced backend, instructs Vault to generate a key within the backend.
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey *bool `pulumi:"allowGenerateKey"`
-	// Controls the ability for Vault to replace through
-	// generation or importing a key into the configured backend even
-	// if a key is present, if set to `false` those operations are forbidden
-	// if a key exists.
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 	AllowReplaceKey *bool `pulumi:"allowReplaceKey"`
-	// Controls the ability for Vault to import a key to the
-	// configured backend, if `false`, those operations will be forbidden.
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 	AllowStoreKey *bool `pulumi:"allowStoreKey"`
-	// If `true`, allows usage from any mount point within the
-	// namespace.
+	// Allow usage from any mount point within the namespace if 'true'
 	AnyMount *bool `pulumi:"anyMount"`
-	// The curve to use for an ECDSA key. Used when `keyType`
-	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
+	// The curve to use for an ECDSA key. Used when keyType is 'ECDSA'. Required if 'allow_generate_key' is true
 	Curve *string `pulumi:"curve"`
-	// Used to specify a custom AWS endpoint.
+	// Used to specify a custom AWS endpoint
 	Endpoint *string `pulumi:"endpoint"`
-	// The size in bits for an RSA key.
+	// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
 	KeyBits string `pulumi:"keyBits"`
-	// The type of key to use.
+	// The type of key to use
 	KeyType string `pulumi:"keyType"`
-	// An identifier for the key.
+	// An identifier for the key
 	KmsKey string `pulumi:"kmsKey"`
-	// A unique lowercase name that serves as identifying the key.
+	// A unique lowercase name that serves as identifying the key
 	Name string `pulumi:"name"`
-	// The AWS region where the keys are stored (or will be stored).
+	// The AWS region where the keys are stored (or will be stored)
 	Region *string `pulumi:"region"`
-	// The AWS access key to use.
+	// The AWS secret key to use
 	SecretKey string `pulumi:"secretKey"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
@@ -63,38 +56,31 @@ type KeysAwInput interface {
 }
 
 type KeysAwArgs struct {
-	// The AWS access key to use.
+	// The AWS access key to use
 	AccessKey pulumi.StringInput `pulumi:"accessKey"`
-	// If no existing key can be found in
-	// the referenced backend, instructs Vault to generate a key within the backend.
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey pulumi.BoolPtrInput `pulumi:"allowGenerateKey"`
-	// Controls the ability for Vault to replace through
-	// generation or importing a key into the configured backend even
-	// if a key is present, if set to `false` those operations are forbidden
-	// if a key exists.
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 	AllowReplaceKey pulumi.BoolPtrInput `pulumi:"allowReplaceKey"`
-	// Controls the ability for Vault to import a key to the
-	// configured backend, if `false`, those operations will be forbidden.
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 	AllowStoreKey pulumi.BoolPtrInput `pulumi:"allowStoreKey"`
-	// If `true`, allows usage from any mount point within the
-	// namespace.
+	// Allow usage from any mount point within the namespace if 'true'
 	AnyMount pulumi.BoolPtrInput `pulumi:"anyMount"`
-	// The curve to use for an ECDSA key. Used when `keyType`
-	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
+	// The curve to use for an ECDSA key. Used when keyType is 'ECDSA'. Required if 'allow_generate_key' is true
 	Curve pulumi.StringPtrInput `pulumi:"curve"`
-	// Used to specify a custom AWS endpoint.
+	// Used to specify a custom AWS endpoint
 	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
-	// The size in bits for an RSA key.
+	// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
 	KeyBits pulumi.StringInput `pulumi:"keyBits"`
-	// The type of key to use.
+	// The type of key to use
 	KeyType pulumi.StringInput `pulumi:"keyType"`
-	// An identifier for the key.
+	// An identifier for the key
 	KmsKey pulumi.StringInput `pulumi:"kmsKey"`
-	// A unique lowercase name that serves as identifying the key.
+	// A unique lowercase name that serves as identifying the key
 	Name pulumi.StringInput `pulumi:"name"`
-	// The AWS region where the keys are stored (or will be stored).
+	// The AWS region where the keys are stored (or will be stored)
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The AWS access key to use.
+	// The AWS secret key to use
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
@@ -151,74 +137,67 @@ func (o KeysAwOutput) ToKeysAwOutputWithContext(ctx context.Context) KeysAwOutpu
 	return o
 }
 
-// The AWS access key to use.
+// The AWS access key to use
 func (o KeysAwOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
-// If no existing key can be found in
-// the referenced backend, instructs Vault to generate a key within the backend.
+// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 func (o KeysAwOutput) AllowGenerateKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAw) *bool { return v.AllowGenerateKey }).(pulumi.BoolPtrOutput)
 }
 
-// Controls the ability for Vault to replace through
-// generation or importing a key into the configured backend even
-// if a key is present, if set to `false` those operations are forbidden
-// if a key exists.
+// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 func (o KeysAwOutput) AllowReplaceKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAw) *bool { return v.AllowReplaceKey }).(pulumi.BoolPtrOutput)
 }
 
-// Controls the ability for Vault to import a key to the
-// configured backend, if `false`, those operations will be forbidden.
+// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 func (o KeysAwOutput) AllowStoreKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAw) *bool { return v.AllowStoreKey }).(pulumi.BoolPtrOutput)
 }
 
-// If `true`, allows usage from any mount point within the
-// namespace.
+// Allow usage from any mount point within the namespace if 'true'
 func (o KeysAwOutput) AnyMount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAw) *bool { return v.AnyMount }).(pulumi.BoolPtrOutput)
 }
 
-// The curve to use for an ECDSA key. Used when `keyType`
-// is `ECDSA`. Required if `allowGenerateKey` is `true`.
+// The curve to use for an ECDSA key. Used when keyType is 'ECDSA'. Required if 'allow_generate_key' is true
 func (o KeysAwOutput) Curve() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Curve }).(pulumi.StringPtrOutput)
 }
 
-// Used to specify a custom AWS endpoint.
+// Used to specify a custom AWS endpoint
 func (o KeysAwOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
-// The size in bits for an RSA key.
+// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
 func (o KeysAwOutput) KeyBits() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.KeyBits }).(pulumi.StringOutput)
 }
 
-// The type of key to use.
+// The type of key to use
 func (o KeysAwOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.KeyType }).(pulumi.StringOutput)
 }
 
-// An identifier for the key.
+// An identifier for the key
 func (o KeysAwOutput) KmsKey() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.KmsKey }).(pulumi.StringOutput)
 }
 
-// A unique lowercase name that serves as identifying the key.
+// A unique lowercase name that serves as identifying the key
 func (o KeysAwOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The AWS region where the keys are stored (or will be stored).
+// The AWS region where the keys are stored (or will be stored)
 func (o KeysAwOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The AWS access key to use.
+// The AWS secret key to use
 func (o KeysAwOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.SecretKey }).(pulumi.StringOutput)
 }
@@ -249,41 +228,35 @@ func (o KeysAwArrayOutput) Index(i pulumi.IntInput) KeysAwOutput {
 }
 
 type KeysAzure struct {
-	// If no existing key can be found in
-	// the referenced backend, instructs Vault to generate a key within the backend.
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey *bool `pulumi:"allowGenerateKey"`
-	// Controls the ability for Vault to replace through
-	// generation or importing a key into the configured backend even
-	// if a key is present, if set to `false` those operations are forbidden
-	// if a key exists.
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 	AllowReplaceKey *bool `pulumi:"allowReplaceKey"`
-	// Controls the ability for Vault to import a key to the
-	// configured backend, if `false`, those operations will be forbidden.
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 	AllowStoreKey *bool `pulumi:"allowStoreKey"`
-	// If `true`, allows usage from any mount point within the
-	// namespace.
+	// Allow usage from any mount point within the namespace if 'true'
 	AnyMount *bool `pulumi:"anyMount"`
-	// The client id for credentials to query the Azure APIs.
+	// The client id for credentials to query the Azure APIs
 	ClientId string `pulumi:"clientId"`
-	// The client secret for credentials to query the Azure APIs.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret string `pulumi:"clientSecret"`
-	// The Azure Cloud environment API endpoints to use.
+	// The Azure Cloud environment API endpoints to use
 	Environment *string `pulumi:"environment"`
-	// The size in bits for an RSA key.
+	// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
 	KeyBits *string `pulumi:"keyBits"`
-	// The Key Vault key to use for encryption and decryption.
+	// The Key Vault key to use for encryption and decryption
 	KeyName string `pulumi:"keyName"`
-	// The type of key to use.
+	// The type of key to use
 	KeyType string `pulumi:"keyType"`
-	// A unique lowercase name that serves as identifying the key.
+	// A unique lowercase name that serves as identifying the key
 	Name string `pulumi:"name"`
-	// The Azure Key Vault resource's DNS Suffix to connect to.
+	// The Azure Key Vault resource's DNS Suffix to connect to
 	Resource *string `pulumi:"resource"`
-	// The tenant id for the Azure Active Directory organization.
+	// The tenant id for the Azure Active Directory organization
 	TenantId string `pulumi:"tenantId"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
-	// The Key Vault vault to use for encryption and decryption.
+	// The Key Vault vault to use the encryption keys for encryption and decryption
 	VaultName string `pulumi:"vaultName"`
 }
 
@@ -299,41 +272,35 @@ type KeysAzureInput interface {
 }
 
 type KeysAzureArgs struct {
-	// If no existing key can be found in
-	// the referenced backend, instructs Vault to generate a key within the backend.
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey pulumi.BoolPtrInput `pulumi:"allowGenerateKey"`
-	// Controls the ability for Vault to replace through
-	// generation or importing a key into the configured backend even
-	// if a key is present, if set to `false` those operations are forbidden
-	// if a key exists.
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 	AllowReplaceKey pulumi.BoolPtrInput `pulumi:"allowReplaceKey"`
-	// Controls the ability for Vault to import a key to the
-	// configured backend, if `false`, those operations will be forbidden.
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 	AllowStoreKey pulumi.BoolPtrInput `pulumi:"allowStoreKey"`
-	// If `true`, allows usage from any mount point within the
-	// namespace.
+	// Allow usage from any mount point within the namespace if 'true'
 	AnyMount pulumi.BoolPtrInput `pulumi:"anyMount"`
-	// The client id for credentials to query the Azure APIs.
+	// The client id for credentials to query the Azure APIs
 	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// The client secret for credentials to query the Azure APIs.
+	// The client secret for credentials to query the Azure APIs
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
-	// The Azure Cloud environment API endpoints to use.
+	// The Azure Cloud environment API endpoints to use
 	Environment pulumi.StringPtrInput `pulumi:"environment"`
-	// The size in bits for an RSA key.
+	// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
 	KeyBits pulumi.StringPtrInput `pulumi:"keyBits"`
-	// The Key Vault key to use for encryption and decryption.
+	// The Key Vault key to use for encryption and decryption
 	KeyName pulumi.StringInput `pulumi:"keyName"`
-	// The type of key to use.
+	// The type of key to use
 	KeyType pulumi.StringInput `pulumi:"keyType"`
-	// A unique lowercase name that serves as identifying the key.
+	// A unique lowercase name that serves as identifying the key
 	Name pulumi.StringInput `pulumi:"name"`
-	// The Azure Key Vault resource's DNS Suffix to connect to.
+	// The Azure Key Vault resource's DNS Suffix to connect to
 	Resource pulumi.StringPtrInput `pulumi:"resource"`
-	// The tenant id for the Azure Active Directory organization.
+	// The tenant id for the Azure Active Directory organization
 	TenantId pulumi.StringInput `pulumi:"tenantId"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
-	// The Key Vault vault to use for encryption and decryption.
+	// The Key Vault vault to use the encryption keys for encryption and decryption
 	VaultName pulumi.StringInput `pulumi:"vaultName"`
 }
 
@@ -388,73 +355,67 @@ func (o KeysAzureOutput) ToKeysAzureOutputWithContext(ctx context.Context) KeysA
 	return o
 }
 
-// If no existing key can be found in
-// the referenced backend, instructs Vault to generate a key within the backend.
+// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 func (o KeysAzureOutput) AllowGenerateKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *bool { return v.AllowGenerateKey }).(pulumi.BoolPtrOutput)
 }
 
-// Controls the ability for Vault to replace through
-// generation or importing a key into the configured backend even
-// if a key is present, if set to `false` those operations are forbidden
-// if a key exists.
+// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 func (o KeysAzureOutput) AllowReplaceKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *bool { return v.AllowReplaceKey }).(pulumi.BoolPtrOutput)
 }
 
-// Controls the ability for Vault to import a key to the
-// configured backend, if `false`, those operations will be forbidden.
+// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 func (o KeysAzureOutput) AllowStoreKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *bool { return v.AllowStoreKey }).(pulumi.BoolPtrOutput)
 }
 
-// If `true`, allows usage from any mount point within the
-// namespace.
+// Allow usage from any mount point within the namespace if 'true'
 func (o KeysAzureOutput) AnyMount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *bool { return v.AnyMount }).(pulumi.BoolPtrOutput)
 }
 
-// The client id for credentials to query the Azure APIs.
+// The client id for credentials to query the Azure APIs
 func (o KeysAzureOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// The client secret for credentials to query the Azure APIs.
+// The client secret for credentials to query the Azure APIs
 func (o KeysAzureOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
-// The Azure Cloud environment API endpoints to use.
+// The Azure Cloud environment API endpoints to use
 func (o KeysAzureOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.Environment }).(pulumi.StringPtrOutput)
 }
 
-// The size in bits for an RSA key.
+// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
 func (o KeysAzureOutput) KeyBits() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.KeyBits }).(pulumi.StringPtrOutput)
 }
 
-// The Key Vault key to use for encryption and decryption.
+// The Key Vault key to use for encryption and decryption
 func (o KeysAzureOutput) KeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.KeyName }).(pulumi.StringOutput)
 }
 
-// The type of key to use.
+// The type of key to use
 func (o KeysAzureOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.KeyType }).(pulumi.StringOutput)
 }
 
-// A unique lowercase name that serves as identifying the key.
+// A unique lowercase name that serves as identifying the key
 func (o KeysAzureOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The Azure Key Vault resource's DNS Suffix to connect to.
+// The Azure Key Vault resource's DNS Suffix to connect to
 func (o KeysAzureOutput) Resource() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.Resource }).(pulumi.StringPtrOutput)
 }
 
-// The tenant id for the Azure Active Directory organization.
+// The tenant id for the Azure Active Directory organization
 func (o KeysAzureOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.TenantId }).(pulumi.StringOutput)
 }
@@ -464,7 +425,7 @@ func (o KeysAzureOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.Uuid }).(pulumi.StringPtrOutput)
 }
 
-// The Key Vault vault to use for encryption and decryption.
+// The Key Vault vault to use the encryption keys for encryption and decryption
 func (o KeysAzureOutput) VaultName() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.VaultName }).(pulumi.StringOutput)
 }
@@ -490,46 +451,35 @@ func (o KeysAzureArrayOutput) Index(i pulumi.IntInput) KeysAzureOutput {
 }
 
 type KeysPkc struct {
-	// If no existing key can be found in
-	// the referenced backend, instructs Vault to generate a key within the backend.
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey *bool `pulumi:"allowGenerateKey"`
-	// Controls the ability for Vault to replace through
-	// generation or importing a key into the configured backend even
-	// if a key is present, if set to `false` those operations are forbidden
-	// if a key exists.
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 	AllowReplaceKey *bool `pulumi:"allowReplaceKey"`
-	// Controls the ability for Vault to import a key to the
-	// configured backend, if `false`, those operations will be forbidden.
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 	AllowStoreKey *bool `pulumi:"allowStoreKey"`
-	// If `true`, allows usage from any mount point within the
-	// namespace.
+	// Allow usage from any mount point within the namespace if 'true'
 	AnyMount *bool `pulumi:"anyMount"`
-	// The curve to use for an ECDSA key. Used when `keyType`
-	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
+	// Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
 	Curve *string `pulumi:"curve"`
-	// Force all operations to open up a read-write session to
-	// the HSM.
+	// Force all operations to open up a read-write session to the HSM
 	ForceRwSession *string `pulumi:"forceRwSession"`
-	// The size in bits for an RSA key.
+	// Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
 	KeyBits *string `pulumi:"keyBits"`
-	// The id of a PKCS#11 key to use.
+	// The id of a PKCS#11 key to use
 	KeyId string `pulumi:"keyId"`
-	// The label of the key to use.
+	// The label of the key to use
 	KeyLabel string `pulumi:"keyLabel"`
-	// The name of the kmsLibrary stanza to use from Vault's config
-	// to lookup the local library path.
+	// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 	Library string `pulumi:"library"`
-	// The encryption/decryption mechanism to use, specified as a
-	// hexadecimal (prefixed by 0x) string.
+	// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
 	Mechanism string `pulumi:"mechanism"`
-	// A unique lowercase name that serves as identifying the key.
+	// A unique lowercase name that serves as identifying the key
 	Name string `pulumi:"name"`
-	// The PIN for login.
+	// The PIN for login
 	Pin string `pulumi:"pin"`
-	// The slot number to use, specified as a string in a decimal format
-	// (e.g. `2305843009213693953`).
+	// The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
 	Slot *string `pulumi:"slot"`
-	// The slot token label to use.
+	// The slot token label to use
 	TokenLabel *string `pulumi:"tokenLabel"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
@@ -547,46 +497,35 @@ type KeysPkcInput interface {
 }
 
 type KeysPkcArgs struct {
-	// If no existing key can be found in
-	// the referenced backend, instructs Vault to generate a key within the backend.
+	// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 	AllowGenerateKey pulumi.BoolPtrInput `pulumi:"allowGenerateKey"`
-	// Controls the ability for Vault to replace through
-	// generation or importing a key into the configured backend even
-	// if a key is present, if set to `false` those operations are forbidden
-	// if a key exists.
+	// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 	AllowReplaceKey pulumi.BoolPtrInput `pulumi:"allowReplaceKey"`
-	// Controls the ability for Vault to import a key to the
-	// configured backend, if `false`, those operations will be forbidden.
+	// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 	AllowStoreKey pulumi.BoolPtrInput `pulumi:"allowStoreKey"`
-	// If `true`, allows usage from any mount point within the
-	// namespace.
+	// Allow usage from any mount point within the namespace if 'true'
 	AnyMount pulumi.BoolPtrInput `pulumi:"anyMount"`
-	// The curve to use for an ECDSA key. Used when `keyType`
-	// is `ECDSA`. Required if `allowGenerateKey` is `true`.
+	// Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
 	Curve pulumi.StringPtrInput `pulumi:"curve"`
-	// Force all operations to open up a read-write session to
-	// the HSM.
+	// Force all operations to open up a read-write session to the HSM
 	ForceRwSession pulumi.StringPtrInput `pulumi:"forceRwSession"`
-	// The size in bits for an RSA key.
+	// Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
 	KeyBits pulumi.StringPtrInput `pulumi:"keyBits"`
-	// The id of a PKCS#11 key to use.
+	// The id of a PKCS#11 key to use
 	KeyId pulumi.StringInput `pulumi:"keyId"`
-	// The label of the key to use.
+	// The label of the key to use
 	KeyLabel pulumi.StringInput `pulumi:"keyLabel"`
-	// The name of the kmsLibrary stanza to use from Vault's config
-	// to lookup the local library path.
+	// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 	Library pulumi.StringInput `pulumi:"library"`
-	// The encryption/decryption mechanism to use, specified as a
-	// hexadecimal (prefixed by 0x) string.
+	// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
-	// A unique lowercase name that serves as identifying the key.
+	// A unique lowercase name that serves as identifying the key
 	Name pulumi.StringInput `pulumi:"name"`
-	// The PIN for login.
+	// The PIN for login
 	Pin pulumi.StringInput `pulumi:"pin"`
-	// The slot number to use, specified as a string in a decimal format
-	// (e.g. `2305843009213693953`).
+	// The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
 	Slot pulumi.StringPtrInput `pulumi:"slot"`
-	// The slot token label to use.
+	// The slot token label to use
 	TokenLabel pulumi.StringPtrInput `pulumi:"tokenLabel"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
@@ -643,88 +582,77 @@ func (o KeysPkcOutput) ToKeysPkcOutputWithContext(ctx context.Context) KeysPkcOu
 	return o
 }
 
-// If no existing key can be found in
-// the referenced backend, instructs Vault to generate a key within the backend.
+// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
 func (o KeysPkcOutput) AllowGenerateKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *bool { return v.AllowGenerateKey }).(pulumi.BoolPtrOutput)
 }
 
-// Controls the ability for Vault to replace through
-// generation or importing a key into the configured backend even
-// if a key is present, if set to `false` those operations are forbidden
-// if a key exists.
+// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
 func (o KeysPkcOutput) AllowReplaceKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *bool { return v.AllowReplaceKey }).(pulumi.BoolPtrOutput)
 }
 
-// Controls the ability for Vault to import a key to the
-// configured backend, if `false`, those operations will be forbidden.
+// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
 func (o KeysPkcOutput) AllowStoreKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *bool { return v.AllowStoreKey }).(pulumi.BoolPtrOutput)
 }
 
-// If `true`, allows usage from any mount point within the
-// namespace.
+// Allow usage from any mount point within the namespace if 'true'
 func (o KeysPkcOutput) AnyMount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *bool { return v.AnyMount }).(pulumi.BoolPtrOutput)
 }
 
-// The curve to use for an ECDSA key. Used when `keyType`
-// is `ECDSA`. Required if `allowGenerateKey` is `true`.
+// Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
 func (o KeysPkcOutput) Curve() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.Curve }).(pulumi.StringPtrOutput)
 }
 
-// Force all operations to open up a read-write session to
-// the HSM.
+// Force all operations to open up a read-write session to the HSM
 func (o KeysPkcOutput) ForceRwSession() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.ForceRwSession }).(pulumi.StringPtrOutput)
 }
 
-// The size in bits for an RSA key.
+// Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
 func (o KeysPkcOutput) KeyBits() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.KeyBits }).(pulumi.StringPtrOutput)
 }
 
-// The id of a PKCS#11 key to use.
+// The id of a PKCS#11 key to use
 func (o KeysPkcOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// The label of the key to use.
+// The label of the key to use
 func (o KeysPkcOutput) KeyLabel() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.KeyLabel }).(pulumi.StringOutput)
 }
 
-// The name of the kmsLibrary stanza to use from Vault's config
-// to lookup the local library path.
+// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 func (o KeysPkcOutput) Library() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Library }).(pulumi.StringOutput)
 }
 
-// The encryption/decryption mechanism to use, specified as a
-// hexadecimal (prefixed by 0x) string.
+// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
 func (o KeysPkcOutput) Mechanism() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Mechanism }).(pulumi.StringOutput)
 }
 
-// A unique lowercase name that serves as identifying the key.
+// A unique lowercase name that serves as identifying the key
 func (o KeysPkcOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The PIN for login.
+// The PIN for login
 func (o KeysPkcOutput) Pin() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Pin }).(pulumi.StringOutput)
 }
 
-// The slot number to use, specified as a string in a decimal format
-// (e.g. `2305843009213693953`).
+// The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
 func (o KeysPkcOutput) Slot() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.Slot }).(pulumi.StringPtrOutput)
 }
 
-// The slot token label to use.
+// The slot token label to use
 func (o KeysPkcOutput) TokenLabel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.TokenLabel }).(pulumi.StringPtrOutput)
 }

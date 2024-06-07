@@ -11,20 +11,19 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const myTotp = new vault.MfaTotp("myTotp", {
+ * const myTotp = new vault.MfaTotp("my_totp", {
+ *     name: "my_totp",
+ *     issuer: "hashicorp",
+ *     period: 60,
  *     algorithm: "SHA256",
  *     digits: 8,
- *     issuer: "hashicorp",
  *     keySize: 20,
- *     period: 60,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

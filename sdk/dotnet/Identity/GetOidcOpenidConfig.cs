@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -25,6 +24,7 @@ namespace Pulumi.Vault.Identity
         /// {
         ///     var key = new Vault.Identity.OidcKey("key", new()
         ///     {
+        ///         Name = "key",
         ///         AllowedClientIds = new[]
         ///         {
         ///             "*",
@@ -35,6 +35,7 @@ namespace Pulumi.Vault.Identity
         /// 
         ///     var app = new Vault.Identity.OidcClient("app", new()
         ///     {
+        ///         Name = "application",
         ///         Key = key.Name,
         ///         RedirectUris = new[]
         ///         {
@@ -48,9 +49,10 @@ namespace Pulumi.Vault.Identity
         /// 
         ///     var provider = new Vault.Identity.OidcProvider("provider", new()
         ///     {
+        ///         Name = "provider",
         ///         AllowedClientIds = new[]
         ///         {
-        ///             vault_identity_oidc_client.Test.Client_id,
+        ///             test.ClientId,
         ///         },
         ///     });
         /// 
@@ -61,7 +63,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetOidcOpenidConfigResult> InvokeAsync(GetOidcOpenidConfigArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigArgs(), options.WithDefaults());
@@ -69,7 +70,6 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -80,6 +80,7 @@ namespace Pulumi.Vault.Identity
         /// {
         ///     var key = new Vault.Identity.OidcKey("key", new()
         ///     {
+        ///         Name = "key",
         ///         AllowedClientIds = new[]
         ///         {
         ///             "*",
@@ -90,6 +91,7 @@ namespace Pulumi.Vault.Identity
         /// 
         ///     var app = new Vault.Identity.OidcClient("app", new()
         ///     {
+        ///         Name = "application",
         ///         Key = key.Name,
         ///         RedirectUris = new[]
         ///         {
@@ -103,9 +105,10 @@ namespace Pulumi.Vault.Identity
         /// 
         ///     var provider = new Vault.Identity.OidcProvider("provider", new()
         ///     {
+        ///         Name = "provider",
         ///         AllowedClientIds = new[]
         ///         {
-        ///             vault_identity_oidc_client.Test.Client_id,
+        ///             test.ClientId,
         ///         },
         ///     });
         /// 
@@ -116,7 +119,6 @@ namespace Pulumi.Vault.Identity
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetOidcOpenidConfigResult> Invoke(GetOidcOpenidConfigInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcOpenidConfigResult>("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args ?? new GetOidcOpenidConfigInvokeArgs(), options.WithDefaults());

@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,39 +47,40 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var azure = new Backend(&#34;azure&#34;, BackendArgs.builder()        
- *             .subscriptionId(var_.subscription_id())
- *             .tenantId(var_.tenant_id())
- *             .clientSecret(var_.client_secret())
- *             .clientId(var_.client_id())
+ *         var azure = new Backend("azure", BackendArgs.builder()
+ *             .subscriptionId(subscriptionId)
+ *             .tenantId(tenantId)
+ *             .clientSecret(clientSecret)
+ *             .clientId(clientId)
  *             .build());
  * 
- *         var generatedRole = new BackendRole(&#34;generatedRole&#34;, BackendRoleArgs.builder()        
+ *         var generatedRole = new BackendRole("generatedRole", BackendRoleArgs.builder()
  *             .backend(azure.path())
- *             .role(&#34;generated_role&#34;)
- *             .signInAudience(&#34;AzureADMyOrg&#34;)
+ *             .role("generated_role")
+ *             .signInAudience("AzureADMyOrg")
  *             .tags(            
- *                 &#34;team:engineering&#34;,
- *                 &#34;environment:development&#34;)
+ *                 "team:engineering",
+ *                 "environment:development")
  *             .ttl(300)
  *             .maxTtl(600)
  *             .azureRoles(BackendRoleAzureRoleArgs.builder()
- *                 .roleName(&#34;Reader&#34;)
- *                 .scope(String.format(&#34;/subscriptions/%s/resourceGroups/azure-vault-group&#34;, var_.subscription_id()))
+ *                 .roleName("Reader")
+ *                 .scope(String.format("/subscriptions/%s/resourceGroups/azure-vault-group", subscriptionId))
  *                 .build())
  *             .build());
  * 
- *         var existingObjectId = new BackendRole(&#34;existingObjectId&#34;, BackendRoleArgs.builder()        
+ *         var existingObjectId = new BackendRole("existingObjectId", BackendRoleArgs.builder()
  *             .backend(azure.path())
- *             .role(&#34;existing_object_id&#34;)
- *             .applicationObjectId(&#34;11111111-2222-3333-4444-44444444444&#34;)
+ *             .role("existing_object_id")
+ *             .applicationObjectId("11111111-2222-3333-4444-44444444444")
  *             .ttl(300)
  *             .maxTtl(600)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

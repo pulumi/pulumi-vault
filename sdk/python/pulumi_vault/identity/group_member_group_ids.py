@@ -213,49 +213,51 @@ class GroupMemberGroupIds(pulumi.CustomResource):
 
         ### Exclusive Member Groups
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=True,
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-Exclusive Member Groups
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=False,
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -289,49 +291,51 @@ class GroupMemberGroupIds(pulumi.CustomResource):
 
         ### Exclusive Member Groups
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=True,
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-Exclusive Member Groups
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_group_ids=True,
             metadata={
                 "version": "2",
             })
-        users = vault.identity.Group("users", metadata={
-            "version": "2",
-        })
+        users = vault.identity.Group("users",
+            name="users",
+            metadata={
+                "version": "2",
+            })
         members = vault.identity.GroupMemberGroupIds("members",
             exclusive=False,
             member_group_ids=[users.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GroupMemberGroupIdsArgs args: The arguments to use to populate this resource's properties.

@@ -14,7 +14,6 @@ namespace Pulumi.Vault
     /// 
     /// ### File Audit Device)
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,20 +24,18 @@ namespace Pulumi.Vault
     /// {
     ///     var test = new Vault.Audit("test", new()
     ///     {
+    ///         Type = "file",
     ///         Options = 
     ///         {
     ///             { "file_path", "C:/temp/audit.txt" },
     ///         },
-    ///         Type = "file",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Socket Audit Device)
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -49,20 +46,19 @@ namespace Pulumi.Vault
     /// {
     ///     var test = new Vault.Audit("test", new()
     ///     {
+    ///         Type = "socket",
+    ///         Path = "app_socket",
     ///         Local = false,
     ///         Options = 
     ///         {
     ///             { "address", "127.0.0.1:8000" },
-    ///             { "description", "application x socket" },
     ///             { "socket_type", "tcp" },
+    ///             { "description", "application x socket" },
     ///         },
-    ///         Path = "app_socket",
-    ///         Type = "socket",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

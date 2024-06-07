@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,21 +49,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transit = new Mount(&#34;transit&#34;, MountArgs.builder()        
- *             .path(&#34;transit&#34;)
- *             .type(&#34;transit&#34;)
- *             .description(&#34;Example description&#34;)
+ *         var transit = new Mount("transit", MountArgs.builder()
+ *             .path("transit")
+ *             .type("transit")
+ *             .description("Example description")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
+ *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
  *             .backend(transit.path())
+ *             .name("my_key")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

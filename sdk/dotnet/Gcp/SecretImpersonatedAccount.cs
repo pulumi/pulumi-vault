@@ -17,18 +17,17 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Gcp = Pulumi.Gcp;
+    /// using Google = Pulumi.Google;
+    /// using Std = Pulumi.Std;
     /// using Vault = Pulumi.Vault;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Gcp.ServiceAccount.Account("this", new()
+    ///     var @this = new Google.Index.ServiceAccount("this", new()
     ///     {
     ///         AccountId = "my-awesome-account",
     ///     });
@@ -36,10 +35,13 @@ namespace Pulumi.Vault.Gcp
     ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
     ///         Path = "gcp",
-    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "credentials.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
-    ///     var impersonatedAccount = new Vault.Gcp.SecretImpersonatedAccount("impersonatedAccount", new()
+    ///     var impersonatedAccount = new Vault.Gcp.SecretImpersonatedAccount("impersonated_account", new()
     ///     {
     ///         Backend = gcp.Path,
     ///         ImpersonatedAccount = "this",
@@ -52,7 +54,6 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

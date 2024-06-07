@@ -19,22 +19,9 @@ class SecretBackendRoleAllowedUserKeyConfigArgs:
                  lengths: pulumi.Input[Sequence[pulumi.Input[int]]],
                  type: pulumi.Input[str]):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[int]]] lengths: A list of allowed key lengths as integers. 
-               For key types that do not support setting the length a value of `[0]` should be used.
-               Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-               must be set to a single element list.
-               
-               Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-               
-               <!--Start PulumiCodeChooser -->
-               ```python
-               import pulumi
-               ```
-               <!--End PulumiCodeChooser -->
-        :param pulumi.Input[str] type: The SSH public key type.  
-               *Supported key types are:*
-               `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-               `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] lengths: List of allowed key lengths, vault-1.10 and above
+        :param pulumi.Input[str] type: Key type, choices:
+               rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
         """
         pulumi.set(__self__, "lengths", lengths)
         pulumi.set(__self__, "type", type)
@@ -43,18 +30,7 @@ class SecretBackendRoleAllowedUserKeyConfigArgs:
     @pulumi.getter
     def lengths(self) -> pulumi.Input[Sequence[pulumi.Input[int]]]:
         """
-        A list of allowed key lengths as integers. 
-        For key types that do not support setting the length a value of `[0]` should be used.
-        Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-        must be set to a single element list.
-
-        Example configuration blocks that might be included in the `ssh.SecretBackendRole`
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        ```
-        <!--End PulumiCodeChooser -->
+        List of allowed key lengths, vault-1.10 and above
         """
         return pulumi.get(self, "lengths")
 
@@ -66,10 +42,8 @@ class SecretBackendRoleAllowedUserKeyConfigArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The SSH public key type.  
-        *Supported key types are:*
-        `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-        `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+        Key type, choices:
+        rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
         """
         return pulumi.get(self, "type")
 

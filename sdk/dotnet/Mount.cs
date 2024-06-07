@@ -14,7 +14,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,16 +24,14 @@ namespace Pulumi.Vault
     /// {
     ///     var example = new Vault.Mount("example", new()
     ///     {
-    ///         Description = "This is an example mount",
     ///         Path = "dummy",
     ///         Type = "generic",
+    ///         Description = "This is an example mount",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,21 +42,19 @@ namespace Pulumi.Vault
     /// {
     ///     var kvv2_example = new Vault.Mount("kvv2-example", new()
     ///     {
-    ///         Description = "This is an example KV Version 2 secret engine mount",
-    ///         Options = 
-    ///         {
-    ///             { "type", "kv-v2" },
-    ///             { "version", "2" },
-    ///         },
     ///         Path = "version2-example",
     ///         Type = "kv-v2",
+    ///         Options = 
+    ///         {
+    ///             { "version", "2" },
+    ///             { "type", "kv-v2" },
+    ///         },
+    ///         Description = "This is an example KV Version 2 secret engine mount",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -70,20 +65,18 @@ namespace Pulumi.Vault
     /// {
     ///     var transit_example = new Vault.Mount("transit-example", new()
     ///     {
+    ///         Path = "transit-example",
+    ///         Type = "transit",
     ///         Description = "This is an example transit secret engine mount",
     ///         Options = 
     ///         {
     ///             { "convergent_encryption", false },
     ///         },
-    ///         Path = "transit-example",
-    ///         Type = "transit",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -94,16 +87,15 @@ namespace Pulumi.Vault
     /// {
     ///     var pki_example = new Vault.Mount("pki-example", new()
     ///     {
-    ///         DefaultLeaseTtlSeconds = 3600,
-    ///         Description = "This is an example PKI mount",
-    ///         MaxLeaseTtlSeconds = 86400,
     ///         Path = "pki-example",
     ///         Type = "pki",
+    ///         Description = "This is an example PKI mount",
+    ///         DefaultLeaseTtlSeconds = 3600,
+    ///         MaxLeaseTtlSeconds = 86400,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := pkiSecret.NewSecretBackendConfigCa(ctx, "intermediate", &pkiSecret.SecretBackendConfigCaArgs{
-//				Backend: pulumi.Any(vault_mount.Intermediate.Path),
+//				Backend: pulumi.Any(intermediateVaultMount.Path),
 //				PemBundle: pulumi.String(`-----BEGIN RSA PRIVATE KEY-----
 //
 // MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
@@ -81,7 +80,7 @@ import (
 // `),
 //
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_mount.Intermediate,
+//				intermediateVaultMount,
 //			}))
 //			if err != nil {
 //				return err
@@ -91,7 +90,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type SecretBackendConfigCa struct {
 	pulumi.CustomResourceState
 

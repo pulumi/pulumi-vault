@@ -6,6 +6,28 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const pki = new vault.Mount("pki", {
+ *     path: "pki",
+ *     type: "pki",
+ *     description: "PKI secret engine mount",
+ * });
+ * const root = new vault.pkisecret.SecretBackendRootCert("root", {
+ *     backend: pki.path,
+ *     type: "internal",
+ *     commonName: "example",
+ *     ttl: "86400",
+ *     issuerName: "example",
+ * });
+ * const example = root.issuerId.apply(issuerId => vault.pkiSecret.getBackendIssuerOutput({
+ *     backend: root.path,
+ *     issuerRef: issuerId,
+ * }));
+ * ```
  */
 export function getBackendIssuer(args: GetBackendIssuerArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendIssuerResult> {
 
@@ -86,6 +108,28 @@ export interface GetBackendIssuerResult {
 }
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const pki = new vault.Mount("pki", {
+ *     path: "pki",
+ *     type: "pki",
+ *     description: "PKI secret engine mount",
+ * });
+ * const root = new vault.pkisecret.SecretBackendRootCert("root", {
+ *     backend: pki.path,
+ *     type: "internal",
+ *     commonName: "example",
+ *     ttl: "86400",
+ *     issuerName: "example",
+ * });
+ * const example = root.issuerId.apply(issuerId => vault.pkiSecret.getBackendIssuerOutput({
+ *     backend: root.path,
+ *     issuerRef: issuerId,
+ * }));
+ * ```
  */
 export function getBackendIssuerOutput(args: GetBackendIssuerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendIssuerResult> {
     return pulumi.output(args).apply((a: any) => getBackendIssuer(a, opts))

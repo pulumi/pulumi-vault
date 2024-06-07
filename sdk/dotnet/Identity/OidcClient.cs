@@ -15,7 +15,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,8 +23,9 @@ namespace Pulumi.Vault.Identity
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testOidcAssignment = new Vault.Identity.OidcAssignment("testOidcAssignment", new()
+    ///     var test = new Vault.Identity.OidcAssignment("test", new()
     ///     {
+    ///         Name = "my-assignment",
     ///         EntityIds = new[]
     ///         {
     ///             "ascbascas-2231a-sdfaa",
@@ -36,8 +36,9 @@ namespace Pulumi.Vault.Identity
     ///         },
     ///     });
     /// 
-    ///     var testOidcClient = new Vault.Identity.OidcClient("testOidcClient", new()
+    ///     var testOidcClient = new Vault.Identity.OidcClient("test", new()
     ///     {
+    ///         Name = "my-app",
     ///         RedirectUris = new[]
     ///         {
     ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -46,7 +47,7 @@ namespace Pulumi.Vault.Identity
     ///         },
     ///         Assignments = new[]
     ///         {
-    ///             testOidcAssignment.Name,
+    ///             test.Name,
     ///         },
     ///         IdTokenTtl = 2400,
     ///         AccessTokenTtl = 7200,
@@ -54,7 +55,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

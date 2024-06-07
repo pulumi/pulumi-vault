@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Identity
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,23 +22,24 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var key = new Vault.Identity.OidcKey("key", new()
     ///     {
+    ///         Name = "key",
     ///         Algorithm = "RS256",
     ///     });
     /// 
-    ///     var roleOidcRole = new Vault.Identity.OidcRole("roleOidcRole", new()
+    ///     var role = new Vault.Identity.OidcRole("role", new()
     ///     {
+    ///         Name = "role",
     ///         Key = key.Name,
     ///     });
     /// 
-    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("roleOidcKeyAllowedClientID", new()
+    ///     var roleOidcKeyAllowedClientID = new Vault.Identity.OidcKeyAllowedClientID("role", new()
     ///     {
     ///         KeyName = key.Name,
-    ///         AllowedClientId = roleOidcRole.ClientId,
+    ///         AllowedClientId = role.ClientId,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID")]
     public partial class OidcKeyAllowedClientID : global::Pulumi.CustomResource

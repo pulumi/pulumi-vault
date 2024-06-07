@@ -18,16 +18,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     public static final KeysAzureArgs Empty = new KeysAzureArgs();
 
     /**
-     * If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     @Import(name="allowGenerateKey")
     private @Nullable Output<Boolean> allowGenerateKey;
 
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     public Optional<Output<Boolean>> allowGenerateKey() {
@@ -35,20 +33,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     @Import(name="allowReplaceKey")
     private @Nullable Output<Boolean> allowReplaceKey;
 
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     public Optional<Output<Boolean>> allowReplaceKey() {
@@ -56,16 +48,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     @Import(name="allowStoreKey")
     private @Nullable Output<Boolean> allowStoreKey;
 
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     public Optional<Output<Boolean>> allowStoreKey() {
@@ -73,16 +63,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If `true`, allows usage from any mount point within the
-     * namespace.
+     * Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     @Import(name="anyMount")
     private @Nullable Output<Boolean> anyMount;
 
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     public Optional<Output<Boolean>> anyMount() {
@@ -90,14 +78,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The client id for credentials to query the Azure APIs.
+     * The client id for credentials to query the Azure APIs
      * 
      */
     @Import(name="clientId", required=true)
     private Output<String> clientId;
 
     /**
-     * @return The client id for credentials to query the Azure APIs.
+     * @return The client id for credentials to query the Azure APIs
      * 
      */
     public Output<String> clientId() {
@@ -105,14 +93,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The client secret for credentials to query the Azure APIs.
+     * The client secret for credentials to query the Azure APIs
      * 
      */
     @Import(name="clientSecret", required=true)
     private Output<String> clientSecret;
 
     /**
-     * @return The client secret for credentials to query the Azure APIs.
+     * @return The client secret for credentials to query the Azure APIs
      * 
      */
     public Output<String> clientSecret() {
@@ -120,14 +108,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Azure Cloud environment API endpoints to use.
+     * The Azure Cloud environment API endpoints to use
      * 
      */
     @Import(name="environment")
     private @Nullable Output<String> environment;
 
     /**
-     * @return The Azure Cloud environment API endpoints to use.
+     * @return The Azure Cloud environment API endpoints to use
      * 
      */
     public Optional<Output<String>> environment() {
@@ -135,14 +123,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The size in bits for an RSA key.
+     * The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39; or when &#39;allow_generate_key&#39; is true
      * 
      */
     @Import(name="keyBits")
     private @Nullable Output<String> keyBits;
 
     /**
-     * @return The size in bits for an RSA key.
+     * @return The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39; or when &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<Output<String>> keyBits() {
@@ -150,14 +138,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Key Vault key to use for encryption and decryption.
+     * The Key Vault key to use for encryption and decryption
      * 
      */
     @Import(name="keyName", required=true)
     private Output<String> keyName;
 
     /**
-     * @return The Key Vault key to use for encryption and decryption.
+     * @return The Key Vault key to use for encryption and decryption
      * 
      */
     public Output<String> keyName() {
@@ -165,14 +153,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of key to use.
+     * The type of key to use
      * 
      */
     @Import(name="keyType", required=true)
     private Output<String> keyType;
 
     /**
-     * @return The type of key to use.
+     * @return The type of key to use
      * 
      */
     public Output<String> keyType() {
@@ -180,14 +168,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A unique lowercase name that serves as identifying the key.
+     * A unique lowercase name that serves as identifying the key
      * 
      */
     @Import(name="name", required=true)
     private Output<String> name;
 
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     public Output<String> name() {
@@ -195,14 +183,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Azure Key Vault resource&#39;s DNS Suffix to connect to.
+     * The Azure Key Vault resource&#39;s DNS Suffix to connect to
      * 
      */
     @Import(name="resource")
     private @Nullable Output<String> resource;
 
     /**
-     * @return The Azure Key Vault resource&#39;s DNS Suffix to connect to.
+     * @return The Azure Key Vault resource&#39;s DNS Suffix to connect to
      * 
      */
     public Optional<Output<String>> resource() {
@@ -210,14 +198,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The tenant id for the Azure Active Directory organization.
+     * The tenant id for the Azure Active Directory organization
      * 
      */
     @Import(name="tenantId", required=true)
     private Output<String> tenantId;
 
     /**
-     * @return The tenant id for the Azure Active Directory organization.
+     * @return The tenant id for the Azure Active Directory organization
      * 
      */
     public Output<String> tenantId() {
@@ -240,14 +228,14 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Key Vault vault to use for encryption and decryption.
+     * The Key Vault vault to use the encryption keys for encryption and decryption
      * 
      */
     @Import(name="vaultName", required=true)
     private Output<String> vaultName;
 
     /**
-     * @return The Key Vault vault to use for encryption and decryption.
+     * @return The Key Vault vault to use the encryption keys for encryption and decryption
      * 
      */
     public Output<String> vaultName() {
@@ -293,8 +281,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowGenerateKey If no existing key can be found in
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * @param allowGenerateKey If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          * 
          * @return builder
          * 
@@ -305,8 +292,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowGenerateKey If no existing key can be found in
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * @param allowGenerateKey If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          * 
          * @return builder
          * 
@@ -316,10 +302,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowReplaceKey Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * @param allowReplaceKey Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          * 
          * @return builder
          * 
@@ -330,10 +313,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowReplaceKey Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * @param allowReplaceKey Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          * 
          * @return builder
          * 
@@ -343,8 +323,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowStoreKey Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * @param allowStoreKey Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
          * 
          * @return builder
          * 
@@ -355,8 +334,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allowStoreKey Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * @param allowStoreKey Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
          * 
          * @return builder
          * 
@@ -366,8 +344,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param anyMount If `true`, allows usage from any mount point within the
-         * namespace.
+         * @param anyMount Allow usage from any mount point within the namespace if &#39;true&#39;
          * 
          * @return builder
          * 
@@ -378,8 +355,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param anyMount If `true`, allows usage from any mount point within the
-         * namespace.
+         * @param anyMount Allow usage from any mount point within the namespace if &#39;true&#39;
          * 
          * @return builder
          * 
@@ -389,7 +365,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId The client id for credentials to query the Azure APIs.
+         * @param clientId The client id for credentials to query the Azure APIs
          * 
          * @return builder
          * 
@@ -400,7 +376,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId The client id for credentials to query the Azure APIs.
+         * @param clientId The client id for credentials to query the Azure APIs
          * 
          * @return builder
          * 
@@ -410,7 +386,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecret The client secret for credentials to query the Azure APIs.
+         * @param clientSecret The client secret for credentials to query the Azure APIs
          * 
          * @return builder
          * 
@@ -421,7 +397,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecret The client secret for credentials to query the Azure APIs.
+         * @param clientSecret The client secret for credentials to query the Azure APIs
          * 
          * @return builder
          * 
@@ -431,7 +407,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param environment The Azure Cloud environment API endpoints to use.
+         * @param environment The Azure Cloud environment API endpoints to use
          * 
          * @return builder
          * 
@@ -442,7 +418,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param environment The Azure Cloud environment API endpoints to use.
+         * @param environment The Azure Cloud environment API endpoints to use
          * 
          * @return builder
          * 
@@ -452,7 +428,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits The size in bits for an RSA key.
+         * @param keyBits The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39; or when &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -463,7 +439,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyBits The size in bits for an RSA key.
+         * @param keyBits The size in bits for an RSA key. This field is required when &#39;key_type&#39; is &#39;RSA&#39; or when &#39;allow_generate_key&#39; is true
          * 
          * @return builder
          * 
@@ -473,7 +449,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyName The Key Vault key to use for encryption and decryption.
+         * @param keyName The Key Vault key to use for encryption and decryption
          * 
          * @return builder
          * 
@@ -484,7 +460,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyName The Key Vault key to use for encryption and decryption.
+         * @param keyName The Key Vault key to use for encryption and decryption
          * 
          * @return builder
          * 
@@ -494,7 +470,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyType The type of key to use.
+         * @param keyType The type of key to use
          * 
          * @return builder
          * 
@@ -505,7 +481,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyType The type of key to use.
+         * @param keyType The type of key to use
          * 
          * @return builder
          * 
@@ -515,7 +491,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique lowercase name that serves as identifying the key.
+         * @param name A unique lowercase name that serves as identifying the key
          * 
          * @return builder
          * 
@@ -526,7 +502,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name A unique lowercase name that serves as identifying the key.
+         * @param name A unique lowercase name that serves as identifying the key
          * 
          * @return builder
          * 
@@ -536,7 +512,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resource The Azure Key Vault resource&#39;s DNS Suffix to connect to.
+         * @param resource The Azure Key Vault resource&#39;s DNS Suffix to connect to
          * 
          * @return builder
          * 
@@ -547,7 +523,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resource The Azure Key Vault resource&#39;s DNS Suffix to connect to.
+         * @param resource The Azure Key Vault resource&#39;s DNS Suffix to connect to
          * 
          * @return builder
          * 
@@ -557,7 +533,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tenantId The tenant id for the Azure Active Directory organization.
+         * @param tenantId The tenant id for the Azure Active Directory organization
          * 
          * @return builder
          * 
@@ -568,7 +544,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tenantId The tenant id for the Azure Active Directory organization.
+         * @param tenantId The tenant id for the Azure Active Directory organization
          * 
          * @return builder
          * 
@@ -599,7 +575,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vaultName The Key Vault vault to use for encryption and decryption.
+         * @param vaultName The Key Vault vault to use the encryption keys for encryption and decryption
          * 
          * @return builder
          * 
@@ -610,7 +586,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vaultName The Key Vault vault to use for encryption and decryption.
+         * @param vaultName The Key Vault vault to use the encryption keys for encryption and decryption
          * 
          * @return builder
          * 

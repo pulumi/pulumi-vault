@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,13 +31,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewPasswordPolicy(ctx, "alphanumeric", &vault.PasswordPolicyArgs{
-//				Policy: pulumi.String(`    length = 20
-//	    rule "charset" {
-//	      charset = "abcdefghijklmnopqrstuvwxyz0123456789"
-//	    }
-//
-// `),
-//
+//				Name:   pulumi.String("alphanumeric"),
+//				Policy: pulumi.String("    length = 20\n    rule \"charset\" {\n      charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"\n    }\n"),
 //			})
 //			if err != nil {
 //				return err
@@ -48,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

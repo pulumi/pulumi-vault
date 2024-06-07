@@ -14,88 +14,77 @@ import javax.annotation.Nullable;
 @CustomType
 public final class KeysPkc {
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     private @Nullable Boolean allowGenerateKey;
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     private @Nullable Boolean allowReplaceKey;
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     private @Nullable Boolean allowStoreKey;
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     private @Nullable Boolean anyMount;
     /**
-     * @return The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * @return Supplies the curve value when using the &#39;CKM_ECDSA&#39; mechanism. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     private @Nullable String curve;
     /**
-     * @return Force all operations to open up a read-write session to
-     * the HSM.
+     * @return Force all operations to open up a read-write session to the HSM
      * 
      */
     private @Nullable String forceRwSession;
     /**
-     * @return The size in bits for an RSA key.
+     * @return Supplies the size in bits of the key when using &#39;CKM_RSA_PKCS_PSS&#39;, &#39;CKM_RSA_PKCS_OAEP&#39; or &#39;CKM_RSA_PKCS&#39; as a value for &#39;mechanism&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     private @Nullable String keyBits;
     /**
-     * @return The id of a PKCS#11 key to use.
+     * @return The id of a PKCS#11 key to use
      * 
      */
     private String keyId;
     /**
-     * @return The label of the key to use.
+     * @return The label of the key to use
      * 
      */
     private String keyLabel;
     /**
-     * @return The name of the kms_library stanza to use from Vault&#39;s config
-     * to lookup the local library path.
+     * @return The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     private String library;
     /**
-     * @return The encryption/decryption mechanism to use, specified as a
-     * hexadecimal (prefixed by 0x) string.
+     * @return The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
      * 
      */
     private String mechanism;
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     private String name;
     /**
-     * @return The PIN for login.
+     * @return The PIN for login
      * 
      */
     private String pin;
     /**
-     * @return The slot number to use, specified as a string in a decimal format
-     * (e.g. `2305843009213693953`).
+     * @return The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
     private @Nullable String slot;
     /**
-     * @return The slot token label to use.
+     * @return The slot token label to use
      * 
      */
     private @Nullable String tokenLabel;
@@ -107,116 +96,105 @@ public final class KeysPkc {
 
     private KeysPkc() {}
     /**
-     * @return If no existing key can be found in
-     * the referenced backend, instructs Vault to generate a key within the backend.
+     * @return If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
      * 
      */
     public Optional<Boolean> allowGenerateKey() {
         return Optional.ofNullable(this.allowGenerateKey);
     }
     /**
-     * @return Controls the ability for Vault to replace through
-     * generation or importing a key into the configured backend even
-     * if a key is present, if set to `false` those operations are forbidden
-     * if a key exists.
+     * @return Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
      * 
      */
     public Optional<Boolean> allowReplaceKey() {
         return Optional.ofNullable(this.allowReplaceKey);
     }
     /**
-     * @return Controls the ability for Vault to import a key to the
-     * configured backend, if `false`, those operations will be forbidden.
+     * @return Controls the ability for Vault to import a key to the configured backend, if &#39;false&#39;, those operations will be forbidden
      * 
      */
     public Optional<Boolean> allowStoreKey() {
         return Optional.ofNullable(this.allowStoreKey);
     }
     /**
-     * @return If `true`, allows usage from any mount point within the
-     * namespace.
+     * @return Allow usage from any mount point within the namespace if &#39;true&#39;
      * 
      */
     public Optional<Boolean> anyMount() {
         return Optional.ofNullable(this.anyMount);
     }
     /**
-     * @return The curve to use for an ECDSA key. Used when `key_type`
-     * is `ECDSA`. Required if `allow_generate_key` is `true`.
+     * @return Supplies the curve value when using the &#39;CKM_ECDSA&#39; mechanism. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<String> curve() {
         return Optional.ofNullable(this.curve);
     }
     /**
-     * @return Force all operations to open up a read-write session to
-     * the HSM.
+     * @return Force all operations to open up a read-write session to the HSM
      * 
      */
     public Optional<String> forceRwSession() {
         return Optional.ofNullable(this.forceRwSession);
     }
     /**
-     * @return The size in bits for an RSA key.
+     * @return Supplies the size in bits of the key when using &#39;CKM_RSA_PKCS_PSS&#39;, &#39;CKM_RSA_PKCS_OAEP&#39; or &#39;CKM_RSA_PKCS&#39; as a value for &#39;mechanism&#39;. Required if &#39;allow_generate_key&#39; is true
      * 
      */
     public Optional<String> keyBits() {
         return Optional.ofNullable(this.keyBits);
     }
     /**
-     * @return The id of a PKCS#11 key to use.
+     * @return The id of a PKCS#11 key to use
      * 
      */
     public String keyId() {
         return this.keyId;
     }
     /**
-     * @return The label of the key to use.
+     * @return The label of the key to use
      * 
      */
     public String keyLabel() {
         return this.keyLabel;
     }
     /**
-     * @return The name of the kms_library stanza to use from Vault&#39;s config
-     * to lookup the local library path.
+     * @return The name of the kms_library stanza to use from Vault&#39;s config to lookup the local library path
      * 
      */
     public String library() {
         return this.library;
     }
     /**
-     * @return The encryption/decryption mechanism to use, specified as a
-     * hexadecimal (prefixed by 0x) string.
+     * @return The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
      * 
      */
     public String mechanism() {
         return this.mechanism;
     }
     /**
-     * @return A unique lowercase name that serves as identifying the key.
+     * @return A unique lowercase name that serves as identifying the key
      * 
      */
     public String name() {
         return this.name;
     }
     /**
-     * @return The PIN for login.
+     * @return The PIN for login
      * 
      */
     public String pin() {
         return this.pin;
     }
     /**
-     * @return The slot number to use, specified as a string in a decimal format
-     * (e.g. `2305843009213693953`).
+     * @return The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
     public Optional<String> slot() {
         return Optional.ofNullable(this.slot);
     }
     /**
-     * @return The slot token label to use.
+     * @return The slot token label to use
      * 
      */
     public Optional<String> tokenLabel() {

@@ -56,10 +56,7 @@ export class Keys extends pulumi.CustomResource {
      */
     public readonly azures!: pulumi.Output<outputs.managed.KeysAzure[] | undefined>;
     /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured namespace.
-     * *Available only for Vault Enterprise*.
+     * Target namespace. (requires Enterprise)
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
@@ -109,10 +106,7 @@ export interface KeysState {
      */
     azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[]>;
     /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured namespace.
-     * *Available only for Vault Enterprise*.
+     * Target namespace. (requires Enterprise)
      */
     namespace?: pulumi.Input<string>;
     /**
@@ -134,10 +128,7 @@ export interface KeysArgs {
      */
     azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[]>;
     /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider's configured namespace.
-     * *Available only for Vault Enterprise*.
+     * Target namespace. (requires Enterprise)
      */
     namespace?: pulumi.Input<string>;
     /**

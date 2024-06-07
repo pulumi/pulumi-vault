@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,6 +45,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewSecretRole(ctx, "role", &mongodbatlas.SecretRoleArgs{
 //				Mount:          mongo.Path,
+//				Name:           pulumi.String("tf-test-role"),
 //				OrganizationId: pulumi.String("7cf5a45a9ccf6400e60981b7"),
 //				ProjectId:      pulumi.String("5cf5a45a9ccf6400e60981b6"),
 //				Roles: pulumi.StringArray{
@@ -67,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -27,12 +26,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewNomadSecretBackend(ctx, "config", &vault.NomadSecretBackendArgs{
-//				Address:                pulumi.String("https://127.0.0.1:4646"),
 //				Backend:                pulumi.String("nomad"),
-//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
 //				Description:            pulumi.String("test description"),
+//				DefaultLeaseTtlSeconds: pulumi.Int(3600),
 //				MaxLeaseTtlSeconds:     pulumi.Int(7200),
 //				MaxTtl:                 pulumi.Int(240),
+//				Address:                pulumi.String("https://127.0.0.1:4646"),
 //				Token:                  pulumi.String("ae20ceaa-..."),
 //				Ttl:                    pulumi.Int(120),
 //			})
@@ -44,7 +43,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

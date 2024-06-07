@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,14 +50,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var global = new QuotaLeaseCount(&#34;global&#34;, QuotaLeaseCountArgs.builder()        
+ *         var global = new QuotaLeaseCount("global", QuotaLeaseCountArgs.builder()
+ *             .name("global")
+ *             .path("")
  *             .maxLeases(100)
- *             .path(&#34;&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

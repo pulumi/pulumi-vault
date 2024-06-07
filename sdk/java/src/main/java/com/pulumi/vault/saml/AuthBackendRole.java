@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,26 +51,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleAuthBackend = new AuthBackend(&#34;exampleAuthBackend&#34;, AuthBackendArgs.builder()        
- *             .path(&#34;saml&#34;)
- *             .idpMetadataUrl(&#34;https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata&#34;)
- *             .entityId(&#34;https://my.vault/v1/auth/saml&#34;)
- *             .acsUrls(&#34;https://my.vault.primary/v1/auth/saml/callback&#34;)
- *             .defaultRole(&#34;default-role&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .path("saml")
+ *             .idpMetadataUrl("https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata")
+ *             .entityId("https://my.vault/v1/auth/saml")
+ *             .acsUrls("https://my.vault.primary/v1/auth/saml/callback")
+ *             .defaultRole("default-role")
  *             .build());
  * 
- *         var exampleAuthBackendRole = new AuthBackendRole(&#34;exampleAuthBackendRole&#34;, AuthBackendRoleArgs.builder()        
- *             .path(exampleAuthBackend.path())
- *             .groupsAttribute(&#34;groups&#34;)
- *             .boundAttributes(Map.of(&#34;group&#34;, &#34;admin&#34;))
- *             .boundSubjects(&#34;*example.com&#34;)
- *             .tokenPolicies(&#34;writer&#34;)
+ *         var exampleAuthBackendRole = new AuthBackendRole("exampleAuthBackendRole", AuthBackendRoleArgs.builder()
+ *             .path(example.path())
+ *             .name("my-role")
+ *             .groupsAttribute("groups")
+ *             .boundAttributes(Map.of("group", "admin"))
+ *             .boundSubjects("*example.com")
+ *             .tokenPolicies("writer")
  *             .tokenTtl(86400)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -208,70 +211,56 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return this.path;
     }
     /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenBoundCidrs;
 
     /**
-     * @return List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * @return Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     public Output<Optional<List<String>>> tokenBoundCidrs() {
         return Codegen.optional(this.tokenBoundCidrs);
     }
     /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
 
     /**
-     * @return If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * @return Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     public Output<Optional<Integer>> tokenExplicitMaxTtl() {
         return Codegen.optional(this.tokenExplicitMaxTtl);
     }
     /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The maximum lifetime of the generated token
      * 
      */
     @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenMaxTtl;
 
     /**
-     * @return The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The maximum lifetime of the generated token
      * 
      */
     public Output<Optional<Integer>> tokenMaxTtl() {
         return Codegen.optional(this.tokenMaxTtl);
     }
     /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
 
     /**
-     * @return If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * @return If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     public Output<Optional<Boolean>> tokenNoDefaultPolicy() {
@@ -292,74 +281,56 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tokenNumUses);
     }
     /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * Generated Token&#39;s Period
      * 
      */
     @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenPeriod;
 
     /**
-     * @return If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * @return Generated Token&#39;s Period
      * 
      */
     public Output<Optional<Integer>> tokenPeriod() {
         return Codegen.optional(this.tokenPeriod);
     }
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token&#39;s Policies
      * 
      */
     @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tokenPolicies;
 
     /**
-     * @return List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * @return Generated Token&#39;s Policies
      * 
      */
     public Output<Optional<List<String>>> tokenPolicies() {
         return Codegen.optional(this.tokenPolicies);
     }
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      * 
      */
     @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> tokenTtl;
 
     /**
-     * @return The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The initial ttl of the token to generate in seconds
      * 
      */
     public Output<Optional<Integer>> tokenTtl() {
         return Codegen.optional(this.tokenTtl);
     }
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * The type of token to generate, service or batch
      * 
      */
     @Export(name="tokenType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
+     * @return The type of token to generate, service or batch
      * 
      */
     public Output<Optional<String>> tokenType() {

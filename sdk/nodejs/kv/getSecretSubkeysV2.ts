@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,8 +19,9 @@ import * as utilities from "../utilities";
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ * const awsSecret = new vault.kv.SecretV2("aws_secret", {
  *     mount: kvv2.path,
+ *     name: "aws_secret",
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *         foo: "bar",
@@ -32,7 +32,6 @@ import * as utilities from "../utilities";
  *     name: awsSecret.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *
@@ -115,7 +114,6 @@ export interface GetSecretSubkeysV2Result {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -128,8 +126,9 @@ export interface GetSecretSubkeysV2Result {
  *     },
  *     description: "KV Version 2 secret engine mount",
  * });
- * const awsSecret = new vault.kv.SecretV2("awsSecret", {
+ * const awsSecret = new vault.kv.SecretV2("aws_secret", {
  *     mount: kvv2.path,
+ *     name: "aws_secret",
  *     dataJson: JSON.stringify({
  *         zip: "zap",
  *         foo: "bar",
@@ -140,7 +139,6 @@ export interface GetSecretSubkeysV2Result {
  *     name: awsSecret.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *

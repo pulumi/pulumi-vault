@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -19,6 +18,7 @@ import * as utilities from "../utilities";
  * });
  * const example = new vault.terraformcloud.SecretRole("example", {
  *     backend: test.backend,
+ *     name: "test-role",
  *     organization: "example-organization-name",
  *     teamId: "team-ieF4isC...",
  * });
@@ -27,7 +27,6 @@ import * as utilities from "../utilities";
  *     role: example.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SecretCreds extends pulumi.CustomResource {
     /**
@@ -57,9 +56,6 @@ export class SecretCreds extends pulumi.CustomResource {
         return obj['__pulumiType'] === SecretCreds.__pulumiType;
     }
 
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     */
     public readonly backend!: pulumi.Output<string>;
     /**
      * The lease associated with the token. Only user tokens will have a 
@@ -145,9 +141,6 @@ export class SecretCreds extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretCreds resources.
  */
 export interface SecretCredsState {
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     */
     backend?: pulumi.Input<string>;
     /**
      * The lease associated with the token. Only user tokens will have a 
@@ -189,9 +182,6 @@ export interface SecretCredsState {
  * The set of arguments for constructing a SecretCreds resource.
  */
 export interface SecretCredsArgs {
-    /**
-     * Terraform Cloud secret backend to generate tokens from
-     */
     backend: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.

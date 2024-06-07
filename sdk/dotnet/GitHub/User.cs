@@ -16,7 +16,6 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,7 +29,7 @@ namespace Pulumi.Vault.GitHub
     ///         Organization = "myorg",
     ///     });
     /// 
-    ///     var tfUser = new Vault.GitHub.User("tfUser", new()
+    ///     var tfUser = new Vault.GitHub.User("tf_user", new()
     ///     {
     ///         Backend = example.Id,
     ///         UserName = "john.doe",
@@ -43,7 +42,6 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

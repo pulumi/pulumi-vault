@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,9 +44,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackendSign(&#34;test&#34;, SecretBackendSignArgs.builder()        
- *             .backend(vault_mount.pki().path())
- *             .csr(&#34;&#34;&#34;
+ *         var test = new SecretBackendSign("test", SecretBackendSignArgs.builder()
+ *             .backend(pki.path())
+ *             .name(admin.name())
+ *             .csr("""
  * -----BEGIN CERTIFICATE REQUEST-----
  * MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
  * ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -73,15 +75,16 @@ import javax.annotation.Nullable;
  * OTEc13lWf+B0PU9UJuGTsmpIuImPDVd0EVDayr3mT5dDbqTVDbe8ppf2IswABmf0
  * o3DybUeUmknYjl109rdSf+76nuREICHatxXgN3xCMFuBaN4WLO+ksd6Y1Ys=
  * -----END CERTIFICATE REQUEST-----
- *             &#34;&#34;&#34;)
- *             .commonName(&#34;test.my.domain&#34;)
+ *             """)
+ *             .commonName("test.my.domain")
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(vault_pki_secret_backend_role.admin())
+ *                 .dependsOn(admin)
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -135,7 +135,7 @@ public final class MfaOktaState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names.
-     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
      * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
@@ -148,7 +148,7 @@ public final class MfaOktaState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return `(string)` - A format string for mapping Identity names to MFA method names.
-     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+     * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
      * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
      * - entity.name: The name configured for the Entity
@@ -352,7 +352,7 @@ public final class MfaOktaState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param usernameFormat `(string)` - A format string for mapping Identity names to MFA method names.
-         * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+         * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
          * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
          * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
          * - entity.name: The name configured for the Entity
@@ -369,7 +369,7 @@ public final class MfaOktaState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param usernameFormat `(string)` - A format string for mapping Identity names to MFA method names.
-         * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}@example.com&#34;`.
+         * Values to substitute should be placed in `{{}}`. For example, `&#34;{{alias.name}}{@literal @}example.com&#34;`.
          * If blank, the Alias&#39;s Name field will be used as-is. Currently-supported mappings:
          * - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
          * - entity.name: The name configured for the Entity

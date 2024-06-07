@@ -12,13 +12,14 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.okta.AuthBackend("example", {
  *     description: "Demonstration of the Terraform Okta auth backend",
+ *     organization: "example",
+ *     token: "something that should be kept secret",
  *     groups: [{
  *         groupName: "foo",
  *         policies: [
@@ -26,15 +27,12 @@ import * as utilities from "../utilities";
  *             "two",
  *         ],
  *     }],
- *     organization: "example",
- *     token: "something that should be kept secret",
  *     users: [{
- *         groups: ["foo"],
  *         username: "bar",
+ *         groups: ["foo"],
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -12,26 +12,26 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
+ * import * as google from "@pulumi/google";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
- * const _this = new gcp.serviceaccount.Account("this", {accountId: "my-awesome-account"});
+ * const _this = new google.index.ServiceAccount("this", {accountId: "my-awesome-account"});
  * const gcp = new vault.gcp.SecretBackend("gcp", {
  *     path: "gcp",
- *     credentials: fs.readFileSync("credentials.json", "utf8"),
+ *     credentials: std.file({
+ *         input: "credentials.json",
+ *     }).then(invoke => invoke.result),
  * });
- * const impersonatedAccount = new vault.gcp.SecretImpersonatedAccount("impersonatedAccount", {
+ * const impersonatedAccount = new vault.gcp.SecretImpersonatedAccount("impersonated_account", {
  *     backend: gcp.path,
  *     impersonatedAccount: "this",
  *     serviceAccountEmail: _this.email,
  *     tokenScopes: ["https://www.googleapis.com/auth/cloud-platform"],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

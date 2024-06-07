@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,22 +45,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var transit = new Mount(&#34;transit&#34;, MountArgs.builder()        
- *             .path(&#34;transit&#34;)
- *             .type(&#34;transit&#34;)
- *             .description(&#34;Example description&#34;)
+ *         var transit = new Mount("transit", MountArgs.builder()
+ *             .path("transit")
+ *             .type("transit")
+ *             .description("Example description")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var cfg = new SecretCacheConfig(&#34;cfg&#34;, SecretCacheConfigArgs.builder()        
+ *         var cfg = new SecretCacheConfig("cfg", SecretCacheConfigArgs.builder()
  *             .backend(transit.path())
  *             .size(500)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

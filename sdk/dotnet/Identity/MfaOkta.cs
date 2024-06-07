@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,14 +24,13 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var example = new Vault.Identity.MfaOkta("example", new()
     ///     {
+    ///         OrgName = "org1",
     ///         ApiToken = "token1",
     ///         BaseUrl = "qux.baz.com",
-    ///         OrgName = "org1",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -19,7 +19,6 @@ import (
 // exist before the role can be used to issue tokens. You must also configure the key with the
 // role's Client ID to allow the role to use the key.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -34,17 +33,20 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
+//			// Name of the OIDC Key
 //			key := "key"
 //			if param := cfg.Get("key"); param != "" {
 //				key = param
 //			}
 //			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
-//				Key: pulumi.String(key),
+//				Name: pulumi.String("role"),
+//				Key:  pulumi.String(key),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcKey(ctx, "keyOidcKey", &identity.OidcKeyArgs{
+//			_, err = identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Name:      pulumi.String(key),
 //				Algorithm: pulumi.String("RS256"),
 //				AllowedClientIds: pulumi.StringArray{
 //					role.ClientId,
@@ -58,13 +60,11 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // If you want to create the key first before creating the role, you can use a separate
 // resource to configure the allowed Client ID on
 // the key.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,20 +78,22 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Name:      pulumi.String("key"),
 //				Algorithm: pulumi.String("RS256"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			roleOidcRole, err := identity.NewOidcRole(ctx, "roleOidcRole", &identity.OidcRoleArgs{
-//				Key: key.Name,
+//			role, err := identity.NewOidcRole(ctx, "role", &identity.OidcRoleArgs{
+//				Name: pulumi.String("role"),
+//				Key:  key.Name,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "roleOidcKeyAllowedClientID", &identity.OidcKeyAllowedClientIDArgs{
+//			_, err = identity.NewOidcKeyAllowedClientID(ctx, "role", &identity.OidcKeyAllowedClientIDArgs{
 //				KeyName:         key.Name,
-//				AllowedClientId: roleOidcRole.ClientId,
+//				AllowedClientId: role.ClientId,
 //			})
 //			if err != nil {
 //				return err
@@ -101,7 +103,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -14,17 +14,16 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const global = new vault.QuotaRateLimit("global", {
+ *     name: "global",
  *     path: "",
  *     rate: 100,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -12,7 +12,6 @@ namespace Pulumi.Vault.RabbitMQ
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,13 +23,12 @@ namespace Pulumi.Vault.RabbitMQ
     ///     var rabbitmq = new Vault.RabbitMQ.SecretBackend("rabbitmq", new()
     ///     {
     ///         ConnectionUri = "https://.....",
-    ///         Password = "password",
     ///         Username = "user",
+    ///         Password = "password",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

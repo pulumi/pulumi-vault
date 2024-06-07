@@ -80,7 +80,6 @@ def get_secrets_list(namespace: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -93,19 +92,18 @@ def get_secrets_list(namespace: Optional[str] = None,
             "version": "1",
         },
         description="KV Version 1 secret engine mount")
-    aws_secret = vault.kv.Secret("awsSecret",
+    aws_secret = vault.kv.Secret("aws_secret",
         path=kvv1.path.apply(lambda path: f"{path}/aws-secret"),
         data_json=json.dumps({
             "zip": "zap",
         }))
-    azure_secret = vault.kv.Secret("azureSecret",
+    azure_secret = vault.kv.Secret("azure_secret",
         path=kvv1.path.apply(lambda path: f"{path}/azure-secret"),
         data_json=json.dumps({
             "foo": "bar",
         }))
     secrets = vault.kv.get_secrets_list_output(path=kvv1.path)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -138,7 +136,6 @@ def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -151,19 +148,18 @@ def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
             "version": "1",
         },
         description="KV Version 1 secret engine mount")
-    aws_secret = vault.kv.Secret("awsSecret",
+    aws_secret = vault.kv.Secret("aws_secret",
         path=kvv1.path.apply(lambda path: f"{path}/aws-secret"),
         data_json=json.dumps({
             "zip": "zap",
         }))
-    azure_secret = vault.kv.Secret("azureSecret",
+    azure_secret = vault.kv.Secret("azure_secret",
         path=kvv1.path.apply(lambda path: f"{path}/azure-secret"),
         data_json=json.dumps({
             "foo": "bar",
         }))
     secrets = vault.kv.get_secrets_list_output(path=kvv1.path)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

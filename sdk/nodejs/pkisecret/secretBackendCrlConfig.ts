@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -20,13 +19,12 @@ import * as utilities from "../utilities";
  *     defaultLeaseTtlSeconds: 3600,
  *     maxLeaseTtlSeconds: 86400,
  * });
- * const crlConfig = new vault.pkisecret.SecretBackendCrlConfig("crlConfig", {
+ * const crlConfig = new vault.pkisecret.SecretBackendCrlConfig("crl_config", {
  *     backend: pki.path,
  *     expiry: "72h",
  *     disable: false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SecretBackendCrlConfig extends pulumi.CustomResource {
     /**

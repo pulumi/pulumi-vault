@@ -1139,7 +1139,6 @@ class SecretsMount(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1162,6 +1161,7 @@ class SecretsMount(pulumi.CustomResource):
                 allowed_roles=["dev2"],
             )])
         dev1 = vault.database.SecretBackendRole("dev1",
+            name="dev1",
             backend=db.path,
             db_name=db.mssqls[0].name,
             creation_statements=[
@@ -1170,6 +1170,7 @@ class SecretsMount(pulumi.CustomResource):
                 "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];",
             ])
         dev2 = vault.database.SecretBackendRole("dev2",
+            name="dev2",
             backend=db.path,
             db_name=db.postgresqls[0].name,
             creation_statements=[
@@ -1177,7 +1178,6 @@ class SecretsMount(pulumi.CustomResource):
                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \\"{{name}}\\";",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1249,7 +1249,6 @@ class SecretsMount(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1272,6 +1271,7 @@ class SecretsMount(pulumi.CustomResource):
                 allowed_roles=["dev2"],
             )])
         dev1 = vault.database.SecretBackendRole("dev1",
+            name="dev1",
             backend=db.path,
             db_name=db.mssqls[0].name,
             creation_statements=[
@@ -1280,6 +1280,7 @@ class SecretsMount(pulumi.CustomResource):
                 "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];",
             ])
         dev2 = vault.database.SecretBackendRole("dev2",
+            name="dev2",
             backend=db.path,
             db_name=db.postgresqls[0].name,
             creation_statements=[
@@ -1287,7 +1288,6 @@ class SecretsMount(pulumi.CustomResource):
                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \\"{{name}}\\";",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

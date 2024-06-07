@@ -648,13 +648,13 @@ class SecretBackendSign(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendSign("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
+            name=admin["name"],
             csr=\"\"\"-----BEGIN CERTIFICATE REQUEST-----
         MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
         ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -684,9 +684,8 @@ class SecretBackendSign(pulumi.CustomResource):
         -----END CERTIFICATE REQUEST-----
         \"\"\",
             common_name="test.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+            opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -721,13 +720,13 @@ class SecretBackendSign(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendSign("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
+            name=admin["name"],
             csr=\"\"\"-----BEGIN CERTIFICATE REQUEST-----
         MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
         ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -757,9 +756,8 @@ class SecretBackendSign(pulumi.CustomResource):
         -----END CERTIFICATE REQUEST-----
         \"\"\",
             common_name="test.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_pki_secret_backend_role["admin"]]))
+            opts=pulumi.ResourceOptions(depends_on=[admin]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendSignArgs args: The arguments to use to populate this resource's properties.

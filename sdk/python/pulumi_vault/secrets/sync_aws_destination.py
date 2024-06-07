@@ -454,14 +454,14 @@ class SyncAwsDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         aws = vault.secrets.SyncAwsDestination("aws",
-            access_key_id=var["access_key_id"],
-            secret_access_key=var["secret_access_key"],
+            name="aws-dest",
+            access_key_id=access_key_id,
+            secret_access_key=secret_access_key,
             region="us-east-1",
             role_arn="role-arn",
             external_id="external-id",
@@ -470,7 +470,6 @@ class SyncAwsDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -520,14 +519,14 @@ class SyncAwsDestination(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         aws = vault.secrets.SyncAwsDestination("aws",
-            access_key_id=var["access_key_id"],
-            secret_access_key=var["secret_access_key"],
+            name="aws-dest",
+            access_key_id=access_key_id,
+            secret_access_key=secret_access_key,
             region="us-east-1",
             role_arn="role-arn",
             external_id="external-id",
@@ -536,7 +535,6 @@ class SyncAwsDestination(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

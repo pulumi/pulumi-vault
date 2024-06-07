@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * Manage JWT auth backend:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,22 +49,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .boundIssuer(&#34;https://myco.auth0.com/&#34;)
- *             .description(&#34;Demonstration of the Terraform JWT auth backend&#34;)
- *             .oidcDiscoveryUrl(&#34;https://myco.auth0.com/&#34;)
- *             .path(&#34;jwt&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .description("Demonstration of the Terraform JWT auth backend")
+ *             .path("jwt")
+ *             .oidcDiscoveryUrl("https://myco.auth0.com/")
+ *             .boundIssuer("https://myco.auth0.com/")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Manage OIDC auth backend:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -85,28 +88,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .boundIssuer(&#34;https://myco.auth0.com/&#34;)
- *             .description(&#34;Demonstration of the Terraform JWT auth backend&#34;)
- *             .oidcClientId(&#34;1234567890&#34;)
- *             .oidcClientSecret(&#34;secret123456&#34;)
- *             .oidcDiscoveryUrl(&#34;https://myco.auth0.com/&#34;)
- *             .path(&#34;oidc&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .description("Demonstration of the Terraform JWT auth backend")
+ *             .path("oidc")
+ *             .type("oidc")
+ *             .oidcDiscoveryUrl("https://myco.auth0.com/")
+ *             .oidcClientId("1234567890")
+ *             .oidcClientSecret("secret123456")
+ *             .boundIssuer("https://myco.auth0.com/")
  *             .tune(AuthBackendTuneArgs.builder()
- *                 .listingVisibility(&#34;unauth&#34;)
+ *                 .listingVisibility("unauth")
  *                 .build())
- *             .type(&#34;oidc&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Configuring the auth backend with a `provider_config:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -127,22 +132,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var gsuite = new AuthBackend(&#34;gsuite&#34;, AuthBackendArgs.builder()        
- *             .description(&#34;OIDC backend&#34;)
- *             .oidcDiscoveryUrl(&#34;https://accounts.google.com&#34;)
- *             .path(&#34;oidc&#34;)
+ *         var gsuite = new AuthBackend("gsuite", AuthBackendArgs.builder()
+ *             .description("OIDC backend")
+ *             .oidcDiscoveryUrl("https://accounts.google.com")
+ *             .path("oidc")
+ *             .type("oidc")
  *             .providerConfig(Map.ofEntries(
- *                 Map.entry(&#34;fetch_groups&#34;, true),
- *                 Map.entry(&#34;fetch_user_info&#34;, true),
- *                 Map.entry(&#34;groups_recurse_max_depth&#34;, 1),
- *                 Map.entry(&#34;provider&#34;, &#34;gsuite&#34;)
+ *                 Map.entry("provider", "gsuite"),
+ *                 Map.entry("fetch_groups", true),
+ *                 Map.entry("fetch_user_info", true),
+ *                 Map.entry("groups_recurse_max_depth", 1)
  *             ))
- *             .type(&#34;oidc&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

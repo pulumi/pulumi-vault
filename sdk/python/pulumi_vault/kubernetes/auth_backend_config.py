@@ -348,7 +348,6 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -364,7 +363,6 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer="api",
             disable_iss_validation=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -402,7 +400,6 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -418,7 +415,6 @@ class AuthBackendConfig(pulumi.CustomResource):
             issuer="api",
             disable_iss_validation=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

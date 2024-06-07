@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,18 +43,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;my-custom-ldap&#34;)
- *             .binddn(&#34;CN=Administrator,CN=Users,DC=corp,DC=example,DC=net&#34;)
- *             .bindpass(&#34;SuperSecretPassw0rd&#34;)
- *             .url(&#34;ldaps://localhost&#34;)
- *             .userdn(&#34;CN=Users,DC=corp,DC=example,DC=net&#34;)
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
+ *             .path("my-custom-ldap")
+ *             .binddn("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net")
+ *             .bindpass("SuperSecretPassw0rd")
+ *             .url("ldaps://localhost")
+ *             .userdn("CN=Users,DC=corp,DC=example,DC=net")
  *             .build());
  * 
- *         var role = new SecretBackendDynamicRole(&#34;role&#34;, SecretBackendDynamicRoleArgs.builder()        
+ *         var role = new SecretBackendDynamicRole("role", SecretBackendDynamicRoleArgs.builder()
  *             .mount(config.path())
- *             .roleName(&#34;alice&#34;)
- *             .creationLdif(&#34;&#34;&#34;
+ *             .roleName("alice")
+ *             .creationLdif("""
  * dn: cn={{.Username}},ou=users,dc=learn,dc=example
  * objectClass: person
  * objectClass: top
@@ -61,19 +62,20 @@ import javax.annotation.Nullable;
  * sn: {{.Password | utf16le | base64}}
  * memberOf: cn=dev,ou=groups,dc=learn,dc=example
  * userPassword: {{.Password}}
- *             &#34;&#34;&#34;)
- *             .deletionLdif(&#34;&#34;&#34;
+ *             """)
+ *             .deletionLdif("""
  * dn: cn={{.Username}},ou=users,dc=learn,dc=example
  * changetype: delete
- *   rollback_ldif = &lt;&lt;EOT
+ *   rollback_ldif = <<EOT
  * dn: cn={{.Username}},ou=users,dc=learn,dc=example
  * changetype: delete
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,18 +43,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SecretBackend(&#34;config&#34;, SecretBackendArgs.builder()        
- *             .backend(&#34;ad&#34;)
- *             .binddn(&#34;CN=Administrator,CN=Users,DC=corp,DC=example,DC=net&#34;)
- *             .bindpass(&#34;SuperSecretPassw0rd&#34;)
- *             .insecureTls(&#34;true&#34;)
- *             .url(&#34;ldaps://ad&#34;)
- *             .userdn(&#34;CN=Users,DC=corp,DC=example,DC=net&#34;)
+ *         var config = new SecretBackend("config", SecretBackendArgs.builder()
+ *             .backend("ad")
+ *             .binddn("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net")
+ *             .bindpass("SuperSecretPassw0rd")
+ *             .url("ldaps://ad")
+ *             .insecureTls("true")
+ *             .userdn("CN=Users,DC=corp,DC=example,DC=net")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -494,14 +496,14 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.ttl;
     }
     /**
-     * Enables userPrincipalDomain login with [username]@UPNDomain.
+     * Enables userPrincipalDomain login with [username]{@literal @}UPNDomain.
      * 
      */
     @Export(name="upndomain", refs={String.class}, tree="[0]")
     private Output<String> upndomain;
 
     /**
-     * @return Enables userPrincipalDomain login with [username]@UPNDomain.
+     * @return Enables userPrincipalDomain login with [username]{@literal @}UPNDomain.
      * 
      */
     public Output<String> upndomain() {

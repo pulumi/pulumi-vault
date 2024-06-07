@@ -12,7 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,7 +22,8 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var test = new Vault.PkiSecret.SecretBackendSign("test", new()
     ///     {
-    ///         Backend = vault_mount.Pki.Path,
+    ///         Backend = pki.Path,
+    ///         Name = admin.Name,
     ///         Csr = @"-----BEGIN CERTIFICATE REQUEST-----
     /// MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
     /// ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEcMBoGA1UEAwwTY2Vy
@@ -57,13 +57,12 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_pki_secret_backend_role.Admin, 
+    ///             admin,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendSign:SecretBackendSign")]
     public partial class SecretBackendSign : global::Pulumi.CustomResource

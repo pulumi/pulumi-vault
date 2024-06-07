@@ -15,90 +15,86 @@ import javax.annotation.Nullable;
 @CustomType
 public final class SecretBackendConnectionRedis {
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     private @Nullable String caCert;
     /**
-     * @return The host to connect to.
+     * @return Specifies the host to connect to
      * 
      */
     private String host;
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     private @Nullable Boolean insecureTls;
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     private String password;
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Redis.
      * 
      */
     private @Nullable Integer port;
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
     private @Nullable Boolean tls;
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username for Vault to use.
      * 
      */
     private String username;
 
     private SecretBackendConnectionRedis() {}
     /**
-     * @return The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server&#39;s identity.
+     * @return The contents of a PEM-encoded CA cert file to use to verify the Redis server&#39;s identity.
      * 
      */
     public Optional<String> caCert() {
         return Optional.ofNullable(this.caCert);
     }
     /**
-     * @return The host to connect to.
+     * @return Specifies the host to connect to
      * 
      */
     public String host() {
         return this.host;
     }
     /**
-     * @return Whether to skip verification of the server
-     * certificate when using TLS.
+     * @return Specifies whether to skip verification of the server certificate when using TLS.
      * 
      */
     public Optional<Boolean> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
     }
     /**
-     * @return The password to authenticate with.
+     * @return Specifies the password corresponding to the given username.
      * 
      */
     public String password() {
         return this.password;
     }
     /**
-     * @return The default port to connect to if no port is specified as
-     * part of the host.
+     * @return The transport port to use to connect to Redis.
      * 
      */
     public Optional<Integer> port() {
         return Optional.ofNullable(this.port);
     }
     /**
-     * @return Whether to use TLS when connecting to Cassandra.
+     * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
     public Optional<Boolean> tls() {
         return Optional.ofNullable(this.tls);
     }
     /**
-     * @return The username to authenticate with.
+     * @return Specifies the username for Vault to use.
      * 
      */
     public String username() {

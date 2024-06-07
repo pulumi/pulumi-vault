@@ -12,7 +12,6 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,6 +37,7 @@ namespace Pulumi.Vault.MongoDBAtlas
     ///     var role = new Vault.MongoDBAtlas.SecretRole("role", new()
     ///     {
     ///         Mount = mongo.Path,
+    ///         Name = "tf-test-role",
     ///         OrganizationId = "7cf5a45a9ccf6400e60981b7",
     ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
     ///         Roles = new[]
@@ -56,7 +56,6 @@ namespace Pulumi.Vault.MongoDBAtlas
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

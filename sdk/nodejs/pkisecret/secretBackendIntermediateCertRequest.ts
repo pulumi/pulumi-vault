@@ -7,20 +7,18 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.pkisecret.SecretBackendIntermediateCertRequest("test", {
- *     backend: vault_mount.pki.path,
+ *     backend: pki.path,
  *     type: "internal",
  *     commonName: "app.my.domain",
  * }, {
- *     dependsOn: [vault_mount.pki],
+ *     dependsOn: [pki],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource {
     /**

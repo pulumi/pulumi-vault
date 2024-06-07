@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Generic
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -39,11 +38,11 @@ namespace Pulumi.Vault.Generic
     ///     {
     ///         DependsOn =
     ///         {
-    ///             userpass, 
+    ///             userpass,
     ///         },
     ///     });
     /// 
-    ///     var u1Token = new Vault.Generic.Endpoint("u1Token", new()
+    ///     var u1Token = new Vault.Generic.Endpoint("u1_token", new()
     ///     {
     ///         Path = "auth/userpass/login/u1",
     ///         DisableRead = true,
@@ -56,11 +55,11 @@ namespace Pulumi.Vault.Generic
     ///     {
     ///         DependsOn =
     ///         {
-    ///             u1, 
+    ///             u1,
     ///         },
     ///     });
     /// 
-    ///     var u1Entity = new Vault.Generic.Endpoint("u1Entity", new()
+    ///     var u1Entity = new Vault.Generic.Endpoint("u1_entity", new()
     ///     {
     ///         DisableRead = true,
     ///         DisableDelete = true,
@@ -79,7 +78,7 @@ namespace Pulumi.Vault.Generic
     ///     {
     ///         DependsOn =
     ///         {
-    ///             u1Token, 
+    ///             u1Token,
     ///         },
     ///     });
     /// 
@@ -89,7 +88,6 @@ namespace Pulumi.Vault.Generic
     ///     };
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Required Vault Capabilities
     /// 

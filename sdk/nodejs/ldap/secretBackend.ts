@@ -7,21 +7,19 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const config = new vault.ldap.SecretBackend("config", {
+ *     path: "my-custom-ldap",
  *     binddn: "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
  *     bindpass: "SuperSecretPassw0rd",
- *     insecureTls: true,
- *     path: "my-custom-ldap",
  *     url: "ldaps://localhost",
+ *     insecureTls: true,
  *     userdn: "CN=Users,DC=corp,DC=example,DC=net",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

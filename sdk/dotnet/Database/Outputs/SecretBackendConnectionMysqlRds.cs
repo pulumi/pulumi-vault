@@ -14,37 +14,31 @@ namespace Pulumi.Vault.Database.Outputs
     public sealed class SecretBackendConnectionMysqlRds
     {
         /// <summary>
-        /// Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        /// Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         /// </summary>
         public readonly string? AuthType;
         /// <summary>
-        /// A URL containing connection information. See
-        /// the [Vault
-        /// docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        /// for an example.
+        /// Connection string to use to connect to the database.
         /// </summary>
         public readonly string? ConnectionUrl;
         /// <summary>
-        /// The maximum number of seconds to keep
-        /// a connection alive for.
+        /// Maximum number of seconds a connection may be reused.
         /// </summary>
         public readonly int? MaxConnectionLifetime;
         /// <summary>
-        /// The maximum number of idle connections to
-        /// maintain.
+        /// Maximum number of idle connections to the database.
         /// </summary>
         public readonly int? MaxIdleConnections;
         /// <summary>
-        /// The maximum number of open connections to
-        /// use.
+        /// Maximum number of open connections to the database.
         /// </summary>
         public readonly int? MaxOpenConnections;
         /// <summary>
-        /// The password to authenticate with.
+        /// The root credential password used in the connection URL
         /// </summary>
         public readonly string? Password;
         /// <summary>
-        /// JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        /// A JSON encoded credential for use with IAM authorization
         /// </summary>
         public readonly string? ServiceAccountJson;
         /// <summary>
@@ -56,11 +50,11 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? TlsCertificateKey;
         /// <summary>
-        /// The username to authenticate with.
+        /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
         /// <summary>
-        /// Template describing how dynamic usernames are generated.
+        /// Username generation template.
         /// </summary>
         public readonly string? UsernameTemplate;
 

@@ -962,18 +962,16 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendIntermediateCertRequest("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
             type="internal",
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+            opts=pulumi.ResourceOptions(depends_on=[pki]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1022,18 +1020,16 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.pki_secret.SecretBackendIntermediateCertRequest("test",
-            backend=vault_mount["pki"]["path"],
+            backend=pki["path"],
             type="internal",
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["pki"]]))
+            opts=pulumi.ResourceOptions(depends_on=[pki]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendIntermediateCertRequestArgs args: The arguments to use to populate this resource's properties.

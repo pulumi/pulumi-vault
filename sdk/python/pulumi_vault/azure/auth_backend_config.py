@@ -305,20 +305,18 @@ class AuthBackendConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="azure")
-        example_auth_backend_config = vault.azure.AuthBackendConfig("exampleAuthBackendConfig",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
             tenant_id="11111111-2222-3333-4444-555555555555",
             client_id="11111111-2222-3333-4444-555555555555",
             client_secret="01234567890123456789",
             resource="https://vault.hashicorp.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -357,20 +355,18 @@ class AuthBackendConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        example_auth_backend = vault.AuthBackend("exampleAuthBackend", type="azure")
-        example_auth_backend_config = vault.azure.AuthBackendConfig("exampleAuthBackendConfig",
-            backend=example_auth_backend.path,
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
             tenant_id="11111111-2222-3333-4444-555555555555",
             client_id="11111111-2222-3333-4444-555555555555",
             client_secret="01234567890123456789",
             resource="https://vault.hashicorp.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,66 +49,67 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new Mount(&#34;root&#34;, MountArgs.builder()        
- *             .path(&#34;pki-root&#34;)
- *             .type(&#34;pki&#34;)
- *             .description(&#34;root&#34;)
+ *         var root = new Mount("root", MountArgs.builder()
+ *             .path("pki-root")
+ *             .type("pki")
+ *             .description("root")
  *             .defaultLeaseTtlSeconds(8640000)
  *             .maxLeaseTtlSeconds(8640000)
  *             .build());
  * 
- *         var intermediate = new Mount(&#34;intermediate&#34;, MountArgs.builder()        
- *             .path(&#34;pki-int&#34;)
+ *         var intermediate = new Mount("intermediate", MountArgs.builder()
+ *             .path("pki-int")
  *             .type(root.type())
- *             .description(&#34;intermediate&#34;)
+ *             .description("intermediate")
  *             .defaultLeaseTtlSeconds(86400)
  *             .maxLeaseTtlSeconds(86400)
  *             .build());
  * 
- *         var exampleSecretBackendRootCert = new SecretBackendRootCert(&#34;exampleSecretBackendRootCert&#34;, SecretBackendRootCertArgs.builder()        
+ *         var example = new SecretBackendRootCert("example", SecretBackendRootCertArgs.builder()
  *             .backend(root.path())
- *             .type(&#34;internal&#34;)
- *             .commonName(&#34;RootOrg Root CA&#34;)
+ *             .type("internal")
+ *             .commonName("RootOrg Root CA")
  *             .ttl(86400)
- *             .format(&#34;pem&#34;)
- *             .privateKeyFormat(&#34;der&#34;)
- *             .keyType(&#34;rsa&#34;)
+ *             .format("pem")
+ *             .privateKeyFormat("der")
+ *             .keyType("rsa")
  *             .keyBits(4096)
  *             .excludeCnFromSans(true)
- *             .ou(&#34;Organizational Unit&#34;)
- *             .organization(&#34;RootOrg&#34;)
- *             .country(&#34;US&#34;)
- *             .locality(&#34;San Francisco&#34;)
- *             .province(&#34;CA&#34;)
+ *             .ou("Organizational Unit")
+ *             .organization("RootOrg")
+ *             .country("US")
+ *             .locality("San Francisco")
+ *             .province("CA")
  *             .build());
  * 
- *         var exampleSecretBackendIntermediateCertRequest = new SecretBackendIntermediateCertRequest(&#34;exampleSecretBackendIntermediateCertRequest&#34;, SecretBackendIntermediateCertRequestArgs.builder()        
+ *         var exampleSecretBackendIntermediateCertRequest = new SecretBackendIntermediateCertRequest("exampleSecretBackendIntermediateCertRequest", SecretBackendIntermediateCertRequestArgs.builder()
  *             .backend(intermediate.path())
- *             .type(exampleSecretBackendRootCert.type())
- *             .commonName(&#34;SubOrg Intermediate CA&#34;)
+ *             .type(example.type())
+ *             .commonName("SubOrg Intermediate CA")
  *             .build());
  * 
- *         var exampleSecretBackendRootSignIntermediate = new SecretBackendRootSignIntermediate(&#34;exampleSecretBackendRootSignIntermediate&#34;, SecretBackendRootSignIntermediateArgs.builder()        
+ *         var exampleSecretBackendRootSignIntermediate = new SecretBackendRootSignIntermediate("exampleSecretBackendRootSignIntermediate", SecretBackendRootSignIntermediateArgs.builder()
  *             .backend(root.path())
  *             .csr(exampleSecretBackendIntermediateCertRequest.csr())
- *             .commonName(&#34;SubOrg Intermediate CA&#34;)
+ *             .commonName("SubOrg Intermediate CA")
  *             .excludeCnFromSans(true)
- *             .ou(&#34;SubUnit&#34;)
- *             .organization(&#34;SubOrg&#34;)
- *             .country(&#34;US&#34;)
- *             .locality(&#34;San Francisco&#34;)
- *             .province(&#34;CA&#34;)
+ *             .ou("SubUnit")
+ *             .organization("SubOrg")
+ *             .country("US")
+ *             .locality("San Francisco")
+ *             .province("CA")
  *             .revoke(true)
  *             .build());
  * 
- *         var exampleSecretBackendIntermediateSetSigned = new SecretBackendIntermediateSetSigned(&#34;exampleSecretBackendIntermediateSetSigned&#34;, SecretBackendIntermediateSetSignedArgs.builder()        
+ *         var exampleSecretBackendIntermediateSetSigned = new SecretBackendIntermediateSetSigned("exampleSecretBackendIntermediateSetSigned", SecretBackendIntermediateSetSignedArgs.builder()
  *             .backend(intermediate.path())
  *             .certificate(exampleSecretBackendRootSignIntermediate.certificate())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

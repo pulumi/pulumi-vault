@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Ldap
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,6 +33,7 @@ namespace Pulumi.Vault.Ldap
     ///     var qa = new Vault.Ldap.SecretBackendLibrarySet("qa", new()
     ///     {
     ///         Mount = config.Path,
+    ///         Name = "qa",
     ///         ServiceAccountNames = new[]
     ///         {
     ///             "Bob",
@@ -46,7 +46,6 @@ namespace Pulumi.Vault.Ldap
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

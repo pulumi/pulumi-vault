@@ -34,14 +34,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * `&lt;required&gt;` - S3 bucket to write snapshots to.
+     * S3 bucket to write snapshots to.
      * 
      */
     @Import(name="awsS3Bucket")
     private @Nullable Output<String> awsS3Bucket;
 
     /**
-     * @return `&lt;required&gt;` - S3 bucket to write snapshots to.
+     * @return S3 bucket to write snapshots to.
      * 
      */
     public Optional<Output<String>> awsS3Bucket() {
@@ -49,18 +49,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Disable TLS for the S3 endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `aws_s3_endpoint`.
+     * Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      * 
      */
     @Import(name="awsS3DisableTls")
     private @Nullable Output<Boolean> awsS3DisableTls;
 
     /**
-     * @return Disable TLS for the S3 endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `aws_s3_endpoint`.
+     * @return Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      * 
      */
     public Optional<Output<Boolean>> awsS3DisableTls() {
@@ -83,16 +79,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * AWS endpoint. This is typically only set when
-     * using a non-AWS S3 implementation like Minio.
+     * AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      * 
      */
     @Import(name="awsS3Endpoint")
     private @Nullable Output<String> awsS3Endpoint;
 
     /**
-     * @return AWS endpoint. This is typically only set when
-     * using a non-AWS S3 implementation like Minio.
+     * @return AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      * 
      */
     public Optional<Output<String>> awsS3Endpoint() {
@@ -100,16 +94,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Use the endpoint/bucket URL style
-     * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+     * Use the endpoint/bucket URL style instead of bucket.endpoint.
      * 
      */
     @Import(name="awsS3ForcePathStyle")
     private @Nullable Output<Boolean> awsS3ForcePathStyle;
 
     /**
-     * @return Use the endpoint/bucket URL style
-     * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+     * @return Use the endpoint/bucket URL style instead of bucket.endpoint.
      * 
      */
     public Optional<Output<Boolean>> awsS3ForcePathStyle() {
@@ -117,14 +109,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Use named KMS key, when `aws_s3_enable_kms = true`
+     * Use named KMS key, when aws_s3_enable_kms=true
      * 
      */
     @Import(name="awsS3KmsKey")
     private @Nullable Output<String> awsS3KmsKey;
 
     /**
-     * @return Use named KMS key, when `aws_s3_enable_kms = true`
+     * @return Use named KMS key, when aws_s3_enable_kms=true
      * 
      */
     public Optional<Output<String>> awsS3KmsKey() {
@@ -132,14 +124,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * `&lt;required&gt;` - AWS region bucket is in.
+     * AWS region bucket is in.
      * 
      */
     @Import(name="awsS3Region")
     private @Nullable Output<String> awsS3Region;
 
     /**
-     * @return `&lt;required&gt;` - AWS region bucket is in.
+     * @return AWS region bucket is in.
      * 
      */
     public Optional<Output<String>> awsS3Region() {
@@ -237,16 +229,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * `&lt;required&gt;` - Azure container name to write
-     * snapshots to.
+     * Azure container name to write snapshots to.
      * 
      */
     @Import(name="azureContainerName")
     private @Nullable Output<String> azureContainerName;
 
     /**
-     * @return `&lt;required&gt;` - Azure container name to write
-     * snapshots to.
+     * @return Azure container name to write snapshots to.
      * 
      */
     public Optional<Output<String>> azureContainerName() {
@@ -254,16 +244,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Azure blob storage endpoint. This is typically
-     * only set when using a non-Azure implementation like Azurite.
+     * Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      * 
      */
     @Import(name="azureEndpoint")
     private @Nullable Output<String> azureEndpoint;
 
     /**
-     * @return Azure blob storage endpoint. This is typically
-     * only set when using a non-Azure implementation like Azurite.
+     * @return Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      * 
      */
     public Optional<Output<String>> azureEndpoint() {
@@ -290,18 +278,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * Disable TLS for the GCS endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `google_endpoint`.
+     * Disable TLS for the GCS endpoint.
      * 
      */
     @Import(name="googleDisableTls")
     private @Nullable Output<Boolean> googleDisableTls;
 
     /**
-     * @return Disable TLS for the GCS endpoint. This
-     * should only be used for testing purposes, typically in conjunction with
-     * `google_endpoint`.
+     * @return Disable TLS for the GCS endpoint.
      * 
      */
     public Optional<Output<Boolean>> googleDisableTls() {
@@ -309,16 +293,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * GCS endpoint. This is typically only set when
-     * using a non-Google GCS implementation like fake-gcs-server.
+     * GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      * 
      */
     @Import(name="googleEndpoint")
     private @Nullable Output<String> googleEndpoint;
 
     /**
-     * @return GCS endpoint. This is typically only set when
-     * using a non-Google GCS implementation like fake-gcs-server.
+     * @return GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      * 
      */
     public Optional<Output<String>> googleEndpoint() {
@@ -326,14 +308,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * `&lt;required&gt;` - GCS bucket to write snapshots to.
+     * GCS bucket to write snapshots to.
      * 
      */
     @Import(name="googleGcsBucket")
     private @Nullable Output<String> googleGcsBucket;
 
     /**
-     * @return `&lt;required&gt;` - GCS bucket to write snapshots to.
+     * @return GCS bucket to write snapshots to.
      * 
      */
     public Optional<Output<String>> googleGcsBucket() {
@@ -342,7 +324,6 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
 
     /**
      * Google service account key in JSON format.
-     * The raw value looks like this:
      * 
      */
     @Import(name="googleServiceAccountKey")
@@ -350,7 +331,6 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
 
     /**
      * @return Google service account key in JSON format.
-     * The raw value looks like this:
      * 
      */
     public Optional<Output<String>> googleServiceAccountKey() {
@@ -373,18 +353,14 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * For `storage_type = local`, the maximum
-     * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-     * space left in this allowance.
+     * The maximum space, in bytes, to use for snapshots.
      * 
      */
     @Import(name="localMaxSpace")
     private @Nullable Output<Integer> localMaxSpace;
 
     /**
-     * @return For `storage_type = local`, the maximum
-     * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-     * space left in this allowance.
+     * @return The maximum space, in bytes, to use for snapshots.
      * 
      */
     public Optional<Output<Integer>> localMaxSpace() {
@@ -559,7 +535,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3Bucket `&lt;required&gt;` - S3 bucket to write snapshots to.
+         * @param awsS3Bucket S3 bucket to write snapshots to.
          * 
          * @return builder
          * 
@@ -570,7 +546,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3Bucket `&lt;required&gt;` - S3 bucket to write snapshots to.
+         * @param awsS3Bucket S3 bucket to write snapshots to.
          * 
          * @return builder
          * 
@@ -580,9 +556,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3DisableTls Disable TLS for the S3 endpoint. This
-         * should only be used for testing purposes, typically in conjunction with
-         * `aws_s3_endpoint`.
+         * @param awsS3DisableTls Disable TLS for the S3 endpoint. This should only be used for testing purposes.
          * 
          * @return builder
          * 
@@ -593,9 +567,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3DisableTls Disable TLS for the S3 endpoint. This
-         * should only be used for testing purposes, typically in conjunction with
-         * `aws_s3_endpoint`.
+         * @param awsS3DisableTls Disable TLS for the S3 endpoint. This should only be used for testing purposes.
          * 
          * @return builder
          * 
@@ -626,8 +598,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3Endpoint AWS endpoint. This is typically only set when
-         * using a non-AWS S3 implementation like Minio.
+         * @param awsS3Endpoint AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
          * 
          * @return builder
          * 
@@ -638,8 +609,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3Endpoint AWS endpoint. This is typically only set when
-         * using a non-AWS S3 implementation like Minio.
+         * @param awsS3Endpoint AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
          * 
          * @return builder
          * 
@@ -649,8 +619,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3ForcePathStyle Use the endpoint/bucket URL style
-         * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+         * @param awsS3ForcePathStyle Use the endpoint/bucket URL style instead of bucket.endpoint.
          * 
          * @return builder
          * 
@@ -661,8 +630,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3ForcePathStyle Use the endpoint/bucket URL style
-         * instead of bucket.endpoint. May be needed when setting `aws_s3_endpoint`.
+         * @param awsS3ForcePathStyle Use the endpoint/bucket URL style instead of bucket.endpoint.
          * 
          * @return builder
          * 
@@ -672,7 +640,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3KmsKey Use named KMS key, when `aws_s3_enable_kms = true`
+         * @param awsS3KmsKey Use named KMS key, when aws_s3_enable_kms=true
          * 
          * @return builder
          * 
@@ -683,7 +651,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3KmsKey Use named KMS key, when `aws_s3_enable_kms = true`
+         * @param awsS3KmsKey Use named KMS key, when aws_s3_enable_kms=true
          * 
          * @return builder
          * 
@@ -693,7 +661,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3Region `&lt;required&gt;` - AWS region bucket is in.
+         * @param awsS3Region AWS region bucket is in.
          * 
          * @return builder
          * 
@@ -704,7 +672,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param awsS3Region `&lt;required&gt;` - AWS region bucket is in.
+         * @param awsS3Region AWS region bucket is in.
          * 
          * @return builder
          * 
@@ -840,8 +808,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureContainerName `&lt;required&gt;` - Azure container name to write
-         * snapshots to.
+         * @param azureContainerName Azure container name to write snapshots to.
          * 
          * @return builder
          * 
@@ -852,8 +819,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureContainerName `&lt;required&gt;` - Azure container name to write
-         * snapshots to.
+         * @param azureContainerName Azure container name to write snapshots to.
          * 
          * @return builder
          * 
@@ -863,8 +829,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureEndpoint Azure blob storage endpoint. This is typically
-         * only set when using a non-Azure implementation like Azurite.
+         * @param azureEndpoint Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
          * 
          * @return builder
          * 
@@ -875,8 +840,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param azureEndpoint Azure blob storage endpoint. This is typically
-         * only set when using a non-Azure implementation like Azurite.
+         * @param azureEndpoint Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
          * 
          * @return builder
          * 
@@ -911,9 +875,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param googleDisableTls Disable TLS for the GCS endpoint. This
-         * should only be used for testing purposes, typically in conjunction with
-         * `google_endpoint`.
+         * @param googleDisableTls Disable TLS for the GCS endpoint.
          * 
          * @return builder
          * 
@@ -924,9 +886,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param googleDisableTls Disable TLS for the GCS endpoint. This
-         * should only be used for testing purposes, typically in conjunction with
-         * `google_endpoint`.
+         * @param googleDisableTls Disable TLS for the GCS endpoint.
          * 
          * @return builder
          * 
@@ -936,8 +896,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param googleEndpoint GCS endpoint. This is typically only set when
-         * using a non-Google GCS implementation like fake-gcs-server.
+         * @param googleEndpoint GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
          * 
          * @return builder
          * 
@@ -948,8 +907,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param googleEndpoint GCS endpoint. This is typically only set when
-         * using a non-Google GCS implementation like fake-gcs-server.
+         * @param googleEndpoint GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
          * 
          * @return builder
          * 
@@ -959,7 +917,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param googleGcsBucket `&lt;required&gt;` - GCS bucket to write snapshots to.
+         * @param googleGcsBucket GCS bucket to write snapshots to.
          * 
          * @return builder
          * 
@@ -970,7 +928,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param googleGcsBucket `&lt;required&gt;` - GCS bucket to write snapshots to.
+         * @param googleGcsBucket GCS bucket to write snapshots to.
          * 
          * @return builder
          * 
@@ -981,7 +939,6 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
 
         /**
          * @param googleServiceAccountKey Google service account key in JSON format.
-         * The raw value looks like this:
          * 
          * @return builder
          * 
@@ -993,7 +950,6 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
 
         /**
          * @param googleServiceAccountKey Google service account key in JSON format.
-         * The raw value looks like this:
          * 
          * @return builder
          * 
@@ -1024,9 +980,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param localMaxSpace For `storage_type = local`, the maximum
-         * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-         * space left in this allowance.
+         * @param localMaxSpace The maximum space, in bytes, to use for snapshots.
          * 
          * @return builder
          * 
@@ -1037,9 +991,7 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param localMaxSpace For `storage_type = local`, the maximum
-         * space, in bytes, to use for snapshots. Snapshot attempts will fail if there is not enough
-         * space left in this allowance.
+         * @param localMaxSpace The maximum space, in bytes, to use for snapshots.
          * 
          * @return builder
          * 

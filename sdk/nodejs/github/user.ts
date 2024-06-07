@@ -11,13 +11,12 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.github.AuthBackend("example", {organization: "myorg"});
- * const tfUser = new vault.github.User("tfUser", {
+ * const tfUser = new vault.github.User("tf_user", {
  *     backend: example.id,
  *     user: "john.doe",
  *     policies: [
@@ -26,7 +25,6 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

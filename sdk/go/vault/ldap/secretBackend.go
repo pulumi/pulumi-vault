@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -28,11 +27,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ldap.NewSecretBackend(ctx, "config", &ldap.SecretBackendArgs{
+//				Path:        pulumi.String("my-custom-ldap"),
 //				Binddn:      pulumi.String("CN=Administrator,CN=Users,DC=corp,DC=example,DC=net"),
 //				Bindpass:    pulumi.String("SuperSecretPassw0rd"),
-//				InsecureTls: pulumi.Bool(true),
-//				Path:        pulumi.String("my-custom-ldap"),
 //				Url:         pulumi.String("ldaps://localhost"),
+//				InsecureTls: pulumi.Bool(true),
 //				Userdn:      pulumi.String("CN=Users,DC=corp,DC=example,DC=net"),
 //			})
 //			if err != nil {
@@ -43,7 +42,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

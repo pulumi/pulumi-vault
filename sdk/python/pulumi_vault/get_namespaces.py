@@ -72,29 +72,25 @@ def get_namespaces(namespace: Optional[str] = None,
 
     ### Child namespaces
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     children = vault.get_namespaces()
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Nested namespace
 
     To fetch the details of nested namespaces:
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     children = vault.get_namespaces(namespace="parent")
-    child = [vault.get_namespace(namespace=children.namespace,
-        path=__key) for __key, __value in children.paths]
+    child = {__key: vault.get_namespace(namespace=children.namespace,
+        path=__key) for __key, __value in children.paths}
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace to provision the resource in.
@@ -120,29 +116,25 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[str]]] = Non
 
     ### Child namespaces
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     children = vault.get_namespaces()
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Nested namespace
 
     To fetch the details of nested namespaces:
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     children = vault.get_namespaces(namespace="parent")
-    child = [vault.get_namespace(namespace=children.namespace,
-        path=__key) for __key, __value in children.paths]
+    child = {__key: vault.get_namespace(namespace=children.namespace,
+        path=__key) for __key, __value in children.paths}
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: The namespace to provision the resource in.

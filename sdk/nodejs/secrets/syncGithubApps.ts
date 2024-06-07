@@ -7,18 +7,19 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
  * const github_apps = new vault.secrets.SyncGithubApps("github-apps", {
- *     appId: _var.app_id,
- *     privateKey: fs.readFileSync(_var.privatekey_file, "utf8"),
+ *     name: "gh-apps",
+ *     appId: appId,
+ *     privateKey: std.file({
+ *         input: privatekeyFile,
+ *     }).then(invoke => invoke.result),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

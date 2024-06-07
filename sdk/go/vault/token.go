@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -27,18 +26,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewToken(ctx, "example", &vault.TokenArgs{
-//				Metadata: pulumi.StringMap{
-//					"purpose": pulumi.String("service-account"),
-//				},
+//				RoleName: pulumi.String("app"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("policy1"),
 //					pulumi.String("policy2"),
 //				},
-//				RenewIncrement: pulumi.Int(86400),
-//				RenewMinLease:  pulumi.Int(43200),
 //				Renewable:      pulumi.Bool(true),
-//				RoleName:       pulumi.String("app"),
 //				Ttl:            pulumi.String("24h"),
+//				RenewMinLease:  pulumi.Int(43200),
+//				RenewIncrement: pulumi.Int(86400),
+//				Metadata: pulumi.StringMap{
+//					"purpose": pulumi.String("service-account"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -48,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

@@ -14,7 +14,6 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -41,13 +40,12 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         ///     var example = Vault.PkiSecret.GetBackendKey.Invoke(new()
         ///     {
-        ///         Backend = vault_mount.Key.Path,
+        ///         Backend = keyVaultMount.Path,
         ///         KeyRef = key.KeyId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetBackendKeyResult> InvokeAsync(GetBackendKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBackendKeyResult>("vault:pkiSecret/getBackendKey:getBackendKey", args ?? new GetBackendKeyArgs(), options.WithDefaults());
@@ -55,7 +53,6 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -82,13 +79,12 @@ namespace Pulumi.Vault.PkiSecret
         /// 
         ///     var example = Vault.PkiSecret.GetBackendKey.Invoke(new()
         ///     {
-        ///         Backend = vault_mount.Key.Path,
+        ///         Backend = keyVaultMount.Path,
         ///         KeyRef = key.KeyId,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetBackendKeyResult> Invoke(GetBackendKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendKeyResult>("vault:pkiSecret/getBackendKey:getBackendKey", args ?? new GetBackendKeyInvokeArgs(), options.WithDefaults());

@@ -246,18 +246,17 @@ class Entity(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.identity.Entity("test",
+            name="tester1",
+            policies=["test"],
             metadata={
                 "foo": "bar",
-            },
-            policies=["test"])
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -288,18 +287,17 @@ class Entity(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.identity.Entity("test",
+            name="tester1",
+            policies=["test"],
             metadata={
                 "foo": "bar",
-            },
-            policies=["test"])
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

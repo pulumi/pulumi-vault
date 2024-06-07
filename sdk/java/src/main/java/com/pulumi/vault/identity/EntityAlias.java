@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -40,14 +41,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new EntityAlias(&#34;test&#34;, EntityAliasArgs.builder()        
- *             .canonicalId(&#34;49877D63-07AD-4B85-BDA8-B61626C477E8&#34;)
- *             .mountAccessor(&#34;token_1f2bd5&#34;)
+ *         var test = new EntityAlias("test", EntityAliasArgs.builder()
+ *             .name("user_1")
+ *             .mountAccessor("token_1f2bd5")
+ *             .canonicalId("49877D63-07AD-4B85-BDA8-B61626C477E8")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

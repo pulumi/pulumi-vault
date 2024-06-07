@@ -273,21 +273,23 @@ class OidcProvider(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
         import pulumi_vault as vault
 
-        test_oidc_key = vault.identity.OidcKey("testOidcKey",
+        test = vault.identity.OidcKey("test",
+            name="my-key",
             allowed_client_ids=["*"],
             rotation_period=3600,
             verification_ttl=3600)
-        test_oidc_assignment = vault.identity.OidcAssignment("testOidcAssignment",
+        test_oidc_assignment = vault.identity.OidcAssignment("test",
+            name="my-assignment",
             entity_ids=["fake-ascbascas-2231a-sdfaa"],
             group_ids=["fake-sajkdsad-32414-sfsada"])
-        test_oidc_client = vault.identity.OidcClient("testOidcClient",
-            key=test_oidc_key.name,
+        test_oidc_client = vault.identity.OidcClient("test",
+            name="application",
+            key=test.name,
             redirect_uris=[
                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
                 "http://127.0.0.1:8251/callback",
@@ -296,18 +298,19 @@ class OidcProvider(pulumi.CustomResource):
             assignments=[test_oidc_assignment.name],
             id_token_ttl=2400,
             access_token_ttl=7200)
-        test_oidc_scope = vault.identity.OidcScope("testOidcScope",
+        test_oidc_scope = vault.identity.OidcScope("test",
+            name="groups",
             template=json.dumps({
                 "groups": "{{identity.entity.groups.names}}",
             }),
             description="Groups scope.")
-        test_oidc_provider = vault.identity.OidcProvider("testOidcProvider",
+        test_oidc_provider = vault.identity.OidcProvider("test",
+            name="my-provider",
             https_enabled=False,
             issuer_host="127.0.0.1:8200",
             allowed_client_ids=[test_oidc_client.client_id],
             scopes_supporteds=[test_oidc_scope.name])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -342,21 +345,23 @@ class OidcProvider(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import json
         import pulumi_vault as vault
 
-        test_oidc_key = vault.identity.OidcKey("testOidcKey",
+        test = vault.identity.OidcKey("test",
+            name="my-key",
             allowed_client_ids=["*"],
             rotation_period=3600,
             verification_ttl=3600)
-        test_oidc_assignment = vault.identity.OidcAssignment("testOidcAssignment",
+        test_oidc_assignment = vault.identity.OidcAssignment("test",
+            name="my-assignment",
             entity_ids=["fake-ascbascas-2231a-sdfaa"],
             group_ids=["fake-sajkdsad-32414-sfsada"])
-        test_oidc_client = vault.identity.OidcClient("testOidcClient",
-            key=test_oidc_key.name,
+        test_oidc_client = vault.identity.OidcClient("test",
+            name="application",
+            key=test.name,
             redirect_uris=[
                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
                 "http://127.0.0.1:8251/callback",
@@ -365,18 +370,19 @@ class OidcProvider(pulumi.CustomResource):
             assignments=[test_oidc_assignment.name],
             id_token_ttl=2400,
             access_token_ttl=7200)
-        test_oidc_scope = vault.identity.OidcScope("testOidcScope",
+        test_oidc_scope = vault.identity.OidcScope("test",
+            name="groups",
             template=json.dumps({
                 "groups": "{{identity.entity.groups.names}}",
             }),
             description="Groups scope.")
-        test_oidc_provider = vault.identity.OidcProvider("testOidcProvider",
+        test_oidc_provider = vault.identity.OidcProvider("test",
+            name="my-provider",
             https_enabled=False,
             issuer_host="127.0.0.1:8200",
             allowed_client_ids=[test_oidc_client.client_id],
             scopes_supporteds=[test_oidc_scope.name])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

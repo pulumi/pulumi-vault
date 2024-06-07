@@ -489,7 +489,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -499,6 +498,7 @@ class SecretBackendRole(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=[
                 "dev",
                 "prod",
@@ -508,10 +508,10 @@ class SecretBackendRole(pulumi.CustomResource):
             ))
         role = vault.database.SecretBackendRole("role",
             backend=db.path,
+            name="dev",
             db_name=postgres.name,
             creation_statements=["CREATE ROLE \\"{{name}}\\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -560,7 +560,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -570,6 +569,7 @@ class SecretBackendRole(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=[
                 "dev",
                 "prod",
@@ -579,10 +579,10 @@ class SecretBackendRole(pulumi.CustomResource):
             ))
         role = vault.database.SecretBackendRole("role",
             backend=db.path,
+            name="dev",
             db_name=postgres.name,
             creation_statements=["CREATE ROLE \\"{{name}}\\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

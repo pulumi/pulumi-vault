@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,56 +46,57 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var userpass = new AuthBackend(&#34;userpass&#34;, AuthBackendArgs.builder()        
- *             .type(&#34;userpass&#34;)
+ *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
+ *             .type("userpass")
  *             .build());
  * 
- *         var u1 = new Endpoint(&#34;u1&#34;, EndpointArgs.builder()        
- *             .path(&#34;auth/userpass/users/u1&#34;)
+ *         var u1 = new Endpoint("u1", EndpointArgs.builder()
+ *             .path("auth/userpass/users/u1")
  *             .ignoreAbsentFields(true)
- *             .dataJson(&#34;&#34;&#34;
+ *             .dataJson("""
  * {
- *   &#34;policies&#34;: [&#34;p1&#34;],
- *   &#34;password&#34;: &#34;changeme&#34;
+ *   "policies": ["p1"],
+ *   "password": "changeme"
  * }
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(userpass)
  *                 .build());
  * 
- *         var u1Token = new Endpoint(&#34;u1Token&#34;, EndpointArgs.builder()        
- *             .path(&#34;auth/userpass/login/u1&#34;)
+ *         var u1Token = new Endpoint("u1Token", EndpointArgs.builder()
+ *             .path("auth/userpass/login/u1")
  *             .disableRead(true)
  *             .disableDelete(true)
- *             .dataJson(&#34;&#34;&#34;
+ *             .dataJson("""
  * {
- *   &#34;password&#34;: &#34;changeme&#34;
+ *   "password": "changeme"
  * }
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(u1)
  *                 .build());
  * 
- *         var u1Entity = new Endpoint(&#34;u1Entity&#34;, EndpointArgs.builder()        
+ *         var u1Entity = new Endpoint("u1Entity", EndpointArgs.builder()
  *             .disableRead(true)
  *             .disableDelete(true)
- *             .path(&#34;identity/lookup/entity&#34;)
+ *             .path("identity/lookup/entity")
  *             .ignoreAbsentFields(true)
- *             .writeFields(&#34;id&#34;)
- *             .dataJson(&#34;&#34;&#34;
+ *             .writeFields("id")
+ *             .dataJson("""
  * {
- *   &#34;alias_name&#34;: &#34;u1&#34;,
- *   &#34;alias_mount_accessor&#34;: vault_auth_backend.userpass.accessor
+ *   "alias_name": "u1",
+ *   "alias_mount_accessor": vault_auth_backend.userpass.accessor
  * }
- *             &#34;&#34;&#34;)
+ *             """)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(u1Token)
  *                 .build());
  * 
- *         ctx.export(&#34;u1Id&#34;, u1Entity.writeData().applyValue(writeData -&gt; writeData.id()));
+ *         ctx.export("u1Id", u1Entity.writeData().applyValue(writeData -> writeData.id()));
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Required Vault Capabilities

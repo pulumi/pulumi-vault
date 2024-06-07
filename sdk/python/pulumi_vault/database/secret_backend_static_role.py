@@ -370,7 +370,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -380,27 +379,29 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=["*"],
             postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
                 connection_url="postgres://username:password@host:port/database",
             ))
         # configure a static role with period-based rotations
-        period_role = vault.database.SecretBackendStaticRole("periodRole",
+        period_role = vault.database.SecretBackendStaticRole("period_role",
             backend=db.path,
+            name="my-period-role",
             db_name=postgres.name,
             username="example",
             rotation_period=3600,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         # configure a static role with schedule-based rotations
-        schedule_role = vault.database.SecretBackendStaticRole("scheduleRole",
+        schedule_role = vault.database.SecretBackendStaticRole("schedule_role",
             backend=db.path,
+            name="my-schedule-role",
             db_name=postgres.name,
             username="example",
             rotation_schedule="0 0 * * SAT",
             rotation_window=172800,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -444,7 +445,6 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -454,27 +454,29 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=["*"],
             postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
                 connection_url="postgres://username:password@host:port/database",
             ))
         # configure a static role with period-based rotations
-        period_role = vault.database.SecretBackendStaticRole("periodRole",
+        period_role = vault.database.SecretBackendStaticRole("period_role",
             backend=db.path,
+            name="my-period-role",
             db_name=postgres.name,
             username="example",
             rotation_period=3600,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         # configure a static role with schedule-based rotations
-        schedule_role = vault.database.SecretBackendStaticRole("scheduleRole",
+        schedule_role = vault.database.SecretBackendStaticRole("schedule_role",
             backend=db.path,
+            name="my-schedule-role",
             db_name=postgres.name,
             username="example",
             rotation_schedule="0 0 * * SAT",
             rotation_window=172800,
             rotation_statements=["ALTER USER \\"{{name}}\\" WITH PASSWORD '{{password}}';"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

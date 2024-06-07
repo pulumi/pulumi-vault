@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,14 +29,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
-//				Backend:           pulumi.Any(vault_mount.Root.Path),
-//				Csr:               pulumi.Any(vault_pki_secret_backend_intermediate_cert_request.Intermediate.Csr),
+//				Backend:           pulumi.Any(rootVaultMount.Path),
+//				Csr:               pulumi.Any(intermediate.Csr),
 //				CommonName:        pulumi.String("Intermediate CA"),
 //				ExcludeCnFromSans: pulumi.Bool(true),
 //				Ou:                pulumi.String("My OU"),
 //				Organization:      pulumi.String("My organization"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				vault_pki_secret_backend_intermediate_cert_request.Intermediate,
+//				intermediate,
 //			}))
 //			if err != nil {
 //				return err
@@ -47,7 +46,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type SecretBackendRootSignIntermediate struct {
 	pulumi.CustomResourceState
 

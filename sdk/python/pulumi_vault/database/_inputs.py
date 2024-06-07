@@ -62,20 +62,16 @@ class SecretBackendConnectionCassandraArgs:
                  tls: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
-               timeout.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The hosts to connect to.
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks configuring the certificate
-               chain.
-        :param pulumi.Input[str] pem_json: A JSON structure configuring the certificate chain.
-        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
-               part of the host.
+        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection timeout.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Cassandra hosts to connect to.
+        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[str] password: The password to use when authenticating with Cassandra.
+        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        :param pulumi.Input[str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        :param pulumi.Input[int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
-        :param pulumi.Input[str] username: The username to authenticate with.
+        :param pulumi.Input[str] username: The username to use when authenticating with Cassandra.
         """
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
@@ -102,8 +98,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of seconds to use as a connection
-        timeout.
+        The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -115,7 +110,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The hosts to connect to.
+        Cassandra hosts to connect to.
         """
         return pulumi.get(self, "hosts")
 
@@ -127,8 +122,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -140,7 +134,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The password to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "password")
 
@@ -152,8 +146,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter(name="pemBundle")
     def pem_bundle(self) -> Optional[pulumi.Input[str]]:
         """
-        Concatenated PEM blocks configuring the certificate
-        chain.
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
@@ -165,7 +158,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter(name="pemJson")
     def pem_json(self) -> Optional[pulumi.Input[str]]:
         """
-        A JSON structure configuring the certificate chain.
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
@@ -177,8 +170,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The default port to connect to if no port is specified as
-        part of the host.
+        The transport port to use to connect to Cassandra.
         """
         return pulumi.get(self, "port")
 
@@ -214,7 +206,7 @@ class SecretBackendConnectionCassandraArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The username to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "username")
 
@@ -235,14 +227,13 @@ class SecretBackendConnectionCouchbaseArgs:
                  tls: Optional[pulumi.Input[bool]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The hosts to connect to.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        :param pulumi.Input[str] password: Specifies the password corresponding to the given username.
+        :param pulumi.Input[str] username: Specifies the username for Vault to use.
         :param pulumi.Input[str] base64_pem: Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         :param pulumi.Input[str] bucket_name: Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
-        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[bool] tls: Specifies whether to use TLS when connecting to Couchbase.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "hosts", hosts)
@@ -263,7 +254,7 @@ class SecretBackendConnectionCouchbaseArgs:
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The hosts to connect to.
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         """
         return pulumi.get(self, "hosts")
 
@@ -275,7 +266,7 @@ class SecretBackendConnectionCouchbaseArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password to authenticate with.
+        Specifies the password corresponding to the given username.
         """
         return pulumi.get(self, "password")
 
@@ -287,7 +278,7 @@ class SecretBackendConnectionCouchbaseArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The username to authenticate with.
+        Specifies the username for Vault to use.
         """
         return pulumi.get(self, "username")
 
@@ -323,8 +314,7 @@ class SecretBackendConnectionCouchbaseArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -336,7 +326,7 @@ class SecretBackendConnectionCouchbaseArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Specifies whether to use TLS when connecting to Couchbase.
         """
         return pulumi.get(self, "tls")
 
@@ -371,16 +361,15 @@ class SecretBackendConnectionElasticsearchArgs:
                  tls_server_name: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
-               by trusted CA if used.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
-        :param pulumi.Input[str] ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
-        :param pulumi.Input[str] client_cert: The path to the certificate for the Elasticsearch client to present for communication.
-        :param pulumi.Input[str] client_key: The path to the key for the Elasticsearch client to use for communication.
-        :param pulumi.Input[bool] insecure: Whether to disable certificate verification.
-        :param pulumi.Input[str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS.
+        :param pulumi.Input[str] password: The password to be used in the connection URL
+        :param pulumi.Input[str] url: The URL for Elasticsearch's API
+        :param pulumi.Input[str] username: The username to be used in the connection URL
+        :param pulumi.Input[str] ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
+        :param pulumi.Input[str] ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
+        :param pulumi.Input[str] client_cert: The path to the certificate for the Elasticsearch client to present for communication
+        :param pulumi.Input[str] client_key: The path to the key for the Elasticsearch client to use for communication
+        :param pulumi.Input[bool] insecure: Whether to disable certificate verification
+        :param pulumi.Input[str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "password", password)
@@ -405,7 +394,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password to authenticate with.
+        The password to be used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -417,8 +406,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        The URL for Elasticsearch's API. https requires certificate
-        by trusted CA if used.
+        The URL for Elasticsearch's API
         """
         return pulumi.get(self, "url")
 
@@ -430,7 +418,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The username to authenticate with.
+        The username to be used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -442,7 +430,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_cert")
 
@@ -454,7 +442,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter(name="caPath")
     def ca_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_path")
 
@@ -466,7 +454,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the certificate for the Elasticsearch client to present for communication.
+        The path to the certificate for the Elasticsearch client to present for communication
         """
         return pulumi.get(self, "client_cert")
 
@@ -478,7 +466,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the key for the Elasticsearch client to use for communication.
+        The path to the key for the Elasticsearch client to use for communication
         """
         return pulumi.get(self, "client_key")
 
@@ -490,7 +478,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter
     def insecure(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to disable certificate verification.
+        Whether to disable certificate verification
         """
         return pulumi.get(self, "insecure")
 
@@ -502,7 +490,7 @@ class SecretBackendConnectionElasticsearchArgs:
     @pulumi.getter(name="tlsServerName")
     def tls_server_name(self) -> Optional[pulumi.Input[str]]:
         """
-        This, if set, is used to set the SNI host when connecting via TLS.
+        This, if set, is used to set the SNI host when connecting via TLS
         """
         return pulumi.get(self, "tls_server_name")
 
@@ -534,19 +522,13 @@ class SecretBackendConnectionHanaArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -567,10 +549,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -582,7 +561,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -594,8 +573,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -607,8 +585,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -620,8 +597,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -633,7 +609,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -645,7 +621,7 @@ class SecretBackendConnectionHanaArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -668,19 +644,15 @@ class SecretBackendConnectionInfluxdbArgs:
                  tls: Optional[pulumi.Input[bool]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] host: The host to connect to.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
-               timeout.
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
-        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks configuring the certificate
-               chain.
-        :param pulumi.Input[str] pem_json: A JSON structure configuring the certificate chain.
-        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
-               part of the host.
-        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[str] host: Influxdb host to connect to.
+        :param pulumi.Input[str] password: Specifies the password corresponding to the given username.
+        :param pulumi.Input[str] username: Specifies the username to use for superuser access.
+        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection timeout.
+        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        :param pulumi.Input[str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        :param pulumi.Input[int] port: The transport port to use to connect to Influxdb.
+        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Influxdb.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         """
         pulumi.set(__self__, "host", host)
@@ -705,7 +677,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The host to connect to.
+        Influxdb host to connect to.
         """
         return pulumi.get(self, "host")
 
@@ -717,7 +689,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password to authenticate with.
+        Specifies the password corresponding to the given username.
         """
         return pulumi.get(self, "password")
 
@@ -729,7 +701,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The username to authenticate with.
+        Specifies the username to use for superuser access.
         """
         return pulumi.get(self, "username")
 
@@ -741,8 +713,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of seconds to use as a connection
-        timeout.
+        The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -754,8 +725,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -767,8 +737,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter(name="pemBundle")
     def pem_bundle(self) -> Optional[pulumi.Input[str]]:
         """
-        Concatenated PEM blocks configuring the certificate
-        chain.
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
@@ -780,7 +749,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter(name="pemJson")
     def pem_json(self) -> Optional[pulumi.Input[str]]:
         """
-        A JSON structure configuring the certificate chain.
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
@@ -792,8 +761,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The default port to connect to if no port is specified as
-        part of the host.
+        The transport port to use to connect to Influxdb.
         """
         return pulumi.get(self, "port")
 
@@ -805,7 +773,7 @@ class SecretBackendConnectionInfluxdbArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Influxdb.
         """
         return pulumi.get(self, "tls")
 
@@ -837,19 +805,13 @@ class SecretBackendConnectionMongodbArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -870,10 +832,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -885,8 +844,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -898,8 +856,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -911,8 +868,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -924,7 +880,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -936,7 +892,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -948,7 +904,7 @@ class SecretBackendConnectionMongodbArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -1022,24 +978,15 @@ class SecretBackendConnectionMssqlArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[bool] contained_db: For Vault v1.9+. Set to true when the target is a
-               Contained Database, e.g. AzureSQL.
-               See the [Vault
-               docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[bool] contained_db: Set to true when the target is a Contained Database, e.g. AzureSQL.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -1064,10 +1011,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -1079,10 +1023,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="containedDb")
     def contained_db(self) -> Optional[pulumi.Input[bool]]:
         """
-        For Vault v1.9+. Set to true when the target is a
-        Contained Database, e.g. AzureSQL.
-        See the [Vault
-        docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        Set to true when the target is a Contained Database, e.g. AzureSQL.
         """
         return pulumi.get(self, "contained_db")
 
@@ -1094,7 +1035,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -1106,8 +1047,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1119,8 +1059,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1132,8 +1071,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1145,7 +1083,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -1157,7 +1095,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -1169,7 +1107,7 @@ class SecretBackendConnectionMssqlArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -1193,23 +1131,17 @@ class SecretBackendConnectionMysqlArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -1238,7 +1170,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
@@ -1250,10 +1182,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -1265,8 +1194,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1278,8 +1206,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1291,8 +1218,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1304,7 +1230,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -1316,7 +1242,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
@@ -1352,7 +1278,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -1364,7 +1290,7 @@ class SecretBackendConnectionMysqlArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -1388,23 +1314,17 @@ class SecretBackendConnectionMysqlAuroraArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -1433,7 +1353,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
@@ -1445,10 +1365,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -1460,8 +1377,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1473,8 +1389,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1486,8 +1401,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1499,7 +1413,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -1511,7 +1425,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
@@ -1547,7 +1461,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -1559,7 +1473,7 @@ class SecretBackendConnectionMysqlAuroraArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -1583,23 +1497,17 @@ class SecretBackendConnectionMysqlLegacyArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -1628,7 +1536,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
@@ -1640,10 +1548,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -1655,8 +1560,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1668,8 +1572,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1681,8 +1584,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1694,7 +1596,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -1706,7 +1608,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
@@ -1742,7 +1644,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -1754,7 +1656,7 @@ class SecretBackendConnectionMysqlLegacyArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -1778,23 +1680,17 @@ class SecretBackendConnectionMysqlRdsArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -1823,7 +1719,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
@@ -1835,10 +1731,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -1850,8 +1743,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -1863,8 +1755,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -1876,8 +1767,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -1889,7 +1779,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -1901,7 +1791,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
@@ -1937,7 +1827,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -1949,7 +1839,7 @@ class SecretBackendConnectionMysqlRdsArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -1971,21 +1861,15 @@ class SecretBackendConnectionOracleArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[bool] disconnect_sessions: Enable the built-in session disconnect mechanism.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[bool] split_statements: Enable spliting statements after semi-colons.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[bool] disconnect_sessions: Set to true to disconnect any open sessions prior to running the revocation statements.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[bool] split_statements: Set to true in order to split statements after semi-colons.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -2010,10 +1894,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -2025,7 +1906,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="disconnectSessions")
     def disconnect_sessions(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable the built-in session disconnect mechanism.
+        Set to true to disconnect any open sessions prior to running the revocation statements.
         """
         return pulumi.get(self, "disconnect_sessions")
 
@@ -2037,8 +1918,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -2050,8 +1930,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -2063,8 +1942,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -2076,7 +1954,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -2088,7 +1966,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="splitStatements")
     def split_statements(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable spliting statements after semi-colons.
+        Set to true in order to split statements after semi-colons.
         """
         return pulumi.get(self, "split_statements")
 
@@ -2100,7 +1978,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -2112,7 +1990,7 @@ class SecretBackendConnectionOracleArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -2135,22 +2013,16 @@ class SecretBackendConnectionPostgresqlArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] auth_type: Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] service_account_json: JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
@@ -2177,7 +2049,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable IAM authentication to a Google Cloud instance when set to `gcp_iam`
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
@@ -2189,10 +2061,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -2204,7 +2073,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -2216,8 +2085,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -2229,8 +2097,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -2242,8 +2109,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -2255,7 +2121,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -2267,7 +2133,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
-        JSON encoding of an IAM access key. Requires `auth_type` to be `gcp_iam`.
+        A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
@@ -2279,7 +2145,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -2291,7 +2157,7 @@ class SecretBackendConnectionPostgresqlArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -2311,15 +2177,13 @@ class SecretBackendConnectionRedisArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] host: The host to connect to.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
-        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
-               part of the host.
-        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[str] host: Specifies the host to connect to
+        :param pulumi.Input[str] password: Specifies the password corresponding to the given username.
+        :param pulumi.Input[str] username: Specifies the username for Vault to use.
+        :param pulumi.Input[str] ca_cert: The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        :param pulumi.Input[bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[int] port: The transport port to use to connect to Redis.
+        :param pulumi.Input[bool] tls: Specifies whether to use TLS when connecting to Redis.
         """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "password", password)
@@ -2337,7 +2201,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The host to connect to.
+        Specifies the host to connect to
         """
         return pulumi.get(self, "host")
 
@@ -2349,7 +2213,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The password to authenticate with.
+        Specifies the password corresponding to the given username.
         """
         return pulumi.get(self, "password")
 
@@ -2361,7 +2225,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The username to authenticate with.
+        Specifies the username for Vault to use.
         """
         return pulumi.get(self, "username")
 
@@ -2373,7 +2237,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -2385,8 +2249,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -2398,8 +2261,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The default port to connect to if no port is specified as
-        part of the host.
+        The transport port to use to connect to Redis.
         """
         return pulumi.get(self, "port")
 
@@ -2411,7 +2273,7 @@ class SecretBackendConnectionRedisArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Specifies whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -2428,11 +2290,10 @@ class SecretBackendConnectionRedisElasticacheArgs:
                  region: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
-               by trusted CA if used.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] region: The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
-        :param pulumi.Input[str] username: The username to authenticate with.
+        :param pulumi.Input[str] url: The configuration endpoint for the ElastiCache cluster to connect to.
+        :param pulumi.Input[str] password: The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+        :param pulumi.Input[str] region: The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
+        :param pulumi.Input[str] username: The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         pulumi.set(__self__, "url", url)
         if password is not None:
@@ -2446,8 +2307,7 @@ class SecretBackendConnectionRedisElasticacheArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        The URL for Elasticsearch's API. https requires certificate
-        by trusted CA if used.
+        The configuration endpoint for the ElastiCache cluster to connect to.
         """
         return pulumi.get(self, "url")
 
@@ -2459,7 +2319,7 @@ class SecretBackendConnectionRedisElasticacheArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "password")
 
@@ -2471,7 +2331,7 @@ class SecretBackendConnectionRedisElasticacheArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+        The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         """
         return pulumi.get(self, "region")
 
@@ -2483,7 +2343,7 @@ class SecretBackendConnectionRedisElasticacheArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "username")
 
@@ -2504,20 +2364,14 @@ class SecretBackendConnectionRedshiftArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -2540,10 +2394,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -2555,7 +2406,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -2567,8 +2418,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -2580,8 +2430,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -2593,8 +2442,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -2606,7 +2454,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -2618,7 +2466,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -2630,7 +2478,7 @@ class SecretBackendConnectionRedshiftArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -2650,19 +2498,13 @@ class SecretBackendConnectionSnowflakeArgs:
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] connection_url: A URL containing connection information. See
-               the [Vault
-               docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-               for an example.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum number of seconds to keep
-               a connection alive for.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               maintain.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               use.
-        :param pulumi.Input[str] password: The password to authenticate with.
-        :param pulumi.Input[str] username: The username to authenticate with.
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         """
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
@@ -2683,10 +2525,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        A URL containing connection information. See
-        the [Vault
-        docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-        for an example.
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -2698,8 +2537,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of seconds to keep
-        a connection alive for.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -2711,8 +2549,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        maintain.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -2724,8 +2561,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        use.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -2737,7 +2573,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The password to authenticate with.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -2749,7 +2585,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The username to authenticate with.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -2761,7 +2597,7 @@ class SecretBackendConnectionSnowflakeArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        Template describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -2793,25 +2629,21 @@ class SecretsMountCassandraArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
-               timeout.
+        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection timeout.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The hosts to connect to.
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
-        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks configuring the certificate
-               chain.
-        :param pulumi.Input[str] pem_json: A JSON structure configuring the certificate chain.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Cassandra hosts to connect to.
+        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[str] password: The password to use when authenticating with Cassandra.
+        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        :param pulumi.Input[str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
-        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
-               part of the host.
+        :param pulumi.Input[int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] username: The username to use when authenticating with Cassandra.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -2876,8 +2708,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of seconds to use as a connection
-        timeout.
+        The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -2903,7 +2734,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The hosts to connect to.
+        Cassandra hosts to connect to.
         """
         return pulumi.get(self, "hosts")
 
@@ -2915,8 +2746,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -2928,7 +2758,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The password to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "password")
 
@@ -2940,8 +2770,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter(name="pemBundle")
     def pem_bundle(self) -> Optional[pulumi.Input[str]]:
         """
-        Concatenated PEM blocks configuring the certificate
-        chain.
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
@@ -2953,7 +2782,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter(name="pemJson")
     def pem_json(self) -> Optional[pulumi.Input[str]]:
         """
-        A JSON structure configuring the certificate chain.
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
@@ -2977,8 +2806,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The default port to connect to if no port is specified as
-        part of the host.
+        The transport port to use to connect to Cassandra.
         """
         return pulumi.get(self, "port")
 
@@ -3026,7 +2854,7 @@ class SecretsMountCassandraArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The username to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "username")
 
@@ -3066,10 +2894,10 @@ class SecretsMountCouchbaseArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: The hosts to connect to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         :param pulumi.Input[str] name: Name of the database connection.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] password: Specifies the password corresponding to the given username.
+        :param pulumi.Input[str] username: Specifies the username for Vault to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] base64_pem: Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
@@ -3077,12 +2905,11 @@ class SecretsMountCouchbaseArgs:
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
+        :param pulumi.Input[bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[bool] tls: Specifies whether to use TLS when connecting to Couchbase.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -3115,7 +2942,7 @@ class SecretsMountCouchbaseArgs:
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The hosts to connect to.
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         """
         return pulumi.get(self, "hosts")
 
@@ -3139,7 +2966,7 @@ class SecretsMountCouchbaseArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The root credential password used in the connection URL.
+        Specifies the password corresponding to the given username.
         """
         return pulumi.get(self, "password")
 
@@ -3151,7 +2978,7 @@ class SecretsMountCouchbaseArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The root credential username used in the connection URL.
+        Specifies the username for Vault to use.
         """
         return pulumi.get(self, "username")
 
@@ -3214,8 +3041,7 @@ class SecretsMountCouchbaseArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -3251,7 +3077,7 @@ class SecretsMountCouchbaseArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Specifies whether to use TLS when connecting to Couchbase.
         """
         return pulumi.get(self, "tls")
 
@@ -3263,7 +3089,7 @@ class SecretsMountCouchbaseArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
@@ -3306,24 +3132,23 @@ class SecretsMountElasticsearchArgs:
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] name: Name of the database connection.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
-        :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
-               by trusted CA if used.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] password: The password to be used in the connection URL
+        :param pulumi.Input[str] url: The URL for Elasticsearch's API
+        :param pulumi.Input[str] username: The username to be used in the connection URL
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
-        :param pulumi.Input[str] ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
-        :param pulumi.Input[str] client_cert: The path to the certificate for the Elasticsearch client to present for communication.
-        :param pulumi.Input[str] client_key: The path to the key for the Elasticsearch client to use for communication.
+        :param pulumi.Input[str] ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
+        :param pulumi.Input[str] ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
+        :param pulumi.Input[str] client_cert: The path to the certificate for the Elasticsearch client to present for communication
+        :param pulumi.Input[str] client_key: The path to the key for the Elasticsearch client to use for communication
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] insecure: Whether to disable certificate verification.
+        :param pulumi.Input[bool] insecure: Whether to disable certificate verification
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -3372,7 +3197,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The root credential password used in the connection URL.
+        The password to be used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -3384,8 +3209,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        The URL for Elasticsearch's API. https requires certificate
-        by trusted CA if used.
+        The URL for Elasticsearch's API
         """
         return pulumi.get(self, "url")
 
@@ -3397,7 +3221,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The root credential username used in the connection URL.
+        The username to be used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -3422,7 +3246,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_cert")
 
@@ -3434,7 +3258,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter(name="caPath")
     def ca_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_path")
 
@@ -3446,7 +3270,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter(name="clientCert")
     def client_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the certificate for the Elasticsearch client to present for communication.
+        The path to the certificate for the Elasticsearch client to present for communication
         """
         return pulumi.get(self, "client_cert")
 
@@ -3458,7 +3282,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter(name="clientKey")
     def client_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to the key for the Elasticsearch client to use for communication.
+        The path to the key for the Elasticsearch client to use for communication
         """
         return pulumi.get(self, "client_key")
 
@@ -3484,7 +3308,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter
     def insecure(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to disable certificate verification.
+        Whether to disable certificate verification
         """
         return pulumi.get(self, "insecure")
 
@@ -3520,7 +3344,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter(name="tlsServerName")
     def tls_server_name(self) -> Optional[pulumi.Input[str]]:
         """
-        This, if set, is used to set the SNI host when connecting via TLS.
+        This, if set, is used to set the SNI host when connecting via TLS
         """
         return pulumi.get(self, "tls_server_name")
 
@@ -3532,7 +3356,7 @@ class SecretsMountElasticsearchArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
@@ -3574,21 +3398,18 @@ class SecretsMountHanaArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -3647,8 +3468,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -3674,7 +3494,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -3686,7 +3506,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -3698,8 +3518,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -3711,8 +3530,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -3724,7 +3542,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -3760,7 +3578,7 @@ class SecretsMountHanaArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -3802,28 +3620,24 @@ class SecretsMountInfluxdbArgs:
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] host: The host to connect to.
+        :param pulumi.Input[str] host: Influxdb host to connect to.
         :param pulumi.Input[str] name: Name of the database connection.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] password: Specifies the password corresponding to the given username.
+        :param pulumi.Input[str] username: Specifies the username to use for superuser access.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection
-               timeout.
+        :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection timeout.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
-        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks configuring the certificate
-               chain.
-        :param pulumi.Input[str] pem_json: A JSON structure configuring the certificate chain.
+        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
+        :param pulumi.Input[str] pem_bundle: Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        :param pulumi.Input[str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
-        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
-               part of the host.
+        :param pulumi.Input[int] port: The transport port to use to connect to Influxdb.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Influxdb.
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -3860,7 +3674,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The host to connect to.
+        Influxdb host to connect to.
         """
         return pulumi.get(self, "host")
 
@@ -3884,7 +3698,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The root credential password used in the connection URL.
+        Specifies the password corresponding to the given username.
         """
         return pulumi.get(self, "password")
 
@@ -3896,7 +3710,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The root credential username used in the connection URL.
+        Specifies the username to use for superuser access.
         """
         return pulumi.get(self, "username")
 
@@ -3921,8 +3735,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of seconds to use as a connection
-        timeout.
+        The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
@@ -3948,8 +3761,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -3961,8 +3773,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter(name="pemBundle")
     def pem_bundle(self) -> Optional[pulumi.Input[str]]:
         """
-        Concatenated PEM blocks configuring the certificate
-        chain.
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
@@ -3974,7 +3785,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter(name="pemJson")
     def pem_json(self) -> Optional[pulumi.Input[str]]:
         """
-        A JSON structure configuring the certificate chain.
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
@@ -3998,8 +3809,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The default port to connect to if no port is specified as
-        part of the host.
+        The transport port to use to connect to Influxdb.
         """
         return pulumi.get(self, "port")
 
@@ -4023,7 +3833,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Whether to use TLS when connecting to Influxdb.
         """
         return pulumi.get(self, "tls")
 
@@ -4035,7 +3845,7 @@ class SecretsMountInfluxdbArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
@@ -4077,21 +3887,18 @@ class SecretsMountMongodbArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -4150,8 +3957,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -4177,7 +3983,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -4189,8 +3995,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -4202,8 +4007,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -4215,7 +4019,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -4251,7 +4055,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -4263,7 +4067,7 @@ class SecretsMountMongodbArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -4462,25 +4266,20 @@ class SecretsMountMssqlArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
-        :param pulumi.Input[bool] contained_db: For Vault v1.9+. Set to true when the target is a
-               Contained Database, e.g. AzureSQL.
-               See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
+        :param pulumi.Input[bool] contained_db: Set to true when the target is a Contained Database, e.g. AzureSQL.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -4543,8 +4342,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -4556,9 +4354,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="containedDb")
     def contained_db(self) -> Optional[pulumi.Input[bool]]:
         """
-        For Vault v1.9+. Set to true when the target is a
-        Contained Database, e.g. AzureSQL.
-        See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+        Set to true when the target is a Contained Database, e.g. AzureSQL.
         """
         return pulumi.get(self, "contained_db")
 
@@ -4584,7 +4380,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -4596,7 +4392,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -4608,8 +4404,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -4621,8 +4416,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -4634,7 +4428,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -4670,7 +4464,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -4682,7 +4476,7 @@ class SecretsMountMssqlArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -4729,24 +4523,21 @@ class SecretsMountMysqlArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -4825,8 +4616,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -4852,7 +4642,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -4864,8 +4654,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -4877,8 +4666,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -4890,7 +4678,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -4962,7 +4750,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -4974,7 +4762,7 @@ class SecretsMountMysqlArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -5021,24 +4809,21 @@ class SecretsMountMysqlAuroraArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -5117,8 +4902,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -5144,7 +4928,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -5156,8 +4940,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -5169,8 +4952,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -5182,7 +4964,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -5254,7 +5036,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -5266,7 +5048,7 @@ class SecretsMountMysqlAuroraArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -5313,24 +5095,21 @@ class SecretsMountMysqlLegacyArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -5409,8 +5188,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -5436,7 +5214,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -5448,8 +5226,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -5461,8 +5238,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -5474,7 +5250,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -5546,7 +5322,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -5558,7 +5334,7 @@ class SecretsMountMysqlLegacyArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -5605,24 +5381,21 @@ class SecretsMountMysqlRdArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -5701,8 +5474,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -5728,7 +5500,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -5740,8 +5512,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -5753,8 +5524,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -5766,7 +5536,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -5838,7 +5608,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -5850,7 +5620,7 @@ class SecretsMountMysqlRdArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -5894,23 +5664,20 @@ class SecretsMountOracleArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] disconnect_sessions: Set to true to disconnect any open sessions prior to running the revocation statements.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[bool] split_statements: Set to true in order to split statements after semi-colons.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -5973,8 +5740,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -6012,7 +5778,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -6024,8 +5790,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -6037,8 +5802,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -6050,7 +5814,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -6098,7 +5862,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -6110,7 +5874,7 @@ class SecretsMountOracleArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -6156,23 +5920,20 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -6249,8 +6010,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -6276,7 +6036,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -6288,7 +6048,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -6300,8 +6060,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -6313,8 +6072,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -6326,7 +6084,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -6374,7 +6132,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -6386,7 +6144,7 @@ class SecretsMountPostgresqlArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -6425,23 +6183,21 @@ class SecretsMountRediArgs:
                  tls: Optional[pulumi.Input[bool]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] host: The host to connect to.
+        :param pulumi.Input[str] host: Specifies the host to connect to
         :param pulumi.Input[str] name: Name of the database connection.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] password: Specifies the password corresponding to the given username.
+        :param pulumi.Input[str] username: Specifies the username for Vault to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] ca_cert: The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        :param pulumi.Input[str] ca_cert: The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server
-               certificate when using TLS.
+        :param pulumi.Input[bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
-        :param pulumi.Input[int] port: The default port to connect to if no port is specified as
-               part of the host.
+        :param pulumi.Input[int] port: The transport port to use to connect to Redis.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
+        :param pulumi.Input[bool] tls: Specifies whether to use TLS when connecting to Redis.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -6472,7 +6228,7 @@ class SecretsMountRediArgs:
     @pulumi.getter
     def host(self) -> pulumi.Input[str]:
         """
-        The host to connect to.
+        Specifies the host to connect to
         """
         return pulumi.get(self, "host")
 
@@ -6496,7 +6252,7 @@ class SecretsMountRediArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
         """
-        The root credential password used in the connection URL.
+        Specifies the password corresponding to the given username.
         """
         return pulumi.get(self, "password")
 
@@ -6508,7 +6264,7 @@ class SecretsMountRediArgs:
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
         """
-        The root credential username used in the connection URL.
+        Specifies the username for Vault to use.
         """
         return pulumi.get(self, "username")
 
@@ -6533,7 +6289,7 @@ class SecretsMountRediArgs:
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         """
         return pulumi.get(self, "ca_cert")
 
@@ -6559,8 +6315,7 @@ class SecretsMountRediArgs:
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to skip verification of the server
-        certificate when using TLS.
+        Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
@@ -6584,8 +6339,7 @@ class SecretsMountRediArgs:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The default port to connect to if no port is specified as
-        part of the host.
+        The transport port to use to connect to Redis.
         """
         return pulumi.get(self, "port")
 
@@ -6609,7 +6363,7 @@ class SecretsMountRediArgs:
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to use TLS when connecting to Cassandra.
+        Specifies whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
@@ -6646,19 +6400,17 @@ class SecretsMountRedisElasticachArgs:
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] name: Name of the database connection.
-        :param pulumi.Input[str] url: The URL for Elasticsearch's API. https requires certificate
-               by trusted CA if used.
+        :param pulumi.Input[str] url: The configuration endpoint for the ElastiCache cluster to connect to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[str] password: The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
-        :param pulumi.Input[str] region: The AWS region where the ElastiCache cluster is hosted.
-               If omitted the plugin tries to infer the region from the environment.
+        :param pulumi.Input[str] region: The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
+        :param pulumi.Input[str] username: The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -6697,8 +6449,7 @@ class SecretsMountRedisElasticachArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
         """
-        The URL for Elasticsearch's API. https requires certificate
-        by trusted CA if used.
+        The configuration endpoint for the ElastiCache cluster to connect to.
         """
         return pulumi.get(self, "url")
 
@@ -6737,7 +6488,7 @@ class SecretsMountRedisElasticachArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "password")
 
@@ -6761,8 +6512,7 @@ class SecretsMountRedisElasticachArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The AWS region where the ElastiCache cluster is hosted.
-        If omitted the plugin tries to infer the region from the environment.
+        The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         """
         return pulumi.get(self, "region")
 
@@ -6786,7 +6536,7 @@ class SecretsMountRedisElasticachArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "username")
 
@@ -6829,22 +6579,19 @@ class SecretsMountRedshiftArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password.
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -6905,8 +6652,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -6932,7 +6678,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter(name="disableEscaping")
     def disable_escaping(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable special character escaping in username and password.
+        Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
@@ -6944,7 +6690,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -6956,8 +6702,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -6969,8 +6714,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -6982,7 +6726,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -7018,7 +6762,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -7030,7 +6774,7 @@ class SecretsMountRedshiftArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 
@@ -7072,21 +6816,18 @@ class SecretsMountSnowflakeArgs:
         :param pulumi.Input[str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param pulumi.Input[str] connection_url: Specifies the Redshift DSN. 
-               See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
-        :param pulumi.Input[int] max_connection_lifetime: The maximum amount of time a connection may be reused.
-        :param pulumi.Input[int] max_idle_connections: The maximum number of idle connections to
-               the database.
-        :param pulumi.Input[int] max_open_connections: The maximum number of open connections to
-               the database.
-        :param pulumi.Input[str] password: The root credential password used in the connection URL.
+        :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
+        :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
+        :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
+        :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[str] username: The root credential username used in the connection URL.
-        :param pulumi.Input[str] username_template: [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        :param pulumi.Input[str] username: The root credential username used in the connection URL
+        :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -7145,8 +6886,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter(name="connectionUrl")
     def connection_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the Redshift DSN. 
-        See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+        Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
@@ -7172,7 +6912,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter(name="maxConnectionLifetime")
     def max_connection_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum amount of time a connection may be reused.
+        Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
@@ -7184,8 +6924,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter(name="maxIdleConnections")
     def max_idle_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of idle connections to
-        the database.
+        Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
@@ -7197,8 +6936,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter(name="maxOpenConnections")
     def max_open_connections(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of open connections to
-        the database.
+        Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
@@ -7210,7 +6948,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential password used in the connection URL.
+        The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
@@ -7246,7 +6984,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
-        The root credential username used in the connection URL.
+        The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
@@ -7258,7 +6996,7 @@ class SecretsMountSnowflakeArgs:
     @pulumi.getter(name="usernameTemplate")
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
-        [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+        Username generation template.
         """
         return pulumi.get(self, "username_template")
 

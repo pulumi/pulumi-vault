@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,14 +42,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var github_apps = new SyncGithubApps(&#34;github-apps&#34;, SyncGithubAppsArgs.builder()        
- *             .appId(var_.app_id())
- *             .privateKey(Files.readString(Paths.get(var_.privatekey_file())))
+ *         var github_apps = new SyncGithubApps("github-apps", SyncGithubAppsArgs.builder()
+ *             .name("gh-apps")
+ *             .appId(appId)
+ *             .privateKey(StdFunctions.file(FileArgs.builder()
+ *                 .input(privatekeyFile)
+ *                 .build()).result())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

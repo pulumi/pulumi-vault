@@ -15,7 +15,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,8 +24,9 @@ namespace Pulumi.Vault.Identity
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testOidcKey = new Vault.Identity.OidcKey("testOidcKey", new()
+    ///     var test = new Vault.Identity.OidcKey("test", new()
     ///     {
+    ///         Name = "my-key",
     ///         AllowedClientIds = new[]
     ///         {
     ///             "*",
@@ -35,8 +35,9 @@ namespace Pulumi.Vault.Identity
     ///         VerificationTtl = 3600,
     ///     });
     /// 
-    ///     var testOidcAssignment = new Vault.Identity.OidcAssignment("testOidcAssignment", new()
+    ///     var testOidcAssignment = new Vault.Identity.OidcAssignment("test", new()
     ///     {
+    ///         Name = "my-assignment",
     ///         EntityIds = new[]
     ///         {
     ///             "fake-ascbascas-2231a-sdfaa",
@@ -47,9 +48,10 @@ namespace Pulumi.Vault.Identity
     ///         },
     ///     });
     /// 
-    ///     var testOidcClient = new Vault.Identity.OidcClient("testOidcClient", new()
+    ///     var testOidcClient = new Vault.Identity.OidcClient("test", new()
     ///     {
-    ///         Key = testOidcKey.Name,
+    ///         Name = "application",
+    ///         Key = test.Name,
     ///         RedirectUris = new[]
     ///         {
     ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -64,8 +66,9 @@ namespace Pulumi.Vault.Identity
     ///         AccessTokenTtl = 7200,
     ///     });
     /// 
-    ///     var testOidcScope = new Vault.Identity.OidcScope("testOidcScope", new()
+    ///     var testOidcScope = new Vault.Identity.OidcScope("test", new()
     ///     {
+    ///         Name = "groups",
     ///         Template = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
     ///             ["groups"] = "{{identity.entity.groups.names}}",
@@ -73,8 +76,9 @@ namespace Pulumi.Vault.Identity
     ///         Description = "Groups scope.",
     ///     });
     /// 
-    ///     var testOidcProvider = new Vault.Identity.OidcProvider("testOidcProvider", new()
+    ///     var testOidcProvider = new Vault.Identity.OidcProvider("test", new()
     ///     {
+    ///         Name = "my-provider",
     ///         HttpsEnabled = false,
     ///         IssuerHost = "127.0.0.1:8200",
     ///         AllowedClientIds = new[]
@@ -89,7 +93,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

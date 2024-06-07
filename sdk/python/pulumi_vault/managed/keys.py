@@ -24,10 +24,7 @@ class KeysArgs:
         The set of arguments for constructing a Keys resource.
         :param pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]] azures: Configuration block for Azure Managed Keys
-        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
-               The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured namespace.
-               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]] pkcs: Configuration block for PKCS Managed Keys
         """
         if aws is not None:
@@ -67,10 +64,7 @@ class KeysArgs:
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace to provision the resource in.
-        The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured namespace.
-        *Available only for Vault Enterprise*.
+        Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 
@@ -102,10 +96,7 @@ class _KeysState:
         Input properties used for looking up and filtering Keys resources.
         :param pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]] azures: Configuration block for Azure Managed Keys
-        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
-               The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured namespace.
-               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]] pkcs: Configuration block for PKCS Managed Keys
         """
         if aws is not None:
@@ -145,10 +136,7 @@ class _KeysState:
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace to provision the resource in.
-        The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured namespace.
-        *Available only for Vault Enterprise*.
+        Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 
@@ -196,10 +184,7 @@ class Keys(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeysAwArgs']]]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeysAzureArgs']]]] azures: Configuration block for Azure Managed Keys
-        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
-               The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured namespace.
-               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeysPkcArgs']]]] pkcs: Configuration block for PKCS Managed Keys
         """
         ...
@@ -276,10 +261,7 @@ class Keys(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeysAwArgs']]]] aws: Configuration block for AWS Managed Keys
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeysAzureArgs']]]] azures: Configuration block for Azure Managed Keys
-        :param pulumi.Input[str] namespace: The namespace to provision the resource in.
-               The value should not contain leading or trailing forward slashes.
-               The `namespace` is always relative to the provider's configured namespace.
-               *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KeysPkcArgs']]]] pkcs: Configuration block for PKCS Managed Keys
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -312,10 +294,7 @@ class Keys(pulumi.CustomResource):
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[str]]:
         """
-        The namespace to provision the resource in.
-        The value should not contain leading or trailing forward slashes.
-        The `namespace` is always relative to the provider's configured namespace.
-        *Available only for Vault Enterprise*.
+        Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 

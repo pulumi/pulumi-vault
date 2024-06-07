@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Ldap
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,17 +22,16 @@ namespace Pulumi.Vault.Ldap
     /// {
     ///     var config = new Vault.Ldap.SecretBackend("config", new()
     ///     {
+    ///         Path = "my-custom-ldap",
     ///         Binddn = "CN=Administrator,CN=Users,DC=corp,DC=example,DC=net",
     ///         Bindpass = "SuperSecretPassw0rd",
-    ///         InsecureTls = true,
-    ///         Path = "my-custom-ldap",
     ///         Url = "ldaps://localhost",
+    ///         InsecureTls = true,
     ///         Userdn = "CN=Users,DC=corp,DC=example,DC=net",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

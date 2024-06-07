@@ -7,14 +7,14 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const aws = new vault.secrets.SyncAwsDestination("aws", {
- *     accessKeyId: _var.access_key_id,
- *     secretAccessKey: _var.secret_access_key,
+ *     name: "aws-dest",
+ *     accessKeyId: accessKeyId,
+ *     secretAccessKey: secretAccessKey,
  *     region: "us-east-1",
  *     roleArn: "role-arn",
  *     externalId: "external-id",
@@ -24,7 +24,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

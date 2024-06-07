@@ -18,7 +18,6 @@ import (
 //
 // ### Exclusive Member Entities
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -32,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name:                    pulumi.String("internal"),
 //				Type:                    pulumi.String("internal"),
 //				ExternalMemberEntityIds: pulumi.Bool(true),
 //				Metadata: pulumi.StringMap{
@@ -41,7 +41,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			user, err := identity.NewEntity(ctx, "user", nil)
+//			user, err := identity.NewEntity(ctx, "user", &identity.EntityArgs{
+//				Name: pulumi.String("user"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -60,11 +62,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Non-exclusive Member Entities
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,6 +78,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			internal, err := identity.NewGroup(ctx, "internal", &identity.GroupArgs{
+//				Name:                    pulumi.String("internal"),
 //				Type:                    pulumi.String("internal"),
 //				ExternalMemberEntityIds: pulumi.Bool(true),
 //				Metadata: pulumi.StringMap{
@@ -87,15 +88,21 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testUser, err := identity.NewEntity(ctx, "testUser", nil)
+//			testUser, err := identity.NewEntity(ctx, "test_user", &identity.EntityArgs{
+//				Name: pulumi.String("test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			secondTestUser, err := identity.NewEntity(ctx, "secondTestUser", nil)
+//			secondTestUser, err := identity.NewEntity(ctx, "second_test_user", &identity.EntityArgs{
+//				Name: pulumi.String("second_test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			devUser, err := identity.NewEntity(ctx, "devUser", nil)
+//			devUser, err := identity.NewEntity(ctx, "dev_user", &identity.EntityArgs{
+//				Name: pulumi.String("dev"),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -125,7 +132,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type GroupMemberEntityIds struct {
 	pulumi.CustomResourceState
 

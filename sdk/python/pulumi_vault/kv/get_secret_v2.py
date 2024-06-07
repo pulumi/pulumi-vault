@@ -179,6 +179,35 @@ def get_secret_v2(mount: Optional[str] = None,
     """
     ## Example Usage
 
+    ```python
+    import pulumi
+    import json
+    import pulumi_vault as vault
+
+    kvv2 = vault.Mount("kvv2",
+        path="kvv2",
+        type="kv",
+        options={
+            "version": "2",
+        },
+        description="KV Version 2 secret engine mount")
+    example_secret_v2 = vault.kv.SecretV2("example",
+        mount=kvv2.path,
+        name="secret",
+        cas=1,
+        delete_all_versions=True,
+        data_json=json.dumps({
+            "zip": "zap",
+            "foo": "bar",
+        }))
+    example = vault.kv.get_secret_v2_output(mount=kvv2.path,
+        name=example_secret_v2.name)
+    ```
+
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
+
 
     :param str mount: Path where KV-V2 engine is mounted.
     :param str name: Full name of the secret. For a nested secret
@@ -222,6 +251,35 @@ def get_secret_v2_output(mount: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretV2Result]:
     """
     ## Example Usage
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_vault as vault
+
+    kvv2 = vault.Mount("kvv2",
+        path="kvv2",
+        type="kv",
+        options={
+            "version": "2",
+        },
+        description="KV Version 2 secret engine mount")
+    example_secret_v2 = vault.kv.SecretV2("example",
+        mount=kvv2.path,
+        name="secret",
+        cas=1,
+        delete_all_versions=True,
+        data_json=json.dumps({
+            "zip": "zap",
+            "foo": "bar",
+        }))
+    example = vault.kv.get_secret_v2_output(mount=kvv2.path,
+        name=example_secret_v2.name)
+    ```
+
+    ## Required Vault Capabilities
+
+    Use of this resource requires the `read` capability on the given path.
 
 
     :param str mount: Path where KV-V2 engine is mounted.

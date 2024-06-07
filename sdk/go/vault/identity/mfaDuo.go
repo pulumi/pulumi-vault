@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,8 +30,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewMfaDuo(ctx, "example", &identity.MfaDuoArgs{
 //				ApiHostname:    pulumi.String("api-xxxxxxxx.duosecurity.com"),
-//				IntegrationKey: pulumi.String("secret-int-key"),
 //				SecretKey:      pulumi.String("secret-key"),
+//				IntegrationKey: pulumi.String("secret-int-key"),
 //			})
 //			if err != nil {
 //				return err
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

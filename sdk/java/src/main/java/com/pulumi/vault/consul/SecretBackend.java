@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * 
  * ### Creating a standard backend resource:
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,21 +44,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
- *             .address(&#34;127.0.0.1:8500&#34;)
- *             .description(&#34;Manages the Consul backend&#34;)
- *             .path(&#34;consul&#34;)
- *             .token(&#34;4240861b-ce3d-8530-115a-521ff070dd29&#34;)
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
+ *             .path("consul")
+ *             .description("Manages the Consul backend")
+ *             .address("127.0.0.1:8500")
+ *             .token("4240861b-ce3d-8530-115a-521ff070dd29")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Creating a backend resource to bootstrap a new Consul instance:
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -78,16 +81,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new SecretBackend(&#34;test&#34;, SecretBackendArgs.builder()        
- *             .address(&#34;127.0.0.1:8500&#34;)
+ *         var test = new SecretBackend("test", SecretBackendArgs.builder()
+ *             .path("consul")
+ *             .description("Bootstrap the Consul backend")
+ *             .address("127.0.0.1:8500")
  *             .bootstrap(true)
- *             .description(&#34;Bootstrap the Consul backend&#34;)
- *             .path(&#34;consul&#34;)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

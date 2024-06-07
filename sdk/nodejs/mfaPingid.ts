@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,13 +21,13 @@ import * as utilities from "./utilities";
  *     type: "userpass",
  *     path: "userpass",
  * });
- * const myPingid = new vault.MfaPingid("myPingid", {
+ * const myPingid = new vault.MfaPingid("my_pingid", {
+ *     name: "my_pingid",
  *     mountAccessor: userpass.accessor,
  *     usernameFormat: "user@example.com",
  *     settingsFileBase64: settingsFile,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

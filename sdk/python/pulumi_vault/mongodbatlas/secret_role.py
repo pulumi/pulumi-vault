@@ -417,7 +417,6 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -432,6 +431,7 @@ class SecretRole(pulumi.CustomResource):
             public_key="publicKey")
         role = vault.mongodbatlas.SecretRole("role",
             mount=mongo.path,
+            name="tf-test-role",
             organization_id="7cf5a45a9ccf6400e60981b7",
             project_id="5cf5a45a9ccf6400e60981b6",
             roles=["ORG_READ_ONLY"],
@@ -441,7 +441,6 @@ class SecretRole(pulumi.CustomResource):
             ttl="60",
             max_ttl="120")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -480,7 +479,6 @@ class SecretRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -495,6 +493,7 @@ class SecretRole(pulumi.CustomResource):
             public_key="publicKey")
         role = vault.mongodbatlas.SecretRole("role",
             mount=mongo.path,
+            name="tf-test-role",
             organization_id="7cf5a45a9ccf6400e60981b7",
             project_id="5cf5a45a9ccf6400e60981b6",
             roles=["ORG_READ_ONLY"],
@@ -504,7 +503,6 @@ class SecretRole(pulumi.CustomResource):
             ttl="60",
             max_ttl="120")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

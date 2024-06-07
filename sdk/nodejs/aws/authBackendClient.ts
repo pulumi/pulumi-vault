@@ -7,19 +7,17 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const exampleAuthBackend = new vault.AuthBackend("exampleAuthBackend", {type: "aws"});
- * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("exampleAuthBackendClient", {
- *     backend: exampleAuthBackend.path,
+ * const example = new vault.AuthBackend("example", {type: "aws"});
+ * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("example", {
+ *     backend: example.path,
  *     accessKey: "INSERT_AWS_ACCESS_KEY",
  *     secretKey: "INSERT_AWS_SECRET_KEY",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

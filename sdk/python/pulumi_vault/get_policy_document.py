@@ -84,12 +84,11 @@ def get_policy_document(namespace: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
-    example_policy_document = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
+    example = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
         path="secret/*",
         capabilities=[
             "create",
@@ -100,9 +99,10 @@ def get_policy_document(namespace: Optional[str] = None,
         ],
         description="allow all on secrets",
     )])
-    example_policy = vault.Policy("examplePolicy", policy=example_policy_document.hcl)
+    example_policy = vault.Policy("example",
+        name="example_policy",
+        policy=example.hcl)
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['namespace'] = namespace
@@ -126,12 +126,11 @@ def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] 
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
-    example_policy_document = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
+    example = vault.get_policy_document(rules=[vault.GetPolicyDocumentRuleArgs(
         path="secret/*",
         capabilities=[
             "create",
@@ -142,8 +141,9 @@ def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] 
         ],
         description="allow all on secrets",
     )])
-    example_policy = vault.Policy("examplePolicy", policy=example_policy_document.hcl)
+    example_policy = vault.Policy("example",
+        name="example_policy",
+        policy=example.hcl)
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...

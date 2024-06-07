@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,30 +49,33 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var kvv2 = new Mount(&#34;kvv2&#34;, MountArgs.builder()        
- *             .path(&#34;kvv2&#34;)
- *             .type(&#34;kv&#34;)
- *             .options(Map.of(&#34;version&#34;, &#34;2&#34;))
- *             .description(&#34;KV Version 2 secret engine mount&#34;)
+ *         var kvv2 = new Mount("kvv2", MountArgs.builder()
+ *             .path("kvv2")
+ *             .type("kv")
+ *             .options(Map.of("version", "2"))
+ *             .description("KV Version 2 secret engine mount")
  *             .build());
  * 
- *         var token = new SecretV2(&#34;token&#34;, SecretV2Args.builder()        
+ *         var token = new SecretV2("token", SecretV2Args.builder()
  *             .mount(kvv2.path())
+ *             .name("token")
  *             .dataJson(serializeJson(
  *                 jsonObject(
- *                     jsonProperty(&#34;dev&#34;, &#34;B!gS3cr3t&#34;),
- *                     jsonProperty(&#34;prod&#34;, &#34;S3cureP4$$&#34;)
+ *                     jsonProperty("dev", "B!gS3cr3t"),
+ *                     jsonProperty("prod", "S3cureP4$$")
  *                 )))
  *             .build());
  * 
- *         var gh = new SyncGhDestination(&#34;gh&#34;, SyncGhDestinationArgs.builder()        
- *             .accessToken(var_.access_token())
- *             .repositoryOwner(var_.repo_owner())
- *             .repositoryName(&#34;repo-name-example&#34;)
- *             .secretNameTemplate(&#34;vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}&#34;)
+ *         var gh = new SyncGhDestination("gh", SyncGhDestinationArgs.builder()
+ *             .name("gh-dest")
+ *             .accessToken(accessToken)
+ *             .repositoryOwner(repoOwner)
+ *             .repositoryName("repo-name-example")
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
  *             .build());
  * 
- *         var ghToken = new SyncAssociation(&#34;ghToken&#34;, SyncAssociationArgs.builder()        
+ *         var ghToken = new SyncAssociation("ghToken", SyncAssociationArgs.builder()
+ *             .name(gh.name())
  *             .type(gh.type())
  *             .mount(kvv2.path())
  *             .secretName(token.name())
@@ -79,7 +83,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

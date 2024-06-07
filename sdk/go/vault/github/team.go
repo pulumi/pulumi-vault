@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = github.NewTeam(ctx, "tfDevs", &github.TeamArgs{
+//			_, err = github.NewTeam(ctx, "tf_devs", &github.TeamArgs{
 //				Backend: example.ID(),
 //				Team:    pulumi.String("terraform-developers"),
 //				Policies: pulumi.StringArray{
@@ -53,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

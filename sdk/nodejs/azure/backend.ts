@@ -9,39 +9,35 @@ import * as utilities from "../utilities";
  *
  * ### *Vault-1.9 And Above*
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const azure = new vault.azure.Backend("azure", {
+ *     useMicrosoftGraphApi: true,
+ *     subscriptionId: "11111111-2222-3333-4444-111111111111",
+ *     tenantId: "11111111-2222-3333-4444-222222222222",
  *     clientId: "11111111-2222-3333-4444-333333333333",
  *     clientSecret: "12345678901234567890",
  *     environment: "AzurePublicCloud",
- *     subscriptionId: "11111111-2222-3333-4444-111111111111",
- *     tenantId: "11111111-2222-3333-4444-222222222222",
- *     useMicrosoftGraphApi: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### *Vault-1.8 And Below*
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const azure = new vault.azure.Backend("azure", {
+ *     useMicrosoftGraphApi: false,
+ *     subscriptionId: "11111111-2222-3333-4444-111111111111",
+ *     tenantId: "11111111-2222-3333-4444-222222222222",
  *     clientId: "11111111-2222-3333-4444-333333333333",
  *     clientSecret: "12345678901234567890",
  *     environment: "AzurePublicCloud",
- *     subscriptionId: "11111111-2222-3333-4444-111111111111",
- *     tenantId: "11111111-2222-3333-4444-222222222222",
- *     useMicrosoftGraphApi: false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Backend extends pulumi.CustomResource {
     /**

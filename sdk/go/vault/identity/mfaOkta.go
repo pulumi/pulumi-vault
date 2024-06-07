@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,9 +29,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := identity.NewMfaOkta(ctx, "example", &identity.MfaOktaArgs{
+//				OrgName:  pulumi.String("org1"),
 //				ApiToken: pulumi.String("token1"),
 //				BaseUrl:  pulumi.String("qux.baz.com"),
-//				OrgName:  pulumi.String("org1"),
 //			})
 //			if err != nil {
 //				return err
@@ -42,7 +41,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

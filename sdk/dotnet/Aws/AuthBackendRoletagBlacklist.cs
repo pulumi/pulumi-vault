@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Aws
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,20 +22,19 @@ namespace Pulumi.Vault.Aws
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
+    ///     var example = new Vault.AuthBackend("example", new()
     ///     {
     ///         Type = "aws",
     ///     });
     /// 
-    ///     var exampleAuthBackendRoletagBlacklist = new Vault.Aws.AuthBackendRoletagBlacklist("exampleAuthBackendRoletagBlacklist", new()
+    ///     var exampleAuthBackendRoletagBlacklist = new Vault.Aws.AuthBackendRoletagBlacklist("example", new()
     ///     {
-    ///         Backend = exampleAuthBackend.Path,
+    ///         Backend = example.Path,
     ///         SafetyBuffer = 360,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist")]
     public partial class AuthBackendRoletagBlacklist : global::Pulumi.CustomResource

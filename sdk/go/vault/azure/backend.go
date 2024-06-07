@@ -16,7 +16,6 @@ import (
 //
 // ### *Vault-1.9 And Above*
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,12 +29,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+//				UseMicrosoftGraphApi: pulumi.Bool(true),
+//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
+//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
 //				ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
 //				ClientSecret:         pulumi.String("12345678901234567890"),
 //				Environment:          pulumi.String("AzurePublicCloud"),
-//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				UseMicrosoftGraphApi: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -45,11 +44,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### *Vault-1.8 And Below*
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,12 +60,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+//				UseMicrosoftGraphApi: pulumi.Bool(false),
+//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
+//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
 //				ClientId:             pulumi.String("11111111-2222-3333-4444-333333333333"),
 //				ClientSecret:         pulumi.String("12345678901234567890"),
 //				Environment:          pulumi.String("AzurePublicCloud"),
-//				SubscriptionId:       pulumi.String("11111111-2222-3333-4444-111111111111"),
-//				TenantId:             pulumi.String("11111111-2222-3333-4444-222222222222"),
-//				UseMicrosoftGraphApi: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
@@ -78,7 +75,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Backend struct {
 	pulumi.CustomResourceState
 

@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -21,6 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.rabbitmq.SecretBackendRole("role", {
  *     backend: rabbitmq.path,
+ *     name: "deploy",
  *     tags: "tag1,tag2",
  *     vhosts: [{
  *         host: "/",
@@ -38,7 +38,6 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

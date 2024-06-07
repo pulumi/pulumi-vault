@@ -14,7 +14,6 @@ namespace Pulumi.Vault.Azure
     /// 
     /// ### *Vault-1.9 And Above*
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,21 +24,19 @@ namespace Pulumi.Vault.Azure
     /// {
     ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
+    ///         UseMicrosoftGraphApi = true,
+    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///         TenantId = "11111111-2222-3333-4444-222222222222",
     ///         ClientId = "11111111-2222-3333-4444-333333333333",
     ///         ClientSecret = "12345678901234567890",
     ///         Environment = "AzurePublicCloud",
-    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///         TenantId = "11111111-2222-3333-4444-222222222222",
-    ///         UseMicrosoftGraphApi = true,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### *Vault-1.8 And Below*
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -50,17 +47,16 @@ namespace Pulumi.Vault.Azure
     /// {
     ///     var azure = new Vault.Azure.Backend("azure", new()
     ///     {
+    ///         UseMicrosoftGraphApi = false,
+    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///         TenantId = "11111111-2222-3333-4444-222222222222",
     ///         ClientId = "11111111-2222-3333-4444-333333333333",
     ///         ClientSecret = "12345678901234567890",
     ///         Environment = "AzurePublicCloud",
-    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
-    ///         TenantId = "11111111-2222-3333-4444-222222222222",
-    ///         UseMicrosoftGraphApi = false,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:azure/backend:Backend")]
     public partial class Backend : global::Pulumi.CustomResource

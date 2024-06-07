@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,6 +36,7 @@ import (
 //			}
 //			_, err = rabbitMq.NewSecretBackendRole(ctx, "role", &rabbitMq.SecretBackendRoleArgs{
 //				Backend: rabbitmq.Path,
+//				Name:    pulumi.String("deploy"),
 //				Tags:    pulumi.String("tag1,tag2"),
 //				Vhosts: rabbitmq.SecretBackendRoleVhostArray{
 //					&rabbitmq.SecretBackendRoleVhostArgs{
@@ -67,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

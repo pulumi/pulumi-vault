@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -27,6 +26,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			key, err := identity.NewOidcKey(ctx, "key", &identity.OidcKeyArgs{
+//				Name: pulumi.String("key"),
 //				AllowedClientIds: pulumi.StringArray{
 //					pulumi.String("*"),
 //				},
@@ -37,7 +37,8 @@ import (
 //				return err
 //			}
 //			_, err = identity.NewOidcClient(ctx, "app", &identity.OidcClientArgs{
-//				Key: key.Name,
+//				Name: pulumi.String("application"),
+//				Key:  key.Name,
 //				RedirectUris: pulumi.StringArray{
 //					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
 //					pulumi.String("http://127.0.0.1:8251/callback"),
@@ -50,8 +51,9 @@ import (
 //				return err
 //			}
 //			provider, err := identity.NewOidcProvider(ctx, "provider", &identity.OidcProviderArgs{
+//				Name: pulumi.String("provider"),
 //				AllowedClientIds: pulumi.StringArray{
-//					vault_identity_oidc_client.Test.Client_id,
+//					test.ClientId,
 //				},
 //			})
 //			if err != nil {
@@ -65,7 +67,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetOidcOpenidConfig(ctx *pulumi.Context, args *GetOidcOpenidConfigArgs, opts ...pulumi.InvokeOption) (*GetOidcOpenidConfigResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOidcOpenidConfigResult

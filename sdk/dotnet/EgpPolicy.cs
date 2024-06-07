@@ -16,7 +16,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,21 +26,20 @@ namespace Pulumi.Vault
     /// {
     ///     var allow_all = new Vault.EgpPolicy("allow-all", new()
     ///     {
-    ///         EnforcementLevel = "soft-mandatory",
+    ///         Name = "allow-all",
     ///         Paths = new[]
     ///         {
     ///             "*",
     ///         },
+    ///         EnforcementLevel = "soft-mandatory",
     ///         Policy = @"main = rule {
     ///   true
     /// }
-    /// 
     /// ",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:index/egpPolicy:EgpPolicy")]
     public partial class EgpPolicy : global::Pulumi.CustomResource

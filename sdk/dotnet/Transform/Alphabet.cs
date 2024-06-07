@@ -16,7 +16,6 @@ namespace Pulumi.Vault.Transform
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,7 +24,7 @@ namespace Pulumi.Vault.Transform
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mountTransform = new Vault.Mount("mountTransform", new()
+    ///     var mountTransform = new Vault.Mount("mount_transform", new()
     ///     {
     ///         Path = "transform",
     ///         Type = "transform",
@@ -34,12 +33,12 @@ namespace Pulumi.Vault.Transform
     ///     var test = new Vault.Transform.Alphabet("test", new()
     ///     {
     ///         Path = mountTransform.Path,
+    ///         Name = "numerics",
     ///         AlphabetSet = "0123456789",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:transform/alphabet:Alphabet")]
     public partial class Alphabet : global::Pulumi.CustomResource

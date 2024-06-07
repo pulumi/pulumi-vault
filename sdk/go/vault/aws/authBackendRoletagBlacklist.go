@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,14 +29,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAuthBackend, err := vault.NewAuthBackend(ctx, "exampleAuthBackend", &vault.AuthBackendArgs{
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
 //				Type: pulumi.String("aws"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = aws.NewAuthBackendRoletagBlacklist(ctx, "exampleAuthBackendRoletagBlacklist", &aws.AuthBackendRoletagBlacklistArgs{
-//				Backend:      exampleAuthBackend.Path,
+//			_, err = aws.NewAuthBackendRoletagBlacklist(ctx, "example", &aws.AuthBackendRoletagBlacklistArgs{
+//				Backend:      example.Path,
 //				SafetyBuffer: pulumi.Int(360),
 //			})
 //			if err != nil {
@@ -48,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type AuthBackendRoletagBlacklist struct {
 	pulumi.CustomResourceState
 

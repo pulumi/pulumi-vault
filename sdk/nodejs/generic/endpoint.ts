@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,7 +23,7 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [userpass],
  * });
- * const u1Token = new vault.generic.Endpoint("u1Token", {
+ * const u1Token = new vault.generic.Endpoint("u1_token", {
  *     path: "auth/userpass/login/u1",
  *     disableRead: true,
  *     disableDelete: true,
@@ -35,7 +34,7 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [u1],
  * });
- * const u1Entity = new vault.generic.Endpoint("u1Entity", {
+ * const u1Entity = new vault.generic.Endpoint("u1_entity", {
  *     disableRead: true,
  *     disableDelete: true,
  *     path: "identity/lookup/entity",
@@ -51,7 +50,6 @@ import * as utilities from "../utilities";
  * });
  * export const u1Id = u1Entity.writeData.id;
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Required Vault Capabilities
  *

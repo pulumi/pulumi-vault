@@ -12,7 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,7 +22,7 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var test = new Vault.PkiSecret.SecretBackendRootCert("test", new()
     ///     {
-    ///         Backend = vault_mount.Pki.Path,
+    ///         Backend = pki.Path,
     ///         Type = "internal",
     ///         CommonName = "Root CA",
     ///         Ttl = "315360000",
@@ -38,13 +37,12 @@ namespace Pulumi.Vault.PkiSecret
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki, 
+    ///             pki,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert")]
     public partial class SecretBackendRootCert : global::Pulumi.CustomResource

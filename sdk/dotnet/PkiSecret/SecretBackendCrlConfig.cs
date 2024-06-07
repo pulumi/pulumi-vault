@@ -14,7 +14,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +30,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         MaxLeaseTtlSeconds = 86400,
     ///     });
     /// 
-    ///     var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crlConfig", new()
+    ///     var crlConfig = new Vault.PkiSecret.SecretBackendCrlConfig("crl_config", new()
     ///     {
     ///         Backend = pki.Path,
     ///         Expiry = "72h",
@@ -40,7 +39,6 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig")]
     public partial class SecretBackendCrlConfig : global::Pulumi.CustomResource

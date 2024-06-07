@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,6 +21,7 @@ import * as utilities from "../utilities";
  * });
  * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
  *     path: transform.path,
+ *     name: "ccn-fpe",
  *     type: "fpe",
  *     template: "builtin/creditcardnumber",
  *     tweakSource: "internal",
@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  * });
  * const payments = new vault.transform.Role("payments", {
  *     path: ccn_fpe.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * const test = vault.transform.getDecodeOutput({
@@ -37,7 +38,6 @@ import * as utilities from "../utilities";
  *     value: "9300-3376-4943-8903",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDecode(args: GetDecodeArgs, opts?: pulumi.InvokeOptions): Promise<GetDecodeResult> {
 
@@ -125,7 +125,6 @@ export interface GetDecodeResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -136,6 +135,7 @@ export interface GetDecodeResult {
  * });
  * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
  *     path: transform.path,
+ *     name: "ccn-fpe",
  *     type: "fpe",
  *     template: "builtin/creditcardnumber",
  *     tweakSource: "internal",
@@ -143,6 +143,7 @@ export interface GetDecodeResult {
  * });
  * const payments = new vault.transform.Role("payments", {
  *     path: ccn_fpe.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * const test = vault.transform.getDecodeOutput({
@@ -151,7 +152,6 @@ export interface GetDecodeResult {
  *     value: "9300-3376-4943-8903",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDecodeOutput(args: GetDecodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecodeResult> {
     return pulumi.output(args).apply((a: any) => getDecode(a, opts))

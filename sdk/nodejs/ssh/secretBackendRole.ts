@@ -12,18 +12,19 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.Mount("example", {type: "ssh"});
  * const foo = new vault.ssh.SecretBackendRole("foo", {
+ *     name: "my-role",
  *     backend: example.path,
  *     keyType: "ca",
  *     allowUserCertificates: true,
  * });
  * const bar = new vault.ssh.SecretBackendRole("bar", {
+ *     name: "otp-role",
  *     backend: example.path,
  *     keyType: "otp",
  *     defaultUser: "default",
@@ -31,7 +32,6 @@ import * as utilities from "../utilities";
  *     cidrList: "0.0.0.0/0",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

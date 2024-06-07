@@ -211,16 +211,15 @@ class EntityAlias(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.identity.EntityAlias("test",
-            canonical_id="49877D63-07AD-4B85-BDA8-B61626C477E8",
-            mount_accessor="token_1f2bd5")
+            name="user_1",
+            mount_accessor="token_1f2bd5",
+            canonical_id="49877D63-07AD-4B85-BDA8-B61626C477E8")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -250,16 +249,15 @@ class EntityAlias(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         test = vault.identity.EntityAlias("test",
-            canonical_id="49877D63-07AD-4B85-BDA8-B61626C477E8",
-            mount_accessor="token_1f2bd5")
+            name="user_1",
+            mount_accessor="token_1f2bd5",
+            canonical_id="49877D63-07AD-4B85-BDA8-B61626C477E8")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

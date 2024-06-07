@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,23 +44,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var root = new Mount(&#34;root&#34;, MountArgs.builder()        
- *             .path(&#34;pki-root&#34;)
- *             .type(&#34;pki&#34;)
- *             .description(&#34;root PKI&#34;)
+ *         var root = new Mount("root", MountArgs.builder()
+ *             .path("pki-root")
+ *             .type("pki")
+ *             .description("root PKI")
  *             .defaultLeaseTtlSeconds(8640000)
  *             .maxLeaseTtlSeconds(8640000)
  *             .build());
  * 
- *         var example = new BackendConfigCluster(&#34;example&#34;, BackendConfigClusterArgs.builder()        
+ *         var example = new BackendConfigCluster("example", BackendConfigClusterArgs.builder()
  *             .backend(root.path())
- *             .path(&#34;http://127.0.0.1:8200/v1/pki-root&#34;)
- *             .aiaPath(&#34;http://127.0.0.1:8200/v1/pki-root&#34;)
+ *             .path("http://127.0.0.1:8200/v1/pki-root")
+ *             .aiaPath("http://127.0.0.1:8200/v1/pki-root")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

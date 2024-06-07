@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -48,7 +47,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = kv.NewSecret(ctx, "awsSecret", &kv.SecretArgs{
+//			_, err = kv.NewSecret(ctx, "aws_secret", &kv.SecretArgs{
 //				Path: kvv1.Path.ApplyT(func(path string) (string, error) {
 //					return fmt.Sprintf("%v/aws-secret", path), nil
 //				}).(pulumi.StringOutput),
@@ -64,7 +63,7 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			_, err = kv.NewSecret(ctx, "azureSecret", &kv.SecretArgs{
+//			_, err = kv.NewSecret(ctx, "azure_secret", &kv.SecretArgs{
 //				Path: kvv1.Path.ApplyT(func(path string) (string, error) {
 //					return fmt.Sprintf("%v/azure-secret", path), nil
 //				}).(pulumi.StringOutput),
@@ -81,7 +80,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Required Vault Capabilities
 //

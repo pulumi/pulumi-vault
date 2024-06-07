@@ -16,7 +16,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,8 +30,9 @@ namespace Pulumi.Vault
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myOkta = new Vault.MfaOkta("myOkta", new()
+    ///     var myOkta = new Vault.MfaOkta("my_okta", new()
     ///     {
+    ///         Name = "my_okta",
     ///         MountAccessor = userpass.Accessor,
     ///         UsernameFormat = "user@example.com",
     ///         OrgName = "hashicorp",
@@ -41,7 +41,6 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

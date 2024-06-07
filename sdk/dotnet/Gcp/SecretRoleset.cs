@@ -16,12 +16,11 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Std = Pulumi.Std;
     /// using Vault = Pulumi.Vault;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -31,7 +30,10 @@ namespace Pulumi.Vault.Gcp
     ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
     ///         Path = "gcp",
-    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "credentials.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     ///     var roleset = new Vault.Gcp.SecretRoleset("roleset", new()
@@ -59,7 +61,6 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

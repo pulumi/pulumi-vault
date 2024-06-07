@@ -486,7 +486,6 @@ class SecretBackendIssuer(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -506,7 +505,6 @@ class SecretBackendIssuer(pulumi.CustomResource):
             issuer_ref=root.issuer_id,
             issuer_name="example-issuer")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -550,7 +548,6 @@ class SecretBackendIssuer(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -570,7 +567,6 @@ class SecretBackendIssuer(pulumi.CustomResource):
             issuer_ref=root.issuer_id,
             issuer_name="example-issuer")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

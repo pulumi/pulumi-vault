@@ -12,7 +12,6 @@ namespace Pulumi.Vault.PkiSecret
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,20 +22,19 @@ namespace Pulumi.Vault.PkiSecret
     /// {
     ///     var test = new Vault.PkiSecret.SecretBackendIntermediateCertRequest("test", new()
     ///     {
-    ///         Backend = vault_mount.Pki.Path,
+    ///         Backend = pki.Path,
     ///         Type = "internal",
     ///         CommonName = "app.my.domain",
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =
     ///         {
-    ///             vault_mount.Pki, 
+    ///             pki,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest")]
     public partial class SecretBackendIntermediateCertRequest : global::Pulumi.CustomResource

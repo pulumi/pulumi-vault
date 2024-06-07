@@ -382,37 +382,33 @@ class Backend(pulumi.CustomResource):
 
         ### *Vault-1.9 And Above*
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=True,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=True)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### *Vault-1.8 And Below*
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=False,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=False)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -442,37 +438,33 @@ class Backend(pulumi.CustomResource):
 
         ### *Vault-1.9 And Above*
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=True,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=True)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### *Vault-1.8 And Below*
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         azure = vault.azure.Backend("azure",
-            client_id="11111111-2222-3333-4444-333333333333",
-            client_secret="12345678901234567890",
-            environment="AzurePublicCloud",
+            use_microsoft_graph_api=False,
             subscription_id="11111111-2222-3333-4444-111111111111",
             tenant_id="11111111-2222-3333-4444-222222222222",
-            use_microsoft_graph_api=False)
+            client_id="11111111-2222-3333-4444-333333333333",
+            client_secret="12345678901234567890",
+            environment="AzurePublicCloud")
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param BackendArgs args: The arguments to use to populate this resource's properties.

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,24 +47,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testOidcAssignment = new OidcAssignment(&#34;testOidcAssignment&#34;, OidcAssignmentArgs.builder()        
- *             .entityIds(&#34;ascbascas-2231a-sdfaa&#34;)
- *             .groupIds(&#34;sajkdsad-32414-sfsada&#34;)
+ *         var test = new OidcAssignment("test", OidcAssignmentArgs.builder()
+ *             .name("my-assignment")
+ *             .entityIds("ascbascas-2231a-sdfaa")
+ *             .groupIds("sajkdsad-32414-sfsada")
  *             .build());
  * 
- *         var testOidcClient = new OidcClient(&#34;testOidcClient&#34;, OidcClientArgs.builder()        
+ *         var testOidcClient = new OidcClient("testOidcClient", OidcClientArgs.builder()
+ *             .name("my-app")
  *             .redirectUris(            
- *                 &#34;http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback&#34;,
- *                 &#34;http://127.0.0.1:8251/callback&#34;,
- *                 &#34;http://127.0.0.1:8080/callback&#34;)
- *             .assignments(testOidcAssignment.name())
+ *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+ *                 "http://127.0.0.1:8251/callback",
+ *                 "http://127.0.0.1:8080/callback")
+ *             .assignments(test.name())
  *             .idTokenTtl(2400)
  *             .accessTokenTtl(7200)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

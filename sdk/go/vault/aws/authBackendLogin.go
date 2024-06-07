@@ -44,8 +44,7 @@ type AuthBackendLogin struct {
 	Identity pulumi.StringPtrOutput `pulumi:"identity"`
 	// The duration in seconds the token will be valid, relative
 	// to the time in `leaseStartTime`.
-	LeaseDuration pulumi.IntOutput `pulumi:"leaseDuration"`
-	// Time at which the lease was read, using the clock of the system where Terraform was running
+	LeaseDuration  pulumi.IntOutput    `pulumi:"leaseDuration"`
 	LeaseStartTime pulumi.StringOutput `pulumi:"leaseStartTime"`
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
@@ -137,8 +136,7 @@ type authBackendLoginState struct {
 	Identity *string `pulumi:"identity"`
 	// The duration in seconds the token will be valid, relative
 	// to the time in `leaseStartTime`.
-	LeaseDuration *int `pulumi:"leaseDuration"`
-	// Time at which the lease was read, using the clock of the system where Terraform was running
+	LeaseDuration  *int    `pulumi:"leaseDuration"`
 	LeaseStartTime *string `pulumi:"leaseStartTime"`
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
@@ -197,8 +195,7 @@ type AuthBackendLoginState struct {
 	Identity pulumi.StringPtrInput
 	// The duration in seconds the token will be valid, relative
 	// to the time in `leaseStartTime`.
-	LeaseDuration pulumi.IntPtrInput
-	// Time at which the lease was read, using the clock of the system where Terraform was running
+	LeaseDuration  pulumi.IntPtrInput
 	LeaseStartTime pulumi.StringPtrInput
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
@@ -463,7 +460,6 @@ func (o AuthBackendLoginOutput) LeaseDuration() pulumi.IntOutput {
 	return o.ApplyT(func(v *AuthBackendLogin) pulumi.IntOutput { return v.LeaseDuration }).(pulumi.IntOutput)
 }
 
-// Time at which the lease was read, using the clock of the system where Terraform was running
 func (o AuthBackendLoginOutput) LeaseStartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringOutput { return v.LeaseStartTime }).(pulumi.StringOutput)
 }

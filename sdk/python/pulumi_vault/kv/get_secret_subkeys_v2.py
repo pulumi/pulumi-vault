@@ -134,7 +134,6 @@ def get_secret_subkeys_v2(depth: Optional[int] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -147,8 +146,9 @@ def get_secret_subkeys_v2(depth: Optional[int] = None,
             "version": "2",
         },
         description="KV Version 2 secret engine mount")
-    aws_secret = vault.kv.SecretV2("awsSecret",
+    aws_secret = vault.kv.SecretV2("aws_secret",
         mount=kvv2.path,
+        name="aws_secret",
         data_json=json.dumps({
             "zip": "zap",
             "foo": "bar",
@@ -156,7 +156,6 @@ def get_secret_subkeys_v2(depth: Optional[int] = None,
     test = vault.kv.get_secret_subkeys_v2_output(mount=kvv2.path,
         name=aws_secret.name)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -210,7 +209,6 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -223,8 +221,9 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
             "version": "2",
         },
         description="KV Version 2 secret engine mount")
-    aws_secret = vault.kv.SecretV2("awsSecret",
+    aws_secret = vault.kv.SecretV2("aws_secret",
         mount=kvv2.path,
+        name="aws_secret",
         data_json=json.dumps({
             "zip": "zap",
             "foo": "bar",
@@ -232,7 +231,6 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
     test = vault.kv.get_secret_subkeys_v2_output(mount=kvv2.path,
         name=aws_secret.name)
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

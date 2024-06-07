@@ -17,74 +17,14 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
     public static final SecretBackendRoleAllowedUserKeyConfigArgs Empty = new SecretBackendRoleAllowedUserKeyConfigArgs();
 
     /**
-     * A list of allowed key lengths as integers.
-     * For key types that do not support setting the length a value of `[0]` should be used.
-     * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-     * must be set to a single element list.
-     * 
-     * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
+     * List of allowed key lengths, vault-1.10 and above
      * 
      */
     @Import(name="lengths", required=true)
     private Output<List<Integer>> lengths;
 
     /**
-     * @return A list of allowed key lengths as integers.
-     * For key types that do not support setting the length a value of `[0]` should be used.
-     * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-     * must be set to a single element list.
-     * 
-     * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
+     * @return List of allowed key lengths, vault-1.10 and above
      * 
      */
     public Output<List<Integer>> lengths() {
@@ -92,20 +32,16 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
     }
 
     /**
-     * The SSH public key type.\
-     * *Supported key types are:*
-     * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-     * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+     * Key type, choices:
+     * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return The SSH public key type.\
-     * *Supported key types are:*
-     * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-     * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+     * @return Key type, choices:
+     * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
      * 
      */
     public Output<String> type() {
@@ -138,37 +74,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
         }
 
         /**
-         * @param lengths A list of allowed key lengths as integers.
-         * For key types that do not support setting the length a value of `[0]` should be used.
-         * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-         * must be set to a single element list.
-         * 
-         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-         * 
-         * &lt;!--Start PulumiCodeChooser --&gt;
-         * ```java
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *     }
-         * }
-         * ```
-         * &lt;!--End PulumiCodeChooser --&gt;
+         * @param lengths List of allowed key lengths, vault-1.10 and above
          * 
          * @return builder
          * 
@@ -179,37 +85,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
         }
 
         /**
-         * @param lengths A list of allowed key lengths as integers.
-         * For key types that do not support setting the length a value of `[0]` should be used.
-         * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-         * must be set to a single element list.
-         * 
-         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-         * 
-         * &lt;!--Start PulumiCodeChooser --&gt;
-         * ```java
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *     }
-         * }
-         * ```
-         * &lt;!--End PulumiCodeChooser --&gt;
+         * @param lengths List of allowed key lengths, vault-1.10 and above
          * 
          * @return builder
          * 
@@ -219,37 +95,7 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
         }
 
         /**
-         * @param lengths A list of allowed key lengths as integers.
-         * For key types that do not support setting the length a value of `[0]` should be used.
-         * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-         * must be set to a single element list.
-         * 
-         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-         * 
-         * &lt;!--Start PulumiCodeChooser --&gt;
-         * ```java
-         * package generated_program;
-         * 
-         * import com.pulumi.Context;
-         * import com.pulumi.Pulumi;
-         * import com.pulumi.core.Output;
-         * import java.util.List;
-         * import java.util.ArrayList;
-         * import java.util.Map;
-         * import java.io.File;
-         * import java.nio.file.Files;
-         * import java.nio.file.Paths;
-         * 
-         * public class App {
-         *     public static void main(String[] args) {
-         *         Pulumi.run(App::stack);
-         *     }
-         * 
-         *     public static void stack(Context ctx) {
-         *     }
-         * }
-         * ```
-         * &lt;!--End PulumiCodeChooser --&gt;
+         * @param lengths List of allowed key lengths, vault-1.10 and above
          * 
          * @return builder
          * 
@@ -259,10 +105,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
         }
 
         /**
-         * @param type The SSH public key type.\
-         * *Supported key types are:*
-         * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-         * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+         * @param type Key type, choices:
+         * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
          * 
          * @return builder
          * 
@@ -273,10 +117,8 @@ public final class SecretBackendRoleAllowedUserKeyConfigArgs extends com.pulumi.
         }
 
         /**
-         * @param type The SSH public key type.\
-         * *Supported key types are:*
-         * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-         * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+         * @param type Key type, choices:
+         * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
          * 
          * @return builder
          * 

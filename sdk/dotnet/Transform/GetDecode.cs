@@ -18,7 +18,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -36,6 +35,7 @@ namespace Pulumi.Vault.Transform
         ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
         ///     {
         ///         Path = transform.Path,
+        ///         Name = "ccn-fpe",
         ///         Type = "fpe",
         ///         Template = "builtin/creditcardnumber",
         ///         TweakSource = "internal",
@@ -48,6 +48,7 @@ namespace Pulumi.Vault.Transform
         ///     var payments = new Vault.Transform.Role("payments", new()
         ///     {
         ///         Path = ccn_fpe.Path,
+        ///         Name = "payments",
         ///         Transformations = new[]
         ///         {
         ///             "ccn-fpe",
@@ -63,7 +64,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDecodeResult> InvokeAsync(GetDecodeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeArgs(), options.WithDefaults());
@@ -75,7 +75,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -93,6 +92,7 @@ namespace Pulumi.Vault.Transform
         ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
         ///     {
         ///         Path = transform.Path,
+        ///         Name = "ccn-fpe",
         ///         Type = "fpe",
         ///         Template = "builtin/creditcardnumber",
         ///         TweakSource = "internal",
@@ -105,6 +105,7 @@ namespace Pulumi.Vault.Transform
         ///     var payments = new Vault.Transform.Role("payments", new()
         ///     {
         ///         Path = ccn_fpe.Path,
+        ///         Name = "payments",
         ///         Transformations = new[]
         ///         {
         ///             "ccn-fpe",
@@ -120,7 +121,6 @@ namespace Pulumi.Vault.Transform
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithDefaults());

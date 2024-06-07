@@ -571,22 +571,20 @@ class NomadSecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         config = vault.NomadSecretBackend("config",
-            address="https://127.0.0.1:4646",
             backend="nomad",
-            default_lease_ttl_seconds=3600,
             description="test description",
+            default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=7200,
             max_ttl=240,
+            address="https://127.0.0.1:4646",
             token="ae20ceaa-...",
             ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -633,22 +631,20 @@ class NomadSecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         config = vault.NomadSecretBackend("config",
-            address="https://127.0.0.1:4646",
             backend="nomad",
-            default_lease_ttl_seconds=3600,
             description="test description",
+            default_lease_ttl_seconds=3600,
             max_lease_ttl_seconds=7200,
             max_ttl=240,
+            address="https://127.0.0.1:4646",
             token="ae20ceaa-...",
             ttl=120)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

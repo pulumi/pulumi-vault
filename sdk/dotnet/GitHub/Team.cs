@@ -16,7 +16,6 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,7 +29,7 @@ namespace Pulumi.Vault.GitHub
     ///         Organization = "myorg",
     ///     });
     /// 
-    ///     var tfDevs = new Vault.GitHub.Team("tfDevs", new()
+    ///     var tfDevs = new Vault.GitHub.Team("tf_devs", new()
     ///     {
     ///         Backend = example.Id,
     ///         TeamCity = "terraform-developers",
@@ -43,7 +42,6 @@ namespace Pulumi.Vault.GitHub
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

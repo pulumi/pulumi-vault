@@ -19,7 +19,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -28,14 +27,14 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var xForwardedFor = new Vault.AuditRequestHeader("xForwardedFor", new()
+    ///     var xForwardedFor = new Vault.AuditRequestHeader("x_forwarded_for", new()
     ///     {
+    ///         Name = "X-Forwarded-For",
     ///         Hmac = false,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:index/auditRequestHeader:AuditRequestHeader")]
     public partial class AuditRequestHeader : global::Pulumi.CustomResource

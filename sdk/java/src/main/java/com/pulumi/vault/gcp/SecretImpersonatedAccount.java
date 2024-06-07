@@ -24,14 +24,15 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.gcp.serviceAccount.Account;
- * import com.pulumi.gcp.serviceAccount.AccountArgs;
+ * import com.pulumi.google.serviceAccount;
+ * import com.pulumi.google.ServiceAccountArgs;
  * import com.pulumi.vault.gcp.SecretBackend;
  * import com.pulumi.vault.gcp.SecretBackendArgs;
  * import com.pulumi.vault.gcp.SecretImpersonatedAccount;
@@ -49,25 +50,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var this_ = new Account(&#34;this&#34;, AccountArgs.builder()        
- *             .accountId(&#34;my-awesome-account&#34;)
+ *         var this_ = new ServiceAccount("this", ServiceAccountArgs.builder()
+ *             .accountId("my-awesome-account")
  *             .build());
  * 
- *         var gcp = new SecretBackend(&#34;gcp&#34;, SecretBackendArgs.builder()        
- *             .path(&#34;gcp&#34;)
- *             .credentials(Files.readString(Paths.get(&#34;credentials.json&#34;)))
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()
+ *             .path("gcp")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input("credentials.json")
+ *                 .build()).result())
  *             .build());
  * 
- *         var impersonatedAccount = new SecretImpersonatedAccount(&#34;impersonatedAccount&#34;, SecretImpersonatedAccountArgs.builder()        
+ *         var impersonatedAccount = new SecretImpersonatedAccount("impersonatedAccount", SecretImpersonatedAccountArgs.builder()
  *             .backend(gcp.path())
- *             .impersonatedAccount(&#34;this&#34;)
+ *             .impersonatedAccount("this")
  *             .serviceAccountEmail(this_.email())
- *             .tokenScopes(&#34;https://www.googleapis.com/auth/cloud-platform&#34;)
+ *             .tokenScopes("https://www.googleapis.com/auth/cloud-platform")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

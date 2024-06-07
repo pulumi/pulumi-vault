@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -42,20 +43,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new NomadSecretBackend(&#34;config&#34;, NomadSecretBackendArgs.builder()        
- *             .address(&#34;https://127.0.0.1:4646&#34;)
- *             .backend(&#34;nomad&#34;)
- *             .defaultLeaseTtlSeconds(&#34;3600&#34;)
- *             .description(&#34;test description&#34;)
- *             .maxLeaseTtlSeconds(&#34;7200&#34;)
- *             .maxTtl(&#34;240&#34;)
- *             .token(&#34;ae20ceaa-...&#34;)
- *             .ttl(&#34;120&#34;)
+ *         var config = new NomadSecretBackend("config", NomadSecretBackendArgs.builder()
+ *             .backend("nomad")
+ *             .description("test description")
+ *             .defaultLeaseTtlSeconds("3600")
+ *             .maxLeaseTtlSeconds("7200")
+ *             .maxTtl("240")
+ *             .address("https://127.0.0.1:4646")
+ *             .token("ae20ceaa-...")
+ *             .ttl("120")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

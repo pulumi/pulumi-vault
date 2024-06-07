@@ -10,7 +10,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -18,7 +17,6 @@ import * as utilities from "../utilities";
  * const example = new vault.Mount("example", {type: "ssh"});
  * const foo = new vault.ssh.SecretBackendCa("foo", {backend: example.path});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -72,7 +70,7 @@ export class SecretBackendCa extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     public readonly privateKey!: pulumi.Output<string>;
     /**
@@ -133,7 +131,7 @@ export interface SecretBackendCaState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     privateKey?: pulumi.Input<string>;
     /**
@@ -162,7 +160,7 @@ export interface SecretBackendCaArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Private key part the SSH CA key pair; required if generate_signing_key is false.
+     * Private key part the SSH CA key pair; required if generateSigningKey is false.
      */
     privateKey?: pulumi.Input<string>;
     /**

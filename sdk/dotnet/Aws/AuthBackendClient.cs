@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -21,21 +20,20 @@ namespace Pulumi.Vault.Aws
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleAuthBackend = new Vault.AuthBackend("exampleAuthBackend", new()
+    ///     var example = new Vault.AuthBackend("example", new()
     ///     {
     ///         Type = "aws",
     ///     });
     /// 
-    ///     var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("exampleAuthBackendClient", new()
+    ///     var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("example", new()
     ///     {
-    ///         Backend = exampleAuthBackend.Path,
+    ///         Backend = example.Path,
     ///         AccessKey = "INSERT_AWS_ACCESS_KEY",
     ///         SecretKey = "INSERT_AWS_SECRET_KEY",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

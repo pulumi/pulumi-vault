@@ -12,26 +12,26 @@ import java.util.Objects;
 @CustomType
 public final class AuthBackendGroup {
     /**
-     * @return Name of the group within the Okta
+     * @return Name of the Okta group
      * 
      */
     private String groupName;
     /**
-     * @return Vault policies to associate with this group
+     * @return Policies to associate with this group
      * 
      */
     private List<String> policies;
 
     private AuthBackendGroup() {}
     /**
-     * @return Name of the group within the Okta
+     * @return Name of the Okta group
      * 
      */
     public String groupName() {
         return this.groupName;
     }
     /**
-     * @return Vault policies to associate with this group
+     * @return Policies to associate with this group
      * 
      */
     public List<String> policies() {

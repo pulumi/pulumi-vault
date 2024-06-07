@@ -21,47 +21,6 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.Mount;
- * import com.pulumi.vault.MountArgs;
- * import com.pulumi.vault.pkiSecret.SecretBackendKey;
- * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var pki = new Mount(&#34;pki&#34;, MountArgs.builder()        
- *             .path(&#34;pki&#34;)
- *             .type(&#34;pki&#34;)
- *             .defaultLeaseTtlSeconds(3600)
- *             .maxLeaseTtlSeconds(86400)
- *             .build());
- * 
- *         var key = new SecretBackendKey(&#34;key&#34;, SecretBackendKeyArgs.builder()        
- *             .mount(pki.path())
- *             .type(&#34;exported&#34;)
- *             .keyName(&#34;example-key&#34;)
- *             .keyType(&#34;rsa&#34;)
- *             .keyBits(&#34;2048&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

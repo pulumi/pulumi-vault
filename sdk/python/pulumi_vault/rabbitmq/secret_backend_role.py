@@ -255,7 +255,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -266,6 +265,7 @@ class SecretBackendRole(pulumi.CustomResource):
             password="password")
         role = vault.rabbit_mq.SecretBackendRole("role",
             backend=rabbitmq.path,
+            name="deploy",
             tags="tag1,tag2",
             vhosts=[vault.rabbit_mq.SecretBackendRoleVhostArgs(
                 host="/",
@@ -282,7 +282,6 @@ class SecretBackendRole(pulumi.CustomResource):
                 host="/",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -315,7 +314,6 @@ class SecretBackendRole(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -326,6 +324,7 @@ class SecretBackendRole(pulumi.CustomResource):
             password="password")
         role = vault.rabbit_mq.SecretBackendRole("role",
             backend=rabbitmq.path,
+            name="deploy",
             tags="tag1,tag2",
             vhosts=[vault.rabbit_mq.SecretBackendRoleVhostArgs(
                 host="/",
@@ -342,7 +341,6 @@ class SecretBackendRole(pulumi.CustomResource):
                 host="/",
             )])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

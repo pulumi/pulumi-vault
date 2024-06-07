@@ -15,7 +15,6 @@ import (
 //
 // ### Generic secret
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,43 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
+//
+// ### KV
+//
+// For this example, consider `example` as a path for a KV engine.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/generic"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func notImplemented(message string) pulumi.AnyOutput {
+//		panic(message)
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := generic.LookupSecret(ctx, &generic.LookupSecretArgs{
+//				Path: "example/creds",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_ = notImplemented("The template_file data resource is not yet supported.")
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Required Vault Capabilities
+//
+// Use of this resource requires the `read` capability on the given path.
 func LookupSecret(ctx *pulumi.Context, args *LookupSecretArgs, opts ...pulumi.InvokeOption) (*LookupSecretResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretResult

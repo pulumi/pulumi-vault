@@ -7,17 +7,18 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const key = new vault.identity.OidcKey("key", {
+ *     name: "key",
  *     allowedClientIds: ["*"],
  *     rotationPeriod: 3600,
  *     verificationTtl: 3600,
  * });
  * const app = new vault.identity.OidcClient("app", {
+ *     name: "application",
  *     key: key.name,
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -27,12 +28,14 @@ import * as utilities from "../utilities";
  *     idTokenTtl: 2400,
  *     accessTokenTtl: 7200,
  * });
- * const provider = new vault.identity.OidcProvider("provider", {allowedClientIds: [vault_identity_oidc_client.test.client_id]});
+ * const provider = new vault.identity.OidcProvider("provider", {
+ *     name: "provider",
+ *     allowedClientIds: [test.clientId],
+ * });
  * const config = vault.identity.getOidcOpenidConfigOutput({
  *     name: provider.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOidcOpenidConfig(args: GetOidcOpenidConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcOpenidConfigResult> {
 
@@ -124,17 +127,18 @@ export interface GetOidcOpenidConfigResult {
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const key = new vault.identity.OidcKey("key", {
+ *     name: "key",
  *     allowedClientIds: ["*"],
  *     rotationPeriod: 3600,
  *     verificationTtl: 3600,
  * });
  * const app = new vault.identity.OidcClient("app", {
+ *     name: "application",
  *     key: key.name,
  *     redirectUris: [
  *         "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -144,12 +148,14 @@ export interface GetOidcOpenidConfigResult {
  *     idTokenTtl: 2400,
  *     accessTokenTtl: 7200,
  * });
- * const provider = new vault.identity.OidcProvider("provider", {allowedClientIds: [vault_identity_oidc_client.test.client_id]});
+ * const provider = new vault.identity.OidcProvider("provider", {
+ *     name: "provider",
+ *     allowedClientIds: [test.clientId],
+ * });
  * const config = vault.identity.getOidcOpenidConfigOutput({
  *     name: provider.name,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getOidcOpenidConfigOutput(args: GetOidcOpenidConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcOpenidConfigResult> {
     return pulumi.output(args).apply((a: any) => getOidcOpenidConfig(a, opts))

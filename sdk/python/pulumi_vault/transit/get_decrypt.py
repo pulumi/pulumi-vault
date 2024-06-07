@@ -112,22 +112,14 @@ def get_decrypt(backend: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     test = vault.transit.get_decrypt(backend="transit",
-        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        key="test")
+        key="test",
+        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==")
     ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
-    :param str ciphertext: Ciphertext to be decoded.
-    :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
-    :param str key: Specifies the name of the transit key to decrypt against.
     """
     __args__ = dict()
     __args__['backend'] = backend
@@ -160,21 +152,13 @@ def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     test = vault.transit.get_decrypt(backend="transit",
-        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==",
-        key="test")
+        key="test",
+        ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==")
     ```
-    <!--End PulumiCodeChooser -->
-
-
-    :param str backend: The path the transit secret backend is mounted at, with no leading or trailing `/`.
-    :param str ciphertext: Ciphertext to be decoded.
-    :param str context: Context for key derivation. This is required if key derivation is enabled for this key.
-    :param str key: Specifies the name of the transit key to decrypt against.
     """
     ...

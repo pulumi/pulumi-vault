@@ -13,7 +13,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,6 +35,7 @@ import (
 //			}
 //			_, err = terraformcloud.NewSecretRole(ctx, "example", &terraformcloud.SecretRoleArgs{
 //				Backend:      test.Backend,
+//				Name:         pulumi.String("test-role"),
 //				Organization: pulumi.String("example-organization-name"),
 //				TeamId:       pulumi.String("team-ieF4isC..."),
 //			})
@@ -47,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -59,24 +58,19 @@ import (
 type SecretRole struct {
 	pulumi.CustomResourceState
 
-	// The path of the Terraform Cloud Secret Backend the role belongs to.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrOutput `pulumi:"maxTtl"`
-	// The name of an existing role against which to create this Terraform Cloud credential
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name   pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
-	// Name of the Terraform Cloud or Enterprise organization
+	Namespace    pulumi.StringPtrOutput `pulumi:"namespace"`
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
-	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-	TeamId pulumi.StringPtrOutput `pulumi:"teamId"`
+	TeamId       pulumi.StringPtrOutput `pulumi:"teamId"`
 	// Specifies the TTL for this role.
-	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
-	// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
+	Ttl    pulumi.IntPtrOutput    `pulumi:"ttl"`
 	UserId pulumi.StringPtrOutput `pulumi:"userId"`
 }
 
@@ -110,46 +104,36 @@ func GetSecretRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretRole resources.
 type secretRoleState struct {
-	// The path of the Terraform Cloud Secret Backend the role belongs to.
 	Backend *string `pulumi:"backend"`
 	// Maximum TTL for leases associated with this role, in seconds.
-	MaxTtl *int `pulumi:"maxTtl"`
-	// The name of an existing role against which to create this Terraform Cloud credential
-	Name *string `pulumi:"name"`
+	MaxTtl *int    `pulumi:"maxTtl"`
+	Name   *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace *string `pulumi:"namespace"`
-	// Name of the Terraform Cloud or Enterprise organization
+	Namespace    *string `pulumi:"namespace"`
 	Organization *string `pulumi:"organization"`
-	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-	TeamId *string `pulumi:"teamId"`
+	TeamId       *string `pulumi:"teamId"`
 	// Specifies the TTL for this role.
-	Ttl *int `pulumi:"ttl"`
-	// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
+	Ttl    *int    `pulumi:"ttl"`
 	UserId *string `pulumi:"userId"`
 }
 
 type SecretRoleState struct {
-	// The path of the Terraform Cloud Secret Backend the role belongs to.
 	Backend pulumi.StringPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
-	// The name of an existing role against which to create this Terraform Cloud credential
-	Name pulumi.StringPtrInput
+	Name   pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace pulumi.StringPtrInput
-	// Name of the Terraform Cloud or Enterprise organization
+	Namespace    pulumi.StringPtrInput
 	Organization pulumi.StringPtrInput
-	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-	TeamId pulumi.StringPtrInput
+	TeamId       pulumi.StringPtrInput
 	// Specifies the TTL for this role.
-	Ttl pulumi.IntPtrInput
-	// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
+	Ttl    pulumi.IntPtrInput
 	UserId pulumi.StringPtrInput
 }
 
@@ -158,47 +142,37 @@ func (SecretRoleState) ElementType() reflect.Type {
 }
 
 type secretRoleArgs struct {
-	// The path of the Terraform Cloud Secret Backend the role belongs to.
 	Backend *string `pulumi:"backend"`
 	// Maximum TTL for leases associated with this role, in seconds.
-	MaxTtl *int `pulumi:"maxTtl"`
-	// The name of an existing role against which to create this Terraform Cloud credential
-	Name *string `pulumi:"name"`
+	MaxTtl *int    `pulumi:"maxTtl"`
+	Name   *string `pulumi:"name"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace *string `pulumi:"namespace"`
-	// Name of the Terraform Cloud or Enterprise organization
+	Namespace    *string `pulumi:"namespace"`
 	Organization *string `pulumi:"organization"`
-	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-	TeamId *string `pulumi:"teamId"`
+	TeamId       *string `pulumi:"teamId"`
 	// Specifies the TTL for this role.
-	Ttl *int `pulumi:"ttl"`
-	// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
+	Ttl    *int    `pulumi:"ttl"`
 	UserId *string `pulumi:"userId"`
 }
 
 // The set of arguments for constructing a SecretRole resource.
 type SecretRoleArgs struct {
-	// The path of the Terraform Cloud Secret Backend the role belongs to.
 	Backend pulumi.StringPtrInput
 	// Maximum TTL for leases associated with this role, in seconds.
 	MaxTtl pulumi.IntPtrInput
-	// The name of an existing role against which to create this Terraform Cloud credential
-	Name pulumi.StringPtrInput
+	Name   pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
-	Namespace pulumi.StringPtrInput
-	// Name of the Terraform Cloud or Enterprise organization
+	Namespace    pulumi.StringPtrInput
 	Organization pulumi.StringPtrInput
-	// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
-	TeamId pulumi.StringPtrInput
+	TeamId       pulumi.StringPtrInput
 	// Specifies the TTL for this role.
-	Ttl pulumi.IntPtrInput
-	// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
+	Ttl    pulumi.IntPtrInput
 	UserId pulumi.StringPtrInput
 }
 
@@ -289,7 +263,6 @@ func (o SecretRoleOutput) ToSecretRoleOutputWithContext(ctx context.Context) Sec
 	return o
 }
 
-// The path of the Terraform Cloud Secret Backend the role belongs to.
 func (o SecretRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
@@ -299,7 +272,6 @@ func (o SecretRoleOutput) MaxTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.MaxTtl }).(pulumi.IntPtrOutput)
 }
 
-// The name of an existing role against which to create this Terraform Cloud credential
 func (o SecretRoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -312,12 +284,10 @@ func (o SecretRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// Name of the Terraform Cloud or Enterprise organization
 func (o SecretRoleOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
 }
 
-// ID of the Terraform Cloud or Enterprise team under organization (e.g., settings/teams/team-xxxxxxxxxxxxx)
 func (o SecretRoleOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
@@ -327,7 +297,6 @@ func (o SecretRoleOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
-// ID of the Terraform Cloud or Enterprise user (e.g., user-xxxxxxxxxxxxxxxx)
 func (o SecretRoleOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.UserId }).(pulumi.StringPtrOutput)
 }

@@ -13,21 +13,19 @@ namespace Pulumi.Vault.Database.Inputs
     public sealed class SecretBackendConnectionInfluxdbGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The number of seconds to use as a connection
-        /// timeout.
+        /// The number of seconds to use as a connection timeout.
         /// </summary>
         [Input("connectTimeout")]
         public Input<int>? ConnectTimeout { get; set; }
 
         /// <summary>
-        /// The host to connect to.
+        /// Influxdb host to connect to.
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
-        /// Whether to skip verification of the server
-        /// certificate when using TLS.
+        /// Whether to skip verification of the server certificate when using TLS.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
@@ -36,7 +34,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _password;
 
         /// <summary>
-        /// The password to authenticate with.
+        /// Specifies the password corresponding to the given username.
         /// </summary>
         public Input<string>? Password
         {
@@ -52,8 +50,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _pemBundle;
 
         /// <summary>
-        /// Concatenated PEM blocks configuring the certificate
-        /// chain.
+        /// Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         /// </summary>
         public Input<string>? PemBundle
         {
@@ -69,7 +66,7 @@ namespace Pulumi.Vault.Database.Inputs
         private Input<string>? _pemJson;
 
         /// <summary>
-        /// A JSON structure configuring the certificate chain.
+        /// Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         /// </summary>
         public Input<string>? PemJson
         {
@@ -82,20 +79,19 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
-        /// The default port to connect to if no port is specified as
-        /// part of the host.
+        /// The transport port to use to connect to Influxdb.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// Whether to use TLS when connecting to Cassandra.
+        /// Whether to use TLS when connecting to Influxdb.
         /// </summary>
         [Input("tls")]
         public Input<bool>? Tls { get; set; }
 
         /// <summary>
-        /// The username to authenticate with.
+        /// Specifies the username to use for superuser access.
         /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;

@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,6 +21,7 @@ import * as utilities from "../utilities";
  * });
  * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
  *     path: transform.path,
+ *     name: "ccn-fpe",
  *     type: "fpe",
  *     template: "builtin/creditcardnumber",
  *     tweakSource: "internal",
@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  * });
  * const payments = new vault.transform.Role("payments", {
  *     path: ccn_fpe.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * const test = vault.transform.getEncodeOutput({
@@ -39,7 +40,6 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getEncode(args: GetEncodeArgs, opts?: pulumi.InvokeOptions): Promise<GetEncodeResult> {
 
@@ -127,7 +127,6 @@ export interface GetEncodeResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -138,6 +137,7 @@ export interface GetEncodeResult {
  * });
  * const ccn_fpe = new vault.transform.Transformation("ccn-fpe", {
  *     path: transform.path,
+ *     name: "ccn-fpe",
  *     type: "fpe",
  *     template: "builtin/creditcardnumber",
  *     tweakSource: "internal",
@@ -145,6 +145,7 @@ export interface GetEncodeResult {
  * });
  * const payments = new vault.transform.Role("payments", {
  *     path: ccn_fpe.path,
+ *     name: "payments",
  *     transformations: ["ccn-fpe"],
  * });
  * const test = vault.transform.getEncodeOutput({
@@ -155,7 +156,6 @@ export interface GetEncodeResult {
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
     return pulumi.output(args).apply((a: any) => getEncode(a, opts))

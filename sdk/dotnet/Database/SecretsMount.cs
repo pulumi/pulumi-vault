@@ -12,7 +12,6 @@ namespace Pulumi.Vault.Database
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,6 +56,7 @@ namespace Pulumi.Vault.Database
     /// 
     ///     var dev1 = new Vault.Database.SecretBackendRole("dev1", new()
     ///     {
+    ///         Name = "dev1",
     ///         Backend = db.Path,
     ///         DbName = db.Mssqls.Apply(mssqls =&gt; mssqls[0]?.Name),
     ///         CreationStatements = new[]
@@ -69,6 +69,7 @@ namespace Pulumi.Vault.Database
     /// 
     ///     var dev2 = new Vault.Database.SecretBackendRole("dev2", new()
     ///     {
+    ///         Name = "dev2",
     ///         Backend = db.Path,
     ///         DbName = db.Postgresqls.Apply(postgresqls =&gt; postgresqls[0]?.Name),
     ///         CreationStatements = new[]
@@ -80,7 +81,6 @@ namespace Pulumi.Vault.Database
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

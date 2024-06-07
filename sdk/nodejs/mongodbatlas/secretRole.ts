@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,6 +23,7 @@ import * as utilities from "../utilities";
  * });
  * const role = new vault.mongodbatlas.SecretRole("role", {
  *     mount: mongo.path,
+ *     name: "tf-test-role",
  *     organizationId: "7cf5a45a9ccf6400e60981b7",
  *     projectId: "5cf5a45a9ccf6400e60981b6",
  *     roles: ["ORG_READ_ONLY"],
@@ -34,7 +34,6 @@ import * as utilities from "../utilities";
  *     maxTtl: "120",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

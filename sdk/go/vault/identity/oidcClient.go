@@ -16,7 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,7 +28,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testOidcAssignment, err := identity.NewOidcAssignment(ctx, "testOidcAssignment", &identity.OidcAssignmentArgs{
+//			test, err := identity.NewOidcAssignment(ctx, "test", &identity.OidcAssignmentArgs{
+//				Name: pulumi.String("my-assignment"),
 //				EntityIds: pulumi.StringArray{
 //					pulumi.String("ascbascas-2231a-sdfaa"),
 //				},
@@ -40,14 +40,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = identity.NewOidcClient(ctx, "testOidcClient", &identity.OidcClientArgs{
+//			_, err = identity.NewOidcClient(ctx, "test", &identity.OidcClientArgs{
+//				Name: pulumi.String("my-app"),
 //				RedirectUris: pulumi.StringArray{
 //					pulumi.String("http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback"),
 //					pulumi.String("http://127.0.0.1:8251/callback"),
 //					pulumi.String("http://127.0.0.1:8080/callback"),
 //				},
 //				Assignments: pulumi.StringArray{
-//					testOidcAssignment.Name,
+//					test.Name,
 //				},
 //				IdTokenTtl:     pulumi.Int(2400),
 //				AccessTokenTtl: pulumi.Int(7200),
@@ -60,7 +61,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

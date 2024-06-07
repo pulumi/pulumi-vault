@@ -18,7 +18,6 @@ namespace Pulumi.Vault.Identity
     /// 
     /// ### Internal Group
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -29,25 +28,24 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "2" },
-    ///         },
+    ///         Name = "internal",
+    ///         Type = "internal",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "test",
     ///         },
-    ///         Type = "internal",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### External Group
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -58,20 +56,20 @@ namespace Pulumi.Vault.Identity
     /// {
     ///     var @group = new Vault.Identity.Group("group", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "1" },
-    ///         },
+    ///         Name = "external",
+    ///         Type = "external",
     ///         Policies = new[]
     ///         {
     ///             "test",
     ///         },
-    ///         Type = "external",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "1" },
+    ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Caveats
     /// 
@@ -79,7 +77,6 @@ namespace Pulumi.Vault.Identity
     /// Applying this configuration would result in the provider failing to create one of the identity groups, since the resources share the same `name`.
     /// 
     /// This sort of pattern should be avoided:
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -88,37 +85,38 @@ namespace Pulumi.Vault.Identity
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var internalIdentity_groupGroup = new Vault.Identity.Group("internalIdentity/groupGroup", new()
+    ///     var @internal = new Vault.Identity.Group("internal", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "2" },
-    ///         },
+    ///         Name = "internal",
+    ///         Type = "internal",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "test",
     ///         },
-    ///         Type = "internal",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
     ///     });
     /// 
-    ///     var internalGroup = new Vault.Identity.Group("internalGroup", new()
+    ///     var internalGroup = new Vault.Identity.Group("Internal", new()
     ///     {
-    ///         Metadata = 
-    ///         {
-    ///             { "version", "2" },
-    ///         },
+    ///         Name = "Internal",
+    ///         Type = "internal",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "test",
     ///         },
-    ///         Type = "internal",
+    ///         Metadata = 
+    ///         {
+    ///             { "version", "2" },
+    ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

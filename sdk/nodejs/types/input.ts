@@ -121,46 +121,22 @@ export interface GetPolicyDocumentRuleArgs {
 }
 
 export interface GetPolicyDocumentRuleAllowedParameter {
-    /**
-     * name of permitted or denied parameter.
-     */
     key: string;
-    /**
-     * list of values what are permitted or denied by policy rule.
-     */
     values: string[];
 }
 
 export interface GetPolicyDocumentRuleAllowedParameterArgs {
-    /**
-     * name of permitted or denied parameter.
-     */
     key: pulumi.Input<string>;
-    /**
-     * list of values what are permitted or denied by policy rule.
-     */
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetPolicyDocumentRuleDeniedParameter {
-    /**
-     * name of permitted or denied parameter.
-     */
     key: string;
-    /**
-     * list of values what are permitted or denied by policy rule.
-     */
     values: string[];
 }
 
 export interface GetPolicyDocumentRuleDeniedParameterArgs {
-    /**
-     * name of permitted or denied parameter.
-     */
     key: pulumi.Input<string>;
-    /**
-     * list of values what are permitted or denied by policy rule.
-     */
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -589,35 +565,31 @@ export namespace config {
 export namespace database {
     export interface SecretBackendConnectionCassandra {
         /**
-         * The number of seconds to use as a connection
-         * timeout.
+         * The number of seconds to use as a connection timeout.
          */
         connectTimeout?: pulumi.Input<number>;
         /**
-         * The hosts to connect to.
+         * Cassandra hosts to connect to.
          */
         hosts?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
-         * The password to authenticate with.
+         * The password to use when authenticating with Cassandra.
          */
         password?: pulumi.Input<string>;
         /**
-         * Concatenated PEM blocks configuring the certificate
-         * chain.
+         * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemBundle?: pulumi.Input<string>;
         /**
-         * A JSON structure configuring the certificate chain.
+         * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemJson?: pulumi.Input<string>;
         /**
-         * The default port to connect to if no port is specified as
-         * part of the host.
+         * The transport port to use to connect to Cassandra.
          */
         port?: pulumi.Input<number>;
         /**
@@ -629,7 +601,7 @@ export namespace database {
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to authenticate with.
+         * The username to use when authenticating with Cassandra.
          */
         username?: pulumi.Input<string>;
     }
@@ -644,24 +616,23 @@ export namespace database {
          */
         bucketName?: pulumi.Input<string>;
         /**
-         * The hosts to connect to.
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
         hosts: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Specifies whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
-         * The password to authenticate with.
+         * Specifies the password corresponding to the given username.
          */
         password: pulumi.Input<string>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Specifies whether to use TLS when connecting to Couchbase.
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to authenticate with.
+         * Specifies the username for Vault to use.
          */
         username: pulumi.Input<string>;
         /**
@@ -672,40 +643,39 @@ export namespace database {
 
     export interface SecretBackendConnectionElasticsearch {
         /**
-         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
          */
         caCert?: pulumi.Input<string>;
         /**
-         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
          */
         caPath?: pulumi.Input<string>;
         /**
-         * The path to the certificate for the Elasticsearch client to present for communication.
+         * The path to the certificate for the Elasticsearch client to present for communication
          */
         clientCert?: pulumi.Input<string>;
         /**
-         * The path to the key for the Elasticsearch client to use for communication.
+         * The path to the key for the Elasticsearch client to use for communication
          */
         clientKey?: pulumi.Input<string>;
         /**
-         * Whether to disable certificate verification.
+         * Whether to disable certificate verification
          */
         insecure?: pulumi.Input<boolean>;
         /**
-         * The password to authenticate with.
+         * The password to be used in the connection URL
          */
         password: pulumi.Input<string>;
         /**
-         * This, if set, is used to set the SNI host when connecting via TLS.
+         * This, if set, is used to set the SNI host when connecting via TLS
          */
         tlsServerName?: pulumi.Input<string>;
         /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
+         * The URL for Elasticsearch's API
          */
         url: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The username to be used in the connection URL
          */
         username: pulumi.Input<string>;
         /**
@@ -716,80 +686,70 @@ export namespace database {
 
     export interface SecretBackendConnectionHana {
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionInfluxdb {
         /**
-         * The number of seconds to use as a connection
-         * timeout.
+         * The number of seconds to use as a connection timeout.
          */
         connectTimeout?: pulumi.Input<number>;
         /**
-         * The host to connect to.
+         * Influxdb host to connect to.
          */
         host: pulumi.Input<string>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
-         * The password to authenticate with.
+         * Specifies the password corresponding to the given username.
          */
         password: pulumi.Input<string>;
         /**
-         * Concatenated PEM blocks configuring the certificate
-         * chain.
+         * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemBundle?: pulumi.Input<string>;
         /**
-         * A JSON structure configuring the certificate chain.
+         * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemJson?: pulumi.Input<string>;
         /**
-         * The default port to connect to if no port is specified as
-         * part of the host.
+         * The transport port to use to connect to Influxdb.
          */
         port?: pulumi.Input<number>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Influxdb.
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to authenticate with.
+         * Specifies the username to use for superuser access.
          */
         username: pulumi.Input<string>;
         /**
@@ -800,37 +760,31 @@ export namespace database {
 
     export interface SecretBackendConnectionMongodb {
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
@@ -852,85 +806,70 @@ export namespace database {
 
     export interface SecretBackendConnectionMssql {
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * For Vault v1.9+. Set to true when the target is a
-         * Contained Database, e.g. AzureSQL.
-         * See the [Vault
-         * docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         * Set to true when the target is a Contained Database, e.g. AzureSQL.
          */
         containedDb?: pulumi.Input<boolean>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysql {
         /**
-         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
         authType?: pulumi.Input<string>;
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
         /**
@@ -942,48 +881,42 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
-         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
         authType?: pulumi.Input<string>;
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
         /**
@@ -995,48 +928,42 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
-         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
         authType?: pulumi.Input<string>;
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
         /**
@@ -1048,48 +975,42 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionMysqlRds {
         /**
-         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
         authType?: pulumi.Input<string>;
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
         /**
@@ -1101,236 +1022,209 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionOracle {
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * Enable the built-in session disconnect mechanism.
+         * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
         disconnectSessions?: pulumi.Input<boolean>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * Enable spliting statements after semi-colons.
+         * Set to true in order to split statements after semi-colons.
          */
         splitStatements?: pulumi.Input<boolean>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionPostgresql {
         /**
-         * Enable IAM authentication to a Google Cloud instance when set to `gcpIam`
+         * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
         authType?: pulumi.Input<string>;
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * JSON encoding of an IAM access key. Requires `authType` to be `gcpIam`.
+         * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionRedis {
         /**
-         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
          */
         caCert?: pulumi.Input<string>;
         /**
-         * The host to connect to.
+         * Specifies the host to connect to
          */
         host: pulumi.Input<string>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Specifies whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
-         * The password to authenticate with.
+         * Specifies the password corresponding to the given username.
          */
         password: pulumi.Input<string>;
         /**
-         * The default port to connect to if no port is specified as
-         * part of the host.
+         * The transport port to use to connect to Redis.
          */
         port?: pulumi.Input<number>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Specifies whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The username to authenticate with.
+         * Specifies the username for Vault to use.
          */
         username: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionRedisElasticache {
         /**
-         * The password to authenticate with.
+         * The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
         password?: pulumi.Input<string>;
         /**
-         * The region where the ElastiCache cluster is hosted. If omitted Vault tries to infer from the environment instead.
+         * The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          */
         region?: pulumi.Input<string>;
         /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
+         * The configuration endpoint for the ElastiCache cluster to connect to.
          */
         url: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
         username?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionRedshift {
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
 
     export interface SecretBackendConnectionSnowflake {
         /**
-         * A URL containing connection information. See
-         * the [Vault
-         * docs](https://www.vaultproject.io/api-docs/secret/databases/mongodb.html#sample-payload)
-         * for an example.
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * The maximum number of seconds to keep
-         * a connection alive for.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * maintain.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * use.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
-         * The password to authenticate with.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
-         * The username to authenticate with.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * Template describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
     }
@@ -1342,8 +1236,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The number of seconds to use as a connection
-         * timeout.
+         * The number of seconds to use as a connection timeout.
          */
         connectTimeout?: pulumi.Input<number>;
         /**
@@ -1353,12 +1246,11 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The hosts to connect to.
+         * Cassandra hosts to connect to.
          */
         hosts?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
@@ -1366,16 +1258,15 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The password to use when authenticating with Cassandra.
          */
         password?: pulumi.Input<string>;
         /**
-         * Concatenated PEM blocks configuring the certificate
-         * chain.
+         * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemBundle?: pulumi.Input<string>;
         /**
-         * A JSON structure configuring the certificate chain.
+         * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemJson?: pulumi.Input<string>;
         /**
@@ -1383,8 +1274,7 @@ export namespace database {
          */
         pluginName?: pulumi.Input<string>;
         /**
-         * The default port to connect to if no port is specified as
-         * part of the host.
+         * The transport port to use to connect to Cassandra.
          */
         port?: pulumi.Input<number>;
         /**
@@ -1400,7 +1290,7 @@ export namespace database {
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The root credential username used in the connection URL.
+         * The username to use when authenticating with Cassandra.
          */
         username?: pulumi.Input<string>;
         /**
@@ -1431,12 +1321,11 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The hosts to connect to.
+         * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
         hosts: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Specifies whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
@@ -1444,7 +1333,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * Specifies the password corresponding to the given username.
          */
         password: pulumi.Input<string>;
         /**
@@ -1456,15 +1345,15 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Specifies whether to use TLS when connecting to Couchbase.
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The root credential username used in the connection URL.
+         * Specifies the username for Vault to use.
          */
         username: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -1481,19 +1370,19 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
          */
         caCert?: pulumi.Input<string>;
         /**
-         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity.
+         * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
          */
         caPath?: pulumi.Input<string>;
         /**
-         * The path to the certificate for the Elasticsearch client to present for communication.
+         * The path to the certificate for the Elasticsearch client to present for communication
          */
         clientCert?: pulumi.Input<string>;
         /**
-         * The path to the key for the Elasticsearch client to use for communication.
+         * The path to the key for the Elasticsearch client to use for communication
          */
         clientKey?: pulumi.Input<string>;
         /**
@@ -1503,7 +1392,7 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * Whether to disable certificate verification.
+         * Whether to disable certificate verification
          */
         insecure?: pulumi.Input<boolean>;
         /**
@@ -1511,7 +1400,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The password to be used in the connection URL
          */
         password: pulumi.Input<string>;
         /**
@@ -1523,20 +1412,19 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * This, if set, is used to set the SNI host when connecting via TLS.
+         * This, if set, is used to set the SNI host when connecting via TLS
          */
         tlsServerName?: pulumi.Input<string>;
         /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
+         * The URL for Elasticsearch's API
          */
         url: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The username to be used in the connection URL
          */
         username: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -1553,8 +1441,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -1564,21 +1451,19 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -1586,7 +1471,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -1598,7 +1483,7 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
@@ -1615,8 +1500,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The number of seconds to use as a connection
-         * timeout.
+         * The number of seconds to use as a connection timeout.
          */
         connectTimeout?: pulumi.Input<number>;
         /**
@@ -1626,12 +1510,11 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The host to connect to.
+         * Influxdb host to connect to.
          */
         host: pulumi.Input<string>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
@@ -1639,16 +1522,15 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * Specifies the password corresponding to the given username.
          */
         password: pulumi.Input<string>;
         /**
-         * Concatenated PEM blocks configuring the certificate
-         * chain.
+         * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemBundle?: pulumi.Input<string>;
         /**
-         * A JSON structure configuring the certificate chain.
+         * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
         pemJson?: pulumi.Input<string>;
         /**
@@ -1656,8 +1538,7 @@ export namespace database {
          */
         pluginName?: pulumi.Input<string>;
         /**
-         * The default port to connect to if no port is specified as
-         * part of the host.
+         * The transport port to use to connect to Influxdb.
          */
         port?: pulumi.Input<number>;
         /**
@@ -1665,15 +1546,15 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Whether to use TLS when connecting to Influxdb.
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The root credential username used in the connection URL.
+         * Specifies the username to use for superuser access.
          */
         username: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Template describing how dynamic usernames are generated.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -1690,8 +1571,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -1701,17 +1581,15 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -1719,7 +1597,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -1731,11 +1609,11 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -1795,14 +1673,11 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
-         * For Vault v1.9+. Set to true when the target is a
-         * Contained Database, e.g. AzureSQL.
-         * See [Vault docs](https://www.vaultproject.io/api/secret/databases/mssql#contained_db)
+         * Set to true when the target is a Contained Database, e.g. AzureSQL.
          */
         containedDb?: pulumi.Input<boolean>;
         /**
@@ -1812,21 +1687,19 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -1834,7 +1707,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -1846,11 +1719,11 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -1871,8 +1744,7 @@ export namespace database {
          */
         authType?: pulumi.Input<string>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -1882,17 +1754,15 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -1900,7 +1770,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -1924,11 +1794,11 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -1949,8 +1819,7 @@ export namespace database {
          */
         authType?: pulumi.Input<string>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -1960,17 +1829,15 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -1978,7 +1845,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2002,11 +1869,11 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2027,8 +1894,7 @@ export namespace database {
          */
         authType?: pulumi.Input<string>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -2038,17 +1904,15 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -2056,7 +1920,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2080,11 +1944,11 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2105,8 +1969,7 @@ export namespace database {
          */
         authType?: pulumi.Input<string>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -2116,17 +1979,15 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -2134,7 +1995,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2158,11 +2019,11 @@ export namespace database {
          */
         tlsCertificateKey?: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2179,8 +2040,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -2194,17 +2054,15 @@ export namespace database {
          */
         disconnectSessions?: pulumi.Input<boolean>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -2212,7 +2070,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2228,11 +2086,11 @@ export namespace database {
          */
         splitStatements?: pulumi.Input<boolean>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2253,8 +2111,7 @@ export namespace database {
          */
         authType?: pulumi.Input<string>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -2264,21 +2121,19 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -2286,7 +2141,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2302,11 +2157,11 @@ export namespace database {
          */
         serviceAccountJson?: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2323,7 +2178,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity.
+         * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
          */
         caCert?: pulumi.Input<string>;
         /**
@@ -2333,12 +2188,11 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The host to connect to.
+         * Specifies the host to connect to
          */
         host: pulumi.Input<string>;
         /**
-         * Whether to skip verification of the server
-         * certificate when using TLS.
+         * Specifies whether to skip verification of the server certificate when using TLS.
          */
         insecureTls?: pulumi.Input<boolean>;
         /**
@@ -2346,7 +2200,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * Specifies the password corresponding to the given username.
          */
         password: pulumi.Input<string>;
         /**
@@ -2354,8 +2208,7 @@ export namespace database {
          */
         pluginName?: pulumi.Input<string>;
         /**
-         * The default port to connect to if no port is specified as
-         * part of the host.
+         * The transport port to use to connect to Redis.
          */
         port?: pulumi.Input<number>;
         /**
@@ -2363,11 +2216,11 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Whether to use TLS when connecting to Cassandra.
+         * Specifies whether to use TLS when connecting to Redis.
          */
         tls?: pulumi.Input<boolean>;
         /**
-         * The root credential username used in the connection URL.
+         * Specifies the username for Vault to use.
          */
         username: pulumi.Input<string>;
         /**
@@ -2394,7 +2247,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
         password?: pulumi.Input<string>;
         /**
@@ -2402,8 +2255,7 @@ export namespace database {
          */
         pluginName?: pulumi.Input<string>;
         /**
-         * The AWS region where the ElastiCache cluster is hosted.
-         * If omitted the plugin tries to infer the region from the environment.
+         * The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          */
         region?: pulumi.Input<string>;
         /**
@@ -2411,12 +2263,11 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The URL for Elasticsearch's API. https requires certificate
-         * by trusted CA if used.
+         * The configuration endpoint for the ElastiCache cluster to connect to.
          */
         url: pulumi.Input<string>;
         /**
-         * The root credential username used in the connection URL.
+         * The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
         username?: pulumi.Input<string>;
         /**
@@ -2433,8 +2284,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -2444,21 +2294,19 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * Disable special character escaping in username and password.
+         * Disable special character escaping in username and password
          */
         disableEscaping?: pulumi.Input<boolean>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -2466,7 +2314,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2478,11 +2326,11 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2499,8 +2347,7 @@ export namespace database {
          */
         allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Specifies the Redshift DSN. 
-         * See [Vault docs](https://www.vaultproject.io/api-docs/secret/databases/redshift#sample-payload)
+         * Connection string to use to connect to the database.
          */
         connectionUrl?: pulumi.Input<string>;
         /**
@@ -2510,17 +2357,15 @@ export namespace database {
          */
         data?: pulumi.Input<{[key: string]: any}>;
         /**
-         * The maximum amount of time a connection may be reused.
+         * Maximum number of seconds a connection may be reused.
          */
         maxConnectionLifetime?: pulumi.Input<number>;
         /**
-         * The maximum number of idle connections to
-         * the database.
+         * Maximum number of idle connections to the database.
          */
         maxIdleConnections?: pulumi.Input<number>;
         /**
-         * The maximum number of open connections to
-         * the database.
+         * Maximum number of open connections to the database.
          */
         maxOpenConnections?: pulumi.Input<number>;
         /**
@@ -2528,7 +2373,7 @@ export namespace database {
          */
         name: pulumi.Input<string>;
         /**
-         * The root credential password used in the connection URL.
+         * The root credential password used in the connection URL
          */
         password?: pulumi.Input<string>;
         /**
@@ -2540,11 +2385,11 @@ export namespace database {
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The root credential username used in the connection URL.
+         * The root credential username used in the connection URL
          */
         username?: pulumi.Input<string>;
         /**
-         * [Template](https://www.vaultproject.io/docs/concepts/username-templating) describing how dynamic usernames are generated.
+         * Username generation template.
          */
         usernameTemplate?: pulumi.Input<string>;
         /**
@@ -2773,62 +2618,55 @@ export namespace kv {
 export namespace managed {
     export interface KeysAw {
         /**
-         * The AWS access key to use.
+         * The AWS access key to use
          */
         accessKey: pulumi.Input<string>;
         /**
-         * If no existing key can be found in 
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
         allowGenerateKey?: pulumi.Input<boolean>;
         /**
-         * Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
         allowReplaceKey?: pulumi.Input<boolean>;
         /**
-         * Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
         allowStoreKey?: pulumi.Input<boolean>;
         /**
-         * If `true`, allows usage from any mount point within the
-         * namespace.
+         * Allow usage from any mount point within the namespace if 'true'
          */
         anyMount?: pulumi.Input<boolean>;
         /**
-         * The curve to use for an ECDSA key. Used when `keyType` 
-         * is `ECDSA`. Required if `allowGenerateKey` is `true`.
+         * The curve to use for an ECDSA key. Used when keyType is 'ECDSA'. Required if 'allow_generate_key' is true
          */
         curve?: pulumi.Input<string>;
         /**
-         * Used to specify a custom AWS endpoint.
+         * Used to specify a custom AWS endpoint
          */
         endpoint?: pulumi.Input<string>;
         /**
-         * The size in bits for an RSA key.
+         * The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
          */
         keyBits: pulumi.Input<string>;
         /**
-         * The type of key to use.
+         * The type of key to use
          */
         keyType: pulumi.Input<string>;
         /**
-         * An identifier for the key.
+         * An identifier for the key
          */
         kmsKey: pulumi.Input<string>;
         /**
-         * A unique lowercase name that serves as identifying the key.
+         * A unique lowercase name that serves as identifying the key
          */
         name: pulumi.Input<string>;
         /**
-         * The AWS region where the keys are stored (or will be stored).
+         * The AWS region where the keys are stored (or will be stored)
          */
         region?: pulumi.Input<string>;
         /**
-         * The AWS access key to use.
+         * The AWS secret key to use
          */
         secretKey: pulumi.Input<string>;
         /**
@@ -2839,61 +2677,55 @@ export namespace managed {
 
     export interface KeysAzure {
         /**
-         * If no existing key can be found in 
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
         allowGenerateKey?: pulumi.Input<boolean>;
         /**
-         * Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
         allowReplaceKey?: pulumi.Input<boolean>;
         /**
-         * Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
         allowStoreKey?: pulumi.Input<boolean>;
         /**
-         * If `true`, allows usage from any mount point within the
-         * namespace.
+         * Allow usage from any mount point within the namespace if 'true'
          */
         anyMount?: pulumi.Input<boolean>;
         /**
-         * The client id for credentials to query the Azure APIs.
+         * The client id for credentials to query the Azure APIs
          */
         clientId: pulumi.Input<string>;
         /**
-         * The client secret for credentials to query the Azure APIs.
+         * The client secret for credentials to query the Azure APIs
          */
         clientSecret: pulumi.Input<string>;
         /**
-         * The Azure Cloud environment API endpoints to use.
+         * The Azure Cloud environment API endpoints to use
          */
         environment?: pulumi.Input<string>;
         /**
-         * The size in bits for an RSA key.
+         * The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
          */
         keyBits?: pulumi.Input<string>;
         /**
-         * The Key Vault key to use for encryption and decryption.
+         * The Key Vault key to use for encryption and decryption
          */
         keyName: pulumi.Input<string>;
         /**
-         * The type of key to use.
+         * The type of key to use
          */
         keyType: pulumi.Input<string>;
         /**
-         * A unique lowercase name that serves as identifying the key.
+         * A unique lowercase name that serves as identifying the key
          */
         name: pulumi.Input<string>;
         /**
-         * The Azure Key Vault resource's DNS Suffix to connect to.
+         * The Azure Key Vault resource's DNS Suffix to connect to
          */
         resource?: pulumi.Input<string>;
         /**
-         * The tenant id for the Azure Active Directory organization.
+         * The tenant id for the Azure Active Directory organization
          */
         tenantId: pulumi.Input<string>;
         /**
@@ -2901,81 +2733,70 @@ export namespace managed {
          */
         uuid?: pulumi.Input<string>;
         /**
-         * The Key Vault vault to use for encryption and decryption.
+         * The Key Vault vault to use the encryption keys for encryption and decryption
          */
         vaultName: pulumi.Input<string>;
     }
 
     export interface KeysPkc {
         /**
-         * If no existing key can be found in 
-         * the referenced backend, instructs Vault to generate a key within the backend.
+         * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
         allowGenerateKey?: pulumi.Input<boolean>;
         /**
-         * Controls the ability for Vault to replace through
-         * generation or importing a key into the configured backend even
-         * if a key is present, if set to `false` those operations are forbidden
-         * if a key exists.
+         * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
         allowReplaceKey?: pulumi.Input<boolean>;
         /**
-         * Controls the ability for Vault to import a key to the
-         * configured backend, if `false`, those operations will be forbidden.
+         * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
         allowStoreKey?: pulumi.Input<boolean>;
         /**
-         * If `true`, allows usage from any mount point within the
-         * namespace.
+         * Allow usage from any mount point within the namespace if 'true'
          */
         anyMount?: pulumi.Input<boolean>;
         /**
-         * The curve to use for an ECDSA key. Used when `keyType` 
-         * is `ECDSA`. Required if `allowGenerateKey` is `true`.
+         * Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
          */
         curve?: pulumi.Input<string>;
         /**
-         * Force all operations to open up a read-write session to
-         * the HSM.
+         * Force all operations to open up a read-write session to the HSM
          */
         forceRwSession?: pulumi.Input<string>;
         /**
-         * The size in bits for an RSA key.
+         * Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
          */
         keyBits?: pulumi.Input<string>;
         /**
-         * The id of a PKCS#11 key to use.
+         * The id of a PKCS#11 key to use
          */
         keyId: pulumi.Input<string>;
         /**
-         * The label of the key to use.
+         * The label of the key to use
          */
         keyLabel: pulumi.Input<string>;
         /**
-         * The name of the kmsLibrary stanza to use from Vault's config
-         * to lookup the local library path.
+         * The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
          */
         library: pulumi.Input<string>;
         /**
-         * The encryption/decryption mechanism to use, specified as a
-         * hexadecimal (prefixed by 0x) string.
+         * The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
          */
         mechanism: pulumi.Input<string>;
         /**
-         * A unique lowercase name that serves as identifying the key.
+         * A unique lowercase name that serves as identifying the key
          */
         name: pulumi.Input<string>;
         /**
-         * The PIN for login.
+         * The PIN for login
          */
         pin: pulumi.Input<string>;
         /**
-         * The slot number to use, specified as a string in a decimal format
-         * (e.g. `2305843009213693953`).
+         * The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
          */
         slot?: pulumi.Input<string>;
         /**
-         * The slot token label to use.
+         * The slot token label to use
          */
         tokenLabel?: pulumi.Input<string>;
         /**
@@ -2988,22 +2809,22 @@ export namespace managed {
 export namespace okta {
     export interface AuthBackendGroup {
         /**
-         * Name of the group within the Okta
+         * Name of the Okta group
          */
         groupName: pulumi.Input<string>;
         /**
-         * Vault policies to associate with this group
+         * Policies to associate with this group
          */
         policies: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface AuthBackendUser {
         /**
-         * List of Okta groups to associate with this user
+         * Groups within the Okta auth backend to associate with this user
          */
         groups?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Vault policies to associate with this group
+         * Policies to associate with this user
          */
         policies?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -3104,25 +2925,12 @@ export namespace secrets {
 export namespace ssh {
     export interface SecretBackendRoleAllowedUserKeyConfig {
         /**
-         * A list of allowed key lengths as integers. 
-         * For key types that do not support setting the length a value of `[0]` should be used.
-         * Setting multiple lengths is only supported on Vault 1.10+. For prior releases `length`
-         * must be set to a single element list.
-         *
-         * Example configuration blocks that might be included in the `vault.ssh.SecretBackendRole`
-         *
-         * <!--Start PulumiCodeChooser -->
-         * ```typescript
-         * import * as pulumi from "@pulumi/pulumi";
-         * ```
-         * <!--End PulumiCodeChooser -->
+         * List of allowed key lengths, vault-1.10 and above
          */
         lengths: pulumi.Input<pulumi.Input<number>[]>;
         /**
-         * The SSH public key type.  
-         * *Supported key types are:*
-         * `rsa`, `ecdsa`, `ec`, `dsa`, `ed25519`, `ssh-rsa`, `ssh-dss`, `ssh-ed25519`,
-         * `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`
+         * Key type, choices:
+         * rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
          */
         type: pulumi.Input<string>;
     }

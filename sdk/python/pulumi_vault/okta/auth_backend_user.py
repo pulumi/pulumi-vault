@@ -214,7 +214,6 @@ class AuthBackendUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -230,7 +229,6 @@ class AuthBackendUser(pulumi.CustomResource):
                 "two",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -263,7 +261,6 @@ class AuthBackendUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -279,7 +276,6 @@ class AuthBackendUser(pulumi.CustomResource):
                 "two",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

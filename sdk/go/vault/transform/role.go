@@ -19,7 +19,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mountTransform, err := vault.NewMount(ctx, "mountTransform", &vault.MountArgs{
+//			mountTransform, err := vault.NewMount(ctx, "mount_transform", &vault.MountArgs{
 //				Path: pulumi.String("transform"),
 //				Type: pulumi.String("transform"),
 //			})
@@ -42,6 +41,7 @@ import (
 //			}
 //			_, err = transform.NewRole(ctx, "test", &transform.RoleArgs{
 //				Path: mountTransform.Path,
+//				Name: pulumi.String("payments"),
 //				Transformations: pulumi.StringArray{
 //					pulumi.String("ccn-fpe"),
 //				},
@@ -54,7 +54,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Role struct {
 	pulumi.CustomResourceState
 

@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,25 +49,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new AuthBackend(&#34;example&#34;, AuthBackendArgs.builder()        
- *             .description(&#34;Demonstration of the Terraform Okta auth backend&#34;)
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .description("Demonstration of the Terraform Okta auth backend")
+ *             .organization("example")
+ *             .token("something that should be kept secret")
  *             .groups(AuthBackendGroupArgs.builder()
- *                 .groupName(&#34;foo&#34;)
+ *                 .groupName("foo")
  *                 .policies(                
- *                     &#34;one&#34;,
- *                     &#34;two&#34;)
+ *                     "one",
+ *                     "two")
  *                 .build())
- *             .organization(&#34;example&#34;)
- *             .token(&#34;something that should be kept secret&#34;)
  *             .users(AuthBackendUserArgs.builder()
- *                 .groups(&#34;foo&#34;)
- *                 .username(&#34;bar&#34;)
+ *                 .username("bar")
+ *                 .groups("foo")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

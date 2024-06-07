@@ -22,7 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,15 +44,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new MfaDuo(&#34;example&#34;, MfaDuoArgs.builder()        
- *             .apiHostname(&#34;api-xxxxxxxx.duosecurity.com&#34;)
- *             .integrationKey(&#34;secret-int-key&#34;)
- *             .secretKey(&#34;secret-key&#34;)
+ *         var example = new MfaDuo("example", MfaDuoArgs.builder()
+ *             .apiHostname("api-xxxxxxxx.duosecurity.com")
+ *             .secretKey("secret-key")
+ *             .integrationKey("secret-int-key")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

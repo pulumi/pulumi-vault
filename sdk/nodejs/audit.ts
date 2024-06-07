@@ -9,39 +9,35 @@ import * as utilities from "./utilities";
  *
  * ### File Audit Device)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.Audit("test", {
+ *     type: "file",
  *     options: {
  *         file_path: "C:/temp/audit.txt",
  *     },
- *     type: "file",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Socket Audit Device)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const test = new vault.Audit("test", {
+ *     type: "socket",
+ *     path: "app_socket",
  *     local: false,
  *     options: {
  *         address: "127.0.0.1:8000",
- *         description: "application x socket",
  *         socket_type: "tcp",
+ *         description: "application x socket",
  *     },
- *     path: "app_socket",
- *     type: "socket",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

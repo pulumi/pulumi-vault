@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ### Exclusive Member Entities
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -33,6 +34,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.identity.Group;
  * import com.pulumi.vault.identity.GroupArgs;
  * import com.pulumi.vault.identity.Entity;
+ * import com.pulumi.vault.identity.EntityArgs;
  * import com.pulumi.vault.identity.GroupMemberEntityIds;
  * import com.pulumi.vault.identity.GroupMemberEntityIdsArgs;
  * import java.util.List;
@@ -48,15 +50,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()
+ *             .name("internal")
+ *             .type("internal")
  *             .externalMemberEntityIds(true)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var user = new Entity(&#34;user&#34;);
+ *         var user = new Entity("user", EntityArgs.builder()
+ *             .name("user")
+ *             .build());
  * 
- *         var members = new GroupMemberEntityIds(&#34;members&#34;, GroupMemberEntityIdsArgs.builder()        
+ *         var members = new GroupMemberEntityIds("members", GroupMemberEntityIdsArgs.builder()
  *             .exclusive(true)
  *             .memberEntityIds(user.id())
  *             .groupId(internal.id())
@@ -64,13 +69,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Non-exclusive Member Entities
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -79,6 +86,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.identity.Group;
  * import com.pulumi.vault.identity.GroupArgs;
  * import com.pulumi.vault.identity.Entity;
+ * import com.pulumi.vault.identity.EntityArgs;
  * import com.pulumi.vault.identity.GroupMemberEntityIds;
  * import com.pulumi.vault.identity.GroupMemberEntityIdsArgs;
  * import java.util.List;
@@ -94,19 +102,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var internal = new Group(&#34;internal&#34;, GroupArgs.builder()        
- *             .type(&#34;internal&#34;)
+ *         var internal = new Group("internal", GroupArgs.builder()
+ *             .name("internal")
+ *             .type("internal")
  *             .externalMemberEntityIds(true)
- *             .metadata(Map.of(&#34;version&#34;, &#34;2&#34;))
+ *             .metadata(Map.of("version", "2"))
  *             .build());
  * 
- *         var testUser = new Entity(&#34;testUser&#34;);
+ *         var testUser = new Entity("testUser", EntityArgs.builder()
+ *             .name("test")
+ *             .build());
  * 
- *         var secondTestUser = new Entity(&#34;secondTestUser&#34;);
+ *         var secondTestUser = new Entity("secondTestUser", EntityArgs.builder()
+ *             .name("second_test")
+ *             .build());
  * 
- *         var devUser = new Entity(&#34;devUser&#34;);
+ *         var devUser = new Entity("devUser", EntityArgs.builder()
+ *             .name("dev")
+ *             .build());
  * 
- *         var test = new GroupMemberEntityIds(&#34;test&#34;, GroupMemberEntityIdsArgs.builder()        
+ *         var test = new GroupMemberEntityIds("test", GroupMemberEntityIdsArgs.builder()
  *             .memberEntityIds(            
  *                 testUser.id(),
  *                 secondTestUser.id())
@@ -114,7 +129,7 @@ import javax.annotation.Nullable;
  *             .groupId(internal.id())
  *             .build());
  * 
- *         var others = new GroupMemberEntityIds(&#34;others&#34;, GroupMemberEntityIdsArgs.builder()        
+ *         var others = new GroupMemberEntityIds("others", GroupMemberEntityIdsArgs.builder()
  *             .memberEntityIds(devUser.id())
  *             .exclusive(false)
  *             .groupId(internal.id())
@@ -122,7 +137,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

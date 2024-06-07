@@ -16,7 +16,6 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,8 +32,9 @@ namespace Pulumi.Vault
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myPingid = new Vault.MfaPingid("myPingid", new()
+    ///     var myPingid = new Vault.MfaPingid("my_pingid", new()
     ///     {
+    ///         Name = "my_pingid",
     ///         MountAccessor = userpass.Accessor,
     ///         UsernameFormat = "user@example.com",
     ///         SettingsFileBase64 = settingsFile,
@@ -42,7 +42,6 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

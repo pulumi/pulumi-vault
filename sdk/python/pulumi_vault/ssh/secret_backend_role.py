@@ -921,24 +921,24 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendRole("foo",
+            name="my-role",
             backend=example.path,
             key_type="ca",
             allow_user_certificates=True)
         bar = vault.ssh.SecretBackendRole("bar",
+            name="otp-role",
             backend=example.path,
             key_type="otp",
             default_user="default",
             allowed_users="default,baz",
             cidr_list="0.0.0.0/0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -995,24 +995,24 @@ class SecretBackendRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.Mount("example", type="ssh")
         foo = vault.ssh.SecretBackendRole("foo",
+            name="my-role",
             backend=example.path,
             key_type="ca",
             allow_user_certificates=True)
         bar = vault.ssh.SecretBackendRole("bar",
+            name="otp-role",
             backend=example.path,
             key_type="otp",
             default_user="default",
             allowed_users="default,baz",
             cidr_list="0.0.0.0/0")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

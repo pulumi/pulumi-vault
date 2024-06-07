@@ -15,7 +15,6 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,6 +30,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     ///     var foo = new Vault.Ssh.SecretBackendRole("foo", new()
     ///     {
+    ///         Name = "my-role",
     ///         Backend = example.Path,
     ///         KeyType = "ca",
     ///         AllowUserCertificates = true,
@@ -38,6 +38,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     ///     var bar = new Vault.Ssh.SecretBackendRole("bar", new()
     ///     {
+    ///         Name = "otp-role",
     ///         Backend = example.Path,
     ///         KeyType = "otp",
     ///         DefaultUser = "default",
@@ -47,7 +48,6 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

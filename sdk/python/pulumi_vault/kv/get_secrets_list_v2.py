@@ -102,7 +102,6 @@ def get_secrets_list_v2(mount: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -115,26 +114,28 @@ def get_secrets_list_v2(mount: Optional[str] = None,
             "version": "2",
         },
         description="KV Version 2 secret engine mount")
-    aws_secret = vault.kv.SecretV2("awsSecret",
+    aws_secret = vault.kv.SecretV2("aws_secret",
         mount=kvv2.path,
+        name="aws_secret",
         data_json=json.dumps({
             "zip": "zap",
         }))
-    azure_secret = vault.kv.SecretV2("azureSecret",
+    azure_secret = vault.kv.SecretV2("azure_secret",
         mount=kvv2.path,
+        name="azure_secret",
         data_json=json.dumps({
             "foo": "bar",
         }))
-    nested_secret = vault.kv.SecretV2("nestedSecret",
+    nested_secret = vault.kv.SecretV2("nested_secret",
         mount=kvv2.path,
+        name=azure_secret.name.apply(lambda name: f"{name}/dev"),
         data_json=json.dumps({
             "password": "test",
         }))
     secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path)
     nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_list_v2_output(mount=path,
-        name=vault_kv_secret_v2["test_2"]["name"]))
+        name=test2["name"]))
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 
@@ -175,7 +176,6 @@ def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import json
@@ -188,26 +188,28 @@ def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
             "version": "2",
         },
         description="KV Version 2 secret engine mount")
-    aws_secret = vault.kv.SecretV2("awsSecret",
+    aws_secret = vault.kv.SecretV2("aws_secret",
         mount=kvv2.path,
+        name="aws_secret",
         data_json=json.dumps({
             "zip": "zap",
         }))
-    azure_secret = vault.kv.SecretV2("azureSecret",
+    azure_secret = vault.kv.SecretV2("azure_secret",
         mount=kvv2.path,
+        name="azure_secret",
         data_json=json.dumps({
             "foo": "bar",
         }))
-    nested_secret = vault.kv.SecretV2("nestedSecret",
+    nested_secret = vault.kv.SecretV2("nested_secret",
         mount=kvv2.path,
+        name=azure_secret.name.apply(lambda name: f"{name}/dev"),
         data_json=json.dumps({
             "password": "test",
         }))
     secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path)
     nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_list_v2_output(mount=path,
-        name=vault_kv_secret_v2["test_2"]["name"]))
+        name=test2["name"]))
     ```
-    <!--End PulumiCodeChooser -->
 
     ## Required Vault Capabilities
 

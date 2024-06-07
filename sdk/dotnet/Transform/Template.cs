@@ -27,7 +27,6 @@ namespace Pulumi.Vault.Transform
     /// backslashes must be escaped to appear correctly in Vault. For further
     /// assistance escaping your own custom regex, see String Literals.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,12 +44,14 @@ namespace Pulumi.Vault.Transform
     ///     var numerics = new Vault.Transform.Alphabet("numerics", new()
     ///     {
     ///         Path = transform.Path,
+    ///         Name = "numerics",
     ///         AlphabetSet = "0123456789",
     ///     });
     /// 
     ///     var test = new Vault.Transform.Template("test", new()
     ///     {
     ///         Path = numerics.Path,
+    ///         Name = "ccn",
     ///         Type = "regex",
     ///         Pattern = "(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})",
     ///         Alphabet = "numerics",
@@ -63,7 +64,6 @@ namespace Pulumi.Vault.Transform
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [VaultResourceType("vault:transform/template:Template")]
     public partial class Template : global::Pulumi.CustomResource

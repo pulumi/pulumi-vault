@@ -81,16 +81,17 @@ def get_oidc_public_keys(name: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     key = vault.identity.OidcKey("key",
+        name="key",
         allowed_client_ids=["*"],
         rotation_period=3600,
         verification_ttl=3600)
     app = vault.identity.OidcClient("app",
+        name="application",
         key=key.name,
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -99,10 +100,11 @@ def get_oidc_public_keys(name: Optional[str] = None,
         ],
         id_token_ttl=2400,
         access_token_ttl=7200)
-    provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
+    provider = vault.identity.OidcProvider("provider",
+        name="provider",
+        allowed_client_ids=[test["clientId"]])
     public_keys = vault.identity.get_oidc_public_keys_output(name=provider.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the OIDC Provider in Vault.
@@ -131,16 +133,17 @@ def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_vault as vault
 
     key = vault.identity.OidcKey("key",
+        name="key",
         allowed_client_ids=["*"],
         rotation_period=3600,
         verification_ttl=3600)
     app = vault.identity.OidcClient("app",
+        name="application",
         key=key.name,
         redirect_uris=[
             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
@@ -149,10 +152,11 @@ def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
         ],
         id_token_ttl=2400,
         access_token_ttl=7200)
-    provider = vault.identity.OidcProvider("provider", allowed_client_ids=[vault_identity_oidc_client["test"]["client_id"]])
+    provider = vault.identity.OidcProvider("provider",
+        name="provider",
+        allowed_client_ids=[test["clientId"]])
     public_keys = vault.identity.get_oidc_public_keys_output(name=provider.name)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the OIDC Provider in Vault.

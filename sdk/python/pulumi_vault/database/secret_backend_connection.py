@@ -923,7 +923,6 @@ class SecretBackendConnection(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -933,6 +932,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=[
                 "dev",
                 "prod",
@@ -941,7 +941,6 @@ class SecretBackendConnection(pulumi.CustomResource):
                 connection_url="postgres://username:password@host:port/database",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -996,7 +995,6 @@ class SecretBackendConnection(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1006,6 +1004,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             type="database")
         postgres = vault.database.SecretBackendConnection("postgres",
             backend=db.path,
+            name="postgres",
             allowed_roles=[
                 "dev",
                 "prod",
@@ -1014,7 +1013,6 @@ class SecretBackendConnection(pulumi.CustomResource):
                 connection_url="postgres://username:password@host:port/database",
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

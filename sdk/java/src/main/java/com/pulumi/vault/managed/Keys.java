@@ -63,20 +63,14 @@ public class Keys extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.azures);
     }
     /**
-     * The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured namespace.
-     * *Available only for Vault Enterprise*.
+     * Target namespace. (requires Enterprise)
      * 
      */
     @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
-     * @return The namespace to provision the resource in.
-     * The value should not contain leading or trailing forward slashes.
-     * The `namespace` is always relative to the provider&#39;s configured namespace.
-     * *Available only for Vault Enterprise*.
+     * @return Target namespace. (requires Enterprise)
      * 
      */
     public Output<Optional<String>> namespace() {

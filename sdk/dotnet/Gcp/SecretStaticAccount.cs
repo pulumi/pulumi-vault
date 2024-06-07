@@ -17,18 +17,17 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
-    /// using Gcp = Pulumi.Gcp;
+    /// using Google = Pulumi.Google;
+    /// using Std = Pulumi.Std;
     /// using Vault = Pulumi.Vault;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Gcp.ServiceAccount.Account("this", new()
+    ///     var @this = new Google.Index.ServiceAccount("this", new()
     ///     {
     ///         AccountId = "my-awesome-account",
     ///     });
@@ -36,10 +35,13 @@ namespace Pulumi.Vault.Gcp
     ///     var gcp = new Vault.Gcp.SecretBackend("gcp", new()
     ///     {
     ///         Path = "gcp",
-    ///         Credentials = File.ReadAllText("credentials.json"),
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "credentials.json",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
-    ///     var staticAccount = new Vault.Gcp.SecretStaticAccount("staticAccount", new()
+    ///     var staticAccount = new Vault.Gcp.SecretStaticAccount("static_account", new()
     ///     {
     ///         Backend = gcp.Path,
     ///         StaticAccount = "project_viewer",
@@ -53,7 +55,7 @@ namespace Pulumi.Vault.Gcp
     ///         {
     ///             new Vault.Gcp.Inputs.SecretStaticAccountBindingArgs
     ///             {
-    ///                 Resource = @this.Project.Apply(project =&gt; $"//cloudresourcemanager.googleapis.com/projects/{project}"),
+    ///                 Resource = $"//cloudresourcemanager.googleapis.com/projects/{@this.Project}",
     ///                 Roles = new[]
     ///                 {
     ///                     "roles/viewer",
@@ -64,7 +66,6 @@ namespace Pulumi.Vault.Gcp
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

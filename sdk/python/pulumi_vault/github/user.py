@@ -191,13 +191,12 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
-        tf_user = vault.github.User("tfUser",
+        tf_user = vault.github.User("tf_user",
             backend=example.id,
             user="john.doe",
             policies=[
@@ -205,7 +204,6 @@ class User(pulumi.CustomResource):
                 "read-only",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -240,13 +238,12 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.github.AuthBackend("example", organization="myorg")
-        tf_user = vault.github.User("tfUser",
+        tf_user = vault.github.User("tf_user",
             backend=example.id,
             user="john.doe",
             policies=[
@@ -254,7 +251,6 @@ class User(pulumi.CustomResource):
                 "read-only",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

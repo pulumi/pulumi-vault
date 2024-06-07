@@ -328,7 +328,6 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -336,13 +335,13 @@ class MfaDuo(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_duo = vault.MfaDuo("myDuo",
+        my_duo = vault.MfaDuo("my_duo",
+            name="my_duo",
             mount_accessor=userpass.accessor,
             secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
             integration_key="BIACEUEAXI20BNWTEYXT",
             api_hostname="api-2b5c39f5.duosecurity.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -383,7 +382,6 @@ class MfaDuo(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -391,13 +389,13 @@ class MfaDuo(pulumi.CustomResource):
         userpass = vault.AuthBackend("userpass",
             type="userpass",
             path="userpass")
-        my_duo = vault.MfaDuo("myDuo",
+        my_duo = vault.MfaDuo("my_duo",
+            name="my_duo",
             mount_accessor=userpass.accessor,
             secret_key="8C7THtrIigh2rPZQMbguugt8IUftWhMRCOBzbuyz",
             integration_key="BIACEUEAXI20BNWTEYXT",
             api_hostname="api-2b5c39f5.duosecurity.com")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -307,18 +307,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     @Import(name="tokenBoundCidrs")
     private @Nullable Output<List<String>> tokenBoundCidrs;
 
     /**
-     * @return List of CIDR blocks; if set, specifies blocks of IP
-     * addresses which can authenticate successfully, and ties the resulting token to these blocks
-     * as well.
+     * @return Specifies the blocks of IP addresses which are allowed to use the generated token
      * 
      */
     public Optional<Output<List<String>>> tokenBoundCidrs() {
@@ -326,20 +322,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     @Import(name="tokenExplicitMaxTtl")
     private @Nullable Output<Integer> tokenExplicitMaxTtl;
 
     /**
-     * @return If set, will encode an
-     * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-     * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-     * `token_max_ttl` would otherwise allow a renewal.
+     * @return Generated Token&#39;s Explicit Maximum TTL in seconds
      * 
      */
     public Optional<Output<Integer>> tokenExplicitMaxTtl() {
@@ -347,16 +337,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The maximum lifetime of the generated token
      * 
      */
     @Import(name="tokenMaxTtl")
     private @Nullable Output<Integer> tokenMaxTtl;
 
     /**
-     * @return The maximum lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The maximum lifetime of the generated token
      * 
      */
     public Optional<Output<Integer>> tokenMaxTtl() {
@@ -364,16 +352,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     @Import(name="tokenNoDefaultPolicy")
     private @Nullable Output<Boolean> tokenNoDefaultPolicy;
 
     /**
-     * @return If set, the default policy will not be set on
-     * generated tokens; otherwise it will be added to the policies set in token_policies.
+     * @return If true, the &#39;default&#39; policy will not automatically be added to generated tokens
      * 
      */
     public Optional<Output<Boolean>> tokenNoDefaultPolicy() {
@@ -381,16 +367,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The [maximum number](https://www.vaultproject.io/api-docs/auth/cert#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     @Import(name="tokenNumUses")
     private @Nullable Output<Integer> tokenNumUses;
 
     /**
-     * @return The [maximum number](https://www.vaultproject.io/api-docs/auth/cert#token_num_uses)
-     * of times a generated token may be used (within its lifetime); 0 means unlimited.
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
      * 
      */
     public Optional<Output<Integer>> tokenNumUses() {
@@ -398,20 +382,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * Generated Token&#39;s Period
      * 
      */
     @Import(name="tokenPeriod")
     private @Nullable Output<Integer> tokenPeriod;
 
     /**
-     * @return If set, indicates that the
-     * token generated using this role should never expire. The token should be renewed within the
-     * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-     * value of this field. Specified in seconds.
+     * @return Generated Token&#39;s Period
      * 
      */
     public Optional<Output<Integer>> tokenPeriod() {
@@ -419,16 +397,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * Generated Token&#39;s Policies
      * 
      */
     @Import(name="tokenPolicies")
     private @Nullable Output<List<String>> tokenPolicies;
 
     /**
-     * @return List of policies to encode onto generated tokens. Depending
-     * on the auth method, this list may be supplemented by user/group/other values.
+     * @return Generated Token&#39;s Policies
      * 
      */
     public Optional<Output<List<String>>> tokenPolicies() {
@@ -436,16 +412,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * The initial ttl of the token to generate in seconds
      * 
      */
     @Import(name="tokenTtl")
     private @Nullable Output<Integer> tokenTtl;
 
     /**
-     * @return The incremental lifetime for generated tokens in number of seconds.
-     * Its current value will be referenced at renewal time.
+     * @return The initial ttl of the token to generate in seconds
      * 
      */
     public Optional<Output<Integer>> tokenTtl() {
@@ -453,26 +427,14 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
-     * 
-     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
+     * The type of token to generate, service or batch
      * 
      */
     @Import(name="tokenType")
     private @Nullable Output<String> tokenType;
 
     /**
-     * @return The type of token that should be generated. Can be `service`,
-     * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-     * `service` tokens). For token store roles, there are two additional possibilities:
-     * `default-service` and `default-batch` which specify the type to return unless the client
-     * requests a different type at generation time.
-     * 
-     * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
+     * @return The type of token to generate, service or batch
      * 
      */
     public Optional<Output<String>> tokenType() {
@@ -1002,9 +964,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenBoundCidrs List of CIDR blocks; if set, specifies blocks of IP
-         * addresses which can authenticate successfully, and ties the resulting token to these blocks
-         * as well.
+         * @param tokenBoundCidrs Specifies the blocks of IP addresses which are allowed to use the generated token
          * 
          * @return builder
          * 
@@ -1015,9 +975,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenBoundCidrs List of CIDR blocks; if set, specifies blocks of IP
-         * addresses which can authenticate successfully, and ties the resulting token to these blocks
-         * as well.
+         * @param tokenBoundCidrs Specifies the blocks of IP addresses which are allowed to use the generated token
          * 
          * @return builder
          * 
@@ -1027,9 +985,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenBoundCidrs List of CIDR blocks; if set, specifies blocks of IP
-         * addresses which can authenticate successfully, and ties the resulting token to these blocks
-         * as well.
+         * @param tokenBoundCidrs Specifies the blocks of IP addresses which are allowed to use the generated token
          * 
          * @return builder
          * 
@@ -1039,10 +995,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenExplicitMaxTtl If set, will encode an
-         * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-         * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-         * `token_max_ttl` would otherwise allow a renewal.
+         * @param tokenExplicitMaxTtl Generated Token&#39;s Explicit Maximum TTL in seconds
          * 
          * @return builder
          * 
@@ -1053,10 +1006,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenExplicitMaxTtl If set, will encode an
-         * [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls)
-         * onto the token in number of seconds. This is a hard cap even if `token_ttl` and
-         * `token_max_ttl` would otherwise allow a renewal.
+         * @param tokenExplicitMaxTtl Generated Token&#39;s Explicit Maximum TTL in seconds
          * 
          * @return builder
          * 
@@ -1066,8 +1016,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenMaxTtl The maximum lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenMaxTtl The maximum lifetime of the generated token
          * 
          * @return builder
          * 
@@ -1078,8 +1027,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenMaxTtl The maximum lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenMaxTtl The maximum lifetime of the generated token
          * 
          * @return builder
          * 
@@ -1089,8 +1037,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenNoDefaultPolicy If set, the default policy will not be set on
-         * generated tokens; otherwise it will be added to the policies set in token_policies.
+         * @param tokenNoDefaultPolicy If true, the &#39;default&#39; policy will not automatically be added to generated tokens
          * 
          * @return builder
          * 
@@ -1101,8 +1048,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenNoDefaultPolicy If set, the default policy will not be set on
-         * generated tokens; otherwise it will be added to the policies set in token_policies.
+         * @param tokenNoDefaultPolicy If true, the &#39;default&#39; policy will not automatically be added to generated tokens
          * 
          * @return builder
          * 
@@ -1112,8 +1058,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenNumUses The [maximum number](https://www.vaultproject.io/api-docs/auth/cert#token_num_uses)
-         * of times a generated token may be used (within its lifetime); 0 means unlimited.
+         * @param tokenNumUses The maximum number of times a token may be used, a value of zero means unlimited
          * 
          * @return builder
          * 
@@ -1124,8 +1069,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenNumUses The [maximum number](https://www.vaultproject.io/api-docs/auth/cert#token_num_uses)
-         * of times a generated token may be used (within its lifetime); 0 means unlimited.
+         * @param tokenNumUses The maximum number of times a token may be used, a value of zero means unlimited
          * 
          * @return builder
          * 
@@ -1135,10 +1079,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenPeriod If set, indicates that the
-         * token generated using this role should never expire. The token should be renewed within the
-         * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-         * value of this field. Specified in seconds.
+         * @param tokenPeriod Generated Token&#39;s Period
          * 
          * @return builder
          * 
@@ -1149,10 +1090,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenPeriod If set, indicates that the
-         * token generated using this role should never expire. The token should be renewed within the
-         * duration specified by this value. At each renewal, the token&#39;s TTL will be set to the
-         * value of this field. Specified in seconds.
+         * @param tokenPeriod Generated Token&#39;s Period
          * 
          * @return builder
          * 
@@ -1162,8 +1100,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenPolicies List of policies to encode onto generated tokens. Depending
-         * on the auth method, this list may be supplemented by user/group/other values.
+         * @param tokenPolicies Generated Token&#39;s Policies
          * 
          * @return builder
          * 
@@ -1174,8 +1111,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenPolicies List of policies to encode onto generated tokens. Depending
-         * on the auth method, this list may be supplemented by user/group/other values.
+         * @param tokenPolicies Generated Token&#39;s Policies
          * 
          * @return builder
          * 
@@ -1185,8 +1121,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenPolicies List of policies to encode onto generated tokens. Depending
-         * on the auth method, this list may be supplemented by user/group/other values.
+         * @param tokenPolicies Generated Token&#39;s Policies
          * 
          * @return builder
          * 
@@ -1196,8 +1131,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenTtl The incremental lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenTtl The initial ttl of the token to generate in seconds
          * 
          * @return builder
          * 
@@ -1208,8 +1142,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenTtl The incremental lifetime for generated tokens in number of seconds.
-         * Its current value will be referenced at renewal time.
+         * @param tokenTtl The initial ttl of the token to generate in seconds
          * 
          * @return builder
          * 
@@ -1219,13 +1152,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenType The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
-         * 
-         * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
+         * @param tokenType The type of token to generate, service or batch
          * 
          * @return builder
          * 
@@ -1236,13 +1163,7 @@ public final class CertAuthBackendRoleArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param tokenType The type of token that should be generated. Can be `service`,
-         * `batch`, or `default` to use the mount&#39;s tuned default (which unless changed will be
-         * `service` tokens). For token store roles, there are two additional possibilities:
-         * `default-service` and `default-batch` which specify the type to return unless the client
-         * requests a different type at generation time.
-         * 
-         * For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api-docs/auth/cert).
+         * @param tokenType The type of token to generate, service or batch
          * 
          * @return builder
          * 

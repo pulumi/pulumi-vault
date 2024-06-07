@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -24,7 +23,6 @@ import * as utilities from "../utilities";
  *     };
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleIdResult> {
 
@@ -79,7 +77,6 @@ export interface GetAuthBackendRoleIdResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -94,7 +91,6 @@ export interface GetAuthBackendRoleIdResult {
  *     };
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuthBackendRoleIdOutput(args: GetAuthBackendRoleIdOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleIdResult> {
     return pulumi.output(args).apply((a: any) => getAuthBackendRoleId(a, opts))

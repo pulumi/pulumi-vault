@@ -493,62 +493,54 @@ class Mount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.Mount("example",
-            description="This is an example mount",
             path="dummy",
-            type="generic")
+            type="generic",
+            description="This is an example mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         kvv2_example = vault.Mount("kvv2-example",
-            description="This is an example KV Version 2 secret engine mount",
-            options={
-                "type": "kv-v2",
-                "version": "2",
-            },
             path="version2-example",
-            type="kv-v2")
+            type="kv-v2",
+            options={
+                "version": "2",
+                "type": "kv-v2",
+            },
+            description="This is an example KV Version 2 secret engine mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         transit_example = vault.Mount("transit-example",
+            path="transit-example",
+            type="transit",
             description="This is an example transit secret engine mount",
             options={
                 "convergent_encryption": False,
-            },
-            path="transit-example",
-            type="transit")
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         pki_example = vault.Mount("pki-example",
-            default_lease_ttl_seconds=3600,
-            description="This is an example PKI mount",
-            max_lease_ttl_seconds=86400,
             path="pki-example",
-            type="pki")
+            type="pki",
+            description="This is an example PKI mount",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -588,62 +580,54 @@ class Mount(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         example = vault.Mount("example",
-            description="This is an example mount",
             path="dummy",
-            type="generic")
+            type="generic",
+            description="This is an example mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         kvv2_example = vault.Mount("kvv2-example",
-            description="This is an example KV Version 2 secret engine mount",
-            options={
-                "type": "kv-v2",
-                "version": "2",
-            },
             path="version2-example",
-            type="kv-v2")
+            type="kv-v2",
+            options={
+                "version": "2",
+                "type": "kv-v2",
+            },
+            description="This is an example KV Version 2 secret engine mount")
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         transit_example = vault.Mount("transit-example",
+            path="transit-example",
+            type="transit",
             description="This is an example transit secret engine mount",
             options={
                 "convergent_encryption": False,
-            },
-            path="transit-example",
-            type="transit")
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         pki_example = vault.Mount("pki-example",
-            default_lease_ttl_seconds=3600,
-            description="This is an example PKI mount",
-            max_lease_ttl_seconds=86400,
             path="pki-example",
-            type="pki")
+            type="pki",
+            description="This is an example PKI mount",
+            default_lease_ttl_seconds=3600,
+            max_lease_ttl_seconds=86400)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

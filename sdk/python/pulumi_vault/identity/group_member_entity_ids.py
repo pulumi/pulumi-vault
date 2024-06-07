@@ -199,41 +199,40 @@ class GroupMemberEntityIds(pulumi.CustomResource):
 
         ### Exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        user = vault.identity.Entity("user")
+        user = vault.identity.Entity("user", name="user")
         members = vault.identity.GroupMemberEntityIds("members",
             exclusive=True,
             member_entity_ids=[user.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        test_user = vault.identity.Entity("testUser")
-        second_test_user = vault.identity.Entity("secondTestUser")
-        dev_user = vault.identity.Entity("devUser")
+        test_user = vault.identity.Entity("test_user", name="test")
+        second_test_user = vault.identity.Entity("second_test_user", name="second_test")
+        dev_user = vault.identity.Entity("dev_user", name="dev")
         test = vault.identity.GroupMemberEntityIds("test",
             member_entity_ids=[
                 test_user.id,
@@ -246,7 +245,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -275,41 +273,40 @@ class GroupMemberEntityIds(pulumi.CustomResource):
 
         ### Exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        user = vault.identity.Entity("user")
+        user = vault.identity.Entity("user", name="user")
         members = vault.identity.GroupMemberEntityIds("members",
             exclusive=True,
             member_entity_ids=[user.id],
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Non-exclusive Member Entities
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         internal = vault.identity.Group("internal",
+            name="internal",
             type="internal",
             external_member_entity_ids=True,
             metadata={
                 "version": "2",
             })
-        test_user = vault.identity.Entity("testUser")
-        second_test_user = vault.identity.Entity("secondTestUser")
-        dev_user = vault.identity.Entity("devUser")
+        test_user = vault.identity.Entity("test_user", name="test")
+        second_test_user = vault.identity.Entity("second_test_user", name="second_test")
+        dev_user = vault.identity.Entity("dev_user", name="dev")
         test = vault.identity.GroupMemberEntityIds("test",
             member_entity_ids=[
                 test_user.id,
@@ -322,7 +319,6 @@ class GroupMemberEntityIds(pulumi.CustomResource):
             exclusive=False,
             group_id=internal.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param GroupMemberEntityIdsArgs args: The arguments to use to populate this resource's properties.

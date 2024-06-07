@@ -14,62 +14,55 @@ namespace Pulumi.Vault.Managed.Outputs
     public sealed class KeysAw
     {
         /// <summary>
-        /// The AWS access key to use.
+        /// The AWS access key to use
         /// </summary>
         public readonly string AccessKey;
         /// <summary>
-        /// If no existing key can be found in 
-        /// the referenced backend, instructs Vault to generate a key within the backend.
+        /// If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         /// </summary>
         public readonly bool? AllowGenerateKey;
         /// <summary>
-        /// Controls the ability for Vault to replace through
-        /// generation or importing a key into the configured backend even
-        /// if a key is present, if set to `false` those operations are forbidden
-        /// if a key exists.
+        /// Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         /// </summary>
         public readonly bool? AllowReplaceKey;
         /// <summary>
-        /// Controls the ability for Vault to import a key to the
-        /// configured backend, if `false`, those operations will be forbidden.
+        /// Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         /// </summary>
         public readonly bool? AllowStoreKey;
         /// <summary>
-        /// If `true`, allows usage from any mount point within the
-        /// namespace.
+        /// Allow usage from any mount point within the namespace if 'true'
         /// </summary>
         public readonly bool? AnyMount;
         /// <summary>
-        /// The curve to use for an ECDSA key. Used when `key_type` 
-        /// is `ECDSA`. Required if `allow_generate_key` is `true`.
+        /// The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
         /// </summary>
         public readonly string? Curve;
         /// <summary>
-        /// Used to specify a custom AWS endpoint.
+        /// Used to specify a custom AWS endpoint
         /// </summary>
         public readonly string? Endpoint;
         /// <summary>
-        /// The size in bits for an RSA key.
+        /// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
         /// </summary>
         public readonly string KeyBits;
         /// <summary>
-        /// The type of key to use.
+        /// The type of key to use
         /// </summary>
         public readonly string KeyType;
         /// <summary>
-        /// An identifier for the key.
+        /// An identifier for the key
         /// </summary>
         public readonly string KmsKey;
         /// <summary>
-        /// A unique lowercase name that serves as identifying the key.
+        /// A unique lowercase name that serves as identifying the key
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// The AWS region where the keys are stored (or will be stored).
+        /// The AWS region where the keys are stored (or will be stored)
         /// </summary>
         public readonly string? Region;
         /// <summary>
-        /// The AWS access key to use.
+        /// The AWS secret key to use
         /// </summary>
         public readonly string SecretKey;
         /// <summary>

@@ -150,16 +150,14 @@ class SyncConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        global_config = vault.secrets.SyncConfig("globalConfig",
+        global_config = vault.secrets.SyncConfig("global_config",
             disabled=True,
             queue_capacity=500000)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -191,16 +189,14 @@ class SyncConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
-        global_config = vault.secrets.SyncConfig("globalConfig",
+        global_config = vault.secrets.SyncConfig("global_config",
             disabled=True,
             queue_capacity=500000)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

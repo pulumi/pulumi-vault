@@ -145,13 +145,12 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         intermediate = vault.pki_secret.SecretBackendConfigCa("intermediate",
-            backend=vault_mount["intermediate"]["path"],
+            backend=intermediate_vault_mount["path"],
             pem_bundle=\"\"\"-----BEGIN RSA PRIVATE KEY-----
         MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
         5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -201,9 +200,8 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         MUR4qFxeUOW/GJGccMUd
         -----END CERTIFICATE-----
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["intermediate"]]))
+            opts=pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -223,13 +221,12 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_vault as vault
 
         intermediate = vault.pki_secret.SecretBackendConfigCa("intermediate",
-            backend=vault_mount["intermediate"]["path"],
+            backend=intermediate_vault_mount["path"],
             pem_bundle=\"\"\"-----BEGIN RSA PRIVATE KEY-----
         MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/
         5PytjTcCPdrfW7g2sfbPwOge/WF3X2KeYSP8SxZA0czmz6QDspeG921JkZWtyp5o
@@ -279,9 +276,8 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         MUR4qFxeUOW/GJGccMUd
         -----END CERTIFICATE-----
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[vault_mount["intermediate"]]))
+            opts=pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SecretBackendConfigCaArgs args: The arguments to use to populate this resource's properties.

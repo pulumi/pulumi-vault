@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,6 +39,7 @@ import (
 //			}
 //			_, err = transform.NewTransformation(ctx, "ccn-fpe", &transform.TransformationArgs{
 //				Path:        transform.Path,
+//				Name:        pulumi.String("ccn-fpe"),
 //				Type:        pulumi.String("fpe"),
 //				Template:    pulumi.String("builtin/creditcardnumber"),
 //				TweakSource: pulumi.String("internal"),
@@ -52,6 +52,7 @@ import (
 //			}
 //			payments, err := transform.NewRole(ctx, "payments", &transform.RoleArgs{
 //				Path: ccn_fpe.Path,
+//				Name: pulumi.String("payments"),
 //				Transformations: pulumi.StringArray{
 //					pulumi.String("ccn-fpe"),
 //				},
@@ -69,7 +70,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetDecode(ctx *pulumi.Context, args *GetDecodeArgs, opts ...pulumi.InvokeOption) (*GetDecodeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDecodeResult

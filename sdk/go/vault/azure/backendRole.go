@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -30,15 +29,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			azure, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
-//				SubscriptionId: pulumi.Any(_var.Subscription_id),
-//				TenantId:       pulumi.Any(_var.Tenant_id),
-//				ClientSecret:   pulumi.Any(_var.Client_secret),
-//				ClientId:       pulumi.Any(_var.Client_id),
+//				SubscriptionId: pulumi.Any(subscriptionId),
+//				TenantId:       pulumi.Any(tenantId),
+//				ClientSecret:   pulumi.Any(clientSecret),
+//				ClientId:       pulumi.Any(clientId),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = azure.NewBackendRole(ctx, "generatedRole", &azure.BackendRoleArgs{
+//			_, err = azure.NewBackendRole(ctx, "generated_role", &azure.BackendRoleArgs{
 //				Backend:        azure.Path,
 //				Role:           pulumi.String("generated_role"),
 //				SignInAudience: pulumi.String("AzureADMyOrg"),
@@ -51,14 +50,14 @@ import (
 //				AzureRoles: azure.BackendRoleAzureRoleArray{
 //					&azure.BackendRoleAzureRoleArgs{
 //						RoleName: pulumi.String("Reader"),
-//						Scope:    pulumi.String(fmt.Sprintf("/subscriptions/%v/resourceGroups/azure-vault-group", _var.Subscription_id)),
+//						Scope:    pulumi.String(fmt.Sprintf("/subscriptions/%v/resourceGroups/azure-vault-group", subscriptionId)),
 //					},
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = azure.NewBackendRole(ctx, "existingObjectId", &azure.BackendRoleArgs{
+//			_, err = azure.NewBackendRole(ctx, "existing_object_id", &azure.BackendRoleArgs{
 //				Backend:             azure.Path,
 //				Role:                pulumi.String("existing_object_id"),
 //				ApplicationObjectId: pulumi.String("11111111-2222-3333-4444-44444444444"),
@@ -73,7 +72,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type BackendRole struct {
 	pulumi.CustomResourceState
 

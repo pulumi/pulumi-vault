@@ -9,18 +9,16 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
  * const example = new vault.identity.MfaDuo("example", {
  *     apiHostname: "api-xxxxxxxx.duosecurity.com",
- *     integrationKey: "secret-int-key",
  *     secretKey: "secret-key",
+ *     integrationKey: "secret-int-key",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
