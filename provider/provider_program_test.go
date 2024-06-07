@@ -78,7 +78,7 @@ func testProviderUpgradeWithOpts(
 	if baselineVersion == "" {
 		baselineVersion = defaultBaselineVersion
 	}
-	t.Setenv("VAULT_TOKEN", "VAULT_DEV_ROOT_TOKEN_ID")
+	t.Setenv("VAULT_TOKEN", "root")
 	t.Setenv("VAULT_ADDR", "http://127.0.0.1:8200")
 	test := pulumitest.NewPulumiTest(t, dir,
 		opttest.DownloadProviderVersion(providerName, baselineVersion),
