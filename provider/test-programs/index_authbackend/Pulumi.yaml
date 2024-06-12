@@ -5,6 +5,10 @@ config:
   pulumi:tags:
     value:
       pulumi:template: https://www.pulumi.com/ai/api/project/ad63b03d-1d4d-458b-a0f7-e5a55c6e0136.zip
+  vault:address:
+    value: http://localhost:8200
+  vault:token:
+    value: root
 resources:
   myVaultAuthBackend:
     properties:
