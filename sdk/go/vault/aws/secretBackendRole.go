@@ -90,6 +90,9 @@ type SecretBackendRole struct {
 	// policies from each group in `iamGroups` combined with the `policyDocument`
 	// and `policyArns` parameters.
 	IamGroups pulumi.StringArrayOutput `pulumi:"iamGroups"`
+	// A map of strings representing key/value pairs
+	// to be used as tags for any IAM user that is created by this role.
+	IamTags pulumi.StringMapOutput `pulumi:"iamTags"`
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -186,6 +189,9 @@ type secretBackendRoleState struct {
 	// policies from each group in `iamGroups` combined with the `policyDocument`
 	// and `policyArns` parameters.
 	IamGroups []string `pulumi:"iamGroups"`
+	// A map of strings representing key/value pairs
+	// to be used as tags for any IAM user that is created by this role.
+	IamTags map[string]string `pulumi:"iamTags"`
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -247,6 +253,9 @@ type SecretBackendRoleState struct {
 	// policies from each group in `iamGroups` combined with the `policyDocument`
 	// and `policyArns` parameters.
 	IamGroups pulumi.StringArrayInput
+	// A map of strings representing key/value pairs
+	// to be used as tags for any IAM user that is created by this role.
+	IamTags pulumi.StringMapInput
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -312,6 +321,9 @@ type secretBackendRoleArgs struct {
 	// policies from each group in `iamGroups` combined with the `policyDocument`
 	// and `policyArns` parameters.
 	IamGroups []string `pulumi:"iamGroups"`
+	// A map of strings representing key/value pairs
+	// to be used as tags for any IAM user that is created by this role.
+	IamTags map[string]string `pulumi:"iamTags"`
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -374,6 +386,9 @@ type SecretBackendRoleArgs struct {
 	// policies from each group in `iamGroups` combined with the `policyDocument`
 	// and `policyArns` parameters.
 	IamGroups pulumi.StringArrayInput
+	// A map of strings representing key/value pairs
+	// to be used as tags for any IAM user that is created by this role.
+	IamTags pulumi.StringMapInput
 	// The max allowed TTL in seconds for STS credentials
 	// (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
 	// one of `assumedRole` or `federationToken`.
@@ -531,6 +546,12 @@ func (o SecretBackendRoleOutput) DefaultStsTtl() pulumi.IntOutput {
 // and `policyArns` parameters.
 func (o SecretBackendRoleOutput) IamGroups() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.IamGroups }).(pulumi.StringArrayOutput)
+}
+
+// A map of strings representing key/value pairs
+// to be used as tags for any IAM user that is created by this role.
+func (o SecretBackendRoleOutput) IamTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringMapOutput { return v.IamTags }).(pulumi.StringMapOutput)
 }
 
 // The max allowed TTL in seconds for STS credentials

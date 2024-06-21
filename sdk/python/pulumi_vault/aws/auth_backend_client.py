@@ -19,7 +19,11 @@ class AuthBackendClientArgs:
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -27,7 +31,7 @@ class AuthBackendClientArgs:
         """
         The set of arguments for constructing a AuthBackendClient resource.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
-               auth backend.
+               auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
@@ -37,10 +41,18 @@ class AuthBackendClientArgs:
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] max_retries: Number of max retries the client should use for recoverable errors. 
+               The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -63,8 +75,16 @@ class AuthBackendClientArgs:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
         if iam_server_id_header_value is not None:
             pulumi.set(__self__, "iam_server_id_header_value", iam_server_id_header_value)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -79,7 +99,7 @@ class AuthBackendClientArgs:
     def access_key(self) -> Optional[pulumi.Input[str]]:
         """
         The AWS access key that Vault should use for the
-        auth backend.
+        auth backend. Mutually exclusive with `identity_token_audience`.
         """
         return pulumi.get(self, "access_key")
 
@@ -141,6 +161,45 @@ class AuthBackendClientArgs:
         pulumi.set(self, "iam_server_id_header_value", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value. Mutually exclusive with `access_key`. 
+        Requires Vault 1.17+. *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of max retries the client should use for recoverable errors. 
+        The default `-1` falls back to the AWS SDK's default behavior.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -154,6 +213,19 @@ class AuthBackendClientArgs:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -219,7 +291,11 @@ class _AuthBackendClientState:
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -227,7 +303,7 @@ class _AuthBackendClientState:
         """
         Input properties used for looking up and filtering AuthBackendClient resources.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
-               auth backend.
+               auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
@@ -237,10 +313,18 @@ class _AuthBackendClientState:
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] max_retries: Number of max retries the client should use for recoverable errors. 
+               The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -263,8 +347,16 @@ class _AuthBackendClientState:
             pulumi.set(__self__, "iam_endpoint", iam_endpoint)
         if iam_server_id_header_value is not None:
             pulumi.set(__self__, "iam_server_id_header_value", iam_server_id_header_value)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if max_retries is not None:
+            pulumi.set(__self__, "max_retries", max_retries)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -279,7 +371,7 @@ class _AuthBackendClientState:
     def access_key(self) -> Optional[pulumi.Input[str]]:
         """
         The AWS access key that Vault should use for the
-        auth backend.
+        auth backend. Mutually exclusive with `identity_token_audience`.
         """
         return pulumi.get(self, "access_key")
 
@@ -341,6 +433,45 @@ class _AuthBackendClientState:
         pulumi.set(self, "iam_server_id_header_value", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value. Mutually exclusive with `access_key`. 
+        Requires Vault 1.17+. *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of max retries the client should use for recoverable errors. 
+        The default `-1` falls back to the AWS SDK's default behavior.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @max_retries.setter
+    def max_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_retries", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -354,6 +485,19 @@ class _AuthBackendClientState:
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role_arn", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -421,7 +565,11 @@ class AuthBackendClient(pulumi.CustomResource):
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -429,6 +577,18 @@ class AuthBackendClient(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
+        You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_client = vault.aws.AuthBackendClient("example",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>",
+            role_arn="<AWS_ROLE_ARN>")
+        ```
 
         ```python
         import pulumi
@@ -452,7 +612,7 @@ class AuthBackendClient(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
-               auth backend.
+               auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
@@ -462,10 +622,18 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] max_retries: Number of max retries the client should use for recoverable errors. 
+               The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -486,6 +654,18 @@ class AuthBackendClient(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="aws")
+        example_auth_backend_client = vault.aws.AuthBackendClient("example",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>",
+            role_arn="<AWS_ROLE_ARN>")
+        ```
 
         ```python
         import pulumi
@@ -526,7 +706,11 @@ class AuthBackendClient(pulumi.CustomResource):
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
+                 max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 role_arn: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -545,7 +729,11 @@ class AuthBackendClient(pulumi.CustomResource):
             __props__.__dict__["ec2_endpoint"] = ec2_endpoint
             __props__.__dict__["iam_endpoint"] = iam_endpoint
             __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
+            __props__.__dict__["identity_token_audience"] = identity_token_audience
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+            __props__.__dict__["max_retries"] = max_retries
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["role_arn"] = role_arn
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_region"] = sts_region
@@ -567,7 +755,11 @@ class AuthBackendClient(pulumi.CustomResource):
             ec2_endpoint: Optional[pulumi.Input[str]] = None,
             iam_endpoint: Optional[pulumi.Input[str]] = None,
             iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
+            identity_token_audience: Optional[pulumi.Input[str]] = None,
+            identity_token_ttl: Optional[pulumi.Input[int]] = None,
+            max_retries: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            role_arn: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             sts_endpoint: Optional[pulumi.Input[str]] = None,
             sts_region: Optional[pulumi.Input[str]] = None,
@@ -580,7 +772,7 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The AWS access key that Vault should use for the
-               auth backend.
+               auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
@@ -590,10 +782,18 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+               Requires Vault 1.17+. *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] max_retries: Number of max retries the client should use for recoverable errors. 
+               The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -615,7 +815,11 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__.__dict__["ec2_endpoint"] = ec2_endpoint
         __props__.__dict__["iam_endpoint"] = iam_endpoint
         __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
+        __props__.__dict__["identity_token_audience"] = identity_token_audience
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+        __props__.__dict__["max_retries"] = max_retries
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["role_arn"] = role_arn
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_region"] = sts_region
@@ -627,7 +831,7 @@ class AuthBackendClient(pulumi.CustomResource):
     def access_key(self) -> pulumi.Output[Optional[str]]:
         """
         The AWS access key that Vault should use for the
-        auth backend.
+        auth backend. Mutually exclusive with `identity_token_audience`.
         """
         return pulumi.get(self, "access_key")
 
@@ -669,6 +873,33 @@ class AuthBackendClient(pulumi.CustomResource):
         return pulumi.get(self, "iam_server_id_header_value")
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        The audience claim value. Mutually exclusive with `access_key`. 
+        Requires Vault 1.17+. *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[int]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @property
+    @pulumi.getter(name="maxRetries")
+    def max_retries(self) -> pulumi.Output[Optional[int]]:
+        """
+        Number of max retries the client should use for recoverable errors. 
+        The default `-1` falls back to the AWS SDK's default behavior.
+        """
+        return pulumi.get(self, "max_retries")
+
+    @property
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[str]]:
         """
@@ -678,6 +909,15 @@ class AuthBackendClient(pulumi.CustomResource):
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> pulumi.Output[Optional[str]]:
+        """
+        Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "role_arn")
 
     @property
     @pulumi.getter(name="secretKey")

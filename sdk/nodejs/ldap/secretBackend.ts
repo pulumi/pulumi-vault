@@ -66,6 +66,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
@@ -104,6 +108,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
+    /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -116,10 +124,18 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
+     * The key to use for signing plugin workload identity tokens
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
     public readonly insecureTls!: pulumi.Output<boolean | undefined>;
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    public readonly listingVisibility!: pulumi.Output<string | undefined>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
@@ -141,6 +157,10 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly options!: pulumi.Output<{[key: string]: any} | undefined>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    /**
      * Name of the password policy to use to generate passwords.
      */
     public readonly passwordPolicy!: pulumi.Output<string | undefined>;
@@ -149,6 +169,10 @@ export class SecretBackend extends pulumi.CustomResource {
      * not begin or end with a `/`. Defaults to `ldap`.
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    public readonly pluginVersion!: pulumi.Output<string | undefined>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.
@@ -204,6 +228,7 @@ export class SecretBackend extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
+            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
             resourceInputs["binddn"] = state ? state.binddn : undefined;
@@ -213,16 +238,21 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
             resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["insecureTls"] = state ? state.insecureTls : undefined;
+            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
             resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
             resourceInputs["requestTimeout"] = state ? state.requestTimeout : undefined;
             resourceInputs["schema"] = state ? state.schema : undefined;
             resourceInputs["sealWrap"] = state ? state.sealWrap : undefined;
@@ -241,6 +271,7 @@ export class SecretBackend extends pulumi.CustomResource {
                 throw new Error("Missing required property 'bindpass'");
             }
             resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
+            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
             resourceInputs["binddn"] = args ? args.binddn : undefined;
@@ -250,16 +281,21 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
             resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["insecureTls"] = args ? args.insecureTls : undefined;
+            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
             resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
             resourceInputs["requestTimeout"] = args ? args.requestTimeout : undefined;
             resourceInputs["schema"] = args ? args.schema : undefined;
             resourceInputs["sealWrap"] = args ? args.sealWrap : undefined;
@@ -290,6 +326,10 @@ export interface SecretBackendState {
      * List of managed key registry entry names that the mount in question is allowed to access
      */
     allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
@@ -329,6 +369,10 @@ export interface SecretBackendState {
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
     description?: pulumi.Input<string>;
@@ -341,10 +385,18 @@ export interface SecretBackendState {
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
+     * The key to use for signing plugin workload identity tokens
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
     insecureTls?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    listingVisibility?: pulumi.Input<string>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
@@ -366,6 +418,10 @@ export interface SecretBackendState {
      */
     options?: pulumi.Input<{[key: string]: any}>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Name of the password policy to use to generate passwords.
      */
     passwordPolicy?: pulumi.Input<string>;
@@ -374,6 +430,10 @@ export interface SecretBackendState {
      * not begin or end with a `/`. Defaults to `ldap`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.
@@ -424,6 +484,10 @@ export interface SecretBackendArgs {
      */
     allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
@@ -462,6 +526,10 @@ export interface SecretBackendArgs {
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Human-friendly description of the mount for the Active Directory backend.
      */
     description?: pulumi.Input<string>;
@@ -474,10 +542,18 @@ export interface SecretBackendArgs {
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
+     * The key to use for signing plugin workload identity tokens
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      */
     insecureTls?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    listingVisibility?: pulumi.Input<string>;
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
      * replication.Tolerance duration to use when checking the last rotation time.
@@ -499,6 +575,10 @@ export interface SecretBackendArgs {
      */
     options?: pulumi.Input<{[key: string]: any}>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Name of the password policy to use to generate passwords.
      */
     passwordPolicy?: pulumi.Input<string>;
@@ -507,6 +587,10 @@ export interface SecretBackendArgs {
      * not begin or end with a `/`. Defaults to `ldap`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * Timeout, in seconds, for the connection when making requests against the server
      * before returning back an error.

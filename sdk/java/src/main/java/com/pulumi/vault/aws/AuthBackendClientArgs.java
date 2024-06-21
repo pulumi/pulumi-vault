@@ -6,6 +6,7 @@ package com.pulumi.vault.aws;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * The AWS access key that Vault should use for the
-     * auth backend.
+     * auth backend. Mutually exclusive with `identity_token_audience`.
      * 
      */
     @Import(name="accessKey")
@@ -26,7 +27,7 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
 
     /**
      * @return The AWS access key that Vault should use for the
-     * auth backend.
+     * auth backend. Mutually exclusive with `identity_token_audience`.
      * 
      */
     public Optional<Output<String>> accessKey() {
@@ -104,6 +105,57 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The audience claim value. Mutually exclusive with `access_key`.
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="identityTokenAudience")
+    private @Nullable Output<String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value. Mutually exclusive with `access_key`.
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudience() {
+        return Optional.ofNullable(this.identityTokenAudience);
+    }
+
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
+    }
+
+    /**
+     * Number of max retries the client should use for recoverable errors.
+     * The default `-1` falls back to the AWS SDK&#39;s default behavior.
+     * 
+     */
+    @Import(name="maxRetries")
+    private @Nullable Output<Integer> maxRetries;
+
+    /**
+     * @return Number of max retries the client should use for recoverable errors.
+     * The default `-1` falls back to the AWS SDK&#39;s default behavior.
+     * 
+     */
+    public Optional<Output<Integer>> maxRetries() {
+        return Optional.ofNullable(this.maxRetries);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -122,6 +174,23 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
+    }
+
+    /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="roleArn")
+    private @Nullable Output<String> roleArn;
+
+    /**
+     * @return Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<String>> roleArn() {
+        return Optional.ofNullable(this.roleArn);
     }
 
     /**
@@ -206,7 +275,11 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         this.ec2Endpoint = $.ec2Endpoint;
         this.iamEndpoint = $.iamEndpoint;
         this.iamServerIdHeaderValue = $.iamServerIdHeaderValue;
+        this.identityTokenAudience = $.identityTokenAudience;
+        this.identityTokenTtl = $.identityTokenTtl;
+        this.maxRetries = $.maxRetries;
         this.namespace = $.namespace;
+        this.roleArn = $.roleArn;
         this.secretKey = $.secretKey;
         this.stsEndpoint = $.stsEndpoint;
         this.stsRegion = $.stsRegion;
@@ -233,7 +306,7 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param accessKey The AWS access key that Vault should use for the
-         * auth backend.
+         * auth backend. Mutually exclusive with `identity_token_audience`.
          * 
          * @return builder
          * 
@@ -245,7 +318,7 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
 
         /**
          * @param accessKey The AWS access key that Vault should use for the
-         * auth backend.
+         * auth backend. Mutually exclusive with `identity_token_audience`.
          * 
          * @return builder
          * 
@@ -349,6 +422,75 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
+         * @param identityTokenAudience The audience claim value. Mutually exclusive with `access_key`.
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(@Nullable Output<String> identityTokenAudience) {
+            $.identityTokenAudience = identityTokenAudience;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value. Mutually exclusive with `access_key`.
+         * Requires Vault 1.17+. *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(String identityTokenAudience) {
+            return identityTokenAudience(Output.of(identityTokenAudience));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
+        }
+
+        /**
+         * @param maxRetries Number of max retries the client should use for recoverable errors.
+         * The default `-1` falls back to the AWS SDK&#39;s default behavior.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(@Nullable Output<Integer> maxRetries) {
+            $.maxRetries = maxRetries;
+            return this;
+        }
+
+        /**
+         * @param maxRetries Number of max retries the client should use for recoverable errors.
+         * The default `-1` falls back to the AWS SDK&#39;s default behavior.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxRetries(Integer maxRetries) {
+            return maxRetries(Output.of(maxRetries));
+        }
+
+        /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
          * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -373,6 +515,29 @@ public final class AuthBackendClientArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param roleArn Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleArn(@Nullable Output<String> roleArn) {
+            $.roleArn = roleArn;
+            return this;
+        }
+
+        /**
+         * @param roleArn Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleArn(String roleArn) {
+            return roleArn(Output.of(roleArn));
         }
 
         /**

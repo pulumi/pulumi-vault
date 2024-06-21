@@ -6,6 +6,7 @@ package com.pulumi.vault.ssh;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,6 +45,36 @@ public final class SecretBackendCaArgs extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<Boolean>> generateSigningKey() {
         return Optional.ofNullable(this.generateSigningKey);
+    }
+
+    /**
+     * Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    @Import(name="keyBits")
+    private @Nullable Output<Integer> keyBits;
+
+    /**
+     * @return Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    public Optional<Output<Integer>> keyBits() {
+        return Optional.ofNullable(this.keyBits);
+    }
+
+    /**
+     * Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    @Import(name="keyType")
+    private @Nullable Output<String> keyType;
+
+    /**
+     * @return Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    public Optional<Output<String>> keyType() {
+        return Optional.ofNullable(this.keyType);
     }
 
     /**
@@ -102,6 +133,8 @@ public final class SecretBackendCaArgs extends com.pulumi.resources.ResourceArgs
     private SecretBackendCaArgs(SecretBackendCaArgs $) {
         this.backend = $.backend;
         this.generateSigningKey = $.generateSigningKey;
+        this.keyBits = $.keyBits;
+        this.keyType = $.keyType;
         this.namespace = $.namespace;
         this.privateKey = $.privateKey;
         this.publicKey = $.publicKey;
@@ -165,6 +198,48 @@ public final class SecretBackendCaArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder generateSigningKey(Boolean generateSigningKey) {
             return generateSigningKey(Output.of(generateSigningKey));
+        }
+
+        /**
+         * @param keyBits Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyBits(@Nullable Output<Integer> keyBits) {
+            $.keyBits = keyBits;
+            return this;
+        }
+
+        /**
+         * @param keyBits Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyBits(Integer keyBits) {
+            return keyBits(Output.of(keyBits));
+        }
+
+        /**
+         * @param keyType Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyType(@Nullable Output<String> keyType) {
+            $.keyType = keyType;
+            return this;
+        }
+
+        /**
+         * @param keyType Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyType(String keyType) {
+            return keyType(Output.of(keyType));
         }
 
         /**

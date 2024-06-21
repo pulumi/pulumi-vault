@@ -6,6 +6,7 @@ package com.pulumi.vault.azure;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -87,6 +88,38 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="identityTokenAudience")
+    private @Nullable Output<String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudience() {
+        return Optional.ofNullable(this.identityTokenAudience);
+    }
+
+    /**
+     * The TTL of generated identity tokens in seconds.
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -148,6 +181,8 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
         this.environment = $.environment;
+        this.identityTokenAudience = $.identityTokenAudience;
+        this.identityTokenTtl = $.identityTokenTtl;
         this.namespace = $.namespace;
         this.resource = $.resource;
         this.tenantId = $.tenantId;
@@ -263,6 +298,50 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder environment(String environment) {
             return environment(Output.of(environment));
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(@Nullable Output<String> identityTokenAudience) {
+            $.identityTokenAudience = identityTokenAudience;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(String identityTokenAudience) {
+            return identityTokenAudience(Output.of(identityTokenAudience));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
         }
 
         /**

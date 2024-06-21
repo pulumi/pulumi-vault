@@ -16,6 +16,7 @@ class QuotaRateLimitArgs:
     def __init__(__self__, *,
                  rate: pulumi.Input[float],
                  block_interval: Optional[pulumi.Input[int]] = None,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -27,6 +28,7 @@ class QuotaRateLimitArgs:
                rule. The `rate` must be positive.
         :param pulumi.Input[int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[str] name: Name of the rate limit quota
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -44,6 +46,8 @@ class QuotaRateLimitArgs:
         pulumi.set(__self__, "rate", rate)
         if block_interval is not None:
             pulumi.set(__self__, "block_interval", block_interval)
+        if inheritable is not None:
+            pulumi.set(__self__, "inheritable", inheritable)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
         if name is not None:
@@ -80,6 +84,18 @@ class QuotaRateLimitArgs:
     @block_interval.setter
     def block_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "block_interval", value)
+
+    @property
+    @pulumi.getter
+    def inheritable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        """
+        return pulumi.get(self, "inheritable")
+
+    @inheritable.setter
+    def inheritable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inheritable", value)
 
     @property
     @pulumi.getter
@@ -154,6 +170,7 @@ class QuotaRateLimitArgs:
 class _QuotaRateLimitState:
     def __init__(__self__, *,
                  block_interval: Optional[pulumi.Input[int]] = None,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -164,6 +181,7 @@ class _QuotaRateLimitState:
         Input properties used for looking up and filtering QuotaRateLimit resources.
         :param pulumi.Input[int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[str] name: Name of the rate limit quota
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -182,6 +200,8 @@ class _QuotaRateLimitState:
         """
         if block_interval is not None:
             pulumi.set(__self__, "block_interval", block_interval)
+        if inheritable is not None:
+            pulumi.set(__self__, "inheritable", inheritable)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
         if name is not None:
@@ -207,6 +227,18 @@ class _QuotaRateLimitState:
     @block_interval.setter
     def block_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "block_interval", value)
+
+    @property
+    @pulumi.getter
+    def inheritable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        """
+        return pulumi.get(self, "inheritable")
+
+    @inheritable.setter
+    def inheritable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inheritable", value)
 
     @property
     @pulumi.getter
@@ -296,6 +328,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  block_interval: Optional[pulumi.Input[int]] = None,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -335,6 +368,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[str] name: Name of the rate limit quota
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -401,6 +435,7 @@ class QuotaRateLimit(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  block_interval: Optional[pulumi.Input[int]] = None,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -417,6 +452,7 @@ class QuotaRateLimit(pulumi.CustomResource):
             __props__ = QuotaRateLimitArgs.__new__(QuotaRateLimitArgs)
 
             __props__.__dict__["block_interval"] = block_interval
+            __props__.__dict__["inheritable"] = inheritable
             __props__.__dict__["interval"] = interval
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -436,6 +472,7 @@ class QuotaRateLimit(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             block_interval: Optional[pulumi.Input[int]] = None,
+            inheritable: Optional[pulumi.Input[bool]] = None,
             interval: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -451,6 +488,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] block_interval: If set, when a client reaches a rate limit threshold, the client will
                be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] interval: The duration in seconds to enforce rate limiting for.
         :param pulumi.Input[str] name: Name of the rate limit quota
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -472,6 +510,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         __props__ = _QuotaRateLimitState.__new__(_QuotaRateLimitState)
 
         __props__.__dict__["block_interval"] = block_interval
+        __props__.__dict__["inheritable"] = inheritable
         __props__.__dict__["interval"] = interval
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -488,6 +527,14 @@ class QuotaRateLimit(pulumi.CustomResource):
         be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
         """
         return pulumi.get(self, "block_interval")
+
+    @property
+    @pulumi.getter
+    def inheritable(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        """
+        return pulumi.get(self, "inheritable")
 
     @property
     @pulumi.getter

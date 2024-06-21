@@ -57,6 +57,12 @@ namespace Pulumi.Vault.Ldap
         public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
 
         /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("allowedResponseHeaders")]
+        public Output<ImmutableArray<string>> AllowedResponseHeaders { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         /// </summary>
         [Output("auditNonHmacRequestKeys")]
@@ -113,6 +119,12 @@ namespace Pulumi.Vault.Ldap
         public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("delegatedAuthAccessors")]
+        public Output<ImmutableArray<string>> DelegatedAuthAccessors { get; private set; } = null!;
+
+        /// <summary>
         /// Human-friendly description of the mount for the Active Directory backend.
         /// </summary>
         [Output("description")]
@@ -131,11 +143,23 @@ namespace Pulumi.Vault.Ldap
         public Output<bool?> ExternalEntropyAccess { get; private set; } = null!;
 
         /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
         /// Defaults to `false`.
         /// </summary>
         [Output("insecureTls")]
         public Output<bool?> InsecureTls { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Output("listingVisibility")]
+        public Output<string?> ListingVisibility { get; private set; } = null!;
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -166,6 +190,12 @@ namespace Pulumi.Vault.Ldap
         public Output<ImmutableDictionary<string, object>?> Options { get; private set; } = null!;
 
         /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("passthroughRequestHeaders")]
+        public Output<ImmutableArray<string>> PassthroughRequestHeaders { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the password policy to use to generate passwords.
         /// </summary>
         [Output("passwordPolicy")]
@@ -177,6 +207,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Output("pluginVersion")]
+        public Output<string?> PluginVersion { get; private set; } = null!;
 
         /// <summary>
         /// Timeout, in seconds, for the connection when making requests against the server
@@ -299,6 +335,18 @@ namespace Pulumi.Vault.Ldap
             set => _allowedManagedKeys = value;
         }
 
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
 
@@ -397,6 +445,18 @@ namespace Pulumi.Vault.Ldap
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
+
         /// <summary>
         /// Human-friendly description of the mount for the Active Directory backend.
         /// </summary>
@@ -416,11 +476,23 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
         /// Defaults to `false`.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -456,6 +528,18 @@ namespace Pulumi.Vault.Ldap
             set => _options = value;
         }
 
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
         /// <summary>
         /// Name of the password policy to use to generate passwords.
         /// </summary>
@@ -468,6 +552,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
         /// Timeout, in seconds, for the connection when making requests against the server
@@ -550,6 +640,18 @@ namespace Pulumi.Vault.Ldap
         {
             get => _allowedManagedKeys ?? (_allowedManagedKeys = new InputList<string>());
             set => _allowedManagedKeys = value;
+        }
+
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
         }
 
         [Input("auditNonHmacRequestKeys")]
@@ -650,6 +752,18 @@ namespace Pulumi.Vault.Ldap
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
+
         /// <summary>
         /// Human-friendly description of the mount for the Active Directory backend.
         /// </summary>
@@ -669,11 +783,23 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? ExternalEntropyAccess { get; set; }
 
         /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
         /// Skip LDAP server SSL Certificate verification. This is not recommended for production.
         /// Defaults to `false`.
         /// </summary>
         [Input("insecureTls")]
         public Input<bool>? InsecureTls { get; set; }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
         /// Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -709,6 +835,18 @@ namespace Pulumi.Vault.Ldap
             set => _options = value;
         }
 
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
         /// <summary>
         /// Name of the password policy to use to generate passwords.
         /// </summary>
@@ -721,6 +859,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         /// <summary>
         /// Timeout, in seconds, for the connection when making requests against the server

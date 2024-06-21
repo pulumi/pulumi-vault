@@ -41,6 +41,12 @@ namespace Pulumi.Vault
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
+        /// The key to use for signing identity tokens.
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Output("local")]
@@ -135,6 +141,12 @@ namespace Pulumi.Vault
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
+        /// The key to use for signing identity tokens.
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
@@ -195,6 +207,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("disableRemount")]
         public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
+        /// The key to use for signing identity tokens.
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
         /// Specifies if the auth method is local only.

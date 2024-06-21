@@ -2835,6 +2835,11 @@ export namespace okta {
 }
 
 export namespace pkiSecret {
+    export interface BackendConfigEstAuthenticators {
+        cert?: pulumi.Input<{[key: string]: any}>;
+        userpass?: pulumi.Input<{[key: string]: any}>;
+    }
+
     export interface SecretBackendRolePolicyIdentifier {
         /**
          * The URL of the CPS for the policy identifier

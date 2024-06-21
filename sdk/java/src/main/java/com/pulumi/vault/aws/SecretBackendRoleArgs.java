@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -100,6 +101,23 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<List<String>>> iamGroups() {
         return Optional.ofNullable(this.iamGroups);
+    }
+
+    /**
+     * A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     * 
+     */
+    @Import(name="iamTags")
+    private @Nullable Output<Map<String,String>> iamTags;
+
+    /**
+     * @return A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> iamTags() {
+        return Optional.ofNullable(this.iamTags);
     }
 
     /**
@@ -273,6 +291,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.credentialType = $.credentialType;
         this.defaultStsTtl = $.defaultStsTtl;
         this.iamGroups = $.iamGroups;
+        this.iamTags = $.iamTags;
         this.maxStsTtl = $.maxStsTtl;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -422,6 +441,29 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder iamGroups(String... iamGroups) {
             return iamGroups(List.of(iamGroups));
+        }
+
+        /**
+         * @param iamTags A map of strings representing key/value pairs
+         * to be used as tags for any IAM user that is created by this role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamTags(@Nullable Output<Map<String,String>> iamTags) {
+            $.iamTags = iamTags;
+            return this;
+        }
+
+        /**
+         * @param iamTags A map of strings representing key/value pairs
+         * to be used as tags for any IAM user that is created by this role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamTags(Map<String,String> iamTags) {
+            return iamTags(Output.of(iamTags));
         }
 
         /**

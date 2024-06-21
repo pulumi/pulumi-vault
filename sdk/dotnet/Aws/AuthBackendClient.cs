@@ -12,6 +12,30 @@ namespace Pulumi.Vault.Aws
     /// <summary>
     /// ## Example Usage
     /// 
+    /// You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.AuthBackend("example", new()
+    ///     {
+    ///         Type = "aws",
+    ///     });
+    /// 
+    ///     var exampleAuthBackendClient = new Vault.Aws.AuthBackendClient("example", new()
+    ///     {
+    ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
+    ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
+    ///         RoleArn = "&lt;AWS_ROLE_ARN&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -48,7 +72,7 @@ namespace Pulumi.Vault.Aws
     {
         /// <summary>
         /// The AWS access key that Vault should use for the
-        /// auth backend.
+        /// auth backend. Mutually exclusive with `identity_token_audience`.
         /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
@@ -83,6 +107,27 @@ namespace Pulumi.Vault.Aws
         public Output<string?> IamServerIdHeaderValue { get; private set; } = null!;
 
         /// <summary>
+        /// The audience claim value. Mutually exclusive with `access_key`. 
+        /// Requires Vault 1.17+. *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("identityTokenAudience")]
+        public Output<string?> IdentityTokenAudience { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int> IdentityTokenTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// Number of max retries the client should use for recoverable errors. 
+        /// The default `-1` falls back to the AWS SDK's default behavior.
+        /// </summary>
+        [Output("maxRetries")]
+        public Output<int?> MaxRetries { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -90,6 +135,13 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("roleArn")]
+        public Output<string?> RoleArn { get; private set; } = null!;
 
         /// <summary>
         /// The AWS secret key that Vault should use for the
@@ -178,7 +230,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS access key that Vault should use for the
-        /// auth backend.
+        /// auth backend. Mutually exclusive with `identity_token_audience`.
         /// </summary>
         public Input<string>? AccessKey
         {
@@ -220,6 +272,27 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamServerIdHeaderValue { get; set; }
 
         /// <summary>
+        /// The audience claim value. Mutually exclusive with `access_key`. 
+        /// Requires Vault 1.17+. *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
+        /// Number of max retries the client should use for recoverable errors. 
+        /// The default `-1` falls back to the AWS SDK's default behavior.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -227,6 +300,13 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("roleArn")]
+        public Input<string>? RoleArn { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;
@@ -282,7 +362,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// The AWS access key that Vault should use for the
-        /// auth backend.
+        /// auth backend. Mutually exclusive with `identity_token_audience`.
         /// </summary>
         public Input<string>? AccessKey
         {
@@ -324,6 +404,27 @@ namespace Pulumi.Vault.Aws
         public Input<string>? IamServerIdHeaderValue { get; set; }
 
         /// <summary>
+        /// The audience claim value. Mutually exclusive with `access_key`. 
+        /// Requires Vault 1.17+. *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
+        /// Number of max retries the client should use for recoverable errors. 
+        /// The default `-1` falls back to the AWS SDK's default behavior.
+        /// </summary>
+        [Input("maxRetries")]
+        public Input<int>? MaxRetries { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -331,6 +432,13 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("roleArn")]
+        public Input<string>? RoleArn { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;

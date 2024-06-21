@@ -21,6 +21,9 @@ class BackendArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  use_microsoft_graph_api: Optional[pulumi.Input[bool]] = None):
@@ -34,6 +37,12 @@ class BackendArgs:
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] environment: The Azure environment.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -53,10 +62,19 @@ class BackendArgs:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if use_microsoft_graph_api is not None:
+            warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
+            pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
         if use_microsoft_graph_api is not None:
             pulumi.set(__self__, "use_microsoft_graph_api", use_microsoft_graph_api)
 
@@ -146,6 +164,45 @@ class BackendArgs:
         pulumi.set(self, "environment", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing identity tokens. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -178,6 +235,9 @@ class BackendArgs:
         """
         Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
+        warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
+        pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
+
         return pulumi.get(self, "use_microsoft_graph_api")
 
     @use_microsoft_graph_api.setter
@@ -193,6 +253,9 @@ class _BackendState:
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
@@ -206,6 +269,12 @@ class _BackendState:
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] environment: The Azure environment.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -225,6 +294,12 @@ class _BackendState:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
@@ -233,6 +308,9 @@ class _BackendState:
             pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if use_microsoft_graph_api is not None:
+            warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
+            pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
         if use_microsoft_graph_api is not None:
             pulumi.set(__self__, "use_microsoft_graph_api", use_microsoft_graph_api)
 
@@ -298,6 +376,45 @@ class _BackendState:
         pulumi.set(self, "environment", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing identity tokens. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -354,6 +471,9 @@ class _BackendState:
         """
         Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
+        warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
+        pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
+
         return pulumi.get(self, "use_microsoft_graph_api")
 
     @use_microsoft_graph_api.setter
@@ -371,6 +491,9 @@ class Backend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
@@ -381,6 +504,19 @@ class Backend(pulumi.CustomResource):
         ## Example Usage
 
         ### *Vault-1.9 And Above*
+
+        You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        azure = vault.azure.Backend("azure",
+            subscription_id="11111111-2222-3333-4444-111111111111",
+            tenant_id="11111111-2222-3333-4444-222222222222",
+            client_id="11111111-2222-3333-4444-333333333333",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>")
+        ```
 
         ```python
         import pulumi
@@ -418,6 +554,12 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] environment: The Azure environment.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -437,6 +579,19 @@ class Backend(pulumi.CustomResource):
         ## Example Usage
 
         ### *Vault-1.9 And Above*
+
+        You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        azure = vault.azure.Backend("azure",
+            subscription_id="11111111-2222-3333-4444-111111111111",
+            tenant_id="11111111-2222-3333-4444-222222222222",
+            client_id="11111111-2222-3333-4444-333333333333",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>")
+        ```
 
         ```python
         import pulumi
@@ -486,6 +641,9 @@ class Backend(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
@@ -505,6 +663,9 @@ class Backend(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["environment"] = environment
+            __props__.__dict__["identity_token_audience"] = identity_token_audience
+            __props__.__dict__["identity_token_key"] = identity_token_key
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
             if subscription_id is None and not opts.urn:
@@ -531,6 +692,9 @@ class Backend(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             environment: Optional[pulumi.Input[str]] = None,
+            identity_token_audience: Optional[pulumi.Input[str]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
+            identity_token_ttl: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             subscription_id: Optional[pulumi.Input[str]] = None,
@@ -549,6 +713,12 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] environment: The Azure environment.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -567,6 +737,9 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["environment"] = environment
+        __props__.__dict__["identity_token_audience"] = identity_token_audience
+        __props__.__dict__["identity_token_key"] = identity_token_key
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["subscription_id"] = subscription_id
@@ -616,6 +789,33 @@ class Backend(pulumi.CustomResource):
         return pulumi.get(self, "environment")
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        The audience claim value. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing identity tokens. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[int]:
+        """
+        The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @property
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[str]]:
         """
@@ -656,5 +856,8 @@ class Backend(pulumi.CustomResource):
         """
         Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
+        warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
+        pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
+
         return pulumi.get(self, "use_microsoft_graph_api")
 

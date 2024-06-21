@@ -124,9 +124,8 @@ type AuthBackendRole struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-	// Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences pulumi.StringArrayOutput `pulumi:"boundAudiences"`
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -149,7 +148,7 @@ type AuthBackendRole struct {
 	// Disable bound claim value parsing. Useful when values contain commas.
 	DisableBoundClaimsParsing pulumi.BoolPtrOutput `pulumi:"disableBoundClaimsParsing"`
 	// The amount of leeway to add to expiration (`exp`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	ExpirationLeeway pulumi.IntPtrOutput `pulumi:"expirationLeeway"`
 	// The claim to use to uniquely identify
@@ -166,7 +165,7 @@ type AuthBackendRole struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	NotBeforeLeeway pulumi.IntPtrOutput `pulumi:"notBeforeLeeway"`
 	// If set, a list of OIDC scopes to be used with an OIDC role.
@@ -251,9 +250,8 @@ type authBackendRoleState struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend *string `pulumi:"backend"`
-	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-	// Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -276,7 +274,7 @@ type authBackendRoleState struct {
 	// Disable bound claim value parsing. Useful when values contain commas.
 	DisableBoundClaimsParsing *bool `pulumi:"disableBoundClaimsParsing"`
 	// The amount of leeway to add to expiration (`exp`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	ExpirationLeeway *int `pulumi:"expirationLeeway"`
 	// The claim to use to uniquely identify
@@ -293,7 +291,7 @@ type authBackendRoleState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	NotBeforeLeeway *int `pulumi:"notBeforeLeeway"`
 	// If set, a list of OIDC scopes to be used with an OIDC role.
@@ -343,9 +341,8 @@ type AuthBackendRoleState struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrInput
-	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-	// Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -368,7 +365,7 @@ type AuthBackendRoleState struct {
 	// Disable bound claim value parsing. Useful when values contain commas.
 	DisableBoundClaimsParsing pulumi.BoolPtrInput
 	// The amount of leeway to add to expiration (`exp`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	ExpirationLeeway pulumi.IntPtrInput
 	// The claim to use to uniquely identify
@@ -385,7 +382,7 @@ type AuthBackendRoleState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The amount of leeway to add to not before (`nbf`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	NotBeforeLeeway pulumi.IntPtrInput
 	// If set, a list of OIDC scopes to be used with an OIDC role.
@@ -439,9 +436,8 @@ type authBackendRoleArgs struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend *string `pulumi:"backend"`
-	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-	// Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences []string `pulumi:"boundAudiences"`
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -464,7 +460,7 @@ type authBackendRoleArgs struct {
 	// Disable bound claim value parsing. Useful when values contain commas.
 	DisableBoundClaimsParsing *bool `pulumi:"disableBoundClaimsParsing"`
 	// The amount of leeway to add to expiration (`exp`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	ExpirationLeeway *int `pulumi:"expirationLeeway"`
 	// The claim to use to uniquely identify
@@ -481,7 +477,7 @@ type authBackendRoleArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// The amount of leeway to add to not before (`nbf`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	NotBeforeLeeway *int `pulumi:"notBeforeLeeway"`
 	// If set, a list of OIDC scopes to be used with an OIDC role.
@@ -532,9 +528,8 @@ type AuthBackendRoleArgs struct {
 	// The unique name of the auth backend to configure.
 	// Defaults to `jwt`.
 	Backend pulumi.StringPtrInput
-	// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-	// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-	// Any match is sufficient.
+	// (Required for roles of type `jwt`, optional for roles of
+	// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 	BoundAudiences pulumi.StringArrayInput
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
@@ -557,7 +552,7 @@ type AuthBackendRoleArgs struct {
 	// Disable bound claim value parsing. Useful when values contain commas.
 	DisableBoundClaimsParsing pulumi.BoolPtrInput
 	// The amount of leeway to add to expiration (`exp`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	ExpirationLeeway pulumi.IntPtrInput
 	// The claim to use to uniquely identify
@@ -574,7 +569,7 @@ type AuthBackendRoleArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// The amount of leeway to add to not before (`nbf`) claims to account for
-	// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+	// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
 	NotBeforeLeeway pulumi.IntPtrInput
 	// If set, a list of OIDC scopes to be used with an OIDC role.
@@ -716,9 +711,8 @@ func (o AuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
 
-// (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-// or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-// Any match is sufficient.
+// (Required for roles of type `jwt`, optional for roles of
+// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
 func (o AuthBackendRoleOutput) BoundAudiences() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringArrayOutput { return v.BoundAudiences }).(pulumi.StringArrayOutput)
 }
@@ -762,7 +756,7 @@ func (o AuthBackendRoleOutput) DisableBoundClaimsParsing() pulumi.BoolPtrOutput 
 }
 
 // The amount of leeway to add to expiration (`exp`) claims to account for
-// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 // Only applicable with "jwt" roles.
 func (o AuthBackendRoleOutput) ExpirationLeeway() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.ExpirationLeeway }).(pulumi.IntPtrOutput)
@@ -791,7 +785,7 @@ func (o AuthBackendRoleOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // The amount of leeway to add to not before (`nbf`) claims to account for
-// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
 // Only applicable with "jwt" roles.
 func (o AuthBackendRoleOutput) NotBeforeLeeway() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRole) pulumi.IntPtrOutput { return v.NotBeforeLeeway }).(pulumi.IntPtrOutput)

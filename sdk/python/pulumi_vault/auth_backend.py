@@ -19,6 +19,7 @@ class AuthBackendArgs:
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -29,6 +30,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -44,6 +46,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "description", description)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if namespace is not None:
@@ -89,6 +93,18 @@ class AuthBackendArgs:
     @disable_remount.setter
     def disable_remount(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing identity tokens.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
 
     @property
     @pulumi.getter
@@ -150,6 +166,7 @@ class _AuthBackendState:
                  accessor: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -161,6 +178,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -178,6 +196,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "description", description)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if namespace is not None:
@@ -225,6 +245,18 @@ class _AuthBackendState:
     @disable_remount.setter
     def disable_remount(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing identity tokens.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
 
     @property
     @pulumi.getter
@@ -299,6 +331,7 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -319,6 +352,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -362,6 +396,7 @@ class AuthBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -378,6 +413,7 @@ class AuthBackend(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
+            __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["local"] = local
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
@@ -399,6 +435,7 @@ class AuthBackend(pulumi.CustomResource):
             accessor: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -415,6 +452,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description of the auth method.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_key: The key to use for signing identity tokens.
         :param pulumi.Input[bool] local: Specifies if the auth method is local only.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -433,6 +471,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
+        __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["local"] = local
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
@@ -464,6 +503,14 @@ class AuthBackend(pulumi.CustomResource):
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         """
         return pulumi.get(self, "disable_remount")
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing identity tokens.
+        """
+        return pulumi.get(self, "identity_token_key")
 
     @property
     @pulumi.getter

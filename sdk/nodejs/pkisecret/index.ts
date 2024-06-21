@@ -10,6 +10,16 @@ export type BackendConfigCluster = import("./backendConfigCluster").BackendConfi
 export const BackendConfigCluster: typeof import("./backendConfigCluster").BackendConfigCluster = null as any;
 utilities.lazyLoad(exports, ["BackendConfigCluster"], () => require("./backendConfigCluster"));
 
+export { BackendConfigEstArgs, BackendConfigEstState } from "./backendConfigEst";
+export type BackendConfigEst = import("./backendConfigEst").BackendConfigEst;
+export const BackendConfigEst: typeof import("./backendConfigEst").BackendConfigEst = null as any;
+utilities.lazyLoad(exports, ["BackendConfigEst"], () => require("./backendConfigEst"));
+
+export { GetBackendConfigEstArgs, GetBackendConfigEstResult, GetBackendConfigEstOutputArgs } from "./getBackendConfigEst";
+export const getBackendConfigEst: typeof import("./getBackendConfigEst").getBackendConfigEst = null as any;
+export const getBackendConfigEstOutput: typeof import("./getBackendConfigEst").getBackendConfigEstOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendConfigEst","getBackendConfigEstOutput"], () => require("./getBackendConfigEst"));
+
 export { GetBackendIssuerArgs, GetBackendIssuerResult, GetBackendIssuerOutputArgs } from "./getBackendIssuer";
 export const getBackendIssuer: typeof import("./getBackendIssuer").getBackendIssuer = null as any;
 export const getBackendIssuerOutput: typeof import("./getBackendIssuer").getBackendIssuerOutput = null as any;
@@ -102,6 +112,8 @@ const _module = {
         switch (type) {
             case "vault:pkiSecret/backendConfigCluster:BackendConfigCluster":
                 return new BackendConfigCluster(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendConfigEst:BackendConfigEst":
+                return new BackendConfigEst(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
                 return new SecretBackendCert(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
@@ -134,6 +146,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCluster", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigEst", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigIssuers", _module)

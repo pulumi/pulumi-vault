@@ -57,6 +57,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
     /**
+     * The key to use for signing identity tokens.
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
      * Specifies if the auth method is local only.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
@@ -98,6 +102,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
@@ -110,6 +115,7 @@ export class AuthBackend extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
@@ -139,6 +145,10 @@ export interface AuthBackendState {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * The key to use for signing identity tokens.
+     */
+    identityTokenKey?: pulumi.Input<string>;
     /**
      * Specifies if the auth method is local only.
      */
@@ -179,6 +189,10 @@ export interface AuthBackendArgs {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * The key to use for signing identity tokens.
+     */
+    identityTokenKey?: pulumi.Input<string>;
     /**
      * Specifies if the auth method is local only.
      */

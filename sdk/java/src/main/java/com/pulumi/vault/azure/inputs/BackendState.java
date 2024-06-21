@@ -6,6 +6,7 @@ package com.pulumi.vault.azure.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -94,6 +95,57 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="identityTokenAudience")
+    private @Nullable Output<String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudience() {
+        return Optional.ofNullable(this.identityTokenAudience);
+    }
+
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="identityTokenKey")
+    private @Nullable Output<String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<String>> identityTokenKey() {
+        return Optional.ofNullable(this.identityTokenKey);
+    }
+
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -162,14 +214,22 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
     /**
      * Use the Microsoft Graph API. Should be set to true on vault-1.10+
      * 
+     * @deprecated
+     * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
+     * 
      */
+    @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
     @Import(name="useMicrosoftGraphApi")
     private @Nullable Output<Boolean> useMicrosoftGraphApi;
 
     /**
      * @return Use the Microsoft Graph API. Should be set to true on vault-1.10+
      * 
+     * @deprecated
+     * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
+     * 
      */
+    @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
     public Optional<Output<Boolean>> useMicrosoftGraphApi() {
         return Optional.ofNullable(this.useMicrosoftGraphApi);
     }
@@ -182,6 +242,9 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.environment = $.environment;
+        this.identityTokenAudience = $.identityTokenAudience;
+        this.identityTokenKey = $.identityTokenKey;
+        this.identityTokenTtl = $.identityTokenTtl;
         this.namespace = $.namespace;
         this.path = $.path;
         this.subscriptionId = $.subscriptionId;
@@ -315,6 +378,75 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param identityTokenAudience The audience claim value. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(@Nullable Output<String> identityTokenAudience) {
+            $.identityTokenAudience = identityTokenAudience;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(String identityTokenAudience) {
+            return identityTokenAudience(Output.of(identityTokenAudience));
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing identity tokens. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(@Nullable Output<String> identityTokenKey) {
+            $.identityTokenKey = identityTokenKey;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing identity tokens. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(String identityTokenKey) {
+            return identityTokenKey(Output.of(identityTokenKey));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
+        }
+
+        /**
          * @param namespace The namespace to provision the resource in.
          * The value should not contain leading or trailing forward slashes.
          * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -409,7 +541,11 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
+         * 
          */
+        @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
         public Builder useMicrosoftGraphApi(@Nullable Output<Boolean> useMicrosoftGraphApi) {
             $.useMicrosoftGraphApi = useMicrosoftGraphApi;
             return this;
@@ -420,7 +556,11 @@ public final class BackendState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
+         * 
          */
+        @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
         public Builder useMicrosoftGraphApi(Boolean useMicrosoftGraphApi) {
             return useMicrosoftGraphApi(Output.of(useMicrosoftGraphApi));
         }

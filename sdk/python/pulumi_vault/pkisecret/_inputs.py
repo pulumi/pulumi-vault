@@ -10,8 +10,38 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'BackendConfigEstAuthenticatorsArgs',
     'SecretBackendRolePolicyIdentifierArgs',
 ]
+
+@pulumi.input_type
+class BackendConfigEstAuthenticatorsArgs:
+    def __init__(__self__, *,
+                 cert: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 userpass: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if userpass is not None:
+            pulumi.set(__self__, "userpass", userpass)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "cert")
+
+    @cert.setter
+    def cert(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "cert", value)
+
+    @property
+    @pulumi.getter
+    def userpass(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        return pulumi.get(self, "userpass")
+
+    @userpass.setter
+    def userpass(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+        pulumi.set(self, "userpass", value)
+
 
 @pulumi.input_type
 class SecretBackendRolePolicyIdentifierArgs:

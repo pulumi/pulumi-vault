@@ -20,6 +20,43 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.gcp.SecretBackend;
+ * import com.pulumi.vault.gcp.SecretBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcp = new SecretBackend("gcp", SecretBackendArgs.builder()
+ *             .identityTokenKey("example-key")
+ *             .identityTokenTtl(1800)
+ *             .identityTokenAudience("<TOKEN_AUDIENCE>")
+ *             .serviceAccountEmail("<SERVICE_ACCOUNT_EMAIL>")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -58,6 +95,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:gcp/secretBackend:SecretBackend")
 public class SecretBackend extends com.pulumi.resources.CustomResource {
+    /**
+     * The accessor of the created GCP mount.
+     * 
+     */
+    @Export(name="accessor", refs={String.class}, tree="[0]")
+    private Output<String> accessor;
+
+    /**
+     * @return The accessor of the created GCP mount.
+     * 
+     */
+    public Output<String> accessor() {
+        return this.accessor;
+    }
     /**
      * JSON-encoded credentials to use to connect to GCP
      * 
@@ -117,6 +168,54 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> disableRemount() {
         return Codegen.optional(this.disableRemount);
+    }
+    /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="identityTokenAudience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudience() {
+        return Codegen.optional(this.identityTokenAudience);
+    }
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Output<Optional<Integer>> identityTokenTtl() {
+        return Codegen.optional(this.identityTokenTtl);
     }
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -183,6 +282,22 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> path() {
         return Codegen.optional(this.path);
+    }
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serviceAccountEmail;
+
+    /**
+     * @return Service Account to impersonate for plugin workload identity federation.
+     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> serviceAccountEmail() {
+        return Codegen.optional(this.serviceAccountEmail);
     }
 
     /**

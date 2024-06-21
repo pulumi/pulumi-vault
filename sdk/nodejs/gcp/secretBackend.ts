@@ -7,6 +7,19 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcp = new vault.gcp.SecretBackend("gcp", {
+ *     identityTokenKey: "example-key",
+ *     identityTokenTtl: 1800,
+ *     identityTokenAudience: "<TOKEN_AUDIENCE>",
+ *     serviceAccountEmail: "<SERVICE_ACCOUNT_EMAIL>",
+ * });
+ * ```
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as std from "@pulumi/std";
@@ -46,6 +59,10 @@ export class SecretBackend extends pulumi.CustomResource {
     }
 
     /**
+     * The accessor of the created GCP mount.
+     */
+    public /*out*/ readonly accessor!: pulumi.Output<string>;
+    /**
      * JSON-encoded credentials to use to connect to GCP
      */
     public readonly credentials!: pulumi.Output<string | undefined>;
@@ -63,6 +80,21 @@ export class SecretBackend extends pulumi.CustomResource {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
+    /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
+     * The TTL of generated tokens.
+     */
+    public readonly identityTokenTtl!: pulumi.Output<number | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
@@ -84,6 +116,11 @@ export class SecretBackend extends pulumi.CustomResource {
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     public readonly path!: pulumi.Output<string | undefined>;
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    public readonly serviceAccountEmail!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecretBackend resource with the given unique name, arguments, and options.
@@ -98,24 +135,34 @@ export class SecretBackend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendState | undefined;
+            resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
+            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
+            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
+            resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["credentials"] };
@@ -128,6 +175,10 @@ export class SecretBackend extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretBackend resources.
  */
 export interface SecretBackendState {
+    /**
+     * The accessor of the created GCP mount.
+     */
+    accessor?: pulumi.Input<string>;
     /**
      * JSON-encoded credentials to use to connect to GCP
      */
@@ -146,6 +197,21 @@ export interface SecretBackendState {
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
     disableRemount?: pulumi.Input<boolean>;
+    /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
@@ -167,6 +233,11 @@ export interface SecretBackendState {
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    serviceAccountEmail?: pulumi.Input<string>;
 }
 
 /**
@@ -192,6 +263,21 @@ export interface SecretBackendArgs {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
     local?: pulumi.Input<boolean>;
@@ -212,4 +298,9 @@ export interface SecretBackendArgs {
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    serviceAccountEmail?: pulumi.Input<string>;
 }

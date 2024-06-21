@@ -106,9 +106,8 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
-     * (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-     * or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
     public readonly boundAudiences!: pulumi.Output<string[] | undefined>;
     /**
@@ -145,7 +144,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
     public readonly disableBoundClaimsParsing!: pulumi.Output<boolean | undefined>;
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     public readonly expirationLeeway!: pulumi.Output<number | undefined>;
@@ -170,7 +169,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     public readonly notBeforeLeeway!: pulumi.Output<number | undefined>;
@@ -343,9 +342,8 @@ export interface AuthBackendRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-     * or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -382,7 +380,7 @@ export interface AuthBackendRoleState {
     disableBoundClaimsParsing?: pulumi.Input<boolean>;
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     expirationLeeway?: pulumi.Input<number>;
@@ -407,7 +405,7 @@ export interface AuthBackendRoleState {
     namespace?: pulumi.Input<string>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     notBeforeLeeway?: pulumi.Input<number>;
@@ -496,9 +494,8 @@ export interface AuthBackendRoleArgs {
      */
     backend?: pulumi.Input<string>;
     /**
-     * (For "jwt" roles, at least one of `boundAudiences`, `boundSubject`, `boundClaims`
-     * or `tokenBoundCidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -535,7 +532,7 @@ export interface AuthBackendRoleArgs {
     disableBoundClaimsParsing?: pulumi.Input<boolean>;
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     expirationLeeway?: pulumi.Input<number>;
@@ -560,7 +557,7 @@ export interface AuthBackendRoleArgs {
     namespace?: pulumi.Input<string>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
     notBeforeLeeway?: pulumi.Input<number>;

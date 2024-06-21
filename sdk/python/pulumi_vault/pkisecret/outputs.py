@@ -10,8 +10,31 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'BackendConfigEstAuthenticators',
     'SecretBackendRolePolicyIdentifier',
+    'GetBackendConfigEstAuthenticatorResult',
 ]
+
+@pulumi.output_type
+class BackendConfigEstAuthenticators(dict):
+    def __init__(__self__, *,
+                 cert: Optional[Mapping[str, Any]] = None,
+                 userpass: Optional[Mapping[str, Any]] = None):
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if userpass is not None:
+            pulumi.set(__self__, "userpass", userpass)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "cert")
+
+    @property
+    @pulumi.getter
+    def userpass(self) -> Optional[Mapping[str, Any]]:
+        return pulumi.get(self, "userpass")
+
 
 @pulumi.output_type
 class SecretBackendRolePolicyIdentifier(dict):
@@ -57,5 +80,36 @@ class SecretBackendRolePolicyIdentifier(dict):
         A notice for the policy identifier
         """
         return pulumi.get(self, "notice")
+
+
+@pulumi.output_type
+class GetBackendConfigEstAuthenticatorResult(dict):
+    def __init__(__self__, *,
+                 cert: Optional[Mapping[str, Any]] = None,
+                 userpass: Optional[Mapping[str, Any]] = None):
+        """
+        :param Mapping[str, Any] cert: "The accessor and cert_role properties for cert auth backends".
+        :param Mapping[str, Any] userpass: "The accessor property for user pass auth backends".
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if userpass is not None:
+            pulumi.set(__self__, "userpass", userpass)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[Mapping[str, Any]]:
+        """
+        "The accessor and cert_role properties for cert auth backends".
+        """
+        return pulumi.get(self, "cert")
+
+    @property
+    @pulumi.getter
+    def userpass(self) -> Optional[Mapping[str, Any]]:
+        """
+        "The accessor property for user pass auth backends".
+        """
+        return pulumi.get(self, "userpass")
 
 

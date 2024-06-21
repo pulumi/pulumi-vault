@@ -26,6 +26,8 @@ from .namespace import *
 from .nomad_secret_backend import *
 from .nomad_secret_role import *
 from .password_policy import *
+from .plugin import *
+from .plugin_pinned_version import *
 from .policy import *
 from .provider import *
 from .quota_lease_count import *
@@ -741,6 +743,22 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/plugin",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/plugin:Plugin": "Plugin"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/pluginPinnedVersion",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pluginPinnedVersion:PluginPinnedVersion": "PluginPinnedVersion"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/policy",
   "fqn": "pulumi_vault",
   "classes": {
@@ -1001,6 +1019,14 @@ _utilities.register(
   "fqn": "pulumi_vault.pkisecret",
   "classes": {
    "vault:pkiSecret/backendConfigCluster:BackendConfigCluster": "BackendConfigCluster"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/backendConfigEst",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendConfigEst:BackendConfigEst": "BackendConfigEst"
   }
  },
  {

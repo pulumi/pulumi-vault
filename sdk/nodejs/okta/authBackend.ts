@@ -99,6 +99,8 @@ export class AuthBackend extends pulumi.CustomResource {
     /**
      * Maximum duration after which authentication will be expired
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated Deprecated. Please use `tokenMaxTtl` instead.
      */
     public readonly maxTtl!: pulumi.Output<string | undefined>;
     /**
@@ -122,8 +124,46 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly token!: pulumi.Output<string | undefined>;
     /**
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
+     */
+    public readonly tokenBoundCidrs!: pulumi.Output<string[] | undefined>;
+    /**
+     * Generated Token's Explicit Maximum TTL in seconds
+     */
+    public readonly tokenExplicitMaxTtl!: pulumi.Output<number | undefined>;
+    /**
+     * The maximum lifetime of the generated token
+     */
+    public readonly tokenMaxTtl!: pulumi.Output<number | undefined>;
+    /**
+     * If true, the 'default' policy will not automatically be added to generated tokens
+     */
+    public readonly tokenNoDefaultPolicy!: pulumi.Output<boolean | undefined>;
+    /**
+     * The maximum number of times a token may be used, a value of zero means unlimited
+     */
+    public readonly tokenNumUses!: pulumi.Output<number | undefined>;
+    /**
+     * Generated Token's Period
+     */
+    public readonly tokenPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * Generated Token's Policies
+     */
+    public readonly tokenPolicies!: pulumi.Output<string[] | undefined>;
+    /**
+     * The initial ttl of the token to generate in seconds
+     */
+    public readonly tokenTtl!: pulumi.Output<number | undefined>;
+    /**
+     * The type of token to generate, service or batch
+     */
+    public readonly tokenType!: pulumi.Output<string | undefined>;
+    /**
      * Duration after which authentication will be expired.
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated Deprecated. Please use `tokenTtl` instead.
      */
     public readonly ttl!: pulumi.Output<string | undefined>;
     /**
@@ -156,6 +196,15 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["tokenBoundCidrs"] = state ? state.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = state ? state.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = state ? state.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = state ? state.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = state ? state.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = state ? state.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = state ? state.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = state ? state.tokenTtl : undefined;
+            resourceInputs["tokenType"] = state ? state.tokenType : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
         } else {
@@ -173,6 +222,15 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["token"] = args?.token ? pulumi.secret(args.token) : undefined;
+            resourceInputs["tokenBoundCidrs"] = args ? args.tokenBoundCidrs : undefined;
+            resourceInputs["tokenExplicitMaxTtl"] = args ? args.tokenExplicitMaxTtl : undefined;
+            resourceInputs["tokenMaxTtl"] = args ? args.tokenMaxTtl : undefined;
+            resourceInputs["tokenNoDefaultPolicy"] = args ? args.tokenNoDefaultPolicy : undefined;
+            resourceInputs["tokenNumUses"] = args ? args.tokenNumUses : undefined;
+            resourceInputs["tokenPeriod"] = args ? args.tokenPeriod : undefined;
+            resourceInputs["tokenPolicies"] = args ? args.tokenPolicies : undefined;
+            resourceInputs["tokenTtl"] = args ? args.tokenTtl : undefined;
+            resourceInputs["tokenType"] = args ? args.tokenType : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
@@ -217,6 +275,8 @@ export interface AuthBackendState {
     /**
      * Maximum duration after which authentication will be expired
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated Deprecated. Please use `tokenMaxTtl` instead.
      */
     maxTtl?: pulumi.Input<string>;
     /**
@@ -240,8 +300,46 @@ export interface AuthBackendState {
      */
     token?: pulumi.Input<string>;
     /**
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
+     */
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Generated Token's Explicit Maximum TTL in seconds
+     */
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * The maximum lifetime of the generated token
+     */
+    tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * If true, the 'default' policy will not automatically be added to generated tokens
+     */
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * The maximum number of times a token may be used, a value of zero means unlimited
+     */
+    tokenNumUses?: pulumi.Input<number>;
+    /**
+     * Generated Token's Period
+     */
+    tokenPeriod?: pulumi.Input<number>;
+    /**
+     * Generated Token's Policies
+     */
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The initial ttl of the token to generate in seconds
+     */
+    tokenTtl?: pulumi.Input<number>;
+    /**
+     * The type of token to generate, service or batch
+     */
+    tokenType?: pulumi.Input<string>;
+    /**
      * Duration after which authentication will be expired.
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated Deprecated. Please use `tokenTtl` instead.
      */
     ttl?: pulumi.Input<string>;
     /**
@@ -280,6 +378,8 @@ export interface AuthBackendArgs {
     /**
      * Maximum duration after which authentication will be expired
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated Deprecated. Please use `tokenMaxTtl` instead.
      */
     maxTtl?: pulumi.Input<string>;
     /**
@@ -303,8 +403,46 @@ export interface AuthBackendArgs {
      */
     token?: pulumi.Input<string>;
     /**
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
+     */
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Generated Token's Explicit Maximum TTL in seconds
+     */
+    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    /**
+     * The maximum lifetime of the generated token
+     */
+    tokenMaxTtl?: pulumi.Input<number>;
+    /**
+     * If true, the 'default' policy will not automatically be added to generated tokens
+     */
+    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    /**
+     * The maximum number of times a token may be used, a value of zero means unlimited
+     */
+    tokenNumUses?: pulumi.Input<number>;
+    /**
+     * Generated Token's Period
+     */
+    tokenPeriod?: pulumi.Input<number>;
+    /**
+     * Generated Token's Policies
+     */
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The initial ttl of the token to generate in seconds
+     */
+    tokenTtl?: pulumi.Input<number>;
+    /**
+     * The type of token to generate, service or batch
+     */
+    tokenType?: pulumi.Input<string>;
+    /**
      * Duration after which authentication will be expired.
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+     *
+     * @deprecated Deprecated. Please use `tokenTtl` instead.
      */
     ttl?: pulumi.Input<string>;
     /**

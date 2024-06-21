@@ -110,6 +110,16 @@ export type PasswordPolicy = import("./passwordPolicy").PasswordPolicy;
 export const PasswordPolicy: typeof import("./passwordPolicy").PasswordPolicy = null as any;
 utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
 
+export { PluginArgs, PluginState } from "./plugin";
+export type Plugin = import("./plugin").Plugin;
+export const Plugin: typeof import("./plugin").Plugin = null as any;
+utilities.lazyLoad(exports, ["Plugin"], () => require("./plugin"));
+
+export { PluginPinnedVersionArgs, PluginPinnedVersionState } from "./pluginPinnedVersion";
+export type PluginPinnedVersion = import("./pluginPinnedVersion").PluginPinnedVersion;
+export const PluginPinnedVersion: typeof import("./pluginPinnedVersion").PluginPinnedVersion = null as any;
+utilities.lazyLoad(exports, ["PluginPinnedVersion"], () => require("./pluginPinnedVersion"));
+
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
@@ -248,6 +258,10 @@ const _module = {
                 return new NomadSecretRole(name, <any>undefined, { urn })
             case "vault:index/passwordPolicy:PasswordPolicy":
                 return new PasswordPolicy(name, <any>undefined, { urn })
+            case "vault:index/plugin:Plugin":
+                return new Plugin(name, <any>undefined, { urn })
+            case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
+                return new PluginPinnedVersion(name, <any>undefined, { urn })
             case "vault:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
             case "vault:index/quotaLeaseCount:QuotaLeaseCount":
@@ -281,6 +295,8 @@ pulumi.runtime.registerResourceModule("vault", "index/namespace", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/passwordPolicy", _module)
+pulumi.runtime.registerResourceModule("vault", "index/plugin", _module)
+pulumi.runtime.registerResourceModule("vault", "index/pluginPinnedVersion", _module)
 pulumi.runtime.registerResourceModule("vault", "index/policy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaLeaseCount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)

@@ -170,18 +170,16 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
-     * (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      * 
      */
     @Export(name="boundAudiences", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> boundAudiences;
 
     /**
-     * @return (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * @return (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      * 
      */
     public Output<Optional<List<String>>> boundAudiences() {
@@ -289,7 +287,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -298,7 +296,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -363,7 +361,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     }
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -372,7 +370,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */

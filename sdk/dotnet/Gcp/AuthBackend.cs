@@ -12,6 +12,28 @@ namespace Pulumi.Vault.Gcp
     /// <summary>
     /// Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
     /// 
+    /// ## Example Usage
+    /// 
+    /// You can setup the GCP auth backend with Workload Identity Federation (WIF) for a secret-less configuration:
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcp = new Vault.Gcp.AuthBackend("gcp", new()
+    ///     {
+    ///         IdentityTokenKey = "example-key",
+    ///         IdentityTokenTtl = 1800,
+    ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
+    ///         ServiceAccountEmail = "&lt;SERVICE_ACCOUNT_EMAIL&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// GCP authentication backends can be imported using the backend name, e.g.
@@ -73,6 +95,27 @@ namespace Pulumi.Vault.Gcp
         public Output<bool?> DisableRemount { get; private set; } = null!;
 
         /// <summary>
+        /// The audience claim value for plugin identity
+        /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("identityTokenAudience")]
+        public Output<string?> IdentityTokenAudience { get; private set; } = null!;
+
+        /// <summary>
+        /// The key to use for signing plugin identity
+        /// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int?> IdentityTokenTtl { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Output("local")]
@@ -104,6 +147,13 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Service Account to impersonate for plugin workload identity federation.
+        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("serviceAccountEmail")]
+        public Output<string?> ServiceAccountEmail { get; private set; } = null!;
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.
@@ -217,6 +267,27 @@ namespace Pulumi.Vault.Gcp
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
+        /// The audience claim value for plugin identity
+        /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The key to use for signing plugin identity
+        /// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
@@ -248,6 +319,13 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Service Account to impersonate for plugin workload identity federation.
+        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("serviceAccountEmail")]
+        public Input<string>? ServiceAccountEmail { get; set; }
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.
@@ -325,6 +403,27 @@ namespace Pulumi.Vault.Gcp
         public Input<bool>? DisableRemount { get; set; }
 
         /// <summary>
+        /// The audience claim value for plugin identity
+        /// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+        /// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The key to use for signing plugin identity
+        /// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// The TTL of generated tokens.
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
         /// Specifies if the auth method is local only.
         /// </summary>
         [Input("local")]
@@ -356,6 +455,13 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Service Account to impersonate for plugin workload identity federation.
+        /// Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("serviceAccountEmail")]
+        public Input<string>? ServiceAccountEmail { get; set; }
 
         /// <summary>
         /// Extra configuration block. Structure is documented below.

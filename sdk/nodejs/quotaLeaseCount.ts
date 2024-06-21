@@ -64,6 +64,10 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
     }
 
     /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     */
+    public readonly inheritable!: pulumi.Output<boolean | undefined>;
+    /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
      */
@@ -106,6 +110,7 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuotaLeaseCountState | undefined;
+            resourceInputs["inheritable"] = state ? state.inheritable : undefined;
             resourceInputs["maxLeases"] = state ? state.maxLeases : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -116,6 +121,7 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
             if ((!args || args.maxLeases === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'maxLeases'");
             }
+            resourceInputs["inheritable"] = args ? args.inheritable : undefined;
             resourceInputs["maxLeases"] = args ? args.maxLeases : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -131,6 +137,10 @@ export class QuotaLeaseCount extends pulumi.CustomResource {
  * Input properties used for looking up and filtering QuotaLeaseCount resources.
  */
 export interface QuotaLeaseCountState {
+    /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     */
+    inheritable?: pulumi.Input<boolean>;
     /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
@@ -166,6 +176,10 @@ export interface QuotaLeaseCountState {
  * The set of arguments for constructing a QuotaLeaseCount resource.
  */
 export interface QuotaLeaseCountArgs {
+    /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     */
+    inheritable?: pulumi.Input<boolean>;
     /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.

@@ -18,16 +18,20 @@ class SecretsMountArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]]] = None,
                  couchbases: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  mongodbatlas: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]]] = None,
@@ -40,6 +44,8 @@ class SecretsMountArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]] = None,
                  redis: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]] = None,
@@ -52,6 +58,7 @@ class SecretsMountArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
                
                The following arguments are common to all database engines:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -59,14 +66,17 @@ class SecretsMountArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]] couchbases: A nested block containing configuration options for Couchbase connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
@@ -87,6 +97,8 @@ class SecretsMountArgs:
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
@@ -102,6 +114,8 @@ class SecretsMountArgs:
         pulumi.set(__self__, "path", path)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -112,6 +126,8 @@ class SecretsMountArgs:
             pulumi.set(__self__, "couchbases", couchbases)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if elasticsearches is not None:
@@ -120,8 +136,12 @@ class SecretsMountArgs:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
         if hanas is not None:
             pulumi.set(__self__, "hanas", hanas)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if influxdbs is not None:
             pulumi.set(__self__, "influxdbs", influxdbs)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -146,6 +166,10 @@ class SecretsMountArgs:
             pulumi.set(__self__, "options", options)
         if oracles is not None:
             pulumi.set(__self__, "oracles", oracles)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if postgresqls is not None:
             pulumi.set(__self__, "postgresqls", postgresqls)
         if redis is not None:
@@ -184,6 +208,18 @@ class SecretsMountArgs:
     @allowed_managed_keys.setter
     def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -248,6 +284,18 @@ class SecretsMountArgs:
         pulumi.set(self, "default_lease_ttl_seconds", value)
 
     @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -298,6 +346,18 @@ class SecretsMountArgs:
         pulumi.set(self, "hanas", value)
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
     @pulumi.getter
     def influxdbs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]]:
         """
@@ -309,6 +369,18 @@ class SecretsMountArgs:
     @influxdbs.setter
     def influxdbs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]]):
         pulumi.set(self, "influxdbs", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
 
     @property
     @pulumi.getter
@@ -461,6 +533,30 @@ class SecretsMountArgs:
     @oracles.setter
     def oracles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]]):
         pulumi.set(self, "oracles", value)
+
+    @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @property
     @pulumi.getter
@@ -545,17 +641,21 @@ class _SecretsMountState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]]] = None,
                  couchbases: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]]] = None,
                  engine_count: Optional[pulumi.Input[int]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  mongodbatlas: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]]] = None,
@@ -568,7 +668,9 @@ class _SecretsMountState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]] = None,
                  redis: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]] = None,
@@ -581,6 +683,7 @@ class _SecretsMountState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
                
                The following arguments are common to all database engines:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -588,6 +691,7 @@ class _SecretsMountState:
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]] couchbases: A nested block containing configuration options for Couchbase connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
                *See Configuration Options for more info*
@@ -595,8 +699,10 @@ class _SecretsMountState:
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
@@ -617,7 +723,9 @@ class _SecretsMountState:
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
@@ -634,6 +742,8 @@ class _SecretsMountState:
             pulumi.set(__self__, "accessor", accessor)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -644,6 +754,8 @@ class _SecretsMountState:
             pulumi.set(__self__, "couchbases", couchbases)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if elasticsearches is not None:
@@ -654,8 +766,12 @@ class _SecretsMountState:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
         if hanas is not None:
             pulumi.set(__self__, "hanas", hanas)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if influxdbs is not None:
             pulumi.set(__self__, "influxdbs", influxdbs)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -680,8 +796,12 @@ class _SecretsMountState:
             pulumi.set(__self__, "options", options)
         if oracles is not None:
             pulumi.set(__self__, "oracles", oracles)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if postgresqls is not None:
             pulumi.set(__self__, "postgresqls", postgresqls)
         if redis is not None:
@@ -720,6 +840,18 @@ class _SecretsMountState:
     @allowed_managed_keys.setter
     def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -784,6 +916,18 @@ class _SecretsMountState:
         pulumi.set(self, "default_lease_ttl_seconds", value)
 
     @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -846,6 +990,18 @@ class _SecretsMountState:
         pulumi.set(self, "hanas", value)
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
     @pulumi.getter
     def influxdbs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]]:
         """
@@ -857,6 +1013,18 @@ class _SecretsMountState:
     @influxdbs.setter
     def influxdbs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]]):
         pulumi.set(self, "influxdbs", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
 
     @property
     @pulumi.getter
@@ -1011,6 +1179,18 @@ class _SecretsMountState:
         pulumi.set(self, "oracles", value)
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1021,6 +1201,18 @@ class _SecretsMountState:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @property
     @pulumi.getter
@@ -1106,16 +1298,20 @@ class SecretsMount(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]]] = None,
                  couchbases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCouchbaseArgs']]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountElasticsearchArgs']]]]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountHanaArgs']]]]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountInfluxdbArgs']]]]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  mongodbatlas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMongodbatlaArgs']]]]] = None,
@@ -1128,7 +1324,9 @@ class SecretsMount(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
                  redis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
@@ -1192,6 +1390,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
                
                The following arguments are common to all database engines:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -1199,14 +1398,17 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCouchbaseArgs']]]] couchbases: A nested block containing configuration options for Couchbase connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountElasticsearchArgs']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountHanaArgs']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountInfluxdbArgs']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMongodbatlaArgs']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
@@ -1227,7 +1429,9 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]] redis: A nested block containing configuration options for Redis connections.  
@@ -1313,16 +1517,20 @@ class SecretsMount(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandras: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]]] = None,
                  couchbases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCouchbaseArgs']]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountElasticsearchArgs']]]]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
                  hanas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountHanaArgs']]]]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountInfluxdbArgs']]]]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  mongodbatlas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMongodbatlaArgs']]]]] = None,
@@ -1335,7 +1543,9 @@ class SecretsMount(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
                  redis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]]] = None,
                  redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
@@ -1352,16 +1562,20 @@ class SecretsMount(pulumi.CustomResource):
             __props__ = SecretsMountArgs.__new__(SecretsMountArgs)
 
             __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+            __props__.__dict__["allowed_response_headers"] = allowed_response_headers
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["cassandras"] = cassandras
             __props__.__dict__["couchbases"] = couchbases
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
             __props__.__dict__["elasticsearches"] = elasticsearches
             __props__.__dict__["external_entropy_access"] = external_entropy_access
             __props__.__dict__["hanas"] = hanas
+            __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["influxdbs"] = influxdbs
+            __props__.__dict__["listing_visibility"] = listing_visibility
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["mongodbatlas"] = mongodbatlas
@@ -1374,9 +1588,11 @@ class SecretsMount(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
             __props__.__dict__["oracles"] = oracles
+            __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
+            __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["postgresqls"] = postgresqls
             __props__.__dict__["redis"] = redis
             __props__.__dict__["redis_elasticaches"] = redis_elasticaches
@@ -1397,17 +1613,21 @@ class SecretsMount(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
             allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             cassandras: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]]] = None,
             couchbases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCouchbaseArgs']]]]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+            delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             elasticsearches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountElasticsearchArgs']]]]] = None,
             engine_count: Optional[pulumi.Input[int]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
             hanas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountHanaArgs']]]]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
             influxdbs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountInfluxdbArgs']]]]] = None,
+            listing_visibility: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             mongodbatlas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMongodbatlaArgs']]]]] = None,
@@ -1420,7 +1640,9 @@ class SecretsMount(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             oracles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]]] = None,
+            passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
+            plugin_version: Optional[pulumi.Input[str]] = None,
             postgresqls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]]] = None,
             redis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]]] = None,
             redis_elasticaches: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRedisElasticachArgs']]]]] = None,
@@ -1438,6 +1660,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: Set of managed key registry entry names that the mount in question is allowed to access
                
                The following arguments are common to all database engines:
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCassandraArgs']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
@@ -1445,6 +1668,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountCouchbaseArgs']]]] couchbases: A nested block containing configuration options for Couchbase connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountElasticsearchArgs']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
                *See Configuration Options for more info*
@@ -1452,8 +1676,10 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountHanaArgs']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountInfluxdbArgs']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountMongodbatlaArgs']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
@@ -1474,7 +1700,9 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountOracleArgs']]]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountPostgresqlArgs']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretsMountRediArgs']]]] redis: A nested block containing configuration options for Redis connections.  
@@ -1493,17 +1721,21 @@ class SecretsMount(pulumi.CustomResource):
 
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+        __props__.__dict__["allowed_response_headers"] = allowed_response_headers
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["cassandras"] = cassandras
         __props__.__dict__["couchbases"] = couchbases
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
         __props__.__dict__["elasticsearches"] = elasticsearches
         __props__.__dict__["engine_count"] = engine_count
         __props__.__dict__["external_entropy_access"] = external_entropy_access
         __props__.__dict__["hanas"] = hanas
+        __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["influxdbs"] = influxdbs
+        __props__.__dict__["listing_visibility"] = listing_visibility
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["mongodbatlas"] = mongodbatlas
@@ -1516,7 +1748,9 @@ class SecretsMount(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
         __props__.__dict__["oracles"] = oracles
+        __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
         __props__.__dict__["path"] = path
+        __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["postgresqls"] = postgresqls
         __props__.__dict__["redis"] = redis
         __props__.__dict__["redis_elasticaches"] = redis_elasticaches
@@ -1542,6 +1776,14 @@ class SecretsMount(pulumi.CustomResource):
         The following arguments are common to all database engines:
         """
         return pulumi.get(self, "allowed_managed_keys")
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -1586,6 +1828,14 @@ class SecretsMount(pulumi.CustomResource):
         return pulumi.get(self, "default_lease_ttl_seconds")
 
     @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1628,6 +1878,14 @@ class SecretsMount(pulumi.CustomResource):
         return pulumi.get(self, "hanas")
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @property
     @pulumi.getter
     def influxdbs(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountInfluxdb']]]:
         """
@@ -1635,6 +1893,14 @@ class SecretsMount(pulumi.CustomResource):
         *See Configuration Options for more info*
         """
         return pulumi.get(self, "influxdbs")
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
 
     @property
     @pulumi.getter
@@ -1741,12 +2007,28 @@ class SecretsMount(pulumi.CustomResource):
         return pulumi.get(self, "oracles")
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @property
     @pulumi.getter
     def path(self) -> pulumi.Output[str]:
         """
         Where the secret backend will be mounted
         """
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
 
     @property
     @pulumi.getter

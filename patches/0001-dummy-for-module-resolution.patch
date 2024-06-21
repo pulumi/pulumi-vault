@@ -1,0 +1,1 @@
+This patch is intentionally empty so we can use the `upstream` submodule for dependency resolution, since the upstream provider does not follow Go module versioning standards.

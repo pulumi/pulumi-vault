@@ -13,6 +13,154 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type BackendConfigEstAuthenticators struct {
+	Cert     map[string]interface{} `pulumi:"cert"`
+	Userpass map[string]interface{} `pulumi:"userpass"`
+}
+
+// BackendConfigEstAuthenticatorsInput is an input type that accepts BackendConfigEstAuthenticatorsArgs and BackendConfigEstAuthenticatorsOutput values.
+// You can construct a concrete instance of `BackendConfigEstAuthenticatorsInput` via:
+//
+//	BackendConfigEstAuthenticatorsArgs{...}
+type BackendConfigEstAuthenticatorsInput interface {
+	pulumi.Input
+
+	ToBackendConfigEstAuthenticatorsOutput() BackendConfigEstAuthenticatorsOutput
+	ToBackendConfigEstAuthenticatorsOutputWithContext(context.Context) BackendConfigEstAuthenticatorsOutput
+}
+
+type BackendConfigEstAuthenticatorsArgs struct {
+	Cert     pulumi.MapInput `pulumi:"cert"`
+	Userpass pulumi.MapInput `pulumi:"userpass"`
+}
+
+func (BackendConfigEstAuthenticatorsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigEstAuthenticators)(nil)).Elem()
+}
+
+func (i BackendConfigEstAuthenticatorsArgs) ToBackendConfigEstAuthenticatorsOutput() BackendConfigEstAuthenticatorsOutput {
+	return i.ToBackendConfigEstAuthenticatorsOutputWithContext(context.Background())
+}
+
+func (i BackendConfigEstAuthenticatorsArgs) ToBackendConfigEstAuthenticatorsOutputWithContext(ctx context.Context) BackendConfigEstAuthenticatorsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigEstAuthenticatorsOutput)
+}
+
+func (i BackendConfigEstAuthenticatorsArgs) ToBackendConfigEstAuthenticatorsPtrOutput() BackendConfigEstAuthenticatorsPtrOutput {
+	return i.ToBackendConfigEstAuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (i BackendConfigEstAuthenticatorsArgs) ToBackendConfigEstAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigEstAuthenticatorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigEstAuthenticatorsOutput).ToBackendConfigEstAuthenticatorsPtrOutputWithContext(ctx)
+}
+
+// BackendConfigEstAuthenticatorsPtrInput is an input type that accepts BackendConfigEstAuthenticatorsArgs, BackendConfigEstAuthenticatorsPtr and BackendConfigEstAuthenticatorsPtrOutput values.
+// You can construct a concrete instance of `BackendConfigEstAuthenticatorsPtrInput` via:
+//
+//	        BackendConfigEstAuthenticatorsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackendConfigEstAuthenticatorsPtrInput interface {
+	pulumi.Input
+
+	ToBackendConfigEstAuthenticatorsPtrOutput() BackendConfigEstAuthenticatorsPtrOutput
+	ToBackendConfigEstAuthenticatorsPtrOutputWithContext(context.Context) BackendConfigEstAuthenticatorsPtrOutput
+}
+
+type backendConfigEstAuthenticatorsPtrType BackendConfigEstAuthenticatorsArgs
+
+func BackendConfigEstAuthenticatorsPtr(v *BackendConfigEstAuthenticatorsArgs) BackendConfigEstAuthenticatorsPtrInput {
+	return (*backendConfigEstAuthenticatorsPtrType)(v)
+}
+
+func (*backendConfigEstAuthenticatorsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendConfigEstAuthenticators)(nil)).Elem()
+}
+
+func (i *backendConfigEstAuthenticatorsPtrType) ToBackendConfigEstAuthenticatorsPtrOutput() BackendConfigEstAuthenticatorsPtrOutput {
+	return i.ToBackendConfigEstAuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (i *backendConfigEstAuthenticatorsPtrType) ToBackendConfigEstAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigEstAuthenticatorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigEstAuthenticatorsPtrOutput)
+}
+
+type BackendConfigEstAuthenticatorsOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigEstAuthenticatorsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigEstAuthenticators)(nil)).Elem()
+}
+
+func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsOutput() BackendConfigEstAuthenticatorsOutput {
+	return o
+}
+
+func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsOutputWithContext(ctx context.Context) BackendConfigEstAuthenticatorsOutput {
+	return o
+}
+
+func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsPtrOutput() BackendConfigEstAuthenticatorsPtrOutput {
+	return o.ToBackendConfigEstAuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigEstAuthenticatorsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackendConfigEstAuthenticators) *BackendConfigEstAuthenticators {
+		return &v
+	}).(BackendConfigEstAuthenticatorsPtrOutput)
+}
+
+func (o BackendConfigEstAuthenticatorsOutput) Cert() pulumi.MapOutput {
+	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]interface{} { return v.Cert }).(pulumi.MapOutput)
+}
+
+func (o BackendConfigEstAuthenticatorsOutput) Userpass() pulumi.MapOutput {
+	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]interface{} { return v.Userpass }).(pulumi.MapOutput)
+}
+
+type BackendConfigEstAuthenticatorsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigEstAuthenticatorsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendConfigEstAuthenticators)(nil)).Elem()
+}
+
+func (o BackendConfigEstAuthenticatorsPtrOutput) ToBackendConfigEstAuthenticatorsPtrOutput() BackendConfigEstAuthenticatorsPtrOutput {
+	return o
+}
+
+func (o BackendConfigEstAuthenticatorsPtrOutput) ToBackendConfigEstAuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigEstAuthenticatorsPtrOutput {
+	return o
+}
+
+func (o BackendConfigEstAuthenticatorsPtrOutput) Elem() BackendConfigEstAuthenticatorsOutput {
+	return o.ApplyT(func(v *BackendConfigEstAuthenticators) BackendConfigEstAuthenticators {
+		if v != nil {
+			return *v
+		}
+		var ret BackendConfigEstAuthenticators
+		return ret
+	}).(BackendConfigEstAuthenticatorsOutput)
+}
+
+func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.MapOutput {
+	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Cert
+	}).(pulumi.MapOutput)
+}
+
+func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.MapOutput {
+	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Userpass
+	}).(pulumi.MapOutput)
+}
+
 type SecretBackendRolePolicyIdentifier struct {
 	// The URL of the CPS for the policy identifier
 	//
@@ -134,9 +282,123 @@ func (o SecretBackendRolePolicyIdentifierArrayOutput) Index(i pulumi.IntInput) S
 	}).(SecretBackendRolePolicyIdentifierOutput)
 }
 
+type GetBackendConfigEstAuthenticator struct {
+	// "The accessor and certRole properties for cert auth backends".
+	Cert map[string]interface{} `pulumi:"cert"`
+	// "The accessor property for user pass auth backends".
+	Userpass map[string]interface{} `pulumi:"userpass"`
+}
+
+// GetBackendConfigEstAuthenticatorInput is an input type that accepts GetBackendConfigEstAuthenticatorArgs and GetBackendConfigEstAuthenticatorOutput values.
+// You can construct a concrete instance of `GetBackendConfigEstAuthenticatorInput` via:
+//
+//	GetBackendConfigEstAuthenticatorArgs{...}
+type GetBackendConfigEstAuthenticatorInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigEstAuthenticatorOutput() GetBackendConfigEstAuthenticatorOutput
+	ToGetBackendConfigEstAuthenticatorOutputWithContext(context.Context) GetBackendConfigEstAuthenticatorOutput
+}
+
+type GetBackendConfigEstAuthenticatorArgs struct {
+	// "The accessor and certRole properties for cert auth backends".
+	Cert pulumi.MapInput `pulumi:"cert"`
+	// "The accessor property for user pass auth backends".
+	Userpass pulumi.MapInput `pulumi:"userpass"`
+}
+
+func (GetBackendConfigEstAuthenticatorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigEstAuthenticator)(nil)).Elem()
+}
+
+func (i GetBackendConfigEstAuthenticatorArgs) ToGetBackendConfigEstAuthenticatorOutput() GetBackendConfigEstAuthenticatorOutput {
+	return i.ToGetBackendConfigEstAuthenticatorOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigEstAuthenticatorArgs) ToGetBackendConfigEstAuthenticatorOutputWithContext(ctx context.Context) GetBackendConfigEstAuthenticatorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigEstAuthenticatorOutput)
+}
+
+// GetBackendConfigEstAuthenticatorArrayInput is an input type that accepts GetBackendConfigEstAuthenticatorArray and GetBackendConfigEstAuthenticatorArrayOutput values.
+// You can construct a concrete instance of `GetBackendConfigEstAuthenticatorArrayInput` via:
+//
+//	GetBackendConfigEstAuthenticatorArray{ GetBackendConfigEstAuthenticatorArgs{...} }
+type GetBackendConfigEstAuthenticatorArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigEstAuthenticatorArrayOutput() GetBackendConfigEstAuthenticatorArrayOutput
+	ToGetBackendConfigEstAuthenticatorArrayOutputWithContext(context.Context) GetBackendConfigEstAuthenticatorArrayOutput
+}
+
+type GetBackendConfigEstAuthenticatorArray []GetBackendConfigEstAuthenticatorInput
+
+func (GetBackendConfigEstAuthenticatorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigEstAuthenticator)(nil)).Elem()
+}
+
+func (i GetBackendConfigEstAuthenticatorArray) ToGetBackendConfigEstAuthenticatorArrayOutput() GetBackendConfigEstAuthenticatorArrayOutput {
+	return i.ToGetBackendConfigEstAuthenticatorArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigEstAuthenticatorArray) ToGetBackendConfigEstAuthenticatorArrayOutputWithContext(ctx context.Context) GetBackendConfigEstAuthenticatorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigEstAuthenticatorArrayOutput)
+}
+
+type GetBackendConfigEstAuthenticatorOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigEstAuthenticatorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigEstAuthenticator)(nil)).Elem()
+}
+
+func (o GetBackendConfigEstAuthenticatorOutput) ToGetBackendConfigEstAuthenticatorOutput() GetBackendConfigEstAuthenticatorOutput {
+	return o
+}
+
+func (o GetBackendConfigEstAuthenticatorOutput) ToGetBackendConfigEstAuthenticatorOutputWithContext(ctx context.Context) GetBackendConfigEstAuthenticatorOutput {
+	return o
+}
+
+// "The accessor and certRole properties for cert auth backends".
+func (o GetBackendConfigEstAuthenticatorOutput) Cert() pulumi.MapOutput {
+	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]interface{} { return v.Cert }).(pulumi.MapOutput)
+}
+
+// "The accessor property for user pass auth backends".
+func (o GetBackendConfigEstAuthenticatorOutput) Userpass() pulumi.MapOutput {
+	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]interface{} { return v.Userpass }).(pulumi.MapOutput)
+}
+
+type GetBackendConfigEstAuthenticatorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigEstAuthenticatorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigEstAuthenticator)(nil)).Elem()
+}
+
+func (o GetBackendConfigEstAuthenticatorArrayOutput) ToGetBackendConfigEstAuthenticatorArrayOutput() GetBackendConfigEstAuthenticatorArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigEstAuthenticatorArrayOutput) ToGetBackendConfigEstAuthenticatorArrayOutputWithContext(ctx context.Context) GetBackendConfigEstAuthenticatorArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigEstAuthenticatorArrayOutput) Index(i pulumi.IntInput) GetBackendConfigEstAuthenticatorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendConfigEstAuthenticator {
+		return vs[0].([]GetBackendConfigEstAuthenticator)[vs[1].(int)]
+	}).(GetBackendConfigEstAuthenticatorOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigEstAuthenticatorsInput)(nil)).Elem(), BackendConfigEstAuthenticatorsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigEstAuthenticatorsPtrInput)(nil)).Elem(), BackendConfigEstAuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRolePolicyIdentifierInput)(nil)).Elem(), SecretBackendRolePolicyIdentifierArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRolePolicyIdentifierArrayInput)(nil)).Elem(), SecretBackendRolePolicyIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigEstAuthenticatorInput)(nil)).Elem(), GetBackendConfigEstAuthenticatorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigEstAuthenticatorArrayInput)(nil)).Elem(), GetBackendConfigEstAuthenticatorArray{})
+	pulumi.RegisterOutputType(BackendConfigEstAuthenticatorsOutput{})
+	pulumi.RegisterOutputType(BackendConfigEstAuthenticatorsPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendRolePolicyIdentifierOutput{})
 	pulumi.RegisterOutputType(SecretBackendRolePolicyIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigEstAuthenticatorOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigEstAuthenticatorArrayOutput{})
 }

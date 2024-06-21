@@ -9,6 +9,20 @@ import * as utilities from "../utilities";
  *
  * ### *Vault-1.9 And Above*
  *
+ * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const azure = new vault.azure.Backend("azure", {
+ *     subscriptionId: "11111111-2222-3333-4444-111111111111",
+ *     tenantId: "11111111-2222-3333-4444-222222222222",
+ *     clientId: "11111111-2222-3333-4444-333333333333",
+ *     identityTokenAudience: "<TOKEN_AUDIENCE>",
+ *     identityTokenTtl: "<TOKEN_TTL>",
+ * });
+ * ```
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -89,6 +103,21 @@ export class Backend extends pulumi.CustomResource {
      */
     public readonly environment!: pulumi.Output<string | undefined>;
     /**
+     * The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    public readonly identityTokenTtl!: pulumi.Output<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -109,6 +138,8 @@ export class Backend extends pulumi.CustomResource {
     public readonly tenantId!: pulumi.Output<string>;
     /**
      * Use the Microsoft Graph API. Should be set to true on vault-1.10+
+     *
+     * @deprecated This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
      */
     public readonly useMicrosoftGraphApi!: pulumi.Output<boolean>;
 
@@ -130,6 +161,9 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["environment"] = state ? state.environment : undefined;
+            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["subscriptionId"] = state ? state.subscriptionId : undefined;
@@ -148,6 +182,9 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["environment"] = args ? args.environment : undefined;
+            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["subscriptionId"] = args?.subscriptionId ? pulumi.secret(args.subscriptionId) : undefined;
@@ -187,6 +224,21 @@ export interface BackendState {
      */
     environment?: pulumi.Input<string>;
     /**
+     * The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -207,6 +259,8 @@ export interface BackendState {
     tenantId?: pulumi.Input<string>;
     /**
      * Use the Microsoft Graph API. Should be set to true on vault-1.10+
+     *
+     * @deprecated This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
      */
     useMicrosoftGraphApi?: pulumi.Input<boolean>;
 }
@@ -237,6 +291,21 @@ export interface BackendArgs {
      */
     environment?: pulumi.Input<string>;
     /**
+     * The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -257,6 +326,8 @@ export interface BackendArgs {
     tenantId: pulumi.Input<string>;
     /**
      * Use the Microsoft Graph API. Should be set to true on vault-1.10+
+     *
+     * @deprecated This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
      */
     useMicrosoftGraphApi?: pulumi.Input<boolean>;
 }

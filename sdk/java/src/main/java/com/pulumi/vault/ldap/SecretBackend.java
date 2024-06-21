@@ -100,6 +100,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedManagedKeys);
     }
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="allowedResponseHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> allowedResponseHeaders() {
+        return Codegen.optional(this.allowedResponseHeaders);
+    }
+    /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
@@ -230,6 +244,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.defaultLeaseTtlSeconds;
     }
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="delegatedAuthAccessors", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> delegatedAuthAccessors() {
+        return Codegen.optional(this.delegatedAuthAccessors);
+    }
+    /**
      * Human-friendly description of the mount for the Active Directory backend.
      * 
      */
@@ -272,6 +300,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEntropyAccess);
     }
     /**
+     * The key to use for signing plugin workload identity tokens
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      * 
@@ -286,6 +328,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> insecureTls() {
         return Codegen.optional(this.insecureTls);
+    }
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Export(name="listingVisibility", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Output<Optional<String>> listingVisibility() {
+        return Codegen.optional(this.listingVisibility);
     }
     /**
      * Mark the secrets engine as local-only. Local engines are not replicated or removed by
@@ -352,6 +408,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.options);
     }
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="passthroughRequestHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> passthroughRequestHeaders() {
+        return Codegen.optional(this.passthroughRequestHeaders);
+    }
+    /**
      * Name of the password policy to use to generate passwords.
      * 
      */
@@ -380,6 +450,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> path() {
         return Codegen.optional(this.path);
+    }
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    @Export(name="pluginVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    public Output<Optional<String>> pluginVersion() {
+        return Codegen.optional(this.pluginVersion);
     }
     /**
      * Timeout, in seconds, for the connection when making requests against the server

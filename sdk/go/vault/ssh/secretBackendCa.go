@@ -61,6 +61,10 @@ type SecretBackendCa struct {
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey pulumi.BoolPtrOutput `pulumi:"generateSigningKey"`
+	// Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
+	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -113,6 +117,10 @@ type secretBackendCaState struct {
 	Backend *string `pulumi:"backend"`
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey *bool `pulumi:"generateSigningKey"`
+	// Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyBits *int `pulumi:"keyBits"`
+	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyType *string `pulumi:"keyType"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -129,6 +137,10 @@ type SecretBackendCaState struct {
 	Backend pulumi.StringPtrInput
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey pulumi.BoolPtrInput
+	// Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyBits pulumi.IntPtrInput
+	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyType pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -149,6 +161,10 @@ type secretBackendCaArgs struct {
 	Backend *string `pulumi:"backend"`
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey *bool `pulumi:"generateSigningKey"`
+	// Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyBits *int `pulumi:"keyBits"`
+	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyType *string `pulumi:"keyType"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -166,6 +182,10 @@ type SecretBackendCaArgs struct {
 	Backend pulumi.StringPtrInput
 	// Whether Vault should generate the signing key pair internally. Defaults to true
 	GenerateSigningKey pulumi.BoolPtrInput
+	// Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyBits pulumi.IntPtrInput
+	// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
+	KeyType pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -272,6 +292,16 @@ func (o SecretBackendCaOutput) Backend() pulumi.StringPtrOutput {
 // Whether Vault should generate the signing key pair internally. Defaults to true
 func (o SecretBackendCaOutput) GenerateSigningKey() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCa) pulumi.BoolPtrOutput { return v.GenerateSigningKey }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
+func (o SecretBackendCaOutput) KeyBits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.IntPtrOutput { return v.KeyBits }).(pulumi.IntPtrOutput)
+}
+
+// Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
+func (o SecretBackendCaOutput) KeyType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCa) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
 // The namespace to provision the resource in.

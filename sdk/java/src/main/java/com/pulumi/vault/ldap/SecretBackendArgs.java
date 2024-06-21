@@ -37,6 +37,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Import(name="allowedResponseHeaders")
+    private @Nullable Output<List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Optional<Output<List<String>>> allowedResponseHeaders() {
+        return Optional.ofNullable(this.allowedResponseHeaders);
+    }
+
+    /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
@@ -176,6 +191,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Import(name="delegatedAuthAccessors")
+    private @Nullable Output<List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Optional<Output<List<String>>> delegatedAuthAccessors() {
+        return Optional.ofNullable(this.delegatedAuthAccessors);
+    }
+
+    /**
      * Human-friendly description of the mount for the Active Directory backend.
      * 
      */
@@ -221,6 +251,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The key to use for signing plugin workload identity tokens
+     * 
+     */
+    @Import(name="identityTokenKey")
+    private @Nullable Output<String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens
+     * 
+     */
+    public Optional<Output<String>> identityTokenKey() {
+        return Optional.ofNullable(this.identityTokenKey);
+    }
+
+    /**
      * Skip LDAP server SSL Certificate verification. This is not recommended for production.
      * Defaults to `false`.
      * 
@@ -235,6 +280,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> insecureTls() {
         return Optional.ofNullable(this.insecureTls);
+    }
+
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Import(name="listingVisibility")
+    private @Nullable Output<String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Optional<Output<String>> listingVisibility() {
+        return Optional.ofNullable(this.listingVisibility);
     }
 
     /**
@@ -306,6 +366,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Import(name="passthroughRequestHeaders")
+    private @Nullable Output<List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Optional<Output<List<String>>> passthroughRequestHeaders() {
+        return Optional.ofNullable(this.passthroughRequestHeaders);
+    }
+
+    /**
      * Name of the password policy to use to generate passwords.
      * 
      */
@@ -335,6 +410,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> path() {
         return Optional.ofNullable(this.path);
+    }
+
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    @Import(name="pluginVersion")
+    private @Nullable Output<String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    public Optional<Output<String>> pluginVersion() {
+        return Optional.ofNullable(this.pluginVersion);
     }
 
     /**
@@ -482,6 +572,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
 
     private SecretBackendArgs(SecretBackendArgs $) {
         this.allowedManagedKeys = $.allowedManagedKeys;
+        this.allowedResponseHeaders = $.allowedResponseHeaders;
         this.auditNonHmacRequestKeys = $.auditNonHmacRequestKeys;
         this.auditNonHmacResponseKeys = $.auditNonHmacResponseKeys;
         this.binddn = $.binddn;
@@ -491,16 +582,21 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.clientTlsKey = $.clientTlsKey;
         this.connectionTimeout = $.connectionTimeout;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
+        this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
         this.disableRemount = $.disableRemount;
         this.externalEntropyAccess = $.externalEntropyAccess;
+        this.identityTokenKey = $.identityTokenKey;
         this.insecureTls = $.insecureTls;
+        this.listingVisibility = $.listingVisibility;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.namespace = $.namespace;
         this.options = $.options;
+        this.passthroughRequestHeaders = $.passthroughRequestHeaders;
         this.passwordPolicy = $.passwordPolicy;
         this.path = $.path;
+        this.pluginVersion = $.pluginVersion;
         this.requestTimeout = $.requestTimeout;
         this.schema = $.schema;
         this.sealWrap = $.sealWrap;
@@ -559,6 +655,37 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder allowedManagedKeys(String... allowedManagedKeys) {
             return allowedManagedKeys(List.of(allowedManagedKeys));
+        }
+
+        /**
+         * @param allowedResponseHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedResponseHeaders(@Nullable Output<List<String>> allowedResponseHeaders) {
+            $.allowedResponseHeaders = allowedResponseHeaders;
+            return this;
+        }
+
+        /**
+         * @param allowedResponseHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedResponseHeaders(List<String> allowedResponseHeaders) {
+            return allowedResponseHeaders(Output.of(allowedResponseHeaders));
+        }
+
+        /**
+         * @param allowedResponseHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allowedResponseHeaders(String... allowedResponseHeaders) {
+            return allowedResponseHeaders(List.of(allowedResponseHeaders));
         }
 
         /**
@@ -775,6 +902,37 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param delegatedAuthAccessors List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delegatedAuthAccessors(@Nullable Output<List<String>> delegatedAuthAccessors) {
+            $.delegatedAuthAccessors = delegatedAuthAccessors;
+            return this;
+        }
+
+        /**
+         * @param delegatedAuthAccessors List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delegatedAuthAccessors(List<String> delegatedAuthAccessors) {
+            return delegatedAuthAccessors(Output.of(delegatedAuthAccessors));
+        }
+
+        /**
+         * @param delegatedAuthAccessors List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delegatedAuthAccessors(String... delegatedAuthAccessors) {
+            return delegatedAuthAccessors(List.of(delegatedAuthAccessors));
+        }
+
+        /**
          * @param description Human-friendly description of the mount for the Active Directory backend.
          * 
          * @return builder
@@ -838,6 +996,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param identityTokenKey The key to use for signing plugin workload identity tokens
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(@Nullable Output<String> identityTokenKey) {
+            $.identityTokenKey = identityTokenKey;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing plugin workload identity tokens
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(String identityTokenKey) {
+            return identityTokenKey(Output.of(identityTokenKey));
+        }
+
+        /**
          * @param insecureTls Skip LDAP server SSL Certificate verification. This is not recommended for production.
          * Defaults to `false`.
          * 
@@ -858,6 +1037,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder insecureTls(Boolean insecureTls) {
             return insecureTls(Output.of(insecureTls));
+        }
+
+        /**
+         * @param listingVisibility Specifies whether to show this mount in the UI-specific listing endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder listingVisibility(@Nullable Output<String> listingVisibility) {
+            $.listingVisibility = listingVisibility;
+            return this;
+        }
+
+        /**
+         * @param listingVisibility Specifies whether to show this mount in the UI-specific listing endpoint
+         * 
+         * @return builder
+         * 
+         */
+        public Builder listingVisibility(String listingVisibility) {
+            return listingVisibility(Output.of(listingVisibility));
         }
 
         /**
@@ -953,6 +1153,37 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param passthroughRequestHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passthroughRequestHeaders(@Nullable Output<List<String>> passthroughRequestHeaders) {
+            $.passthroughRequestHeaders = passthroughRequestHeaders;
+            return this;
+        }
+
+        /**
+         * @param passthroughRequestHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passthroughRequestHeaders(List<String> passthroughRequestHeaders) {
+            return passthroughRequestHeaders(Output.of(passthroughRequestHeaders));
+        }
+
+        /**
+         * @param passthroughRequestHeaders List of headers to allow and pass from the request to the plugin
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passthroughRequestHeaders(String... passthroughRequestHeaders) {
+            return passthroughRequestHeaders(List.of(passthroughRequestHeaders));
+        }
+
+        /**
          * @param passwordPolicy Name of the password policy to use to generate passwords.
          * 
          * @return builder
@@ -994,6 +1225,27 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(@Nullable Output<String> pluginVersion) {
+            $.pluginVersion = pluginVersion;
+            return this;
+        }
+
+        /**
+         * @param pluginVersion Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pluginVersion(String pluginVersion) {
+            return pluginVersion(Output.of(pluginVersion));
         }
 
         /**

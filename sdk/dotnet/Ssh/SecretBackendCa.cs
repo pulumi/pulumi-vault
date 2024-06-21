@@ -60,6 +60,18 @@ namespace Pulumi.Vault.Ssh
         public Output<bool?> GenerateSigningKey { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// </summary>
+        [Output("keyBits")]
+        public Output<int?> KeyBits { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// </summary>
+        [Output("keyType")]
+        public Output<string?> KeyType { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -143,6 +155,18 @@ namespace Pulumi.Vault.Ssh
         public Input<bool>? GenerateSigningKey { get; set; }
 
         /// <summary>
+        /// Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// </summary>
+        [Input("keyBits")]
+        public Input<int>? KeyBits { get; set; }
+
+        /// <summary>
+        /// Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// </summary>
+        [Input("keyType")]
+        public Input<string>? KeyType { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -192,6 +216,18 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("generateSigningKey")]
         public Input<bool>? GenerateSigningKey { get; set; }
+
+        /// <summary>
+        /// Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// </summary>
+        [Input("keyBits")]
+        public Input<int>? KeyBits { get; set; }
+
+        /// <summary>
+        /// Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        /// </summary>
+        [Input("keyType")]
+        public Input<string>? KeyType { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

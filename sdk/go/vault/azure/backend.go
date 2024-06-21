@@ -16,6 +16,35 @@ import (
 //
 // ### *Vault-1.9 And Above*
 //
+// You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := azure.NewBackend(ctx, "azure", &azure.BackendArgs{
+//				SubscriptionId:        pulumi.String("11111111-2222-3333-4444-111111111111"),
+//				TenantId:              pulumi.String("11111111-2222-3333-4444-222222222222"),
+//				ClientId:              pulumi.String("11111111-2222-3333-4444-333333333333"),
+//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
+//				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ```go
 // package main
 //
@@ -89,6 +118,15 @@ type Backend struct {
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
 	// The Azure environment.
 	Environment pulumi.StringPtrOutput `pulumi:"environment"`
+	// The audience claim value. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
+	// The key to use for signing identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -101,6 +139,8 @@ type Backend struct {
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringOutput `pulumi:"tenantId"`
 	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
+	//
+	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
 	UseMicrosoftGraphApi pulumi.BoolOutput `pulumi:"useMicrosoftGraphApi"`
 }
 
@@ -170,6 +210,15 @@ type backendState struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// The Azure environment.
 	Environment *string `pulumi:"environment"`
+	// The audience claim value. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -182,6 +231,8 @@ type backendState struct {
 	// The tenant id for the Azure Active Directory.
 	TenantId *string `pulumi:"tenantId"`
 	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
+	//
+	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
 	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
@@ -197,6 +248,15 @@ type BackendState struct {
 	DisableRemount pulumi.BoolPtrInput
 	// The Azure environment.
 	Environment pulumi.StringPtrInput
+	// The audience claim value. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -209,6 +269,8 @@ type BackendState struct {
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringPtrInput
 	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
+	//
+	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
 	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
@@ -228,6 +290,15 @@ type backendArgs struct {
 	DisableRemount *bool `pulumi:"disableRemount"`
 	// The Azure environment.
 	Environment *string `pulumi:"environment"`
+	// The audience claim value. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -240,6 +311,8 @@ type backendArgs struct {
 	// The tenant id for the Azure Active Directory.
 	TenantId string `pulumi:"tenantId"`
 	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
+	//
+	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
 	UseMicrosoftGraphApi *bool `pulumi:"useMicrosoftGraphApi"`
 }
 
@@ -256,6 +329,15 @@ type BackendArgs struct {
 	DisableRemount pulumi.BoolPtrInput
 	// The Azure environment.
 	Environment pulumi.StringPtrInput
+	// The audience claim value. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -268,6 +350,8 @@ type BackendArgs struct {
 	// The tenant id for the Azure Active Directory.
 	TenantId pulumi.StringInput
 	// Use the Microsoft Graph API. Should be set to true on vault-1.10+
+	//
+	// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
 	UseMicrosoftGraphApi pulumi.BoolPtrInput
 }
 
@@ -384,6 +468,24 @@ func (o BackendOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
 }
 
+// The audience claim value. Requires Vault 1.17+.
+// *Available only for Vault Enterprise*
+func (o BackendOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
+}
+
+// The key to use for signing identity tokens. Requires Vault 1.17+.
+// *Available only for Vault Enterprise*
+func (o BackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
+// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+// *Available only for Vault Enterprise*
+func (o BackendOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *Backend) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
+}
+
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -408,6 +510,8 @@ func (o BackendOutput) TenantId() pulumi.StringOutput {
 }
 
 // Use the Microsoft Graph API. Should be set to true on vault-1.10+
+//
+// Deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
 func (o BackendOutput) UseMicrosoftGraphApi() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.UseMicrosoftGraphApi }).(pulumi.BoolOutput)
 }

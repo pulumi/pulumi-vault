@@ -72,12 +72,16 @@ type SecretBackend struct {
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// List of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayOutput `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Disable defaulting to the local CA certificate and
@@ -85,6 +89,8 @@ type SecretBackend struct {
 	DisableLocalCaJwt pulumi.BoolPtrOutput `pulumi:"disableLocalCaJwt"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// A PEM-encoded CA certificate used by the
 	// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
 	// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -94,6 +100,8 @@ type SecretBackend struct {
 	// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
 	// are not set on the host that Vault is running on.
 	KubernetesHost pulumi.StringPtrOutput `pulumi:"kubernetesHost"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
 	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -105,8 +113,12 @@ type SecretBackend struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapOutput `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path pulumi.StringOutput `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// The JSON web token of the service account used by the
@@ -159,12 +171,16 @@ type secretBackendState struct {
 	Accessor *string `pulumi:"accessor"`
 	// List of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// Disable defaulting to the local CA certificate and
@@ -172,6 +188,8 @@ type secretBackendState struct {
 	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// A PEM-encoded CA certificate used by the
 	// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
 	// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -181,6 +199,8 @@ type secretBackendState struct {
 	// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
 	// are not set on the host that Vault is running on.
 	KubernetesHost *string `pulumi:"kubernetesHost"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -192,8 +212,12 @@ type secretBackendState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// The JSON web token of the service account used by the
@@ -207,12 +231,16 @@ type SecretBackendState struct {
 	Accessor pulumi.StringPtrInput
 	// List of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// Disable defaulting to the local CA certificate and
@@ -220,6 +248,8 @@ type SecretBackendState struct {
 	DisableLocalCaJwt pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrInput
 	// A PEM-encoded CA certificate used by the
 	// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
 	// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -229,6 +259,8 @@ type SecretBackendState struct {
 	// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
 	// are not set on the host that Vault is running on.
 	KubernetesHost pulumi.StringPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
 	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -240,8 +272,12 @@ type SecretBackendState struct {
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// The JSON web token of the service account used by the
@@ -257,12 +293,16 @@ func (SecretBackendState) ElementType() reflect.Type {
 type secretBackendArgs struct {
 	// List of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// Disable defaulting to the local CA certificate and
@@ -270,6 +310,8 @@ type secretBackendArgs struct {
 	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// A PEM-encoded CA certificate used by the
 	// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
 	// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -279,6 +321,8 @@ type secretBackendArgs struct {
 	// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
 	// are not set on the host that Vault is running on.
 	KubernetesHost *string `pulumi:"kubernetesHost"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -290,8 +334,12 @@ type secretBackendArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// The JSON web token of the service account used by the
@@ -304,12 +352,16 @@ type secretBackendArgs struct {
 type SecretBackendArgs struct {
 	// List of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// Disable defaulting to the local CA certificate and
@@ -317,6 +369,8 @@ type SecretBackendArgs struct {
 	DisableLocalCaJwt pulumi.BoolPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrInput
 	// A PEM-encoded CA certificate used by the
 	// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
 	// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -326,6 +380,8 @@ type SecretBackendArgs struct {
 	// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
 	// are not set on the host that Vault is running on.
 	KubernetesHost pulumi.StringPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
 	// Local mount flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -337,8 +393,12 @@ type SecretBackendArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// The JSON web token of the service account used by the
@@ -444,6 +504,11 @@ func (o SecretBackendOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
 }
 
+// List of headers to allow and pass from the request to the plugin
+func (o SecretBackendOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
 // Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 func (o SecretBackendOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
@@ -457,6 +522,11 @@ func (o SecretBackendOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput
 // Default lease duration for tokens and secrets in seconds
 func (o SecretBackendOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o SecretBackendOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
 }
 
 // Human-friendly description of the mount
@@ -475,6 +545,11 @@ func (o SecretBackendOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
 }
 
+// The key to use for signing plugin workload identity tokens
+func (o SecretBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
 // A PEM-encoded CA certificate used by the
 // secrets engine to verify the Kubernetes API server certificate. Defaults to the local
 // pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -488,6 +563,11 @@ func (o SecretBackendOutput) KubernetesCaCert() pulumi.StringPtrOutput {
 // are not set on the host that Vault is running on.
 func (o SecretBackendOutput) KubernetesHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.KubernetesHost }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to show this mount in the UI-specific listing endpoint
+func (o SecretBackendOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
 // Local mount flag that can be explicitly set to true to enforce local mount in HA environment
@@ -513,9 +593,19 @@ func (o SecretBackendOutput) Options() pulumi.MapOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
 }
 
+// List of headers to allow and pass from the request to the plugin
+func (o SecretBackendOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
 // Where the secret backend will be mounted
 func (o SecretBackendOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+func (o SecretBackendOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
