@@ -445,6 +445,9 @@
                     "allowed_managed_keys": {
                         "maxItemsOne": false
                     },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
                     "audit_non_hmac_request_keys": {
                         "maxItemsOne": false
                     },
@@ -482,6 +485,9 @@
                                 }
                             }
                         }
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
                     },
                     "elasticsearch": {
                         "maxItemsOne": false,
@@ -625,6 +631,9 @@
                                 }
                             }
                         }
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
                     },
                     "postgresql": {
                         "maxItemsOne": false,
@@ -1151,10 +1160,19 @@
                     "allowed_managed_keys": {
                         "maxItemsOne": false
                     },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
                     "audit_non_hmac_request_keys": {
                         "maxItemsOne": false
                     },
                     "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
                         "maxItemsOne": false
                     }
                 }
@@ -1225,10 +1243,19 @@
                     "allowed_managed_keys": {
                         "maxItemsOne": false
                     },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
                     "audit_non_hmac_request_keys": {
                         "maxItemsOne": false
                     },
                     "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
                         "maxItemsOne": false
                     }
                 }
@@ -1310,10 +1337,19 @@
                     "allowed_managed_keys": {
                         "maxItemsOne": false
                     },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
                     "audit_non_hmac_request_keys": {
                         "maxItemsOne": false
                     },
                     "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
                         "maxItemsOne": false
                     }
                 }
@@ -1348,6 +1384,12 @@
                                 }
                             }
                         }
+                    },
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
                     },
                     "user": {
                         "maxItemsOne": false,
@@ -1417,6 +1459,18 @@
             "vault_pki_secret_backend_config_cluster": {
                 "current": "vault:pkiSecret/backendConfigCluster:BackendConfigCluster",
                 "majorVersion": 6
+            },
+            "vault_pki_secret_backend_config_est": {
+                "current": "vault:pkiSecret/backendConfigEst:BackendConfigEst",
+                "majorVersion": 6,
+                "fields": {
+                    "audit_fields": {
+                        "maxItemsOne": false
+                    },
+                    "authenticators": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "vault_pki_secret_backend_config_issuers": {
                 "current": "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers",
@@ -1615,6 +1669,22 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "vault_plugin": {
+                "current": "vault:index/plugin:Plugin",
+                "majorVersion": 6,
+                "fields": {
+                    "args": {
+                        "maxItemsOne": false
+                    },
+                    "env": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_plugin_pinned_version": {
+                "current": "vault:index/pluginPinnedVersion:PluginPinnedVersion",
+                "majorVersion": 6
             },
             "vault_policy": {
                 "current": "vault:index/policy:Policy",
@@ -2090,6 +2160,18 @@
             "vault_nomad_access_token": {
                 "current": "vault:index/getNomadAccessToken:getNomadAccessToken",
                 "majorVersion": 6
+            },
+            "vault_pki_secret_backend_config_est": {
+                "current": "vault:pkiSecret/getBackendConfigEst:getBackendConfigEst",
+                "majorVersion": 6,
+                "fields": {
+                    "audit_fields": {
+                        "maxItemsOne": false
+                    },
+                    "authenticators": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_pki_secret_backend_issuer": {
                 "current": "vault:pkiSecret/getBackendIssuer:getBackendIssuer",
