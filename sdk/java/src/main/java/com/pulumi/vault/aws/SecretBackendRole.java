@@ -13,6 +13,7 @@ import com.pulumi.vault.aws.inputs.SecretBackendRoleState;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -163,6 +164,22 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> iamGroups() {
         return Codegen.optional(this.iamGroups);
+    }
+    /**
+     * A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     * 
+     */
+    @Export(name="iamTags", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> iamTags;
+
+    /**
+     * @return A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> iamTags() {
+        return Codegen.optional(this.iamTags);
     }
     /**
      * The max allowed TTL in seconds for STS credentials

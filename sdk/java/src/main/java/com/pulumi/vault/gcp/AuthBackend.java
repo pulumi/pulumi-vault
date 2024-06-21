@@ -13,6 +13,7 @@ import com.pulumi.vault.gcp.inputs.AuthBackendState;
 import com.pulumi.vault.gcp.outputs.AuthBackendCustomEndpoint;
 import com.pulumi.vault.gcp.outputs.AuthBackendTune;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,45 @@ import javax.annotation.Nullable;
 
 /**
  * Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
+ * 
+ * ## Example Usage
+ * 
+ * You can setup the GCP auth backend with Workload Identity Federation (WIF) for a secret-less configuration:
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.gcp.AuthBackend;
+ * import com.pulumi.vault.gcp.AuthBackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcp = new AuthBackend("gcp", AuthBackendArgs.builder()
+ *             .identityTokenKey("example-key")
+ *             .identityTokenTtl(1800)
+ *             .identityTokenAudience("<TOKEN_AUDIENCE>")
+ *             .serviceAccountEmail("<SERVICE_ACCOUNT_EMAIL>")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
@@ -145,6 +185,54 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRemount);
     }
     /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="identityTokenAudience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudience() {
+        return Codegen.optional(this.identityTokenAudience);
+    }
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Output<Optional<Integer>> identityTokenTtl() {
+        return Codegen.optional(this.identityTokenTtl);
+    }
+    /**
      * Specifies if the auth method is local only.
      * 
      */
@@ -219,6 +307,22 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="serviceAccountEmail", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serviceAccountEmail;
+
+    /**
+     * @return Service Account to impersonate for plugin workload identity federation.
+     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> serviceAccountEmail() {
+        return Codegen.optional(this.serviceAccountEmail);
     }
     /**
      * Extra configuration block. Structure is documented below.

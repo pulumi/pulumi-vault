@@ -59,6 +59,8 @@ import (
 type QuotaLeaseCount struct {
 	pulumi.CustomResourceState
 
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable pulumi.BoolPtrOutput `pulumi:"inheritable"`
 	// The maximum number of leases to be allowed by the quota
 	// rule. The `maxLeases` must be positive.
 	MaxLeases pulumi.IntOutput `pulumi:"maxLeases"`
@@ -113,6 +115,8 @@ func GetQuotaLeaseCount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering QuotaLeaseCount resources.
 type quotaLeaseCountState struct {
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable *bool `pulumi:"inheritable"`
 	// The maximum number of leases to be allowed by the quota
 	// rule. The `maxLeases` must be positive.
 	MaxLeases *int `pulumi:"maxLeases"`
@@ -135,6 +139,8 @@ type quotaLeaseCountState struct {
 }
 
 type QuotaLeaseCountState struct {
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable pulumi.BoolPtrInput
 	// The maximum number of leases to be allowed by the quota
 	// rule. The `maxLeases` must be positive.
 	MaxLeases pulumi.IntPtrInput
@@ -161,6 +167,8 @@ func (QuotaLeaseCountState) ElementType() reflect.Type {
 }
 
 type quotaLeaseCountArgs struct {
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable *bool `pulumi:"inheritable"`
 	// The maximum number of leases to be allowed by the quota
 	// rule. The `maxLeases` must be positive.
 	MaxLeases int `pulumi:"maxLeases"`
@@ -184,6 +192,8 @@ type quotaLeaseCountArgs struct {
 
 // The set of arguments for constructing a QuotaLeaseCount resource.
 type QuotaLeaseCountArgs struct {
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable pulumi.BoolPtrInput
 	// The maximum number of leases to be allowed by the quota
 	// rule. The `maxLeases` must be positive.
 	MaxLeases pulumi.IntInput
@@ -290,6 +300,11 @@ func (o QuotaLeaseCountOutput) ToQuotaLeaseCountOutput() QuotaLeaseCountOutput {
 
 func (o QuotaLeaseCountOutput) ToQuotaLeaseCountOutputWithContext(ctx context.Context) QuotaLeaseCountOutput {
 	return o
+}
+
+// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+func (o QuotaLeaseCountOutput) Inheritable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *QuotaLeaseCount) pulumi.BoolPtrOutput { return v.Inheritable }).(pulumi.BoolPtrOutput)
 }
 
 // The maximum number of leases to be allowed by the quota

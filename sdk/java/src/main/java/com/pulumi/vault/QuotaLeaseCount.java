@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.QuotaLeaseCountArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.QuotaLeaseCountState;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
@@ -73,6 +74,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:index/quotaLeaseCount:QuotaLeaseCount")
 public class QuotaLeaseCount extends com.pulumi.resources.CustomResource {
+    /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     * 
+     */
+    @Export(name="inheritable", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> inheritable;
+
+    /**
+     * @return If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     * 
+     */
+    public Output<Optional<Boolean>> inheritable() {
+        return Codegen.optional(this.inheritable);
+    }
     /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `max_leases` must be positive.

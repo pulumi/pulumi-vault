@@ -56,18 +56,16 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      * 
      */
     @Import(name="boundAudiences")
     private @Nullable Output<List<String>> boundAudiences;
 
     /**
-     * @return (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-     * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-     * Any match is sufficient.
+     * @return (Required for roles of type `jwt`, optional for roles of
+     * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      * 
      */
     public Optional<Output<List<String>>> boundAudiences() {
@@ -182,7 +180,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -191,7 +189,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return The amount of leeway to add to expiration (`exp`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -260,7 +258,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -269,7 +267,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return The amount of leeway to add to not before (`nbf`) claims to account for
-     * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+     * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with &#34;jwt&#34; roles.
      * 
      */
@@ -628,9 +626,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundAudiences (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-         * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-         * Any match is sufficient.
+         * @param boundAudiences (Required for roles of type `jwt`, optional for roles of
+         * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
          * 
          * @return builder
          * 
@@ -641,9 +638,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundAudiences (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-         * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-         * Any match is sufficient.
+         * @param boundAudiences (Required for roles of type `jwt`, optional for roles of
+         * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
          * 
          * @return builder
          * 
@@ -653,9 +649,8 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param boundAudiences (For &#34;jwt&#34; roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-         * or `token_bound_cidrs` is required. Optional for &#34;oidc&#34; roles.) List of `aud` claims to match against.
-         * Any match is sufficient.
+         * @param boundAudiences (Required for roles of type `jwt`, optional for roles of
+         * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
          * 
          * @return builder
          * 
@@ -808,7 +803,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param expirationLeeway The amount of leeway to add to expiration (`exp`) claims to account for
-         * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+         * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
          * Only applicable with &#34;jwt&#34; roles.
          * 
          * @return builder
@@ -821,7 +816,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param expirationLeeway The amount of leeway to add to expiration (`exp`) claims to account for
-         * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+         * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
          * Only applicable with &#34;jwt&#34; roles.
          * 
          * @return builder
@@ -910,7 +905,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param notBeforeLeeway The amount of leeway to add to not before (`nbf`) claims to account for
-         * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+         * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
          * Only applicable with &#34;jwt&#34; roles.
          * 
          * @return builder
@@ -923,7 +918,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param notBeforeLeeway The amount of leeway to add to not before (`nbf`) claims to account for
-         * clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+         * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
          * Only applicable with &#34;jwt&#34; roles.
          * 
          * @return builder

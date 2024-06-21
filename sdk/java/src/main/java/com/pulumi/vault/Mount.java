@@ -211,6 +211,22 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedManagedKeys);
     }
     /**
+     * List of headers to allow, allowing a plugin to include
+     * them in the response.
+     * 
+     */
+    @Export(name="allowedResponseHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow, allowing a plugin to include
+     * them in the response.
+     * 
+     */
+    public Output<Optional<List<String>>> allowedResponseHeaders() {
+        return Codegen.optional(this.allowedResponseHeaders);
+    }
+    /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
@@ -253,6 +269,22 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return this.defaultLeaseTtlSeconds;
     }
     /**
+     * List of allowed authentication mount accessors the
+     * backend can request delegated authentication for.
+     * 
+     */
+    @Export(name="delegatedAuthAccessors", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of allowed authentication mount accessors the
+     * backend can request delegated authentication for.
+     * 
+     */
+    public Output<Optional<List<String>>> delegatedAuthAccessors() {
+        return Codegen.optional(this.delegatedAuthAccessors);
+    }
+    /**
      * Human-friendly description of the mount
      * 
      */
@@ -279,6 +311,36 @@ public class Mount extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> externalEntropyAccess() {
         return Codegen.optional(this.externalEntropyAccess);
+    }
+    /**
+     * The key to use for signing plugin workload identity tokens. If
+     * not provided, this will default to Vault&#39;s OIDC default key.
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens. If
+     * not provided, this will default to Vault&#39;s OIDC default key.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Export(name="listingVisibility", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Output<Optional<String>> listingVisibility() {
+        return Codegen.optional(this.listingVisibility);
     }
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -343,6 +405,22 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.options);
     }
     /**
+     * List of headers to allow and pass from the request to
+     * the plugin.
+     * 
+     */
+    @Export(name="passthroughRequestHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to
+     * the plugin.
+     * 
+     */
+    public Output<Optional<List<String>>> passthroughRequestHeaders() {
+        return Codegen.optional(this.passthroughRequestHeaders);
+    }
+    /**
      * Where the secret backend will be mounted
      * 
      */
@@ -355,6 +433,24 @@ public class Mount extends com.pulumi.resources.CustomResource {
      */
     public Output<String> path() {
         return this.path;
+    }
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. &#34;v1.0.0&#34;.
+     * If unspecified, the server will select any matching unversioned plugin that may have been
+     * registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+     * 
+     */
+    @Export(name="pluginVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#34;v1.0.0&#34;.
+     * If unspecified, the server will select any matching unversioned plugin that may have been
+     * registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+     * 
+     */
+    public Output<Optional<String>> pluginVersion() {
+        return Codegen.optional(this.pluginVersion);
     }
     /**
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability

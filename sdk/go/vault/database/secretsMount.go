@@ -106,6 +106,8 @@ type SecretsMount struct {
 	//
 	// The following arguments are common to all database engines:
 	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayOutput `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -118,6 +120,8 @@ type SecretsMount struct {
 	Couchbases SecretsMountCouchbaseArrayOutput `pulumi:"couchbases"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// A nested block containing configuration options for Elasticsearch connections.\
@@ -130,9 +134,13 @@ type SecretsMount struct {
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayOutput `pulumi:"hanas"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// A nested block containing configuration options for InfluxDB connections.\
 	// *See Configuration Options for more info*
 	Influxdbs SecretsMountInfluxdbArrayOutput `pulumi:"influxdbs"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -165,8 +173,12 @@ type SecretsMount struct {
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayOutput `pulumi:"oracles"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path pulumi.StringOutput `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayOutput `pulumi:"postgresqls"`
@@ -225,6 +237,8 @@ type secretsMountState struct {
 	//
 	// The following arguments are common to all database engines:
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -237,6 +251,8 @@ type secretsMountState struct {
 	Couchbases []SecretsMountCouchbase `pulumi:"couchbases"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// A nested block containing configuration options for Elasticsearch connections.\
@@ -249,9 +265,13 @@ type secretsMountState struct {
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas []SecretsMountHana `pulumi:"hanas"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// A nested block containing configuration options for InfluxDB connections.\
 	// *See Configuration Options for more info*
 	Influxdbs []SecretsMountInfluxdb `pulumi:"influxdbs"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -284,8 +304,12 @@ type secretsMountState struct {
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles []SecretsMountOracle `pulumi:"oracles"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
@@ -312,6 +336,8 @@ type SecretsMountState struct {
 	//
 	// The following arguments are common to all database engines:
 	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -324,6 +350,8 @@ type SecretsMountState struct {
 	Couchbases SecretsMountCouchbaseArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// A nested block containing configuration options for Elasticsearch connections.\
@@ -336,9 +364,13 @@ type SecretsMountState struct {
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayInput
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrInput
 	// A nested block containing configuration options for InfluxDB connections.\
 	// *See Configuration Options for more info*
 	Influxdbs SecretsMountInfluxdbArrayInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -371,8 +403,12 @@ type SecretsMountState struct {
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
@@ -401,6 +437,8 @@ type secretsMountArgs struct {
 	//
 	// The following arguments are common to all database engines:
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -413,6 +451,8 @@ type secretsMountArgs struct {
 	Couchbases []SecretsMountCouchbase `pulumi:"couchbases"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// A nested block containing configuration options for Elasticsearch connections.\
@@ -423,9 +463,13 @@ type secretsMountArgs struct {
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas []SecretsMountHana `pulumi:"hanas"`
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// A nested block containing configuration options for InfluxDB connections.\
 	// *See Configuration Options for more info*
 	Influxdbs []SecretsMountInfluxdb `pulumi:"influxdbs"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -458,8 +502,12 @@ type secretsMountArgs struct {
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles []SecretsMountOracle `pulumi:"oracles"`
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
@@ -485,6 +533,8 @@ type SecretsMountArgs struct {
 	//
 	// The following arguments are common to all database engines:
 	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	AllowedResponseHeaders pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
@@ -497,6 +547,8 @@ type SecretsMountArgs struct {
 	Couchbases SecretsMountCouchbaseArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of headers to allow and pass from the request to the plugin
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// A nested block containing configuration options for Elasticsearch connections.\
@@ -507,9 +559,13 @@ type SecretsMountArgs struct {
 	// A nested block containing configuration options for SAP HanaDB connections.\
 	// *See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayInput
+	// The key to use for signing plugin workload identity tokens
+	IdentityTokenKey pulumi.StringPtrInput
 	// A nested block containing configuration options for InfluxDB connections.\
 	// *See Configuration Options for more info*
 	Influxdbs SecretsMountInfluxdbArrayInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -542,8 +598,12 @@ type SecretsMountArgs struct {
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayInput
+	// List of headers to allow and pass from the request to the plugin
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringInput
+	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+	PluginVersion pulumi.StringPtrInput
 	// A nested block containing configuration options for PostgreSQL connections.\
 	// *See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
@@ -662,6 +722,11 @@ func (o SecretsMountOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
 }
 
+// List of headers to allow and pass from the request to the plugin
+func (o SecretsMountOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
 // Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 func (o SecretsMountOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
@@ -687,6 +752,11 @@ func (o SecretsMountOutput) Couchbases() SecretsMountCouchbaseArrayOutput {
 // Default lease duration for tokens and secrets in seconds
 func (o SecretsMountOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
+}
+
+// List of headers to allow and pass from the request to the plugin
+func (o SecretsMountOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
 }
 
 // Human-friendly description of the mount
@@ -716,10 +786,20 @@ func (o SecretsMountOutput) Hanas() SecretsMountHanaArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountHanaArrayOutput { return v.Hanas }).(SecretsMountHanaArrayOutput)
 }
 
+// The key to use for signing plugin workload identity tokens
+func (o SecretsMountOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
 // A nested block containing configuration options for InfluxDB connections.\
 // *See Configuration Options for more info*
 func (o SecretsMountOutput) Influxdbs() SecretsMountInfluxdbArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountInfluxdbArrayOutput { return v.Influxdbs }).(SecretsMountInfluxdbArrayOutput)
+}
+
+// Specifies whether to show this mount in the UI-specific listing endpoint
+func (o SecretsMountOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
 // Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -790,9 +870,19 @@ func (o SecretsMountOutput) Oracles() SecretsMountOracleArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountOracleArrayOutput { return v.Oracles }).(SecretsMountOracleArrayOutput)
 }
 
+// List of headers to allow and pass from the request to the plugin
+func (o SecretsMountOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
 // Where the secret backend will be mounted
 func (o SecretsMountOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+func (o SecretsMountOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // A nested block containing configuration options for PostgreSQL connections.\

@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.ssh.SecretBackendCaArgs;
 import com.pulumi.vault.ssh.inputs.SecretBackendCaState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -99,6 +100,34 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> generateSigningKey() {
         return Codegen.optional(this.generateSigningKey);
+    }
+    /**
+     * Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    @Export(name="keyBits", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> keyBits;
+
+    /**
+     * @return Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    public Output<Optional<Integer>> keyBits() {
+        return Codegen.optional(this.keyBits);
+    }
+    /**
+     * Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    @Export(name="keyType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> keyType;
+
+    /**
+     * @return Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+     * 
+     */
+    public Output<Optional<String>> keyType() {
+        return Codegen.optional(this.keyType);
     }
     /**
      * The namespace to provision the resource in.

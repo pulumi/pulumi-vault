@@ -143,16 +143,27 @@ type Mount struct {
 	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys pulumi.StringArrayOutput `pulumi:"allowedManagedKeys"`
+	// List of headers to allow, allowing a plugin to include
+	// them in the response.
+	AllowedResponseHeaders pulumi.StringArrayOutput `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
+	// List of allowed authentication mount accessors the
+	// backend can request delegated authentication for.
+	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
+	// The key to use for signing plugin workload identity tokens. If
+	// not provided, this will default to Vault's OIDC default key.
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -164,8 +175,15 @@ type Mount struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapOutput `pulumi:"options"`
+	// List of headers to allow and pass from the request to
+	// the plugin.
+	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path pulumi.StringOutput `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. "v1.0.0".
+	// If unspecified, the server will select any matching unversioned plugin that may have been
+	// registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// Type of the backend, such as "aws"
@@ -212,16 +230,27 @@ type mountState struct {
 	Accessor *string `pulumi:"accessor"`
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow, allowing a plugin to include
+	// them in the response.
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of allowed authentication mount accessors the
+	// backend can request delegated authentication for.
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// The key to use for signing plugin workload identity tokens. If
+	// not provided, this will default to Vault's OIDC default key.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -233,8 +262,15 @@ type mountState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
+	// List of headers to allow and pass from the request to
+	// the plugin.
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path *string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. "v1.0.0".
+	// If unspecified, the server will select any matching unversioned plugin that may have been
+	// registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// Type of the backend, such as "aws"
@@ -246,16 +282,27 @@ type MountState struct {
 	Accessor pulumi.StringPtrInput
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow, allowing a plugin to include
+	// them in the response.
+	AllowedResponseHeaders pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of allowed authentication mount accessors the
+	// backend can request delegated authentication for.
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// The key to use for signing plugin workload identity tokens. If
+	// not provided, this will default to Vault's OIDC default key.
+	IdentityTokenKey pulumi.StringPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -267,8 +314,15 @@ type MountState struct {
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
+	// List of headers to allow and pass from the request to
+	// the plugin.
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringPtrInput
+	// Specifies the semantic version of the plugin to use, e.g. "v1.0.0".
+	// If unspecified, the server will select any matching unversioned plugin that may have been
+	// registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+	PluginVersion pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// Type of the backend, such as "aws"
@@ -282,16 +336,27 @@ func (MountState) ElementType() reflect.Type {
 type mountArgs struct {
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`
+	// List of headers to allow, allowing a plugin to include
+	// them in the response.
+	AllowedResponseHeaders []string `pulumi:"allowedResponseHeaders"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
+	// List of allowed authentication mount accessors the
+	// backend can request delegated authentication for.
+	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
+	// The key to use for signing plugin workload identity tokens. If
+	// not provided, this will default to Vault's OIDC default key.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -303,8 +368,15 @@ type mountArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]interface{} `pulumi:"options"`
+	// List of headers to allow and pass from the request to
+	// the plugin.
+	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Where the secret backend will be mounted
 	Path string `pulumi:"path"`
+	// Specifies the semantic version of the plugin to use, e.g. "v1.0.0".
+	// If unspecified, the server will select any matching unversioned plugin that may have been
+	// registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+	PluginVersion *string `pulumi:"pluginVersion"`
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// Type of the backend, such as "aws"
@@ -315,16 +387,27 @@ type mountArgs struct {
 type MountArgs struct {
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys pulumi.StringArrayInput
+	// List of headers to allow, allowing a plugin to include
+	// them in the response.
+	AllowedResponseHeaders pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
+	// List of allowed authentication mount accessors the
+	// backend can request delegated authentication for.
+	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
+	// The key to use for signing plugin workload identity tokens. If
+	// not provided, this will default to Vault's OIDC default key.
+	IdentityTokenKey pulumi.StringPtrInput
+	// Specifies whether to show this mount in the UI-specific listing endpoint
+	ListingVisibility pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
@@ -336,8 +419,15 @@ type MountArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.MapInput
+	// List of headers to allow and pass from the request to
+	// the plugin.
+	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Where the secret backend will be mounted
 	Path pulumi.StringInput
+	// Specifies the semantic version of the plugin to use, e.g. "v1.0.0".
+	// If unspecified, the server will select any matching unversioned plugin that may have been
+	// registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+	PluginVersion pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// Type of the backend, such as "aws"
@@ -441,6 +531,12 @@ func (o MountOutput) AllowedManagedKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AllowedManagedKeys }).(pulumi.StringArrayOutput)
 }
 
+// List of headers to allow, allowing a plugin to include
+// them in the response.
+func (o MountOutput) AllowedResponseHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AllowedResponseHeaders }).(pulumi.StringArrayOutput)
+}
+
 // Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
 func (o MountOutput) AuditNonHmacRequestKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.AuditNonHmacRequestKeys }).(pulumi.StringArrayOutput)
@@ -456,6 +552,12 @@ func (o MountOutput) DefaultLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *Mount) pulumi.IntOutput { return v.DefaultLeaseTtlSeconds }).(pulumi.IntOutput)
 }
 
+// List of allowed authentication mount accessors the
+// backend can request delegated authentication for.
+func (o MountOutput) DelegatedAuthAccessors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.DelegatedAuthAccessors }).(pulumi.StringArrayOutput)
+}
+
 // Human-friendly description of the mount
 func (o MountOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -464,6 +566,17 @@ func (o MountOutput) Description() pulumi.StringPtrOutput {
 // Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 func (o MountOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Mount) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
+}
+
+// The key to use for signing plugin workload identity tokens. If
+// not provided, this will default to Vault's OIDC default key.
+func (o MountOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to show this mount in the UI-specific listing endpoint
+func (o MountOutput) ListingVisibility() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }
 
 // Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -489,9 +602,22 @@ func (o MountOutput) Options() pulumi.MapOutput {
 	return o.ApplyT(func(v *Mount) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
 }
 
+// List of headers to allow and pass from the request to
+// the plugin.
+func (o MountOutput) PassthroughRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringArrayOutput { return v.PassthroughRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
 // Where the secret backend will be mounted
 func (o MountOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Specifies the semantic version of the plugin to use, e.g. "v1.0.0".
+// If unspecified, the server will select any matching unversioned plugin that may have been
+// registered, the latest versioned plugin registered, or a built-in plugin in that order of precedence.
+func (o MountOutput) PluginVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
 // Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability

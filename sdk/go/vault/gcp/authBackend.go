@@ -13,6 +13,36 @@ import (
 
 // Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
 //
+// ## Example Usage
+//
+// You can setup the GCP auth backend with Workload Identity Federation (WIF) for a secret-less configuration:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := gcp.NewAuthBackend(ctx, "gcp", &gcp.AuthBackendArgs{
+//				IdentityTokenKey:      pulumi.String("example-key"),
+//				IdentityTokenTtl:      pulumi.Int(1800),
+//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
+//				ServiceAccountEmail:   pulumi.String("<SERVICE_ACCOUNT_EMAIL>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // GCP authentication backends can be imported using the backend name, e.g.
@@ -44,6 +74,15 @@ type AuthBackend struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrOutput `pulumi:"identityTokenTtl"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The namespace to provision the resource in.
@@ -57,6 +96,9 @@ type AuthBackend struct {
 	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
 	// The GCP Project ID
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail pulumi.StringPtrOutput `pulumi:"serviceAccountEmail"`
 	// Extra configuration block. Structure is documented below.
 	//
 	// The `tune` block is used to tune the auth backend:
@@ -121,6 +163,15 @@ type authBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
 	// The namespace to provision the resource in.
@@ -134,6 +185,9 @@ type authBackendState struct {
 	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The GCP Project ID
 	ProjectId *string `pulumi:"projectId"`
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 	// Extra configuration block. Structure is documented below.
 	//
 	// The `tune` block is used to tune the auth backend:
@@ -162,6 +216,15 @@ type AuthBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
@@ -175,6 +238,9 @@ type AuthBackendState struct {
 	PrivateKeyId pulumi.StringPtrInput
 	// The GCP Project ID
 	ProjectId pulumi.StringPtrInput
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
 	//
 	// The `tune` block is used to tune the auth backend:
@@ -205,6 +271,15 @@ type authBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
 	// The namespace to provision the resource in.
@@ -218,6 +293,9 @@ type authBackendArgs struct {
 	PrivateKeyId *string `pulumi:"privateKeyId"`
 	// The GCP Project ID
 	ProjectId *string `pulumi:"projectId"`
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 	// Extra configuration block. Structure is documented below.
 	//
 	// The `tune` block is used to tune the auth backend:
@@ -245,6 +323,15 @@ type AuthBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
@@ -258,6 +345,9 @@ type AuthBackendArgs struct {
 	PrivateKeyId pulumi.StringPtrInput
 	// The GCP Project ID
 	ProjectId pulumi.StringPtrInput
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail pulumi.StringPtrInput
 	// Extra configuration block. Structure is documented below.
 	//
 	// The `tune` block is used to tune the auth backend:
@@ -393,6 +483,24 @@ func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
 }
 
+// The audience claim value for plugin identity
+// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
+}
+
+// The key to use for signing plugin identity
+// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
+// The TTL of generated tokens.
+func (o AuthBackendOutput) IdentityTokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.IdentityTokenTtl }).(pulumi.IntPtrOutput)
+}
+
 // Specifies if the auth method is local only.
 func (o AuthBackendOutput) Local() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.Local }).(pulumi.BoolPtrOutput)
@@ -419,6 +527,12 @@ func (o AuthBackendOutput) PrivateKeyId() pulumi.StringOutput {
 // The GCP Project ID
 func (o AuthBackendOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Service Account to impersonate for plugin workload identity federation.
+// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+func (o AuthBackendOutput) ServiceAccountEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.ServiceAccountEmail }).(pulumi.StringPtrOutput)
 }
 
 // Extra configuration block. Structure is documented below.

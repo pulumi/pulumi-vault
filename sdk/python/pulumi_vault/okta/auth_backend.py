@@ -26,6 +26,15 @@ class AuthBackendArgs:
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
@@ -47,6 +56,15 @@ class AuthBackendArgs:
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]] users: Associate Okta users with groups or policies within Vault.
@@ -64,6 +82,9 @@ class AuthBackendArgs:
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if max_ttl is not None:
+            warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
+            pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
+        if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
@@ -71,6 +92,27 @@ class AuthBackendArgs:
             pulumi.set(__self__, "path", path)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
+            pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if users is not None:
@@ -157,6 +199,9 @@ class AuthBackendArgs:
         Maximum duration after which authentication will be expired
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
+        warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
+        pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
+
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
@@ -204,12 +249,123 @@ class AuthBackendArgs:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the blocks of IP addresses which are allowed to use the generated token
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generated Token's Explicit Maximum TTL in seconds
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime of the generated token
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the 'default' policy will not automatically be added to generated tokens
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of times a token may be used, a value of zero means unlimited
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generated Token's Period
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Generated Token's Policies
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The initial ttl of the token to generate in seconds
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token to generate, service or batch
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Duration after which authentication will be expired.
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
+        warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
+        pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
+
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -244,6 +400,15 @@ class _AuthBackendState:
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
@@ -266,6 +431,15 @@ class _AuthBackendState:
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]] users: Associate Okta users with groups or policies within Vault.
@@ -284,6 +458,9 @@ class _AuthBackendState:
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if max_ttl is not None:
+            warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
+            pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
+        if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
@@ -293,6 +470,27 @@ class _AuthBackendState:
             pulumi.set(__self__, "path", path)
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if token_bound_cidrs is not None:
+            pulumi.set(__self__, "token_bound_cidrs", token_bound_cidrs)
+        if token_explicit_max_ttl is not None:
+            pulumi.set(__self__, "token_explicit_max_ttl", token_explicit_max_ttl)
+        if token_max_ttl is not None:
+            pulumi.set(__self__, "token_max_ttl", token_max_ttl)
+        if token_no_default_policy is not None:
+            pulumi.set(__self__, "token_no_default_policy", token_no_default_policy)
+        if token_num_uses is not None:
+            pulumi.set(__self__, "token_num_uses", token_num_uses)
+        if token_period is not None:
+            pulumi.set(__self__, "token_period", token_period)
+        if token_policies is not None:
+            pulumi.set(__self__, "token_policies", token_policies)
+        if token_ttl is not None:
+            pulumi.set(__self__, "token_ttl", token_ttl)
+        if token_type is not None:
+            pulumi.set(__self__, "token_type", token_type)
+        if ttl is not None:
+            warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
+            pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
         if users is not None:
@@ -379,6 +577,9 @@ class _AuthBackendState:
         Maximum duration after which authentication will be expired
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
+        warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
+        pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
+
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
@@ -438,12 +639,123 @@ class _AuthBackendState:
         pulumi.set(self, "token", value)
 
     @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies the blocks of IP addresses which are allowed to use the generated token
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @token_bound_cidrs.setter
+    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_bound_cidrs", value)
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generated Token's Explicit Maximum TTL in seconds
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @token_explicit_max_ttl.setter
+    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_explicit_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum lifetime of the generated token
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @token_max_ttl.setter
+    def token_max_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_max_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, the 'default' policy will not automatically be added to generated tokens
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @token_no_default_policy.setter
+    def token_no_default_policy(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "token_no_default_policy", value)
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of times a token may be used, a value of zero means unlimited
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @token_num_uses.setter
+    def token_num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_num_uses", value)
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        Generated Token's Period
+        """
+        return pulumi.get(self, "token_period")
+
+    @token_period.setter
+    def token_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_period", value)
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Generated Token's Policies
+        """
+        return pulumi.get(self, "token_policies")
+
+    @token_policies.setter
+    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "token_policies", value)
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The initial ttl of the token to generate in seconds
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @token_ttl.setter
+    def token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "token_ttl", value)
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of token to generate, service or batch
+        """
+        return pulumi.get(self, "token_type")
+
+    @token_type.setter
+    def token_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_type", value)
+
+    @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Duration after which authentication will be expired.
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
+        warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
+        pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
+
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -479,6 +791,15 @@ class AuthBackend(pulumi.CustomResource):
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]]] = None,
                  __props__=None):
@@ -536,6 +857,15 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]] users: Associate Okta users with groups or policies within Vault.
@@ -607,6 +937,15 @@ class AuthBackend(pulumi.CustomResource):
                  organization: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
+                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_max_ttl: Optional[pulumi.Input[int]] = None,
+                 token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+                 token_num_uses: Optional[pulumi.Input[int]] = None,
+                 token_period: Optional[pulumi.Input[int]] = None,
+                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 token_ttl: Optional[pulumi.Input[int]] = None,
+                 token_type: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]]] = None,
                  __props__=None):
@@ -630,6 +969,15 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["organization"] = organization
             __props__.__dict__["path"] = path
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
+            __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+            __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+            __props__.__dict__["token_max_ttl"] = token_max_ttl
+            __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+            __props__.__dict__["token_num_uses"] = token_num_uses
+            __props__.__dict__["token_period"] = token_period
+            __props__.__dict__["token_policies"] = token_policies
+            __props__.__dict__["token_ttl"] = token_ttl
+            __props__.__dict__["token_type"] = token_type
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["users"] = users
             __props__.__dict__["accessor"] = None
@@ -656,6 +1004,15 @@ class AuthBackend(pulumi.CustomResource):
             organization: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
             token: Optional[pulumi.Input[str]] = None,
+            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            token_explicit_max_ttl: Optional[pulumi.Input[int]] = None,
+            token_max_ttl: Optional[pulumi.Input[int]] = None,
+            token_no_default_policy: Optional[pulumi.Input[bool]] = None,
+            token_num_uses: Optional[pulumi.Input[int]] = None,
+            token_period: Optional[pulumi.Input[int]] = None,
+            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            token_ttl: Optional[pulumi.Input[int]] = None,
+            token_type: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]]] = None) -> 'AuthBackend':
         """
@@ -683,6 +1040,15 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] path: Path to mount the Okta auth backend. Default to path `okta`.
         :param pulumi.Input[str] token: The Okta API token. This is required to query Okta for user group membership.
                If this is not supplied only locally configured groups will be enabled.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_bound_cidrs: Specifies the blocks of IP addresses which are allowed to use the generated token
+        :param pulumi.Input[int] token_explicit_max_ttl: Generated Token's Explicit Maximum TTL in seconds
+        :param pulumi.Input[int] token_max_ttl: The maximum lifetime of the generated token
+        :param pulumi.Input[bool] token_no_default_policy: If true, the 'default' policy will not automatically be added to generated tokens
+        :param pulumi.Input[int] token_num_uses: The maximum number of times a token may be used, a value of zero means unlimited
+        :param pulumi.Input[int] token_period: Generated Token's Period
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] token_policies: Generated Token's Policies
+        :param pulumi.Input[int] token_ttl: The initial ttl of the token to generate in seconds
+        :param pulumi.Input[str] token_type: The type of token to generate, service or batch
         :param pulumi.Input[str] ttl: Duration after which authentication will be expired.
                [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthBackendUserArgs']]]] users: Associate Okta users with groups or policies within Vault.
@@ -703,6 +1069,15 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["organization"] = organization
         __props__.__dict__["path"] = path
         __props__.__dict__["token"] = token
+        __props__.__dict__["token_bound_cidrs"] = token_bound_cidrs
+        __props__.__dict__["token_explicit_max_ttl"] = token_explicit_max_ttl
+        __props__.__dict__["token_max_ttl"] = token_max_ttl
+        __props__.__dict__["token_no_default_policy"] = token_no_default_policy
+        __props__.__dict__["token_num_uses"] = token_num_uses
+        __props__.__dict__["token_period"] = token_period
+        __props__.__dict__["token_policies"] = token_policies
+        __props__.__dict__["token_ttl"] = token_ttl
+        __props__.__dict__["token_type"] = token_type
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["users"] = users
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
@@ -764,6 +1139,9 @@ class AuthBackend(pulumi.CustomResource):
         Maximum duration after which authentication will be expired
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
+        warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
+        pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
+
         return pulumi.get(self, "max_ttl")
 
     @property
@@ -803,12 +1181,87 @@ class AuthBackend(pulumi.CustomResource):
         return pulumi.get(self, "token")
 
     @property
+    @pulumi.getter(name="tokenBoundCidrs")
+    def token_bound_cidrs(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Specifies the blocks of IP addresses which are allowed to use the generated token
+        """
+        return pulumi.get(self, "token_bound_cidrs")
+
+    @property
+    @pulumi.getter(name="tokenExplicitMaxTtl")
+    def token_explicit_max_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        Generated Token's Explicit Maximum TTL in seconds
+        """
+        return pulumi.get(self, "token_explicit_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenMaxTtl")
+    def token_max_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        The maximum lifetime of the generated token
+        """
+        return pulumi.get(self, "token_max_ttl")
+
+    @property
+    @pulumi.getter(name="tokenNoDefaultPolicy")
+    def token_no_default_policy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, the 'default' policy will not automatically be added to generated tokens
+        """
+        return pulumi.get(self, "token_no_default_policy")
+
+    @property
+    @pulumi.getter(name="tokenNumUses")
+    def token_num_uses(self) -> pulumi.Output[Optional[int]]:
+        """
+        The maximum number of times a token may be used, a value of zero means unlimited
+        """
+        return pulumi.get(self, "token_num_uses")
+
+    @property
+    @pulumi.getter(name="tokenPeriod")
+    def token_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        Generated Token's Period
+        """
+        return pulumi.get(self, "token_period")
+
+    @property
+    @pulumi.getter(name="tokenPolicies")
+    def token_policies(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Generated Token's Policies
+        """
+        return pulumi.get(self, "token_policies")
+
+    @property
+    @pulumi.getter(name="tokenTtl")
+    def token_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        The initial ttl of the token to generate in seconds
+        """
+        return pulumi.get(self, "token_ttl")
+
+    @property
+    @pulumi.getter(name="tokenType")
+    def token_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of token to generate, service or batch
+        """
+        return pulumi.get(self, "token_type")
+
+    @property
     @pulumi.getter
     def ttl(self) -> pulumi.Output[Optional[str]]:
         """
         Duration after which authentication will be expired.
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
+        warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
+        pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
+
         return pulumi.get(self, "ttl")
 
     @property

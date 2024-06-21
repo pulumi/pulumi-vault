@@ -119,9 +119,8 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-        /// or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-        /// Any match is sufficient.
+        /// (Required for roles of type `jwt`, optional for roles of
+        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         /// </summary>
         [Output("boundAudiences")]
         public Output<ImmutableArray<string>> BoundAudiences { get; private set; } = null!;
@@ -172,7 +171,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The amount of leeway to add to expiration (`exp`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
         [Output("expirationLeeway")]
@@ -205,7 +204,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The amount of leeway to add to not before (`nbf`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
         [Output("notBeforeLeeway")]
@@ -379,9 +378,8 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-        /// or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-        /// Any match is sufficient.
+        /// (Required for roles of type `jwt`, optional for roles of
+        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -447,7 +445,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The amount of leeway to add to expiration (`exp`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
         [Input("expirationLeeway")]
@@ -480,7 +478,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The amount of leeway to add to not before (`nbf`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
         [Input("notBeforeLeeway")]
@@ -634,9 +632,8 @@ namespace Pulumi.Vault.Jwt
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-        /// or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-        /// Any match is sufficient.
+        /// (Required for roles of type `jwt`, optional for roles of
+        /// type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -702,7 +699,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The amount of leeway to add to expiration (`exp`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
         [Input("expirationLeeway")]
@@ -735,7 +732,7 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// The amount of leeway to add to not before (`nbf`) claims to account for
-        /// clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        /// clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         /// Only applicable with "jwt" roles.
         /// </summary>
         [Input("notBeforeLeeway")]

@@ -14,6 +14,43 @@ import (
 
 // ## Example Usage
 //
+// You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
+//				Type:             pulumi.String("azure"),
+//				IdentityTokenKey: pulumi.String("example-key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
+//				Backend:               example.Path,
+//				TenantId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
+//				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ```go
 // package main
 //
@@ -72,6 +109,11 @@ type AuthBackendConfig struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment pulumi.StringPtrOutput `pulumi:"environment"`
+	// The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
+	// The TTL of generated identity tokens in seconds.
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -149,6 +191,11 @@ type authBackendConfigState struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment *string `pulumi:"environment"`
+	// The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The TTL of generated identity tokens in seconds.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -176,6 +223,11 @@ type AuthBackendConfigState struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment pulumi.StringPtrInput
+	// The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -207,6 +259,11 @@ type authBackendConfigArgs struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment *string `pulumi:"environment"`
+	// The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The TTL of generated identity tokens in seconds.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -235,6 +292,11 @@ type AuthBackendConfigArgs struct {
 	// AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
 	// AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 	Environment pulumi.StringPtrInput
+	// The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -358,6 +420,17 @@ func (o AuthBackendConfigOutput) ClientSecret() pulumi.StringPtrOutput {
 // AzureGermanCloud.  Defaults to `AzurePublicCloud`.
 func (o AuthBackendConfigOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
+}
+
+// The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendConfigOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
+}
+
+// The TTL of generated identity tokens in seconds.
+func (o AuthBackendConfigOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
 // The namespace to provision the resource in.

@@ -9,6 +9,21 @@ import * as utilities from "../utilities";
 /**
  * Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
  *
+ * ## Example Usage
+ *
+ * You can setup the GCP auth backend with Workload Identity Federation (WIF) for a secret-less configuration:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcp = new vault.gcp.AuthBackend("gcp", {
+ *     identityTokenKey: "example-key",
+ *     identityTokenTtl: 1800,
+ *     identityTokenAudience: "<TOKEN_AUDIENCE>",
+ *     serviceAccountEmail: "<SERVICE_ACCOUNT_EMAIL>",
+ * });
+ * ```
+ *
  * ## Import
  *
  * GCP authentication backends can be imported using the backend name, e.g.
@@ -81,6 +96,21 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly disableRemount!: pulumi.Output<boolean | undefined>;
     /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
+     * The TTL of generated tokens.
+     */
+    public readonly identityTokenTtl!: pulumi.Output<number | undefined>;
+    /**
      * Specifies if the auth method is local only.
      */
     public readonly local!: pulumi.Output<boolean | undefined>;
@@ -103,6 +133,11 @@ export class AuthBackend extends pulumi.CustomResource {
      * The GCP Project ID
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    public readonly serviceAccountEmail!: pulumi.Output<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
@@ -130,11 +165,15 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["customEndpoint"] = state ? state.customEndpoint : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
+            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
             resourceInputs["privateKeyId"] = state ? state.privateKeyId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
             resourceInputs["tune"] = state ? state.tune : undefined;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
@@ -144,11 +183,15 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["customEndpoint"] = args ? args.customEndpoint : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
+            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
+            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
             resourceInputs["privateKeyId"] = args ? args.privateKeyId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
             resourceInputs["tune"] = args ? args.tune : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
@@ -199,6 +242,21 @@ export interface AuthBackendState {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
@@ -221,6 +279,11 @@ export interface AuthBackendState {
      * The GCP Project ID
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    serviceAccountEmail?: pulumi.Input<string>;
     /**
      * Extra configuration block. Structure is documented below.
      *
@@ -265,6 +328,21 @@ export interface AuthBackendArgs {
      */
     disableRemount?: pulumi.Input<boolean>;
     /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
+     * The TTL of generated tokens.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
+    /**
      * Specifies if the auth method is local only.
      */
     local?: pulumi.Input<boolean>;
@@ -287,6 +365,11 @@ export interface AuthBackendArgs {
      * The GCP Project ID
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     */
+    serviceAccountEmail?: pulumi.Input<string>;
     /**
      * Extra configuration block. Structure is documented below.
      *

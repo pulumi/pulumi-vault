@@ -86,6 +86,8 @@ type AuthBackend struct {
 	Groups AuthBackendGroupTypeArrayOutput `pulumi:"groups"`
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -99,8 +101,28 @@ type AuthBackend struct {
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
 	Token pulumi.StringPtrOutput `pulumi:"token"`
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	TokenBoundCidrs pulumi.StringArrayOutput `pulumi:"tokenBoundCidrs"`
+	// Generated Token's Explicit Maximum TTL in seconds
+	TokenExplicitMaxTtl pulumi.IntPtrOutput `pulumi:"tokenExplicitMaxTtl"`
+	// The maximum lifetime of the generated token
+	TokenMaxTtl pulumi.IntPtrOutput `pulumi:"tokenMaxTtl"`
+	// If true, the 'default' policy will not automatically be added to generated tokens
+	TokenNoDefaultPolicy pulumi.BoolPtrOutput `pulumi:"tokenNoDefaultPolicy"`
+	// The maximum number of times a token may be used, a value of zero means unlimited
+	TokenNumUses pulumi.IntPtrOutput `pulumi:"tokenNumUses"`
+	// Generated Token's Period
+	TokenPeriod pulumi.IntPtrOutput `pulumi:"tokenPeriod"`
+	// Generated Token's Policies
+	TokenPolicies pulumi.StringArrayOutput `pulumi:"tokenPolicies"`
+	// The initial ttl of the token to generate in seconds
+	TokenTtl pulumi.IntPtrOutput `pulumi:"tokenTtl"`
+	// The type of token to generate, service or batch
+	TokenType pulumi.StringPtrOutput `pulumi:"tokenType"`
 	// Duration after which authentication will be expired.
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenTtl` instead.
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
@@ -163,6 +185,8 @@ type authBackendState struct {
 	Groups []AuthBackendGroupType `pulumi:"groups"`
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
 	MaxTtl *string `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -176,8 +200,28 @@ type authBackendState struct {
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
 	Token *string `pulumi:"token"`
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
+	// Generated Token's Explicit Maximum TTL in seconds
+	TokenExplicitMaxTtl *int `pulumi:"tokenExplicitMaxTtl"`
+	// The maximum lifetime of the generated token
+	TokenMaxTtl *int `pulumi:"tokenMaxTtl"`
+	// If true, the 'default' policy will not automatically be added to generated tokens
+	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
+	// The maximum number of times a token may be used, a value of zero means unlimited
+	TokenNumUses *int `pulumi:"tokenNumUses"`
+	// Generated Token's Period
+	TokenPeriod *int `pulumi:"tokenPeriod"`
+	// Generated Token's Policies
+	TokenPolicies []string `pulumi:"tokenPolicies"`
+	// The initial ttl of the token to generate in seconds
+	TokenTtl *int `pulumi:"tokenTtl"`
+	// The type of token to generate, service or batch
+	TokenType *string `pulumi:"tokenType"`
 	// Duration after which authentication will be expired.
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenTtl` instead.
 	Ttl *string `pulumi:"ttl"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
@@ -201,6 +245,8 @@ type AuthBackendState struct {
 	Groups AuthBackendGroupTypeArrayInput
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
 	MaxTtl pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -214,8 +260,28 @@ type AuthBackendState struct {
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
 	Token pulumi.StringPtrInput
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	TokenBoundCidrs pulumi.StringArrayInput
+	// Generated Token's Explicit Maximum TTL in seconds
+	TokenExplicitMaxTtl pulumi.IntPtrInput
+	// The maximum lifetime of the generated token
+	TokenMaxTtl pulumi.IntPtrInput
+	// If true, the 'default' policy will not automatically be added to generated tokens
+	TokenNoDefaultPolicy pulumi.BoolPtrInput
+	// The maximum number of times a token may be used, a value of zero means unlimited
+	TokenNumUses pulumi.IntPtrInput
+	// Generated Token's Period
+	TokenPeriod pulumi.IntPtrInput
+	// Generated Token's Policies
+	TokenPolicies pulumi.StringArrayInput
+	// The initial ttl of the token to generate in seconds
+	TokenTtl pulumi.IntPtrInput
+	// The type of token to generate, service or batch
+	TokenType pulumi.StringPtrInput
 	// Duration after which authentication will be expired.
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenTtl` instead.
 	Ttl pulumi.StringPtrInput
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
@@ -241,6 +307,8 @@ type authBackendArgs struct {
 	Groups []AuthBackendGroupType `pulumi:"groups"`
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
 	MaxTtl *string `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -254,8 +322,28 @@ type authBackendArgs struct {
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
 	Token *string `pulumi:"token"`
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	TokenBoundCidrs []string `pulumi:"tokenBoundCidrs"`
+	// Generated Token's Explicit Maximum TTL in seconds
+	TokenExplicitMaxTtl *int `pulumi:"tokenExplicitMaxTtl"`
+	// The maximum lifetime of the generated token
+	TokenMaxTtl *int `pulumi:"tokenMaxTtl"`
+	// If true, the 'default' policy will not automatically be added to generated tokens
+	TokenNoDefaultPolicy *bool `pulumi:"tokenNoDefaultPolicy"`
+	// The maximum number of times a token may be used, a value of zero means unlimited
+	TokenNumUses *int `pulumi:"tokenNumUses"`
+	// Generated Token's Period
+	TokenPeriod *int `pulumi:"tokenPeriod"`
+	// Generated Token's Policies
+	TokenPolicies []string `pulumi:"tokenPolicies"`
+	// The initial ttl of the token to generate in seconds
+	TokenTtl *int `pulumi:"tokenTtl"`
+	// The type of token to generate, service or batch
+	TokenType *string `pulumi:"tokenType"`
 	// Duration after which authentication will be expired.
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenTtl` instead.
 	Ttl *string `pulumi:"ttl"`
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
@@ -278,6 +366,8 @@ type AuthBackendArgs struct {
 	Groups AuthBackendGroupTypeArrayInput
 	// Maximum duration after which authentication will be expired
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
 	MaxTtl pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -291,8 +381,28 @@ type AuthBackendArgs struct {
 	// The Okta API token. This is required to query Okta for user group membership.
 	// If this is not supplied only locally configured groups will be enabled.
 	Token pulumi.StringPtrInput
+	// Specifies the blocks of IP addresses which are allowed to use the generated token
+	TokenBoundCidrs pulumi.StringArrayInput
+	// Generated Token's Explicit Maximum TTL in seconds
+	TokenExplicitMaxTtl pulumi.IntPtrInput
+	// The maximum lifetime of the generated token
+	TokenMaxTtl pulumi.IntPtrInput
+	// If true, the 'default' policy will not automatically be added to generated tokens
+	TokenNoDefaultPolicy pulumi.BoolPtrInput
+	// The maximum number of times a token may be used, a value of zero means unlimited
+	TokenNumUses pulumi.IntPtrInput
+	// Generated Token's Period
+	TokenPeriod pulumi.IntPtrInput
+	// Generated Token's Policies
+	TokenPolicies pulumi.StringArrayInput
+	// The initial ttl of the token to generate in seconds
+	TokenTtl pulumi.IntPtrInput
+	// The type of token to generate, service or batch
+	TokenType pulumi.StringPtrInput
 	// Duration after which authentication will be expired.
 	// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+	//
+	// Deprecated: Deprecated. Please use `tokenTtl` instead.
 	Ttl pulumi.StringPtrInput
 	// Associate Okta users with groups or policies within Vault.
 	// See below for more details.
@@ -420,6 +530,8 @@ func (o AuthBackendOutput) Groups() AuthBackendGroupTypeArrayOutput {
 
 // Maximum duration after which authentication will be expired
 // [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+//
+// Deprecated: Deprecated. Please use `tokenMaxTtl` instead.
 func (o AuthBackendOutput) MaxTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
 }
@@ -448,8 +560,55 @@ func (o AuthBackendOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the blocks of IP addresses which are allowed to use the generated token
+func (o AuthBackendOutput) TokenBoundCidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.TokenBoundCidrs }).(pulumi.StringArrayOutput)
+}
+
+// Generated Token's Explicit Maximum TTL in seconds
+func (o AuthBackendOutput) TokenExplicitMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenExplicitMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// The maximum lifetime of the generated token
+func (o AuthBackendOutput) TokenMaxTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenMaxTtl }).(pulumi.IntPtrOutput)
+}
+
+// If true, the 'default' policy will not automatically be added to generated tokens
+func (o AuthBackendOutput) TokenNoDefaultPolicy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.TokenNoDefaultPolicy }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of times a token may be used, a value of zero means unlimited
+func (o AuthBackendOutput) TokenNumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenNumUses }).(pulumi.IntPtrOutput)
+}
+
+// Generated Token's Period
+func (o AuthBackendOutput) TokenPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenPeriod }).(pulumi.IntPtrOutput)
+}
+
+// Generated Token's Policies
+func (o AuthBackendOutput) TokenPolicies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.TokenPolicies }).(pulumi.StringArrayOutput)
+}
+
+// The initial ttl of the token to generate in seconds
+func (o AuthBackendOutput) TokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.TokenTtl }).(pulumi.IntPtrOutput)
+}
+
+// The type of token to generate, service or batch
+func (o AuthBackendOutput) TokenType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.TokenType }).(pulumi.StringPtrOutput)
+}
+
 // Duration after which authentication will be expired.
 // [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
+//
+// Deprecated: Deprecated. Please use `tokenTtl` instead.
 func (o AuthBackendOutput) Ttl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Ttl }).(pulumi.StringPtrOutput)
 }

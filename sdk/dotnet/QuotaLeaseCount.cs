@@ -51,6 +51,12 @@ namespace Pulumi.Vault
     public partial class QuotaLeaseCount : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// </summary>
+        [Output("inheritable")]
+        public Output<bool?> Inheritable { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum number of leases to be allowed by the quota
         /// rule. The `max_leases` must be positive.
         /// </summary>
@@ -136,6 +142,12 @@ namespace Pulumi.Vault
     public sealed class QuotaLeaseCountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// </summary>
+        [Input("inheritable")]
+        public Input<bool>? Inheritable { get; set; }
+
+        /// <summary>
         /// The maximum number of leases to be allowed by the quota
         /// rule. The `max_leases` must be positive.
         /// </summary>
@@ -182,6 +194,12 @@ namespace Pulumi.Vault
 
     public sealed class QuotaLeaseCountState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// </summary>
+        [Input("inheritable")]
+        public Input<bool>? Inheritable { get; set; }
+
         /// <summary>
         /// The maximum number of leases to be allowed by the quota
         /// rule. The `max_leases` must be positive.

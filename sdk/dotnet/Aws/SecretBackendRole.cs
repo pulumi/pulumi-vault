@@ -95,6 +95,13 @@ namespace Pulumi.Vault.Aws
         public Output<ImmutableArray<string>> IamGroups { get; private set; } = null!;
 
         /// <summary>
+        /// A map of strings representing key/value pairs
+        /// to be used as tags for any IAM user that is created by this role.
+        /// </summary>
+        [Output("iamTags")]
+        public Output<ImmutableDictionary<string, string>?> IamTags { get; private set; } = null!;
+
+        /// <summary>
         /// The max allowed TTL in seconds for STS credentials
         /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
         /// one of `assumed_role` or `federation_token`.
@@ -252,6 +259,19 @@ namespace Pulumi.Vault.Aws
             set => _iamGroups = value;
         }
 
+        [Input("iamTags")]
+        private InputMap<string>? _iamTags;
+
+        /// <summary>
+        /// A map of strings representing key/value pairs
+        /// to be used as tags for any IAM user that is created by this role.
+        /// </summary>
+        public InputMap<string> IamTags
+        {
+            get => _iamTags ?? (_iamTags = new InputMap<string>());
+            set => _iamTags = value;
+        }
+
         /// <summary>
         /// The max allowed TTL in seconds for STS credentials
         /// (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
@@ -382,6 +402,19 @@ namespace Pulumi.Vault.Aws
         {
             get => _iamGroups ?? (_iamGroups = new InputList<string>());
             set => _iamGroups = value;
+        }
+
+        [Input("iamTags")]
+        private InputMap<string>? _iamTags;
+
+        /// <summary>
+        /// A map of strings representing key/value pairs
+        /// to be used as tags for any IAM user that is created by this role.
+        /// </summary>
+        public InputMap<string> IamTags
+        {
+            get => _iamTags ?? (_iamTags = new InputMap<string>());
+            set => _iamTags = value;
         }
 
         /// <summary>

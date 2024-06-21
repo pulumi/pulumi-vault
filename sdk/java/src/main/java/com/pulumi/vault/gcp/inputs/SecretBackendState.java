@@ -18,6 +18,21 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
     public static final SecretBackendState Empty = new SecretBackendState();
 
     /**
+     * The accessor of the created GCP mount.
+     * 
+     */
+    @Import(name="accessor")
+    private @Nullable Output<String> accessor;
+
+    /**
+     * @return The accessor of the created GCP mount.
+     * 
+     */
+    public Optional<Output<String>> accessor() {
+        return Optional.ofNullable(this.accessor);
+    }
+
+    /**
      * JSON-encoded credentials to use to connect to GCP
      * 
      */
@@ -79,6 +94,57 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<Boolean>> disableRemount() {
         return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
+     * The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="identityTokenAudience")
+    private @Nullable Output<String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value for plugin identity
+     * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+     * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> identityTokenAudience() {
+        return Optional.ofNullable(this.identityTokenAudience);
+    }
+
+    /**
+     * The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="identityTokenKey")
+    private @Nullable Output<String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin identity
+     * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> identityTokenKey() {
+        return Optional.ofNullable(this.identityTokenKey);
+    }
+
+    /**
+     * The TTL of generated tokens.
+     * 
+     */
+    @Import(name="identityTokenTtl")
+    private @Nullable Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated tokens.
+     * 
+     */
+    public Optional<Output<Integer>> identityTokenTtl() {
+        return Optional.ofNullable(this.identityTokenTtl);
     }
 
     /**
@@ -151,17 +217,39 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
         return Optional.ofNullable(this.path);
     }
 
+    /**
+     * Service Account to impersonate for plugin workload identity federation.
+     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="serviceAccountEmail")
+    private @Nullable Output<String> serviceAccountEmail;
+
+    /**
+     * @return Service Account to impersonate for plugin workload identity federation.
+     * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> serviceAccountEmail() {
+        return Optional.ofNullable(this.serviceAccountEmail);
+    }
+
     private SecretBackendState() {}
 
     private SecretBackendState(SecretBackendState $) {
+        this.accessor = $.accessor;
         this.credentials = $.credentials;
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.description = $.description;
         this.disableRemount = $.disableRemount;
+        this.identityTokenAudience = $.identityTokenAudience;
+        this.identityTokenKey = $.identityTokenKey;
+        this.identityTokenTtl = $.identityTokenTtl;
         this.local = $.local;
         this.maxLeaseTtlSeconds = $.maxLeaseTtlSeconds;
         this.namespace = $.namespace;
         this.path = $.path;
+        this.serviceAccountEmail = $.serviceAccountEmail;
     }
 
     public static Builder builder() {
@@ -180,6 +268,27 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
 
         public Builder(SecretBackendState defaults) {
             $ = new SecretBackendState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accessor The accessor of the created GCP mount.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessor(@Nullable Output<String> accessor) {
+            $.accessor = accessor;
+            return this;
+        }
+
+        /**
+         * @param accessor The accessor of the created GCP mount.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessor(String accessor) {
+            return accessor(Output.of(accessor));
         }
 
         /**
@@ -268,6 +377,75 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder disableRemount(Boolean disableRemount) {
             return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value for plugin identity
+         * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+         * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(@Nullable Output<String> identityTokenAudience) {
+            $.identityTokenAudience = identityTokenAudience;
+            return this;
+        }
+
+        /**
+         * @param identityTokenAudience The audience claim value for plugin identity
+         * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+         * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenAudience(String identityTokenAudience) {
+            return identityTokenAudience(Output.of(identityTokenAudience));
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing plugin identity
+         * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(@Nullable Output<String> identityTokenKey) {
+            $.identityTokenKey = identityTokenKey;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing plugin identity
+         * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(String identityTokenKey) {
+            return identityTokenKey(Output.of(identityTokenKey));
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(@Nullable Output<Integer> identityTokenTtl) {
+            $.identityTokenTtl = identityTokenTtl;
+            return this;
+        }
+
+        /**
+         * @param identityTokenTtl The TTL of generated tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenTtl(Integer identityTokenTtl) {
+            return identityTokenTtl(Output.of(identityTokenTtl));
         }
 
         /**
@@ -362,6 +540,29 @@ public final class SecretBackendState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param serviceAccountEmail Service Account to impersonate for plugin workload identity federation.
+         * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountEmail(@Nullable Output<String> serviceAccountEmail) {
+            $.serviceAccountEmail = serviceAccountEmail;
+            return this;
+        }
+
+        /**
+         * @param serviceAccountEmail Service Account to impersonate for plugin workload identity federation.
+         * Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccountEmail(String serviceAccountEmail) {
+            return serviceAccountEmail(Output.of(serviceAccountEmail));
         }
 
         public SecretBackendState build() {

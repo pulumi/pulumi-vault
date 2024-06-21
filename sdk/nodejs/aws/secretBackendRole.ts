@@ -98,6 +98,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly iamGroups!: pulumi.Output<string[] | undefined>;
     /**
+     * A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     */
+    public readonly iamTags!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
@@ -169,6 +174,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["credentialType"] = state ? state.credentialType : undefined;
             resourceInputs["defaultStsTtl"] = state ? state.defaultStsTtl : undefined;
             resourceInputs["iamGroups"] = state ? state.iamGroups : undefined;
+            resourceInputs["iamTags"] = state ? state.iamTags : undefined;
             resourceInputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -189,6 +195,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["credentialType"] = args ? args.credentialType : undefined;
             resourceInputs["defaultStsTtl"] = args ? args.defaultStsTtl : undefined;
             resourceInputs["iamGroups"] = args ? args.iamGroups : undefined;
+            resourceInputs["iamTags"] = args ? args.iamTags : undefined;
             resourceInputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -235,6 +242,11 @@ export interface SecretBackendRoleState {
      * and `policyArns` parameters.
      */
     iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     */
+    iamTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
@@ -323,6 +335,11 @@ export interface SecretBackendRoleArgs {
      * and `policyArns` parameters.
      */
     iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A map of strings representing key/value pairs
+     * to be used as tags for any IAM user that is created by this role.
+     */
+    iamTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is

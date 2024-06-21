@@ -49,6 +49,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NomadSecretRole{}
 	case "vault:index/passwordPolicy:PasswordPolicy":
 		r = &PasswordPolicy{}
+	case "vault:index/plugin:Plugin":
+		r = &Plugin{}
+	case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
+		r = &PluginPinnedVersion{}
 	case "vault:index/policy:Policy":
 		r = &Policy{}
 	case "vault:index/quotaLeaseCount:QuotaLeaseCount":
@@ -162,6 +166,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/passwordPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/plugin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/pluginPinnedVersion",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

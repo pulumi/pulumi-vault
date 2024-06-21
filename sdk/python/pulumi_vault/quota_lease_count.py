@@ -15,6 +15,7 @@ __all__ = ['QuotaLeaseCountArgs', 'QuotaLeaseCount']
 class QuotaLeaseCountArgs:
     def __init__(__self__, *,
                  max_leases: pulumi.Input[int],
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -23,6 +24,7 @@ class QuotaLeaseCountArgs:
         The set of arguments for constructing a QuotaLeaseCount resource.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[str] name: Name of the rate limit quota
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -37,6 +39,8 @@ class QuotaLeaseCountArgs:
         :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         pulumi.set(__self__, "max_leases", max_leases)
+        if inheritable is not None:
+            pulumi.set(__self__, "inheritable", inheritable)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -58,6 +62,18 @@ class QuotaLeaseCountArgs:
     @max_leases.setter
     def max_leases(self, value: pulumi.Input[int]):
         pulumi.set(self, "max_leases", value)
+
+    @property
+    @pulumi.getter
+    def inheritable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        """
+        return pulumi.get(self, "inheritable")
+
+    @inheritable.setter
+    def inheritable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inheritable", value)
 
     @property
     @pulumi.getter
@@ -119,6 +135,7 @@ class QuotaLeaseCountArgs:
 @pulumi.input_type
 class _QuotaLeaseCountState:
     def __init__(__self__, *,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -126,6 +143,7 @@ class _QuotaLeaseCountState:
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering QuotaLeaseCount resources.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
@@ -141,6 +159,8 @@ class _QuotaLeaseCountState:
                a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
         :param pulumi.Input[str] role: If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
+        if inheritable is not None:
+            pulumi.set(__self__, "inheritable", inheritable)
         if max_leases is not None:
             pulumi.set(__self__, "max_leases", max_leases)
         if name is not None:
@@ -151,6 +171,18 @@ class _QuotaLeaseCountState:
             pulumi.set(__self__, "path", path)
         if role is not None:
             pulumi.set(__self__, "role", role)
+
+    @property
+    @pulumi.getter
+    def inheritable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        """
+        return pulumi.get(self, "inheritable")
+
+    @inheritable.setter
+    def inheritable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "inheritable", value)
 
     @property
     @pulumi.getter(name="maxLeases")
@@ -227,6 +259,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -265,6 +298,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
@@ -331,6 +365,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 inheritable: Optional[pulumi.Input[bool]] = None,
                  max_leases: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -345,6 +380,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = QuotaLeaseCountArgs.__new__(QuotaLeaseCountArgs)
 
+            __props__.__dict__["inheritable"] = inheritable
             if max_leases is None and not opts.urn:
                 raise TypeError("Missing required property 'max_leases'")
             __props__.__dict__["max_leases"] = max_leases
@@ -362,6 +398,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            inheritable: Optional[pulumi.Input[bool]] = None,
             max_leases: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -374,6 +411,7 @@ class QuotaLeaseCount(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] inheritable: If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         :param pulumi.Input[int] max_leases: The maximum number of leases to be allowed by the quota
                rule. The `max_leases` must be positive.
         :param pulumi.Input[str] name: Name of the rate limit quota
@@ -393,12 +431,21 @@ class QuotaLeaseCount(pulumi.CustomResource):
 
         __props__ = _QuotaLeaseCountState.__new__(_QuotaLeaseCountState)
 
+        __props__.__dict__["inheritable"] = inheritable
         __props__.__dict__["max_leases"] = max_leases
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         __props__.__dict__["role"] = role
         return QuotaLeaseCount(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def inheritable(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        """
+        return pulumi.get(self, "inheritable")
 
     @property
     @pulumi.getter(name="maxLeases")

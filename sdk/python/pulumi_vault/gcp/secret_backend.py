@@ -18,10 +18,14 @@ class SecretBackendArgs:
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
+                 path: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
@@ -30,6 +34,12 @@ class SecretBackendArgs:
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity
+               tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+               Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin identity
+               tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
@@ -39,6 +49,8 @@ class SecretBackendArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
+        :param pulumi.Input[str] service_account_email: Service Account to impersonate for plugin workload identity federation.
+               Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
@@ -48,6 +60,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "description", description)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -56,6 +74,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if service_account_email is not None:
+            pulumi.set(__self__, "service_account_email", service_account_email)
 
     @property
     @pulumi.getter
@@ -106,6 +126,45 @@ class SecretBackendArgs:
     @disable_remount.setter
     def disable_remount(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value for plugin identity
+        tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+        Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin identity
+        tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
 
     @property
     @pulumi.getter
@@ -160,26 +219,51 @@ class SecretBackendArgs:
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
 
+    @property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service Account to impersonate for plugin workload identity federation.
+        Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "service_account_email")
+
+    @service_account_email.setter
+    def service_account_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_email", value)
+
 
 @pulumi.input_type
 class _SecretBackendState:
     def __init__(__self__, *,
+                 accessor: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 path: Optional[pulumi.Input[str]] = None):
+                 path: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
+        :param pulumi.Input[str] accessor: The accessor of the created GCP mount.
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity
+               tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+               Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin identity
+               tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
@@ -189,7 +273,11 @@ class _SecretBackendState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
+        :param pulumi.Input[str] service_account_email: Service Account to impersonate for plugin workload identity federation.
+               Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
+        if accessor is not None:
+            pulumi.set(__self__, "accessor", accessor)
         if credentials is not None:
             pulumi.set(__self__, "credentials", credentials)
         if default_lease_ttl_seconds is not None:
@@ -198,6 +286,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "description", description)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -206,6 +300,20 @@ class _SecretBackendState:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if service_account_email is not None:
+            pulumi.set(__self__, "service_account_email", service_account_email)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> Optional[pulumi.Input[str]]:
+        """
+        The accessor of the created GCP mount.
+        """
+        return pulumi.get(self, "accessor")
+
+    @accessor.setter
+    def accessor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accessor", value)
 
     @property
     @pulumi.getter
@@ -256,6 +364,45 @@ class _SecretBackendState:
     @disable_remount.setter
     def disable_remount(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value for plugin identity
+        tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+        Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin identity
+        tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
 
     @property
     @pulumi.getter
@@ -309,6 +456,19 @@ class _SecretBackendState:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service Account to impersonate for plugin workload identity federation.
+        Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "service_account_email")
+
+    @service_account_email.setter
+    def service_account_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_email", value)
 
 
 class SecretBackend(pulumi.CustomResource):
@@ -320,13 +480,29 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
+
+        You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.SecretBackend("gcp",
+            identity_token_key="example-key",
+            identity_token_ttl=1800,
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            service_account_email="<SERVICE_ACCOUNT_EMAIL>")
+        ```
 
         ```python
         import pulumi
@@ -344,6 +520,12 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity
+               tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+               Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin identity
+               tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
@@ -353,6 +535,8 @@ class SecretBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
+        :param pulumi.Input[str] service_account_email: Service Account to impersonate for plugin workload identity federation.
+               Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         ...
     @overload
@@ -362,6 +546,18 @@ class SecretBackend(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        gcp = vault.gcp.SecretBackend("gcp",
+            identity_token_key="example-key",
+            identity_token_ttl=1800,
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            service_account_email="<SERVICE_ACCOUNT_EMAIL>")
+        ```
 
         ```python
         import pulumi
@@ -390,10 +586,14 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -407,10 +607,15 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
+            __props__.__dict__["identity_token_audience"] = identity_token_audience
+            __props__.__dict__["identity_token_key"] = identity_token_key
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["path"] = path
+            __props__.__dict__["service_account_email"] = service_account_email
+            __props__.__dict__["accessor"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["credentials"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackend, __self__).__init__(
@@ -423,14 +628,19 @@ class SecretBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: Optional[pulumi.Input[str]] = None,
             credentials: Optional[pulumi.Input[str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
+            identity_token_audience: Optional[pulumi.Input[str]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
+            identity_token_ttl: Optional[pulumi.Input[int]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            path: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
+            path: Optional[pulumi.Input[str]] = None,
+            service_account_email: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -438,12 +648,19 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] accessor: The accessor of the created GCP mount.
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend. Defaults to '0'.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity
+               tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+               Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin identity
+               tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated tokens.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: The maximum TTL that can be requested
                for credentials issued by this backend. Defaults to '0'.
@@ -453,20 +670,35 @@ class SecretBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `gcp`.
+        :param pulumi.Input[str] service_account_email: Service Account to impersonate for plugin workload identity federation.
+               Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _SecretBackendState.__new__(_SecretBackendState)
 
+        __props__.__dict__["accessor"] = accessor
         __props__.__dict__["credentials"] = credentials
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
+        __props__.__dict__["identity_token_audience"] = identity_token_audience
+        __props__.__dict__["identity_token_key"] = identity_token_key
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
+        __props__.__dict__["service_account_email"] = service_account_email
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def accessor(self) -> pulumi.Output[str]:
+        """
+        The accessor of the created GCP mount.
+        """
+        return pulumi.get(self, "accessor")
 
     @property
     @pulumi.getter
@@ -501,6 +733,33 @@ class SecretBackend(pulumi.CustomResource):
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         """
         return pulumi.get(self, "disable_remount")
+
+    @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        The audience claim value for plugin identity
+        tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+        Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing plugin identity
+        tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        The TTL of generated tokens.
+        """
+        return pulumi.get(self, "identity_token_ttl")
 
     @property
     @pulumi.getter
@@ -538,4 +797,13 @@ class SecretBackend(pulumi.CustomResource):
         not begin or end with a `/`. Defaults to `gcp`.
         """
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> pulumi.Output[Optional[str]]:
+        """
+        Service Account to impersonate for plugin workload identity federation.
+        Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "service_account_email")
 

@@ -53,9 +53,8 @@ class AuthBackendRoleArgs:
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-               Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -71,7 +70,7 @@ class AuthBackendRoleArgs:
                Only applicable with "jwt" roles.
         :param pulumi.Input[bool] disable_bound_claims_parsing: Disable bound claim value parsing. Useful when values contain commas.
         :param pulumi.Input[int] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
                the set of groups to which the user belongs; this will be used as the names
@@ -84,7 +83,7 @@ class AuthBackendRoleArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
                The standard scope "openid" is automatically included and need not be specified.
@@ -219,9 +218,8 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-        or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-        Any match is sufficient.
+        (Required for roles of type `jwt`, optional for roles of
+        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         """
         return pulumi.get(self, "bound_audiences")
 
@@ -314,7 +312,7 @@ class AuthBackendRoleArgs:
     def expiration_leeway(self) -> Optional[pulumi.Input[int]]:
         """
         The amount of leeway to add to expiration (`exp`) claims to account for
-        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         Only applicable with "jwt" roles.
         """
         return pulumi.get(self, "expiration_leeway")
@@ -371,7 +369,7 @@ class AuthBackendRoleArgs:
     def not_before_leeway(self) -> Optional[pulumi.Input[int]]:
         """
         The amount of leeway to add to not before (`nbf`) claims to account for
-        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         Only applicable with "jwt" roles.
         """
         return pulumi.get(self, "not_before_leeway")
@@ -581,9 +579,8 @@ class _AuthBackendRoleState:
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-               Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -599,7 +596,7 @@ class _AuthBackendRoleState:
                Only applicable with "jwt" roles.
         :param pulumi.Input[bool] disable_bound_claims_parsing: Disable bound claim value parsing. Useful when values contain commas.
         :param pulumi.Input[int] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
                the set of groups to which the user belongs; this will be used as the names
@@ -612,7 +609,7 @@ class _AuthBackendRoleState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
                The standard scope "openid" is automatically included and need not be specified.
@@ -727,9 +724,8 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-        or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-        Any match is sufficient.
+        (Required for roles of type `jwt`, optional for roles of
+        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         """
         return pulumi.get(self, "bound_audiences")
 
@@ -822,7 +818,7 @@ class _AuthBackendRoleState:
     def expiration_leeway(self) -> Optional[pulumi.Input[int]]:
         """
         The amount of leeway to add to expiration (`exp`) claims to account for
-        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         Only applicable with "jwt" roles.
         """
         return pulumi.get(self, "expiration_leeway")
@@ -879,7 +875,7 @@ class _AuthBackendRoleState:
     def not_before_leeway(self) -> Optional[pulumi.Input[int]]:
         """
         The amount of leeway to add to not before (`nbf`) claims to account for
-        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         Only applicable with "jwt" roles.
         """
         return pulumi.get(self, "not_before_leeway")
@@ -1178,9 +1174,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-               Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -1196,7 +1191,7 @@ class AuthBackendRole(pulumi.CustomResource):
                Only applicable with "jwt" roles.
         :param pulumi.Input[bool] disable_bound_claims_parsing: Disable bound claim value parsing. Useful when values contain commas.
         :param pulumi.Input[int] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
                the set of groups to which the user belongs; this will be used as the names
@@ -1209,7 +1204,7 @@ class AuthBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
                The standard scope "openid" is automatically included and need not be specified.
@@ -1437,9 +1432,8 @@ class AuthBackendRole(pulumi.CustomResource):
                Required for OIDC roles
         :param pulumi.Input[str] backend: The unique name of the auth backend to configure.
                Defaults to `jwt`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-               or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-               Any match is sufficient.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
+               type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
@@ -1455,7 +1449,7 @@ class AuthBackendRole(pulumi.CustomResource):
                Only applicable with "jwt" roles.
         :param pulumi.Input[bool] disable_bound_claims_parsing: Disable bound claim value parsing. Useful when values contain commas.
         :param pulumi.Input[int] expiration_leeway: The amount of leeway to add to expiration (`exp`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[str] groups_claim: The claim to use to uniquely identify
                the set of groups to which the user belongs; this will be used as the names
@@ -1468,7 +1462,7 @@ class AuthBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[int] not_before_leeway: The amount of leeway to add to not before (`nbf`) claims to account for
-               clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+               clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
                Only applicable with "jwt" roles.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_scopes: If set, a list of OIDC scopes to be used with an OIDC role.
                The standard scope "openid" is automatically included and need not be specified.
@@ -1551,9 +1545,8 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        (For "jwt" roles, at least one of `bound_audiences`, `bound_subject`, `bound_claims`
-        or `token_bound_cidrs` is required. Optional for "oidc" roles.) List of `aud` claims to match against.
-        Any match is sufficient.
+        (Required for roles of type `jwt`, optional for roles of
+        type `oidc`) List of `aud` claims to match against. Any match is sufficient.
         """
         return pulumi.get(self, "bound_audiences")
 
@@ -1618,7 +1611,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def expiration_leeway(self) -> pulumi.Output[Optional[int]]:
         """
         The amount of leeway to add to expiration (`exp`) claims to account for
-        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         Only applicable with "jwt" roles.
         """
         return pulumi.get(self, "expiration_leeway")
@@ -1659,7 +1652,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def not_before_leeway(self) -> pulumi.Output[Optional[int]]:
         """
         The amount of leeway to add to not before (`nbf`) claims to account for
-        clock skew, in seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
+        clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
         Only applicable with "jwt" roles.
         """
         return pulumi.get(self, "not_before_leeway")

@@ -13,6 +13,34 @@ import (
 
 // ## Example Usage
 //
+// You can setup the GCP secret backend with Workload Identity Federation (WIF) for a secret-less configuration:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//				IdentityTokenKey:      pulumi.String("example-key"),
+//				IdentityTokenTtl:      pulumi.Int(1800),
+//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
+//				ServiceAccountEmail:   pulumi.String("<SERVICE_ACCOUNT_EMAIL>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ```go
 // package main
 //
@@ -46,6 +74,8 @@ import (
 type SecretBackend struct {
 	pulumi.CustomResourceState
 
+	// The accessor of the created GCP mount.
+	Accessor pulumi.StringOutput `pulumi:"accessor"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// The default TTL for credentials
@@ -56,6 +86,15 @@ type SecretBackend struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrOutput `pulumi:"identityTokenTtl"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The maximum TTL that can be requested
@@ -69,6 +108,9 @@ type SecretBackend struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail pulumi.StringPtrOutput `pulumi:"serviceAccountEmail"`
 }
 
 // NewSecretBackend registers a new resource with the given unique name, arguments, and options.
@@ -108,6 +150,8 @@ func GetSecretBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretBackend resources.
 type secretBackendState struct {
+	// The accessor of the created GCP mount.
+	Accessor *string `pulumi:"accessor"`
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials *string `pulumi:"credentials"`
 	// The default TTL for credentials
@@ -118,6 +162,15 @@ type secretBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
@@ -131,9 +184,14 @@ type secretBackendState struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path *string `pulumi:"path"`
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 }
 
 type SecretBackendState struct {
+	// The accessor of the created GCP mount.
+	Accessor pulumi.StringPtrInput
 	// JSON-encoded credentials to use to connect to GCP
 	Credentials pulumi.StringPtrInput
 	// The default TTL for credentials
@@ -144,6 +202,15 @@ type SecretBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
@@ -157,6 +224,9 @@ type SecretBackendState struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrInput
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail pulumi.StringPtrInput
 }
 
 func (SecretBackendState) ElementType() reflect.Type {
@@ -174,6 +244,15 @@ type secretBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
+	// The TTL of generated tokens.
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
 	// The maximum TTL that can be requested
@@ -187,6 +266,9 @@ type secretBackendArgs struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path *string `pulumi:"path"`
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
 }
 
 // The set of arguments for constructing a SecretBackend resource.
@@ -201,6 +283,15 @@ type SecretBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The audience claim value for plugin identity
+	// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+	// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The key to use for signing plugin identity
+	// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	IdentityTokenKey pulumi.StringPtrInput
+	// The TTL of generated tokens.
+	IdentityTokenTtl pulumi.IntPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
 	// The maximum TTL that can be requested
@@ -214,6 +305,9 @@ type SecretBackendArgs struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrInput
+	// Service Account to impersonate for plugin workload identity federation.
+	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+	ServiceAccountEmail pulumi.StringPtrInput
 }
 
 func (SecretBackendArgs) ElementType() reflect.Type {
@@ -303,6 +397,11 @@ func (o SecretBackendOutput) ToSecretBackendOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The accessor of the created GCP mount.
+func (o SecretBackendOutput) Accessor() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringOutput { return v.Accessor }).(pulumi.StringOutput)
+}
+
 // JSON-encoded credentials to use to connect to GCP
 func (o SecretBackendOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
@@ -323,6 +422,24 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
+// The audience claim value for plugin identity
+// tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
+// Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
+}
+
+// The key to use for signing plugin identity
+// tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
+}
+
+// The TTL of generated tokens.
+func (o SecretBackendOutput) IdentityTokenTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.IdentityTokenTtl }).(pulumi.IntPtrOutput)
 }
 
 // Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -348,6 +465,12 @@ func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 // not begin or end with a `/`. Defaults to `gcp`.
 func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// Service Account to impersonate for plugin workload identity federation.
+// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) ServiceAccountEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.ServiceAccountEmail }).(pulumi.StringPtrOutput)
 }
 
 type SecretBackendArrayOutput struct{ *pulumi.OutputState }

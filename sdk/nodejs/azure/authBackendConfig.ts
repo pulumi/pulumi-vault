@@ -7,6 +7,24 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const example = new vault.AuthBackend("example", {
+ *     type: "azure",
+ *     identityTokenKey: "example-key",
+ * });
+ * const exampleAuthBackendConfig = new vault.azure.AuthBackendConfig("example", {
+ *     backend: example.path,
+ *     tenantId: "11111111-2222-3333-4444-555555555555",
+ *     clientId: "11111111-2222-3333-4444-555555555555",
+ *     identityTokenAudience: "<TOKEN_AUDIENCE>",
+ *     identityTokenTtl: "<TOKEN_TTL>",
+ * });
+ * ```
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -79,6 +97,15 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     public readonly environment!: pulumi.Output<string | undefined>;
     /**
+     * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
+    /**
+     * The TTL of generated identity tokens in seconds.
+     */
+    public readonly identityTokenTtl!: pulumi.Output<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -113,6 +140,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["environment"] = state ? state.environment : undefined;
+            resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
+            resourceInputs["identityTokenTtl"] = state ? state.identityTokenTtl : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["resource"] = state ? state.resource : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
@@ -128,6 +157,8 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["clientId"] = args?.clientId ? pulumi.secret(args.clientId) : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["environment"] = args ? args.environment : undefined;
+            resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
+            resourceInputs["identityTokenTtl"] = args ? args.identityTokenTtl : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["resource"] = args ? args.resource : undefined;
             resourceInputs["tenantId"] = args?.tenantId ? pulumi.secret(args.tenantId) : undefined;
@@ -164,6 +195,15 @@ export interface AuthBackendConfigState {
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
     environment?: pulumi.Input<string>;
+    /**
+     * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The TTL of generated identity tokens in seconds.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -208,6 +248,15 @@ export interface AuthBackendConfigArgs {
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
     environment?: pulumi.Input<string>;
+    /**
+     * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     */
+    identityTokenAudience?: pulumi.Input<string>;
+    /**
+     * The TTL of generated identity tokens in seconds.
+     */
+    identityTokenTtl?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

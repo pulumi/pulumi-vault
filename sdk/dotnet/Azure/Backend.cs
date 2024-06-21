@@ -14,6 +14,27 @@ namespace Pulumi.Vault.Azure
     /// 
     /// ### *Vault-1.9 And Above*
     /// 
+    /// You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var azure = new Vault.Azure.Backend("azure", new()
+    ///     {
+    ///         SubscriptionId = "11111111-2222-3333-4444-111111111111",
+    ///         TenantId = "11111111-2222-3333-4444-222222222222",
+    ///         ClientId = "11111111-2222-3333-4444-333333333333",
+    ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
+    ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -91,6 +112,27 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("environment")]
         public Output<string?> Environment { get; private set; } = null!;
+
+        /// <summary>
+        /// The audience claim value. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("identityTokenAudience")]
+        public Output<string?> IdentityTokenAudience { get; private set; } = null!;
+
+        /// <summary>
+        /// The key to use for signing identity tokens. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("identityTokenTtl")]
+        public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -230,6 +272,27 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Environment { get; set; }
 
         /// <summary>
+        /// The audience claim value. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The key to use for signing identity tokens. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -340,6 +403,27 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
+
+        /// <summary>
+        /// The audience claim value. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenAudience")]
+        public Input<string>? IdentityTokenAudience { get; set; }
+
+        /// <summary>
+        /// The key to use for signing identity tokens. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
+        /// <summary>
+        /// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("identityTokenTtl")]
+        public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

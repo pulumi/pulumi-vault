@@ -6,6 +6,8 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .backend_config_cluster import *
+from .backend_config_est import *
+from .get_backend_config_est import *
 from .get_backend_issuer import *
 from .get_backend_issuers import *
 from .get_backend_key import *

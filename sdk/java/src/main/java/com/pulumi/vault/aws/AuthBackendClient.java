@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.aws.AuthBackendClientArgs;
 import com.pulumi.vault.aws.inputs.AuthBackendClientState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,48 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.aws.AuthBackendClient;
+ * import com.pulumi.vault.aws.AuthBackendClientArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("aws")
+ *             .build());
+ * 
+ *         var exampleAuthBackendClient = new AuthBackendClient("exampleAuthBackendClient", AuthBackendClientArgs.builder()
+ *             .identityTokenAudience("<TOKEN_AUDIENCE>")
+ *             .identityTokenTtl("<TOKEN_TTL>")
+ *             .roleArn("<AWS_ROLE_ARN>")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -73,7 +116,7 @@ import javax.annotation.Nullable;
 public class AuthBackendClient extends com.pulumi.resources.CustomResource {
     /**
      * The AWS access key that Vault should use for the
-     * auth backend.
+     * auth backend. Mutually exclusive with `identity_token_audience`.
      * 
      */
     @Export(name="accessKey", refs={String.class}, tree="[0]")
@@ -81,7 +124,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The AWS access key that Vault should use for the
-     * auth backend.
+     * auth backend. Mutually exclusive with `identity_token_audience`.
      * 
      */
     public Output<Optional<String>> accessKey() {
@@ -154,6 +197,54 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.iamServerIdHeaderValue);
     }
     /**
+     * The audience claim value. Mutually exclusive with `access_key`.
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*
+     * 
+     */
+    @Export(name="identityTokenAudience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value. Mutually exclusive with `access_key`.
+     * Requires Vault 1.17+. *Available only for Vault Enterprise*
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudience() {
+        return Codegen.optional(this.identityTokenAudience);
+    }
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Output<Integer> identityTokenTtl() {
+        return this.identityTokenTtl;
+    }
+    /**
+     * Number of max retries the client should use for recoverable errors.
+     * The default `-1` falls back to the AWS SDK&#39;s default behavior.
+     * 
+     */
+    @Export(name="maxRetries", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxRetries;
+
+    /**
+     * @return Number of max retries the client should use for recoverable errors.
+     * The default `-1` falls back to the AWS SDK&#39;s default behavior.
+     * 
+     */
+    public Output<Optional<Integer>> maxRetries() {
+        return Codegen.optional(this.maxRetries);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -172,6 +263,22 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Export(name="roleArn", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> roleArn;
+
+    /**
+     * @return Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Output<Optional<String>> roleArn() {
+        return Codegen.optional(this.roleArn);
     }
     /**
      * The AWS secret key that Vault should use for the

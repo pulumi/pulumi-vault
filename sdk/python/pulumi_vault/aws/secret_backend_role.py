@@ -18,6 +18,7 @@ class SecretBackendRoleArgs:
                  credential_type: pulumi.Input[str],
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,8 @@ class SecretBackendRoleArgs:
                corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
                policies from each group in `iam_groups` combined with the `policy_document`
                and `policy_arns` parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] iam_tags: A map of strings representing key/value pairs
+               to be used as tags for any IAM user that is created by this role.
         :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
@@ -81,6 +84,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "default_sts_ttl", default_sts_ttl)
         if iam_groups is not None:
             pulumi.set(__self__, "iam_groups", iam_groups)
+        if iam_tags is not None:
+            pulumi.set(__self__, "iam_tags", iam_tags)
         if max_sts_ttl is not None:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
         if name is not None:
@@ -157,6 +162,19 @@ class SecretBackendRoleArgs:
     @iam_groups.setter
     def iam_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "iam_groups", value)
+
+    @property
+    @pulumi.getter(name="iamTags")
+    def iam_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of strings representing key/value pairs
+        to be used as tags for any IAM user that is created by this role.
+        """
+        return pulumi.get(self, "iam_tags")
+
+    @iam_tags.setter
+    def iam_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "iam_tags", value)
 
     @property
     @pulumi.getter(name="maxStsTtl")
@@ -284,6 +302,7 @@ class _SecretBackendRoleState:
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -310,6 +329,8 @@ class _SecretBackendRoleState:
                corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
                policies from each group in `iam_groups` combined with the `policy_document`
                and `policy_arns` parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] iam_tags: A map of strings representing key/value pairs
+               to be used as tags for any IAM user that is created by this role.
         :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
@@ -349,6 +370,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "default_sts_ttl", default_sts_ttl)
         if iam_groups is not None:
             pulumi.set(__self__, "iam_groups", iam_groups)
+        if iam_tags is not None:
+            pulumi.set(__self__, "iam_tags", iam_tags)
         if max_sts_ttl is not None:
             pulumi.set(__self__, "max_sts_ttl", max_sts_ttl)
         if name is not None:
@@ -425,6 +448,19 @@ class _SecretBackendRoleState:
     @iam_groups.setter
     def iam_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "iam_groups", value)
+
+    @property
+    @pulumi.getter(name="iamTags")
+    def iam_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of strings representing key/value pairs
+        to be used as tags for any IAM user that is created by this role.
+        """
+        return pulumi.get(self, "iam_tags")
+
+    @iam_tags.setter
+    def iam_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "iam_tags", value)
 
     @property
     @pulumi.getter(name="maxStsTtl")
@@ -554,6 +590,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -616,6 +653,8 @@ class SecretBackendRole(pulumi.CustomResource):
                corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
                policies from each group in `iam_groups` combined with the `policy_document`
                and `policy_arns` parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] iam_tags: A map of strings representing key/value pairs
+               to be used as tags for any IAM user that is created by this role.
         :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
@@ -707,6 +746,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -732,6 +772,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["credential_type"] = credential_type
             __props__.__dict__["default_sts_ttl"] = default_sts_ttl
             __props__.__dict__["iam_groups"] = iam_groups
+            __props__.__dict__["iam_tags"] = iam_tags
             __props__.__dict__["max_sts_ttl"] = max_sts_ttl
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -754,6 +795,7 @@ class SecretBackendRole(pulumi.CustomResource):
             credential_type: Optional[pulumi.Input[str]] = None,
             default_sts_ttl: Optional[pulumi.Input[int]] = None,
             iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             max_sts_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -785,6 +827,8 @@ class SecretBackendRole(pulumi.CustomResource):
                corresponding AWS call (sts:AssumeRole or sts:GetFederation) will be the
                policies from each group in `iam_groups` combined with the `policy_document`
                and `policy_arns` parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] iam_tags: A map of strings representing key/value pairs
+               to be used as tags for any IAM user that is created by this role.
         :param pulumi.Input[int] max_sts_ttl: The max allowed TTL in seconds for STS credentials
                (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
                one of `assumed_role` or `federation_token`.
@@ -824,6 +868,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["credential_type"] = credential_type
         __props__.__dict__["default_sts_ttl"] = default_sts_ttl
         __props__.__dict__["iam_groups"] = iam_groups
+        __props__.__dict__["iam_tags"] = iam_tags
         __props__.__dict__["max_sts_ttl"] = max_sts_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -877,6 +922,15 @@ class SecretBackendRole(pulumi.CustomResource):
         and `policy_arns` parameters.
         """
         return pulumi.get(self, "iam_groups")
+
+    @property
+    @pulumi.getter(name="iamTags")
+    def iam_tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A map of strings representing key/value pairs
+        to be used as tags for any IAM user that is created by this role.
+        """
+        return pulumi.get(self, "iam_tags")
 
     @property
     @pulumi.getter(name="maxStsTtl")

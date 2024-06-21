@@ -2843,6 +2843,22 @@ export namespace okta {
 }
 
 export namespace pkiSecret {
+    export interface BackendConfigEstAuthenticators {
+        cert?: {[key: string]: any};
+        userpass?: {[key: string]: any};
+    }
+
+    export interface GetBackendConfigEstAuthenticator {
+        /**
+         * "The accessor and certRole properties for cert auth backends".
+         */
+        cert?: {[key: string]: any};
+        /**
+         * "The accessor property for user pass auth backends".
+         */
+        userpass?: {[key: string]: any};
+    }
+
     export interface SecretBackendRolePolicyIdentifier {
         /**
          * The URL of the CPS for the policy identifier

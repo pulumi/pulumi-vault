@@ -67,6 +67,10 @@ export class QuotaRateLimit extends pulumi.CustomResource {
      */
     public readonly blockInterval!: pulumi.Output<number | undefined>;
     /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     */
+    public readonly inheritable!: pulumi.Output<boolean | undefined>;
+    /**
      * The duration in seconds to enforce rate limiting for.
      */
     public readonly interval!: pulumi.Output<number>;
@@ -114,6 +118,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as QuotaRateLimitState | undefined;
             resourceInputs["blockInterval"] = state ? state.blockInterval : undefined;
+            resourceInputs["inheritable"] = state ? state.inheritable : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -126,6 +131,7 @@ export class QuotaRateLimit extends pulumi.CustomResource {
                 throw new Error("Missing required property 'rate'");
             }
             resourceInputs["blockInterval"] = args ? args.blockInterval : undefined;
+            resourceInputs["inheritable"] = args ? args.inheritable : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -147,6 +153,10 @@ export interface QuotaRateLimitState {
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
     blockInterval?: pulumi.Input<number>;
+    /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     */
+    inheritable?: pulumi.Input<boolean>;
     /**
      * The duration in seconds to enforce rate limiting for.
      */
@@ -191,6 +201,10 @@ export interface QuotaRateLimitArgs {
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
     blockInterval?: pulumi.Input<number>;
+    /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     */
+    inheritable?: pulumi.Input<boolean>;
     /**
      * The duration in seconds to enforce rate limiting for.
      */

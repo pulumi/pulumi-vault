@@ -13,6 +13,40 @@ import (
 
 // ## Example Usage
 //
+// You can setup the AWS auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/aws"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
+//				Type: pulumi.String("aws"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = aws.NewAuthBackendClient(ctx, "example", &aws.AuthBackendClientArgs{
+//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
+//				IdentityTokenTtl:      pulumi.Int("<TOKEN_TTL>"),
+//				RoleArn:               pulumi.String("<AWS_ROLE_ARN>"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ```go
 // package main
 //
@@ -57,7 +91,7 @@ type AuthBackendClient struct {
 	pulumi.CustomResourceState
 
 	// The AWS access key that Vault should use for the
-	// auth backend.
+	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
@@ -72,11 +106,23 @@ type AuthBackendClient struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue pulumi.StringPtrOutput `pulumi:"iamServerIdHeaderValue"`
+	// The audience claim value. Mutually exclusive with `accessKey`.
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrOutput `pulumi:"identityTokenAudience"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
+	// Number of max retries the client should use for recoverable errors.
+	// The default `-1` falls back to the AWS SDK's default behavior.
+	MaxRetries pulumi.IntPtrOutput `pulumi:"maxRetries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	RoleArn pulumi.StringPtrOutput `pulumi:"roleArn"`
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
@@ -136,7 +182,7 @@ func GetAuthBackendClient(ctx *pulumi.Context,
 // Input properties used for looking up and filtering AuthBackendClient resources.
 type authBackendClientState struct {
 	// The AWS access key that Vault should use for the
-	// auth backend.
+	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey *string `pulumi:"accessKey"`
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
@@ -151,11 +197,23 @@ type authBackendClientState struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue *string `pulumi:"iamServerIdHeaderValue"`
+	// The audience claim value. Mutually exclusive with `accessKey`.
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Number of max retries the client should use for recoverable errors.
+	// The default `-1` falls back to the AWS SDK's default behavior.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	RoleArn *string `pulumi:"roleArn"`
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey *string `pulumi:"secretKey"`
@@ -175,7 +233,7 @@ type authBackendClientState struct {
 
 type AuthBackendClientState struct {
 	// The AWS access key that Vault should use for the
-	// auth backend.
+	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey pulumi.StringPtrInput
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
@@ -190,11 +248,23 @@ type AuthBackendClientState struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue pulumi.StringPtrInput
+	// The audience claim value. Mutually exclusive with `accessKey`.
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl pulumi.IntPtrInput
+	// Number of max retries the client should use for recoverable errors.
+	// The default `-1` falls back to the AWS SDK's default behavior.
+	MaxRetries pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	RoleArn pulumi.StringPtrInput
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey pulumi.StringPtrInput
@@ -218,7 +288,7 @@ func (AuthBackendClientState) ElementType() reflect.Type {
 
 type authBackendClientArgs struct {
 	// The AWS access key that Vault should use for the
-	// auth backend.
+	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey *string `pulumi:"accessKey"`
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
@@ -233,11 +303,23 @@ type authBackendClientArgs struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue *string `pulumi:"iamServerIdHeaderValue"`
+	// The audience claim value. Mutually exclusive with `accessKey`.
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*
+	IdentityTokenAudience *string `pulumi:"identityTokenAudience"`
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Number of max retries the client should use for recoverable errors.
+	// The default `-1` falls back to the AWS SDK's default behavior.
+	MaxRetries *int `pulumi:"maxRetries"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	RoleArn *string `pulumi:"roleArn"`
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey *string `pulumi:"secretKey"`
@@ -258,7 +340,7 @@ type authBackendClientArgs struct {
 // The set of arguments for constructing a AuthBackendClient resource.
 type AuthBackendClientArgs struct {
 	// The AWS access key that Vault should use for the
-	// auth backend.
+	// auth backend. Mutually exclusive with `identityTokenAudience`.
 	AccessKey pulumi.StringPtrInput
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
@@ -273,11 +355,23 @@ type AuthBackendClientArgs struct {
 	// `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
 	// that are used in the IAM auth method.
 	IamServerIdHeaderValue pulumi.StringPtrInput
+	// The audience claim value. Mutually exclusive with `accessKey`.
+	// Requires Vault 1.17+. *Available only for Vault Enterprise*
+	IdentityTokenAudience pulumi.StringPtrInput
+	// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	IdentityTokenTtl pulumi.IntPtrInput
+	// Number of max retries the client should use for recoverable errors.
+	// The default `-1` falls back to the AWS SDK's default behavior.
+	MaxRetries pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+	// *Available only for Vault Enterprise*
+	RoleArn pulumi.StringPtrInput
 	// The AWS secret key that Vault should use for the
 	// auth backend.
 	SecretKey pulumi.StringPtrInput
@@ -383,7 +477,7 @@ func (o AuthBackendClientOutput) ToAuthBackendClientOutputWithContext(ctx contex
 }
 
 // The AWS access key that Vault should use for the
-// auth backend.
+// auth backend. Mutually exclusive with `identityTokenAudience`.
 func (o AuthBackendClientOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
 }
@@ -413,12 +507,36 @@ func (o AuthBackendClientOutput) IamServerIdHeaderValue() pulumi.StringPtrOutput
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.IamServerIdHeaderValue }).(pulumi.StringPtrOutput)
 }
 
+// The audience claim value. Mutually exclusive with `accessKey`.
+// Requires Vault 1.17+. *Available only for Vault Enterprise*
+func (o AuthBackendClientOutput) IdentityTokenAudience() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.IdentityTokenAudience }).(pulumi.StringPtrOutput)
+}
+
+// The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendClientOutput) IdentityTokenTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
+}
+
+// Number of max retries the client should use for recoverable errors.
+// The default `-1` falls back to the AWS SDK's default behavior.
+func (o AuthBackendClientOutput) MaxRetries() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.IntPtrOutput { return v.MaxRetries }).(pulumi.IntPtrOutput)
+}
+
 // The namespace to provision the resource in.
 // The value should not contain leading or trailing forward slashes.
 // The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 // *Available only for Vault Enterprise*.
 func (o AuthBackendClientOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
+// *Available only for Vault Enterprise*
+func (o AuthBackendClientOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendClient) pulumi.StringPtrOutput { return v.RoleArn }).(pulumi.StringPtrOutput)
 }
 
 // The AWS secret key that Vault should use for the

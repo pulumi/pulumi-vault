@@ -29,6 +29,8 @@ type AuthBackend struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// The key to use for signing identity tokens.
+	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// The namespace to provision the resource in.
@@ -86,6 +88,8 @@ type authBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The key to use for signing identity tokens.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
 	// The namespace to provision the resource in.
@@ -111,6 +115,8 @@ type AuthBackendState struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The key to use for signing identity tokens.
+	IdentityTokenKey pulumi.StringPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
@@ -138,6 +144,8 @@ type authBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The key to use for signing identity tokens.
+	IdentityTokenKey *string `pulumi:"identityTokenKey"`
 	// Specifies if the auth method is local only.
 	Local *bool `pulumi:"local"`
 	// The namespace to provision the resource in.
@@ -162,6 +170,8 @@ type AuthBackendArgs struct {
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The key to use for signing identity tokens.
+	IdentityTokenKey pulumi.StringPtrInput
 	// Specifies if the auth method is local only.
 	Local pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
@@ -280,6 +290,11 @@ func (o AuthBackendOutput) Description() pulumi.StringPtrOutput {
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o AuthBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
+// The key to use for signing identity tokens.
+func (o AuthBackendOutput) IdentityTokenKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
 }
 
 // Specifies if the auth method is local only.

@@ -141,6 +141,60 @@ namespace Pulumi.Vault.Okta
         public Output<string?> Token { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
+        /// </summary>
+        [Output("tokenBoundCidrs")]
+        public Output<ImmutableArray<string>> TokenBoundCidrs { get; private set; } = null!;
+
+        /// <summary>
+        /// Generated Token's Explicit Maximum TTL in seconds
+        /// </summary>
+        [Output("tokenExplicitMaxTtl")]
+        public Output<int?> TokenExplicitMaxTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum lifetime of the generated token
+        /// </summary>
+        [Output("tokenMaxTtl")]
+        public Output<int?> TokenMaxTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// If true, the 'default' policy will not automatically be added to generated tokens
+        /// </summary>
+        [Output("tokenNoDefaultPolicy")]
+        public Output<bool?> TokenNoDefaultPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum number of times a token may be used, a value of zero means unlimited
+        /// </summary>
+        [Output("tokenNumUses")]
+        public Output<int?> TokenNumUses { get; private set; } = null!;
+
+        /// <summary>
+        /// Generated Token's Period
+        /// </summary>
+        [Output("tokenPeriod")]
+        public Output<int?> TokenPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// Generated Token's Policies
+        /// </summary>
+        [Output("tokenPolicies")]
+        public Output<ImmutableArray<string>> TokenPolicies { get; private set; } = null!;
+
+        /// <summary>
+        /// The initial ttl of the token to generate in seconds
+        /// </summary>
+        [Output("tokenTtl")]
+        public Output<int?> TokenTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of token to generate, service or batch
+        /// </summary>
+        [Output("tokenType")]
+        public Output<string?> TokenType { get; private set; } = null!;
+
+        /// <summary>
         /// Duration after which authentication will be expired.
         /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         /// </summary>
@@ -287,6 +341,72 @@ namespace Pulumi.Vault.Okta
             }
         }
 
+        [Input("tokenBoundCidrs")]
+        private InputList<string>? _tokenBoundCidrs;
+
+        /// <summary>
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
+        /// </summary>
+        public InputList<string> TokenBoundCidrs
+        {
+            get => _tokenBoundCidrs ?? (_tokenBoundCidrs = new InputList<string>());
+            set => _tokenBoundCidrs = value;
+        }
+
+        /// <summary>
+        /// Generated Token's Explicit Maximum TTL in seconds
+        /// </summary>
+        [Input("tokenExplicitMaxTtl")]
+        public Input<int>? TokenExplicitMaxTtl { get; set; }
+
+        /// <summary>
+        /// The maximum lifetime of the generated token
+        /// </summary>
+        [Input("tokenMaxTtl")]
+        public Input<int>? TokenMaxTtl { get; set; }
+
+        /// <summary>
+        /// If true, the 'default' policy will not automatically be added to generated tokens
+        /// </summary>
+        [Input("tokenNoDefaultPolicy")]
+        public Input<bool>? TokenNoDefaultPolicy { get; set; }
+
+        /// <summary>
+        /// The maximum number of times a token may be used, a value of zero means unlimited
+        /// </summary>
+        [Input("tokenNumUses")]
+        public Input<int>? TokenNumUses { get; set; }
+
+        /// <summary>
+        /// Generated Token's Period
+        /// </summary>
+        [Input("tokenPeriod")]
+        public Input<int>? TokenPeriod { get; set; }
+
+        [Input("tokenPolicies")]
+        private InputList<string>? _tokenPolicies;
+
+        /// <summary>
+        /// Generated Token's Policies
+        /// </summary>
+        public InputList<string> TokenPolicies
+        {
+            get => _tokenPolicies ?? (_tokenPolicies = new InputList<string>());
+            set => _tokenPolicies = value;
+        }
+
+        /// <summary>
+        /// The initial ttl of the token to generate in seconds
+        /// </summary>
+        [Input("tokenTtl")]
+        public Input<int>? TokenTtl { get; set; }
+
+        /// <summary>
+        /// The type of token to generate, service or batch
+        /// </summary>
+        [Input("tokenType")]
+        public Input<string>? TokenType { get; set; }
+
         /// <summary>
         /// Duration after which authentication will be expired.
         /// [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
@@ -403,6 +523,72 @@ namespace Pulumi.Vault.Okta
                 _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("tokenBoundCidrs")]
+        private InputList<string>? _tokenBoundCidrs;
+
+        /// <summary>
+        /// Specifies the blocks of IP addresses which are allowed to use the generated token
+        /// </summary>
+        public InputList<string> TokenBoundCidrs
+        {
+            get => _tokenBoundCidrs ?? (_tokenBoundCidrs = new InputList<string>());
+            set => _tokenBoundCidrs = value;
+        }
+
+        /// <summary>
+        /// Generated Token's Explicit Maximum TTL in seconds
+        /// </summary>
+        [Input("tokenExplicitMaxTtl")]
+        public Input<int>? TokenExplicitMaxTtl { get; set; }
+
+        /// <summary>
+        /// The maximum lifetime of the generated token
+        /// </summary>
+        [Input("tokenMaxTtl")]
+        public Input<int>? TokenMaxTtl { get; set; }
+
+        /// <summary>
+        /// If true, the 'default' policy will not automatically be added to generated tokens
+        /// </summary>
+        [Input("tokenNoDefaultPolicy")]
+        public Input<bool>? TokenNoDefaultPolicy { get; set; }
+
+        /// <summary>
+        /// The maximum number of times a token may be used, a value of zero means unlimited
+        /// </summary>
+        [Input("tokenNumUses")]
+        public Input<int>? TokenNumUses { get; set; }
+
+        /// <summary>
+        /// Generated Token's Period
+        /// </summary>
+        [Input("tokenPeriod")]
+        public Input<int>? TokenPeriod { get; set; }
+
+        [Input("tokenPolicies")]
+        private InputList<string>? _tokenPolicies;
+
+        /// <summary>
+        /// Generated Token's Policies
+        /// </summary>
+        public InputList<string> TokenPolicies
+        {
+            get => _tokenPolicies ?? (_tokenPolicies = new InputList<string>());
+            set => _tokenPolicies = value;
+        }
+
+        /// <summary>
+        /// The initial ttl of the token to generate in seconds
+        /// </summary>
+        [Input("tokenTtl")]
+        public Input<int>? TokenTtl { get; set; }
+
+        /// <summary>
+        /// The type of token to generate, service or batch
+        /// </summary>
+        [Input("tokenType")]
+        public Input<string>? TokenType { get; set; }
 
         /// <summary>
         /// Duration after which authentication will be expired.

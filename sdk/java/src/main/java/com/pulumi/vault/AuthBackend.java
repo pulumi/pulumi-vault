@@ -73,6 +73,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.disableRemount);
     }
     /**
+     * The key to use for signing identity tokens.
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing identity tokens.
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
      * Specifies if the auth method is local only.
      * 
      */

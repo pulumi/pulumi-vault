@@ -108,6 +108,12 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<string>> AllowedManagedKeys { get; private set; } = null!;
 
         /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("allowedResponseHeaders")]
+        public Output<ImmutableArray<string>> AllowedResponseHeaders { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         /// </summary>
         [Output("auditNonHmacRequestKeys")]
@@ -138,6 +144,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("defaultLeaseTtlSeconds")]
         public Output<int> DefaultLeaseTtlSeconds { get; private set; } = null!;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("delegatedAuthAccessors")]
+        public Output<ImmutableArray<string>> DelegatedAuthAccessors { get; private set; } = null!;
 
         /// <summary>
         /// Human-friendly description of the mount
@@ -172,11 +184,23 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<Outputs.SecretsMountHana>> Hanas { get; private set; } = null!;
 
         /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Output("identityTokenKey")]
+        public Output<string?> IdentityTokenKey { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for InfluxDB connections.  
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("influxdbs")]
         public Output<ImmutableArray<Outputs.SecretsMountInfluxdb>> Influxdbs { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Output("listingVisibility")]
+        public Output<string?> ListingVisibility { get; private set; } = null!;
 
         /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -259,10 +283,22 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<Outputs.SecretsMountOracle>> Oracles { get; private set; } = null!;
 
         /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        [Output("passthroughRequestHeaders")]
+        public Output<ImmutableArray<string>> PassthroughRequestHeaders { get; private set; } = null!;
+
+        /// <summary>
         /// Where the secret backend will be mounted
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Output("pluginVersion")]
+        public Output<string?> PluginVersion { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for PostgreSQL connections.  
@@ -365,6 +401,18 @@ namespace Pulumi.Vault.Database
             set => _allowedManagedKeys = value;
         }
 
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
 
@@ -421,6 +469,18 @@ namespace Pulumi.Vault.Database
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
+
         /// <summary>
         /// Human-friendly description of the mount
         /// </summary>
@@ -459,6 +519,12 @@ namespace Pulumi.Vault.Database
             set => _hanas = value;
         }
 
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
         [Input("influxdbs")]
         private InputList<Inputs.SecretsMountInfluxdbArgs>? _influxdbs;
 
@@ -471,6 +537,12 @@ namespace Pulumi.Vault.Database
             get => _influxdbs ?? (_influxdbs = new InputList<Inputs.SecretsMountInfluxdbArgs>());
             set => _influxdbs = value;
         }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -606,11 +678,29 @@ namespace Pulumi.Vault.Database
             set => _oracles = value;
         }
 
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
         /// <summary>
         /// Where the secret backend will be mounted
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         [Input("postgresqls")]
         private InputList<Inputs.SecretsMountPostgresqlArgs>? _postgresqls;
@@ -711,6 +801,18 @@ namespace Pulumi.Vault.Database
             set => _allowedManagedKeys = value;
         }
 
+        [Input("allowedResponseHeaders")]
+        private InputList<string>? _allowedResponseHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> AllowedResponseHeaders
+        {
+            get => _allowedResponseHeaders ?? (_allowedResponseHeaders = new InputList<string>());
+            set => _allowedResponseHeaders = value;
+        }
+
         [Input("auditNonHmacRequestKeys")]
         private InputList<string>? _auditNonHmacRequestKeys;
 
@@ -767,6 +869,18 @@ namespace Pulumi.Vault.Database
         [Input("defaultLeaseTtlSeconds")]
         public Input<int>? DefaultLeaseTtlSeconds { get; set; }
 
+        [Input("delegatedAuthAccessors")]
+        private InputList<string>? _delegatedAuthAccessors;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> DelegatedAuthAccessors
+        {
+            get => _delegatedAuthAccessors ?? (_delegatedAuthAccessors = new InputList<string>());
+            set => _delegatedAuthAccessors = value;
+        }
+
         /// <summary>
         /// Human-friendly description of the mount
         /// </summary>
@@ -811,6 +925,12 @@ namespace Pulumi.Vault.Database
             set => _hanas = value;
         }
 
+        /// <summary>
+        /// The key to use for signing plugin workload identity tokens
+        /// </summary>
+        [Input("identityTokenKey")]
+        public Input<string>? IdentityTokenKey { get; set; }
+
         [Input("influxdbs")]
         private InputList<Inputs.SecretsMountInfluxdbGetArgs>? _influxdbs;
 
@@ -823,6 +943,12 @@ namespace Pulumi.Vault.Database
             get => _influxdbs ?? (_influxdbs = new InputList<Inputs.SecretsMountInfluxdbGetArgs>());
             set => _influxdbs = value;
         }
+
+        /// <summary>
+        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// </summary>
+        [Input("listingVisibility")]
+        public Input<string>? ListingVisibility { get; set; }
 
         /// <summary>
         /// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -958,11 +1084,29 @@ namespace Pulumi.Vault.Database
             set => _oracles = value;
         }
 
+        [Input("passthroughRequestHeaders")]
+        private InputList<string>? _passthroughRequestHeaders;
+
+        /// <summary>
+        /// List of headers to allow and pass from the request to the plugin
+        /// </summary>
+        public InputList<string> PassthroughRequestHeaders
+        {
+            get => _passthroughRequestHeaders ?? (_passthroughRequestHeaders = new InputList<string>());
+            set => _passthroughRequestHeaders = value;
+        }
+
         /// <summary>
         /// Where the secret backend will be mounted
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        /// </summary>
+        [Input("pluginVersion")]
+        public Input<string>? PluginVersion { get; set; }
 
         [Input("postgresqls")]
         private InputList<Inputs.SecretsMountPostgresqlGetArgs>? _postgresqls;

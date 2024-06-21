@@ -13,6 +13,7 @@ import com.pulumi.vault.okta.inputs.AuthBackendState;
 import com.pulumi.vault.okta.outputs.AuthBackendGroup;
 import com.pulumi.vault.okta.outputs.AuthBackendUser;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -174,7 +175,11 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * Maximum duration after which authentication will be expired
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      * 
+     * @deprecated
+     * Deprecated. Please use `token_max_ttl` instead.
+     * 
      */
+    @Deprecated /* Deprecated. Please use `token_max_ttl` instead. */
     @Export(name="maxTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> maxTtl;
 
@@ -251,10 +256,140 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.token);
     }
     /**
+     * Specifies the blocks of IP addresses which are allowed to use the generated token
+     * 
+     */
+    @Export(name="tokenBoundCidrs", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tokenBoundCidrs;
+
+    /**
+     * @return Specifies the blocks of IP addresses which are allowed to use the generated token
+     * 
+     */
+    public Output<Optional<List<String>>> tokenBoundCidrs() {
+        return Codegen.optional(this.tokenBoundCidrs);
+    }
+    /**
+     * Generated Token&#39;s Explicit Maximum TTL in seconds
+     * 
+     */
+    @Export(name="tokenExplicitMaxTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenExplicitMaxTtl;
+
+    /**
+     * @return Generated Token&#39;s Explicit Maximum TTL in seconds
+     * 
+     */
+    public Output<Optional<Integer>> tokenExplicitMaxTtl() {
+        return Codegen.optional(this.tokenExplicitMaxTtl);
+    }
+    /**
+     * The maximum lifetime of the generated token
+     * 
+     */
+    @Export(name="tokenMaxTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenMaxTtl;
+
+    /**
+     * @return The maximum lifetime of the generated token
+     * 
+     */
+    public Output<Optional<Integer>> tokenMaxTtl() {
+        return Codegen.optional(this.tokenMaxTtl);
+    }
+    /**
+     * If true, the &#39;default&#39; policy will not automatically be added to generated tokens
+     * 
+     */
+    @Export(name="tokenNoDefaultPolicy", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> tokenNoDefaultPolicy;
+
+    /**
+     * @return If true, the &#39;default&#39; policy will not automatically be added to generated tokens
+     * 
+     */
+    public Output<Optional<Boolean>> tokenNoDefaultPolicy() {
+        return Codegen.optional(this.tokenNoDefaultPolicy);
+    }
+    /**
+     * The maximum number of times a token may be used, a value of zero means unlimited
+     * 
+     */
+    @Export(name="tokenNumUses", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenNumUses;
+
+    /**
+     * @return The maximum number of times a token may be used, a value of zero means unlimited
+     * 
+     */
+    public Output<Optional<Integer>> tokenNumUses() {
+        return Codegen.optional(this.tokenNumUses);
+    }
+    /**
+     * Generated Token&#39;s Period
+     * 
+     */
+    @Export(name="tokenPeriod", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenPeriod;
+
+    /**
+     * @return Generated Token&#39;s Period
+     * 
+     */
+    public Output<Optional<Integer>> tokenPeriod() {
+        return Codegen.optional(this.tokenPeriod);
+    }
+    /**
+     * Generated Token&#39;s Policies
+     * 
+     */
+    @Export(name="tokenPolicies", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> tokenPolicies;
+
+    /**
+     * @return Generated Token&#39;s Policies
+     * 
+     */
+    public Output<Optional<List<String>>> tokenPolicies() {
+        return Codegen.optional(this.tokenPolicies);
+    }
+    /**
+     * The initial ttl of the token to generate in seconds
+     * 
+     */
+    @Export(name="tokenTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> tokenTtl;
+
+    /**
+     * @return The initial ttl of the token to generate in seconds
+     * 
+     */
+    public Output<Optional<Integer>> tokenTtl() {
+        return Codegen.optional(this.tokenTtl);
+    }
+    /**
+     * The type of token to generate, service or batch
+     * 
+     */
+    @Export(name="tokenType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenType;
+
+    /**
+     * @return The type of token to generate, service or batch
+     * 
+     */
+    public Output<Optional<String>> tokenType() {
+        return Codegen.optional(this.tokenType);
+    }
+    /**
      * Duration after which authentication will be expired.
      * [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
      * 
+     * @deprecated
+     * Deprecated. Please use `token_ttl` instead.
+     * 
      */
+    @Deprecated /* Deprecated. Please use `token_ttl` instead. */
     @Export(name="ttl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> ttl;
 

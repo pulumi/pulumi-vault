@@ -17,6 +17,7 @@ class SecretBackendArgs:
                  binddn: pulumi.Input[str],
                  bindpass: pulumi.Input[str],
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
@@ -24,16 +25,21 @@ class SecretBackendArgs:
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  connection_timeout: Optional[pulumi.Input[int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -48,6 +54,7 @@ class SecretBackendArgs:
         :param pulumi.Input[str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[str] bindpass: Password to use along with binddn when performing user search.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[str] certificate: CA certificate to use when verifying LDAP server certificate, must be
@@ -57,11 +64,14 @@ class SecretBackendArgs:
         :param pulumi.Input[int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -70,9 +80,11 @@ class SecretBackendArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `ldap`.
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
@@ -90,6 +102,8 @@ class SecretBackendArgs:
         pulumi.set(__self__, "bindpass", bindpass)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -104,14 +118,20 @@ class SecretBackendArgs:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -120,10 +140,14 @@ class SecretBackendArgs:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if request_timeout is not None:
             pulumi.set(__self__, "request_timeout", request_timeout)
         if schema is not None:
@@ -178,6 +202,18 @@ class SecretBackendArgs:
     @allowed_managed_keys.setter
     def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -266,6 +302,18 @@ class SecretBackendArgs:
         pulumi.set(self, "default_lease_ttl_seconds", value)
 
     @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -302,6 +350,18 @@ class SecretBackendArgs:
         pulumi.set(self, "external_entropy_access", value)
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -313,6 +373,18 @@ class SecretBackendArgs:
     @insecure_tls.setter
     def insecure_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "insecure_tls", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
 
     @property
     @pulumi.getter
@@ -367,6 +439,18 @@ class SecretBackendArgs:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -390,6 +474,18 @@ class SecretBackendArgs:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @property
     @pulumi.getter(name="requestTimeout")
@@ -508,6 +604,7 @@ class _SecretBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  binddn: Optional[pulumi.Input[str]] = None,
@@ -517,16 +614,21 @@ class _SecretBackendState:
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  connection_timeout: Optional[pulumi.Input[int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -540,6 +642,7 @@ class _SecretBackendState:
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[str] binddn: Distinguished name of object to bind when performing user and group search.
@@ -551,11 +654,14 @@ class _SecretBackendState:
         :param pulumi.Input[int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -564,9 +670,11 @@ class _SecretBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `ldap`.
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
@@ -584,6 +692,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "accessor", accessor)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
@@ -602,14 +712,20 @@ class _SecretBackendState:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -618,10 +734,14 @@ class _SecretBackendState:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if request_timeout is not None:
             pulumi.set(__self__, "request_timeout", request_timeout)
         if schema is not None:
@@ -664,6 +784,18 @@ class _SecretBackendState:
     @allowed_managed_keys.setter
     def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -776,6 +908,18 @@ class _SecretBackendState:
         pulumi.set(self, "default_lease_ttl_seconds", value)
 
     @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -812,6 +956,18 @@ class _SecretBackendState:
         pulumi.set(self, "external_entropy_access", value)
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -823,6 +979,18 @@ class _SecretBackendState:
     @insecure_tls.setter
     def insecure_tls(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "insecure_tls", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
 
     @property
     @pulumi.getter
@@ -877,6 +1045,18 @@ class _SecretBackendState:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -900,6 +1080,18 @@ class _SecretBackendState:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @property
     @pulumi.getter(name="requestTimeout")
@@ -1019,6 +1211,7 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  binddn: Optional[pulumi.Input[str]] = None,
@@ -1028,16 +1221,21 @@ class SecretBackend(pulumi.CustomResource):
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  connection_timeout: Optional[pulumi.Input[int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -1075,6 +1273,7 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[str] binddn: Distinguished name of object to bind when performing user and group search.
@@ -1086,11 +1285,14 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -1099,9 +1301,11 @@ class SecretBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `ldap`.
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
@@ -1161,6 +1365,7 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  binddn: Optional[pulumi.Input[str]] = None,
@@ -1170,16 +1375,21 @@ class SecretBackend(pulumi.CustomResource):
                  client_tls_key: Optional[pulumi.Input[str]] = None,
                  connection_timeout: Optional[pulumi.Input[int]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  request_timeout: Optional[pulumi.Input[int]] = None,
                  schema: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -1199,6 +1409,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__ = SecretBackendArgs.__new__(SecretBackendArgs)
 
             __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+            __props__.__dict__["allowed_response_headers"] = allowed_response_headers
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             if binddn is None and not opts.urn:
@@ -1212,16 +1423,21 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
             __props__.__dict__["connection_timeout"] = connection_timeout
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["insecure_tls"] = insecure_tls
+            __props__.__dict__["listing_visibility"] = listing_visibility
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
+            __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
             __props__.__dict__["password_policy"] = password_policy
             __props__.__dict__["path"] = path
+            __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["request_timeout"] = request_timeout
             __props__.__dict__["schema"] = schema
             __props__.__dict__["seal_wrap"] = seal_wrap
@@ -1246,6 +1462,7 @@ class SecretBackend(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
             allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             binddn: Optional[pulumi.Input[str]] = None,
@@ -1255,16 +1472,21 @@ class SecretBackend(pulumi.CustomResource):
             client_tls_key: Optional[pulumi.Input[str]] = None,
             connection_timeout: Optional[pulumi.Input[int]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+            delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
             insecure_tls: Optional[pulumi.Input[bool]] = None,
+            listing_visibility: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             password_policy: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
+            plugin_version: Optional[pulumi.Input[str]] = None,
             request_timeout: Optional[pulumi.Input[int]] = None,
             schema: Optional[pulumi.Input[str]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
@@ -1283,6 +1505,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[str] binddn: Distinguished name of object to bind when performing user and group search.
@@ -1294,11 +1517,14 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] connection_timeout: Timeout, in seconds, when attempting to connect to the LDAP server before trying
                the next URL in the configuration.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for secrets in seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount for the Active Directory backend.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[bool] insecure_tls: Skip LDAP server SSL Certificate verification. This is not recommended for production.
                Defaults to `false`.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Mark the secrets engine as local-only. Local engines are not replicated or removed by
                replication.Tolerance duration to use when checking the last rotation time.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for secrets in seconds.
@@ -1307,9 +1533,11 @@ class SecretBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `ldap`.
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
         :param pulumi.Input[str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
@@ -1329,6 +1557,7 @@ class SecretBackend(pulumi.CustomResource):
 
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+        __props__.__dict__["allowed_response_headers"] = allowed_response_headers
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["binddn"] = binddn
@@ -1338,16 +1567,21 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["client_tls_key"] = client_tls_key
         __props__.__dict__["connection_timeout"] = connection_timeout
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["insecure_tls"] = insecure_tls
+        __props__.__dict__["listing_visibility"] = listing_visibility
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
+        __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
         __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["path"] = path
+        __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["request_timeout"] = request_timeout
         __props__.__dict__["schema"] = schema
         __props__.__dict__["seal_wrap"] = seal_wrap
@@ -1374,6 +1608,14 @@ class SecretBackend(pulumi.CustomResource):
         List of managed key registry entry names that the mount in question is allowed to access
         """
         return pulumi.get(self, "allowed_managed_keys")
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -1450,6 +1692,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "default_lease_ttl_seconds")
 
     @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1474,6 +1724,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "external_entropy_access")
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @property
     @pulumi.getter(name="insecureTls")
     def insecure_tls(self) -> pulumi.Output[Optional[bool]]:
         """
@@ -1481,6 +1739,14 @@ class SecretBackend(pulumi.CustomResource):
         Defaults to `false`.
         """
         return pulumi.get(self, "insecure_tls")
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
 
     @property
     @pulumi.getter
@@ -1519,6 +1785,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "options")
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @property
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1534,6 +1808,14 @@ class SecretBackend(pulumi.CustomResource):
         not begin or end with a `/`. Defaults to `ldap`.
         """
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
 
     @property
     @pulumi.getter(name="requestTimeout")

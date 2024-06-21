@@ -56,6 +56,12 @@ namespace Pulumi.Vault
         public Output<int?> BlockInterval { get; private set; } = null!;
 
         /// <summary>
+        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// </summary>
+        [Output("inheritable")]
+        public Output<bool?> Inheritable { get; private set; } = null!;
+
+        /// <summary>
         /// The duration in seconds to enforce rate limiting for.
         /// </summary>
         [Output("interval")]
@@ -154,6 +160,12 @@ namespace Pulumi.Vault
         public Input<int>? BlockInterval { get; set; }
 
         /// <summary>
+        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// </summary>
+        [Input("inheritable")]
+        public Input<bool>? Inheritable { get; set; }
+
+        /// <summary>
         /// The duration in seconds to enforce rate limiting for.
         /// </summary>
         [Input("interval")]
@@ -212,6 +224,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("blockInterval")]
         public Input<int>? BlockInterval { get; set; }
+
+        /// <summary>
+        /// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+        /// </summary>
+        [Input("inheritable")]
+        public Input<bool>? Inheritable { get; set; }
 
         /// <summary>
         /// The duration in seconds to enforce rate limiting for.

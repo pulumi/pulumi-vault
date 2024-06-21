@@ -99,6 +99,10 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly allowedManagedKeys!: pulumi.Output<string[] | undefined>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly allowedResponseHeaders!: pulumi.Output<string[] | undefined>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     public readonly auditNonHmacRequestKeys!: pulumi.Output<string[]>;
@@ -120,6 +124,10 @@ export class SecretsMount extends pulumi.CustomResource {
      * Default lease duration for tokens and secrets in seconds
      */
     public readonly defaultLeaseTtlSeconds!: pulumi.Output<number>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly delegatedAuthAccessors!: pulumi.Output<string[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
@@ -143,10 +151,18 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly hanas!: pulumi.Output<outputs.database.SecretsMountHana[] | undefined>;
     /**
+     * The key to use for signing plugin workload identity tokens
+     */
+    public readonly identityTokenKey!: pulumi.Output<string | undefined>;
+    /**
      * A nested block containing configuration options for InfluxDB connections.  
      * *See Configuration Options for more info*
      */
     public readonly influxdbs!: pulumi.Output<outputs.database.SecretsMountInfluxdb[] | undefined>;
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    public readonly listingVisibility!: pulumi.Output<string | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
@@ -204,9 +220,17 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly oracles!: pulumi.Output<outputs.database.SecretsMountOracle[] | undefined>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    public readonly passthroughRequestHeaders!: pulumi.Output<string[] | undefined>;
+    /**
      * Where the secret backend will be mounted
      */
     public readonly path!: pulumi.Output<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    public readonly pluginVersion!: pulumi.Output<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.  
      * *See Configuration Options for more info*
@@ -252,17 +276,21 @@ export class SecretsMount extends pulumi.CustomResource {
             const state = argsOrState as SecretsMountState | undefined;
             resourceInputs["accessor"] = state ? state.accessor : undefined;
             resourceInputs["allowedManagedKeys"] = state ? state.allowedManagedKeys : undefined;
+            resourceInputs["allowedResponseHeaders"] = state ? state.allowedResponseHeaders : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = state ? state.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = state ? state.auditNonHmacResponseKeys : undefined;
             resourceInputs["cassandras"] = state ? state.cassandras : undefined;
             resourceInputs["couchbases"] = state ? state.couchbases : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["delegatedAuthAccessors"] = state ? state.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["elasticsearches"] = state ? state.elasticsearches : undefined;
             resourceInputs["engineCount"] = state ? state.engineCount : undefined;
             resourceInputs["externalEntropyAccess"] = state ? state.externalEntropyAccess : undefined;
             resourceInputs["hanas"] = state ? state.hanas : undefined;
+            resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
             resourceInputs["influxdbs"] = state ? state.influxdbs : undefined;
+            resourceInputs["listingVisibility"] = state ? state.listingVisibility : undefined;
             resourceInputs["local"] = state ? state.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["mongodbatlas"] = state ? state.mongodbatlas : undefined;
@@ -275,7 +303,9 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["oracles"] = state ? state.oracles : undefined;
+            resourceInputs["passthroughRequestHeaders"] = state ? state.passthroughRequestHeaders : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["pluginVersion"] = state ? state.pluginVersion : undefined;
             resourceInputs["postgresqls"] = state ? state.postgresqls : undefined;
             resourceInputs["redis"] = state ? state.redis : undefined;
             resourceInputs["redisElasticaches"] = state ? state.redisElasticaches : undefined;
@@ -288,16 +318,20 @@ export class SecretsMount extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["allowedManagedKeys"] = args ? args.allowedManagedKeys : undefined;
+            resourceInputs["allowedResponseHeaders"] = args ? args.allowedResponseHeaders : undefined;
             resourceInputs["auditNonHmacRequestKeys"] = args ? args.auditNonHmacRequestKeys : undefined;
             resourceInputs["auditNonHmacResponseKeys"] = args ? args.auditNonHmacResponseKeys : undefined;
             resourceInputs["cassandras"] = args ? args.cassandras : undefined;
             resourceInputs["couchbases"] = args ? args.couchbases : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
+            resourceInputs["delegatedAuthAccessors"] = args ? args.delegatedAuthAccessors : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["elasticsearches"] = args ? args.elasticsearches : undefined;
             resourceInputs["externalEntropyAccess"] = args ? args.externalEntropyAccess : undefined;
             resourceInputs["hanas"] = args ? args.hanas : undefined;
+            resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
             resourceInputs["influxdbs"] = args ? args.influxdbs : undefined;
+            resourceInputs["listingVisibility"] = args ? args.listingVisibility : undefined;
             resourceInputs["local"] = args ? args.local : undefined;
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["mongodbatlas"] = args ? args.mongodbatlas : undefined;
@@ -310,7 +344,9 @@ export class SecretsMount extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["oracles"] = args ? args.oracles : undefined;
+            resourceInputs["passthroughRequestHeaders"] = args ? args.passthroughRequestHeaders : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["pluginVersion"] = args ? args.pluginVersion : undefined;
             resourceInputs["postgresqls"] = args ? args.postgresqls : undefined;
             resourceInputs["redis"] = args ? args.redis : undefined;
             resourceInputs["redisElasticaches"] = args ? args.redisElasticaches : undefined;
@@ -340,6 +376,10 @@ export interface SecretsMountState {
      */
     allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
@@ -361,6 +401,10 @@ export interface SecretsMountState {
      * Default lease duration for tokens and secrets in seconds
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Human-friendly description of the mount
      */
@@ -384,10 +428,18 @@ export interface SecretsMountState {
      */
     hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[]>;
     /**
+     * The key to use for signing plugin workload identity tokens
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
      * A nested block containing configuration options for InfluxDB connections.  
      * *See Configuration Options for more info*
      */
     influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[]>;
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    listingVisibility?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
@@ -445,9 +497,17 @@ export interface SecretsMountState {
      */
     oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[]>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Where the secret backend will be mounted
      */
     path?: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.  
      * *See Configuration Options for more info*
@@ -490,6 +550,10 @@ export interface SecretsMountArgs {
      */
     allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
     auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
@@ -512,6 +576,10 @@ export interface SecretsMountArgs {
      */
     defaultLeaseTtlSeconds?: pulumi.Input<number>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Human-friendly description of the mount
      */
     description?: pulumi.Input<string>;
@@ -530,10 +598,18 @@ export interface SecretsMountArgs {
      */
     hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[]>;
     /**
+     * The key to use for signing plugin workload identity tokens
+     */
+    identityTokenKey?: pulumi.Input<string>;
+    /**
      * A nested block containing configuration options for InfluxDB connections.  
      * *See Configuration Options for more info*
      */
     influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[]>;
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     */
+    listingVisibility?: pulumi.Input<string>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
@@ -591,9 +667,17 @@ export interface SecretsMountArgs {
      */
     oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[]>;
     /**
+     * List of headers to allow and pass from the request to the plugin
+     */
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Where the secret backend will be mounted
      */
     path: pulumi.Input<string>;
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+     */
+    pluginVersion?: pulumi.Input<string>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.  
      * *See Configuration Options for more info*

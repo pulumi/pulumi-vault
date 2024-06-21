@@ -60,6 +60,8 @@ type QuotaRateLimit struct {
 	// If set, when a client reaches a rate limit threshold, the client will
 	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
 	BlockInterval pulumi.IntPtrOutput `pulumi:"blockInterval"`
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable pulumi.BoolPtrOutput `pulumi:"inheritable"`
 	// The duration in seconds to enforce rate limiting for.
 	Interval pulumi.IntOutput `pulumi:"interval"`
 	// Name of the rate limit quota
@@ -119,6 +121,8 @@ type quotaRateLimitState struct {
 	// If set, when a client reaches a rate limit threshold, the client will
 	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
 	BlockInterval *int `pulumi:"blockInterval"`
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable *bool `pulumi:"inheritable"`
 	// The duration in seconds to enforce rate limiting for.
 	Interval *int `pulumi:"interval"`
 	// Name of the rate limit quota
@@ -146,6 +150,8 @@ type QuotaRateLimitState struct {
 	// If set, when a client reaches a rate limit threshold, the client will
 	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
 	BlockInterval pulumi.IntPtrInput
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable pulumi.BoolPtrInput
 	// The duration in seconds to enforce rate limiting for.
 	Interval pulumi.IntPtrInput
 	// Name of the rate limit quota
@@ -177,6 +183,8 @@ type quotaRateLimitArgs struct {
 	// If set, when a client reaches a rate limit threshold, the client will
 	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
 	BlockInterval *int `pulumi:"blockInterval"`
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable *bool `pulumi:"inheritable"`
 	// The duration in seconds to enforce rate limiting for.
 	Interval *int `pulumi:"interval"`
 	// Name of the rate limit quota
@@ -205,6 +213,8 @@ type QuotaRateLimitArgs struct {
 	// If set, when a client reaches a rate limit threshold, the client will
 	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
 	BlockInterval pulumi.IntPtrInput
+	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+	Inheritable pulumi.BoolPtrInput
 	// The duration in seconds to enforce rate limiting for.
 	Interval pulumi.IntPtrInput
 	// Name of the rate limit quota
@@ -319,6 +329,11 @@ func (o QuotaRateLimitOutput) ToQuotaRateLimitOutputWithContext(ctx context.Cont
 // be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
 func (o QuotaRateLimitOutput) BlockInterval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *QuotaRateLimit) pulumi.IntPtrOutput { return v.BlockInterval }).(pulumi.IntPtrOutput)
+}
+
+// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+func (o QuotaRateLimitOutput) Inheritable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *QuotaRateLimit) pulumi.BoolPtrOutput { return v.Inheritable }).(pulumi.BoolPtrOutput)
 }
 
 // The duration in seconds to enforce rate limiting for.

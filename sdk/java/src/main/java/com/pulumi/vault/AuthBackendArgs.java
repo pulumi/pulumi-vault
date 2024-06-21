@@ -51,6 +51,21 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The key to use for signing identity tokens.
+     * 
+     */
+    @Import(name="identityTokenKey")
+    private @Nullable Output<String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing identity tokens.
+     * 
+     */
+    public Optional<Output<String>> identityTokenKey() {
+        return Optional.ofNullable(this.identityTokenKey);
+    }
+
+    /**
      * Specifies if the auth method is local only.
      * 
      */
@@ -140,6 +155,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     private AuthBackendArgs(AuthBackendArgs $) {
         this.description = $.description;
         this.disableRemount = $.disableRemount;
+        this.identityTokenKey = $.identityTokenKey;
         this.local = $.local;
         this.namespace = $.namespace;
         this.path = $.path;
@@ -207,6 +223,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder disableRemount(Boolean disableRemount) {
             return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing identity tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(@Nullable Output<String> identityTokenKey) {
+            $.identityTokenKey = identityTokenKey;
+            return this;
+        }
+
+        /**
+         * @param identityTokenKey The key to use for signing identity tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder identityTokenKey(String identityTokenKey) {
+            return identityTokenKey(Output.of(identityTokenKey));
         }
 
         /**

@@ -20,6 +20,8 @@ class AuthBackendConfigArgs:
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
@@ -36,6 +38,9 @@ class AuthBackendConfigArgs:
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -51,6 +56,10 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "client_secret", client_secret)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
 
@@ -134,6 +143,31 @@ class AuthBackendConfigArgs:
         pulumi.set(self, "environment", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -156,6 +190,8 @@ class _AuthBackendConfigState:
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None):
@@ -170,6 +206,9 @@ class _AuthBackendConfigState:
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -187,6 +226,10 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "client_secret", client_secret)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
+        if identity_token_audience is not None:
+            pulumi.set(__self__, "identity_token_audience", identity_token_audience)
+        if identity_token_ttl is not None:
+            pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if resource is not None:
@@ -248,6 +291,31 @@ class _AuthBackendConfigState:
         pulumi.set(self, "environment", value)
 
     @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> Optional[pulumi.Input[str]]:
+        """
+        The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @identity_token_audience.setter
+    def identity_token_audience(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_audience", value)
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL of generated identity tokens in seconds.
+        """
+        return pulumi.get(self, "identity_token_ttl")
+
+    @identity_token_ttl.setter
+    def identity_token_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "identity_token_ttl", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -298,12 +366,30 @@ class AuthBackendConfig(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Example Usage
+
+        You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="azure",
+            identity_token_key="example-key")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>")
+        ```
 
         ```python
         import pulumi
@@ -337,6 +423,9 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -354,6 +443,22 @@ class AuthBackendConfig(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         ## Example Usage
+
+        You can setup the Azure auth engine with Workload Identity Federation (WIF) for a secret-less configuration:
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="azure",
+            identity_token_key="example-key")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl="<TOKEN_TTL>")
+        ```
 
         ```python
         import pulumi
@@ -395,6 +500,8 @@ class AuthBackendConfig(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[str]] = None,
+                 identity_token_audience: Optional[pulumi.Input[str]] = None,
+                 identity_token_ttl: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
@@ -411,6 +518,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["environment"] = environment
+            __props__.__dict__["identity_token_audience"] = identity_token_audience
+            __props__.__dict__["identity_token_ttl"] = identity_token_ttl
             __props__.__dict__["namespace"] = namespace
             if resource is None and not opts.urn:
                 raise TypeError("Missing required property 'resource'")
@@ -434,6 +543,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             client_id: Optional[pulumi.Input[str]] = None,
             client_secret: Optional[pulumi.Input[str]] = None,
             environment: Optional[pulumi.Input[str]] = None,
+            identity_token_audience: Optional[pulumi.Input[str]] = None,
+            identity_token_ttl: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             resource: Optional[pulumi.Input[str]] = None,
             tenant_id: Optional[pulumi.Input[str]] = None) -> 'AuthBackendConfig':
@@ -453,6 +564,9 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[str] environment: The Azure cloud environment. Valid values:
                AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
                AzureGermanCloud.  Defaults to `AzurePublicCloud`.
+        :param pulumi.Input[str] identity_token_audience: The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+               *Available only for Vault Enterprise*
+        :param pulumi.Input[int] identity_token_ttl: The TTL of generated identity tokens in seconds.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -470,6 +584,8 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["environment"] = environment
+        __props__.__dict__["identity_token_audience"] = identity_token_audience
+        __props__.__dict__["identity_token_ttl"] = identity_token_ttl
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["resource"] = resource
         __props__.__dict__["tenant_id"] = tenant_id
@@ -511,6 +627,23 @@ class AuthBackendConfig(pulumi.CustomResource):
         AzureGermanCloud.  Defaults to `AzurePublicCloud`.
         """
         return pulumi.get(self, "environment")
+
+    @property
+    @pulumi.getter(name="identityTokenAudience")
+    def identity_token_audience(self) -> pulumi.Output[Optional[str]]:
+        """
+        The audience claim value for plugin identity tokens. Requires Vault 1.17+.
+        *Available only for Vault Enterprise*
+        """
+        return pulumi.get(self, "identity_token_audience")
+
+    @property
+    @pulumi.getter(name="identityTokenTtl")
+    def identity_token_ttl(self) -> pulumi.Output[int]:
+        """
+        The TTL of generated identity tokens in seconds.
+        """
+        return pulumi.get(self, "identity_token_ttl")
 
     @property
     @pulumi.getter

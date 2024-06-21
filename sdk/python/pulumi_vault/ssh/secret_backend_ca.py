@@ -16,6 +16,8 @@ class SecretBackendCaArgs:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
+                 key_type: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None):
@@ -23,6 +25,8 @@ class SecretBackendCaArgs:
         The set of arguments for constructing a SecretBackendCa resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -34,6 +38,10 @@ class SecretBackendCaArgs:
             pulumi.set(__self__, "backend", backend)
         if generate_signing_key is not None:
             pulumi.set(__self__, "generate_signing_key", generate_signing_key)
+        if key_bits is not None:
+            pulumi.set(__self__, "key_bits", key_bits)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if private_key is not None:
@@ -64,6 +72,30 @@ class SecretBackendCaArgs:
     @generate_signing_key.setter
     def generate_signing_key(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "generate_signing_key", value)
+
+    @property
+    @pulumi.getter(name="keyBits")
+    def key_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        """
+        return pulumi.get(self, "key_bits")
+
+    @key_bits.setter
+    def key_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "key_bits", value)
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        """
+        return pulumi.get(self, "key_type")
+
+    @key_type.setter
+    def key_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_type", value)
 
     @property
     @pulumi.getter
@@ -110,6 +142,8 @@ class _SecretBackendCaState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
+                 key_type: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None):
@@ -117,6 +151,8 @@ class _SecretBackendCaState:
         Input properties used for looking up and filtering SecretBackendCa resources.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -128,6 +164,10 @@ class _SecretBackendCaState:
             pulumi.set(__self__, "backend", backend)
         if generate_signing_key is not None:
             pulumi.set(__self__, "generate_signing_key", generate_signing_key)
+        if key_bits is not None:
+            pulumi.set(__self__, "key_bits", key_bits)
+        if key_type is not None:
+            pulumi.set(__self__, "key_type", key_type)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if private_key is not None:
@@ -158,6 +198,30 @@ class _SecretBackendCaState:
     @generate_signing_key.setter
     def generate_signing_key(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "generate_signing_key", value)
+
+    @property
+    @pulumi.getter(name="keyBits")
+    def key_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        """
+        return pulumi.get(self, "key_bits")
+
+    @key_bits.setter
+    def key_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "key_bits", value)
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        """
+        return pulumi.get(self, "key_type")
+
+    @key_type.setter
+    def key_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key_type", value)
 
     @property
     @pulumi.getter
@@ -206,6 +270,8 @@ class SecretBackendCa(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
+                 key_type: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
@@ -236,6 +302,8 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -288,6 +356,8 @@ class SecretBackendCa(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  generate_signing_key: Optional[pulumi.Input[bool]] = None,
+                 key_bits: Optional[pulumi.Input[int]] = None,
+                 key_type: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
@@ -302,6 +372,8 @@ class SecretBackendCa(pulumi.CustomResource):
 
             __props__.__dict__["backend"] = backend
             __props__.__dict__["generate_signing_key"] = generate_signing_key
+            __props__.__dict__["key_bits"] = key_bits
+            __props__.__dict__["key_type"] = key_type
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["public_key"] = public_key
@@ -319,6 +391,8 @@ class SecretBackendCa(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             generate_signing_key: Optional[pulumi.Input[bool]] = None,
+            key_bits: Optional[pulumi.Input[int]] = None,
+            key_type: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None) -> 'SecretBackendCa':
@@ -331,6 +405,8 @@ class SecretBackendCa(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted. Defaults to 'ssh'
         :param pulumi.Input[bool] generate_signing_key: Whether Vault should generate the signing key pair internally. Defaults to true
+        :param pulumi.Input[int] key_bits: Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        :param pulumi.Input[str] key_type: Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -344,6 +420,8 @@ class SecretBackendCa(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["generate_signing_key"] = generate_signing_key
+        __props__.__dict__["key_bits"] = key_bits
+        __props__.__dict__["key_type"] = key_type
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["public_key"] = public_key
@@ -364,6 +442,22 @@ class SecretBackendCa(pulumi.CustomResource):
         Whether Vault should generate the signing key pair internally. Defaults to true
         """
         return pulumi.get(self, "generate_signing_key")
+
+    @property
+    @pulumi.getter(name="keyBits")
+    def key_bits(self) -> pulumi.Output[Optional[int]]:
+        """
+        Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        """
+        return pulumi.get(self, "key_bits")
+
+    @property
+    @pulumi.getter(name="keyType")
+    def key_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
+        """
+        return pulumi.get(self, "key_type")
 
     @property
     @pulumi.getter

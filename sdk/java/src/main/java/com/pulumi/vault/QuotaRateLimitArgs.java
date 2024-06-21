@@ -6,6 +6,7 @@ package com.pulumi.vault;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
@@ -33,6 +34,21 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<Integer>> blockInterval() {
         return Optional.ofNullable(this.blockInterval);
+    }
+
+    /**
+     * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     * 
+     */
+    @Import(name="inheritable")
+    private @Nullable Output<Boolean> inheritable;
+
+    /**
+     * @return If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+     * 
+     */
+    public Optional<Output<Boolean>> inheritable() {
+        return Optional.ofNullable(this.inheritable);
     }
 
     /**
@@ -147,6 +163,7 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
 
     private QuotaRateLimitArgs(QuotaRateLimitArgs $) {
         this.blockInterval = $.blockInterval;
+        this.inheritable = $.inheritable;
         this.interval = $.interval;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -194,6 +211,27 @@ public final class QuotaRateLimitArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder blockInterval(Integer blockInterval) {
             return blockInterval(Output.of(blockInterval));
+        }
+
+        /**
+         * @param inheritable If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder inheritable(@Nullable Output<Boolean> inheritable) {
+            $.inheritable = inheritable;
+            return this;
+        }
+
+        /**
+         * @param inheritable If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder inheritable(Boolean inheritable) {
+            return inheritable(Output.of(inheritable));
         }
 
         /**

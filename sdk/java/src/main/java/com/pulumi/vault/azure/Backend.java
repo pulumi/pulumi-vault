@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.azure.BackendArgs;
 import com.pulumi.vault.azure.inputs.BackendState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,44 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * ### *Vault-1.9 And Above*
+ * 
+ * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.azure.Backend;
+ * import com.pulumi.vault.azure.BackendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var azure = new Backend("azure", BackendArgs.builder()
+ *             .subscriptionId("11111111-2222-3333-4444-111111111111")
+ *             .tenantId("11111111-2222-3333-4444-222222222222")
+ *             .clientId("11111111-2222-3333-4444-333333333333")
+ *             .identityTokenAudience("<TOKEN_AUDIENCE>")
+ *             .identityTokenTtl("<TOKEN_TTL>")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -175,6 +214,54 @@ public class Backend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.environment);
     }
     /**
+     * The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Export(name="identityTokenAudience", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenAudience;
+
+    /**
+     * @return The audience claim value. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Output<Optional<String>> identityTokenAudience() {
+        return Codegen.optional(this.identityTokenAudience);
+    }
+    /**
+     * The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing identity tokens. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
+     * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Export(name="identityTokenTtl", refs={Integer.class}, tree="[0]")
+    private Output<Integer> identityTokenTtl;
+
+    /**
+     * @return The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Output<Integer> identityTokenTtl() {
+        return this.identityTokenTtl;
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -239,7 +326,11 @@ public class Backend extends com.pulumi.resources.CustomResource {
     /**
      * Use the Microsoft Graph API. Should be set to true on vault-1.10+
      * 
+     * @deprecated
+     * This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.
+     * 
      */
+    @Deprecated /* This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider. */
     @Export(name="useMicrosoftGraphApi", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> useMicrosoftGraphApi;
 

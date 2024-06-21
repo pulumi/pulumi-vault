@@ -155,6 +155,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedManagedKeys);
     }
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="allowedResponseHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> allowedResponseHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> allowedResponseHeaders() {
+        return Codegen.optional(this.allowedResponseHeaders);
+    }
+    /**
      * Specifies the list of keys that will not be HMAC&#39;d by audit devices in the request data object.
      * 
      */
@@ -227,6 +241,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> defaultLeaseTtlSeconds() {
         return this.defaultLeaseTtlSeconds;
+    }
+    /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="delegatedAuthAccessors", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> delegatedAuthAccessors;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> delegatedAuthAccessors() {
+        return Codegen.optional(this.delegatedAuthAccessors);
     }
     /**
      * Human-friendly description of the mount
@@ -303,6 +331,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.hanas);
     }
     /**
+     * The key to use for signing plugin workload identity tokens
+     * 
+     */
+    @Export(name="identityTokenKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> identityTokenKey;
+
+    /**
+     * @return The key to use for signing plugin workload identity tokens
+     * 
+     */
+    public Output<Optional<String>> identityTokenKey() {
+        return Codegen.optional(this.identityTokenKey);
+    }
+    /**
      * A nested block containing configuration options for InfluxDB connections.\
      * *See Configuration Options for more info*
      * 
@@ -317,6 +359,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<SecretsMountInfluxdb>>> influxdbs() {
         return Codegen.optional(this.influxdbs);
+    }
+    /**
+     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    @Export(name="listingVisibility", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> listingVisibility;
+
+    /**
+     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * 
+     */
+    public Output<Optional<String>> listingVisibility() {
+        return Codegen.optional(this.listingVisibility);
     }
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
@@ -503,6 +559,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.oracles);
     }
     /**
+     * List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    @Export(name="passthroughRequestHeaders", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> passthroughRequestHeaders;
+
+    /**
+     * @return List of headers to allow and pass from the request to the plugin
+     * 
+     */
+    public Output<Optional<List<String>>> passthroughRequestHeaders() {
+        return Codegen.optional(this.passthroughRequestHeaders);
+    }
+    /**
      * Where the secret backend will be mounted
      * 
      */
@@ -515,6 +585,20 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      */
     public Output<String> path() {
         return this.path;
+    }
+    /**
+     * Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    @Export(name="pluginVersion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> pluginVersion;
+
+    /**
+     * @return Specifies the semantic version of the plugin to use, e.g. &#39;v1.0.0&#39;
+     * 
+     */
+    public Output<Optional<String>> pluginVersion() {
+        return Codegen.optional(this.pluginVersion);
     }
     /**
      * A nested block containing configuration options for PostgreSQL connections.\

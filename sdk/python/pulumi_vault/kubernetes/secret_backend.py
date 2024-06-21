@@ -16,31 +16,40 @@ class SecretBackendArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  service_account_jwt: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -48,6 +57,7 @@ class SecretBackendArgs:
         :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -55,6 +65,8 @@ class SecretBackendArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
@@ -63,22 +75,30 @@ class SecretBackendArgs:
         pulumi.set(__self__, "path", path)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_local_ca_jwt is not None:
             pulumi.set(__self__, "disable_local_ca_jwt", disable_local_ca_jwt)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if kubernetes_ca_cert is not None:
             pulumi.set(__self__, "kubernetes_ca_cert", kubernetes_ca_cert)
         if kubernetes_host is not None:
             pulumi.set(__self__, "kubernetes_host", kubernetes_host)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -87,6 +107,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if service_account_jwt is not None:
@@ -115,6 +139,18 @@ class SecretBackendArgs:
     @allowed_managed_keys.setter
     def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -151,6 +187,18 @@ class SecretBackendArgs:
     @default_lease_ttl_seconds.setter
     def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
 
     @property
     @pulumi.getter
@@ -190,6 +238,18 @@ class SecretBackendArgs:
         pulumi.set(self, "external_entropy_access", value)
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
     @pulumi.getter(name="kubernetesCaCert")
     def kubernetes_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -217,6 +277,18 @@ class SecretBackendArgs:
     @kubernetes_host.setter
     def kubernetes_host(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kubernetes_host", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
 
     @property
     @pulumi.getter
@@ -268,6 +340,30 @@ class SecretBackendArgs:
     @options.setter
     def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
         pulumi.set(self, "options", value)
+
+    @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @property
     @pulumi.getter(name="sealWrap")
@@ -301,32 +397,41 @@ class _SecretBackendState:
     def __init__(__self__, *,
                  accessor: Optional[pulumi.Input[str]] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  service_account_jwt: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
         :param pulumi.Input[str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -334,6 +439,7 @@ class _SecretBackendState:
         :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -341,7 +447,9 @@ class _SecretBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
@@ -351,22 +459,30 @@ class _SecretBackendState:
             pulumi.set(__self__, "accessor", accessor)
         if allowed_managed_keys is not None:
             pulumi.set(__self__, "allowed_managed_keys", allowed_managed_keys)
+        if allowed_response_headers is not None:
+            pulumi.set(__self__, "allowed_response_headers", allowed_response_headers)
         if audit_non_hmac_request_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
         if default_lease_ttl_seconds is not None:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
+        if delegated_auth_accessors is not None:
+            pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disable_local_ca_jwt is not None:
             pulumi.set(__self__, "disable_local_ca_jwt", disable_local_ca_jwt)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
+        if identity_token_key is not None:
+            pulumi.set(__self__, "identity_token_key", identity_token_key)
         if kubernetes_ca_cert is not None:
             pulumi.set(__self__, "kubernetes_ca_cert", kubernetes_ca_cert)
         if kubernetes_host is not None:
             pulumi.set(__self__, "kubernetes_host", kubernetes_host)
+        if listing_visibility is not None:
+            pulumi.set(__self__, "listing_visibility", listing_visibility)
         if local is not None:
             pulumi.set(__self__, "local", local)
         if max_lease_ttl_seconds is not None:
@@ -375,8 +491,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "namespace", namespace)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if passthrough_request_headers is not None:
+            pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if plugin_version is not None:
+            pulumi.set(__self__, "plugin_version", plugin_version)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if service_account_jwt is not None:
@@ -405,6 +525,18 @@ class _SecretBackendState:
     @allowed_managed_keys.setter
     def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
+
+    @allowed_response_headers.setter
+    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "allowed_response_headers", value)
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -441,6 +573,18 @@ class _SecretBackendState:
     @default_lease_ttl_seconds.setter
     def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "default_lease_ttl_seconds", value)
+
+    @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
+
+    @delegated_auth_accessors.setter
+    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "delegated_auth_accessors", value)
 
     @property
     @pulumi.getter
@@ -480,6 +624,18 @@ class _SecretBackendState:
         pulumi.set(self, "external_entropy_access", value)
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @identity_token_key.setter
+    def identity_token_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "identity_token_key", value)
+
+    @property
     @pulumi.getter(name="kubernetesCaCert")
     def kubernetes_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -507,6 +663,18 @@ class _SecretBackendState:
     @kubernetes_host.setter
     def kubernetes_host(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kubernetes_host", value)
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
+
+    @listing_visibility.setter
+    def listing_visibility(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "listing_visibility", value)
 
     @property
     @pulumi.getter
@@ -560,6 +728,18 @@ class _SecretBackendState:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @passthrough_request_headers.setter
+    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "passthrough_request_headers", value)
+
+    @property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -570,6 +750,18 @@ class _SecretBackendState:
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
+
+    @plugin_version.setter
+    def plugin_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "plugin_version", value)
 
     @property
     @pulumi.getter(name="sealWrap")
@@ -604,19 +796,25 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  service_account_jwt: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -650,13 +848,16 @@ class SecretBackend(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -664,6 +865,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -671,7 +873,9 @@ class SecretBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
@@ -726,19 +930,25 @@ class SecretBackend(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
                  external_entropy_access: Optional[pulumi.Input[bool]] = None,
+                 identity_token_key: Optional[pulumi.Input[str]] = None,
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
+                 listing_visibility: Optional[pulumi.Input[str]] = None,
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
+                 plugin_version: Optional[pulumi.Input[str]] = None,
                  seal_wrap: Optional[pulumi.Input[bool]] = None,
                  service_account_jwt: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -751,21 +961,27 @@ class SecretBackend(pulumi.CustomResource):
             __props__ = SecretBackendArgs.__new__(SecretBackendArgs)
 
             __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+            __props__.__dict__["allowed_response_headers"] = allowed_response_headers
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+            __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_local_ca_jwt"] = disable_local_ca_jwt
             __props__.__dict__["external_entropy_access"] = external_entropy_access
+            __props__.__dict__["identity_token_key"] = identity_token_key
             __props__.__dict__["kubernetes_ca_cert"] = kubernetes_ca_cert
             __props__.__dict__["kubernetes_host"] = kubernetes_host
+            __props__.__dict__["listing_visibility"] = listing_visibility
             __props__.__dict__["local"] = local
             __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["options"] = options
+            __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
+            __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["service_account_jwt"] = None if service_account_jwt is None else pulumi.Output.secret(service_account_jwt)
             __props__.__dict__["accessor"] = None
@@ -783,19 +999,25 @@ class SecretBackend(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accessor: Optional[pulumi.Input[str]] = None,
             allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
+            delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             disable_local_ca_jwt: Optional[pulumi.Input[bool]] = None,
             external_entropy_access: Optional[pulumi.Input[bool]] = None,
+            identity_token_key: Optional[pulumi.Input[str]] = None,
             kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
             kubernetes_host: Optional[pulumi.Input[str]] = None,
+            listing_visibility: Optional[pulumi.Input[str]] = None,
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
+            plugin_version: Optional[pulumi.Input[str]] = None,
             seal_wrap: Optional[pulumi.Input[bool]] = None,
             service_account_jwt: Optional[pulumi.Input[str]] = None) -> 'SecretBackend':
         """
@@ -807,13 +1029,16 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] accessor: Accessor of the mount
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_managed_keys: List of managed key registry entry names that the mount in question is allowed to access
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
         :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
+        :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
         :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
@@ -821,6 +1046,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Local mount flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -828,7 +1054,9 @@ class SecretBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
+        :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[str] service_account_jwt: The JSON web token of the service account used by the
                secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
@@ -840,19 +1068,25 @@ class SecretBackend(pulumi.CustomResource):
 
         __props__.__dict__["accessor"] = accessor
         __props__.__dict__["allowed_managed_keys"] = allowed_managed_keys
+        __props__.__dict__["allowed_response_headers"] = allowed_response_headers
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
+        __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_local_ca_jwt"] = disable_local_ca_jwt
         __props__.__dict__["external_entropy_access"] = external_entropy_access
+        __props__.__dict__["identity_token_key"] = identity_token_key
         __props__.__dict__["kubernetes_ca_cert"] = kubernetes_ca_cert
         __props__.__dict__["kubernetes_host"] = kubernetes_host
+        __props__.__dict__["listing_visibility"] = listing_visibility
         __props__.__dict__["local"] = local
         __props__.__dict__["max_lease_ttl_seconds"] = max_lease_ttl_seconds
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["options"] = options
+        __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
         __props__.__dict__["path"] = path
+        __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["service_account_jwt"] = service_account_jwt
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
@@ -872,6 +1106,14 @@ class SecretBackend(pulumi.CustomResource):
         List of managed key registry entry names that the mount in question is allowed to access
         """
         return pulumi.get(self, "allowed_managed_keys")
+
+    @property
+    @pulumi.getter(name="allowedResponseHeaders")
+    def allowed_response_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "allowed_response_headers")
 
     @property
     @pulumi.getter(name="auditNonHmacRequestKeys")
@@ -896,6 +1138,14 @@ class SecretBackend(pulumi.CustomResource):
         Default lease duration for tokens and secrets in seconds
         """
         return pulumi.get(self, "default_lease_ttl_seconds")
+
+    @property
+    @pulumi.getter(name="delegatedAuthAccessors")
+    def delegated_auth_accessors(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "delegated_auth_accessors")
 
     @property
     @pulumi.getter
@@ -923,6 +1173,14 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "external_entropy_access")
 
     @property
+    @pulumi.getter(name="identityTokenKey")
+    def identity_token_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The key to use for signing plugin workload identity tokens
+        """
+        return pulumi.get(self, "identity_token_key")
+
+    @property
     @pulumi.getter(name="kubernetesCaCert")
     def kubernetes_ca_cert(self) -> pulumi.Output[Optional[str]]:
         """
@@ -942,6 +1200,14 @@ class SecretBackend(pulumi.CustomResource):
         are not set on the host that Vault is running on.
         """
         return pulumi.get(self, "kubernetes_host")
+
+    @property
+    @pulumi.getter(name="listingVisibility")
+    def listing_visibility(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies whether to show this mount in the UI-specific listing endpoint
+        """
+        return pulumi.get(self, "listing_visibility")
 
     @property
     @pulumi.getter
@@ -979,12 +1245,28 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "options")
 
     @property
+    @pulumi.getter(name="passthroughRequestHeaders")
+    def passthrough_request_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of headers to allow and pass from the request to the plugin
+        """
+        return pulumi.get(self, "passthrough_request_headers")
+
+    @property
     @pulumi.getter
     def path(self) -> pulumi.Output[str]:
         """
         Where the secret backend will be mounted
         """
         return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="pluginVersion")
+    def plugin_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        """
+        return pulumi.get(self, "plugin_version")
 
     @property
     @pulumi.getter(name="sealWrap")
