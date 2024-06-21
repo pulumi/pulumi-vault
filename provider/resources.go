@@ -162,6 +162,7 @@ func Provider() tfbridge.ProviderInfo {
 		Version:          version.Version,
 		MetadataInfo:     tfbridge.NewProviderMetadata(metadata),
 		UpstreamRepoPath: "./upstream",
+		DocRules:         &tfbridge.DocRuleInfo{EditRules: docEditRules},
 
 		Config: map[string]*tfbridge.SchemaInfo{
 			"skip_tls_verify": {
@@ -553,6 +554,22 @@ func Provider() tfbridge.ProviderInfo {
 	prov.MustApplyAutoAliases()
 
 	return prov
+}
+
+func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	return append(defaults, oktaAuthBackedUserImport)
+}
+
+var oktaAuthBackedUserImport = tfbridge.DocsEdit{
+	Path: "okta_auth_backend_user.html.md",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		content = append(content, []byte("\n\n## Import\n\n"+
+			"Okta authentication backend users can be imported using its `path/user` ID format, e.g.\n"+
+			"```\n"+
+			"$ terraform import vault_okta_auth_backend_user.example okta/foo\n"+
+			"```\n")...)
+		return content, nil
+	},
 }
 
 var missingDocs = &tfbridge.DocInfo{AllowMissing: true}
