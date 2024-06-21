@@ -32,7 +32,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-vault/provider/v6/pkg/version"
-	"github.com/ryboe/q"
 )
 
 // all of the token components used below.
@@ -74,27 +73,26 @@ const (
 )
 
 var moduleMap = map[string]string{
-	"ad":           adMod,
-	"alicloud":     aliCloudMod,
-	"approle":      appRoleMod,
-	"aws":          awsMod,
-	"azure":        azureMod,
-	"consul":       consulMod,
-	"config":       "Config",
-	"database":     databaseMod,
-	"gcp":          gcpMod,
-	"generic":      genericMod,
-	"github":       githubMod,
-	"identity":     identityMod,
-	"jwt":          jwtMod,
-	"kmip":         kmipMod,
-	"kubernetes":   kubernetesMod,
-	"kv":           kvMod,
-	"ldap":         ldapMod,
-	"managed":      managedMod,
-	"mongodbatlas": mongoDBAtlasMod,
-	"okta":         oktaMod,
-	//"plugin":          "Plugin",
+	"ad":              adMod,
+	"alicloud":        aliCloudMod,
+	"approle":         appRoleMod,
+	"aws":             awsMod,
+	"azure":           azureMod,
+	"consul":          consulMod,
+	"config":          "Config",
+	"database":        databaseMod,
+	"gcp":             gcpMod,
+	"generic":         genericMod,
+	"github":          githubMod,
+	"identity":        identityMod,
+	"jwt":             jwtMod,
+	"kmip":            kmipMod,
+	"kubernetes":      kubernetesMod,
+	"kv":              kvMod,
+	"ldap":            ldapMod,
+	"managed":         managedMod,
+	"mongodbatlas":    mongoDBAtlasMod,
+	"okta":            oktaMod,
 	"pki_secret":      pkiSecretMod,
 	"rabbitmq":        rabbitMqMod,
 	"saml":            samlMod,
@@ -123,7 +121,6 @@ func makeMember(moduleTitle string, mem string) tokens.ModuleMember {
 	if value, exist := specialNamesMap[moduleTitle]; exist {
 		moduleName = value
 	}
-	q.Q(moduleTitle, mem)
 	namespaceMap[moduleName] = moduleTitle
 	fn := string(unicode.ToLower(rune(mem[0]))) + mem[1:]
 	token := moduleName + "/" + fn
@@ -546,7 +543,6 @@ func Provider() tfbridge.ProviderInfo {
 
 	prov.MustComputeTokens(tks.MappedModules("vault_", "index", moduleMap,
 		func(module, name string) (string, error) {
-			q.Q(module, name)
 			return string(makeResource(module, name)), nil
 		}))
 	prov.SetAutonaming(255, "-")
