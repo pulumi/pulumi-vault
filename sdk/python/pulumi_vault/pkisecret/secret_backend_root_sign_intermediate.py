@@ -911,7 +911,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[intermediate]))
+            opts = pulumi.ResourceOptions(depends_on=[intermediate]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -968,7 +968,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[intermediate]))
+            opts = pulumi.ResourceOptions(depends_on=[intermediate]))
         ```
 
         :param str resource_name: The name of the resource.

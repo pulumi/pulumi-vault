@@ -200,7 +200,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         MUR4qFxeUOW/GJGccMUd
         -----END CERTIFICATE-----
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
+            opts = pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -276,7 +276,7 @@ class SecretBackendConfigCa(pulumi.CustomResource):
         MUR4qFxeUOW/GJGccMUd
         -----END CERTIFICATE-----
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
+            opts = pulumi.ResourceOptions(depends_on=[intermediate_vault_mount]))
         ```
 
         :param str resource_name: The name of the resource.

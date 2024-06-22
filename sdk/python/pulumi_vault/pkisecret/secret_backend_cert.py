@@ -743,7 +743,7 @@ class SecretBackendCert(pulumi.CustomResource):
             backend=intermediate["path"],
             name=test["name"],
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[admin]))
+            opts = pulumi.ResourceOptions(depends_on=[admin]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -786,7 +786,7 @@ class SecretBackendCert(pulumi.CustomResource):
             backend=intermediate["path"],
             name=test["name"],
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[admin]))
+            opts = pulumi.ResourceOptions(depends_on=[admin]))
         ```
 
         :param str resource_name: The name of the resource.

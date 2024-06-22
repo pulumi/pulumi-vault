@@ -349,13 +349,11 @@ class ProviderArgs:
 
     @property
     @pulumi.getter(name="clientAuth")
+    @_utilities.deprecated("""Use auth_login_cert instead""")
     def client_auth(self) -> Optional[pulumi.Input['ProviderClientAuthArgs']]:
         """
         Client authentication credentials.
         """
-        warnings.warn("""Use auth_login_cert instead""", DeprecationWarning)
-        pulumi.log.warn("""client_auth is deprecated: Use auth_login_cert instead""")
-
         return pulumi.get(self, "client_auth")
 
     @client_auth.setter

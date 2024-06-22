@@ -194,14 +194,12 @@ class AuthBackendArgs:
 
     @property
     @pulumi.getter(name="maxTtl")
+    @_utilities.deprecated("""Deprecated. Please use `token_max_ttl` instead.""")
     def max_ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Maximum duration after which authentication will be expired
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
-        warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
-        pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
-
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
@@ -358,14 +356,12 @@ class AuthBackendArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Deprecated. Please use `token_ttl` instead.""")
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Duration after which authentication will be expired.
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
-        warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
-        pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
-
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -572,14 +568,12 @@ class _AuthBackendState:
 
     @property
     @pulumi.getter(name="maxTtl")
+    @_utilities.deprecated("""Deprecated. Please use `token_max_ttl` instead.""")
     def max_ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Maximum duration after which authentication will be expired
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
-        warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
-        pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
-
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
@@ -748,14 +742,12 @@ class _AuthBackendState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Deprecated. Please use `token_ttl` instead.""")
     def ttl(self) -> Optional[pulumi.Input[str]]:
         """
         Duration after which authentication will be expired.
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
-        warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
-        pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
-
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -1134,14 +1126,12 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxTtl")
+    @_utilities.deprecated("""Deprecated. Please use `token_max_ttl` instead.""")
     def max_ttl(self) -> pulumi.Output[Optional[str]]:
         """
         Maximum duration after which authentication will be expired
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
-        warnings.warn("""Deprecated. Please use `token_max_ttl` instead.""", DeprecationWarning)
-        pulumi.log.warn("""max_ttl is deprecated: Deprecated. Please use `token_max_ttl` instead.""")
-
         return pulumi.get(self, "max_ttl")
 
     @property
@@ -1254,14 +1244,12 @@ class AuthBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Deprecated. Please use `token_ttl` instead.""")
     def ttl(self) -> pulumi.Output[Optional[str]]:
         """
         Duration after which authentication will be expired.
         [See the documentation for info on valid duration formats](https://golang.org/pkg/time/#ParseDuration).
         """
-        warnings.warn("""Deprecated. Please use `token_ttl` instead.""", DeprecationWarning)
-        pulumi.log.warn("""ttl is deprecated: Deprecated. Please use `token_ttl` instead.""")
-
         return pulumi.get(self, "ttl")
 
     @property
