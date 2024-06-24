@@ -231,13 +231,11 @@ class BackendArgs:
 
     @property
     @pulumi.getter(name="useMicrosoftGraphApi")
+    @_utilities.deprecated("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
     def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
         """
         Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
-        warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
-        pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-
         return pulumi.get(self, "use_microsoft_graph_api")
 
     @use_microsoft_graph_api.setter
@@ -467,13 +465,11 @@ class _BackendState:
 
     @property
     @pulumi.getter(name="useMicrosoftGraphApi")
+    @_utilities.deprecated("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
     def use_microsoft_graph_api(self) -> Optional[pulumi.Input[bool]]:
         """
         Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
-        warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
-        pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-
         return pulumi.get(self, "use_microsoft_graph_api")
 
     @use_microsoft_graph_api.setter
@@ -852,12 +848,10 @@ class Backend(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="useMicrosoftGraphApi")
+    @_utilities.deprecated("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
     def use_microsoft_graph_api(self) -> pulumi.Output[bool]:
         """
         Use the Microsoft Graph API. Should be set to true on vault-1.10+
         """
-        warnings.warn("""This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""", DeprecationWarning)
-        pulumi.log.warn("""use_microsoft_graph_api is deprecated: This field is not supported in Vault-1.12+ and is the default behavior. This field will be removed in future version of the provider.""")
-
         return pulumi.get(self, "use_microsoft_graph_api")
 

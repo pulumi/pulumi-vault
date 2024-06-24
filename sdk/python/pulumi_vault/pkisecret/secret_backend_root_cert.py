@@ -1089,7 +1089,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[pki]))
+            opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -1157,7 +1157,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             exclude_cn_from_sans=True,
             ou="My OU",
             organization="My organization",
-            opts=pulumi.ResourceOptions(depends_on=[pki]))
+            opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
 
         :param str resource_name: The name of the resource.

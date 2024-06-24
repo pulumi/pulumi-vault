@@ -970,7 +970,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             backend=pki["path"],
             type="internal",
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[pki]))
+            opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -1028,7 +1028,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             backend=pki["path"],
             type="internal",
             common_name="app.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[pki]))
+            opts = pulumi.ResourceOptions(depends_on=[pki]))
         ```
 
         :param str resource_name: The name of the resource.

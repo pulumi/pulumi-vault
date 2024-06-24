@@ -684,7 +684,7 @@ class SecretBackendSign(pulumi.CustomResource):
         -----END CERTIFICATE REQUEST-----
         \"\"\",
             common_name="test.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[admin]))
+            opts = pulumi.ResourceOptions(depends_on=[admin]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -756,7 +756,7 @@ class SecretBackendSign(pulumi.CustomResource):
         -----END CERTIFICATE REQUEST-----
         \"\"\",
             common_name="test.my.domain",
-            opts=pulumi.ResourceOptions(depends_on=[admin]))
+            opts = pulumi.ResourceOptions(depends_on=[admin]))
         ```
 
         :param str resource_name: The name of the resource.
