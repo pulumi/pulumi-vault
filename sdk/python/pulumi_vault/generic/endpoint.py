@@ -420,7 +420,7 @@ class Endpoint(pulumi.CustomResource):
           "password": "changeme"
         }
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[userpass]))
+            opts = pulumi.ResourceOptions(depends_on=[userpass]))
         u1_token = vault.generic.Endpoint("u1_token",
             path="auth/userpass/login/u1",
             disable_read=True,
@@ -429,7 +429,7 @@ class Endpoint(pulumi.CustomResource):
           "password": "changeme"
         }
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[u1]))
+            opts = pulumi.ResourceOptions(depends_on=[u1]))
         u1_entity = vault.generic.Endpoint("u1_entity",
             disable_read=True,
             disable_delete=True,
@@ -441,7 +441,7 @@ class Endpoint(pulumi.CustomResource):
           "alias_mount_accessor": vault_auth_backend.userpass.accessor
         }
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[u1_token]))
+            opts = pulumi.ResourceOptions(depends_on=[u1_token]))
         pulumi.export("u1Id", u1_entity.write_data["id"])
         ```
 
@@ -513,7 +513,7 @@ class Endpoint(pulumi.CustomResource):
           "password": "changeme"
         }
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[userpass]))
+            opts = pulumi.ResourceOptions(depends_on=[userpass]))
         u1_token = vault.generic.Endpoint("u1_token",
             path="auth/userpass/login/u1",
             disable_read=True,
@@ -522,7 +522,7 @@ class Endpoint(pulumi.CustomResource):
           "password": "changeme"
         }
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[u1]))
+            opts = pulumi.ResourceOptions(depends_on=[u1]))
         u1_entity = vault.generic.Endpoint("u1_entity",
             disable_read=True,
             disable_delete=True,
@@ -534,7 +534,7 @@ class Endpoint(pulumi.CustomResource):
           "alias_mount_accessor": vault_auth_backend.userpass.accessor
         }
         \"\"\",
-            opts=pulumi.ResourceOptions(depends_on=[u1_token]))
+            opts = pulumi.ResourceOptions(depends_on=[u1_token]))
         pulumi.export("u1Id", u1_entity.write_data["id"])
         ```
 
