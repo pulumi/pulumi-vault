@@ -13,7 +13,13 @@ namespace Pulumi.Vault.Outputs
     [OutputType]
     public sealed class GetPolicyDocumentRuleDeniedParameterResult
     {
+        /// <summary>
+        /// name of permitted or denied parameter.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// list of values what are permitted or denied by policy rule.
+        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

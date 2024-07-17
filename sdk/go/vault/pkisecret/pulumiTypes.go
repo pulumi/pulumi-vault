@@ -14,7 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type BackendConfigEstAuthenticators struct {
-	Cert     map[string]interface{} `pulumi:"cert"`
+	// "The accessor (required) and certRole (optional) properties for cert auth backends".
+	Cert map[string]interface{} `pulumi:"cert"`
+	// "The accessor (required) property for user pass auth backends".
 	Userpass map[string]interface{} `pulumi:"userpass"`
 }
 
@@ -30,7 +32,9 @@ type BackendConfigEstAuthenticatorsInput interface {
 }
 
 type BackendConfigEstAuthenticatorsArgs struct {
-	Cert     pulumi.MapInput `pulumi:"cert"`
+	// "The accessor (required) and certRole (optional) properties for cert auth backends".
+	Cert pulumi.MapInput `pulumi:"cert"`
+	// "The accessor (required) property for user pass auth backends".
 	Userpass pulumi.MapInput `pulumi:"userpass"`
 }
 
@@ -111,10 +115,12 @@ func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsPt
 	}).(BackendConfigEstAuthenticatorsPtrOutput)
 }
 
+// "The accessor (required) and certRole (optional) properties for cert auth backends".
 func (o BackendConfigEstAuthenticatorsOutput) Cert() pulumi.MapOutput {
 	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]interface{} { return v.Cert }).(pulumi.MapOutput)
 }
 
+// "The accessor (required) property for user pass auth backends".
 func (o BackendConfigEstAuthenticatorsOutput) Userpass() pulumi.MapOutput {
 	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]interface{} { return v.Userpass }).(pulumi.MapOutput)
 }
@@ -143,6 +149,7 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Elem() BackendConfigEstAuthenti
 	}).(BackendConfigEstAuthenticatorsOutput)
 }
 
+// "The accessor (required) and certRole (optional) properties for cert auth backends".
 func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.MapOutput {
 	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]interface{} {
 		if v == nil {
@@ -152,6 +159,7 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.MapOutput {
 	}).(pulumi.MapOutput)
 }
 
+// "The accessor (required) property for user pass auth backends".
 func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.MapOutput {
 	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]interface{} {
 		if v == nil {

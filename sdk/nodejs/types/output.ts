@@ -86,12 +86,24 @@ export interface GetPolicyDocumentRule {
 }
 
 export interface GetPolicyDocumentRuleAllowedParameter {
+    /**
+     * name of permitted or denied parameter.
+     */
     key: string;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
     values: string[];
 }
 
 export interface GetPolicyDocumentRuleDeniedParameter {
+    /**
+     * name of permitted or denied parameter.
+     */
     key: string;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
     values: string[];
 }
 
@@ -2844,7 +2856,13 @@ export namespace okta {
 
 export namespace pkiSecret {
     export interface BackendConfigEstAuthenticators {
+        /**
+         * "The accessor (required) and certRole (optional) properties for cert auth backends".
+         */
         cert?: {[key: string]: any};
+        /**
+         * "The accessor (required) property for user pass auth backends".
+         */
         userpass?: {[key: string]: any};
     }
 
