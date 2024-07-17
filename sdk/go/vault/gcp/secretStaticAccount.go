@@ -26,7 +26,7 @@ import (
 //
 //	"fmt"
 //
-//	"github.com/pulumi/pulumi-google/sdk/v1/go/google"
+//	"github.com/pulumi/pulumi-google/sdk/go/google"
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/gcp"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -35,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			this, err := index.NewServiceAccount(ctx, "this", &index.ServiceAccountArgs{
+//			this, err := google.NewServiceAccount(ctx, "this", &google.ServiceAccountArgs{
 //				AccountId: "my-awesome-account",
 //			})
 //			if err != nil {

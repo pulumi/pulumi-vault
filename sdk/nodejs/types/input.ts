@@ -121,22 +121,46 @@ export interface GetPolicyDocumentRuleArgs {
 }
 
 export interface GetPolicyDocumentRuleAllowedParameter {
+    /**
+     * name of permitted or denied parameter.
+     */
     key: string;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
     values: string[];
 }
 
 export interface GetPolicyDocumentRuleAllowedParameterArgs {
+    /**
+     * name of permitted or denied parameter.
+     */
     key: pulumi.Input<string>;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetPolicyDocumentRuleDeniedParameter {
+    /**
+     * name of permitted or denied parameter.
+     */
     key: string;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
     values: string[];
 }
 
 export interface GetPolicyDocumentRuleDeniedParameterArgs {
+    /**
+     * name of permitted or denied parameter.
+     */
     key: pulumi.Input<string>;
+    /**
+     * list of values what are permitted or denied by policy rule.
+     */
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -2836,7 +2860,13 @@ export namespace okta {
 
 export namespace pkiSecret {
     export interface BackendConfigEstAuthenticators {
+        /**
+         * "The accessor (required) and certRole (optional) properties for cert auth backends".
+         */
         cert?: pulumi.Input<{[key: string]: any}>;
+        /**
+         * "The accessor (required) property for user pass auth backends".
+         */
         userpass?: pulumi.Input<{[key: string]: any}>;
     }
 

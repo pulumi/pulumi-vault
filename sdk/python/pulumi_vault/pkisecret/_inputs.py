@@ -19,6 +19,10 @@ class BackendConfigEstAuthenticatorsArgs:
     def __init__(__self__, *,
                  cert: Optional[pulumi.Input[Mapping[str, Any]]] = None,
                  userpass: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, Any]] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        :param pulumi.Input[Mapping[str, Any]] userpass: "The accessor (required) property for user pass auth backends".
+        """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
         if userpass is not None:
@@ -27,6 +31,9 @@ class BackendConfigEstAuthenticatorsArgs:
     @property
     @pulumi.getter
     def cert(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
         return pulumi.get(self, "cert")
 
     @cert.setter
@@ -36,6 +43,9 @@ class BackendConfigEstAuthenticatorsArgs:
     @property
     @pulumi.getter
     def userpass(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        "The accessor (required) property for user pass auth backends".
+        """
         return pulumi.get(self, "userpass")
 
     @userpass.setter
