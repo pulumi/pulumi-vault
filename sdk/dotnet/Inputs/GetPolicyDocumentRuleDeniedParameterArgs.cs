@@ -12,11 +12,18 @@ namespace Pulumi.Vault.Inputs
 
     public sealed class GetPolicyDocumentRuleDeniedParameterInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// name of permitted or denied parameter.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("values", required: true)]
         private InputList<string>? _values;
+
+        /// <summary>
+        /// list of values what are permitted or denied by policy rule.
+        /// </summary>
         public InputList<string> Values
         {
             get => _values ?? (_values = new InputList<string>());

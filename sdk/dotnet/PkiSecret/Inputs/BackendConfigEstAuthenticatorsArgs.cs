@@ -14,6 +14,10 @@ namespace Pulumi.Vault.PkiSecret.Inputs
     {
         [Input("cert")]
         private InputMap<object>? _cert;
+
+        /// <summary>
+        /// "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        /// </summary>
         public InputMap<object> Cert
         {
             get => _cert ?? (_cert = new InputMap<object>());
@@ -22,6 +26,10 @@ namespace Pulumi.Vault.PkiSecret.Inputs
 
         [Input("userpass")]
         private InputMap<object>? _userpass;
+
+        /// <summary>
+        /// "The accessor (required) property for user pass auth backends".
+        /// </summary>
         public InputMap<object> Userpass
         {
             get => _userpass ?? (_userpass = new InputMap<object>());

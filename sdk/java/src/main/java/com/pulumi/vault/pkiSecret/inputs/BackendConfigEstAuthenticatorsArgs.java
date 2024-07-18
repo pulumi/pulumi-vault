@@ -17,16 +17,32 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
 
     public static final BackendConfigEstAuthenticatorsArgs Empty = new BackendConfigEstAuthenticatorsArgs();
 
+    /**
+     * &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * 
+     */
     @Import(name="cert")
     private @Nullable Output<Map<String,Object>> cert;
 
+    /**
+     * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+     * 
+     */
     public Optional<Output<Map<String,Object>>> cert() {
         return Optional.ofNullable(this.cert);
     }
 
+    /**
+     * &#34;The accessor (required) property for user pass auth backends&#34;.
+     * 
+     */
     @Import(name="userpass")
     private @Nullable Output<Map<String,Object>> userpass;
 
+    /**
+     * @return &#34;The accessor (required) property for user pass auth backends&#34;.
+     * 
+     */
     public Optional<Output<Map<String,Object>>> userpass() {
         return Optional.ofNullable(this.userpass);
     }
@@ -56,20 +72,44 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
             $ = new BackendConfigEstAuthenticatorsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param cert &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder cert(@Nullable Output<Map<String,Object>> cert) {
             $.cert = cert;
             return this;
         }
 
+        /**
+         * @param cert &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder cert(Map<String,Object> cert) {
             return cert(Output.of(cert));
         }
 
+        /**
+         * @param userpass &#34;The accessor (required) property for user pass auth backends&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userpass(@Nullable Output<Map<String,Object>> userpass) {
             $.userpass = userpass;
             return this;
         }
 
+        /**
+         * @param userpass &#34;The accessor (required) property for user pass auth backends&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userpass(Map<String,Object> userpass) {
             return userpass(Output.of(userpass));
         }

@@ -20,6 +20,10 @@ class BackendConfigEstAuthenticators(dict):
     def __init__(__self__, *,
                  cert: Optional[Mapping[str, Any]] = None,
                  userpass: Optional[Mapping[str, Any]] = None):
+        """
+        :param Mapping[str, Any] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        :param Mapping[str, Any] userpass: "The accessor (required) property for user pass auth backends".
+        """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
         if userpass is not None:
@@ -28,11 +32,17 @@ class BackendConfigEstAuthenticators(dict):
     @property
     @pulumi.getter
     def cert(self) -> Optional[Mapping[str, Any]]:
+        """
+        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
         return pulumi.get(self, "cert")
 
     @property
     @pulumi.getter
     def userpass(self) -> Optional[Mapping[str, Any]]:
+        """
+        "The accessor (required) property for user pass auth backends".
+        """
         return pulumi.get(self, "userpass")
 
 
