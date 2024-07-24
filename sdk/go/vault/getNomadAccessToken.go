@@ -50,10 +50,10 @@ import (
 //			_ = pulumi.All(config.Backend, test.Role).ApplyT(func(_args []interface{}) (vault.GetNomadAccessTokenResult, error) {
 //				backend := _args[0].(*string)
 //				role := _args[1].(string)
-//				return vault.GetNomadAccessTokenOutput(ctx, vault.GetNomadAccessTokenOutputArgs{
+//				return vault.GetNomadAccessTokenResult(interface{}(vault.GetNomadAccessTokenOutput(ctx, vault.GetNomadAccessTokenOutputArgs{
 //					Backend: backend,
 //					Role:    role,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(vault.GetNomadAccessTokenResultOutput)
 //			return nil
 //		})

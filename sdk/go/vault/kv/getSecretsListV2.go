@@ -91,10 +91,10 @@ import (
 //				Mount: kvv2.Path,
 //			}, nil)
 //			_ = kvv2.Path.ApplyT(func(path string) (kv.GetSecretsListV2Result, error) {
-//				return kv.GetSecretsListV2Output(ctx, kv.GetSecretsListV2OutputArgs{
+//				return kv.GetSecretsListV2Result(interface{}(kv.GetSecretsListV2Output(ctx, kv.GetSecretsListV2OutputArgs{
 //					Mount: path,
 //					Name:  test2.Name,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(kv.GetSecretsListV2ResultOutput)
 //			return nil
 //		})

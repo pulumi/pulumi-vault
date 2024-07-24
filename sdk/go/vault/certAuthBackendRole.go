@@ -44,7 +44,7 @@ import (
 //			}
 //			_, err = vault.NewCertAuthBackendRole(ctx, "cert", &vault.CertAuthBackendRoleArgs{
 //				Name:        pulumi.String("foo"),
-//				Certificate: invokeFile.Result,
+//				Certificate: pulumi.String(invokeFile.Result),
 //				Backend:     cert.Path,
 //				AllowedNames: pulumi.StringArray{
 //					pulumi.String("foo.example.org"),
