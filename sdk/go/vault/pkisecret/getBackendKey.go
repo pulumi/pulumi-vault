@@ -45,10 +45,10 @@ import (
 //				return err
 //			}
 //			_ = key.KeyId.ApplyT(func(keyId string) (pkisecret.GetBackendKeyResult, error) {
-//				return pkiSecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
+//				return pkisecret.GetBackendKeyResult(interface{}(pkiSecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
 //					Backend: keyVaultMount.Path,
 //					KeyRef:  keyId,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(pkisecret.GetBackendKeyResultOutput)
 //			return nil
 //		})

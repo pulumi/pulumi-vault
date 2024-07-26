@@ -36,7 +36,7 @@ import (
 //			_, err = secrets.NewSyncGithubApps(ctx, "github-apps", &secrets.SyncGithubAppsArgs{
 //				Name:       pulumi.String("gh-apps"),
 //				AppId:      pulumi.Any(appId),
-//				PrivateKey: invokeFile.Result,
+//				PrivateKey: pulumi.String(invokeFile.Result),
 //			})
 //			if err != nil {
 //				return err
