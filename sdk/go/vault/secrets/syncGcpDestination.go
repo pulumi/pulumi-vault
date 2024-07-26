@@ -35,7 +35,7 @@ import (
 //			_, err = secrets.NewSyncGcpDestination(ctx, "gcp", &secrets.SyncGcpDestinationArgs{
 //				Name:               pulumi.String("gcp-dest"),
 //				ProjectId:          pulumi.String("gcp-project-id"),
-//				Credentials:        invokeFile.Result,
+//				Credentials:        pulumi.String(invokeFile.Result),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
 //				CustomTags: pulumi.Map{
 //					"foo": pulumi.Any("bar"),

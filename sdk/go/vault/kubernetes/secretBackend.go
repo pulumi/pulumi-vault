@@ -45,8 +45,8 @@ import (
 //				DefaultLeaseTtlSeconds: pulumi.Int(43200),
 //				MaxLeaseTtlSeconds:     pulumi.Int(86400),
 //				KubernetesHost:         pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:       invokeFile.Result,
-//				ServiceAccountJwt:      invokeFile1.Result,
+//				KubernetesCaCert:       pulumi.String(invokeFile.Result),
+//				ServiceAccountJwt:      pulumi.String(invokeFile1.Result),
 //				DisableLocalCaJwt:      pulumi.Bool(false),
 //			})
 //			if err != nil {

@@ -45,8 +45,8 @@ import (
 //				Path:              pulumi.String("kubernetes"),
 //				Description:       pulumi.String("kubernetes secrets engine description"),
 //				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:  invokeFile.Result,
-//				ServiceAccountJwt: invokeFile1.Result,
+//				KubernetesCaCert:  pulumi.String(invokeFile.Result),
+//				ServiceAccountJwt: pulumi.String(invokeFile1.Result),
 //				DisableLocalCaJwt: pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -110,8 +110,8 @@ import (
 //				Path:              pulumi.String("kubernetes"),
 //				Description:       pulumi.String("kubernetes secrets engine description"),
 //				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:  invokeFile.Result,
-//				ServiceAccountJwt: invokeFile1.Result,
+//				KubernetesCaCert:  pulumi.String(invokeFile.Result),
+//				ServiceAccountJwt: pulumi.String(invokeFile1.Result),
 //				DisableLocalCaJwt: pulumi.Bool(false),
 //			})
 //			if err != nil {
@@ -175,8 +175,8 @@ import (
 //				Path:              pulumi.String("kubernetes"),
 //				Description:       pulumi.String("kubernetes secrets engine description"),
 //				KubernetesHost:    pulumi.String("https://127.0.0.1:61233"),
-//				KubernetesCaCert:  invokeFile.Result,
-//				ServiceAccountJwt: invokeFile1.Result,
+//				KubernetesCaCert:  pulumi.String(invokeFile.Result),
+//				ServiceAccountJwt: pulumi.String(invokeFile1.Result),
 //				DisableLocalCaJwt: pulumi.Bool(false),
 //			})
 //			if err != nil {

@@ -61,7 +61,7 @@ import (
 //				return err
 //			}
 //			_, err = gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
-//				Credentials: invokeFile.Result,
+//				Credentials: pulumi.String(invokeFile.Result),
 //			})
 //			if err != nil {
 //				return err

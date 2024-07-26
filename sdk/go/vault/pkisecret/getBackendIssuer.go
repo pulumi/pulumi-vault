@@ -45,10 +45,10 @@ import (
 //				return err
 //			}
 //			_ = root.IssuerId.ApplyT(func(issuerId string) (pkisecret.GetBackendIssuerResult, error) {
-//				return pkiSecret.GetBackendIssuerOutput(ctx, pkisecret.GetBackendIssuerOutputArgs{
+//				return pkisecret.GetBackendIssuerResult(interface{}(pkiSecret.GetBackendIssuerOutput(ctx, pkisecret.GetBackendIssuerOutputArgs{
 //					Backend:   root.Path,
 //					IssuerRef: issuerId,
-//				}, nil), nil
+//				}, nil))), nil
 //			}).(pkisecret.GetBackendIssuerResultOutput)
 //			return nil
 //		})
