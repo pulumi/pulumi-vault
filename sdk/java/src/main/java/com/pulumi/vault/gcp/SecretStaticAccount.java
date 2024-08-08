@@ -215,7 +215,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretStaticAccount(String name) {
+    public SecretStaticAccount(java.lang.String name) {
         this(name, SecretStaticAccountArgs.Empty);
     }
     /**
@@ -223,7 +223,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretStaticAccount(String name, SecretStaticAccountArgs args) {
+    public SecretStaticAccount(java.lang.String name, SecretStaticAccountArgs args) {
         this(name, args, null);
     }
     /**
@@ -232,12 +232,12 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretStaticAccount(String name, SecretStaticAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretStaticAccount(java.lang.String name, SecretStaticAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretStaticAccount(String name, Output<String> id, @Nullable SecretStaticAccountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, state, makeResourceOptions(options, id));
+    private SecretStaticAccount(java.lang.String name, Output<java.lang.String> id, @Nullable SecretStaticAccountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretStaticAccountArgs makeArgs(SecretStaticAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -247,7 +247,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
         return args == null ? SecretStaticAccountArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -263,7 +263,7 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretStaticAccount get(String name, Output<String> id, @Nullable SecretStaticAccountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretStaticAccount get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretStaticAccountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretStaticAccount(name, id, state, options);
     }
 }

@@ -503,9 +503,9 @@ class SecretBackendRole(pulumi.CustomResource):
                 "dev",
                 "prod",
             ],
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
+            postgresql={
+                "connection_url": "postgres://username:password@host:port/database",
+            })
         role = vault.database.SecretBackendRole("role",
             backend=db.path,
             name="dev",
@@ -574,9 +574,9 @@ class SecretBackendRole(pulumi.CustomResource):
                 "dev",
                 "prod",
             ],
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
+            postgresql={
+                "connection_url": "postgres://username:password@host:port/database",
+            })
         role = vault.database.SecretBackendRole("role",
             backend=db.path,
             name="dev",

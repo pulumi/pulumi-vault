@@ -139,7 +139,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackendRoletagBlacklist(String name) {
+    public AuthBackendRoletagBlacklist(java.lang.String name) {
         this(name, AuthBackendRoletagBlacklistArgs.Empty);
     }
     /**
@@ -147,7 +147,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackendRoletagBlacklist(String name, AuthBackendRoletagBlacklistArgs args) {
+    public AuthBackendRoletagBlacklist(java.lang.String name, AuthBackendRoletagBlacklistArgs args) {
         this(name, args, null);
     }
     /**
@@ -156,12 +156,12 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackendRoletagBlacklist(String name, AuthBackendRoletagBlacklistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AuthBackendRoletagBlacklist(java.lang.String name, AuthBackendRoletagBlacklistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AuthBackendRoletagBlacklist(String name, Output<String> id, @Nullable AuthBackendRoletagBlacklistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist", name, state, makeResourceOptions(options, id));
+    private AuthBackendRoletagBlacklist(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendRoletagBlacklistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuthBackendRoletagBlacklistArgs makeArgs(AuthBackendRoletagBlacklistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -171,7 +171,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
         return args == null ? AuthBackendRoletagBlacklistArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -187,7 +187,7 @@ public class AuthBackendRoletagBlacklist extends com.pulumi.resources.CustomReso
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackendRoletagBlacklist get(String name, Output<String> id, @Nullable AuthBackendRoletagBlacklistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AuthBackendRoletagBlacklist get(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendRoletagBlacklistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AuthBackendRoletagBlacklist(name, id, state, options);
     }
 }

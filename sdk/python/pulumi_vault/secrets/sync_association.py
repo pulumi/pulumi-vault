@@ -358,7 +358,7 @@ class SyncAssociation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SyncAssociationMetadataArgs']]]]] = None,
+            metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SyncAssociationMetadataArgs', 'SyncAssociationMetadataArgsDict']]]]] = None,
             mount: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -371,7 +371,7 @@ class SyncAssociation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SyncAssociationMetadataArgs']]]] metadatas: Metadata for each subkey of the associated secret.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SyncAssociationMetadataArgs', 'SyncAssociationMetadataArgsDict']]]] metadatas: Metadata for each subkey of the associated secret.
         :param pulumi.Input[str] mount: Specifies the mount where the secret is located.
         :param pulumi.Input[str] name: Specifies the name of the destination.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.

@@ -148,7 +148,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackendIdentityWhitelist(String name) {
+    public AuthBackendIdentityWhitelist(java.lang.String name) {
         this(name, AuthBackendIdentityWhitelistArgs.Empty);
     }
     /**
@@ -156,7 +156,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackendIdentityWhitelist(String name, @Nullable AuthBackendIdentityWhitelistArgs args) {
+    public AuthBackendIdentityWhitelist(java.lang.String name, @Nullable AuthBackendIdentityWhitelistArgs args) {
         this(name, args, null);
     }
     /**
@@ -165,12 +165,12 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackendIdentityWhitelist(String name, @Nullable AuthBackendIdentityWhitelistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AuthBackendIdentityWhitelist(java.lang.String name, @Nullable AuthBackendIdentityWhitelistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AuthBackendIdentityWhitelist(String name, Output<String> id, @Nullable AuthBackendIdentityWhitelistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, state, makeResourceOptions(options, id));
+    private AuthBackendIdentityWhitelist(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendIdentityWhitelistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuthBackendIdentityWhitelistArgs makeArgs(@Nullable AuthBackendIdentityWhitelistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -180,7 +180,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
         return args == null ? AuthBackendIdentityWhitelistArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -196,7 +196,7 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackendIdentityWhitelist get(String name, Output<String> id, @Nullable AuthBackendIdentityWhitelistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AuthBackendIdentityWhitelist get(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendIdentityWhitelistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AuthBackendIdentityWhitelist(name, id, state, options);
     }
 }

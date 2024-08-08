@@ -266,7 +266,7 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncAwsDestination(String name) {
+    public SyncAwsDestination(java.lang.String name) {
         this(name, SyncAwsDestinationArgs.Empty);
     }
     /**
@@ -274,7 +274,7 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncAwsDestination(String name, @Nullable SyncAwsDestinationArgs args) {
+    public SyncAwsDestination(java.lang.String name, @Nullable SyncAwsDestinationArgs args) {
         this(name, args, null);
     }
     /**
@@ -283,12 +283,12 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncAwsDestination(String name, @Nullable SyncAwsDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAwsDestination:SyncAwsDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncAwsDestination(java.lang.String name, @Nullable SyncAwsDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncAwsDestination:SyncAwsDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncAwsDestination(String name, Output<String> id, @Nullable SyncAwsDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAwsDestination:SyncAwsDestination", name, state, makeResourceOptions(options, id));
+    private SyncAwsDestination(java.lang.String name, Output<java.lang.String> id, @Nullable SyncAwsDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncAwsDestination:SyncAwsDestination", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncAwsDestinationArgs makeArgs(@Nullable SyncAwsDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -298,7 +298,7 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
         return args == null ? SyncAwsDestinationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -317,7 +317,7 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncAwsDestination get(String name, Output<String> id, @Nullable SyncAwsDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncAwsDestination get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncAwsDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncAwsDestination(name, id, state, options);
     }
 }

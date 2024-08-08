@@ -249,8 +249,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
-                 vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]]] = None,
-                 vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
+                 vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]]] = None,
+                 vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]]] = None,
                  __props__=None):
         """
         ## Example Usage
@@ -267,20 +267,20 @@ class SecretBackendRole(pulumi.CustomResource):
             backend=rabbitmq.path,
             name="deploy",
             tags="tag1,tag2",
-            vhosts=[vault.rabbit_mq.SecretBackendRoleVhostArgs(
-                host="/",
-                configure="",
-                read=".*",
-                write="",
-            )],
-            vhost_topics=[vault.rabbit_mq.SecretBackendRoleVhostTopicArgs(
-                vhosts=[vault.rabbit_mq.SecretBackendRoleVhostTopicVhostArgs(
-                    topic="amq.topic",
-                    read=".*",
-                    write="",
-                )],
-                host="/",
-            )])
+            vhosts=[{
+                "host": "/",
+                "configure": "",
+                "read": ".*",
+                "write": "",
+            }],
+            vhost_topics=[{
+                "vhosts": [{
+                    "topic": "amq.topic",
+                    "read": ".*",
+                    "write": "",
+                }],
+                "host": "/",
+            }])
         ```
 
         ## Import
@@ -302,8 +302,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         ...
     @overload
@@ -326,20 +326,20 @@ class SecretBackendRole(pulumi.CustomResource):
             backend=rabbitmq.path,
             name="deploy",
             tags="tag1,tag2",
-            vhosts=[vault.rabbit_mq.SecretBackendRoleVhostArgs(
-                host="/",
-                configure="",
-                read=".*",
-                write="",
-            )],
-            vhost_topics=[vault.rabbit_mq.SecretBackendRoleVhostTopicArgs(
-                vhosts=[vault.rabbit_mq.SecretBackendRoleVhostTopicVhostArgs(
-                    topic="amq.topic",
-                    read=".*",
-                    write="",
-                )],
-                host="/",
-            )])
+            vhosts=[{
+                "host": "/",
+                "configure": "",
+                "read": ".*",
+                "write": "",
+            }],
+            vhost_topics=[{
+                "vhosts": [{
+                    "topic": "amq.topic",
+                    "read": ".*",
+                    "write": "",
+                }],
+                "host": "/",
+            }])
         ```
 
         ## Import
@@ -369,8 +369,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
-                 vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]]] = None,
-                 vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None,
+                 vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]]] = None,
+                 vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -402,8 +402,8 @@ class SecretBackendRole(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
-            vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]]] = None,
-            vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]]] = None) -> 'SecretBackendRole':
+            vhost_topics: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]]] = None,
+            vhosts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -420,8 +420,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] tags: Specifies a comma-separated RabbitMQ management tags.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostTopicArgs']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRoleVhostArgs']]]] vhosts: Specifies a map of virtual hosts to permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

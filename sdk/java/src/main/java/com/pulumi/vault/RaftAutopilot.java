@@ -212,7 +212,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public RaftAutopilot(String name) {
+    public RaftAutopilot(java.lang.String name) {
         this(name, RaftAutopilotArgs.Empty);
     }
     /**
@@ -220,7 +220,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RaftAutopilot(String name, @Nullable RaftAutopilotArgs args) {
+    public RaftAutopilot(java.lang.String name, @Nullable RaftAutopilotArgs args) {
         this(name, args, null);
     }
     /**
@@ -229,12 +229,12 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RaftAutopilot(String name, @Nullable RaftAutopilotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/raftAutopilot:RaftAutopilot", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public RaftAutopilot(java.lang.String name, @Nullable RaftAutopilotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/raftAutopilot:RaftAutopilot", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private RaftAutopilot(String name, Output<String> id, @Nullable RaftAutopilotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/raftAutopilot:RaftAutopilot", name, state, makeResourceOptions(options, id));
+    private RaftAutopilot(java.lang.String name, Output<java.lang.String> id, @Nullable RaftAutopilotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/raftAutopilot:RaftAutopilot", name, state, makeResourceOptions(options, id), false);
     }
 
     private static RaftAutopilotArgs makeArgs(@Nullable RaftAutopilotArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -244,7 +244,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
         return args == null ? RaftAutopilotArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -260,7 +260,7 @@ public class RaftAutopilot extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static RaftAutopilot get(String name, Output<String> id, @Nullable RaftAutopilotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static RaftAutopilot get(java.lang.String name, Output<java.lang.String> id, @Nullable RaftAutopilotState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new RaftAutopilot(name, id, state, options);
     }
 }

@@ -219,7 +219,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public MfaLoginEnforcement(String name) {
+    public MfaLoginEnforcement(java.lang.String name) {
         this(name, MfaLoginEnforcementArgs.Empty);
     }
     /**
@@ -227,7 +227,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public MfaLoginEnforcement(String name, MfaLoginEnforcementArgs args) {
+    public MfaLoginEnforcement(java.lang.String name, MfaLoginEnforcementArgs args) {
         this(name, args, null);
     }
     /**
@@ -236,12 +236,12 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public MfaLoginEnforcement(String name, MfaLoginEnforcementArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public MfaLoginEnforcement(java.lang.String name, MfaLoginEnforcementArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private MfaLoginEnforcement(String name, Output<String> id, @Nullable MfaLoginEnforcementState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement", name, state, makeResourceOptions(options, id));
+    private MfaLoginEnforcement(java.lang.String name, Output<java.lang.String> id, @Nullable MfaLoginEnforcementState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement", name, state, makeResourceOptions(options, id), false);
     }
 
     private static MfaLoginEnforcementArgs makeArgs(MfaLoginEnforcementArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -251,7 +251,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
         return args == null ? MfaLoginEnforcementArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -267,7 +267,7 @@ public class MfaLoginEnforcement extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static MfaLoginEnforcement get(String name, Output<String> id, @Nullable MfaLoginEnforcementState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static MfaLoginEnforcement get(java.lang.String name, Output<java.lang.String> id, @Nullable MfaLoginEnforcementState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new MfaLoginEnforcement(name, id, state, options);
     }
 }

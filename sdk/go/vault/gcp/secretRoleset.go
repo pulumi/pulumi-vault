@@ -57,7 +57,7 @@ import (
 //				},
 //				Bindings: gcp.SecretRolesetBindingArray{
 //					&gcp.SecretRolesetBindingArgs{
-//						Resource: pulumi.String(fmt.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", project)),
+//						Resource: pulumi.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", project),
 //						Roles: pulumi.StringArray{
 //							pulumi.String("roles/viewer"),
 //						},

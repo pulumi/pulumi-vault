@@ -145,7 +145,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public EntityAlias(String name) {
+    public EntityAlias(java.lang.String name) {
         this(name, EntityAliasArgs.Empty);
     }
     /**
@@ -153,7 +153,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public EntityAlias(String name, EntityAliasArgs args) {
+    public EntityAlias(java.lang.String name, EntityAliasArgs args) {
         this(name, args, null);
     }
     /**
@@ -162,12 +162,12 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public EntityAlias(String name, EntityAliasArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/entityAlias:EntityAlias", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public EntityAlias(java.lang.String name, EntityAliasArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/entityAlias:EntityAlias", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private EntityAlias(String name, Output<String> id, @Nullable EntityAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/entityAlias:EntityAlias", name, state, makeResourceOptions(options, id));
+    private EntityAlias(java.lang.String name, Output<java.lang.String> id, @Nullable EntityAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/entityAlias:EntityAlias", name, state, makeResourceOptions(options, id), false);
     }
 
     private static EntityAliasArgs makeArgs(EntityAliasArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -177,7 +177,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
         return args == null ? EntityAliasArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -193,7 +193,7 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static EntityAlias get(String name, Output<String> id, @Nullable EntityAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static EntityAlias get(java.lang.String name, Output<java.lang.String> id, @Nullable EntityAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new EntityAlias(name, id, state, options);
     }
 }

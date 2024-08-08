@@ -42,12 +42,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .path("userpass")
@@ -56,13 +56,13 @@ import javax.annotation.Nullable;
  *         var myOkta = new MfaOkta("myOkta", MfaOktaArgs.builder()
  *             .name("my_okta")
  *             .mountAccessor(userpass.accessor())
- *             .usernameFormat("user{@literal @}example.com")
+ *             .usernameFormat("user}{@literal @}{@code example.com")
  *             .orgName("hashicorp")
  *             .apiToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9")
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -219,7 +219,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public MfaOkta(String name) {
+    public MfaOkta(java.lang.String name) {
         this(name, MfaOktaArgs.Empty);
     }
     /**
@@ -227,7 +227,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public MfaOkta(String name, MfaOktaArgs args) {
+    public MfaOkta(java.lang.String name, MfaOktaArgs args) {
         this(name, args, null);
     }
     /**
@@ -236,12 +236,12 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public MfaOkta(String name, MfaOktaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mfaOkta:MfaOkta", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public MfaOkta(java.lang.String name, MfaOktaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/mfaOkta:MfaOkta", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private MfaOkta(String name, Output<String> id, @Nullable MfaOktaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mfaOkta:MfaOkta", name, state, makeResourceOptions(options, id));
+    private MfaOkta(java.lang.String name, Output<java.lang.String> id, @Nullable MfaOktaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/mfaOkta:MfaOkta", name, state, makeResourceOptions(options, id), false);
     }
 
     private static MfaOktaArgs makeArgs(MfaOktaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -251,7 +251,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
         return args == null ? MfaOktaArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -270,7 +270,7 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static MfaOkta get(String name, Output<String> id, @Nullable MfaOktaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static MfaOkta get(java.lang.String name, Output<java.lang.String> id, @Nullable MfaOktaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new MfaOkta(name, id, state, options);
     }
 }
