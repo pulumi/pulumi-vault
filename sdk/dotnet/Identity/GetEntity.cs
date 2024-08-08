@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+        /// Use of this resource requires the `update` capability on `/identity/lookup/entity`.
         /// </summary>
         public static Task<GetEntityResult> InvokeAsync(GetEntityArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityArgs(), options.WithDefaults());
@@ -58,7 +58,7 @@ namespace Pulumi.Vault.Identity
         /// 
         /// ## Required Vault Capabilities
         /// 
-        /// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+        /// Use of this resource requires the `update` capability on `/identity/lookup/entity`.
         /// </summary>
         public static Output<GetEntityResult> Invoke(GetEntityInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithDefaults());

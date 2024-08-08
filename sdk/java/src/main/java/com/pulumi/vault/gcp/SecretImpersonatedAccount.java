@@ -192,11 +192,18 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretImpersonatedAccount(String name, SecretImpersonatedAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount", name, args == null ? SecretImpersonatedAccountArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretImpersonatedAccount(String name, Output<String> id, @Nullable SecretImpersonatedAccountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretImpersonatedAccountArgs makeArgs(SecretImpersonatedAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretImpersonatedAccountArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

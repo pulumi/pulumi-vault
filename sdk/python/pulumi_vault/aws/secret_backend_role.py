@@ -17,6 +17,7 @@ class SecretBackendRoleArgs:
                  backend: pulumi.Input[str],
                  credential_type: pulumi.Input[str],
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
@@ -26,6 +27,7 @@ class SecretBackendRoleArgs:
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  user_path: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
@@ -39,6 +41,8 @@ class SecretBackendRoleArgs:
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
+        :param pulumi.Input[str] external_id: External ID to set for assume role creds. 
+               Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
                type of `assumed_role` or `federation_token`, the policies sent to the
@@ -75,6 +79,9 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] session_tags: A map of strings representing key/value pairs to be set
+               during assume role creds creation. Valid only when `credential_type` is set to
+               `assumed_role`.
         :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
                `credential_type` is `iam_user`. Default is `/`.
         """
@@ -82,6 +89,8 @@ class SecretBackendRoleArgs:
         pulumi.set(__self__, "credential_type", credential_type)
         if default_sts_ttl is not None:
             pulumi.set(__self__, "default_sts_ttl", default_sts_ttl)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if iam_groups is not None:
             pulumi.set(__self__, "iam_groups", iam_groups)
         if iam_tags is not None:
@@ -100,6 +109,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "policy_document", policy_document)
         if role_arns is not None:
             pulumi.set(__self__, "role_arns", role_arns)
+        if session_tags is not None:
+            pulumi.set(__self__, "session_tags", session_tags)
         if user_path is not None:
             pulumi.set(__self__, "user_path", user_path)
 
@@ -147,6 +158,19 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "default_sts_ttl", value)
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        External ID to set for assume role creds. 
+        Valid only when `credential_type` is set to `assumed_role`.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
+
+    @property
     @pulumi.getter(name="iamGroups")
     def iam_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -282,6 +306,20 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "role_arns", value)
 
     @property
+    @pulumi.getter(name="sessionTags")
+    def session_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of strings representing key/value pairs to be set
+        during assume role creds creation. Valid only when `credential_type` is set to
+        `assumed_role`.
+        """
+        return pulumi.get(self, "session_tags")
+
+    @session_tags.setter
+    def session_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "session_tags", value)
+
+    @property
     @pulumi.getter(name="userPath")
     def user_path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -301,6 +339,7 @@ class _SecretBackendRoleState:
                  backend: Optional[pulumi.Input[str]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
@@ -310,6 +349,7 @@ class _SecretBackendRoleState:
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  user_path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
@@ -323,6 +363,8 @@ class _SecretBackendRoleState:
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
+        :param pulumi.Input[str] external_id: External ID to set for assume role creds. 
+               Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
                type of `assumed_role` or `federation_token`, the policies sent to the
@@ -359,6 +401,9 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] session_tags: A map of strings representing key/value pairs to be set
+               during assume role creds creation. Valid only when `credential_type` is set to
+               `assumed_role`.
         :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
                `credential_type` is `iam_user`. Default is `/`.
         """
@@ -368,6 +413,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "credential_type", credential_type)
         if default_sts_ttl is not None:
             pulumi.set(__self__, "default_sts_ttl", default_sts_ttl)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if iam_groups is not None:
             pulumi.set(__self__, "iam_groups", iam_groups)
         if iam_tags is not None:
@@ -386,6 +433,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "policy_document", policy_document)
         if role_arns is not None:
             pulumi.set(__self__, "role_arns", role_arns)
+        if session_tags is not None:
+            pulumi.set(__self__, "session_tags", session_tags)
         if user_path is not None:
             pulumi.set(__self__, "user_path", user_path)
 
@@ -433,6 +482,19 @@ class _SecretBackendRoleState:
         pulumi.set(self, "default_sts_ttl", value)
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        External ID to set for assume role creds. 
+        Valid only when `credential_type` is set to `assumed_role`.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
+
+    @property
     @pulumi.getter(name="iamGroups")
     def iam_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -568,6 +630,20 @@ class _SecretBackendRoleState:
         pulumi.set(self, "role_arns", value)
 
     @property
+    @pulumi.getter(name="sessionTags")
+    def session_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of strings representing key/value pairs to be set
+        during assume role creds creation. Valid only when `credential_type` is set to
+        `assumed_role`.
+        """
+        return pulumi.get(self, "session_tags")
+
+    @session_tags.setter
+    def session_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "session_tags", value)
+
+    @property
     @pulumi.getter(name="userPath")
     def user_path(self) -> Optional[pulumi.Input[str]]:
         """
@@ -589,6 +665,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
@@ -598,6 +675,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  user_path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -647,6 +725,8 @@ class SecretBackendRole(pulumi.CustomResource):
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
+        :param pulumi.Input[str] external_id: External ID to set for assume role creds. 
+               Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
                type of `assumed_role` or `federation_token`, the policies sent to the
@@ -683,6 +763,9 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] session_tags: A map of strings representing key/value pairs to be set
+               during assume role creds creation. Valid only when `credential_type` is set to
+               `assumed_role`.
         :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
                `credential_type` is `iam_user`. Default is `/`.
         """
@@ -745,6 +828,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_sts_ttl: Optional[pulumi.Input[int]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  max_sts_ttl: Optional[pulumi.Input[int]] = None,
@@ -754,6 +838,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  policy_document: Optional[pulumi.Input[str]] = None,
                  role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  user_path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -771,6 +856,7 @@ class SecretBackendRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'credential_type'")
             __props__.__dict__["credential_type"] = credential_type
             __props__.__dict__["default_sts_ttl"] = default_sts_ttl
+            __props__.__dict__["external_id"] = external_id
             __props__.__dict__["iam_groups"] = iam_groups
             __props__.__dict__["iam_tags"] = iam_tags
             __props__.__dict__["max_sts_ttl"] = max_sts_ttl
@@ -780,6 +866,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["policy_arns"] = policy_arns
             __props__.__dict__["policy_document"] = policy_document
             __props__.__dict__["role_arns"] = role_arns
+            __props__.__dict__["session_tags"] = session_tags
             __props__.__dict__["user_path"] = user_path
         super(SecretBackendRole, __self__).__init__(
             'vault:aws/secretBackendRole:SecretBackendRole',
@@ -794,6 +881,7 @@ class SecretBackendRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             credential_type: Optional[pulumi.Input[str]] = None,
             default_sts_ttl: Optional[pulumi.Input[int]] = None,
+            external_id: Optional[pulumi.Input[str]] = None,
             iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             max_sts_ttl: Optional[pulumi.Input[int]] = None,
@@ -803,6 +891,7 @@ class SecretBackendRole(pulumi.CustomResource):
             policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             policy_document: Optional[pulumi.Input[str]] = None,
             role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             user_path: Optional[pulumi.Input[str]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
@@ -821,6 +910,8 @@ class SecretBackendRole(pulumi.CustomResource):
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
+        :param pulumi.Input[str] external_id: External ID to set for assume role creds. 
+               Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
                type of `assumed_role` or `federation_token`, the policies sent to the
@@ -857,6 +948,9 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_arns: Specifies the ARNs of the AWS roles this Vault role
                is allowed to assume. Required when `credential_type` is `assumed_role` and
                prohibited otherwise.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] session_tags: A map of strings representing key/value pairs to be set
+               during assume role creds creation. Valid only when `credential_type` is set to
+               `assumed_role`.
         :param pulumi.Input[str] user_path: The path for the user name. Valid only when 
                `credential_type` is `iam_user`. Default is `/`.
         """
@@ -867,6 +961,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["credential_type"] = credential_type
         __props__.__dict__["default_sts_ttl"] = default_sts_ttl
+        __props__.__dict__["external_id"] = external_id
         __props__.__dict__["iam_groups"] = iam_groups
         __props__.__dict__["iam_tags"] = iam_tags
         __props__.__dict__["max_sts_ttl"] = max_sts_ttl
@@ -876,6 +971,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["policy_arns"] = policy_arns
         __props__.__dict__["policy_document"] = policy_document
         __props__.__dict__["role_arns"] = role_arns
+        __props__.__dict__["session_tags"] = session_tags
         __props__.__dict__["user_path"] = user_path
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
@@ -909,6 +1005,15 @@ class SecretBackendRole(pulumi.CustomResource):
         `assumed_role` or `federation_token`.
         """
         return pulumi.get(self, "default_sts_ttl")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        External ID to set for assume role creds. 
+        Valid only when `credential_type` is set to `assumed_role`.
+        """
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter(name="iamGroups")
@@ -1008,6 +1113,16 @@ class SecretBackendRole(pulumi.CustomResource):
         prohibited otherwise.
         """
         return pulumi.get(self, "role_arns")
+
+    @property
+    @pulumi.getter(name="sessionTags")
+    def session_tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A map of strings representing key/value pairs to be set
+        during assume role creds creation. Valid only when `credential_type` is set to
+        `assumed_role`.
+        """
+        return pulumi.get(self, "session_tags")
 
     @property
     @pulumi.getter(name="userPath")

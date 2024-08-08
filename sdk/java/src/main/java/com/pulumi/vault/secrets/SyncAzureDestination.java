@@ -271,11 +271,18 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SyncAzureDestination(String name, @Nullable SyncAzureDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, args == null ? SyncAzureDestinationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SyncAzureDestination(String name, Output<String> id, @Nullable SyncAzureDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SyncAzureDestinationArgs makeArgs(@Nullable SyncAzureDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SyncAzureDestinationArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

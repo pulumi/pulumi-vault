@@ -142,6 +142,22 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return this.defaultStsTtl;
     }
     /**
+     * External ID to set for assume role creds.
+     * Valid only when `credential_type` is set to `assumed_role`.
+     * 
+     */
+    @Export(name="externalId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> externalId;
+
+    /**
+     * @return External ID to set for assume role creds.
+     * Valid only when `credential_type` is set to `assumed_role`.
+     * 
+     */
+    public Output<Optional<String>> externalId() {
+        return Codegen.optional(this.externalId);
+    }
+    /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
      * type of `assumed_role` or `federation_token`, the policies sent to the
@@ -322,6 +338,24 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.roleArns);
     }
     /**
+     * A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credential_type` is set to
+     * `assumed_role`.
+     * 
+     */
+    @Export(name="sessionTags", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> sessionTags;
+
+    /**
+     * @return A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credential_type` is set to
+     * `assumed_role`.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> sessionTags() {
+        return Codegen.optional(this.sessionTags);
+    }
+    /**
      * The path for the user name. Valid only when
      * `credential_type` is `iam_user`. Default is `/`.
      * 
@@ -360,11 +394,18 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendRole(String name, SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/secretBackendRole:SecretBackendRole", name, args == null ? SecretBackendRoleArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:aws/secretBackendRole:SecretBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendRole(String name, Output<String> id, @Nullable SecretBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:aws/secretBackendRole:SecretBackendRole", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendRoleArgs makeArgs(SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendRoleArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

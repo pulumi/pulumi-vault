@@ -263,7 +263,7 @@ def get_entity(alias_id: Optional[str] = None,
 
     ## Required Vault Capabilities
 
-    Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+    Use of this resource requires the `update` capability on `/identity/lookup/entity`.
 
 
     :param str alias_id: ID of the alias.
@@ -333,7 +333,7 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Required Vault Capabilities
 
-    Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+    Use of this resource requires the `update` capability on `/identity/lookup/entity`.
 
 
     :param str alias_id: ID of the alias.

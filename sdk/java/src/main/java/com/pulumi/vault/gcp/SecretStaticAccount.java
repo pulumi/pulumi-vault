@@ -233,11 +233,18 @@ public class SecretStaticAccount extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretStaticAccount(String name, SecretStaticAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, args == null ? SecretStaticAccountArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretStaticAccount(String name, Output<String> id, @Nullable SecretStaticAccountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:gcp/secretStaticAccount:SecretStaticAccount", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretStaticAccountArgs makeArgs(SecretStaticAccountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretStaticAccountArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

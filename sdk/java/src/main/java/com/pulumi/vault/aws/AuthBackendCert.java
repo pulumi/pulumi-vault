@@ -139,11 +139,18 @@ public class AuthBackendCert extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AuthBackendCert(String name, AuthBackendCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendCert:AuthBackendCert", name, args == null ? AuthBackendCertArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:aws/authBackendCert:AuthBackendCert", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuthBackendCert(String name, Output<String> id, @Nullable AuthBackendCertState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:aws/authBackendCert:AuthBackendCert", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuthBackendCertArgs makeArgs(AuthBackendCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuthBackendCertArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

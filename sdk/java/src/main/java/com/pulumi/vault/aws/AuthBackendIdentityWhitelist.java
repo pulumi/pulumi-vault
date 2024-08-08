@@ -166,11 +166,18 @@ public class AuthBackendIdentityWhitelist extends com.pulumi.resources.CustomRes
      * @param options A bag of options that control this resource's behavior.
      */
     public AuthBackendIdentityWhitelist(String name, @Nullable AuthBackendIdentityWhitelistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, args == null ? AuthBackendIdentityWhitelistArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuthBackendIdentityWhitelist(String name, Output<String> id, @Nullable AuthBackendIdentityWhitelistState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuthBackendIdentityWhitelistArgs makeArgs(@Nullable AuthBackendIdentityWhitelistArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuthBackendIdentityWhitelistArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

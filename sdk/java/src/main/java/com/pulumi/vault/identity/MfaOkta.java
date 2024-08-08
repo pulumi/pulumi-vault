@@ -272,11 +272,18 @@ public class MfaOkta extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public MfaOkta(String name, MfaOktaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/mfaOkta:MfaOkta", name, args == null ? MfaOktaArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:identity/mfaOkta:MfaOkta", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private MfaOkta(String name, Output<String> id, @Nullable MfaOktaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:identity/mfaOkta:MfaOkta", name, state, makeResourceOptions(options, id));
+    }
+
+    private static MfaOktaArgs makeArgs(MfaOktaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? MfaOktaArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

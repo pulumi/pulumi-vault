@@ -179,11 +179,18 @@ public class SecretBackendConfigIssuers extends com.pulumi.resources.CustomResou
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendConfigIssuers(String name, SecretBackendConfigIssuersArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers", name, args == null ? SecretBackendConfigIssuersArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendConfigIssuers(String name, Output<String> id, @Nullable SecretBackendConfigIssuersState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendConfigIssuersArgs makeArgs(SecretBackendConfigIssuersArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendConfigIssuersArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

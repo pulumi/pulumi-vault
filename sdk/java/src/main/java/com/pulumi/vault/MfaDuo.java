@@ -226,11 +226,18 @@ public class MfaDuo extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public MfaDuo(String name, MfaDuoArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mfaDuo:MfaDuo", name, args == null ? MfaDuoArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/mfaDuo:MfaDuo", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private MfaDuo(String name, Output<String> id, @Nullable MfaDuoState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/mfaDuo:MfaDuo", name, state, makeResourceOptions(options, id));
+    }
+
+    private static MfaDuoArgs makeArgs(MfaDuoArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? MfaDuoArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

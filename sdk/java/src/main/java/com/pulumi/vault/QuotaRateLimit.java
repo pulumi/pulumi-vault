@@ -228,11 +228,18 @@ public class QuotaRateLimit extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public QuotaRateLimit(String name, QuotaRateLimitArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/quotaRateLimit:QuotaRateLimit", name, args == null ? QuotaRateLimitArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/quotaRateLimit:QuotaRateLimit", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private QuotaRateLimit(String name, Output<String> id, @Nullable QuotaRateLimitState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/quotaRateLimit:QuotaRateLimit", name, state, makeResourceOptions(options, id));
+    }
+
+    private static QuotaRateLimitArgs makeArgs(QuotaRateLimitArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? QuotaRateLimitArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

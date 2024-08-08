@@ -162,11 +162,18 @@ public class SecretScope extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretScope(String name, SecretScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:kmip/secretScope:SecretScope", name, args == null ? SecretScopeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:kmip/secretScope:SecretScope", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretScope(String name, Output<String> id, @Nullable SecretScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:kmip/secretScope:SecretScope", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretScopeArgs makeArgs(SecretScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretScopeArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

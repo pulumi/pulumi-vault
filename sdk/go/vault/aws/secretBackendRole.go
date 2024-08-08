@@ -83,6 +83,9 @@ type SecretBackendRole struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl pulumi.IntOutput `pulumi:"defaultStsTtl"`
+	// External ID to set for assume role creds.
+	// Valid only when `credentialType` is set to `assumedRole`.
+	ExternalId pulumi.StringPtrOutput `pulumi:"externalId"`
 	// A list of IAM group names. IAM users generated
 	// against this vault role will be added to these IAM Groups. For a credential
 	// type of `assumedRole` or `federationToken`, the policies sent to the
@@ -128,6 +131,10 @@ type SecretBackendRole struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns pulumi.StringArrayOutput `pulumi:"roleArns"`
+	// A map of strings representing key/value pairs to be set
+	// during assume role creds creation. Valid only when `credentialType` is set to
+	// `assumedRole`.
+	SessionTags pulumi.StringMapOutput `pulumi:"sessionTags"`
 	// The path for the user name. Valid only when
 	// `credentialType` is `iamUser`. Default is `/`.
 	UserPath pulumi.StringPtrOutput `pulumi:"userPath"`
@@ -182,6 +189,9 @@ type secretBackendRoleState struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl *int `pulumi:"defaultStsTtl"`
+	// External ID to set for assume role creds.
+	// Valid only when `credentialType` is set to `assumedRole`.
+	ExternalId *string `pulumi:"externalId"`
 	// A list of IAM group names. IAM users generated
 	// against this vault role will be added to these IAM Groups. For a credential
 	// type of `assumedRole` or `federationToken`, the policies sent to the
@@ -227,6 +237,10 @@ type secretBackendRoleState struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns []string `pulumi:"roleArns"`
+	// A map of strings representing key/value pairs to be set
+	// during assume role creds creation. Valid only when `credentialType` is set to
+	// `assumedRole`.
+	SessionTags map[string]string `pulumi:"sessionTags"`
 	// The path for the user name. Valid only when
 	// `credentialType` is `iamUser`. Default is `/`.
 	UserPath *string `pulumi:"userPath"`
@@ -246,6 +260,9 @@ type SecretBackendRoleState struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl pulumi.IntPtrInput
+	// External ID to set for assume role creds.
+	// Valid only when `credentialType` is set to `assumedRole`.
+	ExternalId pulumi.StringPtrInput
 	// A list of IAM group names. IAM users generated
 	// against this vault role will be added to these IAM Groups. For a credential
 	// type of `assumedRole` or `federationToken`, the policies sent to the
@@ -291,6 +308,10 @@ type SecretBackendRoleState struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns pulumi.StringArrayInput
+	// A map of strings representing key/value pairs to be set
+	// during assume role creds creation. Valid only when `credentialType` is set to
+	// `assumedRole`.
+	SessionTags pulumi.StringMapInput
 	// The path for the user name. Valid only when
 	// `credentialType` is `iamUser`. Default is `/`.
 	UserPath pulumi.StringPtrInput
@@ -314,6 +335,9 @@ type secretBackendRoleArgs struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl *int `pulumi:"defaultStsTtl"`
+	// External ID to set for assume role creds.
+	// Valid only when `credentialType` is set to `assumedRole`.
+	ExternalId *string `pulumi:"externalId"`
 	// A list of IAM group names. IAM users generated
 	// against this vault role will be added to these IAM Groups. For a credential
 	// type of `assumedRole` or `federationToken`, the policies sent to the
@@ -359,6 +383,10 @@ type secretBackendRoleArgs struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns []string `pulumi:"roleArns"`
+	// A map of strings representing key/value pairs to be set
+	// during assume role creds creation. Valid only when `credentialType` is set to
+	// `assumedRole`.
+	SessionTags map[string]string `pulumi:"sessionTags"`
 	// The path for the user name. Valid only when
 	// `credentialType` is `iamUser`. Default is `/`.
 	UserPath *string `pulumi:"userPath"`
@@ -379,6 +407,9 @@ type SecretBackendRoleArgs struct {
 	// then this default TTL will be used. Valid only when `credentialType` is one of
 	// `assumedRole` or `federationToken`.
 	DefaultStsTtl pulumi.IntPtrInput
+	// External ID to set for assume role creds.
+	// Valid only when `credentialType` is set to `assumedRole`.
+	ExternalId pulumi.StringPtrInput
 	// A list of IAM group names. IAM users generated
 	// against this vault role will be added to these IAM Groups. For a credential
 	// type of `assumedRole` or `federationToken`, the policies sent to the
@@ -424,6 +455,10 @@ type SecretBackendRoleArgs struct {
 	// is allowed to assume. Required when `credentialType` is `assumedRole` and
 	// prohibited otherwise.
 	RoleArns pulumi.StringArrayInput
+	// A map of strings representing key/value pairs to be set
+	// during assume role creds creation. Valid only when `credentialType` is set to
+	// `assumedRole`.
+	SessionTags pulumi.StringMapInput
 	// The path for the user name. Valid only when
 	// `credentialType` is `iamUser`. Default is `/`.
 	UserPath pulumi.StringPtrInput
@@ -538,6 +573,12 @@ func (o SecretBackendRoleOutput) DefaultStsTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntOutput { return v.DefaultStsTtl }).(pulumi.IntOutput)
 }
 
+// External ID to set for assume role creds.
+// Valid only when `credentialType` is set to `assumedRole`.
+func (o SecretBackendRoleOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
 // A list of IAM group names. IAM users generated
 // against this vault role will be added to these IAM Groups. For a credential
 // type of `assumedRole` or `federationToken`, the policies sent to the
@@ -608,6 +649,13 @@ func (o SecretBackendRoleOutput) PolicyDocument() pulumi.StringPtrOutput {
 // prohibited otherwise.
 func (o SecretBackendRoleOutput) RoleArns() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.RoleArns }).(pulumi.StringArrayOutput)
+}
+
+// A map of strings representing key/value pairs to be set
+// during assume role creds creation. Valid only when `credentialType` is set to
+// `assumedRole`.
+func (o SecretBackendRoleOutput) SessionTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringMapOutput { return v.SessionTags }).(pulumi.StringMapOutput)
 }
 
 // The path for the user name. Valid only when

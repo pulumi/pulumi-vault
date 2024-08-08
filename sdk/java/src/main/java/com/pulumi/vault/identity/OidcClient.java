@@ -264,11 +264,18 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public OidcClient(String name, @Nullable OidcClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcClient:OidcClient", name, args == null ? OidcClientArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:identity/oidcClient:OidcClient", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private OidcClient(String name, Output<String> id, @Nullable OidcClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:identity/oidcClient:OidcClient", name, state, makeResourceOptions(options, id));
+    }
+
+    private static OidcClientArgs makeArgs(@Nullable OidcClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? OidcClientArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

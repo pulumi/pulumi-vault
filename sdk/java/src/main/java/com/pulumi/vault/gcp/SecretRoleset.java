@@ -228,11 +228,18 @@ public class SecretRoleset extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretRoleset(String name, SecretRolesetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretRoleset:SecretRoleset", name, args == null ? SecretRolesetArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:gcp/secretRoleset:SecretRoleset", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretRoleset(String name, Output<String> id, @Nullable SecretRolesetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:gcp/secretRoleset:SecretRoleset", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretRolesetArgs makeArgs(SecretRolesetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretRolesetArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

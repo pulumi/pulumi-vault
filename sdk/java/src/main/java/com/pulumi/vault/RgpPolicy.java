@@ -148,11 +148,18 @@ public class RgpPolicy extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public RgpPolicy(String name, RgpPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/rgpPolicy:RgpPolicy", name, args == null ? RgpPolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/rgpPolicy:RgpPolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private RgpPolicy(String name, Output<String> id, @Nullable RgpPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/rgpPolicy:RgpPolicy", name, state, makeResourceOptions(options, id));
+    }
+
+    private static RgpPolicyArgs makeArgs(RgpPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RgpPolicyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

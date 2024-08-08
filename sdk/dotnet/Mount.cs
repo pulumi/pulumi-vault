@@ -172,7 +172,8 @@ namespace Pulumi.Vault
         public Output<string?> IdentityTokenKey { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// Specifies whether to show this mount in the UI-specific
+        /// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         /// </summary>
         [Output("listingVisibility")]
         public Output<string?> ListingVisibility { get; private set; } = null!;
@@ -371,7 +372,8 @@ namespace Pulumi.Vault
         public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
-        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// Specifies whether to show this mount in the UI-specific
+        /// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         /// </summary>
         [Input("listingVisibility")]
         public Input<string>? ListingVisibility { get; set; }
@@ -550,7 +552,8 @@ namespace Pulumi.Vault
         public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
-        /// Specifies whether to show this mount in the UI-specific listing endpoint
+        /// Specifies whether to show this mount in the UI-specific
+        /// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         /// </summary>
         [Input("listingVisibility")]
         public Input<string>? ListingVisibility { get; set; }

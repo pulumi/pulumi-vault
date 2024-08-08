@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  *
  * ## Required Vault Capabilities
  *
- * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+ * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
  */
 export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> {
     args = args || {};
@@ -152,7 +152,7 @@ export interface GetEntityResult {
  *
  * ## Required Vault Capabilities
  *
- * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+ * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
  */
 export function getEntityOutput(args?: GetEntityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEntityResult> {
     return pulumi.output(args).apply((a: any) => getEntity(a, opts))

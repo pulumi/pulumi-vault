@@ -162,7 +162,8 @@ type Mount struct {
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
-	// Specifies whether to show this mount in the UI-specific listing endpoint
+	// Specifies whether to show this mount in the UI-specific
+	// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
 	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
@@ -249,7 +250,8 @@ type mountState struct {
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
-	// Specifies whether to show this mount in the UI-specific listing endpoint
+	// Specifies whether to show this mount in the UI-specific
+	// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
 	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
@@ -301,7 +303,8 @@ type MountState struct {
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey pulumi.StringPtrInput
-	// Specifies whether to show this mount in the UI-specific listing endpoint
+	// Specifies whether to show this mount in the UI-specific
+	// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
 	ListingVisibility pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
@@ -355,7 +358,8 @@ type mountArgs struct {
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
-	// Specifies whether to show this mount in the UI-specific listing endpoint
+	// Specifies whether to show this mount in the UI-specific
+	// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
 	ListingVisibility *string `pulumi:"listingVisibility"`
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local *bool `pulumi:"local"`
@@ -406,7 +410,8 @@ type MountArgs struct {
 	// The key to use for signing plugin workload identity tokens. If
 	// not provided, this will default to Vault's OIDC default key.
 	IdentityTokenKey pulumi.StringPtrInput
-	// Specifies whether to show this mount in the UI-specific listing endpoint
+	// Specifies whether to show this mount in the UI-specific
+	// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
 	ListingVisibility pulumi.StringPtrInput
 	// Boolean flag that can be explicitly set to true to enforce local mount in HA environment
 	Local pulumi.BoolPtrInput
@@ -574,7 +579,8 @@ func (o MountOutput) IdentityTokenKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
 }
 
-// Specifies whether to show this mount in the UI-specific listing endpoint
+// Specifies whether to show this mount in the UI-specific
+// listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
 func (o MountOutput) ListingVisibility() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Mount) pulumi.StringPtrOutput { return v.ListingVisibility }).(pulumi.StringPtrOutput)
 }

@@ -200,11 +200,18 @@ public class AuthBackendRoleTag extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AuthBackendRoleTag(String name, AuthBackendRoleTagArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, args == null ? AuthBackendRoleTagArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuthBackendRoleTag(String name, Output<String> id, @Nullable AuthBackendRoleTagState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:aws/authBackendRoleTag:AuthBackendRoleTag", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuthBackendRoleTagArgs makeArgs(AuthBackendRoleTagArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuthBackendRoleTagArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

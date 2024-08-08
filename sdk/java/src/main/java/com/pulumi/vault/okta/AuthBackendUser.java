@@ -175,11 +175,18 @@ public class AuthBackendUser extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AuthBackendUser(String name, AuthBackendUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:okta/authBackendUser:AuthBackendUser", name, args == null ? AuthBackendUserArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:okta/authBackendUser:AuthBackendUser", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuthBackendUser(String name, Output<String> id, @Nullable AuthBackendUserState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:okta/authBackendUser:AuthBackendUser", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuthBackendUserArgs makeArgs(AuthBackendUserArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuthBackendUserArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

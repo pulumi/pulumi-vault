@@ -495,11 +495,18 @@ public class SecretBackendRootSignIntermediate extends com.pulumi.resources.Cust
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendRootSignIntermediate(String name, SecretBackendRootSignIntermediateArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate", name, args == null ? SecretBackendRootSignIntermediateArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendRootSignIntermediate(String name, Output<String> id, @Nullable SecretBackendRootSignIntermediateState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendRootSignIntermediateArgs makeArgs(SecretBackendRootSignIntermediateArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendRootSignIntermediateArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

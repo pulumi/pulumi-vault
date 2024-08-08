@@ -78,6 +78,23 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * External ID to set for assume role creds.
+     * Valid only when `credential_type` is set to `assumed_role`.
+     * 
+     */
+    @Import(name="externalId")
+    private @Nullable Output<String> externalId;
+
+    /**
+     * @return External ID to set for assume role creds.
+     * Valid only when `credential_type` is set to `assumed_role`.
+     * 
+     */
+    public Optional<Output<String>> externalId() {
+        return Optional.ofNullable(this.externalId);
+    }
+
+    /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
      * type of `assumed_role` or `federation_token`, the policies sent to the
@@ -267,6 +284,25 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credential_type` is set to
+     * `assumed_role`.
+     * 
+     */
+    @Import(name="sessionTags")
+    private @Nullable Output<Map<String,String>> sessionTags;
+
+    /**
+     * @return A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credential_type` is set to
+     * `assumed_role`.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> sessionTags() {
+        return Optional.ofNullable(this.sessionTags);
+    }
+
+    /**
      * The path for the user name. Valid only when
      * `credential_type` is `iam_user`. Default is `/`.
      * 
@@ -289,6 +325,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.backend = $.backend;
         this.credentialType = $.credentialType;
         this.defaultStsTtl = $.defaultStsTtl;
+        this.externalId = $.externalId;
         this.iamGroups = $.iamGroups;
         this.iamTags = $.iamTags;
         this.maxStsTtl = $.maxStsTtl;
@@ -298,6 +335,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.policyArns = $.policyArns;
         this.policyDocument = $.policyDocument;
         this.roleArns = $.roleArns;
+        this.sessionTags = $.sessionTags;
         this.userPath = $.userPath;
     }
 
@@ -394,6 +432,29 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder defaultStsTtl(Integer defaultStsTtl) {
             return defaultStsTtl(Output.of(defaultStsTtl));
+        }
+
+        /**
+         * @param externalId External ID to set for assume role creds.
+         * Valid only when `credential_type` is set to `assumed_role`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(@Nullable Output<String> externalId) {
+            $.externalId = externalId;
+            return this;
+        }
+
+        /**
+         * @param externalId External ID to set for assume role creds.
+         * Valid only when `credential_type` is set to `assumed_role`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(String externalId) {
+            return externalId(Output.of(externalId));
         }
 
         /**
@@ -680,6 +741,31 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder roleArns(String... roleArns) {
             return roleArns(List.of(roleArns));
+        }
+
+        /**
+         * @param sessionTags A map of strings representing key/value pairs to be set
+         * during assume role creds creation. Valid only when `credential_type` is set to
+         * `assumed_role`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sessionTags(@Nullable Output<Map<String,String>> sessionTags) {
+            $.sessionTags = sessionTags;
+            return this;
+        }
+
+        /**
+         * @param sessionTags A map of strings representing key/value pairs to be set
+         * during assume role creds creation. Valid only when `credential_type` is set to
+         * `assumed_role`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder sessionTags(Map<String,String> sessionTags) {
+            return sessionTags(Output.of(sessionTags));
         }
 
         /**

@@ -717,11 +717,18 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretsMount(String name, SecretsMountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:database/secretsMount:SecretsMount", name, args == null ? SecretsMountArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:database/secretsMount:SecretsMount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretsMount(String name, Output<String> id, @Nullable SecretsMountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:database/secretsMount:SecretsMount", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretsMountArgs makeArgs(SecretsMountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretsMountArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

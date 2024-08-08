@@ -84,6 +84,13 @@ namespace Pulumi.Vault.Aws
         public Output<int> DefaultStsTtl { get; private set; } = null!;
 
         /// <summary>
+        /// External ID to set for assume role creds. 
+        /// Valid only when `credential_type` is set to `assumed_role`.
+        /// </summary>
+        [Output("externalId")]
+        public Output<string?> ExternalId { get; private set; } = null!;
+
+        /// <summary>
         /// A list of IAM group names. IAM users generated
         /// against this vault role will be added to these IAM Groups. For a credential
         /// type of `assumed_role` or `federation_token`, the policies sent to the
@@ -165,6 +172,14 @@ namespace Pulumi.Vault.Aws
         public Output<ImmutableArray<string>> RoleArns { get; private set; } = null!;
 
         /// <summary>
+        /// A map of strings representing key/value pairs to be set
+        /// during assume role creds creation. Valid only when `credential_type` is set to
+        /// `assumed_role`.
+        /// </summary>
+        [Output("sessionTags")]
+        public Output<ImmutableDictionary<string, string>?> SessionTags { get; private set; } = null!;
+
+        /// <summary>
         /// The path for the user name. Valid only when 
         /// `credential_type` is `iam_user`. Default is `/`.
         /// </summary>
@@ -242,6 +257,13 @@ namespace Pulumi.Vault.Aws
         [Input("defaultStsTtl")]
         public Input<int>? DefaultStsTtl { get; set; }
 
+        /// <summary>
+        /// External ID to set for assume role creds. 
+        /// Valid only when `credential_type` is set to `assumed_role`.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
         [Input("iamGroups")]
         private InputList<string>? _iamGroups;
 
@@ -345,6 +367,20 @@ namespace Pulumi.Vault.Aws
         {
             get => _roleArns ?? (_roleArns = new InputList<string>());
             set => _roleArns = value;
+        }
+
+        [Input("sessionTags")]
+        private InputMap<string>? _sessionTags;
+
+        /// <summary>
+        /// A map of strings representing key/value pairs to be set
+        /// during assume role creds creation. Valid only when `credential_type` is set to
+        /// `assumed_role`.
+        /// </summary>
+        public InputMap<string> SessionTags
+        {
+            get => _sessionTags ?? (_sessionTags = new InputMap<string>());
+            set => _sessionTags = value;
         }
 
         /// <summary>
@@ -387,6 +423,13 @@ namespace Pulumi.Vault.Aws
         [Input("defaultStsTtl")]
         public Input<int>? DefaultStsTtl { get; set; }
 
+        /// <summary>
+        /// External ID to set for assume role creds. 
+        /// Valid only when `credential_type` is set to `assumed_role`.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
         [Input("iamGroups")]
         private InputList<string>? _iamGroups;
 
@@ -490,6 +533,20 @@ namespace Pulumi.Vault.Aws
         {
             get => _roleArns ?? (_roleArns = new InputList<string>());
             set => _roleArns = value;
+        }
+
+        [Input("sessionTags")]
+        private InputMap<string>? _sessionTags;
+
+        /// <summary>
+        /// A map of strings representing key/value pairs to be set
+        /// during assume role creds creation. Valid only when `credential_type` is set to
+        /// `assumed_role`.
+        /// </summary>
+        public InputMap<string> SessionTags
+        {
+            get => _sessionTags ?? (_sessionTags = new InputMap<string>());
+            set => _sessionTags = value;
         }
 
         /// <summary>

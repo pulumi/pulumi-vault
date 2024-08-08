@@ -230,11 +230,18 @@ public class SyncVercelDestination extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SyncVercelDestination(String name, SyncVercelDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncVercelDestination:SyncVercelDestination", name, args == null ? SyncVercelDestinationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:secrets/syncVercelDestination:SyncVercelDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SyncVercelDestination(String name, Output<String> id, @Nullable SyncVercelDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:secrets/syncVercelDestination:SyncVercelDestination", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SyncVercelDestinationArgs makeArgs(SyncVercelDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SyncVercelDestinationArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

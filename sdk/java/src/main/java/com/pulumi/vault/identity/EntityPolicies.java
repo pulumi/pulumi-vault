@@ -229,11 +229,18 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public EntityPolicies(String name, EntityPoliciesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/entityPolicies:EntityPolicies", name, args == null ? EntityPoliciesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:identity/entityPolicies:EntityPolicies", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private EntityPolicies(String name, Output<String> id, @Nullable EntityPoliciesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:identity/entityPolicies:EntityPolicies", name, state, makeResourceOptions(options, id));
+    }
+
+    private static EntityPoliciesArgs makeArgs(EntityPoliciesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? EntityPoliciesArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

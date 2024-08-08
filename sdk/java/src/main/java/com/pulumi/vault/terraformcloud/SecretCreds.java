@@ -211,11 +211,18 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretCreds(String name, SecretCredsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:terraformcloud/secretCreds:SecretCreds", name, args == null ? SecretCredsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:terraformcloud/secretCreds:SecretCreds", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretCreds(String name, Output<String> id, @Nullable SecretCredsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:terraformcloud/secretCreds:SecretCreds", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretCredsArgs makeArgs(SecretCredsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretCredsArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
