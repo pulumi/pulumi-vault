@@ -1,0 +1,14 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ian Wahbe <ian@wahbe.com>
+Date: Thu, 8 Aug 2024 10:53:10 +0200
+Subject: [PATCH] empty
+
+
+diff --git a/empty.md b/empty.md
+new file mode 100644
+index 00000000..cc4b43f2
+--- /dev/null
++++ b/empty.md
+@@ -0,0 +1,2 @@
++This patch is intentionally empty so we can use the `upstream` submodule for dependency
++resolution, since the upstream provider does not follow Go module versioning standards.
