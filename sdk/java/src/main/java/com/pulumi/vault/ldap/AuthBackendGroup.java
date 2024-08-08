@@ -168,11 +168,18 @@ public class AuthBackendGroup extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AuthBackendGroup(String name, AuthBackendGroupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ldap/authBackendGroup:AuthBackendGroup", name, args == null ? AuthBackendGroupArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:ldap/authBackendGroup:AuthBackendGroup", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuthBackendGroup(String name, Output<String> id, @Nullable AuthBackendGroupState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:ldap/authBackendGroup:AuthBackendGroup", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuthBackendGroupArgs makeArgs(AuthBackendGroupArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuthBackendGroupArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

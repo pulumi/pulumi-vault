@@ -39,7 +39,7 @@ import (
 //
 // ## Required Vault Capabilities
 //
-// Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+// Use of this resource requires the `update` capability on `/identity/lookup/entity`.
 func LookupEntity(ctx *pulumi.Context, args *LookupEntityArgs, opts ...pulumi.InvokeOption) (*LookupEntityResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupEntityResult

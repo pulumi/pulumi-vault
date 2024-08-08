@@ -329,14 +329,16 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.identityTokenKey);
     }
     /**
-     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      * 
      */
     @Export(name="listingVisibility", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> listingVisibility;
 
     /**
-     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * @return Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      * 
      */
     public Output<Optional<String>> listingVisibility() {
@@ -503,11 +505,18 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public Mount(String name, MountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mount:Mount", name, args == null ? MountArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/mount:Mount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private Mount(String name, Output<String> id, @Nullable MountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/mount:Mount", name, state, makeResourceOptions(options, id));
+    }
+
+    private static MountArgs makeArgs(MountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? MountArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

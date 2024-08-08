@@ -217,11 +217,18 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretLibrary(String name, SecretLibraryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ad/secretLibrary:SecretLibrary", name, args == null ? SecretLibraryArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:ad/secretLibrary:SecretLibrary", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretLibrary(String name, Output<String> id, @Nullable SecretLibraryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:ad/secretLibrary:SecretLibrary", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretLibraryArgs makeArgs(SecretLibraryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretLibraryArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

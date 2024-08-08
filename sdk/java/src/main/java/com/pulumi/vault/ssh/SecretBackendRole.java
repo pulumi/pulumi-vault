@@ -486,11 +486,18 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendRole(String name, SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ssh/secretBackendRole:SecretBackendRole", name, args == null ? SecretBackendRoleArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:ssh/secretBackendRole:SecretBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendRole(String name, Output<String> id, @Nullable SecretBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:ssh/secretBackendRole:SecretBackendRole", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendRoleArgs makeArgs(SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendRoleArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

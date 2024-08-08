@@ -89,6 +89,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly defaultStsTtl!: pulumi.Output<number>;
     /**
+     * External ID to set for assume role creds. 
+     * Valid only when `credentialType` is set to `assumedRole`.
+     */
+    public readonly externalId!: pulumi.Output<string | undefined>;
+    /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
      * type of `assumedRole` or `federationToken`, the policies sent to the
@@ -152,6 +157,12 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly roleArns!: pulumi.Output<string[] | undefined>;
     /**
+     * A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credentialType` is set to
+     * `assumedRole`.
+     */
+    public readonly sessionTags!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The path for the user name. Valid only when 
      * `credentialType` is `iamUser`. Default is `/`.
      */
@@ -173,6 +184,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["credentialType"] = state ? state.credentialType : undefined;
             resourceInputs["defaultStsTtl"] = state ? state.defaultStsTtl : undefined;
+            resourceInputs["externalId"] = state ? state.externalId : undefined;
             resourceInputs["iamGroups"] = state ? state.iamGroups : undefined;
             resourceInputs["iamTags"] = state ? state.iamTags : undefined;
             resourceInputs["maxStsTtl"] = state ? state.maxStsTtl : undefined;
@@ -182,6 +194,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["policyArns"] = state ? state.policyArns : undefined;
             resourceInputs["policyDocument"] = state ? state.policyDocument : undefined;
             resourceInputs["roleArns"] = state ? state.roleArns : undefined;
+            resourceInputs["sessionTags"] = state ? state.sessionTags : undefined;
             resourceInputs["userPath"] = state ? state.userPath : undefined;
         } else {
             const args = argsOrState as SecretBackendRoleArgs | undefined;
@@ -194,6 +207,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["credentialType"] = args ? args.credentialType : undefined;
             resourceInputs["defaultStsTtl"] = args ? args.defaultStsTtl : undefined;
+            resourceInputs["externalId"] = args ? args.externalId : undefined;
             resourceInputs["iamGroups"] = args ? args.iamGroups : undefined;
             resourceInputs["iamTags"] = args ? args.iamTags : undefined;
             resourceInputs["maxStsTtl"] = args ? args.maxStsTtl : undefined;
@@ -203,6 +217,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["policyArns"] = args ? args.policyArns : undefined;
             resourceInputs["policyDocument"] = args ? args.policyDocument : undefined;
             resourceInputs["roleArns"] = args ? args.roleArns : undefined;
+            resourceInputs["sessionTags"] = args ? args.sessionTags : undefined;
             resourceInputs["userPath"] = args ? args.userPath : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -234,6 +249,11 @@ export interface SecretBackendRoleState {
      */
     defaultStsTtl?: pulumi.Input<number>;
     /**
+     * External ID to set for assume role creds. 
+     * Valid only when `credentialType` is set to `assumedRole`.
+     */
+    externalId?: pulumi.Input<string>;
+    /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
      * type of `assumedRole` or `federationToken`, the policies sent to the
@@ -296,6 +316,12 @@ export interface SecretBackendRoleState {
      * prohibited otherwise.
      */
     roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credentialType` is set to
+     * `assumedRole`.
+     */
+    sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The path for the user name. Valid only when 
      * `credentialType` is `iamUser`. Default is `/`.
@@ -327,6 +353,11 @@ export interface SecretBackendRoleArgs {
      */
     defaultStsTtl?: pulumi.Input<number>;
     /**
+     * External ID to set for assume role creds. 
+     * Valid only when `credentialType` is set to `assumedRole`.
+     */
+    externalId?: pulumi.Input<string>;
+    /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
      * type of `assumedRole` or `federationToken`, the policies sent to the
@@ -389,6 +420,12 @@ export interface SecretBackendRoleArgs {
      * prohibited otherwise.
      */
     roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A map of strings representing key/value pairs to be set
+     * during assume role creds creation. Valid only when `credentialType` is set to
+     * `assumedRole`.
+     */
+    sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The path for the user name. Valid only when 
      * `credentialType` is `iamUser`. Default is `/`.

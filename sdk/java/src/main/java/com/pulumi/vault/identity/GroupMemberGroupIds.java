@@ -227,11 +227,18 @@ public class GroupMemberGroupIds extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public GroupMemberGroupIds(String name, GroupMemberGroupIdsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, args == null ? GroupMemberGroupIdsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private GroupMemberGroupIds(String name, Output<String> id, @Nullable GroupMemberGroupIdsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, state, makeResourceOptions(options, id));
+    }
+
+    private static GroupMemberGroupIdsArgs makeArgs(GroupMemberGroupIdsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? GroupMemberGroupIdsArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

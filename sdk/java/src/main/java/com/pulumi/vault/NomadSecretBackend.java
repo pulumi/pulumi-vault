@@ -324,11 +324,18 @@ public class NomadSecretBackend extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public NomadSecretBackend(String name, @Nullable NomadSecretBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/nomadSecretBackend:NomadSecretBackend", name, args == null ? NomadSecretBackendArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/nomadSecretBackend:NomadSecretBackend", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private NomadSecretBackend(String name, Output<String> id, @Nullable NomadSecretBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/nomadSecretBackend:NomadSecretBackend", name, state, makeResourceOptions(options, id));
+    }
+
+    private static NomadSecretBackendArgs makeArgs(@Nullable NomadSecretBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? NomadSecretBackendArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

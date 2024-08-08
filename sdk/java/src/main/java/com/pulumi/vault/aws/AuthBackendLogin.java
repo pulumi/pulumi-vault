@@ -352,11 +352,18 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AuthBackendLogin(String name, @Nullable AuthBackendLoginArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendLogin:AuthBackendLogin", name, args == null ? AuthBackendLoginArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:aws/authBackendLogin:AuthBackendLogin", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuthBackendLogin(String name, Output<String> id, @Nullable AuthBackendLoginState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:aws/authBackendLogin:AuthBackendLogin", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuthBackendLoginArgs makeArgs(@Nullable AuthBackendLoginArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuthBackendLoginArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -225,11 +225,18 @@ public class Audit extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public Audit(String name, AuditArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/audit:Audit", name, args == null ? AuditArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/audit:Audit", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private Audit(String name, Output<String> id, @Nullable AuditState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/audit:Audit", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuditArgs makeArgs(AuditArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuditArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

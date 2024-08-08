@@ -572,11 +572,18 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendRootCert(String name, SecretBackendRootCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert", name, args == null ? SecretBackendRootCertArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendRootCert(String name, Output<String> id, @Nullable SecretBackendRootCertState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendRootCertArgs makeArgs(SecretBackendRootCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendRootCertArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -142,7 +142,8 @@ export class Mount extends pulumi.CustomResource {
      */
     public readonly identityTokenKey!: pulumi.Output<string | undefined>;
     /**
-     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      */
     public readonly listingVisibility!: pulumi.Output<string | undefined>;
     /**
@@ -303,7 +304,8 @@ export interface MountState {
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
-     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      */
     listingVisibility?: pulumi.Input<string>;
     /**
@@ -394,7 +396,8 @@ export interface MountArgs {
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
-     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      */
     listingVisibility?: pulumi.Input<string>;
     /**

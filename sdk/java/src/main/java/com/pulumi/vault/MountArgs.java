@@ -163,14 +163,16 @@ public final class MountArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies whether to show this mount in the UI-specific listing endpoint
+     * Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      * 
      */
     @Import(name="listingVisibility")
     private @Nullable Output<String> listingVisibility;
 
     /**
-     * @return Specifies whether to show this mount in the UI-specific listing endpoint
+     * @return Specifies whether to show this mount in the UI-specific
+     * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
      * 
      */
     public Optional<Output<String>> listingVisibility() {
@@ -614,7 +616,8 @@ public final class MountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param listingVisibility Specifies whether to show this mount in the UI-specific listing endpoint
+         * @param listingVisibility Specifies whether to show this mount in the UI-specific
+         * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
          * 
          * @return builder
          * 
@@ -625,7 +628,8 @@ public final class MountArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param listingVisibility Specifies whether to show this mount in the UI-specific listing endpoint
+         * @param listingVisibility Specifies whether to show this mount in the UI-specific
+         * listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
          * 
          * @return builder
          * 

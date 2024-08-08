@@ -142,11 +142,18 @@ public class PasswordPolicy extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public PasswordPolicy(String name, PasswordPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/passwordPolicy:PasswordPolicy", name, args == null ? PasswordPolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/passwordPolicy:PasswordPolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private PasswordPolicy(String name, Output<String> id, @Nullable PasswordPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/passwordPolicy:PasswordPolicy", name, state, makeResourceOptions(options, id));
+    }
+
+    private static PasswordPolicyArgs makeArgs(PasswordPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? PasswordPolicyArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

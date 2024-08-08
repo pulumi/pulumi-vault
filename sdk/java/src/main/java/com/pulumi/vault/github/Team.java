@@ -165,11 +165,18 @@ public class Team extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public Team(String name, TeamArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:github/team:Team", name, args == null ? TeamArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:github/team:Team", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private Team(String name, Output<String> id, @Nullable TeamState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:github/team:Team", name, state, makeResourceOptions(options, id));
+    }
+
+    private static TeamArgs makeArgs(TeamArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? TeamArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

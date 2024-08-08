@@ -169,11 +169,18 @@ public class OidcAssignment extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public OidcAssignment(String name, @Nullable OidcAssignmentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcAssignment:OidcAssignment", name, args == null ? OidcAssignmentArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:identity/oidcAssignment:OidcAssignment", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private OidcAssignment(String name, Output<String> id, @Nullable OidcAssignmentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:identity/oidcAssignment:OidcAssignment", name, state, makeResourceOptions(options, id));
+    }
+
+    private static OidcAssignmentArgs makeArgs(@Nullable OidcAssignmentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? OidcAssignmentArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -64,7 +64,7 @@ public final class IdentityFunctions {
      * 
      * ## Required Vault Capabilities
      * 
-     * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
      * 
      */
     public static Output<GetEntityResult> getEntity() {
@@ -108,7 +108,7 @@ public final class IdentityFunctions {
      * 
      * ## Required Vault Capabilities
      * 
-     * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
      * 
      */
     public static CompletableFuture<GetEntityResult> getEntityPlain() {
@@ -152,7 +152,7 @@ public final class IdentityFunctions {
      * 
      * ## Required Vault Capabilities
      * 
-     * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
      * 
      */
     public static Output<GetEntityResult> getEntity(GetEntityArgs args) {
@@ -196,7 +196,7 @@ public final class IdentityFunctions {
      * 
      * ## Required Vault Capabilities
      * 
-     * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
      * 
      */
     public static CompletableFuture<GetEntityResult> getEntityPlain(GetEntityPlainArgs args) {
@@ -240,7 +240,7 @@ public final class IdentityFunctions {
      * 
      * ## Required Vault Capabilities
      * 
-     * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
      * 
      */
     public static Output<GetEntityResult> getEntity(GetEntityArgs args, InvokeOptions options) {
@@ -284,7 +284,7 @@ public final class IdentityFunctions {
      * 
      * ## Required Vault Capabilities
      * 
-     * Use of this resource requires the `create` capability on `/identity/lookup/entity`.
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
      * 
      */
     public static CompletableFuture<GetEntityResult> getEntityPlain(GetEntityPlainArgs args, InvokeOptions options) {

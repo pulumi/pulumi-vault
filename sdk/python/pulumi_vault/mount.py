@@ -49,7 +49,8 @@ class MountArgs:
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
-        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific
+               listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -240,7 +241,8 @@ class MountArgs:
     @pulumi.getter(name="listingVisibility")
     def listing_visibility(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies whether to show this mount in the UI-specific listing endpoint
+        Specifies whether to show this mount in the UI-specific
+        listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         """
         return pulumi.get(self, "listing_visibility")
 
@@ -377,7 +379,8 @@ class _MountState:
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
-        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific
+               listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -562,7 +565,8 @@ class _MountState:
     @pulumi.getter(name="listingVisibility")
     def listing_visibility(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies whether to show this mount in the UI-specific listing endpoint
+        Specifies whether to show this mount in the UI-specific
+        listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         """
         return pulumi.get(self, "listing_visibility")
 
@@ -786,7 +790,8 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
-        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific
+               listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -988,7 +993,8 @@ class Mount(pulumi.CustomResource):
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens. If
                not provided, this will default to Vault's OIDC default key.
-        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
+        :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific
+               listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -1118,7 +1124,8 @@ class Mount(pulumi.CustomResource):
     @pulumi.getter(name="listingVisibility")
     def listing_visibility(self) -> pulumi.Output[Optional[str]]:
         """
-        Specifies whether to show this mount in the UI-specific listing endpoint
+        Specifies whether to show this mount in the UI-specific
+        listing endpoint. Valid values are `unauth` or `hidden`. If not set, behaves like `hidden`.
         """
         return pulumi.get(self, "listing_visibility")
 

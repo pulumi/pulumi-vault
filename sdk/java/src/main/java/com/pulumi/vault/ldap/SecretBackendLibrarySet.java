@@ -219,11 +219,18 @@ public class SecretBackendLibrarySet extends com.pulumi.resources.CustomResource
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendLibrarySet(String name, SecretBackendLibrarySetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet", name, args == null ? SecretBackendLibrarySetArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendLibrarySet(String name, Output<String> id, @Nullable SecretBackendLibrarySetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendLibrarySetArgs makeArgs(SecretBackendLibrarySetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendLibrarySetArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

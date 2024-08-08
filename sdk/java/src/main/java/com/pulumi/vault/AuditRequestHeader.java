@@ -127,11 +127,18 @@ public class AuditRequestHeader extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public AuditRequestHeader(String name, @Nullable AuditRequestHeaderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/auditRequestHeader:AuditRequestHeader", name, args == null ? AuditRequestHeaderArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/auditRequestHeader:AuditRequestHeader", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private AuditRequestHeader(String name, Output<String> id, @Nullable AuditRequestHeaderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/auditRequestHeader:AuditRequestHeader", name, state, makeResourceOptions(options, id));
+    }
+
+    private static AuditRequestHeaderArgs makeArgs(@Nullable AuditRequestHeaderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AuditRequestHeaderArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

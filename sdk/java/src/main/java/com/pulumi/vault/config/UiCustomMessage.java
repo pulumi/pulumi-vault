@@ -169,11 +169,18 @@ public class UiCustomMessage extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public UiCustomMessage(String name, UiCustomMessageArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:config/uiCustomMessage:UiCustomMessage", name, args == null ? UiCustomMessageArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:config/uiCustomMessage:UiCustomMessage", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private UiCustomMessage(String name, Output<String> id, @Nullable UiCustomMessageState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:config/uiCustomMessage:UiCustomMessage", name, state, makeResourceOptions(options, id));
+    }
+
+    private static UiCustomMessageArgs makeArgs(UiCustomMessageArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UiCustomMessageArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

@@ -232,11 +232,18 @@ public class MfaTotp extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public MfaTotp(String name, MfaTotpArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mfaTotp:MfaTotp", name, args == null ? MfaTotpArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:index/mfaTotp:MfaTotp", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private MfaTotp(String name, Output<String> id, @Nullable MfaTotpState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/mfaTotp:MfaTotp", name, state, makeResourceOptions(options, id));
+    }
+
+    private static MfaTotpArgs makeArgs(MfaTotpArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? MfaTotpArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {

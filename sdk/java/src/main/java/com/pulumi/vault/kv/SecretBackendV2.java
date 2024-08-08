@@ -192,11 +192,18 @@ public class SecretBackendV2 extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public SecretBackendV2(String name, SecretBackendV2Args args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:kv/secretBackendV2:SecretBackendV2", name, args == null ? SecretBackendV2Args.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("vault:kv/secretBackendV2:SecretBackendV2", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private SecretBackendV2(String name, Output<String> id, @Nullable SecretBackendV2State state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:kv/secretBackendV2:SecretBackendV2", name, state, makeResourceOptions(options, id));
+    }
+
+    private static SecretBackendV2Args makeArgs(SecretBackendV2Args args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SecretBackendV2Args.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
