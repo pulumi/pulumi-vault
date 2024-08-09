@@ -202,7 +202,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendIntermediateSetSigned(String name) {
+    public SecretBackendIntermediateSetSigned(java.lang.String name) {
         this(name, SecretBackendIntermediateSetSignedArgs.Empty);
     }
     /**
@@ -210,7 +210,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendIntermediateSetSigned(String name, SecretBackendIntermediateSetSignedArgs args) {
+    public SecretBackendIntermediateSetSigned(java.lang.String name, SecretBackendIntermediateSetSignedArgs args) {
         this(name, args, null);
     }
     /**
@@ -219,12 +219,12 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendIntermediateSetSigned(String name, SecretBackendIntermediateSetSignedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendIntermediateSetSigned(java.lang.String name, SecretBackendIntermediateSetSignedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendIntermediateSetSigned(String name, Output<String> id, @Nullable SecretBackendIntermediateSetSignedState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned", name, state, makeResourceOptions(options, id));
+    private SecretBackendIntermediateSetSigned(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendIntermediateSetSignedState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendIntermediateSetSignedArgs makeArgs(SecretBackendIntermediateSetSignedArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -234,7 +234,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
         return args == null ? SecretBackendIntermediateSetSignedArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -250,7 +250,7 @@ public class SecretBackendIntermediateSetSigned extends com.pulumi.resources.Cus
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendIntermediateSetSigned get(String name, Output<String> id, @Nullable SecretBackendIntermediateSetSignedState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendIntermediateSetSigned get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendIntermediateSetSignedState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendIntermediateSetSigned(name, id, state, options);
     }
 }

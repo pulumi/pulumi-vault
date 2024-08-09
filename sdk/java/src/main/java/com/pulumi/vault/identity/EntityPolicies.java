@@ -211,7 +211,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public EntityPolicies(String name) {
+    public EntityPolicies(java.lang.String name) {
         this(name, EntityPoliciesArgs.Empty);
     }
     /**
@@ -219,7 +219,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public EntityPolicies(String name, EntityPoliciesArgs args) {
+    public EntityPolicies(java.lang.String name, EntityPoliciesArgs args) {
         this(name, args, null);
     }
     /**
@@ -228,12 +228,12 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public EntityPolicies(String name, EntityPoliciesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/entityPolicies:EntityPolicies", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public EntityPolicies(java.lang.String name, EntityPoliciesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/entityPolicies:EntityPolicies", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private EntityPolicies(String name, Output<String> id, @Nullable EntityPoliciesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/entityPolicies:EntityPolicies", name, state, makeResourceOptions(options, id));
+    private EntityPolicies(java.lang.String name, Output<java.lang.String> id, @Nullable EntityPoliciesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/entityPolicies:EntityPolicies", name, state, makeResourceOptions(options, id), false);
     }
 
     private static EntityPoliciesArgs makeArgs(EntityPoliciesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -243,7 +243,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
         return args == null ? EntityPoliciesArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -259,7 +259,7 @@ public class EntityPolicies extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static EntityPolicies get(String name, Output<String> id, @Nullable EntityPoliciesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static EntityPolicies get(java.lang.String name, Output<java.lang.String> id, @Nullable EntityPoliciesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new EntityPolicies(name, id, state, options);
     }
 }

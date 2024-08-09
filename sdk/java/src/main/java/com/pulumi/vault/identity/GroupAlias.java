@@ -155,7 +155,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public GroupAlias(String name) {
+    public GroupAlias(java.lang.String name) {
         this(name, GroupAliasArgs.Empty);
     }
     /**
@@ -163,7 +163,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GroupAlias(String name, GroupAliasArgs args) {
+    public GroupAlias(java.lang.String name, GroupAliasArgs args) {
         this(name, args, null);
     }
     /**
@@ -172,12 +172,12 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GroupAlias(String name, GroupAliasArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/groupAlias:GroupAlias", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public GroupAlias(java.lang.String name, GroupAliasArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/groupAlias:GroupAlias", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private GroupAlias(String name, Output<String> id, @Nullable GroupAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/groupAlias:GroupAlias", name, state, makeResourceOptions(options, id));
+    private GroupAlias(java.lang.String name, Output<java.lang.String> id, @Nullable GroupAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/groupAlias:GroupAlias", name, state, makeResourceOptions(options, id), false);
     }
 
     private static GroupAliasArgs makeArgs(GroupAliasArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -187,7 +187,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
         return args == null ? GroupAliasArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -203,7 +203,7 @@ public class GroupAlias extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static GroupAlias get(String name, Output<String> id, @Nullable GroupAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static GroupAlias get(java.lang.String name, Output<java.lang.String> id, @Nullable GroupAliasState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new GroupAlias(name, id, state, options);
     }
 }

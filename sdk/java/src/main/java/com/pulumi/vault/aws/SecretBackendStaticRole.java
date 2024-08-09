@@ -158,7 +158,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendStaticRole(String name) {
+    public SecretBackendStaticRole(java.lang.String name) {
         this(name, SecretBackendStaticRoleArgs.Empty);
     }
     /**
@@ -166,7 +166,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendStaticRole(String name, SecretBackendStaticRoleArgs args) {
+    public SecretBackendStaticRole(java.lang.String name, SecretBackendStaticRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -175,12 +175,12 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendStaticRole(String name, SecretBackendStaticRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/secretBackendStaticRole:SecretBackendStaticRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendStaticRole(java.lang.String name, SecretBackendStaticRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/secretBackendStaticRole:SecretBackendStaticRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendStaticRole(String name, Output<String> id, @Nullable SecretBackendStaticRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/secretBackendStaticRole:SecretBackendStaticRole", name, state, makeResourceOptions(options, id));
+    private SecretBackendStaticRole(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendStaticRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/secretBackendStaticRole:SecretBackendStaticRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendStaticRoleArgs makeArgs(SecretBackendStaticRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -190,7 +190,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return args == null ? SecretBackendStaticRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -206,7 +206,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendStaticRole get(String name, Output<String> id, @Nullable SecretBackendStaticRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendStaticRole get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendStaticRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendStaticRole(name, id, state, options);
     }
 }

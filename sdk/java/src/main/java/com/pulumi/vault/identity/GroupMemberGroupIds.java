@@ -209,7 +209,7 @@ public class GroupMemberGroupIds extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public GroupMemberGroupIds(String name) {
+    public GroupMemberGroupIds(java.lang.String name) {
         this(name, GroupMemberGroupIdsArgs.Empty);
     }
     /**
@@ -217,7 +217,7 @@ public class GroupMemberGroupIds extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GroupMemberGroupIds(String name, GroupMemberGroupIdsArgs args) {
+    public GroupMemberGroupIds(java.lang.String name, GroupMemberGroupIdsArgs args) {
         this(name, args, null);
     }
     /**
@@ -226,12 +226,12 @@ public class GroupMemberGroupIds extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GroupMemberGroupIds(String name, GroupMemberGroupIdsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public GroupMemberGroupIds(java.lang.String name, GroupMemberGroupIdsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private GroupMemberGroupIds(String name, Output<String> id, @Nullable GroupMemberGroupIdsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, state, makeResourceOptions(options, id));
+    private GroupMemberGroupIds(java.lang.String name, Output<java.lang.String> id, @Nullable GroupMemberGroupIdsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/groupMemberGroupIds:GroupMemberGroupIds", name, state, makeResourceOptions(options, id), false);
     }
 
     private static GroupMemberGroupIdsArgs makeArgs(GroupMemberGroupIdsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -241,7 +241,7 @@ public class GroupMemberGroupIds extends com.pulumi.resources.CustomResource {
         return args == null ? GroupMemberGroupIdsArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -257,7 +257,7 @@ public class GroupMemberGroupIds extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static GroupMemberGroupIds get(String name, Output<String> id, @Nullable GroupMemberGroupIdsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static GroupMemberGroupIds get(java.lang.String name, Output<java.lang.String> id, @Nullable GroupMemberGroupIdsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new GroupMemberGroupIds(name, id, state, options);
     }
 }
