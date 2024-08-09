@@ -422,7 +422,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendCert(String name) {
+    public SecretBackendCert(java.lang.String name) {
         this(name, SecretBackendCertArgs.Empty);
     }
     /**
@@ -430,7 +430,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendCert(String name, SecretBackendCertArgs args) {
+    public SecretBackendCert(java.lang.String name, SecretBackendCertArgs args) {
         this(name, args, null);
     }
     /**
@@ -439,12 +439,12 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendCert(String name, SecretBackendCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendCert(java.lang.String name, SecretBackendCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendCert(String name, Output<String> id, @Nullable SecretBackendCertState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, state, makeResourceOptions(options, id));
+    private SecretBackendCert(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendCertState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendCert:SecretBackendCert", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendCertArgs makeArgs(SecretBackendCertArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -454,7 +454,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
         return args == null ? SecretBackendCertArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -473,7 +473,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendCert get(String name, Output<String> id, @Nullable SecretBackendCertState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendCert get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendCertState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendCert(name, id, state, options);
     }
 }

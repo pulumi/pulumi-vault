@@ -895,29 +895,29 @@ class SecretBackendConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
-                 couchbase: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']]] = None,
+                 cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
+                 couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
-                 hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
-                 influxdb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']]] = None,
-                 mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
-                 mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
-                 mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
-                 mysql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']]] = None,
-                 mysql_aurora: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']]] = None,
-                 mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
-                 mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
+                 elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
+                 hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
+                 influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
+                 mongodb: Optional[pulumi.Input[Union['SecretBackendConnectionMongodbArgs', 'SecretBackendConnectionMongodbArgsDict']]] = None,
+                 mongodbatlas: Optional[pulumi.Input[Union['SecretBackendConnectionMongodbatlasArgs', 'SecretBackendConnectionMongodbatlasArgsDict']]] = None,
+                 mssql: Optional[pulumi.Input[Union['SecretBackendConnectionMssqlArgs', 'SecretBackendConnectionMssqlArgsDict']]] = None,
+                 mysql: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlArgs', 'SecretBackendConnectionMysqlArgsDict']]] = None,
+                 mysql_aurora: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlAuroraArgs', 'SecretBackendConnectionMysqlAuroraArgsDict']]] = None,
+                 mysql_legacy: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlLegacyArgs', 'SecretBackendConnectionMysqlLegacyArgsDict']]] = None,
+                 mysql_rds: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlRdsArgs', 'SecretBackendConnectionMysqlRdsArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+                 oracle: Optional[pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
-                 postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
-                 redis: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']]] = None,
-                 redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
-                 redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
+                 postgresql: Optional[pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']]] = None,
+                 redis: Optional[pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']]] = None,
+                 redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
+                 redshift: Optional[pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
+                 snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -937,9 +937,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                 "dev",
                 "prod",
             ],
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
+            postgresql={
+                "connection_url": "postgres://username:password@host:port/database",
+            })
         ```
 
         ## Import
@@ -955,34 +955,34 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']] couchbase: A nested block containing configuration options for Couchbase connections.
+        :param pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']] influxdb: A nested block containing configuration options for InfluxDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']] mssql: A nested block containing configuration options for MSSQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']] mysql: A nested block containing configuration options for MySQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
+        :param pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']] influxdb: A nested block containing configuration options for InfluxDB connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMongodbArgs', 'SecretBackendConnectionMongodbArgsDict']] mongodb: A nested block containing configuration options for MongoDB connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMongodbatlasArgs', 'SecretBackendConnectionMongodbatlasArgsDict']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMssqlArgs', 'SecretBackendConnectionMssqlArgsDict']] mssql: A nested block containing configuration options for MSSQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlArgs', 'SecretBackendConnectionMysqlArgsDict']] mysql: A nested block containing configuration options for MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlAuroraArgs', 'SecretBackendConnectionMysqlAuroraArgsDict']] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlLegacyArgs', 'SecretBackendConnectionMysqlLegacyArgsDict']] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlRdsArgs', 'SecretBackendConnectionMysqlRdsArgsDict']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']] redis: A nested block containing configuration options for Redis connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
+        :param pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']] redis: A nested block containing configuration options for Redis connections.
+        :param pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
                
                Exactly one of the nested blocks of configuration options must be supplied.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
+        :param pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
+        :param pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -1009,9 +1009,9 @@ class SecretBackendConnection(pulumi.CustomResource):
                 "dev",
                 "prod",
             ],
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
+            postgresql={
+                "connection_url": "postgres://username:password@host:port/database",
+            })
         ```
 
         ## Import
@@ -1039,29 +1039,29 @@ class SecretBackendConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
-                 couchbase: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']]] = None,
+                 cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
+                 couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
                  data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
-                 hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
-                 influxdb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']]] = None,
-                 mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
-                 mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
-                 mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
-                 mysql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']]] = None,
-                 mysql_aurora: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']]] = None,
-                 mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
-                 mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
+                 elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
+                 hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
+                 influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
+                 mongodb: Optional[pulumi.Input[Union['SecretBackendConnectionMongodbArgs', 'SecretBackendConnectionMongodbArgsDict']]] = None,
+                 mongodbatlas: Optional[pulumi.Input[Union['SecretBackendConnectionMongodbatlasArgs', 'SecretBackendConnectionMongodbatlasArgsDict']]] = None,
+                 mssql: Optional[pulumi.Input[Union['SecretBackendConnectionMssqlArgs', 'SecretBackendConnectionMssqlArgsDict']]] = None,
+                 mysql: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlArgs', 'SecretBackendConnectionMysqlArgsDict']]] = None,
+                 mysql_aurora: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlAuroraArgs', 'SecretBackendConnectionMysqlAuroraArgsDict']]] = None,
+                 mysql_legacy: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlLegacyArgs', 'SecretBackendConnectionMysqlLegacyArgsDict']]] = None,
+                 mysql_rds: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlRdsArgs', 'SecretBackendConnectionMysqlRdsArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+                 oracle: Optional[pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
-                 postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
-                 redis: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']]] = None,
-                 redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
-                 redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
+                 postgresql: Optional[pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']]] = None,
+                 redis: Optional[pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']]] = None,
+                 redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
+                 redshift: Optional[pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
+                 snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1112,29 +1112,29 @@ class SecretBackendConnection(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            cassandra: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']]] = None,
-            couchbase: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']]] = None,
+            cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
+            couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            elasticsearch: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']]] = None,
-            hana: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']]] = None,
-            influxdb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']]] = None,
-            mongodb: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']]] = None,
-            mongodbatlas: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']]] = None,
-            mssql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']]] = None,
-            mysql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']]] = None,
-            mysql_aurora: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']]] = None,
-            mysql_legacy: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']]] = None,
-            mysql_rds: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']]] = None,
+            elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
+            hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
+            influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
+            mongodb: Optional[pulumi.Input[Union['SecretBackendConnectionMongodbArgs', 'SecretBackendConnectionMongodbArgsDict']]] = None,
+            mongodbatlas: Optional[pulumi.Input[Union['SecretBackendConnectionMongodbatlasArgs', 'SecretBackendConnectionMongodbatlasArgsDict']]] = None,
+            mssql: Optional[pulumi.Input[Union['SecretBackendConnectionMssqlArgs', 'SecretBackendConnectionMssqlArgsDict']]] = None,
+            mysql: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlArgs', 'SecretBackendConnectionMysqlArgsDict']]] = None,
+            mysql_aurora: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlAuroraArgs', 'SecretBackendConnectionMysqlAuroraArgsDict']]] = None,
+            mysql_legacy: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlLegacyArgs', 'SecretBackendConnectionMysqlLegacyArgsDict']]] = None,
+            mysql_rds: Optional[pulumi.Input[Union['SecretBackendConnectionMysqlRdsArgs', 'SecretBackendConnectionMysqlRdsArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            oracle: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']]] = None,
+            oracle: Optional[pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']]] = None,
             plugin_name: Optional[pulumi.Input[str]] = None,
-            postgresql: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']]] = None,
-            redis: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']]] = None,
-            redis_elasticache: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']]] = None,
-            redshift: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']]] = None,
+            postgresql: Optional[pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']]] = None,
+            redis: Optional[pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']]] = None,
+            redis_elasticache: Optional[pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']]] = None,
+            redshift: Optional[pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']]] = None,
             root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            snowflake: Optional[pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']]] = None,
+            snowflake: Optional[pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']]] = None,
             verify_connection: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendConnection':
         """
         Get an existing SecretBackendConnection resource's state with the given name, id, and optional extra
@@ -1146,34 +1146,34 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCassandraArgs']] cassandra: A nested block containing configuration options for Cassandra connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionCouchbaseArgs']] couchbase: A nested block containing configuration options for Couchbase connections.
+        :param pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']] cassandra: A nested block containing configuration options for Cassandra connections.
+        :param pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']] couchbase: A nested block containing configuration options for Couchbase connections.
         :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionElasticsearchArgs']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionHanaArgs']] hana: A nested block containing configuration options for SAP HanaDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionInfluxdbArgs']] influxdb: A nested block containing configuration options for InfluxDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbArgs']] mongodb: A nested block containing configuration options for MongoDB connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMongodbatlasArgs']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMssqlArgs']] mssql: A nested block containing configuration options for MSSQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlArgs']] mysql: A nested block containing configuration options for MySQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlAuroraArgs']] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlLegacyArgs']] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionMysqlRdsArgs']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
+        :param pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']] hana: A nested block containing configuration options for SAP HanaDB connections.
+        :param pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']] influxdb: A nested block containing configuration options for InfluxDB connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMongodbArgs', 'SecretBackendConnectionMongodbArgsDict']] mongodb: A nested block containing configuration options for MongoDB connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMongodbatlasArgs', 'SecretBackendConnectionMongodbatlasArgsDict']] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMssqlArgs', 'SecretBackendConnectionMssqlArgsDict']] mssql: A nested block containing configuration options for MSSQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlArgs', 'SecretBackendConnectionMysqlArgsDict']] mysql: A nested block containing configuration options for MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlAuroraArgs', 'SecretBackendConnectionMysqlAuroraArgsDict']] mysql_aurora: A nested block containing configuration options for Aurora MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlLegacyArgs', 'SecretBackendConnectionMysqlLegacyArgsDict']] mysql_legacy: A nested block containing configuration options for legacy MySQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionMysqlRdsArgs', 'SecretBackendConnectionMysqlRdsArgsDict']] mysql_rds: A nested block containing configuration options for RDS MySQL connections.
         :param pulumi.Input[str] name: A unique name to give the database connection.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured namespace.
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionOracleArgs']] oracle: A nested block containing configuration options for Oracle connections.
+        :param pulumi.Input[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict']] oracle: A nested block containing configuration options for Oracle connections.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionPostgresqlArgs']] postgresql: A nested block containing configuration options for PostgreSQL connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisArgs']] redis: A nested block containing configuration options for Redis connections.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedisElasticacheArgs']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
+        :param pulumi.Input[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict']] postgresql: A nested block containing configuration options for PostgreSQL connections.
+        :param pulumi.Input[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict']] redis: A nested block containing configuration options for Redis connections.
+        :param pulumi.Input[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict']] redis_elasticache: A nested block containing configuration options for Redis ElastiCache connections.
                
                Exactly one of the nested blocks of configuration options must be supplied.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionRedshiftArgs']] redshift: Connection parameters for the redshift-database-plugin plugin.
+        :param pulumi.Input[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict']] redshift: Connection parameters for the redshift-database-plugin plugin.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
-        :param pulumi.Input[pulumi.InputType['SecretBackendConnectionSnowflakeArgs']] snowflake: A nested block containing configuration options for Snowflake connections.
+        :param pulumi.Input[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict']] snowflake: A nested block containing configuration options for Snowflake connections.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """

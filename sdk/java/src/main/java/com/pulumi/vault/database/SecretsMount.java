@@ -61,26 +61,26 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var db = new SecretsMount("db", SecretsMountArgs.builder()
  *             .path("db")
  *             .mssqls(SecretsMountMssqlArgs.builder()
  *                 .name("db1")
  *                 .username("sa")
  *                 .password("super_secret_1")
- *                 .connectionUrl("sqlserver://{{username}}:{{password}}{@literal @}127.0.0.1:1433")
+ *                 .connectionUrl("sqlserver://}{{{@code username}}}{@code :}{{{@code password}}}{@literal @}{@code 127.0.0.1:1433")
  *                 .allowedRoles("dev1")
  *                 .build())
  *             .postgresqls(SecretsMountPostgresqlArgs.builder()
  *                 .name("db2")
  *                 .username("postgres")
  *                 .password("super_secret_2")
- *                 .connectionUrl("postgresql://{{username}}:{{password}}{@literal @}127.0.0.1:5432/postgres")
+ *                 .connectionUrl("postgresql://}{{{@code username}}}{@code :}{{{@code password}}}{@literal @}{@code 127.0.0.1:5432/postgres")
  *                 .verifyConnection(true)
  *                 .allowedRoles("dev2")
  *                 .build())
@@ -91,9 +91,9 @@ import javax.annotation.Nullable;
  *             .backend(db.path())
  *             .dbName(db.mssqls().applyValue(mssqls -> mssqls[0].name()))
  *             .creationStatements(            
- *                 "CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';",
- *                 "CREATE USER [{{name}}] FOR LOGIN [{{name}}];",
- *                 "GRANT SELECT ON SCHEMA::dbo TO [{{name}}];")
+ *                 "CREATE LOGIN [}{{{@code name}}}{@code ] WITH PASSWORD = '}{{{@code password}}}{@code ';",
+ *                 "CREATE USER [}{{{@code name}}}{@code ] FOR LOGIN [}{{{@code name}}}{@code ];",
+ *                 "GRANT SELECT ON SCHEMA::dbo TO [}{{{@code name}}}{@code ];")
  *             .build());
  * 
  *         var dev2 = new SecretBackendRole("dev2", SecretBackendRoleArgs.builder()
@@ -101,12 +101,12 @@ import javax.annotation.Nullable;
  *             .backend(db.path())
  *             .dbName(db.postgresqls().applyValue(postgresqls -> postgresqls[0].name()))
  *             .creationStatements(            
- *                 "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
- *                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";")
+ *                 "CREATE ROLE \"}{{{@code name}}}{@code \" WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';",
+ *                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"}{{{@code name}}}{@code \";")
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -699,7 +699,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretsMount(String name) {
+    public SecretsMount(java.lang.String name) {
         this(name, SecretsMountArgs.Empty);
     }
     /**
@@ -707,7 +707,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretsMount(String name, SecretsMountArgs args) {
+    public SecretsMount(java.lang.String name, SecretsMountArgs args) {
         this(name, args, null);
     }
     /**
@@ -716,12 +716,12 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretsMount(String name, SecretsMountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:database/secretsMount:SecretsMount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretsMount(java.lang.String name, SecretsMountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:database/secretsMount:SecretsMount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretsMount(String name, Output<String> id, @Nullable SecretsMountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:database/secretsMount:SecretsMount", name, state, makeResourceOptions(options, id));
+    private SecretsMount(java.lang.String name, Output<java.lang.String> id, @Nullable SecretsMountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:database/secretsMount:SecretsMount", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretsMountArgs makeArgs(SecretsMountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -731,7 +731,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return args == null ? SecretsMountArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -747,7 +747,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretsMount get(String name, Output<String> id, @Nullable SecretsMountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretsMount get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretsMountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretsMount(name, id, state, options);
     }
 }

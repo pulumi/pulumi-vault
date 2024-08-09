@@ -513,22 +513,22 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_address_to_env: Optional[pulumi.Input[str]] = None,
                  address: Optional[pulumi.Input[str]] = None,
-                 auth_login: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]] = None,
-                 auth_login_aws: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAwsArgs']]] = None,
-                 auth_login_azure: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAzureArgs']]] = None,
-                 auth_login_cert: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginCertArgs']]] = None,
-                 auth_login_gcp: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginGcpArgs']]] = None,
-                 auth_login_jwt: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginJwtArgs']]] = None,
-                 auth_login_kerberos: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginKerberosArgs']]] = None,
-                 auth_login_oci: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']]] = None,
-                 auth_login_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']]] = None,
-                 auth_login_radius: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']]] = None,
-                 auth_login_token_file: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginTokenFileArgs']]] = None,
-                 auth_login_userpass: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']]] = None,
+                 auth_login: Optional[pulumi.Input[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']]] = None,
+                 auth_login_aws: Optional[pulumi.Input[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']]] = None,
+                 auth_login_azure: Optional[pulumi.Input[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']]] = None,
+                 auth_login_cert: Optional[pulumi.Input[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']]] = None,
+                 auth_login_gcp: Optional[pulumi.Input[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']]] = None,
+                 auth_login_jwt: Optional[pulumi.Input[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']]] = None,
+                 auth_login_kerberos: Optional[pulumi.Input[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']]] = None,
+                 auth_login_oci: Optional[pulumi.Input[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']]] = None,
+                 auth_login_oidc: Optional[pulumi.Input[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']]] = None,
+                 auth_login_radius: Optional[pulumi.Input[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']]] = None,
+                 auth_login_token_file: Optional[pulumi.Input[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']]] = None,
+                 auth_login_userpass: Optional[pulumi.Input[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
-                 client_auth: Optional[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
+                 client_auth: Optional[pulumi.Input[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,
@@ -551,22 +551,22 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: URL of the root of the target Vault server.
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']] auth_login: Login to vault with an existing auth method using auth/<mount>/login
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginAwsArgs']] auth_login_aws: Login to vault using the AWS method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginAzureArgs']] auth_login_azure: Login to vault using the azure method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginCertArgs']] auth_login_cert: Login to vault using the cert method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginGcpArgs']] auth_login_gcp: Login to vault using the gcp method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginJwtArgs']] auth_login_jwt: Login to vault using the jwt method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginKerberosArgs']] auth_login_kerberos: Login to vault using the kerberos method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']] auth_login_oci: Login to vault using the OCI method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']] auth_login_oidc: Login to vault using the oidc method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']] auth_login_radius: Login to vault using the radius method
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginTokenFileArgs']] auth_login_token_file: Login to vault using
-        :param pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']] auth_login_userpass: Login to vault using the userpass method
+        :param pulumi.Input[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']] auth_login: Login to vault with an existing auth method using auth/<mount>/login
+        :param pulumi.Input[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']] auth_login_aws: Login to vault using the AWS method
+        :param pulumi.Input[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']] auth_login_azure: Login to vault using the azure method
+        :param pulumi.Input[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']] auth_login_cert: Login to vault using the cert method
+        :param pulumi.Input[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']] auth_login_gcp: Login to vault using the gcp method
+        :param pulumi.Input[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']] auth_login_jwt: Login to vault using the jwt method
+        :param pulumi.Input[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']] auth_login_kerberos: Login to vault using the kerberos method
+        :param pulumi.Input[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']] auth_login_oci: Login to vault using the OCI method
+        :param pulumi.Input[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']] auth_login_oidc: Login to vault using the oidc method
+        :param pulumi.Input[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']] auth_login_radius: Login to vault using the radius method
+        :param pulumi.Input[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']] auth_login_token_file: Login to vault using
+        :param pulumi.Input[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']] auth_login_userpass: Login to vault using the userpass method
         :param pulumi.Input[str] ca_cert_dir: Path to directory containing CA certificate files to validate the server's certificate.
         :param pulumi.Input[str] ca_cert_file: Path to a CA certificate file to validate the server's certificate.
-        :param pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']] client_auth: Client authentication credentials.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]] headers: The headers to send with each Vault request.
+        :param pulumi.Input[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']] client_auth: Client authentication credentials.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]] headers: The headers to send with each Vault request.
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum TTL for secret leases requested by this provider.
         :param pulumi.Input[int] max_retries: Maximum number of retries when a 5xx error code is encountered.
         :param pulumi.Input[int] max_retries_ccc: Maximum number of retries for Client Controlled Consistency related operations
@@ -610,22 +610,22 @@ class Provider(pulumi.ProviderResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_address_to_env: Optional[pulumi.Input[str]] = None,
                  address: Optional[pulumi.Input[str]] = None,
-                 auth_login: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginArgs']]] = None,
-                 auth_login_aws: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAwsArgs']]] = None,
-                 auth_login_azure: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginAzureArgs']]] = None,
-                 auth_login_cert: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginCertArgs']]] = None,
-                 auth_login_gcp: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginGcpArgs']]] = None,
-                 auth_login_jwt: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginJwtArgs']]] = None,
-                 auth_login_kerberos: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginKerberosArgs']]] = None,
-                 auth_login_oci: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOciArgs']]] = None,
-                 auth_login_oidc: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginOidcArgs']]] = None,
-                 auth_login_radius: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginRadiusArgs']]] = None,
-                 auth_login_token_file: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginTokenFileArgs']]] = None,
-                 auth_login_userpass: Optional[pulumi.Input[pulumi.InputType['ProviderAuthLoginUserpassArgs']]] = None,
+                 auth_login: Optional[pulumi.Input[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']]] = None,
+                 auth_login_aws: Optional[pulumi.Input[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']]] = None,
+                 auth_login_azure: Optional[pulumi.Input[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']]] = None,
+                 auth_login_cert: Optional[pulumi.Input[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']]] = None,
+                 auth_login_gcp: Optional[pulumi.Input[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']]] = None,
+                 auth_login_jwt: Optional[pulumi.Input[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']]] = None,
+                 auth_login_kerberos: Optional[pulumi.Input[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']]] = None,
+                 auth_login_oci: Optional[pulumi.Input[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']]] = None,
+                 auth_login_oidc: Optional[pulumi.Input[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']]] = None,
+                 auth_login_radius: Optional[pulumi.Input[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']]] = None,
+                 auth_login_token_file: Optional[pulumi.Input[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']]] = None,
+                 auth_login_userpass: Optional[pulumi.Input[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']]] = None,
                  ca_cert_dir: Optional[pulumi.Input[str]] = None,
                  ca_cert_file: Optional[pulumi.Input[str]] = None,
-                 client_auth: Optional[pulumi.Input[pulumi.InputType['ProviderClientAuthArgs']]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
+                 client_auth: Optional[pulumi.Input[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  max_retries: Optional[pulumi.Input[int]] = None,
                  max_retries_ccc: Optional[pulumi.Input[int]] = None,

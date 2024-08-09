@@ -133,7 +133,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Alphabet(String name) {
+    public Alphabet(java.lang.String name) {
         this(name, AlphabetArgs.Empty);
     }
     /**
@@ -141,7 +141,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Alphabet(String name, AlphabetArgs args) {
+    public Alphabet(java.lang.String name, AlphabetArgs args) {
         this(name, args, null);
     }
     /**
@@ -150,12 +150,12 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Alphabet(String name, AlphabetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:transform/alphabet:Alphabet", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public Alphabet(java.lang.String name, AlphabetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:transform/alphabet:Alphabet", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Alphabet(String name, Output<String> id, @Nullable AlphabetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:transform/alphabet:Alphabet", name, state, makeResourceOptions(options, id));
+    private Alphabet(java.lang.String name, Output<java.lang.String> id, @Nullable AlphabetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:transform/alphabet:Alphabet", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AlphabetArgs makeArgs(AlphabetArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -165,7 +165,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
         return args == null ? AlphabetArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -181,7 +181,7 @@ public class Alphabet extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Alphabet get(String name, Output<String> id, @Nullable AlphabetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Alphabet get(java.lang.String name, Output<java.lang.String> id, @Nullable AlphabetState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Alphabet(name, id, state, options);
     }
 }

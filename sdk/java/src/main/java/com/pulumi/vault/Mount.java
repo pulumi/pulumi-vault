@@ -487,7 +487,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Mount(String name) {
+    public Mount(java.lang.String name) {
         this(name, MountArgs.Empty);
     }
     /**
@@ -495,7 +495,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Mount(String name, MountArgs args) {
+    public Mount(java.lang.String name, MountArgs args) {
         this(name, args, null);
     }
     /**
@@ -504,12 +504,12 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Mount(String name, MountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mount:Mount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public Mount(java.lang.String name, MountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/mount:Mount", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Mount(String name, Output<String> id, @Nullable MountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mount:Mount", name, state, makeResourceOptions(options, id));
+    private Mount(java.lang.String name, Output<java.lang.String> id, @Nullable MountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/mount:Mount", name, state, makeResourceOptions(options, id), false);
     }
 
     private static MountArgs makeArgs(MountArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -519,7 +519,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
         return args == null ? MountArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -535,7 +535,7 @@ public class Mount extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Mount get(String name, Output<String> id, @Nullable MountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Mount get(java.lang.String name, Output<java.lang.String> id, @Nullable MountState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Mount(name, id, state, options);
     }
 }

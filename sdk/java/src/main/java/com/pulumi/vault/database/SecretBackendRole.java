@@ -43,12 +43,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var db = new Mount("db", MountArgs.builder()
  *             .path("postgres")
  *             .type("database")
@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *                 "dev",
  *                 "prod")
  *             .postgresql(SecretBackendConnectionPostgresqlArgs.builder()
- *                 .connectionUrl("postgres://username:password{@literal @}host:port/database")
+ *                 .connectionUrl("postgres://username:password}{@literal @}{@code host:port/database")
  *                 .build())
  *             .build());
  * 
@@ -69,11 +69,11 @@ import javax.annotation.Nullable;
  *             .backend(db.path())
  *             .name("dev")
  *             .dbName(postgres.name())
- *             .creationStatements("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';")
+ *             .creationStatements("CREATE ROLE \"}{{{@code name}}}{@code \" WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';")
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -292,7 +292,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendRole(String name) {
+    public SecretBackendRole(java.lang.String name) {
         this(name, SecretBackendRoleArgs.Empty);
     }
     /**
@@ -300,7 +300,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendRole(String name, SecretBackendRoleArgs args) {
+    public SecretBackendRole(java.lang.String name, SecretBackendRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -309,12 +309,12 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendRole(String name, SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:database/secretBackendRole:SecretBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendRole(java.lang.String name, SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:database/secretBackendRole:SecretBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendRole(String name, Output<String> id, @Nullable SecretBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:database/secretBackendRole:SecretBackendRole", name, state, makeResourceOptions(options, id));
+    private SecretBackendRole(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:database/secretBackendRole:SecretBackendRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendRoleArgs makeArgs(SecretBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -324,7 +324,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return args == null ? SecretBackendRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -340,7 +340,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendRole get(String name, Output<String> id, @Nullable SecretBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendRole get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendRole(name, id, state, options);
     }
 }

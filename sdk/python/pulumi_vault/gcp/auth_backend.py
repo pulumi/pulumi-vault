@@ -629,7 +629,7 @@ class AuthBackend(pulumi.CustomResource):
                  client_email: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 custom_endpoint: Optional[pulumi.Input[pulumi.InputType['AuthBackendCustomEndpointArgs']]] = None,
+                 custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -641,7 +641,7 @@ class AuthBackend(pulumi.CustomResource):
                  private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
-                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  __props__=None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
@@ -673,7 +673,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
-        :param pulumi.Input[pulumi.InputType['AuthBackendCustomEndpointArgs']] custom_endpoint: Specifies overrides to
+        :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
@@ -699,7 +699,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The GCP Project ID
         :param pulumi.Input[str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """
@@ -752,7 +752,7 @@ class AuthBackend(pulumi.CustomResource):
                  client_email: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 custom_endpoint: Optional[pulumi.Input[pulumi.InputType['AuthBackendCustomEndpointArgs']]] = None,
+                 custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -764,7 +764,7 @@ class AuthBackend(pulumi.CustomResource):
                  private_key_id: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
-                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -807,7 +807,7 @@ class AuthBackend(pulumi.CustomResource):
             client_email: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             credentials: Optional[pulumi.Input[str]] = None,
-            custom_endpoint: Optional[pulumi.Input[pulumi.InputType['AuthBackendCustomEndpointArgs']]] = None,
+            custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -819,7 +819,7 @@ class AuthBackend(pulumi.CustomResource):
             private_key_id: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             service_account_email: Optional[pulumi.Input[str]] = None,
-            tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None) -> 'AuthBackend':
+            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -831,7 +831,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] client_email: The clients email associated with the credentials
         :param pulumi.Input[str] client_id: The Client ID of the credentials
         :param pulumi.Input[str] credentials: A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running.
-        :param pulumi.Input[pulumi.InputType['AuthBackendCustomEndpointArgs']] custom_endpoint: Specifies overrides to
+        :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
@@ -857,7 +857,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: The GCP Project ID
         :param pulumi.Input[str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """

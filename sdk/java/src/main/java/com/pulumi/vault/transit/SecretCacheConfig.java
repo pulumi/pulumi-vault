@@ -120,7 +120,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretCacheConfig(String name) {
+    public SecretCacheConfig(java.lang.String name) {
         this(name, SecretCacheConfigArgs.Empty);
     }
     /**
@@ -128,7 +128,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretCacheConfig(String name, SecretCacheConfigArgs args) {
+    public SecretCacheConfig(java.lang.String name, SecretCacheConfigArgs args) {
         this(name, args, null);
     }
     /**
@@ -137,12 +137,12 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretCacheConfig(String name, SecretCacheConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:transit/secretCacheConfig:SecretCacheConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretCacheConfig(java.lang.String name, SecretCacheConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:transit/secretCacheConfig:SecretCacheConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretCacheConfig(String name, Output<String> id, @Nullable SecretCacheConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:transit/secretCacheConfig:SecretCacheConfig", name, state, makeResourceOptions(options, id));
+    private SecretCacheConfig(java.lang.String name, Output<java.lang.String> id, @Nullable SecretCacheConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:transit/secretCacheConfig:SecretCacheConfig", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretCacheConfigArgs makeArgs(SecretCacheConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -152,7 +152,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
         return args == null ? SecretCacheConfigArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -168,7 +168,7 @@ public class SecretCacheConfig extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretCacheConfig get(String name, Output<String> id, @Nullable SecretCacheConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretCacheConfig get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretCacheConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretCacheConfig(name, id, state, options);
     }
 }

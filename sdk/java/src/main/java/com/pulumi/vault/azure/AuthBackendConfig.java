@@ -271,7 +271,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackendConfig(String name) {
+    public AuthBackendConfig(java.lang.String name) {
         this(name, AuthBackendConfigArgs.Empty);
     }
     /**
@@ -279,7 +279,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackendConfig(String name, AuthBackendConfigArgs args) {
+    public AuthBackendConfig(java.lang.String name, AuthBackendConfigArgs args) {
         this(name, args, null);
     }
     /**
@@ -288,12 +288,12 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackendConfig(String name, AuthBackendConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:azure/authBackendConfig:AuthBackendConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AuthBackendConfig(java.lang.String name, AuthBackendConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:azure/authBackendConfig:AuthBackendConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AuthBackendConfig(String name, Output<String> id, @Nullable AuthBackendConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:azure/authBackendConfig:AuthBackendConfig", name, state, makeResourceOptions(options, id));
+    private AuthBackendConfig(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:azure/authBackendConfig:AuthBackendConfig", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuthBackendConfigArgs makeArgs(AuthBackendConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -303,7 +303,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
         return args == null ? AuthBackendConfigArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -324,7 +324,7 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackendConfig get(String name, Output<String> id, @Nullable AuthBackendConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AuthBackendConfig get(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AuthBackendConfig(name, id, state, options);
     }
 }

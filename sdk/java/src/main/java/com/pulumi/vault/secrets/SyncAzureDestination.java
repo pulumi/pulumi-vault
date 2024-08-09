@@ -253,7 +253,7 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncAzureDestination(String name) {
+    public SyncAzureDestination(java.lang.String name) {
         this(name, SyncAzureDestinationArgs.Empty);
     }
     /**
@@ -261,7 +261,7 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncAzureDestination(String name, @Nullable SyncAzureDestinationArgs args) {
+    public SyncAzureDestination(java.lang.String name, @Nullable SyncAzureDestinationArgs args) {
         this(name, args, null);
     }
     /**
@@ -270,12 +270,12 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncAzureDestination(String name, @Nullable SyncAzureDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncAzureDestination(java.lang.String name, @Nullable SyncAzureDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncAzureDestination(String name, Output<String> id, @Nullable SyncAzureDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, state, makeResourceOptions(options, id));
+    private SyncAzureDestination(java.lang.String name, Output<java.lang.String> id, @Nullable SyncAzureDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncAzureDestination:SyncAzureDestination", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncAzureDestinationArgs makeArgs(@Nullable SyncAzureDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -285,7 +285,7 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
         return args == null ? SyncAzureDestinationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -304,7 +304,7 @@ public class SyncAzureDestination extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncAzureDestination get(String name, Output<String> id, @Nullable SyncAzureDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncAzureDestination get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncAzureDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncAzureDestination(name, id, state, options);
     }
 }

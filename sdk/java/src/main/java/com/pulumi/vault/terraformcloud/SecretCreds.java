@@ -193,7 +193,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretCreds(String name) {
+    public SecretCreds(java.lang.String name) {
         this(name, SecretCredsArgs.Empty);
     }
     /**
@@ -201,7 +201,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretCreds(String name, SecretCredsArgs args) {
+    public SecretCreds(java.lang.String name, SecretCredsArgs args) {
         this(name, args, null);
     }
     /**
@@ -210,12 +210,12 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretCreds(String name, SecretCredsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:terraformcloud/secretCreds:SecretCreds", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretCreds(java.lang.String name, SecretCredsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:terraformcloud/secretCreds:SecretCreds", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretCreds(String name, Output<String> id, @Nullable SecretCredsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:terraformcloud/secretCreds:SecretCreds", name, state, makeResourceOptions(options, id));
+    private SecretCreds(java.lang.String name, Output<java.lang.String> id, @Nullable SecretCredsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:terraformcloud/secretCreds:SecretCreds", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretCredsArgs makeArgs(SecretCredsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -225,7 +225,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
         return args == null ? SecretCredsArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -245,7 +245,7 @@ public class SecretCreds extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretCreds get(String name, Output<String> id, @Nullable SecretCredsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretCreds get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretCredsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretCreds(name, id, state, options);
     }
 }

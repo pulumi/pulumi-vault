@@ -146,7 +146,7 @@ public class SyncGithubApps extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncGithubApps(String name) {
+    public SyncGithubApps(java.lang.String name) {
         this(name, SyncGithubAppsArgs.Empty);
     }
     /**
@@ -154,7 +154,7 @@ public class SyncGithubApps extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncGithubApps(String name, SyncGithubAppsArgs args) {
+    public SyncGithubApps(java.lang.String name, SyncGithubAppsArgs args) {
         this(name, args, null);
     }
     /**
@@ -163,12 +163,12 @@ public class SyncGithubApps extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncGithubApps(String name, SyncGithubAppsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncGithubApps:SyncGithubApps", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncGithubApps(java.lang.String name, SyncGithubAppsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncGithubApps:SyncGithubApps", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncGithubApps(String name, Output<String> id, @Nullable SyncGithubAppsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncGithubApps:SyncGithubApps", name, state, makeResourceOptions(options, id));
+    private SyncGithubApps(java.lang.String name, Output<java.lang.String> id, @Nullable SyncGithubAppsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncGithubApps:SyncGithubApps", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncGithubAppsArgs makeArgs(SyncGithubAppsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -178,7 +178,7 @@ public class SyncGithubApps extends com.pulumi.resources.CustomResource {
         return args == null ? SyncGithubAppsArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -197,7 +197,7 @@ public class SyncGithubApps extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncGithubApps get(String name, Output<String> id, @Nullable SyncGithubAppsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncGithubApps get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncGithubAppsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncGithubApps(name, id, state, options);
     }
 }

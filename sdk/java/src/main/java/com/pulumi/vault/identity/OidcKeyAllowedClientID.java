@@ -121,7 +121,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public OidcKeyAllowedClientID(String name) {
+    public OidcKeyAllowedClientID(java.lang.String name) {
         this(name, OidcKeyAllowedClientIDArgs.Empty);
     }
     /**
@@ -129,7 +129,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public OidcKeyAllowedClientID(String name, OidcKeyAllowedClientIDArgs args) {
+    public OidcKeyAllowedClientID(java.lang.String name, OidcKeyAllowedClientIDArgs args) {
         this(name, args, null);
     }
     /**
@@ -138,12 +138,12 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public OidcKeyAllowedClientID(String name, OidcKeyAllowedClientIDArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public OidcKeyAllowedClientID(java.lang.String name, OidcKeyAllowedClientIDArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private OidcKeyAllowedClientID(String name, Output<String> id, @Nullable OidcKeyAllowedClientIDState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, state, makeResourceOptions(options, id));
+    private OidcKeyAllowedClientID(java.lang.String name, Output<java.lang.String> id, @Nullable OidcKeyAllowedClientIDState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", name, state, makeResourceOptions(options, id), false);
     }
 
     private static OidcKeyAllowedClientIDArgs makeArgs(OidcKeyAllowedClientIDArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -153,7 +153,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
         return args == null ? OidcKeyAllowedClientIDArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -169,7 +169,7 @@ public class OidcKeyAllowedClientID extends com.pulumi.resources.CustomResource 
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static OidcKeyAllowedClientID get(String name, Output<String> id, @Nullable OidcKeyAllowedClientIDState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static OidcKeyAllowedClientID get(java.lang.String name, Output<java.lang.String> id, @Nullable OidcKeyAllowedClientIDState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new OidcKeyAllowedClientID(name, id, state, options);
     }
 }

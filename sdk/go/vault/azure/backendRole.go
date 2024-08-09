@@ -50,7 +50,7 @@ import (
 //				AzureRoles: azure.BackendRoleAzureRoleArray{
 //					&azure.BackendRoleAzureRoleArgs{
 //						RoleName: pulumi.String("Reader"),
-//						Scope:    pulumi.String(fmt.Sprintf("/subscriptions/%v/resourceGroups/azure-vault-group", subscriptionId)),
+//						Scope:    pulumi.Sprintf("/subscriptions/%v/resourceGroups/azure-vault-group", subscriptionId),
 //					},
 //				},
 //			})

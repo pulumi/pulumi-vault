@@ -192,7 +192,7 @@ public class BackendConfigEst extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public BackendConfigEst(String name) {
+    public BackendConfigEst(java.lang.String name) {
         this(name, BackendConfigEstArgs.Empty);
     }
     /**
@@ -200,7 +200,7 @@ public class BackendConfigEst extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public BackendConfigEst(String name, BackendConfigEstArgs args) {
+    public BackendConfigEst(java.lang.String name, BackendConfigEstArgs args) {
         this(name, args, null);
     }
     /**
@@ -209,12 +209,12 @@ public class BackendConfigEst extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public BackendConfigEst(String name, BackendConfigEstArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/backendConfigEst:BackendConfigEst", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public BackendConfigEst(java.lang.String name, BackendConfigEstArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/backendConfigEst:BackendConfigEst", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private BackendConfigEst(String name, Output<String> id, @Nullable BackendConfigEstState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/backendConfigEst:BackendConfigEst", name, state, makeResourceOptions(options, id));
+    private BackendConfigEst(java.lang.String name, Output<java.lang.String> id, @Nullable BackendConfigEstState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/backendConfigEst:BackendConfigEst", name, state, makeResourceOptions(options, id), false);
     }
 
     private static BackendConfigEstArgs makeArgs(BackendConfigEstArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -224,7 +224,7 @@ public class BackendConfigEst extends com.pulumi.resources.CustomResource {
         return args == null ? BackendConfigEstArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -240,7 +240,7 @@ public class BackendConfigEst extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static BackendConfigEst get(String name, Output<String> id, @Nullable BackendConfigEstState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static BackendConfigEst get(java.lang.String name, Output<java.lang.String> id, @Nullable BackendConfigEstState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new BackendConfigEst(name, id, state, options);
     }
 }

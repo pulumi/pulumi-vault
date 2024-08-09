@@ -95,7 +95,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Keys(String name) {
+    public Keys(java.lang.String name) {
         this(name, KeysArgs.Empty);
     }
     /**
@@ -103,7 +103,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Keys(String name, @Nullable KeysArgs args) {
+    public Keys(java.lang.String name, @Nullable KeysArgs args) {
         this(name, args, null);
     }
     /**
@@ -112,12 +112,12 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Keys(String name, @Nullable KeysArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:managed/keys:Keys", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public Keys(java.lang.String name, @Nullable KeysArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:managed/keys:Keys", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Keys(String name, Output<String> id, @Nullable KeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:managed/keys:Keys", name, state, makeResourceOptions(options, id));
+    private Keys(java.lang.String name, Output<java.lang.String> id, @Nullable KeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:managed/keys:Keys", name, state, makeResourceOptions(options, id), false);
     }
 
     private static KeysArgs makeArgs(@Nullable KeysArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -127,7 +127,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
         return args == null ? KeysArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -143,7 +143,7 @@ public class Keys extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Keys get(String name, Output<String> id, @Nullable KeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Keys get(java.lang.String name, Output<java.lang.String> id, @Nullable KeysState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Keys(name, id, state, options);
     }
 }

@@ -182,7 +182,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendCa(String name) {
+    public SecretBackendCa(java.lang.String name) {
         this(name, SecretBackendCaArgs.Empty);
     }
     /**
@@ -190,7 +190,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendCa(String name, @Nullable SecretBackendCaArgs args) {
+    public SecretBackendCa(java.lang.String name, @Nullable SecretBackendCaArgs args) {
         this(name, args, null);
     }
     /**
@@ -199,12 +199,12 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendCa(String name, @Nullable SecretBackendCaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ssh/secretBackendCa:SecretBackendCa", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendCa(java.lang.String name, @Nullable SecretBackendCaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:ssh/secretBackendCa:SecretBackendCa", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendCa(String name, Output<String> id, @Nullable SecretBackendCaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ssh/secretBackendCa:SecretBackendCa", name, state, makeResourceOptions(options, id));
+    private SecretBackendCa(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendCaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:ssh/secretBackendCa:SecretBackendCa", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendCaArgs makeArgs(@Nullable SecretBackendCaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -214,7 +214,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
         return args == null ? SecretBackendCaArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -233,7 +233,7 @@ public class SecretBackendCa extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendCa get(String name, Output<String> id, @Nullable SecretBackendCaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendCa get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendCaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendCa(name, id, state, options);
     }
 }

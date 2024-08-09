@@ -476,7 +476,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CertAuthBackendRole(String name) {
+    public CertAuthBackendRole(java.lang.String name) {
         this(name, CertAuthBackendRoleArgs.Empty);
     }
     /**
@@ -484,7 +484,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CertAuthBackendRole(String name, CertAuthBackendRoleArgs args) {
+    public CertAuthBackendRole(java.lang.String name, CertAuthBackendRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -493,12 +493,12 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CertAuthBackendRole(String name, CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/certAuthBackendRole:CertAuthBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public CertAuthBackendRole(java.lang.String name, CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/certAuthBackendRole:CertAuthBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CertAuthBackendRole(String name, Output<String> id, @Nullable CertAuthBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/certAuthBackendRole:CertAuthBackendRole", name, state, makeResourceOptions(options, id));
+    private CertAuthBackendRole(java.lang.String name, Output<java.lang.String> id, @Nullable CertAuthBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/certAuthBackendRole:CertAuthBackendRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static CertAuthBackendRoleArgs makeArgs(CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -508,7 +508,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return args == null ? CertAuthBackendRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -524,7 +524,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CertAuthBackendRole get(String name, Output<String> id, @Nullable CertAuthBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CertAuthBackendRole get(java.lang.String name, Output<java.lang.String> id, @Nullable CertAuthBackendRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CertAuthBackendRole(name, id, state, options);
     }
 }

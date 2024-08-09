@@ -1577,7 +1577,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 policy_identifier: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRolePolicyIdentifierArgs']]]]] = None,
+                 policy_identifier: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]]] = None,
                  policy_identifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1671,7 +1671,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRolePolicyIdentifierArgs']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
@@ -1775,7 +1775,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 policy_identifier: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRolePolicyIdentifierArgs']]]]] = None,
+                 policy_identifier: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]]] = None,
                  policy_identifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1888,7 +1888,7 @@ class SecretBackendRole(pulumi.CustomResource):
             not_before_duration: Optional[pulumi.Input[str]] = None,
             organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            policy_identifier: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRolePolicyIdentifierArgs']]]]] = None,
+            policy_identifier: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]]] = None,
             policy_identifiers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1950,7 +1950,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretBackendRolePolicyIdentifierArgs']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates

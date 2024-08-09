@@ -283,7 +283,7 @@ class SecretRoleset(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretRolesetBindingArgs', 'SecretRolesetBindingArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  roleset: Optional[pulumi.Input[str]] = None,
@@ -312,10 +312,10 @@ class SecretRoleset(pulumi.CustomResource):
             secret_type="access_token",
             project=project,
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            bindings=[vault.gcp.SecretRolesetBindingArgs(
-                resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
-                roles=["roles/viewer"],
-            )])
+            bindings=[{
+                "resource": f"//cloudresourcemanager.googleapis.com/projects/{project}",
+                "roles": ["roles/viewer"],
+            }])
         ```
 
         ## Import
@@ -329,7 +329,7 @@ class SecretRoleset(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretRolesetBindingArgs', 'SecretRolesetBindingArgsDict']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -367,10 +367,10 @@ class SecretRoleset(pulumi.CustomResource):
             secret_type="access_token",
             project=project,
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
-            bindings=[vault.gcp.SecretRolesetBindingArgs(
-                resource=f"//cloudresourcemanager.googleapis.com/projects/{project}",
-                roles=["roles/viewer"],
-            )])
+            bindings=[{
+                "resource": f"//cloudresourcemanager.googleapis.com/projects/{project}",
+                "roles": ["roles/viewer"],
+            }])
         ```
 
         ## Import
@@ -397,7 +397,7 @@ class SecretRoleset(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretRolesetBindingArgs', 'SecretRolesetBindingArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  project: Optional[pulumi.Input[str]] = None,
                  roleset: Optional[pulumi.Input[str]] = None,
@@ -439,7 +439,7 @@ class SecretRoleset(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]]] = None,
+            bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretRolesetBindingArgs', 'SecretRolesetBindingArgsDict']]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             project: Optional[pulumi.Input[str]] = None,
             roleset: Optional[pulumi.Input[str]] = None,
@@ -454,7 +454,7 @@ class SecretRoleset(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretRolesetBindingArgs']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretRolesetBindingArgs', 'SecretRolesetBindingArgsDict']]]] bindings: Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).

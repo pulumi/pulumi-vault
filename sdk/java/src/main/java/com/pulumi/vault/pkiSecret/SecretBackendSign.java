@@ -401,7 +401,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendSign(String name) {
+    public SecretBackendSign(java.lang.String name) {
         this(name, SecretBackendSignArgs.Empty);
     }
     /**
@@ -409,7 +409,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendSign(String name, SecretBackendSignArgs args) {
+    public SecretBackendSign(java.lang.String name, SecretBackendSignArgs args) {
         this(name, args, null);
     }
     /**
@@ -418,12 +418,12 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendSign(String name, SecretBackendSignArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendSign(java.lang.String name, SecretBackendSignArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendSign(String name, Output<String> id, @Nullable SecretBackendSignState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, state, makeResourceOptions(options, id));
+    private SecretBackendSign(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendSignState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendSign:SecretBackendSign", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendSignArgs makeArgs(SecretBackendSignArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -433,7 +433,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
         return args == null ? SecretBackendSignArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -449,7 +449,7 @@ public class SecretBackendSign extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendSign get(String name, Output<String> id, @Nullable SecretBackendSignState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendSign get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendSignState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendSign(name, id, state, options);
     }
 }

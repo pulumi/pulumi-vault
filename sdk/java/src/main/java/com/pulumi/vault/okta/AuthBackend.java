@@ -422,7 +422,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackend(String name) {
+    public AuthBackend(java.lang.String name) {
         this(name, AuthBackendArgs.Empty);
     }
     /**
@@ -430,7 +430,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackend(String name, AuthBackendArgs args) {
+    public AuthBackend(java.lang.String name, AuthBackendArgs args) {
         this(name, args, null);
     }
     /**
@@ -439,12 +439,12 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackend(String name, AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:okta/authBackend:AuthBackend", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AuthBackend(java.lang.String name, AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:okta/authBackend:AuthBackend", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AuthBackend(String name, Output<String> id, @Nullable AuthBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:okta/authBackend:AuthBackend", name, state, makeResourceOptions(options, id));
+    private AuthBackend(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:okta/authBackend:AuthBackend", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuthBackendArgs makeArgs(AuthBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -454,7 +454,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return args == null ? AuthBackendArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -473,7 +473,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackend get(String name, Output<String> id, @Nullable AuthBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AuthBackend get(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AuthBackend(name, id, state, options);
     }
 }

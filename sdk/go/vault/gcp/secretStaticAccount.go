@@ -64,7 +64,7 @@ import (
 //				ServiceAccountEmail: this.Email,
 //				Bindings: gcp.SecretStaticAccountBindingArray{
 //					&gcp.SecretStaticAccountBindingArgs{
-//						Resource: pulumi.String(fmt.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", this.Project)),
+//						Resource: pulumi.Sprintf("//cloudresourcemanager.googleapis.com/projects/%v", this.Project),
 //						Roles: pulumi.StringArray{
 //							pulumi.String("roles/viewer"),
 //						},

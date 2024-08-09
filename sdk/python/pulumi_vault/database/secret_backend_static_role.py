@@ -381,9 +381,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             backend=db.path,
             name="postgres",
             allowed_roles=["*"],
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
+            postgresql={
+                "connection_url": "postgres://username:password@host:port/database",
+            })
         # configure a static role with period-based rotations
         period_role = vault.database.SecretBackendStaticRole("period_role",
             backend=db.path,
@@ -456,9 +456,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             backend=db.path,
             name="postgres",
             allowed_roles=["*"],
-            postgresql=vault.database.SecretBackendConnectionPostgresqlArgs(
-                connection_url="postgres://username:password@host:port/database",
-            ))
+            postgresql={
+                "connection_url": "postgres://username:password@host:port/database",
+            })
         # configure a static role with period-based rotations
         period_role = vault.database.SecretBackendStaticRole("period_role",
             backend=db.path,

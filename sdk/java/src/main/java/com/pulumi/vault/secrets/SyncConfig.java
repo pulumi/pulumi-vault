@@ -120,7 +120,7 @@ public class SyncConfig extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncConfig(String name) {
+    public SyncConfig(java.lang.String name) {
         this(name, SyncConfigArgs.Empty);
     }
     /**
@@ -128,7 +128,7 @@ public class SyncConfig extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncConfig(String name, @Nullable SyncConfigArgs args) {
+    public SyncConfig(java.lang.String name, @Nullable SyncConfigArgs args) {
         this(name, args, null);
     }
     /**
@@ -137,12 +137,12 @@ public class SyncConfig extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncConfig(String name, @Nullable SyncConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncConfig:SyncConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncConfig(java.lang.String name, @Nullable SyncConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncConfig:SyncConfig", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncConfig(String name, Output<String> id, @Nullable SyncConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncConfig:SyncConfig", name, state, makeResourceOptions(options, id));
+    private SyncConfig(java.lang.String name, Output<java.lang.String> id, @Nullable SyncConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncConfig:SyncConfig", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncConfigArgs makeArgs(@Nullable SyncConfigArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -152,7 +152,7 @@ public class SyncConfig extends com.pulumi.resources.CustomResource {
         return args == null ? SyncConfigArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -168,7 +168,7 @@ public class SyncConfig extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncConfig get(String name, Output<String> id, @Nullable SyncConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncConfig get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncConfigState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncConfig(name, id, state, options);
     }
 }

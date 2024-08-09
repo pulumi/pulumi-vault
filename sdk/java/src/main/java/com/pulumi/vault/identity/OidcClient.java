@@ -246,7 +246,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public OidcClient(String name) {
+    public OidcClient(java.lang.String name) {
         this(name, OidcClientArgs.Empty);
     }
     /**
@@ -254,7 +254,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public OidcClient(String name, @Nullable OidcClientArgs args) {
+    public OidcClient(java.lang.String name, @Nullable OidcClientArgs args) {
         this(name, args, null);
     }
     /**
@@ -263,12 +263,12 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public OidcClient(String name, @Nullable OidcClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcClient:OidcClient", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public OidcClient(java.lang.String name, @Nullable OidcClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/oidcClient:OidcClient", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private OidcClient(String name, Output<String> id, @Nullable OidcClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcClient:OidcClient", name, state, makeResourceOptions(options, id));
+    private OidcClient(java.lang.String name, Output<java.lang.String> id, @Nullable OidcClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/oidcClient:OidcClient", name, state, makeResourceOptions(options, id), false);
     }
 
     private static OidcClientArgs makeArgs(@Nullable OidcClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -278,7 +278,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
         return args == null ? OidcClientArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -297,7 +297,7 @@ public class OidcClient extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static OidcClient get(String name, Output<String> id, @Nullable OidcClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static OidcClient get(java.lang.String name, Output<java.lang.String> id, @Nullable OidcClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new OidcClient(name, id, state, options);
     }
 }

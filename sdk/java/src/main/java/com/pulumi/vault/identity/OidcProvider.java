@@ -228,7 +228,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public OidcProvider(String name) {
+    public OidcProvider(java.lang.String name) {
         this(name, OidcProviderArgs.Empty);
     }
     /**
@@ -236,7 +236,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public OidcProvider(String name, @Nullable OidcProviderArgs args) {
+    public OidcProvider(java.lang.String name, @Nullable OidcProviderArgs args) {
         this(name, args, null);
     }
     /**
@@ -245,12 +245,12 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public OidcProvider(String name, @Nullable OidcProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcProvider:OidcProvider", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public OidcProvider(java.lang.String name, @Nullable OidcProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/oidcProvider:OidcProvider", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private OidcProvider(String name, Output<String> id, @Nullable OidcProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:identity/oidcProvider:OidcProvider", name, state, makeResourceOptions(options, id));
+    private OidcProvider(java.lang.String name, Output<java.lang.String> id, @Nullable OidcProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:identity/oidcProvider:OidcProvider", name, state, makeResourceOptions(options, id), false);
     }
 
     private static OidcProviderArgs makeArgs(@Nullable OidcProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -260,7 +260,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
         return args == null ? OidcProviderArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -276,7 +276,7 @@ public class OidcProvider extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static OidcProvider get(String name, Output<String> id, @Nullable OidcProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static OidcProvider get(java.lang.String name, Output<java.lang.String> id, @Nullable OidcProviderState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new OidcProvider(name, id, state, options);
     }
 }
