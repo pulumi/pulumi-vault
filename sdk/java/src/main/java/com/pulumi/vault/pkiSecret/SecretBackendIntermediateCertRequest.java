@@ -492,7 +492,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendIntermediateCertRequest(String name) {
+    public SecretBackendIntermediateCertRequest(java.lang.String name) {
         this(name, SecretBackendIntermediateCertRequestArgs.Empty);
     }
     /**
@@ -500,7 +500,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendIntermediateCertRequest(String name, SecretBackendIntermediateCertRequestArgs args) {
+    public SecretBackendIntermediateCertRequest(java.lang.String name, SecretBackendIntermediateCertRequestArgs args) {
         this(name, args, null);
     }
     /**
@@ -509,12 +509,12 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendIntermediateCertRequest(String name, SecretBackendIntermediateCertRequestArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendIntermediateCertRequest(java.lang.String name, SecretBackendIntermediateCertRequestArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendIntermediateCertRequest(String name, Output<String> id, @Nullable SecretBackendIntermediateCertRequestState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", name, state, makeResourceOptions(options, id));
+    private SecretBackendIntermediateCertRequest(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendIntermediateCertRequestState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendIntermediateCertRequestArgs makeArgs(SecretBackendIntermediateCertRequestArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -524,7 +524,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return args == null ? SecretBackendIntermediateCertRequestArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -543,7 +543,7 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendIntermediateCertRequest get(String name, Output<String> id, @Nullable SecretBackendIntermediateCertRequestState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendIntermediateCertRequest get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendIntermediateCertRequestState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendIntermediateCertRequest(name, id, state, options);
     }
 }

@@ -450,8 +450,8 @@ class BackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_object_id: Optional[pulumi.Input[str]] = None,
-                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]]] = None,
-                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
+                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
+                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
@@ -484,10 +484,10 @@ class BackendRole(pulumi.CustomResource):
             ],
             ttl="300",
             max_ttl="600",
-            azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
-                role_name="Reader",
-                scope=f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
-            )])
+            azure_roles=[{
+                "role_name": "Reader",
+                "scope": f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
+            }])
         existing_object_id = vault.azure.BackendRole("existing_object_id",
             backend=azure.path,
             role="existing_object_id",
@@ -500,8 +500,8 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
@@ -547,10 +547,10 @@ class BackendRole(pulumi.CustomResource):
             ],
             ttl="300",
             max_ttl="600",
-            azure_roles=[vault.azure.BackendRoleAzureRoleArgs(
-                role_name="Reader",
-                scope=f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
-            )])
+            azure_roles=[{
+                "role_name": "Reader",
+                "scope": f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
+            }])
         existing_object_id = vault.azure.BackendRole("existing_object_id",
             backend=azure.path,
             role="existing_object_id",
@@ -575,8 +575,8 @@ class BackendRole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_object_id: Optional[pulumi.Input[str]] = None,
-                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]]] = None,
-                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
+                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
+                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  max_ttl: Optional[pulumi.Input[str]] = None,
@@ -620,8 +620,8 @@ class BackendRole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             application_object_id: Optional[pulumi.Input[str]] = None,
-            azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]]] = None,
-            azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]]] = None,
+            azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
+            azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             max_ttl: Optional[pulumi.Input[str]] = None,
@@ -640,8 +640,8 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] application_object_id: Application Object ID for an existing service principal that will
                be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureGroupArgs']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BackendRoleAzureRoleArgs']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]] azure_groups: List of Azure groups to be assigned to the generated service principal.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]] azure_roles: List of Azure roles to be assigned to the generated service principal.
         :param pulumi.Input[str] backend: Path to the mounted Azure auth backend
         :param pulumi.Input[str] description: Human-friendly description of the mount for the backend.
         :param pulumi.Input[str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time

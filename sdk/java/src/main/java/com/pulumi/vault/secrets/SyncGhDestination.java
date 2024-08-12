@@ -238,7 +238,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncGhDestination(String name) {
+    public SyncGhDestination(java.lang.String name) {
         this(name, SyncGhDestinationArgs.Empty);
     }
     /**
@@ -246,7 +246,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncGhDestination(String name, @Nullable SyncGhDestinationArgs args) {
+    public SyncGhDestination(java.lang.String name, @Nullable SyncGhDestinationArgs args) {
         this(name, args, null);
     }
     /**
@@ -255,12 +255,12 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncGhDestination(String name, @Nullable SyncGhDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncGhDestination:SyncGhDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncGhDestination(java.lang.String name, @Nullable SyncGhDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncGhDestination:SyncGhDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncGhDestination(String name, Output<String> id, @Nullable SyncGhDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncGhDestination:SyncGhDestination", name, state, makeResourceOptions(options, id));
+    private SyncGhDestination(java.lang.String name, Output<java.lang.String> id, @Nullable SyncGhDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncGhDestination:SyncGhDestination", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncGhDestinationArgs makeArgs(@Nullable SyncGhDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -270,7 +270,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
         return args == null ? SyncGhDestinationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -289,7 +289,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncGhDestination get(String name, Output<String> id, @Nullable SyncGhDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncGhDestination get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncGhDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncGhDestination(name, id, state, options);
     }
 }

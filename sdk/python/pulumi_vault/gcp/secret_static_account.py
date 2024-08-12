@@ -284,7 +284,7 @@ class SecretStaticAccount(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]]] = None,
+                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretStaticAccountBindingArgs', 'SecretStaticAccountBindingArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
@@ -315,10 +315,10 @@ class SecretStaticAccount(pulumi.CustomResource):
             secret_type="access_token",
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
             service_account_email=this["email"],
-            bindings=[vault.gcp.SecretStaticAccountBindingArgs(
-                resource=f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
-                roles=["roles/viewer"],
-            )])
+            bindings=[{
+                "resource": f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
+                "roles": ["roles/viewer"],
+            }])
         ```
 
         ## Import
@@ -332,7 +332,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretStaticAccountBindingArgs', 'SecretStaticAccountBindingArgsDict']]]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -372,10 +372,10 @@ class SecretStaticAccount(pulumi.CustomResource):
             secret_type="access_token",
             token_scopes=["https://www.googleapis.com/auth/cloud-platform"],
             service_account_email=this["email"],
-            bindings=[vault.gcp.SecretStaticAccountBindingArgs(
-                resource=f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
-                roles=["roles/viewer"],
-            )])
+            bindings=[{
+                "resource": f"//cloudresourcemanager.googleapis.com/projects/{this['project']}",
+                "roles": ["roles/viewer"],
+            }])
         ```
 
         ## Import
@@ -402,7 +402,7 @@ class SecretStaticAccount(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
-                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]]] = None,
+                 bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretStaticAccountBindingArgs', 'SecretStaticAccountBindingArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  secret_type: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
@@ -442,7 +442,7 @@ class SecretStaticAccount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
-            bindings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]]] = None,
+            bindings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretStaticAccountBindingArgs', 'SecretStaticAccountBindingArgsDict']]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             secret_type: Optional[pulumi.Input[str]] = None,
             service_account_email: Optional[pulumi.Input[str]] = None,
@@ -457,7 +457,7 @@ class SecretStaticAccount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecretStaticAccountBindingArgs']]]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretStaticAccountBindingArgs', 'SecretStaticAccountBindingArgsDict']]]] bindings: Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).

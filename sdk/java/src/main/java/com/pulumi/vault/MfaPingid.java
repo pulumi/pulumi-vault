@@ -41,12 +41,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         final var config = ctx.config();
  *         final var settingsFile = config.get("settingsFile");
  *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
@@ -57,12 +57,12 @@ import javax.annotation.Nullable;
  *         var myPingid = new MfaPingid("myPingid", MfaPingidArgs.builder()
  *             .name("my_pingid")
  *             .mountAccessor(userpass.accessor())
- *             .usernameFormat("user{@literal @}example.com")
+ *             .usernameFormat("user}{@literal @}{@code example.com")
  *             .settingsFileBase64(settingsFile)
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -273,7 +273,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public MfaPingid(String name) {
+    public MfaPingid(java.lang.String name) {
         this(name, MfaPingidArgs.Empty);
     }
     /**
@@ -281,7 +281,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public MfaPingid(String name, MfaPingidArgs args) {
+    public MfaPingid(java.lang.String name, MfaPingidArgs args) {
         this(name, args, null);
     }
     /**
@@ -290,12 +290,12 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public MfaPingid(String name, MfaPingidArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mfaPingid:MfaPingid", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public MfaPingid(java.lang.String name, MfaPingidArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/mfaPingid:MfaPingid", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private MfaPingid(String name, Output<String> id, @Nullable MfaPingidState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:index/mfaPingid:MfaPingid", name, state, makeResourceOptions(options, id));
+    private MfaPingid(java.lang.String name, Output<java.lang.String> id, @Nullable MfaPingidState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:index/mfaPingid:MfaPingid", name, state, makeResourceOptions(options, id), false);
     }
 
     private static MfaPingidArgs makeArgs(MfaPingidArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -305,7 +305,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
         return args == null ? MfaPingidArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -321,7 +321,7 @@ public class MfaPingid extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static MfaPingid get(String name, Output<String> id, @Nullable MfaPingidState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static MfaPingid get(java.lang.String name, Output<java.lang.String> id, @Nullable MfaPingidState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new MfaPingid(name, id, state, options);
     }
 }

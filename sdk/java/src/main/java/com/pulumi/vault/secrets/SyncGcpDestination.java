@@ -205,7 +205,7 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncGcpDestination(String name) {
+    public SyncGcpDestination(java.lang.String name) {
         this(name, SyncGcpDestinationArgs.Empty);
     }
     /**
@@ -213,7 +213,7 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncGcpDestination(String name, @Nullable SyncGcpDestinationArgs args) {
+    public SyncGcpDestination(java.lang.String name, @Nullable SyncGcpDestinationArgs args) {
         this(name, args, null);
     }
     /**
@@ -222,12 +222,12 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncGcpDestination(String name, @Nullable SyncGcpDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncGcpDestination:SyncGcpDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncGcpDestination(java.lang.String name, @Nullable SyncGcpDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncGcpDestination:SyncGcpDestination", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncGcpDestination(String name, Output<String> id, @Nullable SyncGcpDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncGcpDestination:SyncGcpDestination", name, state, makeResourceOptions(options, id));
+    private SyncGcpDestination(java.lang.String name, Output<java.lang.String> id, @Nullable SyncGcpDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncGcpDestination:SyncGcpDestination", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncGcpDestinationArgs makeArgs(@Nullable SyncGcpDestinationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -237,7 +237,7 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
         return args == null ? SyncGcpDestinationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -256,7 +256,7 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncGcpDestination get(String name, Output<String> id, @Nullable SyncGcpDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncGcpDestination get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncGcpDestinationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncGcpDestination(name, id, state, options);
     }
 }

@@ -765,7 +765,7 @@ class AuthBackend(pulumi.CustomResource):
                  oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -801,9 +801,9 @@ class AuthBackend(pulumi.CustomResource):
             oidc_client_id="1234567890",
             oidc_client_secret="secret123456",
             bound_issuer="https://myco.auth0.com/",
-            tune=vault.jwt.AuthBackendTuneArgs(
-                listing_visibility="unauth",
-            ))
+            tune={
+                "listing_visibility": "unauth",
+            })
         ```
 
         Configuring the auth backend with a `provider_config:
@@ -908,9 +908,9 @@ class AuthBackend(pulumi.CustomResource):
             oidc_client_id="1234567890",
             oidc_client_secret="secret123456",
             bound_issuer="https://myco.auth0.com/",
-            tune=vault.jwt.AuthBackendTuneArgs(
-                listing_visibility="unauth",
-            ))
+            tune={
+                "listing_visibility": "unauth",
+            })
         ```
 
         Configuring the auth backend with a `provider_config:
@@ -979,7 +979,7 @@ class AuthBackend(pulumi.CustomResource):
                  oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1044,7 +1044,7 @@ class AuthBackend(pulumi.CustomResource):
             oidc_response_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
             provider_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            tune: Optional[pulumi.Input[pulumi.InputType['AuthBackendTuneArgs']]] = None,
+            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra

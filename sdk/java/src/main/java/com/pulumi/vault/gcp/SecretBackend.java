@@ -304,7 +304,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackend(String name) {
+    public SecretBackend(java.lang.String name) {
         this(name, SecretBackendArgs.Empty);
     }
     /**
@@ -312,7 +312,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackend(String name, @Nullable SecretBackendArgs args) {
+    public SecretBackend(java.lang.String name, @Nullable SecretBackendArgs args) {
         this(name, args, null);
     }
     /**
@@ -321,12 +321,12 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackend(String name, @Nullable SecretBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretBackend:SecretBackend", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackend(java.lang.String name, @Nullable SecretBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:gcp/secretBackend:SecretBackend", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackend(String name, Output<String> id, @Nullable SecretBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:gcp/secretBackend:SecretBackend", name, state, makeResourceOptions(options, id));
+    private SecretBackend(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:gcp/secretBackend:SecretBackend", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendArgs makeArgs(@Nullable SecretBackendArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -336,7 +336,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return args == null ? SecretBackendArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -355,7 +355,7 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackend get(String name, Output<String> id, @Nullable SecretBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackend get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackend(name, id, state, options);
     }
 }
