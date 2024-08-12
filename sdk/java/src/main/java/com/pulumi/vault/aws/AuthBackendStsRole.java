@@ -140,7 +140,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackendStsRole(String name) {
+    public AuthBackendStsRole(java.lang.String name) {
         this(name, AuthBackendStsRoleArgs.Empty);
     }
     /**
@@ -148,7 +148,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackendStsRole(String name, AuthBackendStsRoleArgs args) {
+    public AuthBackendStsRole(java.lang.String name, AuthBackendStsRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -157,12 +157,12 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackendStsRole(String name, AuthBackendStsRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendStsRole:AuthBackendStsRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AuthBackendStsRole(java.lang.String name, AuthBackendStsRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendStsRole:AuthBackendStsRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AuthBackendStsRole(String name, Output<String> id, @Nullable AuthBackendStsRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendStsRole:AuthBackendStsRole", name, state, makeResourceOptions(options, id));
+    private AuthBackendStsRole(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendStsRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendStsRole:AuthBackendStsRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuthBackendStsRoleArgs makeArgs(AuthBackendStsRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -172,7 +172,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
         return args == null ? AuthBackendStsRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -188,7 +188,7 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackendStsRole get(String name, Output<String> id, @Nullable AuthBackendStsRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AuthBackendStsRole get(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendStsRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AuthBackendStsRole(name, id, state, options);
     }
 }

@@ -183,7 +183,7 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SyncAssociation(String name) {
+    public SyncAssociation(java.lang.String name) {
         this(name, SyncAssociationArgs.Empty);
     }
     /**
@@ -191,7 +191,7 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SyncAssociation(String name, SyncAssociationArgs args) {
+    public SyncAssociation(java.lang.String name, SyncAssociationArgs args) {
         this(name, args, null);
     }
     /**
@@ -200,12 +200,12 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SyncAssociation(String name, SyncAssociationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAssociation:SyncAssociation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SyncAssociation(java.lang.String name, SyncAssociationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncAssociation:SyncAssociation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SyncAssociation(String name, Output<String> id, @Nullable SyncAssociationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:secrets/syncAssociation:SyncAssociation", name, state, makeResourceOptions(options, id));
+    private SyncAssociation(java.lang.String name, Output<java.lang.String> id, @Nullable SyncAssociationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:secrets/syncAssociation:SyncAssociation", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SyncAssociationArgs makeArgs(SyncAssociationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -215,7 +215,7 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
         return args == null ? SyncAssociationArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -231,7 +231,7 @@ public class SyncAssociation extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SyncAssociation get(String name, Output<String> id, @Nullable SyncAssociationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SyncAssociation get(java.lang.String name, Output<java.lang.String> id, @Nullable SyncAssociationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SyncAssociation(name, id, state, options);
     }
 }

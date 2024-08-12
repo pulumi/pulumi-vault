@@ -267,7 +267,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretBackendDynamicRole(String name) {
+    public SecretBackendDynamicRole(java.lang.String name) {
         this(name, SecretBackendDynamicRoleArgs.Empty);
     }
     /**
@@ -275,7 +275,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretBackendDynamicRole(String name, SecretBackendDynamicRoleArgs args) {
+    public SecretBackendDynamicRole(java.lang.String name, SecretBackendDynamicRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -284,12 +284,12 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretBackendDynamicRole(String name, SecretBackendDynamicRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretBackendDynamicRole(java.lang.String name, SecretBackendDynamicRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretBackendDynamicRole(String name, Output<String> id, @Nullable SecretBackendDynamicRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", name, state, makeResourceOptions(options, id));
+    private SecretBackendDynamicRole(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendDynamicRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretBackendDynamicRoleArgs makeArgs(SecretBackendDynamicRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -299,7 +299,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
         return args == null ? SecretBackendDynamicRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -315,7 +315,7 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretBackendDynamicRole get(String name, Output<String> id, @Nullable SecretBackendDynamicRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretBackendDynamicRole get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretBackendDynamicRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretBackendDynamicRole(name, id, state, options);
     }
 }

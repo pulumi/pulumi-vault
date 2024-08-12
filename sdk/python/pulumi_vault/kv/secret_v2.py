@@ -431,7 +431,7 @@ class SecretV2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cas: Optional[pulumi.Input[int]] = None,
-                 custom_metadata: Optional[pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']]] = None,
+                 custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
@@ -469,13 +469,13 @@ class SecretV2(pulumi.CustomResource):
                 "zip": "zap",
                 "foo": "bar",
             }),
-            custom_metadata=vault.kv.SecretV2CustomMetadataArgs(
-                max_versions=5,
-                data={
+            custom_metadata={
+                "max_versions": 5,
+                "data": {
                     "foo": "vault@example.com",
                     "bar": "12345",
                 },
-            ))
+            })
         ```
 
         ## Required Vault Capabilities
@@ -511,7 +511,7 @@ class SecretV2(pulumi.CustomResource):
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
-        :param pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']] custom_metadata: A nested block that allows configuring metadata for the
+        :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
         :param pulumi.Input[str] data_json: JSON-encoded string that will be
@@ -566,13 +566,13 @@ class SecretV2(pulumi.CustomResource):
                 "zip": "zap",
                 "foo": "bar",
             }),
-            custom_metadata=vault.kv.SecretV2CustomMetadataArgs(
-                max_versions=5,
-                data={
+            custom_metadata={
+                "max_versions": 5,
+                "data": {
                     "foo": "vault@example.com",
                     "bar": "12345",
                 },
-            ))
+            })
         ```
 
         ## Required Vault Capabilities
@@ -618,7 +618,7 @@ class SecretV2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cas: Optional[pulumi.Input[int]] = None,
-                 custom_metadata: Optional[pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']]] = None,
+                 custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
@@ -664,7 +664,7 @@ class SecretV2(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cas: Optional[pulumi.Input[int]] = None,
-            custom_metadata: Optional[pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']]] = None,
+            custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
             data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
             data_json: Optional[pulumi.Input[str]] = None,
             delete_all_versions: Optional[pulumi.Input[bool]] = None,
@@ -686,7 +686,7 @@ class SecretV2(pulumi.CustomResource):
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
-        :param pulumi.Input[pulumi.InputType['SecretV2CustomMetadataArgs']] custom_metadata: A nested block that allows configuring metadata for the
+        :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
         :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from

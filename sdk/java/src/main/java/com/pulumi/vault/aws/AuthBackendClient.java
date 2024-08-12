@@ -355,7 +355,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AuthBackendClient(String name) {
+    public AuthBackendClient(java.lang.String name) {
         this(name, AuthBackendClientArgs.Empty);
     }
     /**
@@ -363,7 +363,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AuthBackendClient(String name, @Nullable AuthBackendClientArgs args) {
+    public AuthBackendClient(java.lang.String name, @Nullable AuthBackendClientArgs args) {
         this(name, args, null);
     }
     /**
@@ -372,12 +372,12 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AuthBackendClient(String name, @Nullable AuthBackendClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendClient:AuthBackendClient", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public AuthBackendClient(java.lang.String name, @Nullable AuthBackendClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendClient:AuthBackendClient", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AuthBackendClient(String name, Output<String> id, @Nullable AuthBackendClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:aws/authBackendClient:AuthBackendClient", name, state, makeResourceOptions(options, id));
+    private AuthBackendClient(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:aws/authBackendClient:AuthBackendClient", name, state, makeResourceOptions(options, id), false);
     }
 
     private static AuthBackendClientArgs makeArgs(@Nullable AuthBackendClientArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -387,7 +387,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
         return args == null ? AuthBackendClientArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -407,7 +407,7 @@ public class AuthBackendClient extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AuthBackendClient get(String name, Output<String> id, @Nullable AuthBackendClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AuthBackendClient get(java.lang.String name, Output<java.lang.String> id, @Nullable AuthBackendClientState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AuthBackendClient(name, id, state, options);
     }
 }

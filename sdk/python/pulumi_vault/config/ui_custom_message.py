@@ -321,7 +321,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticated: Optional[pulumi.Input[bool]] = None,
                  end_time: Optional[pulumi.Input[str]] = None,
-                 link: Optional[pulumi.Input[pulumi.InputType['UiCustomMessageLinkArgs']]] = None,
+                 link: Optional[pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
                  message_base64: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -335,7 +335,7 @@ class UiCustomMessage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] authenticated: A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
         :param pulumi.Input[str] end_time: The ending time of the active period of the custom message. Can be omitted for non-expiring message
-        :param pulumi.Input[pulumi.InputType['UiCustomMessageLinkArgs']] link: A block containing a hyperlink associated with the custom message
+        :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, Any]] options: A map containing additional options for the custom message
@@ -368,7 +368,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticated: Optional[pulumi.Input[bool]] = None,
                  end_time: Optional[pulumi.Input[str]] = None,
-                 link: Optional[pulumi.Input[pulumi.InputType['UiCustomMessageLinkArgs']]] = None,
+                 link: Optional[pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
                  message_base64: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -411,7 +411,7 @@ class UiCustomMessage(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             authenticated: Optional[pulumi.Input[bool]] = None,
             end_time: Optional[pulumi.Input[str]] = None,
-            link: Optional[pulumi.Input[pulumi.InputType['UiCustomMessageLinkArgs']]] = None,
+            link: Optional[pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
             message_base64: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
@@ -427,7 +427,7 @@ class UiCustomMessage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] authenticated: A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
         :param pulumi.Input[str] end_time: The ending time of the active period of the custom message. Can be omitted for non-expiring message
-        :param pulumi.Input[pulumi.InputType['UiCustomMessageLinkArgs']] link: A block containing a hyperlink associated with the custom message
+        :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, Any]] options: A map containing additional options for the custom message

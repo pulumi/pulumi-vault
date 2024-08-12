@@ -257,7 +257,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretRole(String name) {
+    public SecretRole(java.lang.String name) {
         this(name, SecretRoleArgs.Empty);
     }
     /**
@@ -265,7 +265,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretRole(String name, SecretRoleArgs args) {
+    public SecretRole(java.lang.String name, SecretRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -274,12 +274,12 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretRole(String name, SecretRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:mongodbatlas/secretRole:SecretRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretRole(java.lang.String name, SecretRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:mongodbatlas/secretRole:SecretRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretRole(String name, Output<String> id, @Nullable SecretRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:mongodbatlas/secretRole:SecretRole", name, state, makeResourceOptions(options, id));
+    private SecretRole(java.lang.String name, Output<java.lang.String> id, @Nullable SecretRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:mongodbatlas/secretRole:SecretRole", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretRoleArgs makeArgs(SecretRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -289,7 +289,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
         return args == null ? SecretRoleArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -305,7 +305,7 @@ public class SecretRole extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretRole get(String name, Output<String> id, @Nullable SecretRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretRole get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretRoleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretRole(name, id, state, options);
     }
 }

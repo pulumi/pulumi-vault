@@ -199,7 +199,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SecretLibrary(String name) {
+    public SecretLibrary(java.lang.String name) {
         this(name, SecretLibraryArgs.Empty);
     }
     /**
@@ -207,7 +207,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SecretLibrary(String name, SecretLibraryArgs args) {
+    public SecretLibrary(java.lang.String name, SecretLibraryArgs args) {
         this(name, args, null);
     }
     /**
@@ -216,12 +216,12 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SecretLibrary(String name, SecretLibraryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ad/secretLibrary:SecretLibrary", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public SecretLibrary(java.lang.String name, SecretLibraryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:ad/secretLibrary:SecretLibrary", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SecretLibrary(String name, Output<String> id, @Nullable SecretLibraryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("vault:ad/secretLibrary:SecretLibrary", name, state, makeResourceOptions(options, id));
+    private SecretLibrary(java.lang.String name, Output<java.lang.String> id, @Nullable SecretLibraryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("vault:ad/secretLibrary:SecretLibrary", name, state, makeResourceOptions(options, id), false);
     }
 
     private static SecretLibraryArgs makeArgs(SecretLibraryArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -231,7 +231,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
         return args == null ? SecretLibraryArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -247,7 +247,7 @@ public class SecretLibrary extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SecretLibrary get(String name, Output<String> id, @Nullable SecretLibraryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SecretLibrary get(java.lang.String name, Output<java.lang.String> id, @Nullable SecretLibraryState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SecretLibrary(name, id, state, options);
     }
 }
