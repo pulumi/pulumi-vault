@@ -135,11 +135,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
     /**
      * Specifies a map of critical options that certificates have when signed.
      */
-    public readonly defaultCriticalOptions!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly defaultCriticalOptions!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies a map of extensions that certificates have when signed.
      */
-    public readonly defaultExtensions!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly defaultExtensions!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies the default username for which a credential will be generated.
      */
@@ -329,11 +329,11 @@ export interface SecretBackendRoleState {
     /**
      * Specifies a map of critical options that certificates have when signed.
      */
-    defaultCriticalOptions?: pulumi.Input<{[key: string]: any}>;
+    defaultCriticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies a map of extensions that certificates have when signed.
      */
-    defaultExtensions?: pulumi.Input<{[key: string]: any}>;
+    defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the default username for which a credential will be generated.
      */
@@ -445,11 +445,11 @@ export interface SecretBackendRoleArgs {
     /**
      * Specifies a map of critical options that certificates have when signed.
      */
-    defaultCriticalOptions?: pulumi.Input<{[key: string]: any}>;
+    defaultCriticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies a map of extensions that certificates have when signed.
      */
-    defaultExtensions?: pulumi.Input<{[key: string]: any}>;
+    defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the default username for which a credential will be generated.
      */

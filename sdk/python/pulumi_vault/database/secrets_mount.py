@@ -42,7 +42,7 @@ class SecretsMountArgs:
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  plugin_version: Optional[pulumi.Input[str]] = None,
@@ -94,7 +94,7 @@ class SecretsMountArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
@@ -511,14 +511,14 @@ class SecretsMountArgs:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -666,7 +666,7 @@ class _SecretsMountState:
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -720,7 +720,7 @@ class _SecretsMountState:
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
@@ -1155,14 +1155,14 @@ class _SecretsMountState:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -1322,7 +1322,7 @@ class SecretsMount(pulumi.CustomResource):
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -1426,7 +1426,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
@@ -1541,7 +1541,7 @@ class SecretsMount(pulumi.CustomResource):
                  mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]]] = None,
                  mysqls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  oracles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -1638,7 +1638,7 @@ class SecretsMount(pulumi.CustomResource):
             mysql_rds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]]] = None,
             mysqls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             oracles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]]] = None,
             passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -1697,7 +1697,7 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.  
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
@@ -1991,7 +1991,7 @@ class SecretsMount(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def options(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """

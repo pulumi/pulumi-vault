@@ -12,7 +12,6 @@ import com.pulumi.vault.jwt.AuthBackendRoleArgs;
 import com.pulumi.vault.jwt.inputs.AuthBackendRoleState;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -191,8 +190,8 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * comma-separated values, e.g. `&#34;red&#34;` or `&#34;red,green,blue&#34;`.
      * 
      */
-    @Export(name="boundClaims", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> boundClaims;
+    @Export(name="boundClaims", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> boundClaims;
 
     /**
      * @return If set, a map of claims to values to match against.
@@ -200,7 +199,7 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * comma-separated values, e.g. `&#34;red&#34;` or `&#34;red,green,blue&#34;`.
      * 
      */
-    public Output<Optional<Map<String,Object>>> boundClaims() {
+    public Output<Optional<Map<String,String>>> boundClaims() {
         return Codegen.optional(this.boundClaims);
     }
     /**
@@ -242,15 +241,15 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * to specified metadata fields (values).
      * 
      */
-    @Export(name="claimMappings", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> claimMappings;
+    @Export(name="claimMappings", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> claimMappings;
 
     /**
      * @return If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      * 
      */
-    public Output<Optional<Map<String,Object>>> claimMappings() {
+    public Output<Optional<Map<String,String>>> claimMappings() {
         return Codegen.optional(this.claimMappings);
     }
     /**

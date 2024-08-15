@@ -55,12 +55,12 @@ class GetEncodeResult:
 
     @property
     @pulumi.getter(name="batchInputs")
-    def batch_inputs(self) -> Optional[Sequence[Mapping[str, Any]]]:
+    def batch_inputs(self) -> Optional[Sequence[Mapping[str, str]]]:
         return pulumi.get(self, "batch_inputs")
 
     @property
     @pulumi.getter(name="batchResults")
-    def batch_results(self) -> Sequence[Mapping[str, Any]]:
+    def batch_results(self) -> Sequence[Mapping[str, str]]:
         return pulumi.get(self, "batch_results")
 
     @property
@@ -125,8 +125,8 @@ class AwaitableGetEncodeResult(GetEncodeResult):
             value=self.value)
 
 
-def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
-               batch_results: Optional[Sequence[Mapping[str, Any]]] = None,
+def get_encode(batch_inputs: Optional[Sequence[Mapping[str, str]]] = None,
+               batch_results: Optional[Sequence[Mapping[str, str]]] = None,
                encoded_value: Optional[str] = None,
                namespace: Optional[str] = None,
                path: Optional[str] = None,
@@ -168,8 +168,8 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
     ```
 
 
-    :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-    :param Sequence[Mapping[str, Any]] batch_results: The result of encoding a batch.
+    :param Sequence[Mapping[str, str]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+    :param Sequence[Mapping[str, str]] batch_results: The result of encoding a batch.
     :param str encoded_value: The result of encoding a value.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
@@ -208,8 +208,8 @@ def get_encode(batch_inputs: Optional[Sequence[Mapping[str, Any]]] = None,
 
 
 @_utilities.lift_output_func(get_encode)
-def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, Any]]]]] = None,
-                      batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, Any]]]]] = None,
+def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, str]]]]] = None,
+                      batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, str]]]]] = None,
                       encoded_value: Optional[pulumi.Input[Optional[str]]] = None,
                       namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[str]] = None,
@@ -251,8 +251,8 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
     ```
 
 
-    :param Sequence[Mapping[str, Any]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-    :param Sequence[Mapping[str, Any]] batch_results: The result of encoding a batch.
+    :param Sequence[Mapping[str, str]] batch_inputs: Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
+    :param Sequence[Mapping[str, str]] batch_results: The result of encoding a batch.
     :param str encoded_value: The result of encoding a value.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.

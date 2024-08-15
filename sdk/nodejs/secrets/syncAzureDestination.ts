@@ -79,7 +79,7 @@ export class SyncAzureDestination extends pulumi.CustomResource {
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    public readonly customTags!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly customTags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
@@ -185,7 +185,7 @@ export interface SyncAzureDestinationState {
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    customTags?: pulumi.Input<{[key: string]: any}>;
+    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
@@ -247,7 +247,7 @@ export interface SyncAzureDestinationArgs {
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    customTags?: pulumi.Input<{[key: string]: any}>;
+    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.

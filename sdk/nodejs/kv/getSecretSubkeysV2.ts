@@ -92,7 +92,7 @@ export interface GetSecretSubkeysV2Result {
     /**
      * Subkeys for the KV-V2 secret stored as a serialized map of strings.
      */
-    readonly data: {[key: string]: any};
+    readonly data: {[key: string]: string};
     /**
      * Subkeys for the KV-V2 secret read from Vault.
      */

@@ -68,15 +68,15 @@ type GetRaftAutopilotStateResult struct {
 	// The cluster-level optimistic failure tolerance.
 	OptimisticFailureTolerance int `pulumi:"optimisticFailureTolerance"`
 	// Additional output related to redundancy zones stored as a serialized map of strings.
-	RedundancyZones map[string]interface{} `pulumi:"redundancyZones"`
+	RedundancyZones map[string]string `pulumi:"redundancyZones"`
 	// Additional output related to redundancy zones.
 	RedundancyZonesJson string `pulumi:"redundancyZonesJson"`
 	// Additionaly output related to servers in the cluster stored as a serialized map of strings.
-	Servers map[string]interface{} `pulumi:"servers"`
+	Servers map[string]string `pulumi:"servers"`
 	// Additionaly output related to servers in the cluster.
 	ServersJson string `pulumi:"serversJson"`
 	// Additional output related to upgrade information stored as a serialized map of strings.
-	UpgradeInfo map[string]interface{} `pulumi:"upgradeInfo"`
+	UpgradeInfo map[string]string `pulumi:"upgradeInfo"`
 	// Additional output related to upgrade information.
 	UpgradeInfoJson string `pulumi:"upgradeInfoJson"`
 	// The voters in the Vault cluster.
@@ -154,8 +154,8 @@ func (o GetRaftAutopilotStateResultOutput) OptimisticFailureTolerance() pulumi.I
 }
 
 // Additional output related to redundancy zones stored as a serialized map of strings.
-func (o GetRaftAutopilotStateResultOutput) RedundancyZones() pulumi.MapOutput {
-	return o.ApplyT(func(v GetRaftAutopilotStateResult) map[string]interface{} { return v.RedundancyZones }).(pulumi.MapOutput)
+func (o GetRaftAutopilotStateResultOutput) RedundancyZones() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetRaftAutopilotStateResult) map[string]string { return v.RedundancyZones }).(pulumi.StringMapOutput)
 }
 
 // Additional output related to redundancy zones.
@@ -164,8 +164,8 @@ func (o GetRaftAutopilotStateResultOutput) RedundancyZonesJson() pulumi.StringOu
 }
 
 // Additionaly output related to servers in the cluster stored as a serialized map of strings.
-func (o GetRaftAutopilotStateResultOutput) Servers() pulumi.MapOutput {
-	return o.ApplyT(func(v GetRaftAutopilotStateResult) map[string]interface{} { return v.Servers }).(pulumi.MapOutput)
+func (o GetRaftAutopilotStateResultOutput) Servers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetRaftAutopilotStateResult) map[string]string { return v.Servers }).(pulumi.StringMapOutput)
 }
 
 // Additionaly output related to servers in the cluster.
@@ -174,8 +174,8 @@ func (o GetRaftAutopilotStateResultOutput) ServersJson() pulumi.StringOutput {
 }
 
 // Additional output related to upgrade information stored as a serialized map of strings.
-func (o GetRaftAutopilotStateResultOutput) UpgradeInfo() pulumi.MapOutput {
-	return o.ApplyT(func(v GetRaftAutopilotStateResult) map[string]interface{} { return v.UpgradeInfo }).(pulumi.MapOutput)
+func (o GetRaftAutopilotStateResultOutput) UpgradeInfo() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetRaftAutopilotStateResult) map[string]string { return v.UpgradeInfo }).(pulumi.StringMapOutput)
 }
 
 // Additional output related to upgrade information.

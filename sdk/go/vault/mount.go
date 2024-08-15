@@ -57,9 +57,9 @@ import (
 //			_, err := vault.NewMount(ctx, "kvv2-example", &vault.MountArgs{
 //				Path: pulumi.String("version2-example"),
 //				Type: pulumi.String("kv-v2"),
-//				Options: pulumi.Map{
-//					"version": pulumi.Any("2"),
-//					"type":    pulumi.Any("kv-v2"),
+//				Options: pulumi.StringMap{
+//					"version": pulumi.String("2"),
+//					"type":    pulumi.String("kv-v2"),
 //				},
 //				Description: pulumi.String("This is an example KV Version 2 secret engine mount"),
 //			})
@@ -88,8 +88,8 @@ import (
 //				Path:        pulumi.String("transit-example"),
 //				Type:        pulumi.String("transit"),
 //				Description: pulumi.String("This is an example transit secret engine mount"),
-//				Options: pulumi.Map{
-//					"convergent_encryption": pulumi.Any(false),
+//				Options: pulumi.StringMap{
+//					"convergent_encryption": pulumi.String("false"),
 //				},
 //			})
 //			if err != nil {
@@ -175,7 +175,7 @@ type Mount struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapOutput `pulumi:"options"`
+	Options pulumi.StringMapOutput `pulumi:"options"`
 	// List of headers to allow and pass from the request to
 	// the plugin.
 	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
@@ -263,7 +263,7 @@ type mountState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// List of headers to allow and pass from the request to
 	// the plugin.
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
@@ -316,7 +316,7 @@ type MountState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// List of headers to allow and pass from the request to
 	// the plugin.
 	PassthroughRequestHeaders pulumi.StringArrayInput
@@ -371,7 +371,7 @@ type mountArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// List of headers to allow and pass from the request to
 	// the plugin.
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
@@ -423,7 +423,7 @@ type MountArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// List of headers to allow and pass from the request to
 	// the plugin.
 	PassthroughRequestHeaders pulumi.StringArrayInput
@@ -604,8 +604,8 @@ func (o MountOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // Specifies mount type specific options that are passed to the backend
-func (o MountOutput) Options() pulumi.MapOutput {
-	return o.ApplyT(func(v *Mount) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+func (o MountOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Mount) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
 // List of headers to allow and pass from the request to

@@ -57,7 +57,7 @@ export class UiCustomMessage extends pulumi.CustomResource {
     /**
      * A map containing additional options for the custom message
      */
-    public readonly options!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The starting time of the active period of the custom message
      */
@@ -146,7 +146,7 @@ export interface UiCustomMessageState {
     /**
      * A map containing additional options for the custom message
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The starting time of the active period of the custom message
      */
@@ -188,7 +188,7 @@ export interface UiCustomMessageArgs {
     /**
      * A map containing additional options for the custom message
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The starting time of the active period of the custom message
      */

@@ -21,7 +21,7 @@ class GetEntityAliasResult(dict):
                  id: str,
                  last_update_time: str,
                  merged_from_canonical_ids: Sequence[str],
-                 metadata: Mapping[str, Any],
+                 metadata: Mapping[str, str],
                  mount_accessor: str,
                  mount_path: str,
                  mount_type: str,
@@ -32,7 +32,7 @@ class GetEntityAliasResult(dict):
         :param str id: ID of the alias
         :param str last_update_time: Last update time of the alias
         :param Sequence[str] merged_from_canonical_ids: List of canonical IDs merged with this alias
-        :param Mapping[str, Any] metadata: Arbitrary metadata
+        :param Mapping[str, str] metadata: Arbitrary metadata
         :param str mount_accessor: Authentication mount acccessor which this alias belongs to
         :param str mount_path: Authentication mount path which this alias belongs to
         :param str mount_type: Authentication mount type which this alias belongs to
@@ -91,7 +91,7 @@ class GetEntityAliasResult(dict):
 
     @property
     @pulumi.getter
-    def metadata(self) -> Mapping[str, Any]:
+    def metadata(self) -> Mapping[str, str]:
         """
         Arbitrary metadata
         """

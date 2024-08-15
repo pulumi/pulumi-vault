@@ -5,7 +5,6 @@ package com.pulumi.vault.secrets;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -75,13 +74,13 @@ public final class SyncAzureDestinationArgs extends com.pulumi.resources.Resourc
      * 
      */
     @Import(name="customTags")
-    private @Nullable Output<Map<String,Object>> customTags;
+    private @Nullable Output<Map<String,String>> customTags;
 
     /**
      * @return Custom tags to set on the secret managed at the destination.
      * 
      */
-    public Optional<Output<Map<String,Object>>> customTags() {
+    public Optional<Output<Map<String,String>>> customTags() {
         return Optional.ofNullable(this.customTags);
     }
 
@@ -301,7 +300,7 @@ public final class SyncAzureDestinationArgs extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder customTags(@Nullable Output<Map<String,Object>> customTags) {
+        public Builder customTags(@Nullable Output<Map<String,String>> customTags) {
             $.customTags = customTags;
             return this;
         }
@@ -312,7 +311,7 @@ public final class SyncAzureDestinationArgs extends com.pulumi.resources.Resourc
          * @return builder
          * 
          */
-        public Builder customTags(Map<String,Object> customTags) {
+        public Builder customTags(Map<String,String> customTags) {
             return customTags(Output.of(customTags));
         }
 

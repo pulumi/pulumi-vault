@@ -93,7 +93,7 @@ namespace Pulumi.Vault.Aws
         /// authentication used to generate this token.
         /// </summary>
         [Output("metadata")]
-        public Output<ImmutableDictionary<string, object>> Metadata { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -370,15 +370,15 @@ namespace Pulumi.Vault.Aws
         public Input<string>? LeaseStartTime { get; set; }
 
         [Input("metadata")]
-        private InputMap<object>? _metadata;
+        private InputMap<string>? _metadata;
 
         /// <summary>
         /// A map of information returned by the Vault server about the
         /// authentication used to generate this token.
         /// </summary>
-        public InputMap<object> Metadata
+        public InputMap<string> Metadata
         {
-            get => _metadata ?? (_metadata = new InputMap<object>());
+            get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 

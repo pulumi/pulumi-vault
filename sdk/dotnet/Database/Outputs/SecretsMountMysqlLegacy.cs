@@ -31,7 +31,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// Maximum number of seconds a connection may be reused.
         /// </summary>
@@ -94,7 +94,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? connectionUrl,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             int? maxConnectionLifetime,
 

@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.kv.SecretArgs;
 import com.pulumi.vault.kv.inputs.SecretState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -98,8 +97,8 @@ public class Secret extends com.pulumi.resources.CustomResource {
      * serialized as JSON.
      * 
      */
-    @Export(name="data", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> data;
+    @Export(name="data", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> data;
 
     /**
      * @return A mapping whose keys are the top-level data keys returned from
@@ -108,7 +107,7 @@ public class Secret extends com.pulumi.resources.CustomResource {
      * serialized as JSON.
      * 
      */
-    public Output<Map<String,Object>> data() {
+    public Output<Map<String,String>> data() {
         return this.data;
     }
     /**

@@ -23,7 +23,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// Name of the database connection.
         /// </summary>
@@ -62,7 +62,7 @@ namespace Pulumi.Vault.Database.Outputs
         private SecretsMountRedisElasticach(
             ImmutableArray<string> allowedRoles,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             string name,
 

@@ -85,7 +85,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      *
      * The following options are available for each `credentialType` value:
      */
-    public readonly credentialConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly credentialConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Specifies the type of credential that
      * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -207,7 +207,7 @@ export interface SecretBackendRoleState {
      *
      * The following options are available for each `credentialType` value:
      */
-    credentialConfig?: pulumi.Input<{[key: string]: any}>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the type of credential that
      * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
@@ -276,7 +276,7 @@ export interface SecretBackendRoleArgs {
      *
      * The following options are available for each `credentialType` value:
      */
-    credentialConfig?: pulumi.Input<{[key: string]: any}>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies the type of credential that
      * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.

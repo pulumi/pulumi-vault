@@ -47,7 +47,7 @@ export class Secret extends pulumi.CustomResource {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    public /*out*/ readonly data!: pulumi.Output<{[key: string]: any}>;
+    public /*out*/ readonly data!: pulumi.Output<{[key: string]: string}>;
     /**
      * String containing a JSON-encoded object that will be
      * written as the secret data at the given path.
@@ -133,7 +133,7 @@ export interface SecretState {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    data?: pulumi.Input<{[key: string]: any}>;
+    data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * String containing a JSON-encoded object that will be
      * written as the secret data at the given path.

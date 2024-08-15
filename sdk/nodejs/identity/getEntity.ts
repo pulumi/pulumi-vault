@@ -127,7 +127,7 @@ export interface GetEntityResult {
     /**
      * Arbitrary metadata
      */
-    readonly metadata: {[key: string]: any};
+    readonly metadata: {[key: string]: string};
     readonly namespace?: string;
     /**
      * Namespace of which the entity is part of

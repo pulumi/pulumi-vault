@@ -119,7 +119,7 @@ export class SecretV2 extends pulumi.CustomResource {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    public /*out*/ readonly data!: pulumi.Output<{[key: string]: any}>;
+    public /*out*/ readonly data!: pulumi.Output<{[key: string]: string}>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path.
@@ -138,7 +138,7 @@ export class SecretV2 extends pulumi.CustomResource {
     /**
      * Metadata associated with this secret read from Vault.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: any}>;
+    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
     /**
      * Path where KV-V2 engine is mounted.
      */
@@ -160,7 +160,7 @@ export class SecretV2 extends pulumi.CustomResource {
     /**
      * An object that holds option settings.
      */
-    public readonly options!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Full path where the KV-V2 secret will be written.
      */
@@ -242,7 +242,7 @@ export interface SecretV2State {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    data?: pulumi.Input<{[key: string]: any}>;
+    data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path.
@@ -261,7 +261,7 @@ export interface SecretV2State {
     /**
      * Metadata associated with this secret read from Vault.
      */
-    metadata?: pulumi.Input<{[key: string]: any}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Path where KV-V2 engine is mounted.
      */
@@ -283,7 +283,7 @@ export interface SecretV2State {
     /**
      * An object that holds option settings.
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Full path where the KV-V2 secret will be written.
      */
@@ -343,5 +343,5 @@ export interface SecretV2Args {
     /**
      * An object that holds option settings.
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

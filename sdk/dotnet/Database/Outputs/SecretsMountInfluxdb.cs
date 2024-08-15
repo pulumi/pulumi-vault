@@ -27,7 +27,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// Influxdb host to connect to.
         /// </summary>
@@ -88,7 +88,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? connectTimeout,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             string host,
 

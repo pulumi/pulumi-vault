@@ -20,7 +20,7 @@ class SecretBackendConnectionArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
                  couchbase: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']] = None,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
                  influxdb: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']] = None,
@@ -49,7 +49,7 @@ class SecretBackendConnectionArgs:
                connection.
         :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input['SecretBackendConnectionCouchbaseArgs'] couchbase: A nested block containing configuration options for Couchbase connections.
-        :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input['SecretBackendConnectionInfluxdbArgs'] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -181,14 +181,14 @@ class SecretBackendConnectionArgs:
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
 
     @property
@@ -457,7 +457,7 @@ class _SecretBackendConnectionState:
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input['SecretBackendConnectionCassandraArgs']] = None,
                  couchbase: Optional[pulumi.Input['SecretBackendConnectionCouchbaseArgs']] = None,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  elasticsearch: Optional[pulumi.Input['SecretBackendConnectionElasticsearchArgs']] = None,
                  hana: Optional[pulumi.Input['SecretBackendConnectionHanaArgs']] = None,
                  influxdb: Optional[pulumi.Input['SecretBackendConnectionInfluxdbArgs']] = None,
@@ -486,7 +486,7 @@ class _SecretBackendConnectionState:
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input['SecretBackendConnectionCassandraArgs'] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input['SecretBackendConnectionCouchbaseArgs'] couchbase: A nested block containing configuration options for Couchbase connections.
-        :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input['SecretBackendConnectionElasticsearchArgs'] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input['SecretBackendConnectionHanaArgs'] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input['SecretBackendConnectionInfluxdbArgs'] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -619,14 +619,14 @@ class _SecretBackendConnectionState:
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
 
     @property
@@ -897,7 +897,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
                  couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
                  hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
                  influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
@@ -957,7 +957,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']] couchbase: A nested block containing configuration options for Couchbase connections.
-        :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -1041,7 +1041,7 @@ class SecretBackendConnection(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
                  couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
                  hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
                  influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
@@ -1114,7 +1114,7 @@ class SecretBackendConnection(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             cassandra: Optional[pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']]] = None,
             couchbase: Optional[pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']]] = None,
-            data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             elasticsearch: Optional[pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']]] = None,
             hana: Optional[pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']]] = None,
             influxdb: Optional[pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']]] = None,
@@ -1148,7 +1148,7 @@ class SecretBackendConnection(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict']] cassandra: A nested block containing configuration options for Cassandra connections.
         :param pulumi.Input[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict']] couchbase: A nested block containing configuration options for Couchbase connections.
-        :param pulumi.Input[Mapping[str, Any]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         :param pulumi.Input[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict']] elasticsearch: A nested block containing configuration options for Elasticsearch connections.
         :param pulumi.Input[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict']] hana: A nested block containing configuration options for SAP HanaDB connections.
         :param pulumi.Input[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict']] influxdb: A nested block containing configuration options for InfluxDB connections.
@@ -1244,7 +1244,7 @@ class SecretBackendConnection(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def data(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def data(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """

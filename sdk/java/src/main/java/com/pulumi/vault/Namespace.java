@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.NamespaceArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.NamespaceState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -75,15 +74,15 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * is `map[string]string`. Requires Vault version 1.12+.
      * 
      */
-    @Export(name="customMetadata", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> customMetadata;
+    @Export(name="customMetadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> customMetadata;
 
     /**
      * @return Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      * 
      */
-    public Output<Map<String,Object>> customMetadata() {
+    public Output<Map<String,String>> customMetadata() {
         return this.customMetadata;
     }
     /**

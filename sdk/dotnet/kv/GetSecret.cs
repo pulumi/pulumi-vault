@@ -165,7 +165,7 @@ namespace Pulumi.Vault.kv
         /// represent string data, so any non-string values returned from Vault are
         /// serialized as JSON.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Data;
+        public readonly ImmutableDictionary<string, string> Data;
         /// <summary>
         /// JSON-encoded string that that is
         /// read as the secret data at the given path.
@@ -194,7 +194,7 @@ namespace Pulumi.Vault.kv
 
         [OutputConstructor]
         private GetSecretResult(
-            ImmutableDictionary<string, object> data,
+            ImmutableDictionary<string, string> data,
 
             string dataJson,
 

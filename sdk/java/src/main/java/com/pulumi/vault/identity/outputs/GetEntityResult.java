@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.identity.outputs.GetEntityAlias;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -77,7 +76,7 @@ public final class GetEntityResult {
      * @return Arbitrary metadata
      * 
      */
-    private Map<String,Object> metadata;
+    private Map<String,String> metadata;
     private @Nullable String namespace;
     /**
      * @return Namespace of which the entity is part of
@@ -181,7 +180,7 @@ public final class GetEntityResult {
      * @return Arbitrary metadata
      * 
      */
-    public Map<String,Object> metadata() {
+    public Map<String,String> metadata() {
         return this.metadata;
     }
     public Optional<String> namespace() {
@@ -226,7 +225,7 @@ public final class GetEntityResult {
         private List<String> inheritedGroupIds;
         private String lastUpdateTime;
         private List<String> mergedEntityIds;
-        private Map<String,Object> metadata;
+        private Map<String,String> metadata;
         private @Nullable String namespace;
         private String namespaceId;
         private List<String> policies;
@@ -390,7 +389,7 @@ public final class GetEntityResult {
             return mergedEntityIds(List.of(mergedEntityIds));
         }
         @CustomType.Setter
-        public Builder metadata(Map<String,Object> metadata) {
+        public Builder metadata(Map<String,String> metadata) {
             if (metadata == null) {
               throw new MissingRequiredPropertyException("GetEntityResult", "metadata");
             }

@@ -12,7 +12,6 @@ import com.pulumi.vault.aws.AuthBackendLoginArgs;
 import com.pulumi.vault.aws.inputs.AuthBackendLoginState;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -198,15 +197,15 @@ public class AuthBackendLogin extends com.pulumi.resources.CustomResource {
      * authentication used to generate this token.
      * 
      */
-    @Export(name="metadata", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> metadata;
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> metadata;
 
     /**
      * @return A map of information returned by the Vault server about the
      * authentication used to generate this token.
      * 
      */
-    public Output<Map<String,Object>> metadata() {
+    public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
     /**

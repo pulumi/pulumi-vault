@@ -37,8 +37,8 @@ import (
 //				ProjectId:          pulumi.String("gcp-project-id"),
 //				Credentials:        pulumi.String(invokeFile.Result),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
-//				CustomTags: pulumi.Map{
-//					"foo": pulumi.Any("bar"),
+//				CustomTags: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
 //				},
 //			})
 //			if err != nil {
@@ -65,7 +65,7 @@ type SyncGcpDestination struct {
 	// variable.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags pulumi.MapOutput `pulumi:"customTags"`
+	CustomTags pulumi.StringMapOutput `pulumi:"customTags"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
@@ -129,7 +129,7 @@ type syncGcpDestinationState struct {
 	// variable.
 	Credentials *string `pulumi:"credentials"`
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags map[string]interface{} `pulumi:"customTags"`
+	CustomTags map[string]string `pulumi:"customTags"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
@@ -157,7 +157,7 @@ type SyncGcpDestinationState struct {
 	// variable.
 	Credentials pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags pulumi.MapInput
+	CustomTags pulumi.StringMapInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
@@ -189,7 +189,7 @@ type syncGcpDestinationArgs struct {
 	// variable.
 	Credentials *string `pulumi:"credentials"`
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags map[string]interface{} `pulumi:"customTags"`
+	CustomTags map[string]string `pulumi:"customTags"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
@@ -216,7 +216,7 @@ type SyncGcpDestinationArgs struct {
 	// variable.
 	Credentials pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags pulumi.MapInput
+	CustomTags pulumi.StringMapInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
@@ -331,8 +331,8 @@ func (o SyncGcpDestinationOutput) Credentials() pulumi.StringPtrOutput {
 }
 
 // Custom tags to set on the secret managed at the destination.
-func (o SyncGcpDestinationOutput) CustomTags() pulumi.MapOutput {
-	return o.ApplyT(func(v *SyncGcpDestination) pulumi.MapOutput { return v.CustomTags }).(pulumi.MapOutput)
+func (o SyncGcpDestinationOutput) CustomTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringMapOutput { return v.CustomTags }).(pulumi.StringMapOutput)
 }
 
 // Determines what level of information is synced as a distinct resource

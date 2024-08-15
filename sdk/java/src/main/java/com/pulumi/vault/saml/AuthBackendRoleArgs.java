@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -27,14 +26,14 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
      * 
      */
     @Import(name="boundAttributes")
-    private @Nullable Output<Map<String,Object>> boundAttributes;
+    private @Nullable Output<Map<String,String>> boundAttributes;
 
     /**
      * @return Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      * 
      */
-    public Optional<Output<Map<String,Object>>> boundAttributes() {
+    public Optional<Output<Map<String,String>>> boundAttributes() {
         return Optional.ofNullable(this.boundAttributes);
     }
 
@@ -335,7 +334,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder boundAttributes(@Nullable Output<Map<String,Object>> boundAttributes) {
+        public Builder boundAttributes(@Nullable Output<Map<String,String>> boundAttributes) {
             $.boundAttributes = boundAttributes;
             return this;
         }
@@ -347,7 +346,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder boundAttributes(Map<String,Object> boundAttributes) {
+        public Builder boundAttributes(Map<String,String> boundAttributes) {
             return boundAttributes(Output.of(boundAttributes));
         }
 

@@ -32,8 +32,8 @@ import (
 //			kvv1, err := vault.NewMount(ctx, "kvv1", &vault.MountArgs{
 //				Path: pulumi.String("kvv1"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.Map{
-//					"version": pulumi.Any("1"),
+//				Options: pulumi.StringMap{
+//					"version": pulumi.String("1"),
 //				},
 //				Description: pulumi.String("KV Version 1 secret engine mount"),
 //			})

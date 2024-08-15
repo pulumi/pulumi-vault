@@ -6,7 +6,6 @@ package com.pulumi.vault;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -24,14 +23,14 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="customMetadata")
-    private @Nullable Output<Map<String,Object>> customMetadata;
+    private @Nullable Output<Map<String,String>> customMetadata;
 
     /**
      * @return Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      * 
      */
-    public Optional<Output<Map<String,Object>>> customMetadata() {
+    public Optional<Output<Map<String,String>>> customMetadata() {
         return Optional.ofNullable(this.customMetadata);
     }
 
@@ -122,7 +121,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder customMetadata(@Nullable Output<Map<String,Object>> customMetadata) {
+        public Builder customMetadata(@Nullable Output<Map<String,String>> customMetadata) {
             $.customMetadata = customMetadata;
             return this;
         }
@@ -134,7 +133,7 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder customMetadata(Map<String,Object> customMetadata) {
+        public Builder customMetadata(Map<String,String> customMetadata) {
             return customMetadata(Output.of(customMetadata));
         }
 

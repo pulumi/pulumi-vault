@@ -66,7 +66,7 @@ type Namespace struct {
 
 	// Custom metadata describing this namespace. Value type
 	// is `map[string]string`. Requires Vault version 1.12+.
-	CustomMetadata pulumi.MapOutput `pulumi:"customMetadata"`
+	CustomMetadata pulumi.StringMapOutput `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -116,7 +116,7 @@ func GetNamespace(ctx *pulumi.Context,
 type namespaceState struct {
 	// Custom metadata describing this namespace. Value type
 	// is `map[string]string`. Requires Vault version 1.12+.
-	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
+	CustomMetadata map[string]string `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -134,7 +134,7 @@ type namespaceState struct {
 type NamespaceState struct {
 	// Custom metadata describing this namespace. Value type
 	// is `map[string]string`. Requires Vault version 1.12+.
-	CustomMetadata pulumi.MapInput
+	CustomMetadata pulumi.StringMapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -156,7 +156,7 @@ func (NamespaceState) ElementType() reflect.Type {
 type namespaceArgs struct {
 	// Custom metadata describing this namespace. Value type
 	// is `map[string]string`. Requires Vault version 1.12+.
-	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
+	CustomMetadata map[string]string `pulumi:"customMetadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -173,7 +173,7 @@ type namespaceArgs struct {
 type NamespaceArgs struct {
 	// Custom metadata describing this namespace. Value type
 	// is `map[string]string`. Requires Vault version 1.12+.
-	CustomMetadata pulumi.MapInput
+	CustomMetadata pulumi.StringMapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -275,8 +275,8 @@ func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) Names
 
 // Custom metadata describing this namespace. Value type
 // is `map[string]string`. Requires Vault version 1.12+.
-func (o NamespaceOutput) CustomMetadata() pulumi.MapOutput {
-	return o.ApplyT(func(v *Namespace) pulumi.MapOutput { return v.CustomMetadata }).(pulumi.MapOutput)
+func (o NamespaceOutput) CustomMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringMapOutput { return v.CustomMetadata }).(pulumi.StringMapOutput)
 }
 
 // The namespace to provision the resource in.

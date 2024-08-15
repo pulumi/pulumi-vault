@@ -5,7 +5,6 @@ package com.pulumi.vault.transform.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +22,13 @@ public final class GetDecodePlainArgs extends com.pulumi.resources.InvokeArgs {
      * 
      */
     @Import(name="batchInputs")
-    private @Nullable List<Map<String,Object>> batchInputs;
+    private @Nullable List<Map<String,String>> batchInputs;
 
     /**
      * @return Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters &#39;value&#39;, &#39;transformation&#39; and &#39;tweak&#39; will be ignored. Each batch item within the list can specify these parameters instead.
      * 
      */
-    public Optional<List<Map<String,Object>>> batchInputs() {
+    public Optional<List<Map<String,String>>> batchInputs() {
         return Optional.ofNullable(this.batchInputs);
     }
 
@@ -38,13 +37,13 @@ public final class GetDecodePlainArgs extends com.pulumi.resources.InvokeArgs {
      * 
      */
     @Import(name="batchResults")
-    private @Nullable List<Map<String,Object>> batchResults;
+    private @Nullable List<Map<String,String>> batchResults;
 
     /**
      * @return The result of decoding a batch.
      * 
      */
-    public Optional<List<Map<String,Object>>> batchResults() {
+    public Optional<List<Map<String,String>>> batchResults() {
         return Optional.ofNullable(this.batchResults);
     }
 
@@ -197,7 +196,7 @@ public final class GetDecodePlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder batchInputs(@Nullable List<Map<String,Object>> batchInputs) {
+        public Builder batchInputs(@Nullable List<Map<String,String>> batchInputs) {
             $.batchInputs = batchInputs;
             return this;
         }
@@ -208,7 +207,7 @@ public final class GetDecodePlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder batchInputs(Map<String,Object>... batchInputs) {
+        public Builder batchInputs(Map<String,String>... batchInputs) {
             return batchInputs(List.of(batchInputs));
         }
 
@@ -218,7 +217,7 @@ public final class GetDecodePlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder batchResults(@Nullable List<Map<String,Object>> batchResults) {
+        public Builder batchResults(@Nullable List<Map<String,String>> batchResults) {
             $.batchResults = batchResults;
             return this;
         }
@@ -229,7 +228,7 @@ public final class GetDecodePlainArgs extends com.pulumi.resources.InvokeArgs {
          * @return builder
          * 
          */
-        public Builder batchResults(Map<String,Object>... batchResults) {
+        public Builder batchResults(Map<String,String>... batchResults) {
             return batchResults(List.of(batchResults));
         }
 

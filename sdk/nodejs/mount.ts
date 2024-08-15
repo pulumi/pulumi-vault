@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  *     type: "transit",
  *     description: "This is an example transit secret engine mount",
  *     options: {
- *         convergent_encryption: false,
+ *         convergent_encryption: "false",
  *     },
  * });
  * ```
@@ -164,7 +164,7 @@ export class Mount extends pulumi.CustomResource {
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    public readonly options!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * List of headers to allow and pass from the request to
      * the plugin.
@@ -326,7 +326,7 @@ export interface MountState {
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * List of headers to allow and pass from the request to
      * the plugin.
@@ -418,7 +418,7 @@ export interface MountArgs {
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * List of headers to allow and pass from the request to
      * the plugin.

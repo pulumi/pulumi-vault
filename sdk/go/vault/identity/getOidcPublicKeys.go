@@ -94,9 +94,9 @@ type GetOidcPublicKeysResult struct {
 	Id string `pulumi:"id"`
 	// The public portion of keys for an OIDC provider.
 	// Clients can use them to validate the authenticity of an identity token.
-	Keys      []map[string]interface{} `pulumi:"keys"`
-	Name      string                   `pulumi:"name"`
-	Namespace *string                  `pulumi:"namespace"`
+	Keys      []map[string]string `pulumi:"keys"`
+	Name      string              `pulumi:"name"`
+	Namespace *string             `pulumi:"namespace"`
 }
 
 func GetOidcPublicKeysOutput(ctx *pulumi.Context, args GetOidcPublicKeysOutputArgs, opts ...pulumi.InvokeOption) GetOidcPublicKeysResultOutput {
@@ -149,8 +149,8 @@ func (o GetOidcPublicKeysResultOutput) Id() pulumi.StringOutput {
 
 // The public portion of keys for an OIDC provider.
 // Clients can use them to validate the authenticity of an identity token.
-func (o GetOidcPublicKeysResultOutput) Keys() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetOidcPublicKeysResult) []map[string]interface{} { return v.Keys }).(pulumi.MapArrayOutput)
+func (o GetOidcPublicKeysResultOutput) Keys() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetOidcPublicKeysResult) []map[string]string { return v.Keys }).(pulumi.StringMapArrayOutput)
 }
 
 func (o GetOidcPublicKeysResultOutput) Name() pulumi.StringOutput {

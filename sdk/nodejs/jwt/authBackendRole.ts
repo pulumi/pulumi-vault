@@ -115,7 +115,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
-    public readonly boundClaims!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly boundClaims!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * How to interpret values in the claims/values
      * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -131,7 +131,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      */
-    public readonly claimMappings!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly claimMappings!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The amount of leeway to add to all claims to account for clock skew, in
      * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -351,7 +351,7 @@ export interface AuthBackendRoleState {
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
-    boundClaims?: pulumi.Input<{[key: string]: any}>;
+    boundClaims?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * How to interpret values in the claims/values
      * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -367,7 +367,7 @@ export interface AuthBackendRoleState {
      * If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      */
-    claimMappings?: pulumi.Input<{[key: string]: any}>;
+    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The amount of leeway to add to all claims to account for clock skew, in
      * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -503,7 +503,7 @@ export interface AuthBackendRoleArgs {
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
-    boundClaims?: pulumi.Input<{[key: string]: any}>;
+    boundClaims?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * How to interpret values in the claims/values
      * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
@@ -519,7 +519,7 @@ export interface AuthBackendRoleArgs {
      * If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      */
-    claimMappings?: pulumi.Input<{[key: string]: any}>;
+    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The amount of leeway to add to all claims to account for clock skew, in
      * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.

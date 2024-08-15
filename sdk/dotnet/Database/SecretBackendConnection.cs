@@ -84,7 +84,7 @@ namespace Pulumi.Vault.Database
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         /// </summary>
         [Output("data")]
-        public Output<ImmutableDictionary<string, object>?> Data { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Data { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for Elasticsearch connections.
@@ -296,14 +296,14 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionCouchbaseArgs>? Couchbase { get; set; }
 
         [Input("data")]
-        private InputMap<object>? _data;
+        private InputMap<string>? _data;
 
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         /// </summary>
-        public InputMap<object> Data
+        public InputMap<string> Data
         {
-            get => _data ?? (_data = new InputMap<object>());
+            get => _data ?? (_data = new InputMap<string>());
             set => _data = value;
         }
 
@@ -485,14 +485,14 @@ namespace Pulumi.Vault.Database
         public Input<Inputs.SecretBackendConnectionCouchbaseGetArgs>? Couchbase { get; set; }
 
         [Input("data")]
-        private InputMap<object>? _data;
+        private InputMap<string>? _data;
 
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         /// </summary>
-        public InputMap<object> Data
+        public InputMap<string> Data
         {
-            get => _data ?? (_data = new InputMap<object>());
+            get => _data ?? (_data = new InputMap<string>());
             set => _data = value;
         }
 

@@ -187,7 +187,7 @@ namespace Pulumi.Vault.Ldap
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
         [Output("options")]
-        public Output<ImmutableDictionary<string, object>?> Options { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
         /// List of headers to allow and pass from the request to the plugin
@@ -517,14 +517,14 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Namespace { get; set; }
 
         [Input("options")]
-        private InputMap<object>? _options;
+        private InputMap<string>? _options;
 
         /// <summary>
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
-        public InputMap<object> Options
+        public InputMap<string> Options
         {
-            get => _options ?? (_options = new InputMap<object>());
+            get => _options ?? (_options = new InputMap<string>());
             set => _options = value;
         }
 
@@ -824,14 +824,14 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Namespace { get; set; }
 
         [Input("options")]
-        private InputMap<object>? _options;
+        private InputMap<string>? _options;
 
         /// <summary>
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
-        public InputMap<object> Options
+        public InputMap<string> Options
         {
-            get => _options ?? (_options = new InputMap<object>());
+            get => _options ?? (_options = new InputMap<string>());
             set => _options = value;
         }
 

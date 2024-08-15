@@ -6,7 +6,6 @@ package com.pulumi.vault.identity.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +40,7 @@ public final class GetGroupResult {
      * @return Arbitrary metadata
      * 
      */
-    private Map<String,Object> aliasMetadata;
+    private Map<String,String> aliasMetadata;
     private String aliasMountAccessor;
     /**
      * @return Authentication mount path which this alias belongs to
@@ -91,7 +90,7 @@ public final class GetGroupResult {
      * @return Arbitrary metadata
      * 
      */
-    private Map<String,Object> metadata;
+    private Map<String,String> metadata;
     /**
      * @return Modify index of the group
      * 
@@ -155,7 +154,7 @@ public final class GetGroupResult {
      * @return Arbitrary metadata
      * 
      */
-    public Map<String,Object> aliasMetadata() {
+    public Map<String,String> aliasMetadata() {
         return this.aliasMetadata;
     }
     public String aliasMountAccessor() {
@@ -231,7 +230,7 @@ public final class GetGroupResult {
      * @return Arbitrary metadata
      * 
      */
-    public Map<String,Object> metadata() {
+    public Map<String,String> metadata() {
         return this.metadata;
     }
     /**
@@ -287,7 +286,7 @@ public final class GetGroupResult {
         private String aliasId;
         private String aliasLastUpdateTime;
         private List<String> aliasMergedFromCanonicalIds;
-        private Map<String,Object> aliasMetadata;
+        private Map<String,String> aliasMetadata;
         private String aliasMountAccessor;
         private String aliasMountPath;
         private String aliasMountType;
@@ -300,7 +299,7 @@ public final class GetGroupResult {
         private String lastUpdateTime;
         private List<String> memberEntityIds;
         private List<String> memberGroupIds;
-        private Map<String,Object> metadata;
+        private Map<String,String> metadata;
         private Integer modifyIndex;
         private @Nullable String namespace;
         private String namespaceId;
@@ -381,7 +380,7 @@ public final class GetGroupResult {
             return aliasMergedFromCanonicalIds(List.of(aliasMergedFromCanonicalIds));
         }
         @CustomType.Setter
-        public Builder aliasMetadata(Map<String,Object> aliasMetadata) {
+        public Builder aliasMetadata(Map<String,String> aliasMetadata) {
             if (aliasMetadata == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "aliasMetadata");
             }
@@ -491,7 +490,7 @@ public final class GetGroupResult {
             return memberGroupIds(List.of(memberGroupIds));
         }
         @CustomType.Setter
-        public Builder metadata(Map<String,Object> metadata) {
+        public Builder metadata(Map<String,String> metadata) {
             if (metadata == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "metadata");
             }

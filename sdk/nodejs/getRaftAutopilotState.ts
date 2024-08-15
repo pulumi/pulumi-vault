@@ -69,7 +69,7 @@ export interface GetRaftAutopilotStateResult {
     /**
      * Additional output related to redundancy zones stored as a serialized map of strings.
      */
-    readonly redundancyZones: {[key: string]: any};
+    readonly redundancyZones: {[key: string]: string};
     /**
      * Additional output related to redundancy zones.
      */
@@ -77,7 +77,7 @@ export interface GetRaftAutopilotStateResult {
     /**
      * Additionaly output related to servers in the cluster stored as a serialized map of strings.
      */
-    readonly servers: {[key: string]: any};
+    readonly servers: {[key: string]: string};
     /**
      * Additionaly output related to servers in the cluster.
      */
@@ -85,7 +85,7 @@ export interface GetRaftAutopilotStateResult {
     /**
      * Additional output related to upgrade information stored as a serialized map of strings.
      */
-    readonly upgradeInfo: {[key: string]: any};
+    readonly upgradeInfo: {[key: string]: string};
     /**
      * Additional output related to upgrade information.
      */

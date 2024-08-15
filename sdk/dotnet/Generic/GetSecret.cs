@@ -221,7 +221,7 @@ namespace Pulumi.Vault.Generic
         /// represent string data, so any non-string values returned from Vault are
         /// serialized as JSON.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Data;
+        public readonly ImmutableDictionary<string, string> Data;
         /// <summary>
         /// A string containing the full data payload retrieved from
         /// Vault, serialized in JSON format.
@@ -250,7 +250,7 @@ namespace Pulumi.Vault.Generic
 
         [OutputConstructor]
         private GetSecretResult(
-            ImmutableDictionary<string, object> data,
+            ImmutableDictionary<string, string> data,
 
             string dataJson,
 

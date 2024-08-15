@@ -63,9 +63,9 @@ import (
 //			_ = transform.GetEncodeOutput(ctx, transform.GetEncodeOutputArgs{
 //				Path:     payments.Path,
 //				RoleName: pulumi.String("payments"),
-//				BatchInputs: pulumi.MapArray{
-//					pulumi.Map{
-//						"value": pulumi.Any("1111-2222-3333-4444"),
+//				BatchInputs: pulumi.StringMapArray{
+//					pulumi.StringMap{
+//						"value": pulumi.String("1111-2222-3333-4444"),
 //					},
 //				},
 //			}, nil)
@@ -87,9 +87,9 @@ func GetEncode(ctx *pulumi.Context, args *GetEncodeArgs, opts ...pulumi.InvokeOp
 // A collection of arguments for invoking getEncode.
 type GetEncodeArgs struct {
 	// Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-	BatchInputs []map[string]interface{} `pulumi:"batchInputs"`
+	BatchInputs []map[string]string `pulumi:"batchInputs"`
 	// The result of encoding a batch.
-	BatchResults []map[string]interface{} `pulumi:"batchResults"`
+	BatchResults []map[string]string `pulumi:"batchResults"`
 	// The result of encoding a value.
 	EncodedValue *string `pulumi:"encodedValue"`
 	// The namespace of the target resource.
@@ -111,9 +111,9 @@ type GetEncodeArgs struct {
 
 // A collection of values returned by getEncode.
 type GetEncodeResult struct {
-	BatchInputs  []map[string]interface{} `pulumi:"batchInputs"`
-	BatchResults []map[string]interface{} `pulumi:"batchResults"`
-	EncodedValue string                   `pulumi:"encodedValue"`
+	BatchInputs  []map[string]string `pulumi:"batchInputs"`
+	BatchResults []map[string]string `pulumi:"batchResults"`
+	EncodedValue string              `pulumi:"encodedValue"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	Namespace      *string `pulumi:"namespace"`
@@ -140,9 +140,9 @@ func GetEncodeOutput(ctx *pulumi.Context, args GetEncodeOutputArgs, opts ...pulu
 // A collection of arguments for invoking getEncode.
 type GetEncodeOutputArgs struct {
 	// Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-	BatchInputs pulumi.MapArrayInput `pulumi:"batchInputs"`
+	BatchInputs pulumi.StringMapArrayInput `pulumi:"batchInputs"`
 	// The result of encoding a batch.
-	BatchResults pulumi.MapArrayInput `pulumi:"batchResults"`
+	BatchResults pulumi.StringMapArrayInput `pulumi:"batchResults"`
 	// The result of encoding a value.
 	EncodedValue pulumi.StringPtrInput `pulumi:"encodedValue"`
 	// The namespace of the target resource.
@@ -181,12 +181,12 @@ func (o GetEncodeResultOutput) ToGetEncodeResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetEncodeResultOutput) BatchInputs() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetEncodeResult) []map[string]interface{} { return v.BatchInputs }).(pulumi.MapArrayOutput)
+func (o GetEncodeResultOutput) BatchInputs() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetEncodeResult) []map[string]string { return v.BatchInputs }).(pulumi.StringMapArrayOutput)
 }
 
-func (o GetEncodeResultOutput) BatchResults() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetEncodeResult) []map[string]interface{} { return v.BatchResults }).(pulumi.MapArrayOutput)
+func (o GetEncodeResultOutput) BatchResults() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetEncodeResult) []map[string]string { return v.BatchResults }).(pulumi.StringMapArrayOutput)
 }
 
 func (o GetEncodeResultOutput) EncodedValue() pulumi.StringOutput {

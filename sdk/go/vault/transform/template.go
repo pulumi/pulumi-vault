@@ -64,8 +64,8 @@ import (
 //				Pattern:      pulumi.String("(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})"),
 //				Alphabet:     pulumi.String("numerics"),
 //				EncodeFormat: pulumi.String("$1-$2-$3-$4"),
-//				DecodeFormats: pulumi.Map{
-//					"last-four-digits": pulumi.Any("$4"),
+//				DecodeFormats: pulumi.StringMap{
+//					"last-four-digits": pulumi.String("$4"),
 //				},
 //			})
 //			if err != nil {
@@ -83,7 +83,7 @@ type Template struct {
 	Alphabet pulumi.StringPtrOutput `pulumi:"alphabet"`
 	// Optional mapping of name to regular expression template, used to customize
 	// the decoded output. (requires Vault Enterprise 1.9+)
-	DecodeFormats pulumi.MapOutput `pulumi:"decodeFormats"`
+	DecodeFormats pulumi.StringMapOutput `pulumi:"decodeFormats"`
 	// The regular expression template used to format encoded values.
 	// (requires Vault Enterprise 1.9+)
 	EncodeFormat pulumi.StringPtrOutput `pulumi:"encodeFormat"`
@@ -139,7 +139,7 @@ type templateState struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// Optional mapping of name to regular expression template, used to customize
 	// the decoded output. (requires Vault Enterprise 1.9+)
-	DecodeFormats map[string]interface{} `pulumi:"decodeFormats"`
+	DecodeFormats map[string]string `pulumi:"decodeFormats"`
 	// The regular expression template used to format encoded values.
 	// (requires Vault Enterprise 1.9+)
 	EncodeFormat *string `pulumi:"encodeFormat"`
@@ -163,7 +163,7 @@ type TemplateState struct {
 	Alphabet pulumi.StringPtrInput
 	// Optional mapping of name to regular expression template, used to customize
 	// the decoded output. (requires Vault Enterprise 1.9+)
-	DecodeFormats pulumi.MapInput
+	DecodeFormats pulumi.StringMapInput
 	// The regular expression template used to format encoded values.
 	// (requires Vault Enterprise 1.9+)
 	EncodeFormat pulumi.StringPtrInput
@@ -191,7 +191,7 @@ type templateArgs struct {
 	Alphabet *string `pulumi:"alphabet"`
 	// Optional mapping of name to regular expression template, used to customize
 	// the decoded output. (requires Vault Enterprise 1.9+)
-	DecodeFormats map[string]interface{} `pulumi:"decodeFormats"`
+	DecodeFormats map[string]string `pulumi:"decodeFormats"`
 	// The regular expression template used to format encoded values.
 	// (requires Vault Enterprise 1.9+)
 	EncodeFormat *string `pulumi:"encodeFormat"`
@@ -216,7 +216,7 @@ type TemplateArgs struct {
 	Alphabet pulumi.StringPtrInput
 	// Optional mapping of name to regular expression template, used to customize
 	// the decoded output. (requires Vault Enterprise 1.9+)
-	DecodeFormats pulumi.MapInput
+	DecodeFormats pulumi.StringMapInput
 	// The regular expression template used to format encoded values.
 	// (requires Vault Enterprise 1.9+)
 	EncodeFormat pulumi.StringPtrInput
@@ -329,8 +329,8 @@ func (o TemplateOutput) Alphabet() pulumi.StringPtrOutput {
 
 // Optional mapping of name to regular expression template, used to customize
 // the decoded output. (requires Vault Enterprise 1.9+)
-func (o TemplateOutput) DecodeFormats() pulumi.MapOutput {
-	return o.ApplyT(func(v *Template) pulumi.MapOutput { return v.DecodeFormats }).(pulumi.MapOutput)
+func (o TemplateOutput) DecodeFormats() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringMapOutput { return v.DecodeFormats }).(pulumi.StringMapOutput)
 }
 
 // The regular expression template used to format encoded values.

@@ -5,7 +5,6 @@ package com.pulumi.vault.pkiSecret.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -22,13 +21,13 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
      * 
      */
     @Import(name="cert")
-    private @Nullable Output<Map<String,Object>> cert;
+    private @Nullable Output<Map<String,String>> cert;
 
     /**
      * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
      * 
      */
-    public Optional<Output<Map<String,Object>>> cert() {
+    public Optional<Output<Map<String,String>>> cert() {
         return Optional.ofNullable(this.cert);
     }
 
@@ -37,13 +36,13 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
      * 
      */
     @Import(name="userpass")
-    private @Nullable Output<Map<String,Object>> userpass;
+    private @Nullable Output<Map<String,String>> userpass;
 
     /**
      * @return &#34;The accessor (required) property for user pass auth backends&#34;.
      * 
      */
-    public Optional<Output<Map<String,Object>>> userpass() {
+    public Optional<Output<Map<String,String>>> userpass() {
         return Optional.ofNullable(this.userpass);
     }
 
@@ -78,7 +77,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
          * @return builder
          * 
          */
-        public Builder cert(@Nullable Output<Map<String,Object>> cert) {
+        public Builder cert(@Nullable Output<Map<String,String>> cert) {
             $.cert = cert;
             return this;
         }
@@ -89,7 +88,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
          * @return builder
          * 
          */
-        public Builder cert(Map<String,Object> cert) {
+        public Builder cert(Map<String,String> cert) {
             return cert(Output.of(cert));
         }
 
@@ -99,7 +98,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
          * @return builder
          * 
          */
-        public Builder userpass(@Nullable Output<Map<String,Object>> userpass) {
+        public Builder userpass(@Nullable Output<Map<String,String>> userpass) {
             $.userpass = userpass;
             return this;
         }
@@ -110,7 +109,7 @@ public final class BackendConfigEstAuthenticatorsArgs extends com.pulumi.resourc
          * @return builder
          * 
          */
-        public Builder userpass(Map<String,Object> userpass) {
+        public Builder userpass(Map<String,String> userpass) {
             return userpass(Output.of(userpass));
         }
 

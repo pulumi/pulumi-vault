@@ -116,7 +116,7 @@ namespace Pulumi.Vault.kv
         /// serialized as JSON.
         /// </summary>
         [Output("data")]
-        public Output<ImmutableDictionary<string, object>> Data { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Data { get; private set; } = null!;
 
         /// <summary>
         /// JSON-encoded string that will be
@@ -143,7 +143,7 @@ namespace Pulumi.Vault.kv
         /// Metadata associated with this secret read from Vault.
         /// </summary>
         [Output("metadata")]
-        public Output<ImmutableDictionary<string, object>> Metadata { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// Path where KV-V2 engine is mounted.
@@ -173,7 +173,7 @@ namespace Pulumi.Vault.kv
         /// An object that holds option settings.
         /// </summary>
         [Output("options")]
-        public Output<ImmutableDictionary<string, object>?> Options { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
         /// Full path where the KV-V2 secret will be written.
@@ -305,14 +305,14 @@ namespace Pulumi.Vault.kv
         public Input<string>? Namespace { get; set; }
 
         [Input("options")]
-        private InputMap<object>? _options;
+        private InputMap<string>? _options;
 
         /// <summary>
         /// An object that holds option settings.
         /// </summary>
-        public InputMap<object> Options
+        public InputMap<string> Options
         {
-            get => _options ?? (_options = new InputMap<object>());
+            get => _options ?? (_options = new InputMap<string>());
             set => _options = value;
         }
 
@@ -342,7 +342,7 @@ namespace Pulumi.Vault.kv
         public Input<Inputs.SecretV2CustomMetadataGetArgs>? CustomMetadata { get; set; }
 
         [Input("data")]
-        private InputMap<object>? _data;
+        private InputMap<string>? _data;
 
         /// <summary>
         /// A mapping whose keys are the top-level data keys returned from
@@ -350,12 +350,12 @@ namespace Pulumi.Vault.kv
         /// represent string data, so any non-string values returned from Vault are
         /// serialized as JSON.
         /// </summary>
-        public InputMap<object> Data
+        public InputMap<string> Data
         {
-            get => _data ?? (_data = new InputMap<object>());
+            get => _data ?? (_data = new InputMap<string>());
             set
             {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _data = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
@@ -392,14 +392,14 @@ namespace Pulumi.Vault.kv
         public Input<bool>? DisableRead { get; set; }
 
         [Input("metadata")]
-        private InputMap<object>? _metadata;
+        private InputMap<string>? _metadata;
 
         /// <summary>
         /// Metadata associated with this secret read from Vault.
         /// </summary>
-        public InputMap<object> Metadata
+        public InputMap<string> Metadata
         {
-            get => _metadata ?? (_metadata = new InputMap<object>());
+            get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
@@ -428,14 +428,14 @@ namespace Pulumi.Vault.kv
         public Input<string>? Namespace { get; set; }
 
         [Input("options")]
-        private InputMap<object>? _options;
+        private InputMap<string>? _options;
 
         /// <summary>
         /// An object that holds option settings.
         /// </summary>
-        public InputMap<object> Options
+        public InputMap<string> Options
         {
-            get => _options ?? (_options = new InputMap<object>());
+            get => _options ?? (_options = new InputMap<string>());
             set => _options = value;
         }
 

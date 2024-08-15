@@ -12,7 +12,6 @@ import com.pulumi.vault.transit.SecretBackendKeyArgs;
 import com.pulumi.vault.transit.inputs.SecretBackendKeyState;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -201,8 +200,8 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
      * 
      */
-    @Export(name="keys", refs={List.class,Map.class,String.class,Object.class}, tree="[0,[1,2,3]]")
-    private Output<List<Map<String,Object>>> keys;
+    @Export(name="keys", refs={List.class,Map.class,String.class}, tree="[0,[1,2,2]]")
+    private Output<List<Map<String,String>>> keys;
 
     /**
      * @return List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -210,7 +209,7 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      * * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
      * 
      */
-    public Output<List<Map<String,Object>>> keys() {
+    public Output<List<Map<String,String>>> keys() {
         return this.keys;
     }
     /**

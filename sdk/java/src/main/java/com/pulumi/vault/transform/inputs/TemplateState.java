@@ -5,7 +5,6 @@ package com.pulumi.vault.transform.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -38,14 +37,14 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="decodeFormats")
-    private @Nullable Output<Map<String,Object>> decodeFormats;
+    private @Nullable Output<Map<String,String>> decodeFormats;
 
     /**
      * @return Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
-    public Optional<Output<Map<String,Object>>> decodeFormats() {
+    public Optional<Output<Map<String,String>>> decodeFormats() {
         return Optional.ofNullable(this.decodeFormats);
     }
 
@@ -206,7 +205,7 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder decodeFormats(@Nullable Output<Map<String,Object>> decodeFormats) {
+        public Builder decodeFormats(@Nullable Output<Map<String,String>> decodeFormats) {
             $.decodeFormats = decodeFormats;
             return this;
         }
@@ -218,7 +217,7 @@ public final class TemplateState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder decodeFormats(Map<String,Object> decodeFormats) {
+        public Builder decodeFormats(Map<String,String> decodeFormats) {
             return decodeFormats(Output.of(decodeFormats));
         }
 

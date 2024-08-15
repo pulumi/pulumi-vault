@@ -68,7 +68,7 @@ namespace Pulumi.Vault
         /// is `map[string]string`. Requires Vault version 1.12+.
         /// </summary>
         [Output("customMetadata")]
-        public Output<ImmutableDictionary<string, object>> CustomMetadata { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> CustomMetadata { get; private set; } = null!;
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -145,15 +145,15 @@ namespace Pulumi.Vault
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         [Input("customMetadata")]
-        private InputMap<object>? _customMetadata;
+        private InputMap<string>? _customMetadata;
 
         /// <summary>
         /// Custom metadata describing this namespace. Value type
         /// is `map[string]string`. Requires Vault version 1.12+.
         /// </summary>
-        public InputMap<object> CustomMetadata
+        public InputMap<string> CustomMetadata
         {
-            get => _customMetadata ?? (_customMetadata = new InputMap<object>());
+            get => _customMetadata ?? (_customMetadata = new InputMap<string>());
             set => _customMetadata = value;
         }
 
@@ -188,15 +188,15 @@ namespace Pulumi.Vault
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         [Input("customMetadata")]
-        private InputMap<object>? _customMetadata;
+        private InputMap<string>? _customMetadata;
 
         /// <summary>
         /// Custom metadata describing this namespace. Value type
         /// is `map[string]string`. Requires Vault version 1.12+.
         /// </summary>
-        public InputMap<object> CustomMetadata
+        public InputMap<string> CustomMetadata
         {
-            get => _customMetadata ?? (_customMetadata = new InputMap<object>());
+            get => _customMetadata ?? (_customMetadata = new InputMap<string>());
             set => _customMetadata = value;
         }
 

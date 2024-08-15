@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -25,7 +24,7 @@ public final class GetSecretV2Result {
      * @return Custom metadata for the secret.
      * 
      */
-    private Map<String,Object> customMetadata;
+    private Map<String,String> customMetadata;
     /**
      * @return A mapping whose keys are the top-level data keys returned from
      * Vault and whose values are the corresponding values. This map can only
@@ -33,7 +32,7 @@ public final class GetSecretV2Result {
      * serialized as JSON.
      * 
      */
-    private Map<String,Object> data;
+    private Map<String,String> data;
     /**
      * @return JSON-encoded string that that is
      * read as the secret data at the given path.
@@ -81,7 +80,7 @@ public final class GetSecretV2Result {
      * @return Custom metadata for the secret.
      * 
      */
-    public Map<String,Object> customMetadata() {
+    public Map<String,String> customMetadata() {
         return this.customMetadata;
     }
     /**
@@ -91,7 +90,7 @@ public final class GetSecretV2Result {
      * serialized as JSON.
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data;
     }
     /**
@@ -157,8 +156,8 @@ public final class GetSecretV2Result {
     @CustomType.Builder
     public static final class Builder {
         private String createdTime;
-        private Map<String,Object> customMetadata;
-        private Map<String,Object> data;
+        private Map<String,String> customMetadata;
+        private Map<String,String> data;
         private String dataJson;
         private String deletionTime;
         private Boolean destroyed;
@@ -194,7 +193,7 @@ public final class GetSecretV2Result {
             return this;
         }
         @CustomType.Setter
-        public Builder customMetadata(Map<String,Object> customMetadata) {
+        public Builder customMetadata(Map<String,String> customMetadata) {
             if (customMetadata == null) {
               throw new MissingRequiredPropertyException("GetSecretV2Result", "customMetadata");
             }
@@ -202,7 +201,7 @@ public final class GetSecretV2Result {
             return this;
         }
         @CustomType.Setter
-        public Builder data(Map<String,Object> data) {
+        public Builder data(Map<String,String> data) {
             if (data == null) {
               throw new MissingRequiredPropertyException("GetSecretV2Result", "data");
             }

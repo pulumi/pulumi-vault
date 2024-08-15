@@ -120,7 +120,7 @@ class GetBackendConfigEstResult:
 
     @property
     @pulumi.getter(name="labelToPathPolicy")
-    def label_to_path_policy(self) -> Mapping[str, Any]:
+    def label_to_path_policy(self) -> Mapping[str, str]:
         """
         A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         """

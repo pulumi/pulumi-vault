@@ -18,11 +18,11 @@ __all__ = [
 @pulumi.output_type
 class BackendConfigEstAuthenticators(dict):
     def __init__(__self__, *,
-                 cert: Optional[Mapping[str, Any]] = None,
-                 userpass: Optional[Mapping[str, Any]] = None):
+                 cert: Optional[Mapping[str, str]] = None,
+                 userpass: Optional[Mapping[str, str]] = None):
         """
-        :param Mapping[str, Any] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
-        :param Mapping[str, Any] userpass: "The accessor (required) property for user pass auth backends".
+        :param Mapping[str, str] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        :param Mapping[str, str] userpass: "The accessor (required) property for user pass auth backends".
         """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
@@ -31,7 +31,7 @@ class BackendConfigEstAuthenticators(dict):
 
     @property
     @pulumi.getter
-    def cert(self) -> Optional[Mapping[str, Any]]:
+    def cert(self) -> Optional[Mapping[str, str]]:
         """
         "The accessor (required) and cert_role (optional) properties for cert auth backends".
         """
@@ -39,7 +39,7 @@ class BackendConfigEstAuthenticators(dict):
 
     @property
     @pulumi.getter
-    def userpass(self) -> Optional[Mapping[str, Any]]:
+    def userpass(self) -> Optional[Mapping[str, str]]:
         """
         "The accessor (required) property for user pass auth backends".
         """
@@ -95,11 +95,11 @@ class SecretBackendRolePolicyIdentifier(dict):
 @pulumi.output_type
 class GetBackendConfigEstAuthenticatorResult(dict):
     def __init__(__self__, *,
-                 cert: Optional[Mapping[str, Any]] = None,
-                 userpass: Optional[Mapping[str, Any]] = None):
+                 cert: Optional[Mapping[str, str]] = None,
+                 userpass: Optional[Mapping[str, str]] = None):
         """
-        :param Mapping[str, Any] cert: "The accessor and cert_role properties for cert auth backends".
-        :param Mapping[str, Any] userpass: "The accessor property for user pass auth backends".
+        :param Mapping[str, str] cert: "The accessor and cert_role properties for cert auth backends".
+        :param Mapping[str, str] userpass: "The accessor property for user pass auth backends".
         """
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
@@ -108,7 +108,7 @@ class GetBackendConfigEstAuthenticatorResult(dict):
 
     @property
     @pulumi.getter
-    def cert(self) -> Optional[Mapping[str, Any]]:
+    def cert(self) -> Optional[Mapping[str, str]]:
         """
         "The accessor and cert_role properties for cert auth backends".
         """
@@ -116,7 +116,7 @@ class GetBackendConfigEstAuthenticatorResult(dict):
 
     @property
     @pulumi.getter
-    def userpass(self) -> Optional[Mapping[str, Any]]:
+    def userpass(self) -> Optional[Mapping[str, str]]:
         """
         "The accessor property for user pass auth backends".
         """

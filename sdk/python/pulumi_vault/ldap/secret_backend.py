@@ -35,7 +35,7 @@ class SecretBackendArgs:
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -79,7 +79,7 @@ class SecretBackendArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
@@ -428,14 +428,14 @@ class SecretBackendArgs:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -624,7 +624,7 @@ class _SecretBackendState:
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -669,7 +669,7 @@ class _SecretBackendState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
@@ -1034,14 +1034,14 @@ class _SecretBackendState:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -1231,7 +1231,7 @@ class SecretBackend(pulumi.CustomResource):
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -1300,7 +1300,7 @@ class SecretBackend(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
@@ -1385,7 +1385,7 @@ class SecretBackend(pulumi.CustomResource):
                  local: Optional[pulumi.Input[bool]] = None,
                  max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  password_policy: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
@@ -1482,7 +1482,7 @@ class SecretBackend(pulumi.CustomResource):
             local: Optional[pulumi.Input[bool]] = None,
             max_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             password_policy: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -1532,7 +1532,7 @@ class SecretBackend(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: Specifies mount type specific options that are passed to the backend
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] password_policy: Name of the password policy to use to generate passwords.
         :param pulumi.Input[str] path: The unique path this backend should be mounted at. Must
@@ -1778,7 +1778,7 @@ class SecretBackend(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def options(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """

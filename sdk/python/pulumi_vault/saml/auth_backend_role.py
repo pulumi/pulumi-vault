@@ -15,7 +15,7 @@ __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
-                 bound_attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subjects_type: Optional[pulumi.Input[str]] = None,
@@ -34,7 +34,7 @@ class AuthBackendRoleArgs:
         """
         The set of arguments for constructing a AuthBackendRole resource.
         :param pulumi.Input[str] path: Path where the auth backend is mounted.
-        :param pulumi.Input[Mapping[str, Any]] bound_attributes: Mapping of attribute names to values that are expected to
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[str] bound_attributes_type: The type of matching assertion to perform on
                `bound_attributes_type`.
@@ -105,7 +105,7 @@ class AuthBackendRoleArgs:
 
     @property
     @pulumi.getter(name="boundAttributes")
-    def bound_attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def bound_attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Mapping of attribute names to values that are expected to
         exist in the SAML assertion.
@@ -113,7 +113,7 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_attributes")
 
     @bound_attributes.setter
-    def bound_attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def bound_attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "bound_attributes", value)
 
     @property
@@ -305,7 +305,7 @@ class AuthBackendRoleArgs:
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
-                 bound_attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subjects_type: Optional[pulumi.Input[str]] = None,
@@ -324,7 +324,7 @@ class _AuthBackendRoleState:
                  token_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
-        :param pulumi.Input[Mapping[str, Any]] bound_attributes: Mapping of attribute names to values that are expected to
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[str] bound_attributes_type: The type of matching assertion to perform on
                `bound_attributes_type`.
@@ -385,7 +385,7 @@ class _AuthBackendRoleState:
 
     @property
     @pulumi.getter(name="boundAttributes")
-    def bound_attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def bound_attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Mapping of attribute names to values that are expected to
         exist in the SAML assertion.
@@ -393,7 +393,7 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_attributes")
 
     @bound_attributes.setter
-    def bound_attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def bound_attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "bound_attributes", value)
 
     @property
@@ -599,7 +599,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bound_attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subjects_type: Optional[pulumi.Input[str]] = None,
@@ -656,7 +656,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] bound_attributes: Mapping of attribute names to values that are expected to
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[str] bound_attributes_type: The type of matching assertion to perform on
                `bound_attributes_type`.
@@ -738,7 +738,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bound_attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_attributes_type: Optional[pulumi.Input[str]] = None,
                  bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_subjects_type: Optional[pulumi.Input[str]] = None,
@@ -793,7 +793,7 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bound_attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            bound_attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             bound_attributes_type: Optional[pulumi.Input[str]] = None,
             bound_subjects: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             bound_subjects_type: Optional[pulumi.Input[str]] = None,
@@ -817,7 +817,7 @@ class AuthBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] bound_attributes: Mapping of attribute names to values that are expected to
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_attributes: Mapping of attribute names to values that are expected to
                exist in the SAML assertion.
         :param pulumi.Input[str] bound_attributes_type: The type of matching assertion to perform on
                `bound_attributes_type`.
@@ -866,7 +866,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="boundAttributes")
-    def bound_attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def bound_attributes(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Mapping of attribute names to values that are expected to
         exist in the SAML assertion.
