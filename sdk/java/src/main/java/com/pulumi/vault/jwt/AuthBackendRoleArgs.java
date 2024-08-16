@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +78,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
      * 
      */
     @Import(name="boundClaims")
-    private @Nullable Output<Map<String,Object>> boundClaims;
+    private @Nullable Output<Map<String,String>> boundClaims;
 
     /**
      * @return If set, a map of claims to values to match against.
@@ -87,7 +86,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
      * comma-separated values, e.g. `&#34;red&#34;` or `&#34;red,green,blue&#34;`.
      * 
      */
-    public Optional<Output<Map<String,Object>>> boundClaims() {
+    public Optional<Output<Map<String,String>>> boundClaims() {
         return Optional.ofNullable(this.boundClaims);
     }
 
@@ -133,14 +132,14 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
      * 
      */
     @Import(name="claimMappings")
-    private @Nullable Output<Map<String,Object>> claimMappings;
+    private @Nullable Output<Map<String,String>> claimMappings;
 
     /**
      * @return If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      * 
      */
-    public Optional<Output<Map<String,Object>>> claimMappings() {
+    public Optional<Output<Map<String,String>>> claimMappings() {
         return Optional.ofNullable(this.claimMappings);
     }
 
@@ -667,7 +666,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder boundClaims(@Nullable Output<Map<String,Object>> boundClaims) {
+        public Builder boundClaims(@Nullable Output<Map<String,String>> boundClaims) {
             $.boundClaims = boundClaims;
             return this;
         }
@@ -680,7 +679,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder boundClaims(Map<String,Object> boundClaims) {
+        public Builder boundClaims(Map<String,String> boundClaims) {
             return boundClaims(Output.of(boundClaims));
         }
 
@@ -739,7 +738,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder claimMappings(@Nullable Output<Map<String,Object>> claimMappings) {
+        public Builder claimMappings(@Nullable Output<Map<String,String>> claimMappings) {
             $.claimMappings = claimMappings;
             return this;
         }
@@ -751,7 +750,7 @@ public final class AuthBackendRoleArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder claimMappings(Map<String,Object> claimMappings) {
+        public Builder claimMappings(Map<String,String> claimMappings) {
             return claimMappings(Output.of(claimMappings));
         }
 

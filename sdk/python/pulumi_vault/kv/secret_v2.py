@@ -24,7 +24,7 @@ class SecretV2Args:
                  disable_read: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a SecretV2 resource.
         :param pulumi.Input[str] data_json: JSON-encoded string that will be
@@ -49,7 +49,7 @@ class SecretV2Args:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: An object that holds option settings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: An object that holds option settings.
         """
         pulumi.set(__self__, "data_json", data_json)
         pulumi.set(__self__, "mount", mount)
@@ -180,14 +180,14 @@ class SecretV2Args:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         An object that holds option settings.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
 
@@ -196,15 +196,15 @@ class _SecretV2State:
     def __init__(__self__, *,
                  cas: Optional[pulumi.Input[int]] = None,
                  custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  delete_all_versions: Optional[pulumi.Input[bool]] = None,
                  disable_read: Optional[pulumi.Input[bool]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  mount: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretV2 resources.
@@ -215,7 +215,7 @@ class _SecretV2State:
         :param pulumi.Input['SecretV2CustomMetadataArgs'] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
-        :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
@@ -225,7 +225,7 @@ class _SecretV2State:
                versions for the specified key.
         :param pulumi.Input[bool] disable_read: If set to true, disables reading secret from Vault;
                note: drift won't be detected.
-        :param pulumi.Input[Mapping[str, Any]] metadata: Metadata associated with this secret read from Vault.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata associated with this secret read from Vault.
         :param pulumi.Input[str] mount: Path where KV-V2 engine is mounted.
         :param pulumi.Input[str] name: Full name of the secret. For a nested secret
                the name is the nested path excluding the mount and data
@@ -235,7 +235,7 @@ class _SecretV2State:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: An object that holds option settings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: An object that holds option settings.
         :param pulumi.Input[str] path: Full path where the KV-V2 secret will be written.
         """
         if cas is not None:
@@ -294,7 +294,7 @@ class _SecretV2State:
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only
@@ -304,7 +304,7 @@ class _SecretV2State:
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
 
     @property
@@ -348,14 +348,14 @@ class _SecretV2State:
 
     @property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Metadata associated with this secret read from Vault.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metadata", value)
 
     @property
@@ -402,14 +402,14 @@ class _SecretV2State:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         An object that holds option settings.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -438,7 +438,7 @@ class SecretV2(pulumi.CustomResource):
                  mount: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Writes a KV-V2 secret to a given path in Vault.
@@ -529,7 +529,7 @@ class SecretV2(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: An object that holds option settings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: An object that holds option settings.
         """
         ...
     @overload
@@ -625,7 +625,7 @@ class SecretV2(pulumi.CustomResource):
                  mount: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -665,15 +665,15 @@ class SecretV2(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cas: Optional[pulumi.Input[int]] = None,
             custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
-            data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             data_json: Optional[pulumi.Input[str]] = None,
             delete_all_versions: Optional[pulumi.Input[bool]] = None,
             disable_read: Optional[pulumi.Input[bool]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             mount: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'SecretV2':
         """
         Get an existing SecretV2 resource's state with the given name, id, and optional extra
@@ -689,7 +689,7 @@ class SecretV2(pulumi.CustomResource):
         :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
-        :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
@@ -699,7 +699,7 @@ class SecretV2(pulumi.CustomResource):
                versions for the specified key.
         :param pulumi.Input[bool] disable_read: If set to true, disables reading secret from Vault;
                note: drift won't be detected.
-        :param pulumi.Input[Mapping[str, Any]] metadata: Metadata associated with this secret read from Vault.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata associated with this secret read from Vault.
         :param pulumi.Input[str] mount: Path where KV-V2 engine is mounted.
         :param pulumi.Input[str] name: Full name of the secret. For a nested secret
                the name is the nested path excluding the mount and data
@@ -709,7 +709,7 @@ class SecretV2(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Mapping[str, Any]] options: An object that holds option settings.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: An object that holds option settings.
         :param pulumi.Input[str] path: Full path where the KV-V2 secret will be written.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -753,7 +753,7 @@ class SecretV2(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def data(self) -> pulumi.Output[Mapping[str, Any]]:
+    def data(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only
@@ -791,7 +791,7 @@ class SecretV2(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Mapping[str, Any]]:
+    def metadata(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Metadata associated with this secret read from Vault.
         """
@@ -829,7 +829,7 @@ class SecretV2(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def options(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         An object that holds option settings.
         """

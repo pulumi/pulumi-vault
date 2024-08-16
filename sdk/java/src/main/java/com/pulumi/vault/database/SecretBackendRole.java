@@ -11,7 +11,6 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.database.SecretBackendRoleArgs;
 import com.pulumi.vault.database.inputs.SecretBackendRoleState;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -126,8 +125,8 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The following options are available for each `credential_type` value:
      * 
      */
-    @Export(name="credentialConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> credentialConfig;
+    @Export(name="credentialConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> credentialConfig;
 
     /**
      * @return Specifies the configuration
@@ -136,7 +135,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The following options are available for each `credential_type` value:
      * 
      */
-    public Output<Optional<Map<String,Object>>> credentialConfig() {
+    public Output<Optional<Map<String,String>>> credentialConfig() {
         return Codegen.optional(this.credentialConfig);
     }
     /**

@@ -29,7 +29,6 @@ import com.pulumi.vault.database.outputs.SecretBackendConnectionRedisElasticache
 import com.pulumi.vault.database.outputs.SecretBackendConnectionRedshift;
 import com.pulumi.vault.database.outputs.SecretBackendConnectionSnowflake;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -160,14 +159,14 @@ public class SecretBackendConnection extends com.pulumi.resources.CustomResource
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    @Export(name="data", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> data;
+    @Export(name="data", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> data;
 
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
      */
-    public Output<Optional<Map<String,Object>>> data() {
+    public Output<Optional<Map<String,String>>> data() {
         return Codegen.optional(this.data);
     }
     /**

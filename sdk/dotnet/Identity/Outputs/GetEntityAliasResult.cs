@@ -36,7 +36,7 @@ namespace Pulumi.Vault.Identity.Outputs
         /// <summary>
         /// Arbitrary metadata
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Metadata;
+        public readonly ImmutableDictionary<string, string> Metadata;
         /// <summary>
         /// Authentication mount acccessor which this alias belongs to
         /// </summary>
@@ -66,7 +66,7 @@ namespace Pulumi.Vault.Identity.Outputs
 
             ImmutableArray<string> mergedFromCanonicalIds,
 
-            ImmutableDictionary<string, object> metadata,
+            ImmutableDictionary<string, string> metadata,
 
             string mountAccessor,
 

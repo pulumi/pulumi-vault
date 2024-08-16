@@ -204,14 +204,14 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Custom metadata for the secret.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> CustomMetadata;
+        public readonly ImmutableDictionary<string, string> CustomMetadata;
         /// <summary>
         /// A mapping whose keys are the top-level data keys returned from
         /// Vault and whose values are the corresponding values. This map can only
         /// represent string data, so any non-string values returned from Vault are
         /// serialized as JSON.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Data;
+        public readonly ImmutableDictionary<string, string> Data;
         /// <summary>
         /// JSON-encoded string that that is
         /// read as the secret data at the given path.
@@ -245,9 +245,9 @@ namespace Pulumi.Vault.kv
         private GetSecretV2Result(
             string createdTime,
 
-            ImmutableDictionary<string, object> customMetadata,
+            ImmutableDictionary<string, string> customMetadata,
 
-            ImmutableDictionary<string, object> data,
+            ImmutableDictionary<string, string> data,
 
             string dataJson,
 

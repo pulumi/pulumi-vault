@@ -44,7 +44,7 @@ type BackendConfigEst struct {
 	// Specifies whether EST is enabled.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-	LabelToPathPolicy pulumi.MapOutput `pulumi:"labelToPathPolicy"`
+	LabelToPathPolicy pulumi.StringMapOutput `pulumi:"labelToPathPolicy"`
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated pulumi.StringOutput `pulumi:"lastUpdated"`
 	// The namespace of the target resource.
@@ -105,7 +105,7 @@ type backendConfigEstState struct {
 	// Specifies whether EST is enabled.
 	Enabled *bool `pulumi:"enabled"`
 	// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-	LabelToPathPolicy map[string]interface{} `pulumi:"labelToPathPolicy"`
+	LabelToPathPolicy map[string]string `pulumi:"labelToPathPolicy"`
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated *string `pulumi:"lastUpdated"`
 	// The namespace of the target resource.
@@ -134,7 +134,7 @@ type BackendConfigEstState struct {
 	// Specifies whether EST is enabled.
 	Enabled pulumi.BoolPtrInput
 	// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-	LabelToPathPolicy pulumi.MapInput
+	LabelToPathPolicy pulumi.StringMapInput
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated pulumi.StringPtrInput
 	// The namespace of the target resource.
@@ -167,7 +167,7 @@ type backendConfigEstArgs struct {
 	// Specifies whether EST is enabled.
 	Enabled *bool `pulumi:"enabled"`
 	// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-	LabelToPathPolicy map[string]interface{} `pulumi:"labelToPathPolicy"`
+	LabelToPathPolicy map[string]string `pulumi:"labelToPathPolicy"`
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -195,7 +195,7 @@ type BackendConfigEstArgs struct {
 	// Specifies whether EST is enabled.
 	Enabled pulumi.BoolPtrInput
 	// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-	LabelToPathPolicy pulumi.MapInput
+	LabelToPathPolicy pulumi.StringMapInput
 	// The namespace of the target resource.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -329,8 +329,8 @@ func (o BackendConfigEstOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-func (o BackendConfigEstOutput) LabelToPathPolicy() pulumi.MapOutput {
-	return o.ApplyT(func(v *BackendConfigEst) pulumi.MapOutput { return v.LabelToPathPolicy }).(pulumi.MapOutput)
+func (o BackendConfigEstOutput) LabelToPathPolicy() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendConfigEst) pulumi.StringMapOutput { return v.LabelToPathPolicy }).(pulumi.StringMapOutput)
 }
 
 // A read-only timestamp representing the last time the configuration was updated.

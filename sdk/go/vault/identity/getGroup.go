@@ -86,8 +86,8 @@ type LookupGroupResult struct {
 	// List of canonical IDs merged with this alias
 	AliasMergedFromCanonicalIds []string `pulumi:"aliasMergedFromCanonicalIds"`
 	// Arbitrary metadata
-	AliasMetadata      map[string]interface{} `pulumi:"aliasMetadata"`
-	AliasMountAccessor string                 `pulumi:"aliasMountAccessor"`
+	AliasMetadata      map[string]string `pulumi:"aliasMetadata"`
+	AliasMountAccessor string            `pulumi:"aliasMountAccessor"`
 	// Authentication mount path which this alias belongs to
 	AliasMountPath string `pulumi:"aliasMountPath"`
 	// Authentication mount type which this alias belongs to
@@ -109,7 +109,7 @@ type LookupGroupResult struct {
 	// List of Group IDs which are members of this group
 	MemberGroupIds []string `pulumi:"memberGroupIds"`
 	// Arbitrary metadata
-	Metadata map[string]interface{} `pulumi:"metadata"`
+	Metadata map[string]string `pulumi:"metadata"`
 	// Modify index of the group
 	ModifyIndex int     `pulumi:"modifyIndex"`
 	Namespace   *string `pulumi:"namespace"`
@@ -204,8 +204,8 @@ func (o LookupGroupResultOutput) AliasMergedFromCanonicalIds() pulumi.StringArra
 }
 
 // Arbitrary metadata
-func (o LookupGroupResultOutput) AliasMetadata() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupGroupResult) map[string]interface{} { return v.AliasMetadata }).(pulumi.MapOutput)
+func (o LookupGroupResultOutput) AliasMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupGroupResult) map[string]string { return v.AliasMetadata }).(pulumi.StringMapOutput)
 }
 
 func (o LookupGroupResultOutput) AliasMountAccessor() pulumi.StringOutput {
@@ -266,8 +266,8 @@ func (o LookupGroupResultOutput) MemberGroupIds() pulumi.StringArrayOutput {
 }
 
 // Arbitrary metadata
-func (o LookupGroupResultOutput) Metadata() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupGroupResult) map[string]interface{} { return v.Metadata }).(pulumi.MapOutput)
+func (o LookupGroupResultOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupGroupResult) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
 // Modify index of the group

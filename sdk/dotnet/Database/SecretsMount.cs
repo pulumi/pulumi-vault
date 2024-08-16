@@ -273,7 +273,7 @@ namespace Pulumi.Vault.Database
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
         [Output("options")]
-        public Output<ImmutableDictionary<string, object>?> Options { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for Oracle connections.  
@@ -654,14 +654,14 @@ namespace Pulumi.Vault.Database
         public Input<string>? Namespace { get; set; }
 
         [Input("options")]
-        private InputMap<object>? _options;
+        private InputMap<string>? _options;
 
         /// <summary>
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
-        public InputMap<object> Options
+        public InputMap<string> Options
         {
-            get => _options ?? (_options = new InputMap<object>());
+            get => _options ?? (_options = new InputMap<string>());
             set => _options = value;
         }
 
@@ -1060,14 +1060,14 @@ namespace Pulumi.Vault.Database
         public Input<string>? Namespace { get; set; }
 
         [Input("options")]
-        private InputMap<object>? _options;
+        private InputMap<string>? _options;
 
         /// <summary>
         /// Specifies mount type specific options that are passed to the backend
         /// </summary>
-        public InputMap<object> Options
+        public InputMap<string> Options
         {
-            get => _options ?? (_options = new InputMap<object>());
+            get => _options ?? (_options = new InputMap<string>());
             set => _options = value;
         }
 

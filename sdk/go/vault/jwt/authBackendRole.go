@@ -49,8 +49,8 @@ import (
 //				BoundAudiences: pulumi.StringArray{
 //					pulumi.String("https://myco.test"),
 //				},
-//				BoundClaims: pulumi.Map{
-//					"color": pulumi.Any("red,green,blue"),
+//				BoundClaims: pulumi.StringMap{
+//					"color": pulumi.String("red,green,blue"),
 //				},
 //				UserClaim: pulumi.String("https://vault/user"),
 //				RoleType:  pulumi.String("jwt"),
@@ -130,7 +130,7 @@ type AuthBackendRole struct {
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
 	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
-	BoundClaims pulumi.MapOutput `pulumi:"boundClaims"`
+	BoundClaims pulumi.StringMapOutput `pulumi:"boundClaims"`
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
 	// match). Requires Vault 1.4.0 or above.
@@ -140,7 +140,7 @@ type AuthBackendRole struct {
 	BoundSubject pulumi.StringPtrOutput `pulumi:"boundSubject"`
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
-	ClaimMappings pulumi.MapOutput `pulumi:"claimMappings"`
+	ClaimMappings pulumi.StringMapOutput `pulumi:"claimMappings"`
 	// The amount of leeway to add to all claims to account for clock skew, in
 	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -256,7 +256,7 @@ type authBackendRoleState struct {
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
 	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
-	BoundClaims map[string]interface{} `pulumi:"boundClaims"`
+	BoundClaims map[string]string `pulumi:"boundClaims"`
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
 	// match). Requires Vault 1.4.0 or above.
@@ -266,7 +266,7 @@ type authBackendRoleState struct {
 	BoundSubject *string `pulumi:"boundSubject"`
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
-	ClaimMappings map[string]interface{} `pulumi:"claimMappings"`
+	ClaimMappings map[string]string `pulumi:"claimMappings"`
 	// The amount of leeway to add to all claims to account for clock skew, in
 	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -347,7 +347,7 @@ type AuthBackendRoleState struct {
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
 	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
-	BoundClaims pulumi.MapInput
+	BoundClaims pulumi.StringMapInput
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
 	// match). Requires Vault 1.4.0 or above.
@@ -357,7 +357,7 @@ type AuthBackendRoleState struct {
 	BoundSubject pulumi.StringPtrInput
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
-	ClaimMappings pulumi.MapInput
+	ClaimMappings pulumi.StringMapInput
 	// The amount of leeway to add to all claims to account for clock skew, in
 	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -442,7 +442,7 @@ type authBackendRoleArgs struct {
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
 	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
-	BoundClaims map[string]interface{} `pulumi:"boundClaims"`
+	BoundClaims map[string]string `pulumi:"boundClaims"`
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
 	// match). Requires Vault 1.4.0 or above.
@@ -452,7 +452,7 @@ type authBackendRoleArgs struct {
 	BoundSubject *string `pulumi:"boundSubject"`
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
-	ClaimMappings map[string]interface{} `pulumi:"claimMappings"`
+	ClaimMappings map[string]string `pulumi:"claimMappings"`
 	// The amount of leeway to add to all claims to account for clock skew, in
 	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -534,7 +534,7 @@ type AuthBackendRoleArgs struct {
 	// If set, a map of claims to values to match against.
 	// A claim's value must be a string, which may contain one value or multiple
 	// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
-	BoundClaims pulumi.MapInput
+	BoundClaims pulumi.StringMapInput
 	// How to interpret values in the claims/values
 	// map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
 	// match). Requires Vault 1.4.0 or above.
@@ -544,7 +544,7 @@ type AuthBackendRoleArgs struct {
 	BoundSubject pulumi.StringPtrInput
 	// If set, a map of claims (keys) to be copied
 	// to specified metadata fields (values).
-	ClaimMappings pulumi.MapInput
+	ClaimMappings pulumi.StringMapInput
 	// The amount of leeway to add to all claims to account for clock skew, in
 	// seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
 	// Only applicable with "jwt" roles.
@@ -720,8 +720,8 @@ func (o AuthBackendRoleOutput) BoundAudiences() pulumi.StringArrayOutput {
 // If set, a map of claims to values to match against.
 // A claim's value must be a string, which may contain one value or multiple
 // comma-separated values, e.g. `"red"` or `"red,green,blue"`.
-func (o AuthBackendRoleOutput) BoundClaims() pulumi.MapOutput {
-	return o.ApplyT(func(v *AuthBackendRole) pulumi.MapOutput { return v.BoundClaims }).(pulumi.MapOutput)
+func (o AuthBackendRoleOutput) BoundClaims() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.BoundClaims }).(pulumi.StringMapOutput)
 }
 
 // How to interpret values in the claims/values
@@ -739,8 +739,8 @@ func (o AuthBackendRoleOutput) BoundSubject() pulumi.StringPtrOutput {
 
 // If set, a map of claims (keys) to be copied
 // to specified metadata fields (values).
-func (o AuthBackendRoleOutput) ClaimMappings() pulumi.MapOutput {
-	return o.ApplyT(func(v *AuthBackendRole) pulumi.MapOutput { return v.ClaimMappings }).(pulumi.MapOutput)
+func (o AuthBackendRoleOutput) ClaimMappings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.ClaimMappings }).(pulumi.StringMapOutput)
 }
 
 // The amount of leeway to add to all claims to account for clock skew, in

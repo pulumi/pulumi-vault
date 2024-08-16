@@ -64,11 +64,11 @@ export interface GetEncodeArgs {
     /**
      * Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
      */
-    batchInputs?: {[key: string]: any}[];
+    batchInputs?: {[key: string]: string}[];
     /**
      * The result of encoding a batch.
      */
-    batchResults?: {[key: string]: any}[];
+    batchResults?: {[key: string]: string}[];
     /**
      * The result of encoding a value.
      */
@@ -106,8 +106,8 @@ export interface GetEncodeArgs {
  * A collection of values returned by getEncode.
  */
 export interface GetEncodeResult {
-    readonly batchInputs?: {[key: string]: any}[];
-    readonly batchResults: {[key: string]: any}[];
+    readonly batchInputs?: {[key: string]: string}[];
+    readonly batchResults: {[key: string]: string}[];
     readonly encodedValue: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -168,11 +168,11 @@ export interface GetEncodeOutputArgs {
     /**
      * Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
      */
-    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * The result of encoding a batch.
      */
-    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * The result of encoding a value.
      */

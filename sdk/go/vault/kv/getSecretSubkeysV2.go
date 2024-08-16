@@ -31,8 +31,8 @@ import (
 //			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
 //				Path: pulumi.String("kvv2"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.Map{
-//					"version": pulumi.Any("2"),
+//				Options: pulumi.StringMap{
+//					"version": pulumi.String("2"),
 //				},
 //				Description: pulumi.String("KV Version 2 secret engine mount"),
 //			})
@@ -105,7 +105,7 @@ type GetSecretSubkeysV2Args struct {
 // A collection of values returned by getSecretSubkeysV2.
 type GetSecretSubkeysV2Result struct {
 	// Subkeys for the KV-V2 secret stored as a serialized map of strings.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Subkeys for the KV-V2 secret read from Vault.
 	DataJson string `pulumi:"dataJson"`
 	Depth    *int   `pulumi:"depth"`
@@ -176,8 +176,8 @@ func (o GetSecretSubkeysV2ResultOutput) ToGetSecretSubkeysV2ResultOutputWithCont
 }
 
 // Subkeys for the KV-V2 secret stored as a serialized map of strings.
-func (o GetSecretSubkeysV2ResultOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v GetSecretSubkeysV2Result) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o GetSecretSubkeysV2ResultOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetSecretSubkeysV2Result) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Subkeys for the KV-V2 secret read from Vault.

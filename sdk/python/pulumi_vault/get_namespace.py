@@ -43,7 +43,7 @@ class GetNamespaceResult:
 
     @property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Mapping[str, Any]:
+    def custom_metadata(self) -> Mapping[str, str]:
         """
         (Optional) A map of strings containing arbitrary metadata for the namespace.
         Only fetched if `path` is specified.

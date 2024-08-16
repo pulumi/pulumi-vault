@@ -12,7 +12,6 @@ import com.pulumi.vault.ssh.SecretBackendRoleArgs;
 import com.pulumi.vault.ssh.inputs.SecretBackendRoleState;
 import com.pulumi.vault.ssh.outputs.SecretBackendRoleAllowedUserKeyConfig;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -307,28 +306,28 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * Specifies a map of critical options that certificates have when signed.
      * 
      */
-    @Export(name="defaultCriticalOptions", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> defaultCriticalOptions;
+    @Export(name="defaultCriticalOptions", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> defaultCriticalOptions;
 
     /**
      * @return Specifies a map of critical options that certificates have when signed.
      * 
      */
-    public Output<Optional<Map<String,Object>>> defaultCriticalOptions() {
+    public Output<Optional<Map<String,String>>> defaultCriticalOptions() {
         return Codegen.optional(this.defaultCriticalOptions);
     }
     /**
      * Specifies a map of extensions that certificates have when signed.
      * 
      */
-    @Export(name="defaultExtensions", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> defaultExtensions;
+    @Export(name="defaultExtensions", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> defaultExtensions;
 
     /**
      * @return Specifies a map of extensions that certificates have when signed.
      * 
      */
-    public Output<Optional<Map<String,Object>>> defaultExtensions() {
+    public Output<Optional<Map<String,String>>> defaultExtensions() {
         return Codegen.optional(this.defaultExtensions);
     }
     /**

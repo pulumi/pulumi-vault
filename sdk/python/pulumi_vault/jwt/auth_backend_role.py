@@ -19,10 +19,10 @@ class AuthBackendRoleArgs:
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_claims_type: Optional[pulumi.Input[str]] = None,
                  bound_subject: Optional[pulumi.Input[str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  clock_skew_leeway: Optional[pulumi.Input[int]] = None,
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
@@ -55,7 +55,7 @@ class AuthBackendRoleArgs:
                Defaults to `jwt`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
@@ -63,7 +63,7 @@ class AuthBackendRoleArgs:
                match). Requires Vault 1.4.0 or above.
         :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
                this value.
-        :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: If set, a map of claims (keys) to be copied
                to specified metadata fields (values).
         :param pulumi.Input[int] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
                seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -229,7 +229,7 @@ class AuthBackendRoleArgs:
 
     @property
     @pulumi.getter(name="boundClaims")
-    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         If set, a map of claims to values to match against.
         A claim's value must be a string, which may contain one value or multiple
@@ -238,7 +238,7 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_claims")
 
     @bound_claims.setter
-    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "bound_claims", value)
 
     @property
@@ -270,7 +270,7 @@ class AuthBackendRoleArgs:
 
     @property
     @pulumi.getter(name="claimMappings")
-    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         If set, a map of claims (keys) to be copied
         to specified metadata fields (values).
@@ -278,7 +278,7 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "claim_mappings")
 
     @claim_mappings.setter
-    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "claim_mappings", value)
 
     @property
@@ -547,10 +547,10 @@ class _AuthBackendRoleState:
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_claims_type: Optional[pulumi.Input[str]] = None,
                  bound_subject: Optional[pulumi.Input[str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  clock_skew_leeway: Optional[pulumi.Input[int]] = None,
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
@@ -581,7 +581,7 @@ class _AuthBackendRoleState:
                Defaults to `jwt`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
@@ -589,7 +589,7 @@ class _AuthBackendRoleState:
                match). Requires Vault 1.4.0 or above.
         :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
                this value.
-        :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: If set, a map of claims (keys) to be copied
                to specified metadata fields (values).
         :param pulumi.Input[int] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
                seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -735,7 +735,7 @@ class _AuthBackendRoleState:
 
     @property
     @pulumi.getter(name="boundClaims")
-    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         If set, a map of claims to values to match against.
         A claim's value must be a string, which may contain one value or multiple
@@ -744,7 +744,7 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_claims")
 
     @bound_claims.setter
-    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "bound_claims", value)
 
     @property
@@ -776,7 +776,7 @@ class _AuthBackendRoleState:
 
     @property
     @pulumi.getter(name="claimMappings")
-    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         If set, a map of claims (keys) to be copied
         to specified metadata fields (values).
@@ -784,7 +784,7 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "claim_mappings")
 
     @claim_mappings.setter
-    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "claim_mappings", value)
 
     @property
@@ -1081,10 +1081,10 @@ class AuthBackendRole(pulumi.CustomResource):
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_claims_type: Optional[pulumi.Input[str]] = None,
                  bound_subject: Optional[pulumi.Input[str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  clock_skew_leeway: Optional[pulumi.Input[int]] = None,
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
@@ -1176,7 +1176,7 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `jwt`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
@@ -1184,7 +1184,7 @@ class AuthBackendRole(pulumi.CustomResource):
                match). Requires Vault 1.4.0 or above.
         :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
                this value.
-        :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: If set, a map of claims (keys) to be copied
                to specified metadata fields (values).
         :param pulumi.Input[int] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
                seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -1314,10 +1314,10 @@ class AuthBackendRole(pulumi.CustomResource):
                  allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  bound_claims_type: Optional[pulumi.Input[str]] = None,
                  bound_subject: Optional[pulumi.Input[str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  clock_skew_leeway: Optional[pulumi.Input[int]] = None,
                  disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
                  expiration_leeway: Optional[pulumi.Input[int]] = None,
@@ -1395,10 +1395,10 @@ class AuthBackendRole(pulumi.CustomResource):
             allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            bound_claims: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             bound_claims_type: Optional[pulumi.Input[str]] = None,
             bound_subject: Optional[pulumi.Input[str]] = None,
-            claim_mappings: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             clock_skew_leeway: Optional[pulumi.Input[int]] = None,
             disable_bound_claims_parsing: Optional[pulumi.Input[bool]] = None,
             expiration_leeway: Optional[pulumi.Input[int]] = None,
@@ -1434,7 +1434,7 @@ class AuthBackendRole(pulumi.CustomResource):
                Defaults to `jwt`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: (Required for roles of type `jwt`, optional for roles of
                type `oidc`) List of `aud` claims to match against. Any match is sufficient.
-        :param pulumi.Input[Mapping[str, Any]] bound_claims: If set, a map of claims to values to match against.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] bound_claims: If set, a map of claims to values to match against.
                A claim's value must be a string, which may contain one value or multiple
                comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         :param pulumi.Input[str] bound_claims_type: How to interpret values in the claims/values
@@ -1442,7 +1442,7 @@ class AuthBackendRole(pulumi.CustomResource):
                match). Requires Vault 1.4.0 or above.
         :param pulumi.Input[str] bound_subject: If set, requires that the `sub` claim matches
                this value.
-        :param pulumi.Input[Mapping[str, Any]] claim_mappings: If set, a map of claims (keys) to be copied
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: If set, a map of claims (keys) to be copied
                to specified metadata fields (values).
         :param pulumi.Input[int] clock_skew_leeway: The amount of leeway to add to all claims to account for clock skew, in
                seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -1552,7 +1552,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="boundClaims")
-    def bound_claims(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def bound_claims(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         If set, a map of claims to values to match against.
         A claim's value must be a string, which may contain one value or multiple
@@ -1581,7 +1581,7 @@ class AuthBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="claimMappings")
-    def claim_mappings(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def claim_mappings(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         If set, a map of claims (keys) to be copied
         to specified metadata fields (values).

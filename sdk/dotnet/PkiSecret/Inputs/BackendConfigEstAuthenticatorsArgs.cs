@@ -13,26 +13,26 @@ namespace Pulumi.Vault.PkiSecret.Inputs
     public sealed class BackendConfigEstAuthenticatorsArgs : global::Pulumi.ResourceArgs
     {
         [Input("cert")]
-        private InputMap<object>? _cert;
+        private InputMap<string>? _cert;
 
         /// <summary>
         /// "The accessor (required) and cert_role (optional) properties for cert auth backends".
         /// </summary>
-        public InputMap<object> Cert
+        public InputMap<string> Cert
         {
-            get => _cert ?? (_cert = new InputMap<object>());
+            get => _cert ?? (_cert = new InputMap<string>());
             set => _cert = value;
         }
 
         [Input("userpass")]
-        private InputMap<object>? _userpass;
+        private InputMap<string>? _userpass;
 
         /// <summary>
         /// "The accessor (required) property for user pass auth backends".
         /// </summary>
-        public InputMap<object> Userpass
+        public InputMap<string> Userpass
         {
-            get => _userpass ?? (_userpass = new InputMap<object>());
+            get => _userpass ?? (_userpass = new InputMap<string>());
             set => _userpass = value;
         }
 

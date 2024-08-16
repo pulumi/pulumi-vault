@@ -6,7 +6,6 @@ package com.pulumi.vault.database.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +37,7 @@ public final class SecretsMountCouchbase {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,Object> data;
+    private @Nullable Map<String,String> data;
     /**
      * @return A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
      * 
@@ -120,7 +119,7 @@ public final class SecretsMountCouchbase {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
     }
     /**
@@ -207,7 +206,7 @@ public final class SecretsMountCouchbase {
         private @Nullable List<String> allowedRoles;
         private @Nullable String base64Pem;
         private @Nullable String bucketName;
-        private @Nullable Map<String,Object> data;
+        private @Nullable Map<String,String> data;
         private List<String> hosts;
         private @Nullable Boolean insecureTls;
         private String name;
@@ -259,7 +258,7 @@ public final class SecretsMountCouchbase {
             return this;
         }
         @CustomType.Setter
-        public Builder data(@Nullable Map<String,Object> data) {
+        public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
             return this;

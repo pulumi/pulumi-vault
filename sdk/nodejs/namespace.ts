@@ -87,7 +87,7 @@ export class Namespace extends pulumi.CustomResource {
      * Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      */
-    public readonly customMetadata!: pulumi.Output<{[key: string]: any}>;
+    public readonly customMetadata!: pulumi.Output<{[key: string]: string}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -151,7 +151,7 @@ export interface NamespaceState {
      * Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      */
-    customMetadata?: pulumi.Input<{[key: string]: any}>;
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -182,7 +182,7 @@ export interface NamespaceArgs {
      * Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      */
-    customMetadata?: pulumi.Input<{[key: string]: any}>;
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

@@ -79,7 +79,7 @@ namespace Pulumi.Vault.Transform
         /// the decoded output. (requires Vault Enterprise 1.9+)
         /// </summary>
         [Output("decodeFormats")]
-        public Output<ImmutableDictionary<string, object>?> DecodeFormats { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> DecodeFormats { get; private set; } = null!;
 
         /// <summary>
         /// The regular expression template used to format encoded values.
@@ -174,15 +174,15 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Alphabet { get; set; }
 
         [Input("decodeFormats")]
-        private InputMap<object>? _decodeFormats;
+        private InputMap<string>? _decodeFormats;
 
         /// <summary>
         /// Optional mapping of name to regular expression template, used to customize
         /// the decoded output. (requires Vault Enterprise 1.9+)
         /// </summary>
-        public InputMap<object> DecodeFormats
+        public InputMap<string> DecodeFormats
         {
-            get => _decodeFormats ?? (_decodeFormats = new InputMap<object>());
+            get => _decodeFormats ?? (_decodeFormats = new InputMap<string>());
             set => _decodeFormats = value;
         }
 
@@ -241,15 +241,15 @@ namespace Pulumi.Vault.Transform
         public Input<string>? Alphabet { get; set; }
 
         [Input("decodeFormats")]
-        private InputMap<object>? _decodeFormats;
+        private InputMap<string>? _decodeFormats;
 
         /// <summary>
         /// Optional mapping of name to regular expression template, used to customize
         /// the decoded output. (requires Vault Enterprise 1.9+)
         /// </summary>
-        public InputMap<object> DecodeFormats
+        public InputMap<string> DecodeFormats
         {
-            get => _decodeFormats ?? (_decodeFormats = new InputMap<object>());
+            get => _decodeFormats ?? (_decodeFormats = new InputMap<string>());
             set => _decodeFormats = value;
         }
 

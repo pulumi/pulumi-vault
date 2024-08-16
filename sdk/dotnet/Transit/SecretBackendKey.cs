@@ -107,7 +107,7 @@ namespace Pulumi.Vault.Transit
         /// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         /// </summary>
         [Output("keys")]
-        public Output<ImmutableArray<ImmutableDictionary<string, object>>> Keys { get; private set; } = null!;
+        public Output<ImmutableArray<ImmutableDictionary<string, string>>> Keys { get; private set; } = null!;
 
         /// <summary>
         /// Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
@@ -368,16 +368,16 @@ namespace Pulumi.Vault.Transit
         public Input<int>? KeySize { get; set; }
 
         [Input("keys")]
-        private InputList<ImmutableDictionary<string, object>>? _keys;
+        private InputList<ImmutableDictionary<string, string>>? _keys;
 
         /// <summary>
         /// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
         /// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
         /// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         /// </summary>
-        public InputList<ImmutableDictionary<string, object>> Keys
+        public InputList<ImmutableDictionary<string, string>> Keys
         {
-            get => _keys ?? (_keys = new InputList<ImmutableDictionary<string, object>>());
+            get => _keys ?? (_keys = new InputList<ImmutableDictionary<string, string>>());
             set => _keys = value;
         }
 

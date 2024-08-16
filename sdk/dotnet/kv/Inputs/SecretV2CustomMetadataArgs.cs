@@ -19,7 +19,7 @@ namespace Pulumi.Vault.kv.Inputs
         public Input<bool>? CasRequired { get; set; }
 
         [Input("data")]
-        private InputMap<object>? _data;
+        private InputMap<string>? _data;
 
         /// <summary>
         /// A mapping whose keys are the top-level data keys returned from
@@ -27,9 +27,9 @@ namespace Pulumi.Vault.kv.Inputs
         /// represent string data, so any non-string values returned from Vault are
         /// serialized as JSON.
         /// </summary>
-        public InputMap<object> Data
+        public InputMap<string> Data
         {
-            get => _data ?? (_data = new InputMap<object>());
+            get => _data ?? (_data = new InputMap<string>());
             set => _data = value;
         }
 

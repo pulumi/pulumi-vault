@@ -6,7 +6,6 @@ package com.pulumi.vault.kv.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -19,7 +18,7 @@ public final class GetSecretSubkeysV2Result {
      * @return Subkeys for the KV-V2 secret stored as a serialized map of strings.
      * 
      */
-    private Map<String,Object> data;
+    private Map<String,String> data;
     /**
      * @return Subkeys for the KV-V2 secret read from Vault.
      * 
@@ -46,7 +45,7 @@ public final class GetSecretSubkeysV2Result {
      * @return Subkeys for the KV-V2 secret stored as a serialized map of strings.
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data;
     }
     /**
@@ -95,7 +94,7 @@ public final class GetSecretSubkeysV2Result {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> data;
+        private Map<String,String> data;
         private String dataJson;
         private @Nullable Integer depth;
         private String id;
@@ -119,7 +118,7 @@ public final class GetSecretSubkeysV2Result {
         }
 
         @CustomType.Setter
-        public Builder data(Map<String,Object> data) {
+        public Builder data(Map<String,String> data) {
             if (data == null) {
               throw new MissingRequiredPropertyException("GetSecretSubkeysV2Result", "data");
             }

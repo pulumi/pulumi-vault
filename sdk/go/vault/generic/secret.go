@@ -26,7 +26,7 @@ type Secret struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data pulumi.MapOutput `pulumi:"data"`
+	Data pulumi.StringMapOutput `pulumi:"data"`
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringOutput `pulumi:"dataJson"`
@@ -100,7 +100,7 @@ type secretState struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson *string `pulumi:"dataJson"`
@@ -131,7 +131,7 @@ type SecretState struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data pulumi.MapInput
+	Data pulumi.StringMapInput
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrInput
@@ -305,8 +305,8 @@ func (o SecretOutput) ToSecretOutputWithContext(ctx context.Context) SecretOutpu
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o SecretOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v *Secret) pulumi.MapOutput { return v.Data }).(pulumi.MapOutput)
+func (o SecretOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringMapOutput { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // String containing a JSON-encoded object that will be

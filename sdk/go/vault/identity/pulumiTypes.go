@@ -25,7 +25,7 @@ type GetEntityAliasType struct {
 	// List of canonical IDs merged with this alias
 	MergedFromCanonicalIds []string `pulumi:"mergedFromCanonicalIds"`
 	// Arbitrary metadata
-	Metadata map[string]interface{} `pulumi:"metadata"`
+	Metadata map[string]string `pulumi:"metadata"`
 	// Authentication mount acccessor which this alias belongs to
 	MountAccessor string `pulumi:"mountAccessor"`
 	// Authentication mount path which this alias belongs to
@@ -59,7 +59,7 @@ type GetEntityAliasTypeArgs struct {
 	// List of canonical IDs merged with this alias
 	MergedFromCanonicalIds pulumi.StringArrayInput `pulumi:"mergedFromCanonicalIds"`
 	// Arbitrary metadata
-	Metadata pulumi.MapInput `pulumi:"metadata"`
+	Metadata pulumi.StringMapInput `pulumi:"metadata"`
 	// Authentication mount acccessor which this alias belongs to
 	MountAccessor pulumi.StringInput `pulumi:"mountAccessor"`
 	// Authentication mount path which this alias belongs to
@@ -147,8 +147,8 @@ func (o GetEntityAliasTypeOutput) MergedFromCanonicalIds() pulumi.StringArrayOut
 }
 
 // Arbitrary metadata
-func (o GetEntityAliasTypeOutput) Metadata() pulumi.MapOutput {
-	return o.ApplyT(func(v GetEntityAliasType) map[string]interface{} { return v.Metadata }).(pulumi.MapOutput)
+func (o GetEntityAliasTypeOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEntityAliasType) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
 // Authentication mount acccessor which this alias belongs to

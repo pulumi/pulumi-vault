@@ -86,7 +86,7 @@ namespace Pulumi.Vault.Database
         /// The following options are available for each `credential_type` value:
         /// </summary>
         [Output("credentialConfig")]
-        public Output<ImmutableDictionary<string, object>?> CredentialConfig { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> CredentialConfig { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the type of credential that
@@ -219,7 +219,7 @@ namespace Pulumi.Vault.Database
         }
 
         [Input("credentialConfig")]
-        private InputMap<object>? _credentialConfig;
+        private InputMap<string>? _credentialConfig;
 
         /// <summary>
         /// Specifies the configuration
@@ -227,9 +227,9 @@ namespace Pulumi.Vault.Database
         /// 
         /// The following options are available for each `credential_type` value:
         /// </summary>
-        public InputMap<object> CredentialConfig
+        public InputMap<string> CredentialConfig
         {
-            get => _credentialConfig ?? (_credentialConfig = new InputMap<object>());
+            get => _credentialConfig ?? (_credentialConfig = new InputMap<string>());
             set => _credentialConfig = value;
         }
 
@@ -344,7 +344,7 @@ namespace Pulumi.Vault.Database
         }
 
         [Input("credentialConfig")]
-        private InputMap<object>? _credentialConfig;
+        private InputMap<string>? _credentialConfig;
 
         /// <summary>
         /// Specifies the configuration
@@ -352,9 +352,9 @@ namespace Pulumi.Vault.Database
         /// 
         /// The following options are available for each `credential_type` value:
         /// </summary>
-        public InputMap<object> CredentialConfig
+        public InputMap<string> CredentialConfig
         {
-            get => _credentialConfig ?? (_credentialConfig = new InputMap<object>());
+            get => _credentialConfig ?? (_credentialConfig = new InputMap<string>());
             set => _credentialConfig = value;
         }
 

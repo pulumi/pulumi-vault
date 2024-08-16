@@ -80,7 +80,7 @@ export interface GetNamespaceResult {
      * Only fetched if `path` is specified.
      * *Requires Vault 1.12+.*
      */
-    readonly customMetadata: {[key: string]: any};
+    readonly customMetadata: {[key: string]: string};
     /**
      * The provider-assigned unique ID for this managed resource.
      */

@@ -61,7 +61,7 @@ namespace Pulumi.Vault.Secrets
         /// Custom tags to set on the secret managed at the destination.
         /// </summary>
         [Output("customTags")]
-        public Output<ImmutableDictionary<string, object>?> CustomTags { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> CustomTags { get; private set; } = null!;
 
         /// <summary>
         /// Optional extra protection that must match the trust policy granting access to the
@@ -192,14 +192,14 @@ namespace Pulumi.Vault.Secrets
         public Input<string>? AccessKeyId { get; set; }
 
         [Input("customTags")]
-        private InputMap<object>? _customTags;
+        private InputMap<string>? _customTags;
 
         /// <summary>
         /// Custom tags to set on the secret managed at the destination.
         /// </summary>
-        public InputMap<object> CustomTags
+        public InputMap<string> CustomTags
         {
-            get => _customTags ?? (_customTags = new InputMap<object>());
+            get => _customTags ?? (_customTags = new InputMap<string>());
             set => _customTags = value;
         }
 
@@ -294,14 +294,14 @@ namespace Pulumi.Vault.Secrets
         public Input<string>? AccessKeyId { get; set; }
 
         [Input("customTags")]
-        private InputMap<object>? _customTags;
+        private InputMap<string>? _customTags;
 
         /// <summary>
         /// Custom tags to set on the secret managed at the destination.
         /// </summary>
-        public InputMap<object> CustomTags
+        public InputMap<string> CustomTags
         {
-            get => _customTags ?? (_customTags = new InputMap<object>());
+            get => _customTags ?? (_customTags = new InputMap<string>());
             set => _customTags = value;
         }
 

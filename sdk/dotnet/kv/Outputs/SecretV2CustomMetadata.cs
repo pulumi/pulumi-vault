@@ -23,7 +23,7 @@ namespace Pulumi.Vault.kv.Outputs
         /// represent string data, so any non-string values returned from Vault are
         /// serialized as JSON.
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// If set, specifies the length of time before a version is deleted.
         /// </summary>
@@ -37,7 +37,7 @@ namespace Pulumi.Vault.kv.Outputs
         private SecretV2CustomMetadata(
             bool? casRequired,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             int? deleteVersionAfter,
 

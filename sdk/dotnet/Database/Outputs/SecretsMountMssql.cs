@@ -31,7 +31,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// Disable special character escaping in username and password
         /// </summary>
@@ -86,7 +86,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             bool? containedDb,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             bool? disableEscaping,
 

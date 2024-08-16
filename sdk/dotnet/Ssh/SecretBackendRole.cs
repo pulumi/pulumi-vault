@@ -157,13 +157,13 @@ namespace Pulumi.Vault.Ssh
         /// Specifies a map of critical options that certificates have when signed.
         /// </summary>
         [Output("defaultCriticalOptions")]
-        public Output<ImmutableDictionary<string, object>?> DefaultCriticalOptions { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> DefaultCriticalOptions { get; private set; } = null!;
 
         /// <summary>
         /// Specifies a map of extensions that certificates have when signed.
         /// </summary>
         [Output("defaultExtensions")]
-        public Output<ImmutableDictionary<string, object>?> DefaultExtensions { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> DefaultExtensions { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the default username for which a credential will be generated.
@@ -368,26 +368,26 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? CidrList { get; set; }
 
         [Input("defaultCriticalOptions")]
-        private InputMap<object>? _defaultCriticalOptions;
+        private InputMap<string>? _defaultCriticalOptions;
 
         /// <summary>
         /// Specifies a map of critical options that certificates have when signed.
         /// </summary>
-        public InputMap<object> DefaultCriticalOptions
+        public InputMap<string> DefaultCriticalOptions
         {
-            get => _defaultCriticalOptions ?? (_defaultCriticalOptions = new InputMap<object>());
+            get => _defaultCriticalOptions ?? (_defaultCriticalOptions = new InputMap<string>());
             set => _defaultCriticalOptions = value;
         }
 
         [Input("defaultExtensions")]
-        private InputMap<object>? _defaultExtensions;
+        private InputMap<string>? _defaultExtensions;
 
         /// <summary>
         /// Specifies a map of extensions that certificates have when signed.
         /// </summary>
-        public InputMap<object> DefaultExtensions
+        public InputMap<string> DefaultExtensions
         {
-            get => _defaultExtensions ?? (_defaultExtensions = new InputMap<object>());
+            get => _defaultExtensions ?? (_defaultExtensions = new InputMap<string>());
             set => _defaultExtensions = value;
         }
 
@@ -556,26 +556,26 @@ namespace Pulumi.Vault.Ssh
         public Input<string>? CidrList { get; set; }
 
         [Input("defaultCriticalOptions")]
-        private InputMap<object>? _defaultCriticalOptions;
+        private InputMap<string>? _defaultCriticalOptions;
 
         /// <summary>
         /// Specifies a map of critical options that certificates have when signed.
         /// </summary>
-        public InputMap<object> DefaultCriticalOptions
+        public InputMap<string> DefaultCriticalOptions
         {
-            get => _defaultCriticalOptions ?? (_defaultCriticalOptions = new InputMap<object>());
+            get => _defaultCriticalOptions ?? (_defaultCriticalOptions = new InputMap<string>());
             set => _defaultCriticalOptions = value;
         }
 
         [Input("defaultExtensions")]
-        private InputMap<object>? _defaultExtensions;
+        private InputMap<string>? _defaultExtensions;
 
         /// <summary>
         /// Specifies a map of extensions that certificates have when signed.
         /// </summary>
-        public InputMap<object> DefaultExtensions
+        public InputMap<string> DefaultExtensions
         {
-            get => _defaultExtensions ?? (_defaultExtensions = new InputMap<object>());
+            get => _defaultExtensions ?? (_defaultExtensions = new InputMap<string>());
             set => _defaultExtensions = value;
         }
 

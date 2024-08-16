@@ -80,7 +80,7 @@ type GetBackendKeysResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Map of key strings read from Vault.
-	KeyInfo map[string]interface{} `pulumi:"keyInfo"`
+	KeyInfo map[string]string `pulumi:"keyInfo"`
 	// JSON-encoded key data read from Vault.
 	KeyInfoJson string `pulumi:"keyInfoJson"`
 	// Keys used under the backend path.
@@ -142,8 +142,8 @@ func (o GetBackendKeysResultOutput) Id() pulumi.StringOutput {
 }
 
 // Map of key strings read from Vault.
-func (o GetBackendKeysResultOutput) KeyInfo() pulumi.MapOutput {
-	return o.ApplyT(func(v GetBackendKeysResult) map[string]interface{} { return v.KeyInfo }).(pulumi.MapOutput)
+func (o GetBackendKeysResultOutput) KeyInfo() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendKeysResult) map[string]string { return v.KeyInfo }).(pulumi.StringMapOutput)
 }
 
 // JSON-encoded key data read from Vault.

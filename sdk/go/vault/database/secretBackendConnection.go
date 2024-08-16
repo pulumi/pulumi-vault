@@ -74,7 +74,7 @@ type SecretBackendConnection struct {
 	// A nested block containing configuration options for Couchbase connections.
 	Couchbase SecretBackendConnectionCouchbasePtrOutput `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-	Data pulumi.MapOutput `pulumi:"data"`
+	Data pulumi.StringMapOutput `pulumi:"data"`
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch SecretBackendConnectionElasticsearchPtrOutput `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -168,7 +168,7 @@ type secretBackendConnectionState struct {
 	// A nested block containing configuration options for Couchbase connections.
 	Couchbase *SecretBackendConnectionCouchbase `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -230,7 +230,7 @@ type SecretBackendConnectionState struct {
 	// A nested block containing configuration options for Couchbase connections.
 	Couchbase SecretBackendConnectionCouchbasePtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-	Data pulumi.MapInput
+	Data pulumi.StringMapInput
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -296,7 +296,7 @@ type secretBackendConnectionArgs struct {
 	// A nested block containing configuration options for Couchbase connections.
 	Couchbase *SecretBackendConnectionCouchbase `pulumi:"couchbase"`
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch *SecretBackendConnectionElasticsearch `pulumi:"elasticsearch"`
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -359,7 +359,7 @@ type SecretBackendConnectionArgs struct {
 	// A nested block containing configuration options for Couchbase connections.
 	Couchbase SecretBackendConnectionCouchbasePtrInput
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-	Data pulumi.MapInput
+	Data pulumi.StringMapInput
 	// A nested block containing configuration options for Elasticsearch connections.
 	Elasticsearch SecretBackendConnectionElasticsearchPtrInput
 	// A nested block containing configuration options for SAP HanaDB connections.
@@ -519,8 +519,8 @@ func (o SecretBackendConnectionOutput) Couchbase() SecretBackendConnectionCouchb
 }
 
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-func (o SecretBackendConnectionOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretBackendConnection) pulumi.MapOutput { return v.Data }).(pulumi.MapOutput)
+func (o SecretBackendConnectionOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendConnection) pulumi.StringMapOutput { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // A nested block containing configuration options for Elasticsearch connections.

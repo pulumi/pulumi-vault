@@ -106,9 +106,9 @@ type SecretBackendRole struct {
 	// The comma-separated string of CIDR blocks for which this role is applicable.
 	CidrList pulumi.StringPtrOutput `pulumi:"cidrList"`
 	// Specifies a map of critical options that certificates have when signed.
-	DefaultCriticalOptions pulumi.MapOutput `pulumi:"defaultCriticalOptions"`
+	DefaultCriticalOptions pulumi.StringMapOutput `pulumi:"defaultCriticalOptions"`
 	// Specifies a map of extensions that certificates have when signed.
-	DefaultExtensions pulumi.MapOutput `pulumi:"defaultExtensions"`
+	DefaultExtensions pulumi.StringMapOutput `pulumi:"defaultExtensions"`
 	// Specifies the default username for which a credential will be generated.
 	DefaultUser pulumi.StringPtrOutput `pulumi:"defaultUser"`
 	// If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
@@ -202,9 +202,9 @@ type secretBackendRoleState struct {
 	// The comma-separated string of CIDR blocks for which this role is applicable.
 	CidrList *string `pulumi:"cidrList"`
 	// Specifies a map of critical options that certificates have when signed.
-	DefaultCriticalOptions map[string]interface{} `pulumi:"defaultCriticalOptions"`
+	DefaultCriticalOptions map[string]string `pulumi:"defaultCriticalOptions"`
 	// Specifies a map of extensions that certificates have when signed.
-	DefaultExtensions map[string]interface{} `pulumi:"defaultExtensions"`
+	DefaultExtensions map[string]string `pulumi:"defaultExtensions"`
 	// Specifies the default username for which a credential will be generated.
 	DefaultUser *string `pulumi:"defaultUser"`
 	// If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
@@ -263,9 +263,9 @@ type SecretBackendRoleState struct {
 	// The comma-separated string of CIDR blocks for which this role is applicable.
 	CidrList pulumi.StringPtrInput
 	// Specifies a map of critical options that certificates have when signed.
-	DefaultCriticalOptions pulumi.MapInput
+	DefaultCriticalOptions pulumi.StringMapInput
 	// Specifies a map of extensions that certificates have when signed.
-	DefaultExtensions pulumi.MapInput
+	DefaultExtensions pulumi.StringMapInput
 	// Specifies the default username for which a credential will be generated.
 	DefaultUser pulumi.StringPtrInput
 	// If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
@@ -328,9 +328,9 @@ type secretBackendRoleArgs struct {
 	// The comma-separated string of CIDR blocks for which this role is applicable.
 	CidrList *string `pulumi:"cidrList"`
 	// Specifies a map of critical options that certificates have when signed.
-	DefaultCriticalOptions map[string]interface{} `pulumi:"defaultCriticalOptions"`
+	DefaultCriticalOptions map[string]string `pulumi:"defaultCriticalOptions"`
 	// Specifies a map of extensions that certificates have when signed.
-	DefaultExtensions map[string]interface{} `pulumi:"defaultExtensions"`
+	DefaultExtensions map[string]string `pulumi:"defaultExtensions"`
 	// Specifies the default username for which a credential will be generated.
 	DefaultUser *string `pulumi:"defaultUser"`
 	// If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
@@ -390,9 +390,9 @@ type SecretBackendRoleArgs struct {
 	// The comma-separated string of CIDR blocks for which this role is applicable.
 	CidrList pulumi.StringPtrInput
 	// Specifies a map of critical options that certificates have when signed.
-	DefaultCriticalOptions pulumi.MapInput
+	DefaultCriticalOptions pulumi.StringMapInput
 	// Specifies a map of extensions that certificates have when signed.
-	DefaultExtensions pulumi.MapInput
+	DefaultExtensions pulumi.StringMapInput
 	// Specifies the default username for which a credential will be generated.
 	DefaultUser pulumi.StringPtrInput
 	// If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
@@ -584,13 +584,13 @@ func (o SecretBackendRoleOutput) CidrList() pulumi.StringPtrOutput {
 }
 
 // Specifies a map of critical options that certificates have when signed.
-func (o SecretBackendRoleOutput) DefaultCriticalOptions() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.DefaultCriticalOptions }).(pulumi.MapOutput)
+func (o SecretBackendRoleOutput) DefaultCriticalOptions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringMapOutput { return v.DefaultCriticalOptions }).(pulumi.StringMapOutput)
 }
 
 // Specifies a map of extensions that certificates have when signed.
-func (o SecretBackendRoleOutput) DefaultExtensions() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.DefaultExtensions }).(pulumi.MapOutput)
+func (o SecretBackendRoleOutput) DefaultExtensions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringMapOutput { return v.DefaultExtensions }).(pulumi.StringMapOutput)
 }
 
 // Specifies the default username for which a credential will be generated.

@@ -75,7 +75,7 @@ export interface GetOidcPublicKeysResult {
      * The public portion of keys for an OIDC provider. 
      * Clients can use them to validate the authenticity of an identity token.
      */
-    readonly keys: {[key: string]: any}[];
+    readonly keys: {[key: string]: string}[];
     readonly name: string;
     readonly namespace?: string;
 }

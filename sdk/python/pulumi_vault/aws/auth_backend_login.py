@@ -243,7 +243,7 @@ class _AuthBackendLoginState:
                  identity: Optional[pulumi.Input[str]] = None,
                  lease_duration: Optional[pulumi.Input[int]] = None,
                  lease_start_time: Optional[pulumi.Input[str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  nonce: Optional[pulumi.Input[str]] = None,
                  pkcs7: Optional[pulumi.Input[str]] = None,
@@ -270,7 +270,7 @@ class _AuthBackendLoginState:
                authenticate with. Can be retrieved from the EC2 metadata server.
         :param pulumi.Input[int] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
-        :param pulumi.Input[Mapping[str, Any]] metadata: A map of information returned by the Vault server about the
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -468,7 +468,7 @@ class _AuthBackendLoginState:
 
     @property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of information returned by the Vault server about the
         authentication used to generate this token.
@@ -476,7 +476,7 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metadata", value)
 
     @property
@@ -718,7 +718,7 @@ class AuthBackendLogin(pulumi.CustomResource):
             identity: Optional[pulumi.Input[str]] = None,
             lease_duration: Optional[pulumi.Input[int]] = None,
             lease_start_time: Optional[pulumi.Input[str]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             nonce: Optional[pulumi.Input[str]] = None,
             pkcs7: Optional[pulumi.Input[str]] = None,
@@ -750,7 +750,7 @@ class AuthBackendLogin(pulumi.CustomResource):
                authenticate with. Can be retrieved from the EC2 metadata server.
         :param pulumi.Input[int] lease_duration: The duration in seconds the token will be valid, relative
                to the time in `lease_start_time`.
-        :param pulumi.Input[Mapping[str, Any]] metadata: A map of information returned by the Vault server about the
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A map of information returned by the Vault server about the
                authentication used to generate this token.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -890,7 +890,7 @@ class AuthBackendLogin(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def metadata(self) -> pulumi.Output[Mapping[str, Any]]:
+    def metadata(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A map of information returned by the Vault server about the
         authentication used to generate this token.

@@ -6,7 +6,6 @@ package com.pulumi.vault.generic.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -26,7 +25,7 @@ public final class SecretState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="data")
-    private @Nullable Output<Map<String,Object>> data;
+    private @Nullable Output<Map<String,String>> data;
 
     /**
      * @return A mapping whose keys are the top-level data keys returned from
@@ -35,7 +34,7 @@ public final class SecretState extends com.pulumi.resources.ResourceArgs {
      * serialized as JSON.
      * 
      */
-    public Optional<Output<Map<String,Object>>> data() {
+    public Optional<Output<Map<String,String>>> data() {
         return Optional.ofNullable(this.data);
     }
 
@@ -178,7 +177,7 @@ public final class SecretState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder data(@Nullable Output<Map<String,Object>> data) {
+        public Builder data(@Nullable Output<Map<String,String>> data) {
             $.data = data;
             return this;
         }
@@ -192,7 +191,7 @@ public final class SecretState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder data(Map<String,Object> data) {
+        public Builder data(Map<String,String> data) {
             return data(Output.of(data));
         }
 

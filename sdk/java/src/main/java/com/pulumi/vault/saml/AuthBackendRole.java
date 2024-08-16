@@ -12,7 +12,6 @@ import com.pulumi.vault.saml.AuthBackendRoleArgs;
 import com.pulumi.vault.saml.inputs.AuthBackendRoleState;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -91,15 +90,15 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
      * exist in the SAML assertion.
      * 
      */
-    @Export(name="boundAttributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> boundAttributes;
+    @Export(name="boundAttributes", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> boundAttributes;
 
     /**
      * @return Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      * 
      */
-    public Output<Optional<Map<String,Object>>> boundAttributes() {
+    public Output<Optional<Map<String,String>>> boundAttributes() {
         return Codegen.optional(this.boundAttributes);
     }
     /**

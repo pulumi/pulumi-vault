@@ -13,7 +13,6 @@ import com.pulumi.vault.kv.inputs.SecretV2State;
 import com.pulumi.vault.kv.outputs.SecretV2CustomMetadata;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -162,8 +161,8 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * serialized as JSON.
      * 
      */
-    @Export(name="data", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> data;
+    @Export(name="data", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> data;
 
     /**
      * @return A mapping whose keys are the top-level data keys returned from
@@ -172,7 +171,7 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * serialized as JSON.
      * 
      */
-    public Output<Map<String,Object>> data() {
+    public Output<Map<String,String>> data() {
         return this.data;
     }
     /**
@@ -227,14 +226,14 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * Metadata associated with this secret read from Vault.
      * 
      */
-    @Export(name="metadata", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> metadata;
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> metadata;
 
     /**
      * @return Metadata associated with this secret read from Vault.
      * 
      */
-    public Output<Map<String,Object>> metadata() {
+    public Output<Map<String,String>> metadata() {
         return this.metadata;
     }
     /**
@@ -295,14 +294,14 @@ public class SecretV2 extends com.pulumi.resources.CustomResource {
      * An object that holds option settings.
      * 
      */
-    @Export(name="options", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> options;
+    @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> options;
 
     /**
      * @return An object that holds option settings.
      * 
      */
-    public Output<Optional<Map<String,Object>>> options() {
+    public Output<Optional<Map<String,String>>> options() {
         return Codegen.optional(this.options);
     }
     /**

@@ -121,7 +121,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Additional output related to redundancy zones stored as a serialized map of strings.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> RedundancyZones;
+        public readonly ImmutableDictionary<string, string> RedundancyZones;
         /// <summary>
         /// Additional output related to redundancy zones.
         /// </summary>
@@ -129,7 +129,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Additionaly output related to servers in the cluster stored as a serialized map of strings.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Servers;
+        public readonly ImmutableDictionary<string, string> Servers;
         /// <summary>
         /// Additionaly output related to servers in the cluster.
         /// </summary>
@@ -137,7 +137,7 @@ namespace Pulumi.Vault
         /// <summary>
         /// Additional output related to upgrade information stored as a serialized map of strings.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> UpgradeInfo;
+        public readonly ImmutableDictionary<string, string> UpgradeInfo;
         /// <summary>
         /// Additional output related to upgrade information.
         /// </summary>
@@ -161,15 +161,15 @@ namespace Pulumi.Vault
 
             int optimisticFailureTolerance,
 
-            ImmutableDictionary<string, object> redundancyZones,
+            ImmutableDictionary<string, string> redundancyZones,
 
             string redundancyZonesJson,
 
-            ImmutableDictionary<string, object> servers,
+            ImmutableDictionary<string, string> servers,
 
             string serversJson,
 
-            ImmutableDictionary<string, object> upgradeInfo,
+            ImmutableDictionary<string, string> upgradeInfo,
 
             string upgradeInfoJson,
 

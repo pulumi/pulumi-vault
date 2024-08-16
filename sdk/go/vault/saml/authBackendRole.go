@@ -46,8 +46,8 @@ import (
 //				Path:            example.Path,
 //				Name:            pulumi.String("my-role"),
 //				GroupsAttribute: pulumi.String("groups"),
-//				BoundAttributes: pulumi.Map{
-//					"group": pulumi.Any("admin"),
+//				BoundAttributes: pulumi.StringMap{
+//					"group": pulumi.String("admin"),
 //				},
 //				BoundSubjects: pulumi.StringArray{
 //					pulumi.String("*example.com"),
@@ -78,7 +78,7 @@ type AuthBackendRole struct {
 
 	// Mapping of attribute names to values that are expected to
 	// exist in the SAML assertion.
-	BoundAttributes pulumi.MapOutput `pulumi:"boundAttributes"`
+	BoundAttributes pulumi.StringMapOutput `pulumi:"boundAttributes"`
 	// The type of matching assertion to perform on
 	// `boundAttributesType`.
 	BoundAttributesType pulumi.StringOutput `pulumi:"boundAttributesType"`
@@ -153,7 +153,7 @@ func GetAuthBackendRole(ctx *pulumi.Context,
 type authBackendRoleState struct {
 	// Mapping of attribute names to values that are expected to
 	// exist in the SAML assertion.
-	BoundAttributes map[string]interface{} `pulumi:"boundAttributes"`
+	BoundAttributes map[string]string `pulumi:"boundAttributes"`
 	// The type of matching assertion to perform on
 	// `boundAttributesType`.
 	BoundAttributesType *string `pulumi:"boundAttributesType"`
@@ -196,7 +196,7 @@ type authBackendRoleState struct {
 type AuthBackendRoleState struct {
 	// Mapping of attribute names to values that are expected to
 	// exist in the SAML assertion.
-	BoundAttributes pulumi.MapInput
+	BoundAttributes pulumi.StringMapInput
 	// The type of matching assertion to perform on
 	// `boundAttributesType`.
 	BoundAttributesType pulumi.StringPtrInput
@@ -243,7 +243,7 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 type authBackendRoleArgs struct {
 	// Mapping of attribute names to values that are expected to
 	// exist in the SAML assertion.
-	BoundAttributes map[string]interface{} `pulumi:"boundAttributes"`
+	BoundAttributes map[string]string `pulumi:"boundAttributes"`
 	// The type of matching assertion to perform on
 	// `boundAttributesType`.
 	BoundAttributesType *string `pulumi:"boundAttributesType"`
@@ -287,7 +287,7 @@ type authBackendRoleArgs struct {
 type AuthBackendRoleArgs struct {
 	// Mapping of attribute names to values that are expected to
 	// exist in the SAML assertion.
-	BoundAttributes pulumi.MapInput
+	BoundAttributes pulumi.StringMapInput
 	// The type of matching assertion to perform on
 	// `boundAttributesType`.
 	BoundAttributesType pulumi.StringPtrInput
@@ -416,8 +416,8 @@ func (o AuthBackendRoleOutput) ToAuthBackendRoleOutputWithContext(ctx context.Co
 
 // Mapping of attribute names to values that are expected to
 // exist in the SAML assertion.
-func (o AuthBackendRoleOutput) BoundAttributes() pulumi.MapOutput {
-	return o.ApplyT(func(v *AuthBackendRole) pulumi.MapOutput { return v.BoundAttributes }).(pulumi.MapOutput)
+func (o AuthBackendRoleOutput) BoundAttributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendRole) pulumi.StringMapOutput { return v.BoundAttributes }).(pulumi.StringMapOutput)
 }
 
 // The type of matching assertion to perform on

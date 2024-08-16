@@ -17,7 +17,7 @@ class SecretBackendRoleArgs:
                  backend: pulumi.Input[str],
                  creation_statements: pulumi.Input[Sequence[pulumi.Input[str]]],
                  db_name: pulumi.Input[str],
-                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
                  max_ttl: Optional[pulumi.Input[int]] = None,
@@ -33,7 +33,7 @@ class SecretBackendRoleArgs:
                creating a user.
         :param pulumi.Input[str] db_name: The unique name of the database connection to use for
                the role.
-        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] credential_config: Specifies the configuration
                for the given `credential_type`.
                
                The following options are available for each `credential_type` value:
@@ -118,7 +118,7 @@ class SecretBackendRoleArgs:
 
     @property
     @pulumi.getter(name="credentialConfig")
-    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies the configuration
         for the given `credential_type`.
@@ -128,7 +128,7 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "credential_config")
 
     @credential_config.setter
-    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "credential_config", value)
 
     @property
@@ -243,7 +243,7 @@ class _SecretBackendRoleState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
@@ -258,7 +258,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
-        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] credential_config: Specifies the configuration
                for the given `credential_type`.
                
                The following options are available for each `credential_type` value:
@@ -335,7 +335,7 @@ class _SecretBackendRoleState:
 
     @property
     @pulumi.getter(name="credentialConfig")
-    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies the configuration
         for the given `credential_type`.
@@ -345,7 +345,7 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "credential_config")
 
     @credential_config.setter
-    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "credential_config", value)
 
     @property
@@ -475,7 +475,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
@@ -526,7 +526,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
-        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] credential_config: Specifies the configuration
                for the given `credential_type`.
                
                The following options are available for each `credential_type` value:
@@ -609,7 +609,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  credential_type: Optional[pulumi.Input[str]] = None,
                  db_name: Optional[pulumi.Input[str]] = None,
                  default_ttl: Optional[pulumi.Input[int]] = None,
@@ -658,7 +658,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            credential_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             credential_type: Optional[pulumi.Input[str]] = None,
             db_name: Optional[pulumi.Input[str]] = None,
             default_ttl: Optional[pulumi.Input[int]] = None,
@@ -678,7 +678,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] creation_statements: The database statements to execute when
                creating a user.
-        :param pulumi.Input[Mapping[str, Any]] credential_config: Specifies the configuration
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] credential_config: Specifies the configuration
                for the given `credential_type`.
                
                The following options are available for each `credential_type` value:
@@ -740,7 +740,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="credentialConfig")
-    def credential_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def credential_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Specifies the configuration
         for the given `credential_type`.

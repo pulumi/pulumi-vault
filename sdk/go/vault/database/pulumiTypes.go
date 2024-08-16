@@ -5053,7 +5053,7 @@ type SecretsMountCassandra struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Cassandra hosts to connect to.
 	Hosts []string `pulumi:"hosts"`
 	// Whether to skip verification of the server certificate when using TLS.
@@ -5103,7 +5103,7 @@ type SecretsMountCassandraArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Cassandra hosts to connect to.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// Whether to skip verification of the server certificate when using TLS.
@@ -5198,8 +5198,8 @@ func (o SecretsMountCassandraOutput) ConnectTimeout() pulumi.IntPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountCassandraOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountCassandra) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountCassandraOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Cassandra hosts to connect to.
@@ -5299,7 +5299,7 @@ type SecretsMountCouchbase struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 	Hosts []string `pulumi:"hosts"`
 	// Specifies whether to skip verification of the server certificate when using TLS.
@@ -5345,7 +5345,7 @@ type SecretsMountCouchbaseArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
 	Hosts pulumi.StringArrayInput `pulumi:"hosts"`
 	// Specifies whether to skip verification of the server certificate when using TLS.
@@ -5439,8 +5439,8 @@ func (o SecretsMountCouchbaseOutput) BucketName() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountCouchbaseOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountCouchbase) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountCouchbaseOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountCouchbase) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
@@ -5529,7 +5529,7 @@ type SecretsMountElasticsearch struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Whether to disable certificate verification
 	Insecure *bool `pulumi:"insecure"`
 	// Name of the database connection.
@@ -5579,7 +5579,7 @@ type SecretsMountElasticsearchArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Whether to disable certificate verification
 	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
 	// Name of the database connection.
@@ -5683,8 +5683,8 @@ func (o SecretsMountElasticsearchOutput) ClientKey() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountElasticsearchOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountElasticsearch) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountElasticsearchOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Whether to disable certificate verification
@@ -5767,7 +5767,7 @@ type SecretsMountHana struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -5811,7 +5811,7 @@ type SecretsMountHanaArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -5900,8 +5900,8 @@ func (o SecretsMountHanaOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountHanaOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountHana) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountHanaOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountHana) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Disable special character escaping in username and password
@@ -5984,7 +5984,7 @@ type SecretsMountInfluxdb struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Influxdb host to connect to.
 	Host string `pulumi:"host"`
 	// Whether to skip verification of the server certificate when using TLS.
@@ -6034,7 +6034,7 @@ type SecretsMountInfluxdbArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Influxdb host to connect to.
 	Host pulumi.StringInput `pulumi:"host"`
 	// Whether to skip verification of the server certificate when using TLS.
@@ -6129,8 +6129,8 @@ func (o SecretsMountInfluxdbOutput) ConnectTimeout() pulumi.IntPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountInfluxdbOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountInfluxdb) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountInfluxdbOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountInfluxdb) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Influxdb host to connect to.
@@ -6228,7 +6228,7 @@ type SecretsMountMongodb struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -6272,7 +6272,7 @@ type SecretsMountMongodbArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -6361,8 +6361,8 @@ func (o SecretsMountMongodbOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMongodbOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMongodb) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMongodbOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMongodb) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Maximum number of seconds a connection may be reused.
@@ -6443,7 +6443,7 @@ type SecretsMountMongodbatla struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
 	// Specifies the name of the plugin to use.
@@ -6479,7 +6479,7 @@ type SecretsMountMongodbatlaArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Specifies the name of the plugin to use.
@@ -6557,8 +6557,8 @@ func (o SecretsMountMongodbatlaOutput) AllowedRoles() pulumi.StringArrayOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMongodbatlaOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMongodbatla) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMongodbatlaOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMongodbatla) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Name of the database connection.
@@ -6628,7 +6628,7 @@ type SecretsMountMssql struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -6676,7 +6676,7 @@ type SecretsMountMssqlArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -6772,8 +6772,8 @@ func (o SecretsMountMssqlOutput) ContainedDb() pulumi.BoolPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMssqlOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMssql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMssqlOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMssql) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Disable special character escaping in username and password
@@ -6863,7 +6863,7 @@ type SecretsMountMysql struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -6915,7 +6915,7 @@ type SecretsMountMysqlArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7015,8 +7015,8 @@ func (o SecretsMountMysqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMysqlOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMysql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMysqlOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMysql) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Maximum number of seconds a connection may be reused.
@@ -7116,7 +7116,7 @@ type SecretsMountMysqlAurora struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7168,7 +7168,7 @@ type SecretsMountMysqlAuroraArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7268,8 +7268,8 @@ func (o SecretsMountMysqlAuroraOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMysqlAuroraOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMysqlAurora) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMysqlAuroraOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMysqlAurora) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Maximum number of seconds a connection may be reused.
@@ -7369,7 +7369,7 @@ type SecretsMountMysqlLegacy struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7421,7 +7421,7 @@ type SecretsMountMysqlLegacyArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7521,8 +7521,8 @@ func (o SecretsMountMysqlLegacyOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMysqlLegacyOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMysqlLegacy) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMysqlLegacyOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMysqlLegacy) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Maximum number of seconds a connection may be reused.
@@ -7622,7 +7622,7 @@ type SecretsMountMysqlRd struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7674,7 +7674,7 @@ type SecretsMountMysqlRdArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -7774,8 +7774,8 @@ func (o SecretsMountMysqlRdOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountMysqlRdOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountMysqlRd) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountMysqlRdOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountMysqlRd) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Maximum number of seconds a connection may be reused.
@@ -7873,7 +7873,7 @@ type SecretsMountOracle struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Set to true to disconnect any open sessions prior to running the revocation statements.
 	DisconnectSessions *bool `pulumi:"disconnectSessions"`
 	// Maximum number of seconds a connection may be reused.
@@ -7921,7 +7921,7 @@ type SecretsMountOracleArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Set to true to disconnect any open sessions prior to running the revocation statements.
 	DisconnectSessions pulumi.BoolPtrInput `pulumi:"disconnectSessions"`
 	// Maximum number of seconds a connection may be reused.
@@ -8014,8 +8014,8 @@ func (o SecretsMountOracleOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountOracleOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountOracle) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountOracleOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountOracle) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Set to true to disconnect any open sessions prior to running the revocation statements.
@@ -8110,7 +8110,7 @@ type SecretsMountPostgresql struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -8160,7 +8160,7 @@ type SecretsMountPostgresqlArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -8258,8 +8258,8 @@ func (o SecretsMountPostgresqlOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountPostgresqlOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountPostgresql) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountPostgresqlOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Disable special character escaping in username and password
@@ -8352,7 +8352,7 @@ type SecretsMountRedi struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Specifies the host to connect to
 	Host string `pulumi:"host"`
 	// Specifies whether to skip verification of the server certificate when using TLS.
@@ -8396,7 +8396,7 @@ type SecretsMountRediArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Specifies the host to connect to
 	Host pulumi.StringInput `pulumi:"host"`
 	// Specifies whether to skip verification of the server certificate when using TLS.
@@ -8485,8 +8485,8 @@ func (o SecretsMountRediOutput) CaCert() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountRediOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountRedi) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountRediOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountRedi) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Specifies the host to connect to
@@ -8567,7 +8567,7 @@ type SecretsMountRedisElasticach struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
 	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -8605,7 +8605,7 @@ type SecretsMountRedisElasticachArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -8685,8 +8685,8 @@ func (o SecretsMountRedisElasticachOutput) AllowedRoles() pulumi.StringArrayOutp
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountRedisElasticachOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountRedisElasticach) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountRedisElasticachOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountRedisElasticach) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Name of the database connection.
@@ -8759,7 +8759,7 @@ type SecretsMountRedshift struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping *bool `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -8805,7 +8805,7 @@ type SecretsMountRedshiftArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Disable special character escaping in username and password
 	DisableEscaping pulumi.BoolPtrInput `pulumi:"disableEscaping"`
 	// Maximum number of seconds a connection may be reused.
@@ -8896,8 +8896,8 @@ func (o SecretsMountRedshiftOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountRedshiftOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountRedshift) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountRedshiftOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountRedshift) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Disable special character escaping in username and password
@@ -8985,7 +8985,7 @@ type SecretsMountSnowflake struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime *int `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -9029,7 +9029,7 @@ type SecretsMountSnowflakeArgs struct {
 	// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 	//
 	// Supported list of database secrets engines that can be configured:
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// Maximum number of seconds a connection may be reused.
 	MaxConnectionLifetime pulumi.IntPtrInput `pulumi:"maxConnectionLifetime"`
 	// Maximum number of idle connections to the database.
@@ -9118,8 +9118,8 @@ func (o SecretsMountSnowflakeOutput) ConnectionUrl() pulumi.StringPtrOutput {
 // A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 //
 // Supported list of database secrets engines that can be configured:
-func (o SecretsMountSnowflakeOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretsMountSnowflake) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretsMountSnowflakeOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretsMountSnowflake) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // Maximum number of seconds a connection may be reused.

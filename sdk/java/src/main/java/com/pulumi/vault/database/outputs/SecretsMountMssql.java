@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +38,7 @@ public final class SecretsMountMssql {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,Object> data;
+    private @Nullable Map<String,String> data;
     /**
      * @return Disable special character escaping in username and password
      * 
@@ -126,7 +125,7 @@ public final class SecretsMountMssql {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
     }
     /**
@@ -220,7 +219,7 @@ public final class SecretsMountMssql {
         private @Nullable List<String> allowedRoles;
         private @Nullable String connectionUrl;
         private @Nullable Boolean containedDb;
-        private @Nullable Map<String,Object> data;
+        private @Nullable Map<String,String> data;
         private @Nullable Boolean disableEscaping;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
@@ -274,7 +273,7 @@ public final class SecretsMountMssql {
             return this;
         }
         @CustomType.Setter
-        public Builder data(@Nullable Map<String,Object> data) {
+        public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
             return this;

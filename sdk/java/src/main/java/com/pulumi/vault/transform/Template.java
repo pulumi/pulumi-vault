@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.transform.TemplateArgs;
 import com.pulumi.vault.transform.inputs.TemplateState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -110,15 +109,15 @@ public class Template extends com.pulumi.resources.CustomResource {
      * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
-    @Export(name="decodeFormats", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> decodeFormats;
+    @Export(name="decodeFormats", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> decodeFormats;
 
     /**
      * @return Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      * 
      */
-    public Output<Optional<Map<String,Object>>> decodeFormats() {
+    public Output<Optional<Map<String,String>>> decodeFormats() {
         return Codegen.optional(this.decodeFormats);
     }
     /**

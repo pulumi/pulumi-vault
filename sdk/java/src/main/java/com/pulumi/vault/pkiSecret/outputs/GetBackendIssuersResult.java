@@ -5,7 +5,6 @@ package com.pulumi.vault.pkiSecret.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,7 @@ public final class GetBackendIssuersResult {
      * @return Map of issuer strings read from Vault.
      * 
      */
-    private Map<String,Object> keyInfo;
+    private Map<String,String> keyInfo;
     /**
      * @return JSON-encoded issuer data read from Vault.
      * 
@@ -53,7 +52,7 @@ public final class GetBackendIssuersResult {
      * @return Map of issuer strings read from Vault.
      * 
      */
-    public Map<String,Object> keyInfo() {
+    public Map<String,String> keyInfo() {
         return this.keyInfo;
     }
     /**
@@ -85,7 +84,7 @@ public final class GetBackendIssuersResult {
     public static final class Builder {
         private String backend;
         private String id;
-        private Map<String,Object> keyInfo;
+        private Map<String,String> keyInfo;
         private String keyInfoJson;
         private List<String> keys;
         private @Nullable String namespace;
@@ -117,7 +116,7 @@ public final class GetBackendIssuersResult {
             return this;
         }
         @CustomType.Setter
-        public Builder keyInfo(Map<String,Object> keyInfo) {
+        public Builder keyInfo(Map<String,String> keyInfo) {
             if (keyInfo == null) {
               throw new MissingRequiredPropertyException("GetBackendIssuersResult", "keyInfo");
             }

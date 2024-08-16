@@ -216,7 +216,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Subkeys for the KV-V2 secret stored as a serialized map of strings.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Data;
+        public readonly ImmutableDictionary<string, string> Data;
         /// <summary>
         /// Subkeys for the KV-V2 secret read from Vault.
         /// </summary>
@@ -237,7 +237,7 @@ namespace Pulumi.Vault.kv
 
         [OutputConstructor]
         private GetSecretSubkeysV2Result(
-            ImmutableDictionary<string, object> data,
+            ImmutableDictionary<string, string> data,
 
             string dataJson,
 

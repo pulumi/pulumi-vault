@@ -26,7 +26,6 @@ import com.pulumi.vault.database.inputs.SecretsMountRedshiftArgs;
 import com.pulumi.vault.database.inputs.SecretsMountSnowflakeArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -447,13 +446,13 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="options")
-    private @Nullable Output<Map<String,Object>> options;
+    private @Nullable Output<Map<String,String>> options;
 
     /**
      * @return Specifies mount type specific options that are passed to the backend
      * 
      */
-    public Optional<Output<Map<String,Object>>> options() {
+    public Optional<Output<Map<String,String>>> options() {
         return Optional.ofNullable(this.options);
     }
 
@@ -1421,7 +1420,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder options(@Nullable Output<Map<String,Object>> options) {
+        public Builder options(@Nullable Output<Map<String,String>> options) {
             $.options = options;
             return this;
         }
@@ -1432,7 +1431,7 @@ public final class SecretsMountArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder options(Map<String,Object> options) {
+        public Builder options(Map<String,String> options) {
             return options(Output.of(options));
         }
 

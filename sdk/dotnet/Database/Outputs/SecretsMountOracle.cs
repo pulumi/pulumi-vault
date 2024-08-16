@@ -27,7 +27,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// Set to true to disconnect any open sessions prior to running the revocation statements.
         /// </summary>
@@ -84,7 +84,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? connectionUrl,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             bool? disconnectSessions,
 

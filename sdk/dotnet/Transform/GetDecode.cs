@@ -130,26 +130,26 @@ namespace Pulumi.Vault.Transform
     public sealed class GetDecodeArgs : global::Pulumi.InvokeArgs
     {
         [Input("batchInputs")]
-        private List<ImmutableDictionary<string, object>>? _batchInputs;
+        private List<ImmutableDictionary<string, string>>? _batchInputs;
 
         /// <summary>
         /// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
         /// </summary>
-        public List<ImmutableDictionary<string, object>> BatchInputs
+        public List<ImmutableDictionary<string, string>> BatchInputs
         {
-            get => _batchInputs ?? (_batchInputs = new List<ImmutableDictionary<string, object>>());
+            get => _batchInputs ?? (_batchInputs = new List<ImmutableDictionary<string, string>>());
             set => _batchInputs = value;
         }
 
         [Input("batchResults")]
-        private List<ImmutableDictionary<string, object>>? _batchResults;
+        private List<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
         /// The result of decoding a batch.
         /// </summary>
-        public List<ImmutableDictionary<string, object>> BatchResults
+        public List<ImmutableDictionary<string, string>> BatchResults
         {
-            get => _batchResults ?? (_batchResults = new List<ImmutableDictionary<string, object>>());
+            get => _batchResults ?? (_batchResults = new List<ImmutableDictionary<string, string>>());
             set => _batchResults = value;
         }
 
@@ -207,26 +207,26 @@ namespace Pulumi.Vault.Transform
     public sealed class GetDecodeInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("batchInputs")]
-        private InputList<ImmutableDictionary<string, object>>? _batchInputs;
+        private InputList<ImmutableDictionary<string, string>>? _batchInputs;
 
         /// <summary>
         /// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
         /// </summary>
-        public InputList<ImmutableDictionary<string, object>> BatchInputs
+        public InputList<ImmutableDictionary<string, string>> BatchInputs
         {
-            get => _batchInputs ?? (_batchInputs = new InputList<ImmutableDictionary<string, object>>());
+            get => _batchInputs ?? (_batchInputs = new InputList<ImmutableDictionary<string, string>>());
             set => _batchInputs = value;
         }
 
         [Input("batchResults")]
-        private InputList<ImmutableDictionary<string, object>>? _batchResults;
+        private InputList<ImmutableDictionary<string, string>>? _batchResults;
 
         /// <summary>
         /// The result of decoding a batch.
         /// </summary>
-        public InputList<ImmutableDictionary<string, object>> BatchResults
+        public InputList<ImmutableDictionary<string, string>> BatchResults
         {
-            get => _batchResults ?? (_batchResults = new InputList<ImmutableDictionary<string, object>>());
+            get => _batchResults ?? (_batchResults = new InputList<ImmutableDictionary<string, string>>());
             set => _batchResults = value;
         }
 
@@ -285,8 +285,8 @@ namespace Pulumi.Vault.Transform
     [OutputType]
     public sealed class GetDecodeResult
     {
-        public readonly ImmutableArray<ImmutableDictionary<string, object>> BatchInputs;
-        public readonly ImmutableArray<ImmutableDictionary<string, object>> BatchResults;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchInputs;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> BatchResults;
         public readonly string DecodedValue;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -301,9 +301,9 @@ namespace Pulumi.Vault.Transform
 
         [OutputConstructor]
         private GetDecodeResult(
-            ImmutableArray<ImmutableDictionary<string, object>> batchInputs,
+            ImmutableArray<ImmutableDictionary<string, string>> batchInputs,
 
-            ImmutableArray<ImmutableDictionary<string, object>> batchResults,
+            ImmutableArray<ImmutableDictionary<string, string>> batchResults,
 
             string decodedValue,
 

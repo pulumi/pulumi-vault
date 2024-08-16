@@ -38,12 +38,12 @@ class SecretV2CustomMetadata(dict):
 
     def __init__(__self__, *,
                  cas_required: Optional[bool] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  delete_version_after: Optional[int] = None,
                  max_versions: Optional[int] = None):
         """
         :param bool cas_required: If true, all keys will require the cas parameter to be set on all write requests.
-        :param Mapping[str, Any] data: A mapping whose keys are the top-level data keys returned from
+        :param Mapping[str, str] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
@@ -69,7 +69,7 @@ class SecretV2CustomMetadata(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only

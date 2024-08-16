@@ -83,7 +83,7 @@ type SecretBackendKey struct {
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
-	Keys pulumi.MapArrayOutput `pulumi:"keys"`
+	Keys pulumi.StringMapArrayOutput `pulumi:"keys"`
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion pulumi.IntOutput `pulumi:"latestVersion"`
 	// Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
@@ -166,7 +166,7 @@ type secretBackendKeyState struct {
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
-	Keys []map[string]interface{} `pulumi:"keys"`
+	Keys []map[string]string `pulumi:"keys"`
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion *int `pulumi:"latestVersion"`
 	// Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
@@ -217,7 +217,7 @@ type SecretBackendKeyState struct {
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 	// * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 	// * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
-	Keys pulumi.MapArrayInput
+	Keys pulumi.StringMapArrayInput
 	// Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
 	LatestVersion pulumi.IntPtrInput
 	// Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
@@ -453,8 +453,8 @@ func (o SecretBackendKeyOutput) KeySize() pulumi.IntPtrOutput {
 // List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
 // * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
 // * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
-func (o SecretBackendKeyOutput) Keys() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v *SecretBackendKey) pulumi.MapArrayOutput { return v.Keys }).(pulumi.MapArrayOutput)
+func (o SecretBackendKeyOutput) Keys() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringMapArrayOutput { return v.Keys }).(pulumi.StringMapArrayOutput)
 }
 
 // Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`

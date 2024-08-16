@@ -26,7 +26,7 @@ type UiCustomMessage struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// A map containing additional options for the custom message
-	Options pulumi.MapOutput `pulumi:"options"`
+	Options pulumi.StringMapOutput `pulumi:"options"`
 	// The starting time of the active period of the custom message
 	StartTime pulumi.StringOutput `pulumi:"startTime"`
 	// The title of the custom message
@@ -85,7 +85,7 @@ type uiCustomMessageState struct {
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// A map containing additional options for the custom message
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// The starting time of the active period of the custom message
 	StartTime *string `pulumi:"startTime"`
 	// The title of the custom message
@@ -106,7 +106,7 @@ type UiCustomMessageState struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// A map containing additional options for the custom message
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// The starting time of the active period of the custom message
 	StartTime pulumi.StringPtrInput
 	// The title of the custom message
@@ -131,7 +131,7 @@ type uiCustomMessageArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// A map containing additional options for the custom message
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// The starting time of the active period of the custom message
 	StartTime string `pulumi:"startTime"`
 	// The title of the custom message
@@ -153,7 +153,7 @@ type UiCustomMessageArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// A map containing additional options for the custom message
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// The starting time of the active period of the custom message
 	StartTime pulumi.StringInput
 	// The title of the custom message
@@ -275,8 +275,8 @@ func (o UiCustomMessageOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // A map containing additional options for the custom message
-func (o UiCustomMessageOutput) Options() pulumi.MapOutput {
-	return o.ApplyT(func(v *UiCustomMessage) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+func (o UiCustomMessageOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *UiCustomMessage) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
 // The starting time of the active period of the custom message

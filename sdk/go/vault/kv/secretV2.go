@@ -37,8 +37,8 @@ import (
 //			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
 //				Path: pulumi.String("kvv2"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.Map{
-//					"version": pulumi.Any("2"),
+//				Options: pulumi.StringMap{
+//					"version": pulumi.String("2"),
 //				},
 //				Description: pulumi.String("KV Version 2 secret engine mount"),
 //			})
@@ -61,9 +61,9 @@ import (
 //				DataJson:          pulumi.String(json0),
 //				CustomMetadata: &kv.SecretV2CustomMetadataArgs{
 //					MaxVersions: pulumi.Int(5),
-//					Data: pulumi.Map{
-//						"foo": pulumi.Any("vault@example.com"),
-//						"bar": pulumi.Any("12345"),
+//					Data: pulumi.StringMap{
+//						"foo": pulumi.String("vault@example.com"),
+//						"bar": pulumi.String("12345"),
 //					},
 //				},
 //			})
@@ -118,7 +118,7 @@ type SecretV2 struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data pulumi.MapOutput `pulumi:"data"`
+	Data pulumi.StringMapOutput `pulumi:"data"`
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringOutput `pulumi:"dataJson"`
@@ -129,7 +129,7 @@ type SecretV2 struct {
 	// note: drift won't be detected.
 	DisableRead pulumi.BoolPtrOutput `pulumi:"disableRead"`
 	// Metadata associated with this secret read from Vault.
-	Metadata pulumi.MapOutput `pulumi:"metadata"`
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// Path where KV-V2 engine is mounted.
 	Mount pulumi.StringOutput `pulumi:"mount"`
 	// Full name of the secret. For a nested secret
@@ -143,7 +143,7 @@ type SecretV2 struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// An object that holds option settings.
-	Options pulumi.MapOutput `pulumi:"options"`
+	Options pulumi.StringMapOutput `pulumi:"options"`
 	// Full path where the KV-V2 secret will be written.
 	Path pulumi.StringOutput `pulumi:"path"`
 }
@@ -205,7 +205,7 @@ type secretV2State struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson *string `pulumi:"dataJson"`
@@ -216,7 +216,7 @@ type secretV2State struct {
 	// note: drift won't be detected.
 	DisableRead *bool `pulumi:"disableRead"`
 	// Metadata associated with this secret read from Vault.
-	Metadata map[string]interface{} `pulumi:"metadata"`
+	Metadata map[string]string `pulumi:"metadata"`
 	// Path where KV-V2 engine is mounted.
 	Mount *string `pulumi:"mount"`
 	// Full name of the secret. For a nested secret
@@ -230,7 +230,7 @@ type secretV2State struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// An object that holds option settings.
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// Full path where the KV-V2 secret will be written.
 	Path *string `pulumi:"path"`
 }
@@ -249,7 +249,7 @@ type SecretV2State struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data pulumi.MapInput
+	Data pulumi.StringMapInput
 	// JSON-encoded string that will be
 	// written as the secret data at the given path.
 	DataJson pulumi.StringPtrInput
@@ -260,7 +260,7 @@ type SecretV2State struct {
 	// note: drift won't be detected.
 	DisableRead pulumi.BoolPtrInput
 	// Metadata associated with this secret read from Vault.
-	Metadata pulumi.MapInput
+	Metadata pulumi.StringMapInput
 	// Path where KV-V2 engine is mounted.
 	Mount pulumi.StringPtrInput
 	// Full name of the secret. For a nested secret
@@ -274,7 +274,7 @@ type SecretV2State struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// An object that holds option settings.
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// Full path where the KV-V2 secret will be written.
 	Path pulumi.StringPtrInput
 }
@@ -315,7 +315,7 @@ type secretV2Args struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// An object that holds option settings.
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 }
 
 // The set of arguments for constructing a SecretV2 resource.
@@ -351,7 +351,7 @@ type SecretV2Args struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// An object that holds option settings.
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 }
 
 func (SecretV2Args) ElementType() reflect.Type {
@@ -460,8 +460,8 @@ func (o SecretV2Output) CustomMetadata() SecretV2CustomMetadataOutput {
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o SecretV2Output) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretV2) pulumi.MapOutput { return v.Data }).(pulumi.MapOutput)
+func (o SecretV2Output) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretV2) pulumi.StringMapOutput { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // JSON-encoded string that will be
@@ -483,8 +483,8 @@ func (o SecretV2Output) DisableRead() pulumi.BoolPtrOutput {
 }
 
 // Metadata associated with this secret read from Vault.
-func (o SecretV2Output) Metadata() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretV2) pulumi.MapOutput { return v.Metadata }).(pulumi.MapOutput)
+func (o SecretV2Output) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretV2) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
 // Path where KV-V2 engine is mounted.
@@ -509,8 +509,8 @@ func (o SecretV2Output) Namespace() pulumi.StringPtrOutput {
 }
 
 // An object that holds option settings.
-func (o SecretV2Output) Options() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretV2) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+func (o SecretV2Output) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretV2) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
 // Full path where the KV-V2 secret will be written.

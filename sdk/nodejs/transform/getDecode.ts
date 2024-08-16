@@ -62,11 +62,11 @@ export interface GetDecodeArgs {
     /**
      * Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
      */
-    batchInputs?: {[key: string]: any}[];
+    batchInputs?: {[key: string]: string}[];
     /**
      * The result of decoding a batch.
      */
-    batchResults?: {[key: string]: any}[];
+    batchResults?: {[key: string]: string}[];
     /**
      * The result of decoding a value.
      */
@@ -104,8 +104,8 @@ export interface GetDecodeArgs {
  * A collection of values returned by getDecode.
  */
 export interface GetDecodeResult {
-    readonly batchInputs?: {[key: string]: any}[];
-    readonly batchResults: {[key: string]: any}[];
+    readonly batchInputs?: {[key: string]: string}[];
+    readonly batchResults: {[key: string]: string}[];
     readonly decodedValue: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -164,11 +164,11 @@ export interface GetDecodeOutputArgs {
     /**
      * Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
      */
-    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * The result of decoding a batch.
      */
-    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
     /**
      * The result of decoding a value.
      */

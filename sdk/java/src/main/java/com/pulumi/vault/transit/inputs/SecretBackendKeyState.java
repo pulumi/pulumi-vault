@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -151,7 +150,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
      * 
      */
     @Import(name="keys")
-    private @Nullable Output<List<Map<String,Object>>> keys;
+    private @Nullable Output<List<Map<String,String>>> keys;
 
     /**
      * @return List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -159,7 +158,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
      * * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
      * 
      */
-    public Optional<Output<List<Map<String,Object>>>> keys() {
+    public Optional<Output<List<Map<String,String>>>> keys() {
         return Optional.ofNullable(this.keys);
     }
 
@@ -559,7 +558,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder keys(@Nullable Output<List<Map<String,Object>>> keys) {
+        public Builder keys(@Nullable Output<List<Map<String,String>>> keys) {
             $.keys = keys;
             return this;
         }
@@ -572,7 +571,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder keys(List<Map<String,Object>> keys) {
+        public Builder keys(List<Map<String,String>> keys) {
             return keys(Output.of(keys));
         }
 
@@ -584,7 +583,7 @@ public final class SecretBackendKeyState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder keys(Map<String,Object>... keys) {
+        public Builder keys(Map<String,String>... keys) {
             return keys(List.of(keys));
         }
 

@@ -222,7 +222,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// Arbitrary metadata
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Metadata;
+        public readonly ImmutableDictionary<string, string> Metadata;
         public readonly string? Namespace;
         /// <summary>
         /// Namespace of which the entity is part of
@@ -265,7 +265,7 @@ namespace Pulumi.Vault.Identity
 
             ImmutableArray<string> mergedEntityIds,
 
-            ImmutableDictionary<string, object> metadata,
+            ImmutableDictionary<string, string> metadata,
 
             string? @namespace,
 

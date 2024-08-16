@@ -32,8 +32,8 @@ import (
 //			kvv1, err := vault.NewMount(ctx, "kvv1", &vault.MountArgs{
 //				Path: pulumi.String("kvv1"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.Map{
-//					"version": pulumi.Any("1"),
+//				Options: pulumi.StringMap{
+//					"version": pulumi.String("1"),
 //				},
 //				Description: pulumi.String("KV Version 1 secret engine mount"),
 //			})
@@ -96,7 +96,7 @@ type LookupSecretResult struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// JSON-encoded string that that is
 	// read as the secret data at the given path.
 	DataJson string `pulumi:"dataJson"`
@@ -161,8 +161,8 @@ func (o LookupSecretResultOutput) ToLookupSecretResultOutputWithContext(ctx cont
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o LookupSecretResultOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupSecretResult) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o LookupSecretResultOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupSecretResult) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // JSON-encoded string that that is

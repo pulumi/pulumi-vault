@@ -131,7 +131,7 @@ namespace Pulumi.Vault.Jwt
         /// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         /// </summary>
         [Output("boundClaims")]
-        public Output<ImmutableDictionary<string, object>?> BoundClaims { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> BoundClaims { get; private set; } = null!;
 
         /// <summary>
         /// How to interpret values in the claims/values
@@ -153,7 +153,7 @@ namespace Pulumi.Vault.Jwt
         /// to specified metadata fields (values).
         /// </summary>
         [Output("claimMappings")]
-        public Output<ImmutableDictionary<string, object>?> ClaimMappings { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> ClaimMappings { get; private set; } = null!;
 
         /// <summary>
         /// The amount of leeway to add to all claims to account for clock skew, in
@@ -388,16 +388,16 @@ namespace Pulumi.Vault.Jwt
         }
 
         [Input("boundClaims")]
-        private InputMap<object>? _boundClaims;
+        private InputMap<string>? _boundClaims;
 
         /// <summary>
         /// If set, a map of claims to values to match against.
         /// A claim's value must be a string, which may contain one value or multiple
         /// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         /// </summary>
-        public InputMap<object> BoundClaims
+        public InputMap<string> BoundClaims
         {
-            get => _boundClaims ?? (_boundClaims = new InputMap<object>());
+            get => _boundClaims ?? (_boundClaims = new InputMap<string>());
             set => _boundClaims = value;
         }
 
@@ -417,15 +417,15 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? BoundSubject { get; set; }
 
         [Input("claimMappings")]
-        private InputMap<object>? _claimMappings;
+        private InputMap<string>? _claimMappings;
 
         /// <summary>
         /// If set, a map of claims (keys) to be copied
         /// to specified metadata fields (values).
         /// </summary>
-        public InputMap<object> ClaimMappings
+        public InputMap<string> ClaimMappings
         {
-            get => _claimMappings ?? (_claimMappings = new InputMap<object>());
+            get => _claimMappings ?? (_claimMappings = new InputMap<string>());
             set => _claimMappings = value;
         }
 
@@ -642,16 +642,16 @@ namespace Pulumi.Vault.Jwt
         }
 
         [Input("boundClaims")]
-        private InputMap<object>? _boundClaims;
+        private InputMap<string>? _boundClaims;
 
         /// <summary>
         /// If set, a map of claims to values to match against.
         /// A claim's value must be a string, which may contain one value or multiple
         /// comma-separated values, e.g. `"red"` or `"red,green,blue"`.
         /// </summary>
-        public InputMap<object> BoundClaims
+        public InputMap<string> BoundClaims
         {
-            get => _boundClaims ?? (_boundClaims = new InputMap<object>());
+            get => _boundClaims ?? (_boundClaims = new InputMap<string>());
             set => _boundClaims = value;
         }
 
@@ -671,15 +671,15 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? BoundSubject { get; set; }
 
         [Input("claimMappings")]
-        private InputMap<object>? _claimMappings;
+        private InputMap<string>? _claimMappings;
 
         /// <summary>
         /// If set, a map of claims (keys) to be copied
         /// to specified metadata fields (values).
         /// </summary>
-        public InputMap<object> ClaimMappings
+        public InputMap<string> ClaimMappings
         {
-            get => _claimMappings ?? (_claimMappings = new InputMap<object>());
+            get => _claimMappings ?? (_claimMappings = new InputMap<string>());
             set => _claimMappings = value;
         }
 

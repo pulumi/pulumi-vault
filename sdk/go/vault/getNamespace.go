@@ -120,7 +120,7 @@ type LookupNamespaceResult struct {
 	// (Optional) A map of strings containing arbitrary metadata for the namespace.
 	// Only fetched if `path` is specified.
 	// *Requires Vault 1.12+.*
-	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
+	CustomMetadata map[string]string `pulumi:"customMetadata"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Namespace *string `pulumi:"namespace"`
@@ -181,8 +181,8 @@ func (o LookupNamespaceResultOutput) ToLookupNamespaceResultOutputWithContext(ct
 // (Optional) A map of strings containing arbitrary metadata for the namespace.
 // Only fetched if `path` is specified.
 // *Requires Vault 1.12+.*
-func (o LookupNamespaceResultOutput) CustomMetadata() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupNamespaceResult) map[string]interface{} { return v.CustomMetadata }).(pulumi.MapOutput)
+func (o LookupNamespaceResultOutput) CustomMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupNamespaceResult) map[string]string { return v.CustomMetadata }).(pulumi.StringMapOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -169,7 +169,7 @@ type SecretsMount struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapOutput `pulumi:"options"`
+	Options pulumi.StringMapOutput `pulumi:"options"`
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayOutput `pulumi:"oracles"`
@@ -300,7 +300,7 @@ type secretsMountState struct {
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles []SecretsMountOracle `pulumi:"oracles"`
@@ -399,7 +399,7 @@ type SecretsMountState struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayInput
@@ -498,7 +498,7 @@ type secretsMountArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles []SecretsMountOracle `pulumi:"oracles"`
@@ -594,7 +594,7 @@ type SecretsMountArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// A nested block containing configuration options for Oracle connections.\
 	// *See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayInput
@@ -860,8 +860,8 @@ func (o SecretsMountOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // Specifies mount type specific options that are passed to the backend
-func (o SecretsMountOutput) Options() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretsMount) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+func (o SecretsMountOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretsMount) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
 // A nested block containing configuration options for Oracle connections.\

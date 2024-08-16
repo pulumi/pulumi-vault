@@ -67,7 +67,7 @@ export interface GetBackendIssuersResult {
     /**
      * Map of issuer strings read from Vault.
      */
-    readonly keyInfo: {[key: string]: any};
+    readonly keyInfo: {[key: string]: string};
     /**
      * JSON-encoded issuer data read from Vault.
      */

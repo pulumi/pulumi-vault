@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.vault.pkiSecret.outputs.GetBackendConfigEstAuthenticator;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +56,7 @@ public final class GetBackendConfigEstResult {
      * @return A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
      * 
      */
-    private Map<String,Object> labelToPathPolicy;
+    private Map<String,String> labelToPathPolicy;
     /**
      * @return A read-only timestamp representing the last time the configuration was updated.
      * 
@@ -122,7 +121,7 @@ public final class GetBackendConfigEstResult {
      * @return A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
      * 
      */
-    public Map<String,Object> labelToPathPolicy() {
+    public Map<String,String> labelToPathPolicy() {
         return this.labelToPathPolicy;
     }
     /**
@@ -153,7 +152,7 @@ public final class GetBackendConfigEstResult {
         private Boolean enableSentinelParsing;
         private Boolean enabled;
         private String id;
-        private Map<String,Object> labelToPathPolicy;
+        private Map<String,String> labelToPathPolicy;
         private String lastUpdated;
         private @Nullable String namespace;
         public Builder() {}
@@ -243,7 +242,7 @@ public final class GetBackendConfigEstResult {
             return this;
         }
         @CustomType.Setter
-        public Builder labelToPathPolicy(Map<String,Object> labelToPathPolicy) {
+        public Builder labelToPathPolicy(Map<String,String> labelToPathPolicy) {
             if (labelToPathPolicy == null) {
               throw new MissingRequiredPropertyException("GetBackendConfigEstResult", "labelToPathPolicy");
             }

@@ -5,7 +5,6 @@ package com.pulumi.vault.identity.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +24,7 @@ public final class GetOidcPublicKeysResult {
      * Clients can use them to validate the authenticity of an identity token.
      * 
      */
-    private List<Map<String,Object>> keys;
+    private List<Map<String,String>> keys;
     private String name;
     private @Nullable String namespace;
 
@@ -42,7 +41,7 @@ public final class GetOidcPublicKeysResult {
      * Clients can use them to validate the authenticity of an identity token.
      * 
      */
-    public List<Map<String,Object>> keys() {
+    public List<Map<String,String>> keys() {
         return this.keys;
     }
     public String name() {
@@ -62,7 +61,7 @@ public final class GetOidcPublicKeysResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private List<Map<String,Object>> keys;
+        private List<Map<String,String>> keys;
         private String name;
         private @Nullable String namespace;
         public Builder() {}
@@ -83,7 +82,7 @@ public final class GetOidcPublicKeysResult {
             return this;
         }
         @CustomType.Setter
-        public Builder keys(List<Map<String,Object>> keys) {
+        public Builder keys(List<Map<String,String>> keys) {
             if (keys == null) {
               throw new MissingRequiredPropertyException("GetOidcPublicKeysResult", "keys");
             }

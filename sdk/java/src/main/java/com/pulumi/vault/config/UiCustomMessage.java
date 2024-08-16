@@ -12,7 +12,6 @@ import com.pulumi.vault.config.UiCustomMessageArgs;
 import com.pulumi.vault.config.inputs.UiCustomMessageState;
 import com.pulumi.vault.config.outputs.UiCustomMessageLink;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -94,14 +93,14 @@ public class UiCustomMessage extends com.pulumi.resources.CustomResource {
      * A map containing additional options for the custom message
      * 
      */
-    @Export(name="options", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> options;
+    @Export(name="options", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> options;
 
     /**
      * @return A map containing additional options for the custom message
      * 
      */
-    public Output<Optional<Map<String,Object>>> options() {
+    public Output<Optional<Map<String,String>>> options() {
         return Codegen.optional(this.options);
     }
     /**

@@ -15,13 +15,13 @@ __all__ = ['NamespaceArgs', 'Namespace']
 class NamespaceArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
         :param pulumi.Input[str] path: The path of the namespace. Must not have a trailing `/`.
-        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata describing this namespace. Value type
                is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -52,7 +52,7 @@ class NamespaceArgs:
 
     @property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Custom metadata describing this namespace. Value type
         is `map[string]string`. Requires Vault version 1.12+.
@@ -60,7 +60,7 @@ class NamespaceArgs:
         return pulumi.get(self, "custom_metadata")
 
     @custom_metadata.setter
-    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_metadata", value)
 
     @property
@@ -95,14 +95,14 @@ class NamespaceArgs:
 @pulumi.input_type
 class _NamespaceState:
     def __init__(__self__, *,
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
-        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata describing this namespace. Value type
                is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -126,7 +126,7 @@ class _NamespaceState:
 
     @property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Custom metadata describing this namespace. Value type
         is `map[string]string`. Requires Vault version 1.12+.
@@ -134,7 +134,7 @@ class _NamespaceState:
         return pulumi.get(self, "custom_metadata")
 
     @custom_metadata.setter
-    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_metadata", value)
 
     @property
@@ -195,7 +195,7 @@ class Namespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None,
@@ -253,7 +253,7 @@ class Namespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata describing this namespace. Value type
                is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -335,7 +335,7 @@ class Namespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  path_fq: Optional[pulumi.Input[str]] = None,
@@ -365,7 +365,7 @@ class Namespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            custom_metadata: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             namespace_id: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None,
@@ -377,7 +377,7 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] custom_metadata: Custom metadata describing this namespace. Value type
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_metadata: Custom metadata describing this namespace. Value type
                is `map[string]string`. Requires Vault version 1.12+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -401,7 +401,7 @@ class Namespace(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> pulumi.Output[Mapping[str, Any]]:
+    def custom_metadata(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Custom metadata describing this namespace. Value type
         is `map[string]string`. Requires Vault version 1.12+.

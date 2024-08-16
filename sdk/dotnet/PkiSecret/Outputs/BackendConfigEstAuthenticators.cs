@@ -16,17 +16,17 @@ namespace Pulumi.Vault.PkiSecret.Outputs
         /// <summary>
         /// "The accessor (required) and cert_role (optional) properties for cert auth backends".
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Cert;
+        public readonly ImmutableDictionary<string, string>? Cert;
         /// <summary>
         /// "The accessor (required) property for user pass auth backends".
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Userpass;
+        public readonly ImmutableDictionary<string, string>? Userpass;
 
         [OutputConstructor]
         private BackendConfigEstAuthenticators(
-            ImmutableDictionary<string, object>? cert,
+            ImmutableDictionary<string, string>? cert,
 
-            ImmutableDictionary<string, object>? userpass)
+            ImmutableDictionary<string, string>? userpass)
         {
             Cert = cert;
             Userpass = userpass;
