@@ -74,7 +74,7 @@ namespace Pulumi.Vault.PkiSecret
         /// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
         /// </summary>
         [Output("labelToPathPolicy")]
-        public Output<ImmutableDictionary<string, object>?> LabelToPathPolicy { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> LabelToPathPolicy { get; private set; } = null!;
 
         /// <summary>
         /// A read-only timestamp representing the last time the configuration was updated.
@@ -189,14 +189,14 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? Enabled { get; set; }
 
         [Input("labelToPathPolicy")]
-        private InputMap<object>? _labelToPathPolicy;
+        private InputMap<string>? _labelToPathPolicy;
 
         /// <summary>
         /// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
         /// </summary>
-        public InputMap<object> LabelToPathPolicy
+        public InputMap<string> LabelToPathPolicy
         {
-            get => _labelToPathPolicy ?? (_labelToPathPolicy = new InputMap<object>());
+            get => _labelToPathPolicy ?? (_labelToPathPolicy = new InputMap<string>());
             set => _labelToPathPolicy = value;
         }
 
@@ -269,14 +269,14 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? Enabled { get; set; }
 
         [Input("labelToPathPolicy")]
-        private InputMap<object>? _labelToPathPolicy;
+        private InputMap<string>? _labelToPathPolicy;
 
         /// <summary>
         /// Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
         /// </summary>
-        public InputMap<object> LabelToPathPolicy
+        public InputMap<string> LabelToPathPolicy
         {
-            get => _labelToPathPolicy ?? (_labelToPathPolicy = new InputMap<object>());
+            get => _labelToPathPolicy ?? (_labelToPathPolicy = new InputMap<string>());
             set => _labelToPathPolicy = value;
         }
 

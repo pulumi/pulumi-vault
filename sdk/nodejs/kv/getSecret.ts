@@ -71,7 +71,7 @@ export interface GetSecretResult {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    readonly data: {[key: string]: any};
+    readonly data: {[key: string]: string};
     /**
      * JSON-encoded string that that is
      * read as the secret data at the given path.

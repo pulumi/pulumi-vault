@@ -189,7 +189,7 @@ class GetEntityResult:
 
     @property
     @pulumi.getter
-    def metadata(self) -> Mapping[str, Any]:
+    def metadata(self) -> Mapping[str, str]:
         """
         Arbitrary metadata
         """

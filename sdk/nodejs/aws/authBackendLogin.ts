@@ -90,7 +90,7 @@ export class AuthBackendLogin extends pulumi.CustomResource {
      * A map of information returned by the Vault server about the
      * authentication used to generate this token.
      */
-    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: any}>;
+    public /*out*/ readonly metadata!: pulumi.Output<{[key: string]: string}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -248,7 +248,7 @@ export interface AuthBackendLoginState {
      * A map of information returned by the Vault server about the
      * authentication used to generate this token.
      */
-    metadata?: pulumi.Input<{[key: string]: any}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

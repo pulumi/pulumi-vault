@@ -56,7 +56,7 @@ class GetBackendIssuersResult:
 
     @property
     @pulumi.getter(name="keyInfo")
-    def key_info(self) -> Mapping[str, Any]:
+    def key_info(self) -> Mapping[str, str]:
         """
         Map of issuer strings read from Vault.
         """

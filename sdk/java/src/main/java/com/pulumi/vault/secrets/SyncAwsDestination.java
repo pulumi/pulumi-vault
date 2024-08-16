@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.secrets.SyncAwsDestinationArgs;
 import com.pulumi.vault.secrets.inputs.SyncAwsDestinationState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -93,14 +92,14 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      * Custom tags to set on the secret managed at the destination.
      * 
      */
-    @Export(name="customTags", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> customTags;
+    @Export(name="customTags", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> customTags;
 
     /**
      * @return Custom tags to set on the secret managed at the destination.
      * 
      */
-    public Output<Optional<Map<String,Object>>> customTags() {
+    public Output<Optional<Map<String,String>>> customTags() {
         return Codegen.optional(this.customTags);
     }
     /**

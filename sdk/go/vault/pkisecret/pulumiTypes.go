@@ -15,9 +15,9 @@ var _ = internal.GetEnvOrDefault
 
 type BackendConfigEstAuthenticators struct {
 	// "The accessor (required) and certRole (optional) properties for cert auth backends".
-	Cert map[string]interface{} `pulumi:"cert"`
+	Cert map[string]string `pulumi:"cert"`
 	// "The accessor (required) property for user pass auth backends".
-	Userpass map[string]interface{} `pulumi:"userpass"`
+	Userpass map[string]string `pulumi:"userpass"`
 }
 
 // BackendConfigEstAuthenticatorsInput is an input type that accepts BackendConfigEstAuthenticatorsArgs and BackendConfigEstAuthenticatorsOutput values.
@@ -33,9 +33,9 @@ type BackendConfigEstAuthenticatorsInput interface {
 
 type BackendConfigEstAuthenticatorsArgs struct {
 	// "The accessor (required) and certRole (optional) properties for cert auth backends".
-	Cert pulumi.MapInput `pulumi:"cert"`
+	Cert pulumi.StringMapInput `pulumi:"cert"`
 	// "The accessor (required) property for user pass auth backends".
-	Userpass pulumi.MapInput `pulumi:"userpass"`
+	Userpass pulumi.StringMapInput `pulumi:"userpass"`
 }
 
 func (BackendConfigEstAuthenticatorsArgs) ElementType() reflect.Type {
@@ -116,13 +116,13 @@ func (o BackendConfigEstAuthenticatorsOutput) ToBackendConfigEstAuthenticatorsPt
 }
 
 // "The accessor (required) and certRole (optional) properties for cert auth backends".
-func (o BackendConfigEstAuthenticatorsOutput) Cert() pulumi.MapOutput {
-	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]interface{} { return v.Cert }).(pulumi.MapOutput)
+func (o BackendConfigEstAuthenticatorsOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
 }
 
 // "The accessor (required) property for user pass auth backends".
-func (o BackendConfigEstAuthenticatorsOutput) Userpass() pulumi.MapOutput {
-	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]interface{} { return v.Userpass }).(pulumi.MapOutput)
+func (o BackendConfigEstAuthenticatorsOutput) Userpass() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackendConfigEstAuthenticators) map[string]string { return v.Userpass }).(pulumi.StringMapOutput)
 }
 
 type BackendConfigEstAuthenticatorsPtrOutput struct{ *pulumi.OutputState }
@@ -150,23 +150,23 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Elem() BackendConfigEstAuthenti
 }
 
 // "The accessor (required) and certRole (optional) properties for cert auth backends".
-func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.MapOutput {
-	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]interface{} {
+func (o BackendConfigEstAuthenticatorsPtrOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Cert
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // "The accessor (required) property for user pass auth backends".
-func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.MapOutput {
-	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]interface{} {
+func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendConfigEstAuthenticators) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Userpass
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 type SecretBackendRolePolicyIdentifier struct {
@@ -292,9 +292,9 @@ func (o SecretBackendRolePolicyIdentifierArrayOutput) Index(i pulumi.IntInput) S
 
 type GetBackendConfigEstAuthenticator struct {
 	// "The accessor and certRole properties for cert auth backends".
-	Cert map[string]interface{} `pulumi:"cert"`
+	Cert map[string]string `pulumi:"cert"`
 	// "The accessor property for user pass auth backends".
-	Userpass map[string]interface{} `pulumi:"userpass"`
+	Userpass map[string]string `pulumi:"userpass"`
 }
 
 // GetBackendConfigEstAuthenticatorInput is an input type that accepts GetBackendConfigEstAuthenticatorArgs and GetBackendConfigEstAuthenticatorOutput values.
@@ -310,9 +310,9 @@ type GetBackendConfigEstAuthenticatorInput interface {
 
 type GetBackendConfigEstAuthenticatorArgs struct {
 	// "The accessor and certRole properties for cert auth backends".
-	Cert pulumi.MapInput `pulumi:"cert"`
+	Cert pulumi.StringMapInput `pulumi:"cert"`
 	// "The accessor property for user pass auth backends".
-	Userpass pulumi.MapInput `pulumi:"userpass"`
+	Userpass pulumi.StringMapInput `pulumi:"userpass"`
 }
 
 func (GetBackendConfigEstAuthenticatorArgs) ElementType() reflect.Type {
@@ -367,13 +367,13 @@ func (o GetBackendConfigEstAuthenticatorOutput) ToGetBackendConfigEstAuthenticat
 }
 
 // "The accessor and certRole properties for cert auth backends".
-func (o GetBackendConfigEstAuthenticatorOutput) Cert() pulumi.MapOutput {
-	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]interface{} { return v.Cert }).(pulumi.MapOutput)
+func (o GetBackendConfigEstAuthenticatorOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
 }
 
 // "The accessor property for user pass auth backends".
-func (o GetBackendConfigEstAuthenticatorOutput) Userpass() pulumi.MapOutput {
-	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]interface{} { return v.Userpass }).(pulumi.MapOutput)
+func (o GetBackendConfigEstAuthenticatorOutput) Userpass() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendConfigEstAuthenticator) map[string]string { return v.Userpass }).(pulumi.StringMapOutput)
 }
 
 type GetBackendConfigEstAuthenticatorArrayOutput struct{ *pulumi.OutputState }

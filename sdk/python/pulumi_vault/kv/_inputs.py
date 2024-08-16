@@ -17,12 +17,12 @@ __all__ = [
 class SecretV2CustomMetadataArgs:
     def __init__(__self__, *,
                  cas_required: Optional[pulumi.Input[bool]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  delete_version_after: Optional[pulumi.Input[int]] = None,
                  max_versions: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[bool] cas_required: If true, all keys will require the cas parameter to be set on all write requests.
-        :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
@@ -52,7 +52,7 @@ class SecretV2CustomMetadataArgs:
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only
@@ -62,7 +62,7 @@ class SecretV2CustomMetadataArgs:
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
 
     @property

@@ -1268,7 +1268,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Cassandra hosts to connect to.
          */
@@ -1343,7 +1343,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
@@ -1414,7 +1414,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Whether to disable certificate verification
          */
@@ -1473,7 +1473,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Disable special character escaping in username and password
          */
@@ -1532,7 +1532,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Influxdb host to connect to.
          */
@@ -1603,7 +1603,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1658,7 +1658,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Name of the database connection.
          */
@@ -1709,7 +1709,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Disable special character escaping in username and password
          */
@@ -1776,7 +1776,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1851,7 +1851,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1926,7 +1926,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2001,7 +2001,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2072,7 +2072,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
@@ -2143,7 +2143,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Disable special character escaping in username and password
          */
@@ -2210,7 +2210,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Specifies the host to connect to
          */
@@ -2265,7 +2265,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Name of the database connection.
          */
@@ -2316,7 +2316,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Disable special character escaping in username and password
          */
@@ -2379,7 +2379,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2627,7 +2627,7 @@ export namespace kv {
          * represent string data, so any non-string values returned from Vault are
          * serialized as JSON.
          */
-        data?: pulumi.Input<{[key: string]: any}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * If set, specifies the length of time before a version is deleted.
          */
@@ -2863,11 +2863,11 @@ export namespace pkiSecret {
         /**
          * "The accessor (required) and certRole (optional) properties for cert auth backends".
          */
-        cert?: pulumi.Input<{[key: string]: any}>;
+        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * "The accessor (required) property for user pass auth backends".
          */
-        userpass?: pulumi.Input<{[key: string]: any}>;
+        userpass?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface SecretBackendRolePolicyIdentifier {

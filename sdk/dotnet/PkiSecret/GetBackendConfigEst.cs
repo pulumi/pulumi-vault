@@ -155,7 +155,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> LabelToPathPolicy;
+        public readonly ImmutableDictionary<string, string> LabelToPathPolicy;
         /// <summary>
         /// A read-only timestamp representing the last time the configuration was updated.
         /// </summary>
@@ -180,7 +180,7 @@ namespace Pulumi.Vault.PkiSecret
 
             string id,
 
-            ImmutableDictionary<string, object> labelToPathPolicy,
+            ImmutableDictionary<string, string> labelToPathPolicy,
 
             string lastUpdated,
 

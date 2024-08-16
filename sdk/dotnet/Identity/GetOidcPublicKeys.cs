@@ -183,7 +183,7 @@ namespace Pulumi.Vault.Identity
         /// The public portion of keys for an OIDC provider. 
         /// Clients can use them to validate the authenticity of an identity token.
         /// </summary>
-        public readonly ImmutableArray<ImmutableDictionary<string, object>> Keys;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> Keys;
         public readonly string Name;
         public readonly string? Namespace;
 
@@ -191,7 +191,7 @@ namespace Pulumi.Vault.Identity
         private GetOidcPublicKeysResult(
             string id,
 
-            ImmutableArray<ImmutableDictionary<string, object>> keys,
+            ImmutableArray<ImmutableDictionary<string, string>> keys,
 
             string name,
 

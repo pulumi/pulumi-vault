@@ -67,7 +67,7 @@ export interface GetBackendKeysResult {
     /**
      * Map of key strings read from Vault.
      */
-    readonly keyInfo: {[key: string]: any};
+    readonly keyInfo: {[key: string]: string};
     /**
      * JSON-encoded key data read from Vault.
      */

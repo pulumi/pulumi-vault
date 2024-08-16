@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +46,7 @@ public final class GetRaftAutopilotStateResult {
      * @return Additional output related to redundancy zones stored as a serialized map of strings.
      * 
      */
-    private Map<String,Object> redundancyZones;
+    private Map<String,String> redundancyZones;
     /**
      * @return Additional output related to redundancy zones.
      * 
@@ -57,7 +56,7 @@ public final class GetRaftAutopilotStateResult {
      * @return Additionaly output related to servers in the cluster stored as a serialized map of strings.
      * 
      */
-    private Map<String,Object> servers;
+    private Map<String,String> servers;
     /**
      * @return Additionaly output related to servers in the cluster.
      * 
@@ -67,7 +66,7 @@ public final class GetRaftAutopilotStateResult {
      * @return Additional output related to upgrade information stored as a serialized map of strings.
      * 
      */
-    private Map<String,Object> upgradeInfo;
+    private Map<String,String> upgradeInfo;
     /**
      * @return Additional output related to upgrade information.
      * 
@@ -122,7 +121,7 @@ public final class GetRaftAutopilotStateResult {
      * @return Additional output related to redundancy zones stored as a serialized map of strings.
      * 
      */
-    public Map<String,Object> redundancyZones() {
+    public Map<String,String> redundancyZones() {
         return this.redundancyZones;
     }
     /**
@@ -136,7 +135,7 @@ public final class GetRaftAutopilotStateResult {
      * @return Additionaly output related to servers in the cluster stored as a serialized map of strings.
      * 
      */
-    public Map<String,Object> servers() {
+    public Map<String,String> servers() {
         return this.servers;
     }
     /**
@@ -150,7 +149,7 @@ public final class GetRaftAutopilotStateResult {
      * @return Additional output related to upgrade information stored as a serialized map of strings.
      * 
      */
-    public Map<String,Object> upgradeInfo() {
+    public Map<String,String> upgradeInfo() {
         return this.upgradeInfo;
     }
     /**
@@ -183,11 +182,11 @@ public final class GetRaftAutopilotStateResult {
         private String leader;
         private @Nullable String namespace;
         private Integer optimisticFailureTolerance;
-        private Map<String,Object> redundancyZones;
+        private Map<String,String> redundancyZones;
         private String redundancyZonesJson;
-        private Map<String,Object> servers;
+        private Map<String,String> servers;
         private String serversJson;
-        private Map<String,Object> upgradeInfo;
+        private Map<String,String> upgradeInfo;
         private String upgradeInfoJson;
         private List<String> voters;
         public Builder() {}
@@ -255,7 +254,7 @@ public final class GetRaftAutopilotStateResult {
             return this;
         }
         @CustomType.Setter
-        public Builder redundancyZones(Map<String,Object> redundancyZones) {
+        public Builder redundancyZones(Map<String,String> redundancyZones) {
             if (redundancyZones == null) {
               throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "redundancyZones");
             }
@@ -271,7 +270,7 @@ public final class GetRaftAutopilotStateResult {
             return this;
         }
         @CustomType.Setter
-        public Builder servers(Map<String,Object> servers) {
+        public Builder servers(Map<String,String> servers) {
             if (servers == null) {
               throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "servers");
             }
@@ -287,7 +286,7 @@ public final class GetRaftAutopilotStateResult {
             return this;
         }
         @CustomType.Setter
-        public Builder upgradeInfo(Map<String,Object> upgradeInfo) {
+        public Builder upgradeInfo(Map<String,String> upgradeInfo) {
             if (upgradeInfo == null) {
               throw new MissingRequiredPropertyException("GetRaftAutopilotStateResult", "upgradeInfo");
             }

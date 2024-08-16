@@ -94,7 +94,7 @@ export interface GetSecretResult {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    readonly data: {[key: string]: any};
+    readonly data: {[key: string]: string};
     /**
      * A string containing the full data payload retrieved from
      * Vault, serialized in JSON format.

@@ -89,14 +89,14 @@ export interface GetSecretV2Result {
     /**
      * Custom metadata for the secret.
      */
-    readonly customMetadata: {[key: string]: any};
+    readonly customMetadata: {[key: string]: string};
     /**
      * A mapping whose keys are the top-level data keys returned from
      * Vault and whose values are the corresponding values. This map can only
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    readonly data: {[key: string]: any};
+    readonly data: {[key: string]: string};
     /**
      * JSON-encoded string that that is
      * read as the secret data at the given path.

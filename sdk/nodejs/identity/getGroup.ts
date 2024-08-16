@@ -96,7 +96,7 @@ export interface GetGroupResult {
     /**
      * Arbitrary metadata
      */
-    readonly aliasMetadata: {[key: string]: any};
+    readonly aliasMetadata: {[key: string]: string};
     readonly aliasMountAccessor: string;
     /**
      * Authentication mount path which this alias belongs to
@@ -137,7 +137,7 @@ export interface GetGroupResult {
     /**
      * Arbitrary metadata
      */
-    readonly metadata: {[key: string]: any};
+    readonly metadata: {[key: string]: string};
     /**
      * Modify index of the group
      */

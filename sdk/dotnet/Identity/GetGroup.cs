@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// Arbitrary metadata
         /// </summary>
-        public readonly ImmutableDictionary<string, object> AliasMetadata;
+        public readonly ImmutableDictionary<string, string> AliasMetadata;
         public readonly string AliasMountAccessor;
         /// <summary>
         /// Authentication mount path which this alias belongs to
@@ -234,7 +234,7 @@ namespace Pulumi.Vault.Identity
         /// <summary>
         /// Arbitrary metadata
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Metadata;
+        public readonly ImmutableDictionary<string, string> Metadata;
         /// <summary>
         /// Modify index of the group
         /// </summary>
@@ -269,7 +269,7 @@ namespace Pulumi.Vault.Identity
 
             ImmutableArray<string> aliasMergedFromCanonicalIds,
 
-            ImmutableDictionary<string, object> aliasMetadata,
+            ImmutableDictionary<string, string> aliasMetadata,
 
             string aliasMountAccessor,
 
@@ -295,7 +295,7 @@ namespace Pulumi.Vault.Identity
 
             ImmutableArray<string> memberGroupIds,
 
-            ImmutableDictionary<string, object> metadata,
+            ImmutableDictionary<string, string> metadata,
 
             int modifyIndex,
 

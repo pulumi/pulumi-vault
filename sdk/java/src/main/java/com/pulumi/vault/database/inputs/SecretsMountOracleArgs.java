@@ -8,7 +8,6 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +59,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
      * 
      */
     @Import(name="data")
-    private @Nullable Output<Map<String,Object>> data;
+    private @Nullable Output<Map<String,String>> data;
 
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
@@ -68,7 +67,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    public Optional<Output<Map<String,Object>>> data() {
+    public Optional<Output<Map<String,String>>> data() {
         return Optional.ofNullable(this.data);
     }
 
@@ -355,7 +354,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder data(@Nullable Output<Map<String,Object>> data) {
+        public Builder data(@Nullable Output<Map<String,String>> data) {
             $.data = data;
             return this;
         }
@@ -368,7 +367,7 @@ public final class SecretsMountOracleArgs extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder data(Map<String,Object> data) {
+        public Builder data(Map<String,String> data) {
             return data(Output.of(data));
         }
 

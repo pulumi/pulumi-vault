@@ -31,8 +31,8 @@ import (
 //			kvv2, err := vault.NewMount(ctx, "kvv2", &vault.MountArgs{
 //				Path: pulumi.String("kvv2"),
 //				Type: pulumi.String("kv"),
-//				Options: pulumi.Map{
-//					"version": pulumi.Any("2"),
+//				Options: pulumi.StringMap{
+//					"version": pulumi.String("2"),
 //				},
 //				Description: pulumi.String("KV Version 2 secret engine mount"),
 //			})
@@ -103,12 +103,12 @@ type LookupSecretV2Result struct {
 	// Time at which secret was created.
 	CreatedTime string `pulumi:"createdTime"`
 	// Custom metadata for the secret.
-	CustomMetadata map[string]interface{} `pulumi:"customMetadata"`
+	CustomMetadata map[string]string `pulumi:"customMetadata"`
 	// A mapping whose keys are the top-level data keys returned from
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// JSON-encoded string that that is
 	// read as the secret data at the given path.
 	DataJson string `pulumi:"dataJson"`
@@ -183,16 +183,16 @@ func (o LookupSecretV2ResultOutput) CreatedTime() pulumi.StringOutput {
 }
 
 // Custom metadata for the secret.
-func (o LookupSecretV2ResultOutput) CustomMetadata() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupSecretV2Result) map[string]interface{} { return v.CustomMetadata }).(pulumi.MapOutput)
+func (o LookupSecretV2ResultOutput) CustomMetadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupSecretV2Result) map[string]string { return v.CustomMetadata }).(pulumi.StringMapOutput)
 }
 
 // A mapping whose keys are the top-level data keys returned from
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o LookupSecretV2ResultOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupSecretV2Result) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o LookupSecretV2ResultOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupSecretV2Result) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // JSON-encoded string that that is

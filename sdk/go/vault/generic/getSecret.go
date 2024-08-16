@@ -114,7 +114,7 @@ type LookupSecretResult struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// A string containing the full data payload retrieved from
 	// Vault, serialized in JSON format.
 	DataJson string `pulumi:"dataJson"`
@@ -193,8 +193,8 @@ func (o LookupSecretResultOutput) ToLookupSecretResultOutputWithContext(ctx cont
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o LookupSecretResultOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupSecretResult) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o LookupSecretResultOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupSecretResult) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // A string containing the full data payload retrieved from

@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.ssh.inputs.SecretBackendRoleAllowedUserKeyConfigArgs;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -256,13 +255,13 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * 
      */
     @Import(name="defaultCriticalOptions")
-    private @Nullable Output<Map<String,Object>> defaultCriticalOptions;
+    private @Nullable Output<Map<String,String>> defaultCriticalOptions;
 
     /**
      * @return Specifies a map of critical options that certificates have when signed.
      * 
      */
-    public Optional<Output<Map<String,Object>>> defaultCriticalOptions() {
+    public Optional<Output<Map<String,String>>> defaultCriticalOptions() {
         return Optional.ofNullable(this.defaultCriticalOptions);
     }
 
@@ -271,13 +270,13 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * 
      */
     @Import(name="defaultExtensions")
-    private @Nullable Output<Map<String,Object>> defaultExtensions;
+    private @Nullable Output<Map<String,String>> defaultExtensions;
 
     /**
      * @return Specifies a map of extensions that certificates have when signed.
      * 
      */
-    public Optional<Output<Map<String,Object>>> defaultExtensions() {
+    public Optional<Output<Map<String,String>>> defaultExtensions() {
         return Optional.ofNullable(this.defaultExtensions);
     }
 
@@ -810,7 +809,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder defaultCriticalOptions(@Nullable Output<Map<String,Object>> defaultCriticalOptions) {
+        public Builder defaultCriticalOptions(@Nullable Output<Map<String,String>> defaultCriticalOptions) {
             $.defaultCriticalOptions = defaultCriticalOptions;
             return this;
         }
@@ -821,7 +820,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder defaultCriticalOptions(Map<String,Object> defaultCriticalOptions) {
+        public Builder defaultCriticalOptions(Map<String,String> defaultCriticalOptions) {
             return defaultCriticalOptions(Output.of(defaultCriticalOptions));
         }
 
@@ -831,7 +830,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder defaultExtensions(@Nullable Output<Map<String,Object>> defaultExtensions) {
+        public Builder defaultExtensions(@Nullable Output<Map<String,String>> defaultExtensions) {
             $.defaultExtensions = defaultExtensions;
             return this;
         }
@@ -842,7 +841,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder defaultExtensions(Map<String,Object> defaultExtensions) {
+        public Builder defaultExtensions(Map<String,String> defaultExtensions) {
             return defaultExtensions(Output.of(defaultExtensions));
         }
 

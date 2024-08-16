@@ -15,7 +15,7 @@ __all__ = ['SyncGcpDestinationArgs', 'SyncGcpDestination']
 class SyncGcpDestinationArgs:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -26,7 +26,7 @@ class SyncGcpDestinationArgs:
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
-        :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_tags: Custom tags to set on the secret managed at the destination.
         :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GCP destination.
@@ -71,14 +71,14 @@ class SyncGcpDestinationArgs:
 
     @property
     @pulumi.getter(name="customTags")
-    def custom_tags(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Custom tags to set on the secret managed at the destination.
         """
         return pulumi.get(self, "custom_tags")
 
     @custom_tags.setter
-    def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_tags", value)
 
     @property
@@ -153,7 +153,7 @@ class SyncGcpDestinationArgs:
 class _SyncGcpDestinationState:
     def __init__(__self__, *,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -165,7 +165,7 @@ class _SyncGcpDestinationState:
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
-        :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_tags: Custom tags to set on the secret managed at the destination.
         :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GCP destination.
@@ -213,14 +213,14 @@ class _SyncGcpDestinationState:
 
     @property
     @pulumi.getter(name="customTags")
-    def custom_tags(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def custom_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Custom tags to set on the secret managed at the destination.
         """
         return pulumi.get(self, "custom_tags")
 
     @custom_tags.setter
-    def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def custom_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "custom_tags", value)
 
     @property
@@ -309,7 +309,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -347,7 +347,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
-        :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_tags: Custom tags to set on the secret managed at the destination.
         :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GCP destination.
@@ -409,7 +409,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  credentials: Optional[pulumi.Input[str]] = None,
-                 custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  granularity: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -445,7 +445,7 @@ class SyncGcpDestination(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             credentials: Optional[pulumi.Input[str]] = None,
-            custom_tags: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            custom_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             granularity: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -462,7 +462,7 @@ class SyncGcpDestination(pulumi.CustomResource):
         :param pulumi.Input[str] credentials: JSON-encoded credentials to use to connect to GCP.
                Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
                variable.
-        :param pulumi.Input[Mapping[str, Any]] custom_tags: Custom tags to set on the secret managed at the destination.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] custom_tags: Custom tags to set on the secret managed at the destination.
         :param pulumi.Input[str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[str] name: Unique name of the GCP destination.
@@ -503,7 +503,7 @@ class SyncGcpDestination(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="customTags")
-    def custom_tags(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def custom_tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Custom tags to set on the secret managed at the destination.
         """

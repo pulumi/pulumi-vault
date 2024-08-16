@@ -84,7 +84,7 @@ export class Template extends pulumi.CustomResource {
      * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
-    public readonly decodeFormats!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly decodeFormats!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
@@ -166,7 +166,7 @@ export interface TemplateState {
      * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
-    decodeFormats?: pulumi.Input<{[key: string]: any}>;
+    decodeFormats?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
@@ -209,7 +209,7 @@ export interface TemplateArgs {
      * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
-    decodeFormats?: pulumi.Input<{[key: string]: any}>;
+    decodeFormats?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)

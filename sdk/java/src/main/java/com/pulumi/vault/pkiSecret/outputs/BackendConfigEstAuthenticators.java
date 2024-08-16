@@ -4,7 +4,6 @@
 package com.pulumi.vault.pkiSecret.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -16,26 +15,26 @@ public final class BackendConfigEstAuthenticators {
      * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
      * 
      */
-    private @Nullable Map<String,Object> cert;
+    private @Nullable Map<String,String> cert;
     /**
      * @return &#34;The accessor (required) property for user pass auth backends&#34;.
      * 
      */
-    private @Nullable Map<String,Object> userpass;
+    private @Nullable Map<String,String> userpass;
 
     private BackendConfigEstAuthenticators() {}
     /**
      * @return &#34;The accessor (required) and cert_role (optional) properties for cert auth backends&#34;.
      * 
      */
-    public Map<String,Object> cert() {
+    public Map<String,String> cert() {
         return this.cert == null ? Map.of() : this.cert;
     }
     /**
      * @return &#34;The accessor (required) property for user pass auth backends&#34;.
      * 
      */
-    public Map<String,Object> userpass() {
+    public Map<String,String> userpass() {
         return this.userpass == null ? Map.of() : this.userpass;
     }
 
@@ -48,8 +47,8 @@ public final class BackendConfigEstAuthenticators {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable Map<String,Object> cert;
-        private @Nullable Map<String,Object> userpass;
+        private @Nullable Map<String,String> cert;
+        private @Nullable Map<String,String> userpass;
         public Builder() {}
         public Builder(BackendConfigEstAuthenticators defaults) {
     	      Objects.requireNonNull(defaults);
@@ -58,13 +57,13 @@ public final class BackendConfigEstAuthenticators {
         }
 
         @CustomType.Setter
-        public Builder cert(@Nullable Map<String,Object> cert) {
+        public Builder cert(@Nullable Map<String,String> cert) {
 
             this.cert = cert;
             return this;
         }
         @CustomType.Setter
-        public Builder userpass(@Nullable Map<String,Object> userpass) {
+        public Builder userpass(@Nullable Map<String,String> userpass) {
 
             this.userpass = userpass;
             return this;

@@ -75,7 +75,7 @@ namespace Pulumi.Vault.Saml
         /// exist in the SAML assertion.
         /// </summary>
         [Output("boundAttributes")]
-        public Output<ImmutableDictionary<string, object>?> BoundAttributes { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> BoundAttributes { get; private set; } = null!;
 
         /// <summary>
         /// The type of matching assertion to perform on
@@ -225,15 +225,15 @@ namespace Pulumi.Vault.Saml
     public sealed class AuthBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         [Input("boundAttributes")]
-        private InputMap<object>? _boundAttributes;
+        private InputMap<string>? _boundAttributes;
 
         /// <summary>
         /// Mapping of attribute names to values that are expected to
         /// exist in the SAML assertion.
         /// </summary>
-        public InputMap<object> BoundAttributes
+        public InputMap<string> BoundAttributes
         {
-            get => _boundAttributes ?? (_boundAttributes = new InputMap<object>());
+            get => _boundAttributes ?? (_boundAttributes = new InputMap<string>());
             set => _boundAttributes = value;
         }
 
@@ -365,15 +365,15 @@ namespace Pulumi.Vault.Saml
     public sealed class AuthBackendRoleState : global::Pulumi.ResourceArgs
     {
         [Input("boundAttributes")]
-        private InputMap<object>? _boundAttributes;
+        private InputMap<string>? _boundAttributes;
 
         /// <summary>
         /// Mapping of attribute names to values that are expected to
         /// exist in the SAML assertion.
         /// </summary>
-        public InputMap<object> BoundAttributes
+        public InputMap<string> BoundAttributes
         {
-            get => _boundAttributes ?? (_boundAttributes = new InputMap<object>());
+            get => _boundAttributes ?? (_boundAttributes = new InputMap<string>());
             set => _boundAttributes = value;
         }
 

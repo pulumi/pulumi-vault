@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.vault.pkiSecret.inputs.BackendConfigEstAuthenticatorsArgs;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -136,13 +135,13 @@ public final class BackendConfigEstState extends com.pulumi.resources.ResourceAr
      * 
      */
     @Import(name="labelToPathPolicy")
-    private @Nullable Output<Map<String,Object>> labelToPathPolicy;
+    private @Nullable Output<Map<String,String>> labelToPathPolicy;
 
     /**
      * @return Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:&lt;role_name&gt;. Labels must be unique across Vault cluster, and will register .well-known/est/&lt;label&gt; URL paths.
      * 
      */
-    public Optional<Output<Map<String,Object>>> labelToPathPolicy() {
+    public Optional<Output<Map<String,String>>> labelToPathPolicy() {
         return Optional.ofNullable(this.labelToPathPolicy);
     }
 
@@ -386,7 +385,7 @@ public final class BackendConfigEstState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder labelToPathPolicy(@Nullable Output<Map<String,Object>> labelToPathPolicy) {
+        public Builder labelToPathPolicy(@Nullable Output<Map<String,String>> labelToPathPolicy) {
             $.labelToPathPolicy = labelToPathPolicy;
             return this;
         }
@@ -397,7 +396,7 @@ public final class BackendConfigEstState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder labelToPathPolicy(Map<String,Object> labelToPathPolicy) {
+        public Builder labelToPathPolicy(Map<String,String> labelToPathPolicy) {
             return labelToPathPolicy(Output.of(labelToPathPolicy));
         }
 

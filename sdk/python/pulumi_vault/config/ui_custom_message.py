@@ -23,7 +23,7 @@ class UiCustomMessageArgs:
                  end_time: Optional[pulumi.Input[str]] = None,
                  link: Optional[pulumi.Input['UiCustomMessageLinkArgs']] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a UiCustomMessage resource.
@@ -34,7 +34,7 @@ class UiCustomMessageArgs:
         :param pulumi.Input[str] end_time: The ending time of the active period of the custom message. Can be omitted for non-expiring message
         :param pulumi.Input['UiCustomMessageLinkArgs'] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: A map containing additional options for the custom message
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: A map containing additional options for the custom message
         :param pulumi.Input[str] type: The display type of custom message. Allowed values are banner and modal
         """
         pulumi.set(__self__, "message_base64", message_base64)
@@ -139,14 +139,14 @@ class UiCustomMessageArgs:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map containing additional options for the custom message
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -170,7 +170,7 @@ class _UiCustomMessageState:
                  link: Optional[pulumi.Input['UiCustomMessageLinkArgs']] = None,
                  message_base64: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  start_time: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -181,7 +181,7 @@ class _UiCustomMessageState:
         :param pulumi.Input['UiCustomMessageLinkArgs'] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: A map containing additional options for the custom message
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: A map containing additional options for the custom message
         :param pulumi.Input[str] start_time: The starting time of the active period of the custom message
         :param pulumi.Input[str] title: The title of the custom message
         :param pulumi.Input[str] type: The display type of custom message. Allowed values are banner and modal
@@ -267,14 +267,14 @@ class _UiCustomMessageState:
 
     @property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map containing additional options for the custom message
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "options", value)
 
     @property
@@ -324,7 +324,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  link: Optional[pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
                  message_base64: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  start_time: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -338,7 +338,7 @@ class UiCustomMessage(pulumi.CustomResource):
         :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: A map containing additional options for the custom message
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: A map containing additional options for the custom message
         :param pulumi.Input[str] start_time: The starting time of the active period of the custom message
         :param pulumi.Input[str] title: The title of the custom message
         :param pulumi.Input[str] type: The display type of custom message. Allowed values are banner and modal
@@ -371,7 +371,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  link: Optional[pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
                  message_base64: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  start_time: Optional[pulumi.Input[str]] = None,
                  title: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -414,7 +414,7 @@ class UiCustomMessage(pulumi.CustomResource):
             link: Optional[pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
             message_base64: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
-            options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             start_time: Optional[pulumi.Input[str]] = None,
             title: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'UiCustomMessage':
@@ -430,7 +430,7 @@ class UiCustomMessage(pulumi.CustomResource):
         :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Mapping[str, Any]] options: A map containing additional options for the custom message
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: A map containing additional options for the custom message
         :param pulumi.Input[str] start_time: The starting time of the active period of the custom message
         :param pulumi.Input[str] title: The title of the custom message
         :param pulumi.Input[str] type: The display type of custom message. Allowed values are banner and modal
@@ -492,7 +492,7 @@ class UiCustomMessage(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def options(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         A map containing additional options for the custom message
         """

@@ -83,9 +83,9 @@ func GetDecode(ctx *pulumi.Context, args *GetDecodeArgs, opts ...pulumi.InvokeOp
 // A collection of arguments for invoking getDecode.
 type GetDecodeArgs struct {
 	// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-	BatchInputs []map[string]interface{} `pulumi:"batchInputs"`
+	BatchInputs []map[string]string `pulumi:"batchInputs"`
 	// The result of decoding a batch.
-	BatchResults []map[string]interface{} `pulumi:"batchResults"`
+	BatchResults []map[string]string `pulumi:"batchResults"`
 	// The result of decoding a value.
 	DecodedValue *string `pulumi:"decodedValue"`
 	// The namespace of the target resource.
@@ -107,9 +107,9 @@ type GetDecodeArgs struct {
 
 // A collection of values returned by getDecode.
 type GetDecodeResult struct {
-	BatchInputs  []map[string]interface{} `pulumi:"batchInputs"`
-	BatchResults []map[string]interface{} `pulumi:"batchResults"`
-	DecodedValue string                   `pulumi:"decodedValue"`
+	BatchInputs  []map[string]string `pulumi:"batchInputs"`
+	BatchResults []map[string]string `pulumi:"batchResults"`
+	DecodedValue string              `pulumi:"decodedValue"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	Namespace      *string `pulumi:"namespace"`
@@ -136,9 +136,9 @@ func GetDecodeOutput(ctx *pulumi.Context, args GetDecodeOutputArgs, opts ...pulu
 // A collection of arguments for invoking getDecode.
 type GetDecodeOutputArgs struct {
 	// Specifies a list of items to be decoded in a single batch. If this parameter is set, the top-level parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
-	BatchInputs pulumi.MapArrayInput `pulumi:"batchInputs"`
+	BatchInputs pulumi.StringMapArrayInput `pulumi:"batchInputs"`
 	// The result of decoding a batch.
-	BatchResults pulumi.MapArrayInput `pulumi:"batchResults"`
+	BatchResults pulumi.StringMapArrayInput `pulumi:"batchResults"`
 	// The result of decoding a value.
 	DecodedValue pulumi.StringPtrInput `pulumi:"decodedValue"`
 	// The namespace of the target resource.
@@ -177,12 +177,12 @@ func (o GetDecodeResultOutput) ToGetDecodeResultOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o GetDecodeResultOutput) BatchInputs() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetDecodeResult) []map[string]interface{} { return v.BatchInputs }).(pulumi.MapArrayOutput)
+func (o GetDecodeResultOutput) BatchInputs() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetDecodeResult) []map[string]string { return v.BatchInputs }).(pulumi.StringMapArrayOutput)
 }
 
-func (o GetDecodeResultOutput) BatchResults() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetDecodeResult) []map[string]interface{} { return v.BatchResults }).(pulumi.MapArrayOutput)
+func (o GetDecodeResultOutput) BatchResults() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetDecodeResult) []map[string]string { return v.BatchResults }).(pulumi.StringMapArrayOutput)
 }
 
 func (o GetDecodeResultOutput) DecodedValue() pulumi.StringOutput {

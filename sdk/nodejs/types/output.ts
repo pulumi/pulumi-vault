@@ -1214,7 +1214,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Cassandra hosts to connect to.
          */
@@ -1289,7 +1289,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
@@ -1360,7 +1360,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Whether to disable certificate verification
          */
@@ -1419,7 +1419,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Disable special character escaping in username and password
          */
@@ -1478,7 +1478,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Influxdb host to connect to.
          */
@@ -1549,7 +1549,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1604,7 +1604,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Name of the database connection.
          */
@@ -1655,7 +1655,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Disable special character escaping in username and password
          */
@@ -1722,7 +1722,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1797,7 +1797,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1872,7 +1872,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1947,7 +1947,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2018,7 +2018,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
@@ -2089,7 +2089,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Disable special character escaping in username and password
          */
@@ -2156,7 +2156,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Specifies the host to connect to
          */
@@ -2211,7 +2211,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Name of the database connection.
          */
@@ -2262,7 +2262,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Disable special character escaping in username and password
          */
@@ -2325,7 +2325,7 @@ export namespace database {
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2539,7 +2539,7 @@ export namespace identity {
         /**
          * Arbitrary metadata
          */
-        metadata: {[key: string]: any};
+        metadata: {[key: string]: string};
         /**
          * Authentication mount acccessor which this alias belongs to
          */
@@ -2620,7 +2620,7 @@ export namespace kv {
          * represent string data, so any non-string values returned from Vault are
          * serialized as JSON.
          */
-        data?: {[key: string]: any};
+        data?: {[key: string]: string};
         /**
          * If set, specifies the length of time before a version is deleted.
          */
@@ -2859,22 +2859,22 @@ export namespace pkiSecret {
         /**
          * "The accessor (required) and certRole (optional) properties for cert auth backends".
          */
-        cert?: {[key: string]: any};
+        cert?: {[key: string]: string};
         /**
          * "The accessor (required) property for user pass auth backends".
          */
-        userpass?: {[key: string]: any};
+        userpass?: {[key: string]: string};
     }
 
     export interface GetBackendConfigEstAuthenticator {
         /**
          * "The accessor and certRole properties for cert auth backends".
          */
-        cert?: {[key: string]: any};
+        cert?: {[key: string]: string};
         /**
          * "The accessor property for user pass auth backends".
          */
-        userpass?: {[key: string]: any};
+        userpass?: {[key: string]: string};
     }
 
     export interface SecretBackendRolePolicyIdentifier {

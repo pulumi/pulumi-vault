@@ -76,13 +76,13 @@ class SecretArgs:
 @pulumi.input_type
 class _SecretState:
     def __init__(__self__, *,
-                 data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  data_json: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
-        :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
@@ -105,7 +105,7 @@ class _SecretState:
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only
@@ -115,7 +115,7 @@ class _SecretState:
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
 
     @property
@@ -317,7 +317,7 @@ class Secret(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             data_json: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'Secret':
@@ -328,7 +328,7 @@ class Secret(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] data: A mapping whose keys are the top-level data keys returned from
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A mapping whose keys are the top-level data keys returned from
                Vault and whose values are the corresponding values. This map can only
                represent string data, so any non-string values returned from Vault are
                serialized as JSON.
@@ -352,7 +352,7 @@ class Secret(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def data(self) -> pulumi.Output[Mapping[str, Any]]:
+    def data(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only

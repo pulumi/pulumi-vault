@@ -81,7 +81,7 @@ export class BackendConfigEst extends pulumi.CustomResource {
     /**
      * Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    public readonly labelToPathPolicy!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly labelToPathPolicy!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */
@@ -176,7 +176,7 @@ export interface BackendConfigEstState {
     /**
      * Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    labelToPathPolicy?: pulumi.Input<{[key: string]: any}>;
+    labelToPathPolicy?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */
@@ -228,7 +228,7 @@ export interface BackendConfigEstArgs {
     /**
      * Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    labelToPathPolicy?: pulumi.Input<{[key: string]: any}>;
+    labelToPathPolicy?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.

@@ -86,7 +86,7 @@ export interface GetBackendConfigEstResult {
     /**
      * A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    readonly labelToPathPolicy: {[key: string]: any};
+    readonly labelToPathPolicy: {[key: string]: string};
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */

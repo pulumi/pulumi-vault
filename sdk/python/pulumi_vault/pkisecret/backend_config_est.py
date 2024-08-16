@@ -23,7 +23,7 @@ class BackendConfigEstArgs:
                  default_path_policy: Optional[pulumi.Input[str]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BackendConfigEst resource.
@@ -37,7 +37,7 @@ class BackendConfigEstArgs:
         :param pulumi.Input[str] default_path_policy: Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether EST is enabled.
-        :param pulumi.Input[Mapping[str, Any]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         :param pulumi.Input[str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -150,14 +150,14 @@ class BackendConfigEstArgs:
 
     @property
     @pulumi.getter(name="labelToPathPolicy")
-    def label_to_path_policy(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def label_to_path_policy(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         """
         return pulumi.get(self, "label_to_path_policy")
 
     @label_to_path_policy.setter
-    def label_to_path_policy(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def label_to_path_policy(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "label_to_path_policy", value)
 
     @property
@@ -186,7 +186,7 @@ class _BackendConfigEstState:
                  default_path_policy: Optional[pulumi.Input[str]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  last_updated: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
@@ -201,7 +201,7 @@ class _BackendConfigEstState:
         :param pulumi.Input[str] default_path_policy: Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether EST is enabled.
-        :param pulumi.Input[Mapping[str, Any]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         :param pulumi.Input[str] last_updated: A read-only timestamp representing the last time the configuration was updated.
         :param pulumi.Input[str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
@@ -318,14 +318,14 @@ class _BackendConfigEstState:
 
     @property
     @pulumi.getter(name="labelToPathPolicy")
-    def label_to_path_policy(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def label_to_path_policy(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         """
         return pulumi.get(self, "label_to_path_policy")
 
     @label_to_path_policy.setter
-    def label_to_path_policy(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def label_to_path_policy(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "label_to_path_policy", value)
 
     @property
@@ -368,7 +368,7 @@ class BackendConfigEst(pulumi.CustomResource):
                  default_path_policy: Optional[pulumi.Input[str]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -396,7 +396,7 @@ class BackendConfigEst(pulumi.CustomResource):
         :param pulumi.Input[str] default_path_policy: Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether EST is enabled.
-        :param pulumi.Input[Mapping[str, Any]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         :param pulumi.Input[str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -443,7 +443,7 @@ class BackendConfigEst(pulumi.CustomResource):
                  default_path_policy: Optional[pulumi.Input[str]] = None,
                  enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 label_to_path_policy: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -483,7 +483,7 @@ class BackendConfigEst(pulumi.CustomResource):
             default_path_policy: Optional[pulumi.Input[str]] = None,
             enable_sentinel_parsing: Optional[pulumi.Input[bool]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
-            label_to_path_policy: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            label_to_path_policy: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             last_updated: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None) -> 'BackendConfigEst':
         """
@@ -503,7 +503,7 @@ class BackendConfigEst(pulumi.CustomResource):
         :param pulumi.Input[str] default_path_policy: Required to be set if default_mount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
         :param pulumi.Input[bool] enable_sentinel_parsing: If set, parse out fields from the provided CSR making them available for Sentinel policies.
         :param pulumi.Input[bool] enabled: Specifies whether EST is enabled.
-        :param pulumi.Input[Mapping[str, Any]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] label_to_path_policy: Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         :param pulumi.Input[str] last_updated: A read-only timestamp representing the last time the configuration was updated.
         :param pulumi.Input[str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
@@ -587,7 +587,7 @@ class BackendConfigEst(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="labelToPathPolicy")
-    def label_to_path_policy(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def label_to_path_policy(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
         """

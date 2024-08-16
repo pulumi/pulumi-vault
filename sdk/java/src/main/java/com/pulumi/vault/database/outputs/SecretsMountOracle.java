@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +33,7 @@ public final class SecretsMountOracle {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,Object> data;
+    private @Nullable Map<String,String> data;
     /**
      * @return Set to true to disconnect any open sessions prior to running the revocation statements.
      * 
@@ -119,7 +118,7 @@ public final class SecretsMountOracle {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
     }
     /**
@@ -219,7 +218,7 @@ public final class SecretsMountOracle {
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable String connectionUrl;
-        private @Nullable Map<String,Object> data;
+        private @Nullable Map<String,String> data;
         private @Nullable Boolean disconnectSessions;
         private @Nullable Integer maxConnectionLifetime;
         private @Nullable Integer maxIdleConnections;
@@ -268,7 +267,7 @@ public final class SecretsMountOracle {
             return this;
         }
         @CustomType.Setter
-        public Builder data(@Nullable Map<String,Object> data) {
+        public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
             return this;

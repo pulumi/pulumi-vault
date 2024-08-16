@@ -213,7 +213,7 @@ export class SecretsMount extends pulumi.CustomResource {
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    public readonly options!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.  
      * *See Configuration Options for more info*
@@ -490,7 +490,7 @@ export interface SecretsMountState {
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A nested block containing configuration options for Oracle connections.  
      * *See Configuration Options for more info*
@@ -660,7 +660,7 @@ export interface SecretsMountArgs {
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: any}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A nested block containing configuration options for Oracle connections.  
      * *See Configuration Options for more info*

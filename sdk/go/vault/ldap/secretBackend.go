@@ -105,7 +105,7 @@ type SecretBackend struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapOutput `pulumi:"options"`
+	Options pulumi.StringMapOutput `pulumi:"options"`
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Name of the password policy to use to generate passwords.
@@ -241,7 +241,7 @@ type secretBackendState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Name of the password policy to use to generate passwords.
@@ -327,7 +327,7 @@ type SecretBackendState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Name of the password policy to use to generate passwords.
@@ -415,7 +415,7 @@ type secretBackendArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
-	Options map[string]interface{} `pulumi:"options"`
+	Options map[string]string `pulumi:"options"`
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Name of the password policy to use to generate passwords.
@@ -500,7 +500,7 @@ type SecretBackendArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
-	Options pulumi.MapInput
+	Options pulumi.StringMapInput
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Name of the password policy to use to generate passwords.
@@ -738,8 +738,8 @@ func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // Specifies mount type specific options that are passed to the backend
-func (o SecretBackendOutput) Options() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretBackend) pulumi.MapOutput { return v.Options }).(pulumi.MapOutput)
+func (o SecretBackendOutput) Options() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
 // List of headers to allow and pass from the request to the plugin

@@ -5,7 +5,6 @@ package com.pulumi.vault.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -20,7 +19,7 @@ public final class GetNamespaceResult {
      * *Requires Vault 1.12+.*
      * 
      */
-    private Map<String,Object> customMetadata;
+    private Map<String,String> customMetadata;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -48,7 +47,7 @@ public final class GetNamespaceResult {
      * *Requires Vault 1.12+.*
      * 
      */
-    public Map<String,Object> customMetadata() {
+    public Map<String,String> customMetadata() {
         return this.customMetadata;
     }
     /**
@@ -90,7 +89,7 @@ public final class GetNamespaceResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> customMetadata;
+        private Map<String,String> customMetadata;
         private String id;
         private @Nullable String namespace;
         private String namespaceId;
@@ -108,7 +107,7 @@ public final class GetNamespaceResult {
         }
 
         @CustomType.Setter
-        public Builder customMetadata(Map<String,Object> customMetadata) {
+        public Builder customMetadata(Map<String,String> customMetadata) {
             if (customMetadata == null) {
               throw new MissingRequiredPropertyException("GetNamespaceResult", "customMetadata");
             }

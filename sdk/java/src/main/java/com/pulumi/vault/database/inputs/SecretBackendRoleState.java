@@ -6,7 +6,6 @@ package com.pulumi.vault.database.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +58,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * 
      */
     @Import(name="credentialConfig")
-    private @Nullable Output<Map<String,Object>> credentialConfig;
+    private @Nullable Output<Map<String,String>> credentialConfig;
 
     /**
      * @return Specifies the configuration
@@ -68,7 +67,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * The following options are available for each `credential_type` value:
      * 
      */
-    public Optional<Output<Map<String,Object>>> credentialConfig() {
+    public Optional<Output<Map<String,String>>> credentialConfig() {
         return Optional.ofNullable(this.credentialConfig);
     }
 
@@ -328,7 +327,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder credentialConfig(@Nullable Output<Map<String,Object>> credentialConfig) {
+        public Builder credentialConfig(@Nullable Output<Map<String,String>> credentialConfig) {
             $.credentialConfig = credentialConfig;
             return this;
         }
@@ -342,7 +341,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          * @return builder
          * 
          */
-        public Builder credentialConfig(Map<String,Object> credentialConfig) {
+        public Builder credentialConfig(Map<String,String> credentialConfig) {
             return credentialConfig(Output.of(credentialConfig));
         }
 

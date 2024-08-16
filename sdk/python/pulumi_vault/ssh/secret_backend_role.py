@@ -32,8 +32,8 @@ class SecretBackendRoleArgs:
                  allowed_users: Optional[pulumi.Input[str]] = None,
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  cidr_list: Optional[pulumi.Input[str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  default_user: Optional[pulumi.Input[str]] = None,
                  default_user_template: Optional[pulumi.Input[bool]] = None,
                  key_id_format: Optional[pulumi.Input[str]] = None,
@@ -63,8 +63,8 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
-        :param pulumi.Input[Mapping[str, Any]] default_critical_options: Specifies a map of critical options that certificates have when signed.
-        :param pulumi.Input[Mapping[str, Any]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
         :param pulumi.Input[str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         :param pulumi.Input[str] key_id_format: Specifies a custom format for the key id of a signed certificate.
@@ -325,26 +325,26 @@ class SecretBackendRoleArgs:
 
     @property
     @pulumi.getter(name="defaultCriticalOptions")
-    def default_critical_options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def default_critical_options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies a map of critical options that certificates have when signed.
         """
         return pulumi.get(self, "default_critical_options")
 
     @default_critical_options.setter
-    def default_critical_options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def default_critical_options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "default_critical_options", value)
 
     @property
     @pulumi.getter(name="defaultExtensions")
-    def default_extensions(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def default_extensions(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies a map of extensions that certificates have when signed.
         """
         return pulumi.get(self, "default_extensions")
 
     @default_extensions.setter
-    def default_extensions(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def default_extensions(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "default_extensions", value)
 
     @property
@@ -465,8 +465,8 @@ class _SecretBackendRoleState:
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_list: Optional[pulumi.Input[str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  default_user: Optional[pulumi.Input[str]] = None,
                  default_user_template: Optional[pulumi.Input[bool]] = None,
                  key_id_format: Optional[pulumi.Input[str]] = None,
@@ -496,8 +496,8 @@ class _SecretBackendRoleState:
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
-        :param pulumi.Input[Mapping[str, Any]] default_critical_options: Specifies a map of critical options that certificates have when signed.
-        :param pulumi.Input[Mapping[str, Any]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
         :param pulumi.Input[str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         :param pulumi.Input[str] key_id_format: Specifies a custom format for the key id of a signed certificate.
@@ -749,26 +749,26 @@ class _SecretBackendRoleState:
 
     @property
     @pulumi.getter(name="defaultCriticalOptions")
-    def default_critical_options(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def default_critical_options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies a map of critical options that certificates have when signed.
         """
         return pulumi.get(self, "default_critical_options")
 
     @default_critical_options.setter
-    def default_critical_options(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def default_critical_options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "default_critical_options", value)
 
     @property
     @pulumi.getter(name="defaultExtensions")
-    def default_extensions(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def default_extensions(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Specifies a map of extensions that certificates have when signed.
         """
         return pulumi.get(self, "default_extensions")
 
     @default_extensions.setter
-    def default_extensions(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def default_extensions(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "default_extensions", value)
 
     @property
@@ -903,8 +903,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_list: Optional[pulumi.Input[str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  default_user: Optional[pulumi.Input[str]] = None,
                  default_user_template: Optional[pulumi.Input[bool]] = None,
                  key_id_format: Optional[pulumi.Input[str]] = None,
@@ -968,8 +968,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
-        :param pulumi.Input[Mapping[str, Any]] default_critical_options: Specifies a map of critical options that certificates have when signed.
-        :param pulumi.Input[Mapping[str, Any]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
         :param pulumi.Input[str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         :param pulumi.Input[str] key_id_format: Specifies a custom format for the key id of a signed certificate.
@@ -1052,8 +1052,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_users_template: Optional[pulumi.Input[bool]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  cidr_list: Optional[pulumi.Input[str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  default_user: Optional[pulumi.Input[str]] = None,
                  default_user_template: Optional[pulumi.Input[bool]] = None,
                  key_id_format: Optional[pulumi.Input[str]] = None,
@@ -1127,8 +1127,8 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_users_template: Optional[pulumi.Input[bool]] = None,
             backend: Optional[pulumi.Input[str]] = None,
             cidr_list: Optional[pulumi.Input[str]] = None,
-            default_critical_options: Optional[pulumi.Input[Mapping[str, Any]]] = None,
-            default_extensions: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             default_user: Optional[pulumi.Input[str]] = None,
             default_user_template: Optional[pulumi.Input[bool]] = None,
             key_id_format: Optional[pulumi.Input[str]] = None,
@@ -1163,8 +1163,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
-        :param pulumi.Input[Mapping[str, Any]] default_critical_options: Specifies a map of critical options that certificates have when signed.
-        :param pulumi.Input[Mapping[str, Any]] default_extensions: Specifies a map of extensions that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_critical_options: Specifies a map of critical options that certificates have when signed.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] default_extensions: Specifies a map of extensions that certificates have when signed.
         :param pulumi.Input[str] default_user: Specifies the default username for which a credential will be generated.
         :param pulumi.Input[bool] default_user_template: If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         :param pulumi.Input[str] key_id_format: Specifies a custom format for the key id of a signed certificate.
@@ -1335,7 +1335,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultCriticalOptions")
-    def default_critical_options(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def default_critical_options(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Specifies a map of critical options that certificates have when signed.
         """
@@ -1343,7 +1343,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultExtensions")
-    def default_extensions(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def default_extensions(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Specifies a map of extensions that certificates have when signed.
         """

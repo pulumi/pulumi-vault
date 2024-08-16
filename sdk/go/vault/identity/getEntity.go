@@ -103,8 +103,8 @@ type LookupEntityResult struct {
 	// Other entity IDs which is merged with this entity
 	MergedEntityIds []string `pulumi:"mergedEntityIds"`
 	// Arbitrary metadata
-	Metadata  map[string]interface{} `pulumi:"metadata"`
-	Namespace *string                `pulumi:"namespace"`
+	Metadata  map[string]string `pulumi:"metadata"`
+	Namespace *string           `pulumi:"namespace"`
 	// Namespace of which the entity is part of
 	NamespaceId string `pulumi:"namespaceId"`
 	// List of policies attached to the entity
@@ -239,8 +239,8 @@ func (o LookupEntityResultOutput) MergedEntityIds() pulumi.StringArrayOutput {
 }
 
 // Arbitrary metadata
-func (o LookupEntityResultOutput) Metadata() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupEntityResult) map[string]interface{} { return v.Metadata }).(pulumi.MapOutput)
+func (o LookupEntityResultOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupEntityResult) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
 func (o LookupEntityResultOutput) Namespace() pulumi.StringPtrOutput {

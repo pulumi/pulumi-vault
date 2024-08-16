@@ -137,7 +137,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Mapping[str, Any]:
+    def alias_metadata(self) -> Mapping[str, str]:
         """
         Arbitrary metadata
         """
@@ -230,7 +230,7 @@ class GetGroupResult:
 
     @property
     @pulumi.getter
-    def metadata(self) -> Mapping[str, Any]:
+    def metadata(self) -> Mapping[str, str]:
         """
         Arbitrary metadata
         """

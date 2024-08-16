@@ -20,7 +20,7 @@ type SecretV2CustomMetadata struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data map[string]interface{} `pulumi:"data"`
+	Data map[string]string `pulumi:"data"`
 	// If set, specifies the length of time before a version is deleted.
 	DeleteVersionAfter *int `pulumi:"deleteVersionAfter"`
 	// The number of versions to keep per key.
@@ -45,7 +45,7 @@ type SecretV2CustomMetadataArgs struct {
 	// Vault and whose values are the corresponding values. This map can only
 	// represent string data, so any non-string values returned from Vault are
 	// serialized as JSON.
-	Data pulumi.MapInput `pulumi:"data"`
+	Data pulumi.StringMapInput `pulumi:"data"`
 	// If set, specifies the length of time before a version is deleted.
 	DeleteVersionAfter pulumi.IntPtrInput `pulumi:"deleteVersionAfter"`
 	// The number of versions to keep per key.
@@ -138,8 +138,8 @@ func (o SecretV2CustomMetadataOutput) CasRequired() pulumi.BoolPtrOutput {
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o SecretV2CustomMetadataOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v SecretV2CustomMetadata) map[string]interface{} { return v.Data }).(pulumi.MapOutput)
+func (o SecretV2CustomMetadataOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretV2CustomMetadata) map[string]string { return v.Data }).(pulumi.StringMapOutput)
 }
 
 // If set, specifies the length of time before a version is deleted.
@@ -190,13 +190,13 @@ func (o SecretV2CustomMetadataPtrOutput) CasRequired() pulumi.BoolPtrOutput {
 // Vault and whose values are the corresponding values. This map can only
 // represent string data, so any non-string values returned from Vault are
 // serialized as JSON.
-func (o SecretV2CustomMetadataPtrOutput) Data() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretV2CustomMetadata) map[string]interface{} {
+func (o SecretV2CustomMetadataPtrOutput) Data() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretV2CustomMetadata) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Data
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 // If set, specifies the length of time before a version is deleted.

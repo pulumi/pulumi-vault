@@ -69,7 +69,7 @@ class GetSecretV2Result:
 
     @property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Mapping[str, Any]:
+    def custom_metadata(self) -> Mapping[str, str]:
         """
         Custom metadata for the secret.
         """
@@ -77,7 +77,7 @@ class GetSecretV2Result:
 
     @property
     @pulumi.getter
-    def data(self) -> Mapping[str, Any]:
+    def data(self) -> Mapping[str, str]:
         """
         A mapping whose keys are the top-level data keys returned from
         Vault and whose values are the corresponding values. This map can only

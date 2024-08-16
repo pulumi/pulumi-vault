@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +33,7 @@ public final class SecretsMountInfluxdb {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,Object> data;
+    private @Nullable Map<String,String> data;
     /**
      * @return Influxdb host to connect to.
      * 
@@ -124,7 +123,7 @@ public final class SecretsMountInfluxdb {
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
     }
     /**
@@ -231,7 +230,7 @@ public final class SecretsMountInfluxdb {
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable Integer connectTimeout;
-        private @Nullable Map<String,Object> data;
+        private @Nullable Map<String,String> data;
         private String host;
         private @Nullable Boolean insecureTls;
         private String name;
@@ -282,7 +281,7 @@ public final class SecretsMountInfluxdb {
             return this;
         }
         @CustomType.Setter
-        public Builder data(@Nullable Map<String,Object> data) {
+        public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
             return this;

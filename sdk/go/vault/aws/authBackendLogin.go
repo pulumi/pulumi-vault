@@ -48,7 +48,7 @@ type AuthBackendLogin struct {
 	LeaseStartTime pulumi.StringOutput `pulumi:"leaseStartTime"`
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
-	Metadata pulumi.MapOutput `pulumi:"metadata"`
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -140,7 +140,7 @@ type authBackendLoginState struct {
 	LeaseStartTime *string `pulumi:"leaseStartTime"`
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
-	Metadata map[string]interface{} `pulumi:"metadata"`
+	Metadata map[string]string `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -199,7 +199,7 @@ type AuthBackendLoginState struct {
 	LeaseStartTime pulumi.StringPtrInput
 	// A map of information returned by the Vault server about the
 	// authentication used to generate this token.
-	Metadata pulumi.MapInput
+	Metadata pulumi.StringMapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -466,8 +466,8 @@ func (o AuthBackendLoginOutput) LeaseStartTime() pulumi.StringOutput {
 
 // A map of information returned by the Vault server about the
 // authentication used to generate this token.
-func (o AuthBackendLoginOutput) Metadata() pulumi.MapOutput {
-	return o.ApplyT(func(v *AuthBackendLogin) pulumi.MapOutput { return v.Metadata }).(pulumi.MapOutput)
+func (o AuthBackendLoginOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AuthBackendLogin) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
 // The namespace to provision the resource in.

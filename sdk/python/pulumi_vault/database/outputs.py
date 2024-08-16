@@ -2496,7 +2496,7 @@ class SecretsMountCassandra(dict):
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connect_timeout: Optional[int] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  hosts: Optional[Sequence[str]] = None,
                  insecure_tls: Optional[bool] = None,
                  password: Optional[str] = None,
@@ -2514,7 +2514,7 @@ class SecretsMountCassandra(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param int connect_timeout: The number of seconds to use as a connection timeout.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param Sequence[str] hosts: Cassandra hosts to connect to.
@@ -2590,7 +2590,7 @@ class SecretsMountCassandra(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -2737,7 +2737,7 @@ class SecretsMountCouchbase(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  base64_pem: Optional[str] = None,
                  bucket_name: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  insecure_tls: Optional[bool] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
@@ -2753,7 +2753,7 @@ class SecretsMountCouchbase(dict):
                connection.
         :param str base64_pem: Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         :param str bucket_name: Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
@@ -2848,7 +2848,7 @@ class SecretsMountCouchbase(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -2953,7 +2953,7 @@ class SecretsMountElasticsearch(dict):
                  ca_path: Optional[str] = None,
                  client_cert: Optional[str] = None,
                  client_key: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  insecure: Optional[bool] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
@@ -2971,7 +2971,7 @@ class SecretsMountElasticsearch(dict):
         :param str ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         :param str client_cert: The path to the certificate for the Elasticsearch client to present for communication
         :param str client_key: The path to the key for the Elasticsearch client to use for communication
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool insecure: Whether to disable certificate verification
@@ -3086,7 +3086,7 @@ class SecretsMountElasticsearch(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -3183,7 +3183,7 @@ class SecretsMountHana(dict):
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
@@ -3198,7 +3198,7 @@ class SecretsMountHana(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool disable_escaping: Disable special character escaping in username and password
@@ -3265,7 +3265,7 @@ class SecretsMountHana(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -3389,7 +3389,7 @@ class SecretsMountInfluxdb(dict):
                  username: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connect_timeout: Optional[int] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  insecure_tls: Optional[bool] = None,
                  pem_bundle: Optional[str] = None,
                  pem_json: Optional[str] = None,
@@ -3407,7 +3407,7 @@ class SecretsMountInfluxdb(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param int connect_timeout: The number of seconds to use as a connection timeout.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool insecure_tls: Whether to skip verification of the server certificate when using TLS.
@@ -3501,7 +3501,7 @@ class SecretsMountInfluxdb(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -3622,7 +3622,7 @@ class SecretsMountMongodb(dict):
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -3637,7 +3637,7 @@ class SecretsMountMongodb(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param int max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -3704,7 +3704,7 @@ class SecretsMountMongodb(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -3823,7 +3823,7 @@ class SecretsMountMongodbatla(dict):
                  project_id: str,
                  public_key: str,
                  allowed_roles: Optional[Sequence[str]] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  plugin_name: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
                  verify_connection: Optional[bool] = None):
@@ -3834,7 +3834,7 @@ class SecretsMountMongodbatla(dict):
         :param str public_key: The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param str plugin_name: Specifies the name of the plugin to use.
@@ -3900,7 +3900,7 @@ class SecretsMountMongodbatla(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -3978,7 +3978,7 @@ class SecretsMountMssql(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
                  contained_db: Optional[bool] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
@@ -3995,7 +3995,7 @@ class SecretsMountMssql(dict):
                connection.
         :param str connection_url: Connection string to use to connect to the database.
         :param bool contained_db: Set to true when the target is a Contained Database, e.g. AzureSQL.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool disable_escaping: Disable special character escaping in username and password
@@ -4075,7 +4075,7 @@ class SecretsMountMssql(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -4213,7 +4213,7 @@ class SecretsMountMysql(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -4232,7 +4232,7 @@ class SecretsMountMysql(dict):
                connection.
         :param str auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param int max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -4318,7 +4318,7 @@ class SecretsMountMysql(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -4472,7 +4472,7 @@ class SecretsMountMysqlAurora(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -4491,7 +4491,7 @@ class SecretsMountMysqlAurora(dict):
                connection.
         :param str auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param int max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -4577,7 +4577,7 @@ class SecretsMountMysqlAurora(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -4731,7 +4731,7 @@ class SecretsMountMysqlLegacy(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -4750,7 +4750,7 @@ class SecretsMountMysqlLegacy(dict):
                connection.
         :param str auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param int max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -4836,7 +4836,7 @@ class SecretsMountMysqlLegacy(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -4990,7 +4990,7 @@ class SecretsMountMysqlRd(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -5009,7 +5009,7 @@ class SecretsMountMysqlRd(dict):
                connection.
         :param str auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param int max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -5095,7 +5095,7 @@ class SecretsMountMysqlRd(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -5244,7 +5244,7 @@ class SecretsMountOracle(dict):
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  disconnect_sessions: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
@@ -5261,7 +5261,7 @@ class SecretsMountOracle(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool disconnect_sessions: Set to true to disconnect any open sessions prior to running the revocation statements.
@@ -5334,7 +5334,7 @@ class SecretsMountOracle(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -5478,7 +5478,7 @@ class SecretsMountPostgresql(dict):
                  allowed_roles: Optional[Sequence[str]] = None,
                  auth_type: Optional[str] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
@@ -5496,7 +5496,7 @@ class SecretsMountPostgresql(dict):
                connection.
         :param str auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool disable_escaping: Disable special character escaping in username and password
@@ -5579,7 +5579,7 @@ class SecretsMountPostgresql(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -5713,7 +5713,7 @@ class SecretsMountRedi(dict):
                  username: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  ca_cert: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  insecure_tls: Optional[bool] = None,
                  plugin_name: Optional[str] = None,
                  port: Optional[int] = None,
@@ -5728,7 +5728,7 @@ class SecretsMountRedi(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param str ca_cert: The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
@@ -5813,7 +5813,7 @@ class SecretsMountRedi(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -5900,7 +5900,7 @@ class SecretsMountRedisElasticach(dict):
                  name: str,
                  url: str,
                  allowed_roles: Optional[Sequence[str]] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  region: Optional[str] = None,
@@ -5912,7 +5912,7 @@ class SecretsMountRedisElasticach(dict):
         :param str url: The configuration endpoint for the ElastiCache cluster to connect to.
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param str password: The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -5969,7 +5969,7 @@ class SecretsMountRedisElasticach(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -6068,7 +6068,7 @@ class SecretsMountRedshift(dict):
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  disable_escaping: Optional[bool] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
@@ -6084,7 +6084,7 @@ class SecretsMountRedshift(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param bool disable_escaping: Disable special character escaping in username and password
@@ -6154,7 +6154,7 @@ class SecretsMountRedshift(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 
@@ -6283,7 +6283,7 @@ class SecretsMountSnowflake(dict):
                  name: str,
                  allowed_roles: Optional[Sequence[str]] = None,
                  connection_url: Optional[str] = None,
-                 data: Optional[Mapping[str, Any]] = None,
+                 data: Optional[Mapping[str, str]] = None,
                  max_connection_lifetime: Optional[int] = None,
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
@@ -6298,7 +6298,7 @@ class SecretsMountSnowflake(dict):
         :param Sequence[str] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param str connection_url: Connection string to use to connect to the database.
-        :param Mapping[str, Any] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param Mapping[str, str] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
                
                Supported list of database secrets engines that can be configured:
         :param int max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -6365,7 +6365,7 @@ class SecretsMountSnowflake(dict):
 
     @property
     @pulumi.getter
-    def data(self) -> Optional[Mapping[str, Any]]:
+    def data(self) -> Optional[Mapping[str, str]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
 

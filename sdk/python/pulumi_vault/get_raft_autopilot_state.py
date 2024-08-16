@@ -109,7 +109,7 @@ class GetRaftAutopilotStateResult:
 
     @property
     @pulumi.getter(name="redundancyZones")
-    def redundancy_zones(self) -> Mapping[str, Any]:
+    def redundancy_zones(self) -> Mapping[str, str]:
         """
         Additional output related to redundancy zones stored as a serialized map of strings.
         """
@@ -125,7 +125,7 @@ class GetRaftAutopilotStateResult:
 
     @property
     @pulumi.getter
-    def servers(self) -> Mapping[str, Any]:
+    def servers(self) -> Mapping[str, str]:
         """
         Additionaly output related to servers in the cluster stored as a serialized map of strings.
         """
@@ -141,7 +141,7 @@ class GetRaftAutopilotStateResult:
 
     @property
     @pulumi.getter(name="upgradeInfo")
-    def upgrade_info(self) -> Mapping[str, Any]:
+    def upgrade_info(self) -> Mapping[str, str]:
         """
         Additional output related to upgrade information stored as a serialized map of strings.
         """

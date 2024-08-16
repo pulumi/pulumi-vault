@@ -5,7 +5,6 @@ package com.pulumi.vault.transform.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +14,8 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDecodeResult {
-    private @Nullable List<Map<String,Object>> batchInputs;
-    private List<Map<String,Object>> batchResults;
+    private @Nullable List<Map<String,String>> batchInputs;
+    private List<Map<String,String>> batchResults;
     private String decodedValue;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -31,10 +30,10 @@ public final class GetDecodeResult {
     private @Nullable String value;
 
     private GetDecodeResult() {}
-    public List<Map<String,Object>> batchInputs() {
+    public List<Map<String,String>> batchInputs() {
         return this.batchInputs == null ? List.of() : this.batchInputs;
     }
-    public List<Map<String,Object>> batchResults() {
+    public List<Map<String,String>> batchResults() {
         return this.batchResults;
     }
     public String decodedValue() {
@@ -75,8 +74,8 @@ public final class GetDecodeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable List<Map<String,Object>> batchInputs;
-        private List<Map<String,Object>> batchResults;
+        private @Nullable List<Map<String,String>> batchInputs;
+        private List<Map<String,String>> batchResults;
         private String decodedValue;
         private String id;
         private @Nullable String namespace;
@@ -101,13 +100,13 @@ public final class GetDecodeResult {
         }
 
         @CustomType.Setter
-        public Builder batchInputs(@Nullable List<Map<String,Object>> batchInputs) {
+        public Builder batchInputs(@Nullable List<Map<String,String>> batchInputs) {
 
             this.batchInputs = batchInputs;
             return this;
         }
         @CustomType.Setter
-        public Builder batchResults(List<Map<String,Object>> batchResults) {
+        public Builder batchResults(List<Map<String,String>> batchResults) {
             if (batchResults == null) {
               throw new MissingRequiredPropertyException("GetDecodeResult", "batchResults");
             }

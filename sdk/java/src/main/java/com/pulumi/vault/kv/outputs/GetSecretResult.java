@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +22,7 @@ public final class GetSecretResult {
      * serialized as JSON.
      * 
      */
-    private Map<String,Object> data;
+    private Map<String,String> data;
     /**
      * @return JSON-encoded string that that is
      * read as the secret data at the given path.
@@ -63,7 +62,7 @@ public final class GetSecretResult {
      * serialized as JSON.
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data;
     }
     /**
@@ -120,7 +119,7 @@ public final class GetSecretResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> data;
+        private Map<String,String> data;
         private String dataJson;
         private String id;
         private Integer leaseDuration;
@@ -142,7 +141,7 @@ public final class GetSecretResult {
         }
 
         @CustomType.Setter
-        public Builder data(Map<String,Object> data) {
+        public Builder data(Map<String,String> data) {
             if (data == null) {
               throw new MissingRequiredPropertyException("GetSecretResult", "data");
             }

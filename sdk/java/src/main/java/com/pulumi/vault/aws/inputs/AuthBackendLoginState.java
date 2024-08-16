@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -197,14 +196,14 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
      * 
      */
     @Import(name="metadata")
-    private @Nullable Output<Map<String,Object>> metadata;
+    private @Nullable Output<Map<String,String>> metadata;
 
     /**
      * @return A map of information returned by the Vault server about the
      * authentication used to generate this token.
      * 
      */
-    public Optional<Output<Map<String,Object>>> metadata() {
+    public Optional<Output<Map<String,String>>> metadata() {
         return Optional.ofNullable(this.metadata);
     }
 
@@ -617,7 +616,7 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder metadata(@Nullable Output<Map<String,Object>> metadata) {
+        public Builder metadata(@Nullable Output<Map<String,String>> metadata) {
             $.metadata = metadata;
             return this;
         }
@@ -629,7 +628,7 @@ public final class AuthBackendLoginState extends com.pulumi.resources.ResourceAr
          * @return builder
          * 
          */
-        public Builder metadata(Map<String,Object> metadata) {
+        public Builder metadata(Map<String,String> metadata) {
             return metadata(Output.of(metadata));
         }
 

@@ -84,7 +84,7 @@ type SecretBackendRole struct {
 	// for the given `credentialType`.
 	//
 	// The following options are available for each `credentialType` value:
-	CredentialConfig pulumi.MapOutput `pulumi:"credentialConfig"`
+	CredentialConfig pulumi.StringMapOutput `pulumi:"credentialConfig"`
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
 	// See the plugin's API page for credential types supported by individual databases.
@@ -164,7 +164,7 @@ type secretBackendRoleState struct {
 	// for the given `credentialType`.
 	//
 	// The following options are available for each `credentialType` value:
-	CredentialConfig map[string]interface{} `pulumi:"credentialConfig"`
+	CredentialConfig map[string]string `pulumi:"credentialConfig"`
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
 	// See the plugin's API page for credential types supported by individual databases.
@@ -206,7 +206,7 @@ type SecretBackendRoleState struct {
 	// for the given `credentialType`.
 	//
 	// The following options are available for each `credentialType` value:
-	CredentialConfig pulumi.MapInput
+	CredentialConfig pulumi.StringMapInput
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
 	// See the plugin's API page for credential types supported by individual databases.
@@ -252,7 +252,7 @@ type secretBackendRoleArgs struct {
 	// for the given `credentialType`.
 	//
 	// The following options are available for each `credentialType` value:
-	CredentialConfig map[string]interface{} `pulumi:"credentialConfig"`
+	CredentialConfig map[string]string `pulumi:"credentialConfig"`
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
 	// See the plugin's API page for credential types supported by individual databases.
@@ -295,7 +295,7 @@ type SecretBackendRoleArgs struct {
 	// for the given `credentialType`.
 	//
 	// The following options are available for each `credentialType` value:
-	CredentialConfig pulumi.MapInput
+	CredentialConfig pulumi.StringMapInput
 	// Specifies the type of credential that
 	// will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
 	// See the plugin's API page for credential types supported by individual databases.
@@ -429,8 +429,8 @@ func (o SecretBackendRoleOutput) CreationStatements() pulumi.StringArrayOutput {
 // for the given `credentialType`.
 //
 // The following options are available for each `credentialType` value:
-func (o SecretBackendRoleOutput) CredentialConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *SecretBackendRole) pulumi.MapOutput { return v.CredentialConfig }).(pulumi.MapOutput)
+func (o SecretBackendRoleOutput) CredentialConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringMapOutput { return v.CredentialConfig }).(pulumi.StringMapOutput)
 }
 
 // Specifies the type of credential that

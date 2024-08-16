@@ -198,7 +198,7 @@ namespace Pulumi.Vault
         /// Only fetched if `path` is specified.
         /// *Requires Vault 1.12+.*
         /// </summary>
-        public readonly ImmutableDictionary<string, object> CustomMetadata;
+        public readonly ImmutableDictionary<string, string> CustomMetadata;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -218,7 +218,7 @@ namespace Pulumi.Vault
 
         [OutputConstructor]
         private GetNamespaceResult(
-            ImmutableDictionary<string, object> customMetadata,
+            ImmutableDictionary<string, string> customMetadata,
 
             string id,
 

@@ -75,7 +75,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      */
-    public readonly boundAttributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly boundAttributes!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The type of matching assertion to perform on
      * `boundAttributesType`.
@@ -212,7 +212,7 @@ export interface AuthBackendRoleState {
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      */
-    boundAttributes?: pulumi.Input<{[key: string]: any}>;
+    boundAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The type of matching assertion to perform on
      * `boundAttributesType`.
@@ -292,7 +292,7 @@ export interface AuthBackendRoleArgs {
      * Mapping of attribute names to values that are expected to
      * exist in the SAML assertion.
      */
-    boundAttributes?: pulumi.Input<{[key: string]: any}>;
+    boundAttributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The type of matching assertion to perform on
      * `boundAttributesType`.

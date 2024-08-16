@@ -32,8 +32,8 @@ import (
 //				ClientSecret:       pulumi.Any(clientSecret),
 //				TenantId:           pulumi.Any(tenantId),
 //				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
-//				CustomTags: pulumi.Map{
-//					"foo": pulumi.Any("bar"),
+//				CustomTags: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
 //				},
 //			})
 //			if err != nil {
@@ -66,7 +66,7 @@ type SyncAzureDestination struct {
 	// Specifies a cloud for the client. The default is Azure Public Cloud.
 	Cloud pulumi.StringPtrOutput `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags pulumi.MapOutput `pulumi:"customTags"`
+	CustomTags pulumi.StringMapOutput `pulumi:"customTags"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrOutput `pulumi:"granularity"`
@@ -139,7 +139,7 @@ type syncAzureDestinationState struct {
 	// Specifies a cloud for the client. The default is Azure Public Cloud.
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags map[string]interface{} `pulumi:"customTags"`
+	CustomTags map[string]string `pulumi:"customTags"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
@@ -176,7 +176,7 @@ type SyncAzureDestinationState struct {
 	// Specifies a cloud for the client. The default is Azure Public Cloud.
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags pulumi.MapInput
+	CustomTags pulumi.StringMapInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
@@ -217,7 +217,7 @@ type syncAzureDestinationArgs struct {
 	// Specifies a cloud for the client. The default is Azure Public Cloud.
 	Cloud *string `pulumi:"cloud"`
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags map[string]interface{} `pulumi:"customTags"`
+	CustomTags map[string]string `pulumi:"customTags"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity *string `pulumi:"granularity"`
@@ -253,7 +253,7 @@ type SyncAzureDestinationArgs struct {
 	// Specifies a cloud for the client. The default is Azure Public Cloud.
 	Cloud pulumi.StringPtrInput
 	// Custom tags to set on the secret managed at the destination.
-	CustomTags pulumi.MapInput
+	CustomTags pulumi.StringMapInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
 	Granularity pulumi.StringPtrInput
@@ -383,8 +383,8 @@ func (o SyncAzureDestinationOutput) Cloud() pulumi.StringPtrOutput {
 }
 
 // Custom tags to set on the secret managed at the destination.
-func (o SyncAzureDestinationOutput) CustomTags() pulumi.MapOutput {
-	return o.ApplyT(func(v *SyncAzureDestination) pulumi.MapOutput { return v.CustomTags }).(pulumi.MapOutput)
+func (o SyncAzureDestinationOutput) CustomTags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SyncAzureDestination) pulumi.StringMapOutput { return v.CustomTags }).(pulumi.StringMapOutput)
 }
 
 // Determines what level of information is synced as a distinct resource

@@ -5,7 +5,6 @@ package com.pulumi.vault.identity.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public final class GetEntityAlias {
      * @return Arbitrary metadata
      * 
      */
-    private Map<String,Object> metadata;
+    private Map<String,String> metadata;
     /**
      * @return Authentication mount acccessor which this alias belongs to
      * 
@@ -104,7 +103,7 @@ public final class GetEntityAlias {
      * @return Arbitrary metadata
      * 
      */
-    public Map<String,Object> metadata() {
+    public Map<String,String> metadata() {
         return this.metadata;
     }
     /**
@@ -150,7 +149,7 @@ public final class GetEntityAlias {
         private String id;
         private String lastUpdateTime;
         private List<String> mergedFromCanonicalIds;
-        private Map<String,Object> metadata;
+        private Map<String,String> metadata;
         private String mountAccessor;
         private String mountPath;
         private String mountType;
@@ -214,7 +213,7 @@ public final class GetEntityAlias {
             return mergedFromCanonicalIds(List.of(mergedFromCanonicalIds));
         }
         @CustomType.Setter
-        public Builder metadata(Map<String,Object> metadata) {
+        public Builder metadata(Map<String,String> metadata) {
             if (metadata == null) {
               throw new MissingRequiredPropertyException("GetEntityAlias", "metadata");
             }

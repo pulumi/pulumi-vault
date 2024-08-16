@@ -149,7 +149,7 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// Map of key strings read from Vault.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> KeyInfo;
+        public readonly ImmutableDictionary<string, string> KeyInfo;
         /// <summary>
         /// JSON-encoded key data read from Vault.
         /// </summary>
@@ -166,7 +166,7 @@ namespace Pulumi.Vault.PkiSecret
 
             string id,
 
-            ImmutableDictionary<string, object> keyInfo,
+            ImmutableDictionary<string, string> keyInfo,
 
             string keyInfoJson,
 

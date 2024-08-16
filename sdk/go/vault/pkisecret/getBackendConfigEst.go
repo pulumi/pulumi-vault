@@ -82,7 +82,7 @@ type LookupBackendConfigEstResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-	LabelToPathPolicy map[string]interface{} `pulumi:"labelToPathPolicy"`
+	LabelToPathPolicy map[string]string `pulumi:"labelToPathPolicy"`
 	// A read-only timestamp representing the last time the configuration was updated.
 	LastUpdated string  `pulumi:"lastUpdated"`
 	Namespace   *string `pulumi:"namespace"`
@@ -172,8 +172,8 @@ func (o LookupBackendConfigEstResultOutput) Id() pulumi.StringOutput {
 }
 
 // A pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
-func (o LookupBackendConfigEstResultOutput) LabelToPathPolicy() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupBackendConfigEstResult) map[string]interface{} { return v.LabelToPathPolicy }).(pulumi.MapOutput)
+func (o LookupBackendConfigEstResultOutput) LabelToPathPolicy() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupBackendConfigEstResult) map[string]string { return v.LabelToPathPolicy }).(pulumi.StringMapOutput)
 }
 
 // A read-only timestamp representing the last time the configuration was updated.

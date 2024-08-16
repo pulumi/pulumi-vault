@@ -6,7 +6,6 @@ package com.pulumi.vault.kv.outputs;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public final class SecretV2CustomMetadata {
      * serialized as JSON.
      * 
      */
-    private @Nullable Map<String,Object> data;
+    private @Nullable Map<String,String> data;
     /**
      * @return If set, specifies the length of time before a version is deleted.
      * 
@@ -54,7 +53,7 @@ public final class SecretV2CustomMetadata {
      * serialized as JSON.
      * 
      */
-    public Map<String,Object> data() {
+    public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
     }
     /**
@@ -82,7 +81,7 @@ public final class SecretV2CustomMetadata {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean casRequired;
-        private @Nullable Map<String,Object> data;
+        private @Nullable Map<String,String> data;
         private @Nullable Integer deleteVersionAfter;
         private @Nullable Integer maxVersions;
         public Builder() {}
@@ -101,7 +100,7 @@ public final class SecretV2CustomMetadata {
             return this;
         }
         @CustomType.Setter
-        public Builder data(@Nullable Map<String,Object> data) {
+        public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
             return this;

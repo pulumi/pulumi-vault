@@ -249,7 +249,7 @@ class _SecretBackendKeyState:
                  derived: Optional[pulumi.Input[bool]] = None,
                  exportable: Optional[pulumi.Input[bool]] = None,
                  key_size: Optional[pulumi.Input[int]] = None,
-                 keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+                 keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
                  latest_version: Optional[pulumi.Input[int]] = None,
                  min_available_version: Optional[pulumi.Input[int]] = None,
                  min_decryption_version: Optional[pulumi.Input[int]] = None,
@@ -273,7 +273,7 @@ class _SecretBackendKeyState:
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
                * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         :param pulumi.Input[int] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
@@ -433,7 +433,7 @@ class _SecretBackendKeyState:
 
     @property
     @pulumi.getter
-    def keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]:
+    def keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]]:
         """
         List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
         * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -442,7 +442,7 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "keys")
 
     @keys.setter
-    def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]]):
+    def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]]):
         pulumi.set(self, "keys", value)
 
     @property
@@ -762,7 +762,7 @@ class SecretBackendKey(pulumi.CustomResource):
             derived: Optional[pulumi.Input[bool]] = None,
             exportable: Optional[pulumi.Input[bool]] = None,
             key_size: Optional[pulumi.Input[int]] = None,
-            keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]]] = None,
+            keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]]] = None,
             latest_version: Optional[pulumi.Input[int]] = None,
             min_available_version: Optional[pulumi.Input[int]] = None,
             min_decryption_version: Optional[pulumi.Input[int]] = None,
@@ -791,7 +791,7 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[bool] derived: Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         :param pulumi.Input[bool] exportable: Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         :param pulumi.Input[int] key_size: The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
-        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, Any]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
+        :param pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[str]]]]] keys: List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
                * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
                * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
         :param pulumi.Input[int] latest_version: Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
@@ -904,7 +904,7 @@ class SecretBackendKey(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def keys(self) -> pulumi.Output[Sequence[Mapping[str, Any]]]:
+    def keys(self) -> pulumi.Output[Sequence[Mapping[str, str]]]:
         """
         List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
         * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.

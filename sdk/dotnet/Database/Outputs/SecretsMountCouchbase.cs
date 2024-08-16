@@ -31,7 +31,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Data;
+        public readonly ImmutableDictionary<string, string>? Data;
         /// <summary>
         /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         /// </summary>
@@ -82,7 +82,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? bucketName,
 
-            ImmutableDictionary<string, object>? data,
+            ImmutableDictionary<string, string>? data,
 
             ImmutableArray<string> hosts,
 
