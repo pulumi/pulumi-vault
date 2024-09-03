@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### Local Storage
+ * #### Local Storage
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### AWS S3
+ * #### AWS S3
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -108,7 +108,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Azure BLOB
+ * #### Azure BLOB
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

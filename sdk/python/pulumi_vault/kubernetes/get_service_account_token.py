@@ -215,19 +215,19 @@ def get_service_account_token(backend: Optional[str] = None,
     ```
 
 
-    :param str backend: The Kubernetes secret backend to generate service account 
+    :param str backend: The Kubernetes secret backend to generate service account
            tokens from.
-    :param bool cluster_role_binding: If true, generate a ClusterRoleBinding to grant 
+    :param bool cluster_role_binding: If true, generate a ClusterRoleBinding to grant
            permissions across the whole cluster instead of within a namespace.
-    :param str kubernetes_namespace: The name of the Kubernetes namespace in which to 
+    :param str kubernetes_namespace: The name of the Kubernetes namespace in which to
            generate the credentials.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
-    :param str role: The name of the Kubernetes secret backend role to generate service 
+    :param str role: The name of the Kubernetes secret backend role to generate service
            account tokens from.
-    :param str ttl: The TTL of the generated Kubernetes service account token, specified in 
+    :param str ttl: The TTL of the generated Kubernetes service account token, specified in
            seconds or as a Go duration format string.
     """
     __args__ = dict()
@@ -302,19 +302,19 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
     ```
 
 
-    :param str backend: The Kubernetes secret backend to generate service account 
+    :param str backend: The Kubernetes secret backend to generate service account
            tokens from.
-    :param bool cluster_role_binding: If true, generate a ClusterRoleBinding to grant 
+    :param bool cluster_role_binding: If true, generate a ClusterRoleBinding to grant
            permissions across the whole cluster instead of within a namespace.
-    :param str kubernetes_namespace: The name of the Kubernetes namespace in which to 
+    :param str kubernetes_namespace: The name of the Kubernetes namespace in which to
            generate the credentials.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
-    :param str role: The name of the Kubernetes secret backend role to generate service 
+    :param str role: The name of the Kubernetes secret backend role to generate service
            account tokens from.
-    :param str ttl: The TTL of the generated Kubernetes service account token, specified in 
+    :param str ttl: The TTL of the generated Kubernetes service account token, specified in
            seconds or as a Go duration format string.
     """
     ...

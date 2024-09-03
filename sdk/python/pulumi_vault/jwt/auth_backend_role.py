@@ -76,7 +76,7 @@ class AuthBackendRoleArgs:
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
-        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -340,7 +340,7 @@ class AuthBackendRoleArgs:
     @pulumi.getter(name="maxAge")
     def max_age(self) -> Optional[pulumi.Input[int]]:
         """
-        Specifies the allowable elapsed time in seconds since the last time 
+        Specifies the allowable elapsed time in seconds since the last time
         the user was actively authenticated with the OIDC provider.
         """
         return pulumi.get(self, "max_age")
@@ -602,7 +602,7 @@ class _AuthBackendRoleState:
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
-        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -846,7 +846,7 @@ class _AuthBackendRoleState:
     @pulumi.getter(name="maxAge")
     def max_age(self) -> Optional[pulumi.Input[int]]:
         """
-        Specifies the allowable elapsed time in seconds since the last time 
+        Specifies the allowable elapsed time in seconds since the last time
         the user was actively authenticated with the OIDC provider.
         """
         return pulumi.get(self, "max_age")
@@ -1197,7 +1197,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
-        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1455,7 +1455,7 @@ class AuthBackendRole(pulumi.CustomResource):
                the set of groups to which the user belongs; this will be used as the names
                for the Identity group aliases created due to a successful login. The claim
                value must be a list of strings.
-        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time 
+        :param pulumi.Input[int] max_age: Specifies the allowable elapsed time in seconds since the last time
                the user was actively authenticated with the OIDC provider.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1631,7 +1631,7 @@ class AuthBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="maxAge")
     def max_age(self) -> pulumi.Output[Optional[int]]:
         """
-        Specifies the allowable elapsed time in seconds since the last time 
+        Specifies the allowable elapsed time in seconds since the last time
         the user was actively authenticated with the OIDC provider.
         """
         return pulumi.get(self, "max_age")

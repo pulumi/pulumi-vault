@@ -139,7 +139,6 @@ class AuthBackendTune(dict):
         :param str token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
                
-               
                For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
         """
         if allowed_response_headers is not None:
@@ -230,7 +229,6 @@ class AuthBackendTune(dict):
         """
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
-
 
         For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
         """

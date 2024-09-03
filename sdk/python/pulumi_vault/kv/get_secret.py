@@ -79,7 +79,7 @@ class GetSecretResult:
     @pulumi.getter(name="leaseDuration")
     def lease_duration(self) -> int:
         """
-        The duration of the secret lease, in seconds. Once 
+        The duration of the secret lease, in seconds. Once
         this time has passed any plan generated with this data may fail to apply.
         """
         return pulumi.get(self, "lease_duration")
@@ -96,7 +96,7 @@ class GetSecretResult:
     @pulumi.getter(name="leaseRenewable")
     def lease_renewable(self) -> bool:
         """
-        True if the duration of this lease can be extended 
+        True if the duration of this lease can be extended
         through renewal.
         """
         return pulumi.get(self, "lease_renewable")

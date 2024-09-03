@@ -168,7 +168,7 @@ namespace Pulumi.Vault
     public sealed class GetNomadAccessTokenResult
     {
         /// <summary>
-        /// The public identifier for a specific token. It can be used 
+        /// The public identifier for a specific token. It can be used
         /// to look up information about a token or to revoke a token.
         /// </summary>
         public readonly string AccessorId;

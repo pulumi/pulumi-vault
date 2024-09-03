@@ -15,7 +15,7 @@ namespace Pulumi.Vault.Transform
     /// It creates or updates a template with the given name. If a template with the name does not exist,
     /// it will be created. If the template exists, it will be updated with the new attributes.
     /// 
-    /// &gt; Requires _Vault Enterprise with the Advanced Data Protection Transform Module_.
+    /// &gt; Requires *Vault Enterprise with the Advanced Data Protection Transform Module*.
     /// See [Transform Secrets Engine](https://www.vaultproject.io/docs/secrets/transform)
     /// for more information.
     /// 

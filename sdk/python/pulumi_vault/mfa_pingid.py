@@ -21,7 +21,7 @@ class MfaPingidArgs:
                  username_format: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MfaPingid resource.
-        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
@@ -30,7 +30,7 @@ class MfaPingidArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -51,7 +51,7 @@ class MfaPingidArgs:
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> pulumi.Input[str]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
@@ -104,7 +104,7 @@ class MfaPingidArgs:
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. 
+        `(string)` - A format string for mapping Identity names to MFA method names.
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -139,7 +139,7 @@ class _MfaPingidState:
         :param pulumi.Input[str] admin_url: `(string)` – Admin URL computed by Vault
         :param pulumi.Input[str] authenticator_url: `(string)` – Authenticator URL computed by Vault
         :param pulumi.Input[str] idp_url: `(string)` – IDP URL computed by Vault
-        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -152,7 +152,7 @@ class _MfaPingidState:
                from PingID's configuration page.
         :param pulumi.Input[str] type: `(string)` – Type of configuration computed by Vault
         :param pulumi.Input[bool] use_signature: `(string)` – If set to true, enables use of PingID signature. Computed by Vault
-        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -225,7 +225,7 @@ class _MfaPingidState:
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
@@ -326,7 +326,7 @@ class _MfaPingidState:
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. 
+        `(string)` - A format string for mapping Identity names to MFA method names.
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -385,7 +385,7 @@ class MfaPingid(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -394,7 +394,7 @@ class MfaPingid(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] settings_file_base64: `(string: <required>)` - A base64-encoded third-party settings file retrieved
                from PingID's configuration page.
-        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -516,7 +516,7 @@ class MfaPingid(pulumi.CustomResource):
         :param pulumi.Input[str] admin_url: `(string)` – Admin URL computed by Vault
         :param pulumi.Input[str] authenticator_url: `(string)` – Authenticator URL computed by Vault
         :param pulumi.Input[str] idp_url: `(string)` – IDP URL computed by Vault
-        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -529,7 +529,7 @@ class MfaPingid(pulumi.CustomResource):
                from PingID's configuration page.
         :param pulumi.Input[str] type: `(string)` – Type of configuration computed by Vault
         :param pulumi.Input[bool] use_signature: `(string)` – If set to true, enables use of PingID signature. Computed by Vault
-        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -583,7 +583,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
@@ -652,7 +652,7 @@ class MfaPingid(pulumi.CustomResource):
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. 
+        `(string)` - A format string for mapping Identity names to MFA method names.
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter

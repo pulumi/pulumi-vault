@@ -12,6 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "vault"
+// page_title: "Vault: saml.AuthBackend resource"
+// sidebar_current: "docs-vault-saml-auth-backend"
+// description: |-
+// Manages SAML Auth mounts in Vault.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # vault\_saml\_auth\_backend
+//
 // Manages a SAML Auth mount in a Vault server. See the [Vault
 // documentation](https://www.vaultproject.io/docs/auth/saml/) for more
 // information.

@@ -25,15 +25,15 @@ class NomadSecretRoleArgs:
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
+        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used
                when `type` is 'client'.
-        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
+        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid
                settings are 'client' and 'management'. Defaults to 'client'.
         """
         pulumi.set(__self__, "backend", backend)
@@ -76,7 +76,7 @@ class NomadSecretRoleArgs:
     @pulumi.getter(name="global")
     def global_(self) -> Optional[pulumi.Input[bool]]:
         """
-        Specifies if the generated token should be global. Defaults to 
+        Specifies if the generated token should be global. Defaults to
         false.
         """
         return pulumi.get(self, "global_")
@@ -104,7 +104,7 @@ class NomadSecretRoleArgs:
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of policies attached to the generated token. This setting is only used 
+        List of policies attached to the generated token. This setting is only used
         when `type` is 'client'.
         """
         return pulumi.get(self, "policies")
@@ -117,7 +117,7 @@ class NomadSecretRoleArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the type of token to create when using this role. Valid 
+        Specifies the type of token to create when using this role. Valid
         settings are 'client' and 'management'. Defaults to 'client'.
         """
         return pulumi.get(self, "type")
@@ -139,17 +139,17 @@ class _NomadSecretRoleState:
         """
         Input properties used for looking up and filtering NomadSecretRole resources.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
-        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
+        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used
                when `type` is 'client'.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
+        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid
                settings are 'client' and 'management'. Defaults to 'client'.
         """
         if backend is not None:
@@ -181,7 +181,7 @@ class _NomadSecretRoleState:
     @pulumi.getter(name="global")
     def global_(self) -> Optional[pulumi.Input[bool]]:
         """
-        Specifies if the generated token should be global. Defaults to 
+        Specifies if the generated token should be global. Defaults to
         false.
         """
         return pulumi.get(self, "global_")
@@ -209,7 +209,7 @@ class _NomadSecretRoleState:
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of policies attached to the generated token. This setting is only used 
+        List of policies attached to the generated token. This setting is only used
         when `type` is 'client'.
         """
         return pulumi.get(self, "policies")
@@ -235,7 +235,7 @@ class _NomadSecretRoleState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies the type of token to create when using this role. Valid 
+        Specifies the type of token to create when using this role. Valid
         settings are 'client' and 'management'. Defaults to 'client'.
         """
         return pulumi.get(self, "type")
@@ -289,17 +289,17 @@ class NomadSecretRole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
-        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
+        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used
                when `type` is 'client'.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
+        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid
                settings are 'client' and 'management'. Defaults to 'client'.
         """
         ...
@@ -401,17 +401,17 @@ class NomadSecretRole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at.
-        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to 
+        :param pulumi.Input[bool] global_: Specifies if the generated token should be global. Defaults to
                false.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] policies: List of policies attached to the generated token. This setting is only used
                when `type` is 'client'.
         :param pulumi.Input[str] role: The name to identify this role within the backend.
                Must be unique within the backend.
-        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid 
+        :param pulumi.Input[str] type: Specifies the type of token to create when using this role. Valid
                settings are 'client' and 'management'. Defaults to 'client'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -438,7 +438,7 @@ class NomadSecretRole(pulumi.CustomResource):
     @pulumi.getter(name="global")
     def global_(self) -> pulumi.Output[bool]:
         """
-        Specifies if the generated token should be global. Defaults to 
+        Specifies if the generated token should be global. Defaults to
         false.
         """
         return pulumi.get(self, "global_")
@@ -458,7 +458,7 @@ class NomadSecretRole(pulumi.CustomResource):
     @pulumi.getter
     def policies(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of policies attached to the generated token. This setting is only used 
+        List of policies attached to the generated token. This setting is only used
         when `type` is 'client'.
         """
         return pulumi.get(self, "policies")
@@ -476,7 +476,7 @@ class NomadSecretRole(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Specifies the type of token to create when using this role. Valid 
+        Specifies the type of token to create when using this role. Valid
         settings are 'client' and 'management'. Defaults to 'client'.
         """
         return pulumi.get(self, "type")

@@ -32,31 +32,31 @@ class SecretBackendRoleArgs:
         The set of arguments for constructing a SecretBackendRole resource.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
-        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces
                in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
                of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
                If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role
                can generate credentials for. If set to `*` all namespaces are allowed. If set with
                `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated
                Kubernetes objects.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes
                objects.
                
                This resource also directly accepts all Mount fields.
-        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
+        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
                when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
+        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a
                generated service account to. Mutually exclusive with `service_account_name` and
                `generated_role_rules`. If set, Kubernetes token, service account, and role
                binding objects will be created when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
+        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or
                ClusterRole.
         :param pulumi.Input[str] name: The name of the role.
-        :param pulumi.Input[str] name_template: The name template to use when generating service accounts, 
+        :param pulumi.Input[str] name_template: The name template to use when generating service accounts,
                roles and role bindings. If unset, a default template is used.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -113,7 +113,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="allowedKubernetesNamespaceSelector")
     def allowed_kubernetes_namespace_selector(self) -> Optional[pulumi.Input[str]]:
         """
-        A label selector for Kubernetes namespaces 
+        A label selector for Kubernetes namespaces
         in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
         of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
         If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
@@ -128,7 +128,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="allowedKubernetesNamespaces")
     def allowed_kubernetes_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of Kubernetes namespaces this role 
+        The list of Kubernetes namespaces this role
         can generate credentials for. If set to `*` all namespaces are allowed. If set with
         `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         """
@@ -142,7 +142,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="extraAnnotations")
     def extra_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Additional annotations to apply to all generated 
+        Additional annotations to apply to all generated
         Kubernetes objects.
         """
         return pulumi.get(self, "extra_annotations")
@@ -155,7 +155,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="extraLabels")
     def extra_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Additional labels to apply to all generated Kubernetes 
+        Additional labels to apply to all generated Kubernetes
         objects.
 
         This resource also directly accepts all Mount fields.
@@ -170,7 +170,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="generatedRoleRules")
     def generated_role_rules(self) -> Optional[pulumi.Input[str]]:
         """
-        The Role or ClusterRole rules to use when generating 
+        The Role or ClusterRole rules to use when generating
         a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
         and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
         when credentials are requested.
@@ -185,7 +185,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="kubernetesRoleName")
     def kubernetes_role_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The pre-existing Role or ClusterRole to bind a 
+        The pre-existing Role or ClusterRole to bind a
         generated service account to. Mutually exclusive with `service_account_name` and
         `generated_role_rules`. If set, Kubernetes token, service account, and role
         binding objects will be created when credentials are requested.
@@ -200,7 +200,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="kubernetesRoleType")
     def kubernetes_role_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies whether the Kubernetes role is a Role or 
+        Specifies whether the Kubernetes role is a Role or
         ClusterRole.
         """
         return pulumi.get(self, "kubernetes_role_type")
@@ -225,7 +225,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="nameTemplate")
     def name_template(self) -> Optional[pulumi.Input[str]]:
         """
-        The name template to use when generating service accounts, 
+        The name template to use when generating service accounts,
         roles and role bindings. If unset, a default template is used.
         """
         return pulumi.get(self, "name_template")
@@ -307,33 +307,33 @@ class _SecretBackendRoleState:
                  token_max_ttl: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
-        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces
                in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
                of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
                If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role
                can generate credentials for. If set to `*` all namespaces are allowed. If set with
                `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated
                Kubernetes objects.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes
                objects.
                
                This resource also directly accepts all Mount fields.
-        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
+        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
                when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
+        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a
                generated service account to. Mutually exclusive with `service_account_name` and
                `generated_role_rules`. If set, Kubernetes token, service account, and role
                binding objects will be created when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
+        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or
                ClusterRole.
         :param pulumi.Input[str] name: The name of the role.
-        :param pulumi.Input[str] name_template: The name template to use when generating service accounts, 
+        :param pulumi.Input[str] name_template: The name template to use when generating service accounts,
                roles and role bindings. If unset, a default template is used.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -378,7 +378,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="allowedKubernetesNamespaceSelector")
     def allowed_kubernetes_namespace_selector(self) -> Optional[pulumi.Input[str]]:
         """
-        A label selector for Kubernetes namespaces 
+        A label selector for Kubernetes namespaces
         in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
         of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
         If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
@@ -393,7 +393,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="allowedKubernetesNamespaces")
     def allowed_kubernetes_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of Kubernetes namespaces this role 
+        The list of Kubernetes namespaces this role
         can generate credentials for. If set to `*` all namespaces are allowed. If set with
         `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         """
@@ -420,7 +420,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="extraAnnotations")
     def extra_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Additional annotations to apply to all generated 
+        Additional annotations to apply to all generated
         Kubernetes objects.
         """
         return pulumi.get(self, "extra_annotations")
@@ -433,7 +433,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="extraLabels")
     def extra_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Additional labels to apply to all generated Kubernetes 
+        Additional labels to apply to all generated Kubernetes
         objects.
 
         This resource also directly accepts all Mount fields.
@@ -448,7 +448,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="generatedRoleRules")
     def generated_role_rules(self) -> Optional[pulumi.Input[str]]:
         """
-        The Role or ClusterRole rules to use when generating 
+        The Role or ClusterRole rules to use when generating
         a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
         and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
         when credentials are requested.
@@ -463,7 +463,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="kubernetesRoleName")
     def kubernetes_role_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The pre-existing Role or ClusterRole to bind a 
+        The pre-existing Role or ClusterRole to bind a
         generated service account to. Mutually exclusive with `service_account_name` and
         `generated_role_rules`. If set, Kubernetes token, service account, and role
         binding objects will be created when credentials are requested.
@@ -478,7 +478,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="kubernetesRoleType")
     def kubernetes_role_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Specifies whether the Kubernetes role is a Role or 
+        Specifies whether the Kubernetes role is a Role or
         ClusterRole.
         """
         return pulumi.get(self, "kubernetes_role_type")
@@ -503,7 +503,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="nameTemplate")
     def name_template(self) -> Optional[pulumi.Input[str]]:
         """
-        The name template to use when generating service accounts, 
+        The name template to use when generating service accounts,
         roles and role bindings. If unset, a default template is used.
         """
         return pulumi.get(self, "name_template")
@@ -699,33 +699,33 @@ class SecretBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces
                in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
                of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
                If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role
                can generate credentials for. If set to `*` all namespaces are allowed. If set with
                `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated
                Kubernetes objects.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes
                objects.
                
                This resource also directly accepts all Mount fields.
-        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
+        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
                when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
+        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a
                generated service account to. Mutually exclusive with `service_account_name` and
                `generated_role_rules`. If set, Kubernetes token, service account, and role
                binding objects will be created when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
+        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or
                ClusterRole.
         :param pulumi.Input[str] name: The name of the role.
-        :param pulumi.Input[str] name_template: The name template to use when generating service accounts, 
+        :param pulumi.Input[str] name_template: The name template to use when generating service accounts,
                roles and role bindings. If unset, a default template is used.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -939,33 +939,33 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces 
+        :param pulumi.Input[str] allowed_kubernetes_namespace_selector: A label selector for Kubernetes namespaces
                in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
                of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
                If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_kubernetes_namespaces: The list of Kubernetes namespaces this role
                can generate credentials for. If set to `*` all namespaces are allowed. If set with
                `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         :param pulumi.Input[str] backend: The path of the Kubernetes Secrets Engine backend mount to create
                the role in.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_annotations: Additional annotations to apply to all generated
                Kubernetes objects.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes 
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_labels: Additional labels to apply to all generated Kubernetes
                objects.
                
                This resource also directly accepts all Mount fields.
-        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating 
+        :param pulumi.Input[str] generated_role_rules: The Role or ClusterRole rules to use when generating
                a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
                and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
                when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a 
+        :param pulumi.Input[str] kubernetes_role_name: The pre-existing Role or ClusterRole to bind a
                generated service account to. Mutually exclusive with `service_account_name` and
                `generated_role_rules`. If set, Kubernetes token, service account, and role
                binding objects will be created when credentials are requested.
-        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or 
+        :param pulumi.Input[str] kubernetes_role_type: Specifies whether the Kubernetes role is a Role or
                ClusterRole.
         :param pulumi.Input[str] name: The name of the role.
-        :param pulumi.Input[str] name_template: The name template to use when generating service accounts, 
+        :param pulumi.Input[str] name_template: The name template to use when generating service accounts,
                roles and role bindings. If unset, a default template is used.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1001,7 +1001,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="allowedKubernetesNamespaceSelector")
     def allowed_kubernetes_namespace_selector(self) -> pulumi.Output[Optional[str]]:
         """
-        A label selector for Kubernetes namespaces 
+        A label selector for Kubernetes namespaces
         in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
         of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
         If set with `allowed_kubernetes_namespace`, the conditions are `OR`ed.
@@ -1012,7 +1012,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="allowedKubernetesNamespaces")
     def allowed_kubernetes_namespaces(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The list of Kubernetes namespaces this role 
+        The list of Kubernetes namespaces this role
         can generate credentials for. If set to `*` all namespaces are allowed. If set with
         `allowed_kubernetes_namespace_selector`, the conditions are `OR`ed.
         """
@@ -1031,7 +1031,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="extraAnnotations")
     def extra_annotations(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Additional annotations to apply to all generated 
+        Additional annotations to apply to all generated
         Kubernetes objects.
         """
         return pulumi.get(self, "extra_annotations")
@@ -1040,7 +1040,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="extraLabels")
     def extra_labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        Additional labels to apply to all generated Kubernetes 
+        Additional labels to apply to all generated Kubernetes
         objects.
 
         This resource also directly accepts all Mount fields.
@@ -1051,7 +1051,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="generatedRoleRules")
     def generated_role_rules(self) -> pulumi.Output[Optional[str]]:
         """
-        The Role or ClusterRole rules to use when generating 
+        The Role or ClusterRole rules to use when generating
         a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
         and `kubernetes_role_name`. If set, the entire chain of Kubernetes objects will be generated
         when credentials are requested.
@@ -1062,7 +1062,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesRoleName")
     def kubernetes_role_name(self) -> pulumi.Output[Optional[str]]:
         """
-        The pre-existing Role or ClusterRole to bind a 
+        The pre-existing Role or ClusterRole to bind a
         generated service account to. Mutually exclusive with `service_account_name` and
         `generated_role_rules`. If set, Kubernetes token, service account, and role
         binding objects will be created when credentials are requested.
@@ -1073,7 +1073,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesRoleType")
     def kubernetes_role_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Specifies whether the Kubernetes role is a Role or 
+        Specifies whether the Kubernetes role is a Role or
         ClusterRole.
         """
         return pulumi.get(self, "kubernetes_role_type")
@@ -1090,7 +1090,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="nameTemplate")
     def name_template(self) -> pulumi.Output[Optional[str]]:
         """
-        The name template to use when generating service accounts, 
+        The name template to use when generating service accounts,
         roles and role bindings. If unset, a default template is used.
         """
         return pulumi.get(self, "name_template")

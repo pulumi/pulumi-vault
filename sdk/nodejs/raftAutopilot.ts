@@ -68,7 +68,7 @@ export class RaftAutopilot extends pulumi.CustomResource {
      */
     public readonly cleanupDeadServers!: pulumi.Output<boolean | undefined>;
     /**
-     * Limit the amount of time a 
+     * Limit the amount of time a
      * server can go without leader contact before being considered failed. This only takes
      * effect when `cleanupDeadServers` is set.
      */
@@ -78,17 +78,17 @@ export class RaftAutopilot extends pulumi.CustomResource {
      */
     public readonly disableUpgradeMigration!: pulumi.Output<boolean | undefined>;
     /**
-     * Limit the amount of time a server can go 
+     * Limit the amount of time a server can go
      * without leader contact before being considered unhealthy.
      */
     public readonly lastContactThreshold!: pulumi.Output<string | undefined>;
     /**
-     * Maximum number of log entries in the Raft log 
+     * Maximum number of log entries in the Raft log
      * that a server can be behind its leader before being considered unhealthy.
      */
     public readonly maxTrailingLogs!: pulumi.Output<number | undefined>;
     /**
-     * Minimum number of servers allowed in a cluster before 
+     * Minimum number of servers allowed in a cluster before
      * autopilot can prune dead servers. This should at least be 3. Applicable only for
      * voting nodes.
      */
@@ -101,7 +101,7 @@ export class RaftAutopilot extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Minimum amount of time a server must be 
+     * Minimum amount of time a server must be
      * stable in the 'healthy' state before being added to the cluster.
      */
     public readonly serverStabilizationTime!: pulumi.Output<string | undefined>;
@@ -153,7 +153,7 @@ export interface RaftAutopilotState {
      */
     cleanupDeadServers?: pulumi.Input<boolean>;
     /**
-     * Limit the amount of time a 
+     * Limit the amount of time a
      * server can go without leader contact before being considered failed. This only takes
      * effect when `cleanupDeadServers` is set.
      */
@@ -163,17 +163,17 @@ export interface RaftAutopilotState {
      */
     disableUpgradeMigration?: pulumi.Input<boolean>;
     /**
-     * Limit the amount of time a server can go 
+     * Limit the amount of time a server can go
      * without leader contact before being considered unhealthy.
      */
     lastContactThreshold?: pulumi.Input<string>;
     /**
-     * Maximum number of log entries in the Raft log 
+     * Maximum number of log entries in the Raft log
      * that a server can be behind its leader before being considered unhealthy.
      */
     maxTrailingLogs?: pulumi.Input<number>;
     /**
-     * Minimum number of servers allowed in a cluster before 
+     * Minimum number of servers allowed in a cluster before
      * autopilot can prune dead servers. This should at least be 3. Applicable only for
      * voting nodes.
      */
@@ -186,7 +186,7 @@ export interface RaftAutopilotState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Minimum amount of time a server must be 
+     * Minimum amount of time a server must be
      * stable in the 'healthy' state before being added to the cluster.
      */
     serverStabilizationTime?: pulumi.Input<string>;
@@ -202,7 +202,7 @@ export interface RaftAutopilotArgs {
      */
     cleanupDeadServers?: pulumi.Input<boolean>;
     /**
-     * Limit the amount of time a 
+     * Limit the amount of time a
      * server can go without leader contact before being considered failed. This only takes
      * effect when `cleanupDeadServers` is set.
      */
@@ -212,17 +212,17 @@ export interface RaftAutopilotArgs {
      */
     disableUpgradeMigration?: pulumi.Input<boolean>;
     /**
-     * Limit the amount of time a server can go 
+     * Limit the amount of time a server can go
      * without leader contact before being considered unhealthy.
      */
     lastContactThreshold?: pulumi.Input<string>;
     /**
-     * Maximum number of log entries in the Raft log 
+     * Maximum number of log entries in the Raft log
      * that a server can be behind its leader before being considered unhealthy.
      */
     maxTrailingLogs?: pulumi.Input<number>;
     /**
-     * Minimum number of servers allowed in a cluster before 
+     * Minimum number of servers allowed in a cluster before
      * autopilot can prune dead servers. This should at least be 3. Applicable only for
      * voting nodes.
      */
@@ -235,7 +235,7 @@ export interface RaftAutopilotArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Minimum amount of time a server must be 
+     * Minimum amount of time a server must be
      * stable in the 'healthy' state before being added to the cluster.
      */
     serverStabilizationTime?: pulumi.Input<string>;

@@ -109,7 +109,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the organization to which the target API Key belongs. 
+        /// Unique identifier for the organization to which the target API Key belongs.
         /// Required if `project_id` is not set.
         /// </summary>
         [Output("organizationId")]
@@ -238,7 +238,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Unique identifier for the organization to which the target API Key belongs. 
+        /// Unique identifier for the organization to which the target API Key belongs.
         /// Required if `project_id` is not set.
         /// </summary>
         [Input("organizationId")]
@@ -341,7 +341,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Unique identifier for the organization to which the target API Key belongs. 
+        /// Unique identifier for the organization to which the target API Key belongs.
         /// Required if `project_id` is not set.
         /// </summary>
         [Input("organizationId")]

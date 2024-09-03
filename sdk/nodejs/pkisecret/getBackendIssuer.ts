@@ -96,7 +96,7 @@ export interface GetBackendIssuerResult {
      */
     readonly leafNotAfterBehavior: string;
     /**
-     * Chain of issuer references to build this issuer's computed 
+     * Chain of issuer references to build this issuer's computed
      * CAChain field from, when non-empty.
      */
     readonly manualChains: string[];

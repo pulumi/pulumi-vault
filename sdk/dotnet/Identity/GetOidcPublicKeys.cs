@@ -180,7 +180,7 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The public portion of keys for an OIDC provider. 
+        /// The public portion of keys for an OIDC provider.
         /// Clients can use them to validate the authenticity of an identity token.
         /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, string>> Keys;

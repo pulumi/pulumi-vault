@@ -12,7 +12,7 @@ namespace Pulumi.Vault
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### File Audit Device)
+    /// ### file audit device)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
-    /// ### Socket Audit Device)
+    /// ### socket audit device)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

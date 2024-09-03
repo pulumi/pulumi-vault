@@ -63,8 +63,7 @@ type GetAccessCredentialsArgs struct {
 	Backend string `pulumi:"backend"`
 	// The Azure environment to use during credential validation.
 	// Defaults to the environment configured in the Vault backend.
-	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-	// *See the caveats section for more information on this field.*
+	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
 	Environment *string `pulumi:"environment"`
 	// If 'validate_creds' is true,
 	// the number of seconds after which to give up validating credentials. Defaults
@@ -87,12 +86,10 @@ type GetAccessCredentialsArgs struct {
 	// credentials from, with no leading or trailing `/`s.
 	Role string `pulumi:"role"`
 	// The subscription ID to use during credential
-	// validation. Defaults to the subscription ID configured in the Vault `backend`.
-	// *See the caveats section for more information on this field.*
+	// validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant ID to use during credential validation.
-	// Defaults to the tenant ID configured in the Vault `backend`.
-	// *See the caveats section for more information on this field.*
+	// Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
 	TenantId *string `pulumi:"tenantId"`
 	// Whether generated credentials should be
 	// validated before being returned. Defaults to `false`, which returns
@@ -149,8 +146,7 @@ type GetAccessCredentialsOutputArgs struct {
 	Backend pulumi.StringInput `pulumi:"backend"`
 	// The Azure environment to use during credential validation.
 	// Defaults to the environment configured in the Vault backend.
-	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-	// *See the caveats section for more information on this field.*
+	// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
 	Environment pulumi.StringPtrInput `pulumi:"environment"`
 	// If 'validate_creds' is true,
 	// the number of seconds after which to give up validating credentials. Defaults
@@ -173,12 +169,10 @@ type GetAccessCredentialsOutputArgs struct {
 	// credentials from, with no leading or trailing `/`s.
 	Role pulumi.StringInput `pulumi:"role"`
 	// The subscription ID to use during credential
-	// validation. Defaults to the subscription ID configured in the Vault `backend`.
-	// *See the caveats section for more information on this field.*
+	// validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
 	SubscriptionId pulumi.StringPtrInput `pulumi:"subscriptionId"`
 	// The tenant ID to use during credential validation.
-	// Defaults to the tenant ID configured in the Vault `backend`.
-	// *See the caveats section for more information on this field.*
+	// Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
 	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
 	// Whether generated credentials should be
 	// validated before being returned. Defaults to `false`, which returns

@@ -17,6 +17,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;vault&#34;
+ * page_title: &#34;Vault: vault.saml.AuthBackend resource&#34;
+ * sidebar_current: &#34;docs-vault-saml-auth-backend&#34;
+ * description: |-
+ * Manages SAML Auth mounts in Vault.
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # vault\_saml\_auth\_backend
+ * 
  * Manages a SAML Auth mount in a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/saml/) for more
  * information.

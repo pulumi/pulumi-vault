@@ -38,8 +38,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
     /**
      * The Azure environment to use during credential validation.
      * Defaults to the environment configured in the Vault backend.
-     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-     * *See the caveats section for more information on this field.*
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
      * 
      */
     @Import(name="environment")
@@ -48,8 +47,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
     /**
      * @return The Azure environment to use during credential validation.
      * Defaults to the environment configured in the Vault backend.
-     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-     * *See the caveats section for more information on this field.*
+     * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
      * 
      */
     public Optional<Output<String>> environment() {
@@ -153,8 +151,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
     /**
      * The subscription ID to use during credential
-     * validation. Defaults to the subscription ID configured in the Vault `backend`.
-     * *See the caveats section for more information on this field.*
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
      * 
      */
     @Import(name="subscriptionId")
@@ -162,8 +159,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
     /**
      * @return The subscription ID to use during credential
-     * validation. Defaults to the subscription ID configured in the Vault `backend`.
-     * *See the caveats section for more information on this field.*
+     * validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
      * 
      */
     public Optional<Output<String>> subscriptionId() {
@@ -172,8 +168,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
     /**
      * The tenant ID to use during credential validation.
-     * Defaults to the tenant ID configured in the Vault `backend`.
-     * *See the caveats section for more information on this field.*
+     * Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
      * 
      */
     @Import(name="tenantId")
@@ -181,8 +176,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
     /**
      * @return The tenant ID to use during credential validation.
-     * Defaults to the tenant ID configured in the Vault `backend`.
-     * *See the caveats section for more information on this field.*
+     * Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
      * 
      */
     public Optional<Output<String>> tenantId() {
@@ -269,8 +263,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         /**
          * @param environment The Azure environment to use during credential validation.
          * Defaults to the environment configured in the Vault backend.
-         * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-         * *See the caveats section for more information on this field.*
+         * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
          * 
          * @return builder
          * 
@@ -283,8 +276,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
         /**
          * @param environment The Azure environment to use during credential validation.
          * Defaults to the environment configured in the Vault backend.
-         * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-         * *See the caveats section for more information on this field.*
+         * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
          * 
          * @return builder
          * 
@@ -420,8 +412,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param subscriptionId The subscription ID to use during credential
-         * validation. Defaults to the subscription ID configured in the Vault `backend`.
-         * *See the caveats section for more information on this field.*
+         * validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
          * 
          * @return builder
          * 
@@ -433,8 +424,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param subscriptionId The subscription ID to use during credential
-         * validation. Defaults to the subscription ID configured in the Vault `backend`.
-         * *See the caveats section for more information on this field.*
+         * validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
          * 
          * @return builder
          * 
@@ -445,8 +435,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param tenantId The tenant ID to use during credential validation.
-         * Defaults to the tenant ID configured in the Vault `backend`.
-         * *See the caveats section for more information on this field.*
+         * Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
          * 
          * @return builder
          * 
@@ -458,8 +447,7 @@ public final class GetAccessCredentialsArgs extends com.pulumi.resources.InvokeA
 
         /**
          * @param tenantId The tenant ID to use during credential validation.
-         * Defaults to the tenant ID configured in the Vault `backend`.
-         * *See the caveats section for more information on this field.*
+         * Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
          * 
          * @return builder
          * 

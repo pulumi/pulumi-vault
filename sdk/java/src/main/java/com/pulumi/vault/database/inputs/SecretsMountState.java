@@ -117,16 +117,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Cassandra connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="cassandras")
     private @Nullable Output<List<SecretsMountCassandraArgs>> cassandras;
 
     /**
-     * @return A nested block containing configuration options for Cassandra connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountCassandraArgs>>> cassandras() {
@@ -134,16 +132,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Couchbase connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="couchbases")
     private @Nullable Output<List<SecretsMountCouchbaseArgs>> couchbases;
 
     /**
-     * @return A nested block containing configuration options for Couchbase connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountCouchbaseArgs>>> couchbases() {
@@ -196,16 +192,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Elasticsearch connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="elasticsearches")
     private @Nullable Output<List<SecretsMountElasticsearchArgs>> elasticsearches;
 
     /**
-     * @return A nested block containing configuration options for Elasticsearch connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountElasticsearchArgs>>> elasticsearches() {
@@ -243,16 +237,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for SAP HanaDB connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="hanas")
     private @Nullable Output<List<SecretsMountHanaArgs>> hanas;
 
     /**
-     * @return A nested block containing configuration options for SAP HanaDB connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountHanaArgs>>> hanas() {
@@ -275,16 +267,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for InfluxDB connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="influxdbs")
     private @Nullable Output<List<SecretsMountInfluxdbArgs>> influxdbs;
 
     /**
-     * @return A nested block containing configuration options for InfluxDB connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountInfluxdbArgs>>> influxdbs() {
@@ -337,16 +327,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for MongoDB Atlas connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mongodbatlas")
     private @Nullable Output<List<SecretsMountMongodbatlaArgs>> mongodbatlas;
 
     /**
-     * @return A nested block containing configuration options for MongoDB Atlas connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMongodbatlaArgs>>> mongodbatlas() {
@@ -354,16 +342,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for MongoDB connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mongodbs")
     private @Nullable Output<List<SecretsMountMongodbArgs>> mongodbs;
 
     /**
-     * @return A nested block containing configuration options for MongoDB connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMongodbArgs>>> mongodbs() {
@@ -371,16 +357,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for MSSQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mssqls")
     private @Nullable Output<List<SecretsMountMssqlArgs>> mssqls;
 
     /**
-     * @return A nested block containing configuration options for MSSQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMssqlArgs>>> mssqls() {
@@ -388,16 +372,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Aurora MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mysqlAuroras")
     private @Nullable Output<List<SecretsMountMysqlAuroraArgs>> mysqlAuroras;
 
     /**
-     * @return A nested block containing configuration options for Aurora MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMysqlAuroraArgs>>> mysqlAuroras() {
@@ -405,16 +387,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for legacy MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mysqlLegacies")
     private @Nullable Output<List<SecretsMountMysqlLegacyArgs>> mysqlLegacies;
 
     /**
-     * @return A nested block containing configuration options for legacy MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMysqlLegacyArgs>>> mysqlLegacies() {
@@ -422,16 +402,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for RDS MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mysqlRds")
     private @Nullable Output<List<SecretsMountMysqlRdArgs>> mysqlRds;
 
     /**
-     * @return A nested block containing configuration options for RDS MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMysqlRdArgs>>> mysqlRds() {
@@ -439,16 +417,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="mysqls")
     private @Nullable Output<List<SecretsMountMysqlArgs>> mysqls;
 
     /**
-     * @return A nested block containing configuration options for MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountMysqlArgs>>> mysqls() {
@@ -486,16 +462,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Oracle connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="oracles")
     private @Nullable Output<List<SecretsMountOracleArgs>> oracles;
 
     /**
-     * @return A nested block containing configuration options for Oracle connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountOracleArgs>>> oracles() {
@@ -548,16 +522,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for PostgreSQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="postgresqls")
     private @Nullable Output<List<SecretsMountPostgresqlArgs>> postgresqls;
 
     /**
-     * @return A nested block containing configuration options for PostgreSQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountPostgresqlArgs>>> postgresqls() {
@@ -565,16 +537,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Redis connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="redis")
     private @Nullable Output<List<SecretsMountRediArgs>> redis;
 
     /**
-     * @return A nested block containing configuration options for Redis connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountRediArgs>>> redis() {
@@ -582,16 +552,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Redis ElastiCache connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="redisElasticaches")
     private @Nullable Output<List<SecretsMountRedisElasticachArgs>> redisElasticaches;
 
     /**
-     * @return A nested block containing configuration options for Redis ElastiCache connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountRedisElasticachArgs>>> redisElasticaches() {
@@ -599,16 +567,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for AWS Redshift connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="redshifts")
     private @Nullable Output<List<SecretsMountRedshiftArgs>> redshifts;
 
     /**
-     * @return A nested block containing configuration options for AWS Redshift connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountRedshiftArgs>>> redshifts() {
@@ -631,16 +597,14 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A nested block containing configuration options for Snowflake connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      * 
      */
     @Import(name="snowflakes")
     private @Nullable Output<List<SecretsMountSnowflakeArgs>> snowflakes;
 
     /**
-     * @return A nested block containing configuration options for Snowflake connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      * 
      */
     public Optional<Output<List<SecretsMountSnowflakeArgs>>> snowflakes() {
@@ -860,8 +824,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cassandras A nested block containing configuration options for Cassandra connections.\
-         * *See Configuration Options for more info*
+         * @param cassandras A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -872,8 +835,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cassandras A nested block containing configuration options for Cassandra connections.\
-         * *See Configuration Options for more info*
+         * @param cassandras A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -883,8 +845,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cassandras A nested block containing configuration options for Cassandra connections.\
-         * *See Configuration Options for more info*
+         * @param cassandras A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -894,8 +855,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param couchbases A nested block containing configuration options for Couchbase connections.\
-         * *See Configuration Options for more info*
+         * @param couchbases A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -906,8 +866,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param couchbases A nested block containing configuration options for Couchbase connections.\
-         * *See Configuration Options for more info*
+         * @param couchbases A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -917,8 +876,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param couchbases A nested block containing configuration options for Couchbase connections.\
-         * *See Configuration Options for more info*
+         * @param couchbases A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1001,8 +959,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearches A nested block containing configuration options for Elasticsearch connections.\
-         * *See Configuration Options for more info*
+         * @param elasticsearches A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1013,8 +970,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearches A nested block containing configuration options for Elasticsearch connections.\
-         * *See Configuration Options for more info*
+         * @param elasticsearches A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1024,8 +980,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param elasticsearches A nested block containing configuration options for Elasticsearch connections.\
-         * *See Configuration Options for more info*
+         * @param elasticsearches A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1077,8 +1032,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hanas A nested block containing configuration options for SAP HanaDB connections.\
-         * *See Configuration Options for more info*
+         * @param hanas A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1089,8 +1043,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hanas A nested block containing configuration options for SAP HanaDB connections.\
-         * *See Configuration Options for more info*
+         * @param hanas A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1100,8 +1053,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param hanas A nested block containing configuration options for SAP HanaDB connections.\
-         * *See Configuration Options for more info*
+         * @param hanas A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1132,8 +1084,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param influxdbs A nested block containing configuration options for InfluxDB connections.\
-         * *See Configuration Options for more info*
+         * @param influxdbs A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1144,8 +1095,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param influxdbs A nested block containing configuration options for InfluxDB connections.\
-         * *See Configuration Options for more info*
+         * @param influxdbs A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1155,8 +1105,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param influxdbs A nested block containing configuration options for InfluxDB connections.\
-         * *See Configuration Options for more info*
+         * @param influxdbs A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1229,8 +1178,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbatlas A nested block containing configuration options for MongoDB Atlas connections.\
-         * *See Configuration Options for more info*
+         * @param mongodbatlas A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1241,8 +1189,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbatlas A nested block containing configuration options for MongoDB Atlas connections.\
-         * *See Configuration Options for more info*
+         * @param mongodbatlas A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1252,8 +1199,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbatlas A nested block containing configuration options for MongoDB Atlas connections.\
-         * *See Configuration Options for more info*
+         * @param mongodbatlas A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1263,8 +1209,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbs A nested block containing configuration options for MongoDB connections.\
-         * *See Configuration Options for more info*
+         * @param mongodbs A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1275,8 +1220,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbs A nested block containing configuration options for MongoDB connections.\
-         * *See Configuration Options for more info*
+         * @param mongodbs A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1286,8 +1230,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mongodbs A nested block containing configuration options for MongoDB connections.\
-         * *See Configuration Options for more info*
+         * @param mongodbs A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1297,8 +1240,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mssqls A nested block containing configuration options for MSSQL connections.\
-         * *See Configuration Options for more info*
+         * @param mssqls A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1309,8 +1251,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mssqls A nested block containing configuration options for MSSQL connections.\
-         * *See Configuration Options for more info*
+         * @param mssqls A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1320,8 +1261,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mssqls A nested block containing configuration options for MSSQL connections.\
-         * *See Configuration Options for more info*
+         * @param mssqls A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1331,8 +1271,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlAuroras A nested block containing configuration options for Aurora MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlAuroras A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1343,8 +1282,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlAuroras A nested block containing configuration options for Aurora MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlAuroras A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1354,8 +1292,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlAuroras A nested block containing configuration options for Aurora MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlAuroras A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1365,8 +1302,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlLegacies A nested block containing configuration options for legacy MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlLegacies A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1377,8 +1313,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlLegacies A nested block containing configuration options for legacy MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlLegacies A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1388,8 +1323,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlLegacies A nested block containing configuration options for legacy MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlLegacies A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1399,8 +1333,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlRds A nested block containing configuration options for RDS MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlRds A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1411,8 +1344,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlRds A nested block containing configuration options for RDS MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlRds A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1422,8 +1354,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqlRds A nested block containing configuration options for RDS MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqlRds A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1433,8 +1364,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqls A nested block containing configuration options for MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqls A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1445,8 +1375,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqls A nested block containing configuration options for MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqls A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1456,8 +1385,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mysqls A nested block containing configuration options for MySQL connections.\
-         * *See Configuration Options for more info*
+         * @param mysqls A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1509,8 +1437,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oracles A nested block containing configuration options for Oracle connections.\
-         * *See Configuration Options for more info*
+         * @param oracles A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1521,8 +1448,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oracles A nested block containing configuration options for Oracle connections.\
-         * *See Configuration Options for more info*
+         * @param oracles A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1532,8 +1458,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oracles A nested block containing configuration options for Oracle connections.\
-         * *See Configuration Options for more info*
+         * @param oracles A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1616,8 +1541,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param postgresqls A nested block containing configuration options for PostgreSQL connections.\
-         * *See Configuration Options for more info*
+         * @param postgresqls A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1628,8 +1552,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param postgresqls A nested block containing configuration options for PostgreSQL connections.\
-         * *See Configuration Options for more info*
+         * @param postgresqls A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1639,8 +1562,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param postgresqls A nested block containing configuration options for PostgreSQL connections.\
-         * *See Configuration Options for more info*
+         * @param postgresqls A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1650,8 +1572,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redis A nested block containing configuration options for Redis connections.\
-         * *See Configuration Options for more info*
+         * @param redis A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1662,8 +1583,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redis A nested block containing configuration options for Redis connections.\
-         * *See Configuration Options for more info*
+         * @param redis A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1673,8 +1593,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redis A nested block containing configuration options for Redis connections.\
-         * *See Configuration Options for more info*
+         * @param redis A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1684,8 +1603,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.\
-         * *See Configuration Options for more info*
+         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1696,8 +1614,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.\
-         * *See Configuration Options for more info*
+         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1707,8 +1624,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.\
-         * *See Configuration Options for more info*
+         * @param redisElasticaches A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1718,8 +1634,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redshifts A nested block containing configuration options for AWS Redshift connections.\
-         * *See Configuration Options for more info*
+         * @param redshifts A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1730,8 +1645,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redshifts A nested block containing configuration options for AWS Redshift connections.\
-         * *See Configuration Options for more info*
+         * @param redshifts A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1741,8 +1655,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redshifts A nested block containing configuration options for AWS Redshift connections.\
-         * *See Configuration Options for more info*
+         * @param redshifts A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1773,8 +1686,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param snowflakes A nested block containing configuration options for Snowflake connections.\
-         * *See Configuration Options for more info*
+         * @param snowflakes A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1785,8 +1697,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param snowflakes A nested block containing configuration options for Snowflake connections.\
-         * *See Configuration Options for more info*
+         * @param snowflakes A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 
@@ -1796,8 +1707,7 @@ public final class SecretsMountState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param snowflakes A nested block containing configuration options for Snowflake connections.\
-         * *See Configuration Options for more info*
+         * @param snowflakes A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
          * 
          * @return builder
          * 

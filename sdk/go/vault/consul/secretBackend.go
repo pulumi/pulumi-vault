@@ -14,7 +14,7 @@ import (
 
 // ## Example Usage
 //
-// ### Creating a standard backend resource:
+// #### Creating a standard backend resource:
 // ```go
 // package main
 //
@@ -42,7 +42,7 @@ import (
 //
 // ```
 //
-// ### Creating a backend resource to bootstrap a new Consul instance:
+// #### Creating a backend resource to bootstrap a new Consul instance:
 // ```go
 // package main
 //

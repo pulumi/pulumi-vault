@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Saml
 {
     /// <summary>
+    /// layout: "vault"
+    /// page_title: "Vault: vault.saml.AuthBackend resource"
+    /// sidebar_current: "docs-vault-saml-auth-backend"
+    /// description: |-
+    /// Manages SAML Auth mounts in Vault.
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # vault\_saml\_auth\_backend
+    /// 
     /// Manages a SAML Auth mount in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/saml/) for more
     /// information.
@@ -97,7 +106,7 @@ namespace Pulumi.Vault.Saml
         public Output<string?> IdpMetadataUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The SSO URL of the identity provider. Mutually exclusive with 
+        /// The SSO URL of the identity provider. Mutually exclusive with
         /// `idp_metadata_url`.
         /// </summary>
         [Output("idpSsoUrl")]
@@ -226,7 +235,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? IdpMetadataUrl { get; set; }
 
         /// <summary>
-        /// The SSO URL of the identity provider. Mutually exclusive with 
+        /// The SSO URL of the identity provider. Mutually exclusive with
         /// `idp_metadata_url`.
         /// </summary>
         [Input("idpSsoUrl")]
@@ -317,7 +326,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? IdpMetadataUrl { get; set; }
 
         /// <summary>
-        /// The SSO URL of the identity provider. Mutually exclusive with 
+        /// The SSO URL of the identity provider. Mutually exclusive with
         /// `idp_metadata_url`.
         /// </summary>
         [Input("idpSsoUrl")]

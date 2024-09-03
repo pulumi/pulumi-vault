@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### File Audit Device)
+ * ### file audit device)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Socket Audit Device)
+ * ### socket audit device)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

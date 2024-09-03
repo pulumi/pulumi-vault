@@ -196,32 +196,28 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.auditNonHmacResponseKeys;
     }
     /**
-     * A nested block containing configuration options for Cassandra connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="cassandras", refs={List.class,SecretsMountCassandra.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountCassandra>> cassandras;
 
     /**
-     * @return A nested block containing configuration options for Cassandra connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountCassandra>>> cassandras() {
         return Codegen.optional(this.cassandras);
     }
     /**
-     * A nested block containing configuration options for Couchbase connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="couchbases", refs={List.class,SecretsMountCouchbase.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountCouchbase>> couchbases;
 
     /**
-     * @return A nested block containing configuration options for Couchbase connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountCouchbase>>> couchbases() {
@@ -270,16 +266,14 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * A nested block containing configuration options for Elasticsearch connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="elasticsearches", refs={List.class,SecretsMountElasticsearch.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountElasticsearch>> elasticsearches;
 
     /**
-     * @return A nested block containing configuration options for Elasticsearch connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountElasticsearch>>> elasticsearches() {
@@ -314,16 +308,14 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.externalEntropyAccess);
     }
     /**
-     * A nested block containing configuration options for SAP HanaDB connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="hanas", refs={List.class,SecretsMountHana.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountHana>> hanas;
 
     /**
-     * @return A nested block containing configuration options for SAP HanaDB connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountHana>>> hanas() {
@@ -344,16 +336,14 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.identityTokenKey);
     }
     /**
-     * A nested block containing configuration options for InfluxDB connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="influxdbs", refs={List.class,SecretsMountInfluxdb.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountInfluxdb>> influxdbs;
 
     /**
-     * @return A nested block containing configuration options for InfluxDB connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountInfluxdb>>> influxdbs() {
@@ -402,112 +392,98 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.maxLeaseTtlSeconds;
     }
     /**
-     * A nested block containing configuration options for MongoDB Atlas connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mongodbatlas", refs={List.class,SecretsMountMongodbatla.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMongodbatla>> mongodbatlas;
 
     /**
-     * @return A nested block containing configuration options for MongoDB Atlas connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMongodbatla>>> mongodbatlas() {
         return Codegen.optional(this.mongodbatlas);
     }
     /**
-     * A nested block containing configuration options for MongoDB connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mongodbs", refs={List.class,SecretsMountMongodb.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMongodb>> mongodbs;
 
     /**
-     * @return A nested block containing configuration options for MongoDB connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMongodb>>> mongodbs() {
         return Codegen.optional(this.mongodbs);
     }
     /**
-     * A nested block containing configuration options for MSSQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mssqls", refs={List.class,SecretsMountMssql.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMssql>> mssqls;
 
     /**
-     * @return A nested block containing configuration options for MSSQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMssql>>> mssqls() {
         return Codegen.optional(this.mssqls);
     }
     /**
-     * A nested block containing configuration options for Aurora MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mysqlAuroras", refs={List.class,SecretsMountMysqlAurora.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMysqlAurora>> mysqlAuroras;
 
     /**
-     * @return A nested block containing configuration options for Aurora MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMysqlAurora>>> mysqlAuroras() {
         return Codegen.optional(this.mysqlAuroras);
     }
     /**
-     * A nested block containing configuration options for legacy MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mysqlLegacies", refs={List.class,SecretsMountMysqlLegacy.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMysqlLegacy>> mysqlLegacies;
 
     /**
-     * @return A nested block containing configuration options for legacy MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMysqlLegacy>>> mysqlLegacies() {
         return Codegen.optional(this.mysqlLegacies);
     }
     /**
-     * A nested block containing configuration options for RDS MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mysqlRds", refs={List.class,SecretsMountMysqlRd.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMysqlRd>> mysqlRds;
 
     /**
-     * @return A nested block containing configuration options for RDS MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMysqlRd>>> mysqlRds() {
         return Codegen.optional(this.mysqlRds);
     }
     /**
-     * A nested block containing configuration options for MySQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="mysqls", refs={List.class,SecretsMountMysql.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountMysql>> mysqls;
 
     /**
-     * @return A nested block containing configuration options for MySQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountMysql>>> mysqls() {
@@ -542,16 +518,14 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.options);
     }
     /**
-     * A nested block containing configuration options for Oracle connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="oracles", refs={List.class,SecretsMountOracle.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountOracle>> oracles;
 
     /**
-     * @return A nested block containing configuration options for Oracle connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountOracle>>> oracles() {
@@ -600,64 +574,56 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.pluginVersion);
     }
     /**
-     * A nested block containing configuration options for PostgreSQL connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="postgresqls", refs={List.class,SecretsMountPostgresql.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountPostgresql>> postgresqls;
 
     /**
-     * @return A nested block containing configuration options for PostgreSQL connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountPostgresql>>> postgresqls() {
         return Codegen.optional(this.postgresqls);
     }
     /**
-     * A nested block containing configuration options for Redis connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="redis", refs={List.class,SecretsMountRedi.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountRedi>> redis;
 
     /**
-     * @return A nested block containing configuration options for Redis connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountRedi>>> redis() {
         return Codegen.optional(this.redis);
     }
     /**
-     * A nested block containing configuration options for Redis ElastiCache connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="redisElasticaches", refs={List.class,SecretsMountRedisElasticach.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountRedisElasticach>> redisElasticaches;
 
     /**
-     * @return A nested block containing configuration options for Redis ElastiCache connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountRedisElasticach>>> redisElasticaches() {
         return Codegen.optional(this.redisElasticaches);
     }
     /**
-     * A nested block containing configuration options for AWS Redshift connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="redshifts", refs={List.class,SecretsMountRedshift.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountRedshift>> redshifts;
 
     /**
-     * @return A nested block containing configuration options for AWS Redshift connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountRedshift>>> redshifts() {
@@ -678,16 +644,14 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.sealWrap;
     }
     /**
-     * A nested block containing configuration options for Snowflake connections.\
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      * 
      */
     @Export(name="snowflakes", refs={List.class,SecretsMountSnowflake.class}, tree="[0,1]")
     private Output</* @Nullable */ List<SecretsMountSnowflake>> snowflakes;
 
     /**
-     * @return A nested block containing configuration options for Snowflake connections.\
-     * *See Configuration Options for more info*
+     * @return A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      * 
      */
     public Output<Optional<List<SecretsMountSnowflake>>> snowflakes() {

@@ -14,7 +14,7 @@ import (
 
 // ## Example Usage
 //
-// ### Local Storage
+// #### Local Storage
 // ```go
 // package main
 //
@@ -44,7 +44,7 @@ import (
 //
 // ```
 //
-// ### AWS S3
+// #### AWS S3
 // ```go
 // package main
 //
@@ -87,7 +87,7 @@ import (
 //
 // ```
 //
-// ### Azure BLOB
+// #### Azure BLOB
 //
 // ```go
 // package main

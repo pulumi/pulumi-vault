@@ -82,7 +82,7 @@ export interface GetSecretResult {
      */
     readonly id: string;
     /**
-     * The duration of the secret lease, in seconds. Once 
+     * The duration of the secret lease, in seconds. Once
      * this time has passed any plan generated with this data may fail to apply.
      */
     readonly leaseDuration: number;
@@ -91,7 +91,7 @@ export interface GetSecretResult {
      */
     readonly leaseId: string;
     /**
-     * True if the duration of this lease can be extended 
+     * True if the duration of this lease can be extended
      * through renewal.
      */
     readonly leaseRenewable: boolean;

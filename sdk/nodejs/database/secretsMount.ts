@@ -111,13 +111,11 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly auditNonHmacResponseKeys!: pulumi.Output<string[]>;
     /**
-     * A nested block containing configuration options for Cassandra connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      */
     public readonly cassandras!: pulumi.Output<outputs.database.SecretsMountCassandra[] | undefined>;
     /**
-     * A nested block containing configuration options for Couchbase connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      */
     public readonly couchbases!: pulumi.Output<outputs.database.SecretsMountCouchbase[] | undefined>;
     /**
@@ -133,8 +131,7 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * A nested block containing configuration options for Elasticsearch connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      */
     public readonly elasticsearches!: pulumi.Output<outputs.database.SecretsMountElasticsearch[] | undefined>;
     /**
@@ -146,8 +143,7 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly externalEntropyAccess!: pulumi.Output<boolean | undefined>;
     /**
-     * A nested block containing configuration options for SAP HanaDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      */
     public readonly hanas!: pulumi.Output<outputs.database.SecretsMountHana[] | undefined>;
     /**
@@ -155,8 +151,7 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly identityTokenKey!: pulumi.Output<string | undefined>;
     /**
-     * A nested block containing configuration options for InfluxDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      */
     public readonly influxdbs!: pulumi.Output<outputs.database.SecretsMountInfluxdb[] | undefined>;
     /**
@@ -172,38 +167,31 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly maxLeaseTtlSeconds!: pulumi.Output<number>;
     /**
-     * A nested block containing configuration options for MongoDB Atlas connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      */
     public readonly mongodbatlas!: pulumi.Output<outputs.database.SecretsMountMongodbatla[] | undefined>;
     /**
-     * A nested block containing configuration options for MongoDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      */
     public readonly mongodbs!: pulumi.Output<outputs.database.SecretsMountMongodb[] | undefined>;
     /**
-     * A nested block containing configuration options for MSSQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      */
     public readonly mssqls!: pulumi.Output<outputs.database.SecretsMountMssql[] | undefined>;
     /**
-     * A nested block containing configuration options for Aurora MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      */
     public readonly mysqlAuroras!: pulumi.Output<outputs.database.SecretsMountMysqlAurora[] | undefined>;
     /**
-     * A nested block containing configuration options for legacy MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      */
     public readonly mysqlLegacies!: pulumi.Output<outputs.database.SecretsMountMysqlLegacy[] | undefined>;
     /**
-     * A nested block containing configuration options for RDS MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      */
     public readonly mysqlRds!: pulumi.Output<outputs.database.SecretsMountMysqlRd[] | undefined>;
     /**
-     * A nested block containing configuration options for MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      */
     public readonly mysqls!: pulumi.Output<outputs.database.SecretsMountMysql[] | undefined>;
     /**
@@ -215,8 +203,7 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * A nested block containing configuration options for Oracle connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      */
     public readonly oracles!: pulumi.Output<outputs.database.SecretsMountOracle[] | undefined>;
     /**
@@ -232,23 +219,19 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly pluginVersion!: pulumi.Output<string | undefined>;
     /**
-     * A nested block containing configuration options for PostgreSQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      */
     public readonly postgresqls!: pulumi.Output<outputs.database.SecretsMountPostgresql[] | undefined>;
     /**
-     * A nested block containing configuration options for Redis connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      */
     public readonly redis!: pulumi.Output<outputs.database.SecretsMountRedi[] | undefined>;
     /**
-     * A nested block containing configuration options for Redis ElastiCache connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      */
     public readonly redisElasticaches!: pulumi.Output<outputs.database.SecretsMountRedisElasticach[] | undefined>;
     /**
-     * A nested block containing configuration options for AWS Redshift connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      */
     public readonly redshifts!: pulumi.Output<outputs.database.SecretsMountRedshift[] | undefined>;
     /**
@@ -256,8 +239,7 @@ export class SecretsMount extends pulumi.CustomResource {
      */
     public readonly sealWrap!: pulumi.Output<boolean>;
     /**
-     * A nested block containing configuration options for Snowflake connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      */
     public readonly snowflakes!: pulumi.Output<outputs.database.SecretsMountSnowflake[] | undefined>;
 
@@ -388,13 +370,11 @@ export interface SecretsMountState {
      */
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A nested block containing configuration options for Cassandra connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      */
     cassandras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCassandra>[]>;
     /**
-     * A nested block containing configuration options for Couchbase connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      */
     couchbases?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCouchbase>[]>;
     /**
@@ -410,8 +390,7 @@ export interface SecretsMountState {
      */
     description?: pulumi.Input<string>;
     /**
-     * A nested block containing configuration options for Elasticsearch connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      */
     elasticsearches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountElasticsearch>[]>;
     /**
@@ -423,8 +402,7 @@ export interface SecretsMountState {
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
-     * A nested block containing configuration options for SAP HanaDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      */
     hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[]>;
     /**
@@ -432,8 +410,7 @@ export interface SecretsMountState {
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
-     * A nested block containing configuration options for InfluxDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      */
     influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[]>;
     /**
@@ -449,38 +426,31 @@ export interface SecretsMountState {
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
-     * A nested block containing configuration options for MongoDB Atlas connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      */
     mongodbatlas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodbatla>[]>;
     /**
-     * A nested block containing configuration options for MongoDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      */
     mongodbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodb>[]>;
     /**
-     * A nested block containing configuration options for MSSQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      */
     mssqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMssql>[]>;
     /**
-     * A nested block containing configuration options for Aurora MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      */
     mysqlAuroras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlAurora>[]>;
     /**
-     * A nested block containing configuration options for legacy MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      */
     mysqlLegacies?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlLegacy>[]>;
     /**
-     * A nested block containing configuration options for RDS MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      */
     mysqlRds?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlRd>[]>;
     /**
-     * A nested block containing configuration options for MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      */
     mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[]>;
     /**
@@ -492,8 +462,7 @@ export interface SecretsMountState {
      */
     options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * A nested block containing configuration options for Oracle connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      */
     oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[]>;
     /**
@@ -509,23 +478,19 @@ export interface SecretsMountState {
      */
     pluginVersion?: pulumi.Input<string>;
     /**
-     * A nested block containing configuration options for PostgreSQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      */
     postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
     /**
-     * A nested block containing configuration options for Redis connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      */
     redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[]>;
     /**
-     * A nested block containing configuration options for Redis ElastiCache connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      */
     redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
     /**
-     * A nested block containing configuration options for AWS Redshift connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      */
     redshifts?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedshift>[]>;
     /**
@@ -533,8 +498,7 @@ export interface SecretsMountState {
      */
     sealWrap?: pulumi.Input<boolean>;
     /**
-     * A nested block containing configuration options for Snowflake connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      */
     snowflakes?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountSnowflake>[]>;
 }
@@ -562,13 +526,11 @@ export interface SecretsMountArgs {
      */
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A nested block containing configuration options for Cassandra connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
      */
     cassandras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCassandra>[]>;
     /**
-     * A nested block containing configuration options for Couchbase connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
      */
     couchbases?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCouchbase>[]>;
     /**
@@ -584,8 +546,7 @@ export interface SecretsMountArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * A nested block containing configuration options for Elasticsearch connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
      */
     elasticsearches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountElasticsearch>[]>;
     /**
@@ -593,8 +554,7 @@ export interface SecretsMountArgs {
      */
     externalEntropyAccess?: pulumi.Input<boolean>;
     /**
-     * A nested block containing configuration options for SAP HanaDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
      */
     hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[]>;
     /**
@@ -602,8 +562,7 @@ export interface SecretsMountArgs {
      */
     identityTokenKey?: pulumi.Input<string>;
     /**
-     * A nested block containing configuration options for InfluxDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
      */
     influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[]>;
     /**
@@ -619,38 +578,31 @@ export interface SecretsMountArgs {
      */
     maxLeaseTtlSeconds?: pulumi.Input<number>;
     /**
-     * A nested block containing configuration options for MongoDB Atlas connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
      */
     mongodbatlas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodbatla>[]>;
     /**
-     * A nested block containing configuration options for MongoDB connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
      */
     mongodbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodb>[]>;
     /**
-     * A nested block containing configuration options for MSSQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
      */
     mssqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMssql>[]>;
     /**
-     * A nested block containing configuration options for Aurora MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
      */
     mysqlAuroras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlAurora>[]>;
     /**
-     * A nested block containing configuration options for legacy MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
      */
     mysqlLegacies?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlLegacy>[]>;
     /**
-     * A nested block containing configuration options for RDS MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
      */
     mysqlRds?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlRd>[]>;
     /**
-     * A nested block containing configuration options for MySQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
      */
     mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[]>;
     /**
@@ -662,8 +614,7 @@ export interface SecretsMountArgs {
      */
     options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * A nested block containing configuration options for Oracle connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
      */
     oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[]>;
     /**
@@ -679,23 +630,19 @@ export interface SecretsMountArgs {
      */
     pluginVersion?: pulumi.Input<string>;
     /**
-     * A nested block containing configuration options for PostgreSQL connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
      */
     postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
     /**
-     * A nested block containing configuration options for Redis connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
      */
     redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[]>;
     /**
-     * A nested block containing configuration options for Redis ElastiCache connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
      */
     redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticach>[]>;
     /**
-     * A nested block containing configuration options for AWS Redshift connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
      */
     redshifts?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedshift>[]>;
     /**
@@ -703,8 +650,7 @@ export interface SecretsMountArgs {
      */
     sealWrap?: pulumi.Input<boolean>;
     /**
-     * A nested block containing configuration options for Snowflake connections.  
-     * *See Configuration Options for more info*
+     * A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
      */
     snowflakes?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountSnowflake>[]>;
 }

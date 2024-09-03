@@ -12,7 +12,7 @@ namespace Pulumi.Vault
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### Local Storage
+    /// #### Local Storage
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,7 +34,7 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
-    /// ### AWS S3
+    /// #### AWS S3
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -66,7 +66,7 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
-    /// ### Azure BLOB
+    /// #### Azure BLOB
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

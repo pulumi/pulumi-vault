@@ -112,11 +112,9 @@ type SecretsMount struct {
 	AuditNonHmacRequestKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayOutput `pulumi:"auditNonHmacResponseKeys"`
-	// A nested block containing configuration options for Cassandra connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
 	Cassandras SecretsMountCassandraArrayOutput `pulumi:"cassandras"`
-	// A nested block containing configuration options for Couchbase connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
 	Couchbases SecretsMountCouchbaseArrayOutput `pulumi:"couchbases"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
@@ -124,20 +122,17 @@ type SecretsMount struct {
 	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// A nested block containing configuration options for Elasticsearch connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
 	Elasticsearches SecretsMountElasticsearchArrayOutput `pulumi:"elasticsearches"`
 	// The total number of database secrets engines configured.
 	EngineCount pulumi.IntOutput `pulumi:"engineCount"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
-	// A nested block containing configuration options for SAP HanaDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayOutput `pulumi:"hanas"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrOutput `pulumi:"identityTokenKey"`
-	// A nested block containing configuration options for InfluxDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
 	Influxdbs SecretsMountInfluxdbArrayOutput `pulumi:"influxdbs"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrOutput `pulumi:"listingVisibility"`
@@ -145,33 +140,25 @@ type SecretsMount struct {
 	Local pulumi.BoolPtrOutput `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntOutput `pulumi:"maxLeaseTtlSeconds"`
-	// A nested block containing configuration options for MongoDB Atlas connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
 	Mongodbatlas SecretsMountMongodbatlaArrayOutput `pulumi:"mongodbatlas"`
-	// A nested block containing configuration options for MongoDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
 	Mongodbs SecretsMountMongodbArrayOutput `pulumi:"mongodbs"`
-	// A nested block containing configuration options for MSSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
 	Mssqls SecretsMountMssqlArrayOutput `pulumi:"mssqls"`
-	// A nested block containing configuration options for Aurora MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
 	MysqlAuroras SecretsMountMysqlAuroraArrayOutput `pulumi:"mysqlAuroras"`
-	// A nested block containing configuration options for legacy MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
 	MysqlLegacies SecretsMountMysqlLegacyArrayOutput `pulumi:"mysqlLegacies"`
-	// A nested block containing configuration options for RDS MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
 	MysqlRds SecretsMountMysqlRdArrayOutput `pulumi:"mysqlRds"`
-	// A nested block containing configuration options for MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
 	Mysqls SecretsMountMysqlArrayOutput `pulumi:"mysqls"`
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.StringMapOutput `pulumi:"options"`
-	// A nested block containing configuration options for Oracle connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayOutput `pulumi:"oracles"`
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
@@ -179,22 +166,17 @@ type SecretsMount struct {
 	Path pulumi.StringOutput `pulumi:"path"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
-	// A nested block containing configuration options for PostgreSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayOutput `pulumi:"postgresqls"`
-	// A nested block containing configuration options for Redis connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
 	Redis SecretsMountRediArrayOutput `pulumi:"redis"`
-	// A nested block containing configuration options for Redis ElastiCache connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
 	RedisElasticaches SecretsMountRedisElasticachArrayOutput `pulumi:"redisElasticaches"`
-	// A nested block containing configuration options for AWS Redshift connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayOutput `pulumi:"redshifts"`
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
-	// A nested block containing configuration options for Snowflake connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
 	Snowflakes SecretsMountSnowflakeArrayOutput `pulumi:"snowflakes"`
 }
 
@@ -243,11 +225,9 @@ type secretsMountState struct {
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
-	// A nested block containing configuration options for Cassandra connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
 	Cassandras []SecretsMountCassandra `pulumi:"cassandras"`
-	// A nested block containing configuration options for Couchbase connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
 	Couchbases []SecretsMountCouchbase `pulumi:"couchbases"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
@@ -255,20 +235,17 @@ type secretsMountState struct {
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
-	// A nested block containing configuration options for Elasticsearch connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
 	Elasticsearches []SecretsMountElasticsearch `pulumi:"elasticsearches"`
 	// The total number of database secrets engines configured.
 	EngineCount *int `pulumi:"engineCount"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
-	// A nested block containing configuration options for SAP HanaDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
 	Hanas []SecretsMountHana `pulumi:"hanas"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
-	// A nested block containing configuration options for InfluxDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
 	Influxdbs []SecretsMountInfluxdb `pulumi:"influxdbs"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility *string `pulumi:"listingVisibility"`
@@ -276,33 +253,25 @@ type secretsMountState struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
-	// A nested block containing configuration options for MongoDB Atlas connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
 	Mongodbatlas []SecretsMountMongodbatla `pulumi:"mongodbatlas"`
-	// A nested block containing configuration options for MongoDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
 	Mongodbs []SecretsMountMongodb `pulumi:"mongodbs"`
-	// A nested block containing configuration options for MSSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
 	Mssqls []SecretsMountMssql `pulumi:"mssqls"`
-	// A nested block containing configuration options for Aurora MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
 	MysqlAuroras []SecretsMountMysqlAurora `pulumi:"mysqlAuroras"`
-	// A nested block containing configuration options for legacy MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
 	MysqlLegacies []SecretsMountMysqlLegacy `pulumi:"mysqlLegacies"`
-	// A nested block containing configuration options for RDS MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
 	MysqlRds []SecretsMountMysqlRd `pulumi:"mysqlRds"`
-	// A nested block containing configuration options for MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
 	Mysqls []SecretsMountMysql `pulumi:"mysqls"`
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]string `pulumi:"options"`
-	// A nested block containing configuration options for Oracle connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
 	Oracles []SecretsMountOracle `pulumi:"oracles"`
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
@@ -310,22 +279,17 @@ type secretsMountState struct {
 	Path *string `pulumi:"path"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion *string `pulumi:"pluginVersion"`
-	// A nested block containing configuration options for PostgreSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
-	// A nested block containing configuration options for Redis connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
 	Redis []SecretsMountRedi `pulumi:"redis"`
-	// A nested block containing configuration options for Redis ElastiCache connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
 	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
-	// A nested block containing configuration options for AWS Redshift connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
 	Redshifts []SecretsMountRedshift `pulumi:"redshifts"`
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
-	// A nested block containing configuration options for Snowflake connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
 	Snowflakes []SecretsMountSnowflake `pulumi:"snowflakes"`
 }
 
@@ -342,11 +306,9 @@ type SecretsMountState struct {
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
-	// A nested block containing configuration options for Cassandra connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
 	Cassandras SecretsMountCassandraArrayInput
-	// A nested block containing configuration options for Couchbase connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
 	Couchbases SecretsMountCouchbaseArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
@@ -354,20 +316,17 @@ type SecretsMountState struct {
 	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
-	// A nested block containing configuration options for Elasticsearch connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
 	Elasticsearches SecretsMountElasticsearchArrayInput
 	// The total number of database secrets engines configured.
 	EngineCount pulumi.IntPtrInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
-	// A nested block containing configuration options for SAP HanaDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayInput
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrInput
-	// A nested block containing configuration options for InfluxDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
 	Influxdbs SecretsMountInfluxdbArrayInput
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrInput
@@ -375,33 +334,25 @@ type SecretsMountState struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
-	// A nested block containing configuration options for MongoDB Atlas connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
 	Mongodbatlas SecretsMountMongodbatlaArrayInput
-	// A nested block containing configuration options for MongoDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
 	Mongodbs SecretsMountMongodbArrayInput
-	// A nested block containing configuration options for MSSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
 	Mssqls SecretsMountMssqlArrayInput
-	// A nested block containing configuration options for Aurora MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
 	MysqlAuroras SecretsMountMysqlAuroraArrayInput
-	// A nested block containing configuration options for legacy MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
 	MysqlLegacies SecretsMountMysqlLegacyArrayInput
-	// A nested block containing configuration options for RDS MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
 	MysqlRds SecretsMountMysqlRdArrayInput
-	// A nested block containing configuration options for MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
 	Mysqls SecretsMountMysqlArrayInput
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.StringMapInput
-	// A nested block containing configuration options for Oracle connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayInput
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayInput
@@ -409,22 +360,17 @@ type SecretsMountState struct {
 	Path pulumi.StringPtrInput
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrInput
-	// A nested block containing configuration options for PostgreSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
-	// A nested block containing configuration options for Redis connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
 	Redis SecretsMountRediArrayInput
-	// A nested block containing configuration options for Redis ElastiCache connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
 	RedisElasticaches SecretsMountRedisElasticachArrayInput
-	// A nested block containing configuration options for AWS Redshift connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayInput
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
-	// A nested block containing configuration options for Snowflake connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
 	Snowflakes SecretsMountSnowflakeArrayInput
 }
 
@@ -443,11 +389,9 @@ type secretsMountArgs struct {
 	AuditNonHmacRequestKeys []string `pulumi:"auditNonHmacRequestKeys"`
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys []string `pulumi:"auditNonHmacResponseKeys"`
-	// A nested block containing configuration options for Cassandra connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
 	Cassandras []SecretsMountCassandra `pulumi:"cassandras"`
-	// A nested block containing configuration options for Couchbase connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
 	Couchbases []SecretsMountCouchbase `pulumi:"couchbases"`
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
@@ -455,18 +399,15 @@ type secretsMountArgs struct {
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount
 	Description *string `pulumi:"description"`
-	// A nested block containing configuration options for Elasticsearch connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
 	Elasticsearches []SecretsMountElasticsearch `pulumi:"elasticsearches"`
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
-	// A nested block containing configuration options for SAP HanaDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
 	Hanas []SecretsMountHana `pulumi:"hanas"`
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey *string `pulumi:"identityTokenKey"`
-	// A nested block containing configuration options for InfluxDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
 	Influxdbs []SecretsMountInfluxdb `pulumi:"influxdbs"`
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility *string `pulumi:"listingVisibility"`
@@ -474,33 +415,25 @@ type secretsMountArgs struct {
 	Local *bool `pulumi:"local"`
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds *int `pulumi:"maxLeaseTtlSeconds"`
-	// A nested block containing configuration options for MongoDB Atlas connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
 	Mongodbatlas []SecretsMountMongodbatla `pulumi:"mongodbatlas"`
-	// A nested block containing configuration options for MongoDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
 	Mongodbs []SecretsMountMongodb `pulumi:"mongodbs"`
-	// A nested block containing configuration options for MSSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
 	Mssqls []SecretsMountMssql `pulumi:"mssqls"`
-	// A nested block containing configuration options for Aurora MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
 	MysqlAuroras []SecretsMountMysqlAurora `pulumi:"mysqlAuroras"`
-	// A nested block containing configuration options for legacy MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
 	MysqlLegacies []SecretsMountMysqlLegacy `pulumi:"mysqlLegacies"`
-	// A nested block containing configuration options for RDS MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
 	MysqlRds []SecretsMountMysqlRd `pulumi:"mysqlRds"`
-	// A nested block containing configuration options for MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
 	Mysqls []SecretsMountMysql `pulumi:"mysqls"`
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`
 	// Specifies mount type specific options that are passed to the backend
 	Options map[string]string `pulumi:"options"`
-	// A nested block containing configuration options for Oracle connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
 	Oracles []SecretsMountOracle `pulumi:"oracles"`
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
@@ -508,22 +441,17 @@ type secretsMountArgs struct {
 	Path string `pulumi:"path"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion *string `pulumi:"pluginVersion"`
-	// A nested block containing configuration options for PostgreSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
 	Postgresqls []SecretsMountPostgresql `pulumi:"postgresqls"`
-	// A nested block containing configuration options for Redis connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
 	Redis []SecretsMountRedi `pulumi:"redis"`
-	// A nested block containing configuration options for Redis ElastiCache connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
 	RedisElasticaches []SecretsMountRedisElasticach `pulumi:"redisElasticaches"`
-	// A nested block containing configuration options for AWS Redshift connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
 	Redshifts []SecretsMountRedshift `pulumi:"redshifts"`
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
-	// A nested block containing configuration options for Snowflake connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
 	Snowflakes []SecretsMountSnowflake `pulumi:"snowflakes"`
 }
 
@@ -539,11 +467,9 @@ type SecretsMountArgs struct {
 	AuditNonHmacRequestKeys pulumi.StringArrayInput
 	// Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
 	AuditNonHmacResponseKeys pulumi.StringArrayInput
-	// A nested block containing configuration options for Cassandra connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
 	Cassandras SecretsMountCassandraArrayInput
-	// A nested block containing configuration options for Couchbase connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
 	Couchbases SecretsMountCouchbaseArrayInput
 	// Default lease duration for tokens and secrets in seconds
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
@@ -551,18 +477,15 @@ type SecretsMountArgs struct {
 	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount
 	Description pulumi.StringPtrInput
-	// A nested block containing configuration options for Elasticsearch connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
 	Elasticsearches SecretsMountElasticsearchArrayInput
 	// Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
-	// A nested block containing configuration options for SAP HanaDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
 	Hanas SecretsMountHanaArrayInput
 	// The key to use for signing plugin workload identity tokens
 	IdentityTokenKey pulumi.StringPtrInput
-	// A nested block containing configuration options for InfluxDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
 	Influxdbs SecretsMountInfluxdbArrayInput
 	// Specifies whether to show this mount in the UI-specific listing endpoint
 	ListingVisibility pulumi.StringPtrInput
@@ -570,33 +493,25 @@ type SecretsMountArgs struct {
 	Local pulumi.BoolPtrInput
 	// Maximum possible lease duration for tokens and secrets in seconds
 	MaxLeaseTtlSeconds pulumi.IntPtrInput
-	// A nested block containing configuration options for MongoDB Atlas connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
 	Mongodbatlas SecretsMountMongodbatlaArrayInput
-	// A nested block containing configuration options for MongoDB connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
 	Mongodbs SecretsMountMongodbArrayInput
-	// A nested block containing configuration options for MSSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
 	Mssqls SecretsMountMssqlArrayInput
-	// A nested block containing configuration options for Aurora MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
 	MysqlAuroras SecretsMountMysqlAuroraArrayInput
-	// A nested block containing configuration options for legacy MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
 	MysqlLegacies SecretsMountMysqlLegacyArrayInput
-	// A nested block containing configuration options for RDS MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
 	MysqlRds SecretsMountMysqlRdArrayInput
-	// A nested block containing configuration options for MySQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
 	Mysqls SecretsMountMysqlArrayInput
 	// Target namespace. (requires Enterprise)
 	Namespace pulumi.StringPtrInput
 	// Specifies mount type specific options that are passed to the backend
 	Options pulumi.StringMapInput
-	// A nested block containing configuration options for Oracle connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
 	Oracles SecretsMountOracleArrayInput
 	// List of headers to allow and pass from the request to the plugin
 	PassthroughRequestHeaders pulumi.StringArrayInput
@@ -604,22 +519,17 @@ type SecretsMountArgs struct {
 	Path pulumi.StringInput
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrInput
-	// A nested block containing configuration options for PostgreSQL connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
 	Postgresqls SecretsMountPostgresqlArrayInput
-	// A nested block containing configuration options for Redis connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
 	Redis SecretsMountRediArrayInput
-	// A nested block containing configuration options for Redis ElastiCache connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
 	RedisElasticaches SecretsMountRedisElasticachArrayInput
-	// A nested block containing configuration options for AWS Redshift connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
 	Redshifts SecretsMountRedshiftArrayInput
 	// Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
-	// A nested block containing configuration options for Snowflake connections.\
-	// *See Configuration Options for more info*
+	// A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
 	Snowflakes SecretsMountSnowflakeArrayInput
 }
 
@@ -737,14 +647,12 @@ func (o SecretsMountOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput 
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringArrayOutput { return v.AuditNonHmacResponseKeys }).(pulumi.StringArrayOutput)
 }
 
-// A nested block containing configuration options for Cassandra connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Cassandras() SecretsMountCassandraArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountCassandraArrayOutput { return v.Cassandras }).(SecretsMountCassandraArrayOutput)
 }
 
-// A nested block containing configuration options for Couchbase connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Couchbases() SecretsMountCouchbaseArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountCouchbaseArrayOutput { return v.Couchbases }).(SecretsMountCouchbaseArrayOutput)
 }
@@ -764,8 +672,7 @@ func (o SecretsMountOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// A nested block containing configuration options for Elasticsearch connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Elasticsearches() SecretsMountElasticsearchArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountElasticsearchArrayOutput { return v.Elasticsearches }).(SecretsMountElasticsearchArrayOutput)
 }
@@ -780,8 +687,7 @@ func (o SecretsMountOutput) ExternalEntropyAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.BoolPtrOutput { return v.ExternalEntropyAccess }).(pulumi.BoolPtrOutput)
 }
 
-// A nested block containing configuration options for SAP HanaDB connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Hanas() SecretsMountHanaArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountHanaArrayOutput { return v.Hanas }).(SecretsMountHanaArrayOutput)
 }
@@ -791,8 +697,7 @@ func (o SecretsMountOutput) IdentityTokenKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.IdentityTokenKey }).(pulumi.StringPtrOutput)
 }
 
-// A nested block containing configuration options for InfluxDB connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Influxdbs() SecretsMountInfluxdbArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountInfluxdbArrayOutput { return v.Influxdbs }).(SecretsMountInfluxdbArrayOutput)
 }
@@ -812,44 +717,37 @@ func (o SecretsMountOutput) MaxLeaseTtlSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.IntOutput { return v.MaxLeaseTtlSeconds }).(pulumi.IntOutput)
 }
 
-// A nested block containing configuration options for MongoDB Atlas connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Mongodbatlas() SecretsMountMongodbatlaArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMongodbatlaArrayOutput { return v.Mongodbatlas }).(SecretsMountMongodbatlaArrayOutput)
 }
 
-// A nested block containing configuration options for MongoDB connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Mongodbs() SecretsMountMongodbArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMongodbArrayOutput { return v.Mongodbs }).(SecretsMountMongodbArrayOutput)
 }
 
-// A nested block containing configuration options for MSSQL connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Mssqls() SecretsMountMssqlArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMssqlArrayOutput { return v.Mssqls }).(SecretsMountMssqlArrayOutput)
 }
 
-// A nested block containing configuration options for Aurora MySQL connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) MysqlAuroras() SecretsMountMysqlAuroraArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlAuroraArrayOutput { return v.MysqlAuroras }).(SecretsMountMysqlAuroraArrayOutput)
 }
 
-// A nested block containing configuration options for legacy MySQL connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) MysqlLegacies() SecretsMountMysqlLegacyArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlLegacyArrayOutput { return v.MysqlLegacies }).(SecretsMountMysqlLegacyArrayOutput)
 }
 
-// A nested block containing configuration options for RDS MySQL connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) MysqlRds() SecretsMountMysqlRdArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlRdArrayOutput { return v.MysqlRds }).(SecretsMountMysqlRdArrayOutput)
 }
 
-// A nested block containing configuration options for MySQL connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Mysqls() SecretsMountMysqlArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountMysqlArrayOutput { return v.Mysqls }).(SecretsMountMysqlArrayOutput)
 }
@@ -864,8 +762,7 @@ func (o SecretsMountOutput) Options() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringMapOutput { return v.Options }).(pulumi.StringMapOutput)
 }
 
-// A nested block containing configuration options for Oracle connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Oracles() SecretsMountOracleArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountOracleArrayOutput { return v.Oracles }).(SecretsMountOracleArrayOutput)
 }
@@ -885,26 +782,22 @@ func (o SecretsMountOutput) PluginVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
 }
 
-// A nested block containing configuration options for PostgreSQL connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Postgresqls() SecretsMountPostgresqlArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountPostgresqlArrayOutput { return v.Postgresqls }).(SecretsMountPostgresqlArrayOutput)
 }
 
-// A nested block containing configuration options for Redis connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Redis() SecretsMountRediArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountRediArrayOutput { return v.Redis }).(SecretsMountRediArrayOutput)
 }
 
-// A nested block containing configuration options for Redis ElastiCache connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) RedisElasticaches() SecretsMountRedisElasticachArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountRedisElasticachArrayOutput { return v.RedisElasticaches }).(SecretsMountRedisElasticachArrayOutput)
 }
 
-// A nested block containing configuration options for AWS Redshift connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Redshifts() SecretsMountRedshiftArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountRedshiftArrayOutput { return v.Redshifts }).(SecretsMountRedshiftArrayOutput)
 }
@@ -914,8 +807,7 @@ func (o SecretsMountOutput) SealWrap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretsMount) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
 }
 
-// A nested block containing configuration options for Snowflake connections.\
-// *See Configuration Options for more info*
+// A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
 func (o SecretsMountOutput) Snowflakes() SecretsMountSnowflakeArrayOutput {
 	return o.ApplyT(func(v *SecretsMount) SecretsMountSnowflakeArrayOutput { return v.Snowflakes }).(SecretsMountSnowflakeArrayOutput)
 }

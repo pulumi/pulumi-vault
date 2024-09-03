@@ -91,7 +91,7 @@ export class OidcClient extends pulumi.CustomResource {
      */
     public readonly clientType!: pulumi.Output<string>;
     /**
-     * The time-to-live for ID tokens obtained by the client. 
+     * The time-to-live for ID tokens obtained by the client.
      * The value should be less than the `verificationTtl` on the key.
      */
     public readonly idTokenTtl!: pulumi.Output<number>;
@@ -113,7 +113,7 @@ export class OidcClient extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * Redirection URI values used by the client. 
+     * Redirection URI values used by the client.
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      */
@@ -189,7 +189,7 @@ export interface OidcClientState {
      */
     clientType?: pulumi.Input<string>;
     /**
-     * The time-to-live for ID tokens obtained by the client. 
+     * The time-to-live for ID tokens obtained by the client.
      * The value should be less than the `verificationTtl` on the key.
      */
     idTokenTtl?: pulumi.Input<number>;
@@ -211,7 +211,7 @@ export interface OidcClientState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Redirection URI values used by the client. 
+     * Redirection URI values used by the client.
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      */
@@ -236,7 +236,7 @@ export interface OidcClientArgs {
      */
     clientType?: pulumi.Input<string>;
     /**
-     * The time-to-live for ID tokens obtained by the client. 
+     * The time-to-live for ID tokens obtained by the client.
      * The value should be less than the `verificationTtl` on the key.
      */
     idTokenTtl?: pulumi.Input<number>;
@@ -258,7 +258,7 @@ export interface OidcClientArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * Redirection URI values used by the client. 
+     * Redirection URI values used by the client.
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      */

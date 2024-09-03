@@ -28,7 +28,7 @@ class OidcClientArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] assignments: A list of assignment resources associated with the client.
         :param pulumi.Input[str] client_type: The client type based on its ability to maintain confidentiality of credentials.
                The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
-        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client. 
+        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client.
                The value should be less than the `verification_ttl` on the key.
         :param pulumi.Input[str] key: A reference to a named key resource in Vault.
                This cannot be modified after creation. If not provided, the `default`
@@ -38,7 +38,7 @@ class OidcClientArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client.
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
         """
@@ -100,7 +100,7 @@ class OidcClientArgs:
     @pulumi.getter(name="idTokenTtl")
     def id_token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The time-to-live for ID tokens obtained by the client. 
+        The time-to-live for ID tokens obtained by the client.
         The value should be less than the `verification_ttl` on the key.
         """
         return pulumi.get(self, "id_token_ttl")
@@ -154,7 +154,7 @@ class OidcClientArgs:
     @pulumi.getter(name="redirectUris")
     def redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Redirection URI values used by the client. 
+        Redirection URI values used by the client.
         One of these values must exactly match the `redirect_uri` parameter value
         used in each authentication request.
         """
@@ -187,7 +187,7 @@ class _OidcClientState:
                For public OpenID Clients `client_secret` is set to an empty string `""`
         :param pulumi.Input[str] client_type: The client type based on its ability to maintain confidentiality of credentials.
                The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
-        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client. 
+        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client.
                The value should be less than the `verification_ttl` on the key.
         :param pulumi.Input[str] key: A reference to a named key resource in Vault.
                This cannot be modified after creation. If not provided, the `default`
@@ -197,7 +197,7 @@ class _OidcClientState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client.
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
         """
@@ -288,7 +288,7 @@ class _OidcClientState:
     @pulumi.getter(name="idTokenTtl")
     def id_token_ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The time-to-live for ID tokens obtained by the client. 
+        The time-to-live for ID tokens obtained by the client.
         The value should be less than the `verification_ttl` on the key.
         """
         return pulumi.get(self, "id_token_ttl")
@@ -342,7 +342,7 @@ class _OidcClientState:
     @pulumi.getter(name="redirectUris")
     def redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Redirection URI values used by the client. 
+        Redirection URI values used by the client.
         One of these values must exactly match the `redirect_uri` parameter value
         used in each authentication request.
         """
@@ -407,7 +407,7 @@ class OidcClient(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] assignments: A list of assignment resources associated with the client.
         :param pulumi.Input[str] client_type: The client type based on its ability to maintain confidentiality of credentials.
                The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
-        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client. 
+        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client.
                The value should be less than the `verification_ttl` on the key.
         :param pulumi.Input[str] key: A reference to a named key resource in Vault.
                This cannot be modified after creation. If not provided, the `default`
@@ -417,7 +417,7 @@ class OidcClient(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client.
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
         """
@@ -539,7 +539,7 @@ class OidcClient(pulumi.CustomResource):
                For public OpenID Clients `client_secret` is set to an empty string `""`
         :param pulumi.Input[str] client_type: The client type based on its ability to maintain confidentiality of credentials.
                The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
-        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client. 
+        :param pulumi.Input[int] id_token_ttl: The time-to-live for ID tokens obtained by the client.
                The value should be less than the `verification_ttl` on the key.
         :param pulumi.Input[str] key: A reference to a named key resource in Vault.
                This cannot be modified after creation. If not provided, the `default`
@@ -549,7 +549,7 @@ class OidcClient(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] redirect_uris: Redirection URI values used by the client.
                One of these values must exactly match the `redirect_uri` parameter value
                used in each authentication request.
         """
@@ -615,7 +615,7 @@ class OidcClient(pulumi.CustomResource):
     @pulumi.getter(name="idTokenTtl")
     def id_token_ttl(self) -> pulumi.Output[int]:
         """
-        The time-to-live for ID tokens obtained by the client. 
+        The time-to-live for ID tokens obtained by the client.
         The value should be less than the `verification_ttl` on the key.
         """
         return pulumi.get(self, "id_token_ttl")
@@ -653,7 +653,7 @@ class OidcClient(pulumi.CustomResource):
     @pulumi.getter(name="redirectUris")
     def redirect_uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        Redirection URI values used by the client. 
+        Redirection URI values used by the client.
         One of these values must exactly match the `redirect_uri` parameter value
         used in each authentication request.
         """

@@ -93,9 +93,7 @@ type SecretBackendRole struct {
 	AllowedDomainsTemplate pulumi.BoolOutput `pulumi:"allowedDomainsTemplate"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrOutput `pulumi:"allowedExtensions"`
-	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
-	// *See Configuration-Options for more info*
+	// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayOutput `pulumi:"allowedUserKeyConfigs"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrOutput `pulumi:"allowedUsers"`
@@ -189,9 +187,7 @@ type secretBackendRoleState struct {
 	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
-	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
-	// *See Configuration-Options for more info*
+	// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
 	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
@@ -250,9 +246,7 @@ type SecretBackendRoleState struct {
 	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
-	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
-	// *See Configuration-Options for more info*
+	// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
@@ -315,9 +309,7 @@ type secretBackendRoleArgs struct {
 	AllowedDomainsTemplate *bool `pulumi:"allowedDomainsTemplate"`
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions *string `pulumi:"allowedExtensions"`
-	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
-	// *See Configuration-Options for more info*
+	// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
 	AllowedUserKeyConfigs []SecretBackendRoleAllowedUserKeyConfig `pulumi:"allowedUserKeyConfigs"`
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers *string `pulumi:"allowedUsers"`
@@ -377,9 +369,7 @@ type SecretBackendRoleArgs struct {
 	AllowedDomainsTemplate pulumi.BoolPtrInput
 	// Specifies a comma-separated list of extensions that certificates can have when signed.
 	AllowedExtensions pulumi.StringPtrInput
-	// Set of configuration blocks to define allowed\
-	// user key configuration, like key type and their lengths. Can be specified multiple times.
-	// *See Configuration-Options for more info*
+	// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
 	AllowedUserKeyConfigs SecretBackendRoleAllowedUserKeyConfigArrayInput
 	// Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
 	AllowedUsers pulumi.StringPtrInput
@@ -554,9 +544,7 @@ func (o SecretBackendRoleOutput) AllowedExtensions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.AllowedExtensions }).(pulumi.StringPtrOutput)
 }
 
-// Set of configuration blocks to define allowed\
-// user key configuration, like key type and their lengths. Can be specified multiple times.
-// *See Configuration-Options for more info*
+// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
 func (o SecretBackendRoleOutput) AllowedUserKeyConfigs() SecretBackendRoleAllowedUserKeyConfigArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) SecretBackendRoleAllowedUserKeyConfigArrayOutput {
 		return v.AllowedUserKeyConfigs

@@ -37,7 +37,7 @@ namespace Pulumi.Vault.Azure
         /// ## Caveats
         /// 
         /// The `validate_creds` option requires read-access to the `backend` config endpoint.
-        /// If the effective Vault role does not have the required permissions then valid values 
+        /// If the effective Vault role does not have the required permissions then valid values
         /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
         /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
@@ -69,7 +69,7 @@ namespace Pulumi.Vault.Azure
         /// ## Caveats
         /// 
         /// The `validate_creds` option requires read-access to the `backend` config endpoint.
-        /// If the effective Vault role does not have the required permissions then valid values 
+        /// If the effective Vault role does not have the required permissions then valid values
         /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
@@ -89,14 +89,13 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The Azure environment to use during credential validation.
         /// Defaults to the environment configured in the Vault backend.
-        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-        /// *See the caveats section for more information on this field.*
+        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
         /// </summary>
         [Input("environment")]
         public string? Environment { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds after which to give up validating credentials. Defaults
         /// to 300.
         /// </summary>
@@ -113,7 +112,7 @@ namespace Pulumi.Vault.Azure
         public string? Namespace { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds to wait between each test of generated credentials.
         /// Defaults to 1.
         /// </summary>
@@ -121,7 +120,7 @@ namespace Pulumi.Vault.Azure
         public int? NumSecondsBetweenTests { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of sequential successes required to validate generated
         /// credentials. Defaults to 8.
         /// </summary>
@@ -137,22 +136,20 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The subscription ID to use during credential
-        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
-        /// *See the caveats section for more information on this field.*
+        /// validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
         public string? SubscriptionId { get; set; }
 
         /// <summary>
         /// The tenant ID to use during credential validation.
-        /// Defaults to the tenant ID configured in the Vault `backend`.
-        /// *See the caveats section for more information on this field.*
+        /// Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
         public string? TenantId { get; set; }
 
         /// <summary>
-        /// Whether generated credentials should be 
+        /// Whether generated credentials should be
         /// validated before being returned. Defaults to `false`, which returns
         /// credentials without checking whether they have fully propagated throughout
         /// Azure Active Directory. Designating `true` activates testing.
@@ -178,14 +175,13 @@ namespace Pulumi.Vault.Azure
         /// <summary>
         /// The Azure environment to use during credential validation.
         /// Defaults to the environment configured in the Vault backend.
-        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
-        /// *See the caveats section for more information on this field.*
+        /// Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`*See the caveats section for more information on this field.*
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds after which to give up validating credentials. Defaults
         /// to 300.
         /// </summary>
@@ -202,7 +198,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds to wait between each test of generated credentials.
         /// Defaults to 1.
         /// </summary>
@@ -210,7 +206,7 @@ namespace Pulumi.Vault.Azure
         public Input<int>? NumSecondsBetweenTests { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of sequential successes required to validate generated
         /// credentials. Defaults to 8.
         /// </summary>
@@ -226,22 +222,20 @@ namespace Pulumi.Vault.Azure
 
         /// <summary>
         /// The subscription ID to use during credential
-        /// validation. Defaults to the subscription ID configured in the Vault `backend`.
-        /// *See the caveats section for more information on this field.*
+        /// validation. Defaults to the subscription ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
         /// </summary>
         [Input("subscriptionId")]
         public Input<string>? SubscriptionId { get; set; }
 
         /// <summary>
         /// The tenant ID to use during credential validation.
-        /// Defaults to the tenant ID configured in the Vault `backend`.
-        /// *See the caveats section for more information on this field.*
+        /// Defaults to the tenant ID configured in the Vault `backend`.*See the caveats section for more information on this field.*
         /// </summary>
         [Input("tenantId")]
         public Input<string>? TenantId { get; set; }
 
         /// <summary>
-        /// Whether generated credentials should be 
+        /// Whether generated credentials should be
         /// validated before being returned. Defaults to `false`, which returns
         /// credentials without checking whether they have fully propagated throughout
         /// Azure Active Directory. Designating `true` activates testing.

@@ -252,7 +252,7 @@ class Audit(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### File Audit Device)
+        ### file audit device)
 
         ```python
         import pulumi
@@ -265,7 +265,7 @@ class Audit(pulumi.CustomResource):
             })
         ```
 
-        ### Socket Audit Device)
+        ### socket audit device)
 
         ```python
         import pulumi
@@ -313,7 +313,7 @@ class Audit(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### File Audit Device)
+        ### file audit device)
 
         ```python
         import pulumi
@@ -326,7 +326,7 @@ class Audit(pulumi.CustomResource):
             })
         ```
 
-        ### Socket Audit Device)
+        ### socket audit device)
 
         ```python
         import pulumi

@@ -26,22 +26,22 @@ class RaftAutopilotArgs:
         The set of arguments for constructing a RaftAutopilot resource.
         :param pulumi.Input[bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
                periodically or when a new server joins. This requires that `min-quorum` is also set.
-        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
+        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
         :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
-        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
+        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go
                without leader contact before being considered unhealthy.
-        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
+        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log
                that a server can be behind its leader before being considered unhealthy.
-        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
+        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
+        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be
                stable in the 'healthy' state before being added to the cluster.
         """
         if cleanup_dead_servers is not None:
@@ -78,7 +78,7 @@ class RaftAutopilotArgs:
     @pulumi.getter(name="deadServerLastContactThreshold")
     def dead_server_last_contact_threshold(self) -> Optional[pulumi.Input[str]]:
         """
-        Limit the amount of time a 
+        Limit the amount of time a
         server can go without leader contact before being considered failed. This only takes
         effect when `cleanup_dead_servers` is set.
         """
@@ -104,7 +104,7 @@ class RaftAutopilotArgs:
     @pulumi.getter(name="lastContactThreshold")
     def last_contact_threshold(self) -> Optional[pulumi.Input[str]]:
         """
-        Limit the amount of time a server can go 
+        Limit the amount of time a server can go
         without leader contact before being considered unhealthy.
         """
         return pulumi.get(self, "last_contact_threshold")
@@ -117,7 +117,7 @@ class RaftAutopilotArgs:
     @pulumi.getter(name="maxTrailingLogs")
     def max_trailing_logs(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of log entries in the Raft log 
+        Maximum number of log entries in the Raft log
         that a server can be behind its leader before being considered unhealthy.
         """
         return pulumi.get(self, "max_trailing_logs")
@@ -130,7 +130,7 @@ class RaftAutopilotArgs:
     @pulumi.getter(name="minQuorum")
     def min_quorum(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of servers allowed in a cluster before 
+        Minimum number of servers allowed in a cluster before
         autopilot can prune dead servers. This should at least be 3. Applicable only for
         voting nodes.
         """
@@ -159,7 +159,7 @@ class RaftAutopilotArgs:
     @pulumi.getter(name="serverStabilizationTime")
     def server_stabilization_time(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum amount of time a server must be 
+        Minimum amount of time a server must be
         stable in the 'healthy' state before being added to the cluster.
         """
         return pulumi.get(self, "server_stabilization_time")
@@ -184,22 +184,22 @@ class _RaftAutopilotState:
         Input properties used for looking up and filtering RaftAutopilot resources.
         :param pulumi.Input[bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
                periodically or when a new server joins. This requires that `min-quorum` is also set.
-        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
+        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
         :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
-        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
+        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go
                without leader contact before being considered unhealthy.
-        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
+        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log
                that a server can be behind its leader before being considered unhealthy.
-        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
+        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
+        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be
                stable in the 'healthy' state before being added to the cluster.
         """
         if cleanup_dead_servers is not None:
@@ -236,7 +236,7 @@ class _RaftAutopilotState:
     @pulumi.getter(name="deadServerLastContactThreshold")
     def dead_server_last_contact_threshold(self) -> Optional[pulumi.Input[str]]:
         """
-        Limit the amount of time a 
+        Limit the amount of time a
         server can go without leader contact before being considered failed. This only takes
         effect when `cleanup_dead_servers` is set.
         """
@@ -262,7 +262,7 @@ class _RaftAutopilotState:
     @pulumi.getter(name="lastContactThreshold")
     def last_contact_threshold(self) -> Optional[pulumi.Input[str]]:
         """
-        Limit the amount of time a server can go 
+        Limit the amount of time a server can go
         without leader contact before being considered unhealthy.
         """
         return pulumi.get(self, "last_contact_threshold")
@@ -275,7 +275,7 @@ class _RaftAutopilotState:
     @pulumi.getter(name="maxTrailingLogs")
     def max_trailing_logs(self) -> Optional[pulumi.Input[int]]:
         """
-        Maximum number of log entries in the Raft log 
+        Maximum number of log entries in the Raft log
         that a server can be behind its leader before being considered unhealthy.
         """
         return pulumi.get(self, "max_trailing_logs")
@@ -288,7 +288,7 @@ class _RaftAutopilotState:
     @pulumi.getter(name="minQuorum")
     def min_quorum(self) -> Optional[pulumi.Input[int]]:
         """
-        Minimum number of servers allowed in a cluster before 
+        Minimum number of servers allowed in a cluster before
         autopilot can prune dead servers. This should at least be 3. Applicable only for
         voting nodes.
         """
@@ -317,7 +317,7 @@ class _RaftAutopilotState:
     @pulumi.getter(name="serverStabilizationTime")
     def server_stabilization_time(self) -> Optional[pulumi.Input[str]]:
         """
-        Minimum amount of time a server must be 
+        Minimum amount of time a server must be
         stable in the 'healthy' state before being added to the cluster.
         """
         return pulumi.get(self, "server_stabilization_time")
@@ -374,22 +374,22 @@ class RaftAutopilot(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
                periodically or when a new server joins. This requires that `min-quorum` is also set.
-        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
+        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
         :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
-        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
+        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go
                without leader contact before being considered unhealthy.
-        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
+        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log
                that a server can be behind its leader before being considered unhealthy.
-        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
+        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
+        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be
                stable in the 'healthy' state before being added to the cluster.
         """
         ...
@@ -494,22 +494,22 @@ class RaftAutopilot(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] cleanup_dead_servers: Specifies whether to remove dead server nodes
                periodically or when a new server joins. This requires that `min-quorum` is also set.
-        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a 
+        :param pulumi.Input[str] dead_server_last_contact_threshold: Limit the amount of time a
                server can go without leader contact before being considered failed. This only takes
                effect when `cleanup_dead_servers` is set.
         :param pulumi.Input[bool] disable_upgrade_migration: Disables automatically upgrading Vault using autopilot. (Enterprise-only)
-        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go 
+        :param pulumi.Input[str] last_contact_threshold: Limit the amount of time a server can go
                without leader contact before being considered unhealthy.
-        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log 
+        :param pulumi.Input[int] max_trailing_logs: Maximum number of log entries in the Raft log
                that a server can be behind its leader before being considered unhealthy.
-        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before 
+        :param pulumi.Input[int] min_quorum: Minimum number of servers allowed in a cluster before
                autopilot can prune dead servers. This should at least be 3. Applicable only for
                voting nodes.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be 
+        :param pulumi.Input[str] server_stabilization_time: Minimum amount of time a server must be
                stable in the 'healthy' state before being added to the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -539,7 +539,7 @@ class RaftAutopilot(pulumi.CustomResource):
     @pulumi.getter(name="deadServerLastContactThreshold")
     def dead_server_last_contact_threshold(self) -> pulumi.Output[Optional[str]]:
         """
-        Limit the amount of time a 
+        Limit the amount of time a
         server can go without leader contact before being considered failed. This only takes
         effect when `cleanup_dead_servers` is set.
         """
@@ -557,7 +557,7 @@ class RaftAutopilot(pulumi.CustomResource):
     @pulumi.getter(name="lastContactThreshold")
     def last_contact_threshold(self) -> pulumi.Output[Optional[str]]:
         """
-        Limit the amount of time a server can go 
+        Limit the amount of time a server can go
         without leader contact before being considered unhealthy.
         """
         return pulumi.get(self, "last_contact_threshold")
@@ -566,7 +566,7 @@ class RaftAutopilot(pulumi.CustomResource):
     @pulumi.getter(name="maxTrailingLogs")
     def max_trailing_logs(self) -> pulumi.Output[Optional[int]]:
         """
-        Maximum number of log entries in the Raft log 
+        Maximum number of log entries in the Raft log
         that a server can be behind its leader before being considered unhealthy.
         """
         return pulumi.get(self, "max_trailing_logs")
@@ -575,7 +575,7 @@ class RaftAutopilot(pulumi.CustomResource):
     @pulumi.getter(name="minQuorum")
     def min_quorum(self) -> pulumi.Output[Optional[int]]:
         """
-        Minimum number of servers allowed in a cluster before 
+        Minimum number of servers allowed in a cluster before
         autopilot can prune dead servers. This should at least be 3. Applicable only for
         voting nodes.
         """
@@ -596,7 +596,7 @@ class RaftAutopilot(pulumi.CustomResource):
     @pulumi.getter(name="serverStabilizationTime")
     def server_stabilization_time(self) -> pulumi.Output[Optional[str]]:
         """
-        Minimum amount of time a server must be 
+        Minimum amount of time a server must be
         stable in the 'healthy' state before being added to the cluster.
         """
         return pulumi.get(self, "server_stabilization_time")

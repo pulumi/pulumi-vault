@@ -80,7 +80,7 @@ export class SyncAwsDestination extends pulumi.CustomResource {
      */
     public readonly externalId!: pulumi.Output<string | undefined>;
     /**
-     * Determines what level of information is synced as a distinct resource 
+     * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     public readonly granularity!: pulumi.Output<string | undefined>;
@@ -101,7 +101,7 @@ export class SyncAwsDestination extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
-     * Specifies a role to assume when connecting to AWS. When assuming a role, 
+     * Specifies a role to assume when connecting to AWS. When assuming a role,
      * Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
      * exist for Vault to be able to assume this role. The role can be in a different account.
      * The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -192,7 +192,7 @@ export interface SyncAwsDestinationState {
      */
     externalId?: pulumi.Input<string>;
     /**
-     * Determines what level of information is synced as a distinct resource 
+     * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     granularity?: pulumi.Input<string>;
@@ -213,7 +213,7 @@ export interface SyncAwsDestinationState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies a role to assume when connecting to AWS. When assuming a role, 
+     * Specifies a role to assume when connecting to AWS. When assuming a role,
      * Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
      * exist for Vault to be able to assume this role. The role can be in a different account.
      * The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -260,7 +260,7 @@ export interface SyncAwsDestinationArgs {
      */
     externalId?: pulumi.Input<string>;
     /**
-     * Determines what level of information is synced as a distinct resource 
+     * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
     granularity?: pulumi.Input<string>;
@@ -281,7 +281,7 @@ export interface SyncAwsDestinationArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Specifies a role to assume when connecting to AWS. When assuming a role, 
+     * Specifies a role to assume when connecting to AWS. When assuming a role,
      * Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
      * exist for Vault to be able to assume this role. The role can be in a different account.
      * The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.

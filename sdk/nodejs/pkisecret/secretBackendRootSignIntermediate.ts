@@ -70,7 +70,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
     /**
-     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
      * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
      */
     public /*out*/ readonly certificateBundle!: pulumi.Output<string>;
@@ -280,7 +280,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     certificate?: pulumi.Input<string>;
     /**
-     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
      * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
      */
     certificateBundle?: pulumi.Input<string>;

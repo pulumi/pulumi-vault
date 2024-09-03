@@ -205,6 +205,15 @@ class GroupMemberGroupIds(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        layout: "vault"
+        page_title: "Vault: identity.GroupMemberGroupIds resource"
+        sidebar_current: "docs-vault-resource-identity-group-member-group-ids"
+        description: |-
+        Manages member groups for an Identity Group for Vault.
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # vault\\_identity\\_group\\_member\\_group\\_ids
+
         Manages member groups for an Identity Group for Vault. The
         [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html)
         is the identity management solution for Vault.
@@ -283,6 +292,15 @@ class GroupMemberGroupIds(pulumi.CustomResource):
                  args: GroupMemberGroupIdsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        layout: "vault"
+        page_title: "Vault: identity.GroupMemberGroupIds resource"
+        sidebar_current: "docs-vault-resource-identity-group-member-group-ids"
+        description: |-
+        Manages member groups for an Identity Group for Vault.
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # vault\\_identity\\_group\\_member\\_group\\_ids
+
         Manages member groups for an Identity Group for Vault. The
         [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html)
         is the identity management solution for Vault.

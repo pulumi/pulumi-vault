@@ -14,7 +14,7 @@ import (
 
 // ## Example Usage
 //
-// ### *Vault-1.9 And Above*
+// ### vault-1.9 and above
 //
 // You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
 // ```go
@@ -74,7 +74,7 @@ import (
 //
 // ```
 //
-// ### *Vault-1.8 And Below*
+// ### vault-1.8 and below
 //
 // ```go
 // package main

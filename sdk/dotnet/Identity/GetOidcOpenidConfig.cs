@@ -188,7 +188,7 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The signing algorithms supported by 
+        /// The signing algorithms supported by
         /// the provider.
         /// </summary>
         public readonly ImmutableArray<string> IdTokenSigningAlgValuesSupporteds;
@@ -203,7 +203,7 @@ namespace Pulumi.Vault.Identity
         public readonly string Name;
         public readonly string? Namespace;
         /// <summary>
-        /// Specifies whether Request URI Parameter is 
+        /// Specifies whether Request URI Parameter is
         /// supported by the provider.
         /// </summary>
         public readonly bool RequestUriParameterSupported;
