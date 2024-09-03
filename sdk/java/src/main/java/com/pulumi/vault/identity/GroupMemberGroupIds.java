@@ -17,6 +17,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;vault&#34;
+ * page_title: &#34;Vault: vault.identity.GroupMemberGroupIds resource&#34;
+ * sidebar_current: &#34;docs-vault-resource-identity-group-member-group-ids&#34;
+ * description: |-
+ * Manages member groups for an Identity Group for Vault.
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # vault\_identity\_group\_member\_group\_ids
+ * 
  * Manages member groups for an Identity Group for Vault. The
  * [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html)
  * is the identity management solution for Vault.

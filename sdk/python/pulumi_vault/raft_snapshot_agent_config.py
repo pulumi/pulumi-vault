@@ -1005,7 +1005,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Local Storage
+        #### Local Storage
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1019,7 +1019,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             local_max_space=10000000)
         ```
 
-        ### AWS S3
+        #### AWS S3
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1042,7 +1042,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_s3_enable_kms=True)
         ```
 
-        ### Azure BLOB
+        #### Azure BLOB
 
         ```python
         import pulumi
@@ -1122,7 +1122,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Local Storage
+        #### Local Storage
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -1136,7 +1136,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             local_max_space=10000000)
         ```
 
-        ### AWS S3
+        #### AWS S3
         ```python
         import pulumi
         import pulumi_aws as aws
@@ -1159,7 +1159,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_s3_enable_kms=True)
         ```
 
-        ### Azure BLOB
+        #### Azure BLOB
 
         ```python
         import pulumi

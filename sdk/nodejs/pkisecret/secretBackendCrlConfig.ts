@@ -79,7 +79,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     public readonly disable!: pulumi.Output<boolean | undefined>;
     /**
-     * Enables building of delta CRLs with up-to-date revocation information, 
+     * Enables building of delta CRLs with up-to-date revocation information,
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
     public readonly enableDelta!: pulumi.Output<boolean | undefined>;
@@ -99,7 +99,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     public readonly ocspDisable!: pulumi.Output<boolean | undefined>;
     /**
-     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
      * refresh durations. **Vault 1.12+**
      */
     public readonly ocspExpiry!: pulumi.Output<string>;
@@ -192,7 +192,7 @@ export interface SecretBackendCrlConfigState {
      */
     disable?: pulumi.Input<boolean>;
     /**
-     * Enables building of delta CRLs with up-to-date revocation information, 
+     * Enables building of delta CRLs with up-to-date revocation information,
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
     enableDelta?: pulumi.Input<boolean>;
@@ -212,7 +212,7 @@ export interface SecretBackendCrlConfigState {
      */
     ocspDisable?: pulumi.Input<boolean>;
     /**
-     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
      * refresh durations. **Vault 1.12+**
      */
     ocspExpiry?: pulumi.Input<string>;
@@ -256,7 +256,7 @@ export interface SecretBackendCrlConfigArgs {
      */
     disable?: pulumi.Input<boolean>;
     /**
-     * Enables building of delta CRLs with up-to-date revocation information, 
+     * Enables building of delta CRLs with up-to-date revocation information,
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
     enableDelta?: pulumi.Input<boolean>;
@@ -276,7 +276,7 @@ export interface SecretBackendCrlConfigArgs {
      */
     ocspDisable?: pulumi.Input<boolean>;
     /**
-     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
      * refresh durations. **Vault 1.12+**
      */
     ocspExpiry?: pulumi.Input<string>;

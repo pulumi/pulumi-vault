@@ -69,7 +69,7 @@ export interface GetNomadAccessTokenArgs {
  */
 export interface GetNomadAccessTokenResult {
     /**
-     * The public identifier for a specific token. It can be used 
+     * The public identifier for a specific token. It can be used
      * to look up information about a token or to revoke a token.
      */
     readonly accessorId: string;

@@ -68,7 +68,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string>;
     /**
-     * Specifies if the generated token should be global. Defaults to 
+     * Specifies if the generated token should be global. Defaults to
      * false.
      */
     public readonly global!: pulumi.Output<boolean>;
@@ -80,7 +80,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * List of policies attached to the generated token. This setting is only used 
+     * List of policies attached to the generated token. This setting is only used
      * when `type` is 'client'.
      */
     public readonly policies!: pulumi.Output<string[]>;
@@ -90,7 +90,7 @@ export class NomadSecretRole extends pulumi.CustomResource {
      */
     public readonly role!: pulumi.Output<string>;
     /**
-     * Specifies the type of token to create when using this role. Valid 
+     * Specifies the type of token to create when using this role. Valid
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
     public readonly type!: pulumi.Output<string>;
@@ -143,7 +143,7 @@ export interface NomadSecretRoleState {
      */
     backend?: pulumi.Input<string>;
     /**
-     * Specifies if the generated token should be global. Defaults to 
+     * Specifies if the generated token should be global. Defaults to
      * false.
      */
     global?: pulumi.Input<boolean>;
@@ -155,7 +155,7 @@ export interface NomadSecretRoleState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * List of policies attached to the generated token. This setting is only used 
+     * List of policies attached to the generated token. This setting is only used
      * when `type` is 'client'.
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -165,7 +165,7 @@ export interface NomadSecretRoleState {
      */
     role?: pulumi.Input<string>;
     /**
-     * Specifies the type of token to create when using this role. Valid 
+     * Specifies the type of token to create when using this role. Valid
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
     type?: pulumi.Input<string>;
@@ -180,7 +180,7 @@ export interface NomadSecretRoleArgs {
      */
     backend: pulumi.Input<string>;
     /**
-     * Specifies if the generated token should be global. Defaults to 
+     * Specifies if the generated token should be global. Defaults to
      * false.
      */
     global?: pulumi.Input<boolean>;
@@ -192,7 +192,7 @@ export interface NomadSecretRoleArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * List of policies attached to the generated token. This setting is only used 
+     * List of policies attached to the generated token. This setting is only used
      * when `type` is 'client'.
      */
     policies?: pulumi.Input<pulumi.Input<string>[]>;
@@ -202,7 +202,7 @@ export interface NomadSecretRoleArgs {
      */
     role: pulumi.Input<string>;
     /**
-     * Specifies the type of token to create when using this role. Valid 
+     * Specifies the type of token to create when using this role. Valid
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
     type?: pulumi.Input<string>;

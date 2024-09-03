@@ -90,7 +90,7 @@ export class OidcProvider extends pulumi.CustomResource {
     }
 
     /**
-     * The client IDs that are permitted to use the provider. 
+     * The client IDs that are permitted to use the provider.
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      */
     public readonly allowedClientIds!: pulumi.Output<string[] | undefined>;
@@ -164,7 +164,7 @@ export class OidcProvider extends pulumi.CustomResource {
  */
 export interface OidcProviderState {
     /**
-     * The client IDs that are permitted to use the provider. 
+     * The client IDs that are permitted to use the provider.
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      */
     allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
@@ -204,7 +204,7 @@ export interface OidcProviderState {
  */
 export interface OidcProviderArgs {
     /**
-     * The client IDs that are permitted to use the provider. 
+     * The client IDs that are permitted to use the provider.
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      */
     allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;

@@ -86,8 +86,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.accessToken);
     }
     /**
-     * The user-defined name of the GitHub App configuration. This is a reference to the name used\
-     * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+     * The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
      * Takes precedence over the `access_token` field.
      * 
      */
@@ -95,8 +94,7 @@ public class SyncGhDestination extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> appName;
 
     /**
-     * @return The user-defined name of the GitHub App configuration. This is a reference to the name used\
-     * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+     * @return The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
      * Takes precedence over the `access_token` field.
      * 
      */

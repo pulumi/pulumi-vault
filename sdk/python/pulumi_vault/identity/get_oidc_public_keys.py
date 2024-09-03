@@ -47,7 +47,7 @@ class GetOidcPublicKeysResult:
     @pulumi.getter
     def keys(self) -> Sequence[Mapping[str, str]]:
         """
-        The public portion of keys for an OIDC provider. 
+        The public portion of keys for an OIDC provider.
         Clients can use them to validate the authenticity of an identity token.
         """
         return pulumi.get(self, "keys")

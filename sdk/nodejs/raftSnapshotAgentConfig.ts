@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### Local Storage
+ * #### Local Storage
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### AWS S3
+ * #### AWS S3
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Azure BLOB
+ * #### Azure BLOB
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

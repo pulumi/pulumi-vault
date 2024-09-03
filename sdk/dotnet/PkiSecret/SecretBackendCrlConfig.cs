@@ -80,7 +80,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> Disable { get; private set; } = null!;
 
         /// <summary>
-        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// Enables building of delta CRLs with up-to-date revocation information,
         /// augmenting the last complete CRL.  **Vault 1.12+**
         /// </summary>
         [Output("enableDelta")]
@@ -108,7 +108,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> OcspDisable { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling
         /// refresh durations. **Vault 1.12+**
         /// </summary>
         [Output("ocspExpiry")]
@@ -210,7 +210,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? Disable { get; set; }
 
         /// <summary>
-        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// Enables building of delta CRLs with up-to-date revocation information,
         /// augmenting the last complete CRL.  **Vault 1.12+**
         /// </summary>
         [Input("enableDelta")]
@@ -238,7 +238,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? OcspDisable { get; set; }
 
         /// <summary>
-        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling
         /// refresh durations. **Vault 1.12+**
         /// </summary>
         [Input("ocspExpiry")]
@@ -302,7 +302,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? Disable { get; set; }
 
         /// <summary>
-        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// Enables building of delta CRLs with up-to-date revocation information,
         /// augmenting the last complete CRL.  **Vault 1.12+**
         /// </summary>
         [Input("enableDelta")]
@@ -330,7 +330,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? OcspDisable { get; set; }
 
         /// <summary>
-        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling
         /// refresh durations. **Vault 1.12+**
         /// </summary>
         [Input("ocspExpiry")]

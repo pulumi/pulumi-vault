@@ -433,7 +433,7 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ca_chains: A list of the issuing and intermediate CA certificates in the `format` specified.
         :param pulumi.Input[str] certificate: The intermediate CA certificate in the `format` specified.
-        :param pulumi.Input[str] certificate_bundle: The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        :param pulumi.Input[str] certificate_bundle: The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
                Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
@@ -574,7 +574,7 @@ class _SecretBackendRootSignIntermediateState:
     @pulumi.getter(name="certificateBundle")
     def certificate_bundle(self) -> Optional[pulumi.Input[str]]:
         """
-        The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
         Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         """
         return pulumi.get(self, "certificate_bundle")
@@ -1101,7 +1101,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ca_chains: A list of the issuing and intermediate CA certificates in the `format` specified.
         :param pulumi.Input[str] certificate: The intermediate CA certificate in the `format` specified.
-        :param pulumi.Input[str] certificate_bundle: The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        :param pulumi.Input[str] certificate_bundle: The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
                Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         :param pulumi.Input[str] common_name: CN of intermediate to create
         :param pulumi.Input[str] country: The country
@@ -1203,7 +1203,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
     @pulumi.getter(name="certificateBundle")
     def certificate_bundle(self) -> pulumi.Output[str]:
         """
-        The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
         Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         """
         return pulumi.get(self, "certificate_bundle")

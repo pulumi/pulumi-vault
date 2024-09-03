@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * layout: "vault"
+ * page_title: "Vault: vault.saml.AuthBackend resource"
+ * sidebar_current: "docs-vault-saml-auth-backend"
+ * description: |-
+ * Manages SAML Auth mounts in Vault.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # vault\_saml\_auth\_backend
+ *
  * Manages a SAML Auth mount in a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/saml/) for more
  * information.
@@ -93,7 +102,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     public readonly idpMetadataUrl!: pulumi.Output<string | undefined>;
     /**
-     * The SSO URL of the identity provider. Mutually exclusive with 
+     * The SSO URL of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
     public readonly idpSsoUrl!: pulumi.Output<string | undefined>;
@@ -202,7 +211,7 @@ export interface AuthBackendState {
      */
     idpMetadataUrl?: pulumi.Input<string>;
     /**
-     * The SSO URL of the identity provider. Mutually exclusive with 
+     * The SSO URL of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
     idpSsoUrl?: pulumi.Input<string>;
@@ -263,7 +272,7 @@ export interface AuthBackendArgs {
      */
     idpMetadataUrl?: pulumi.Input<string>;
     /**
-     * The SSO URL of the identity provider. Mutually exclusive with 
+     * The SSO URL of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
     idpSsoUrl?: pulumi.Input<string>;

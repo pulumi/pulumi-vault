@@ -14,7 +14,7 @@ import (
 
 // ## Example Usage
 //
-// ### File Audit Device)
+// ### file audit device)
 //
 // ```go
 // package main
@@ -43,7 +43,7 @@ import (
 //
 // ```
 //
-// ### Socket Audit Device)
+// ### socket audit device)
 //
 // ```go
 // package main

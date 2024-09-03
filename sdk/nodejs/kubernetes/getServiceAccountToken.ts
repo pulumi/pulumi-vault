@@ -67,17 +67,17 @@ export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: 
  */
 export interface GetServiceAccountTokenArgs {
     /**
-     * The Kubernetes secret backend to generate service account 
+     * The Kubernetes secret backend to generate service account
      * tokens from.
      */
     backend: string;
     /**
-     * If true, generate a ClusterRoleBinding to grant 
+     * If true, generate a ClusterRoleBinding to grant
      * permissions across the whole cluster instead of within a namespace.
      */
     clusterRoleBinding?: boolean;
     /**
-     * The name of the Kubernetes namespace in which to 
+     * The name of the Kubernetes namespace in which to
      * generate the credentials.
      */
     kubernetesNamespace: string;
@@ -89,12 +89,12 @@ export interface GetServiceAccountTokenArgs {
      */
     namespace?: string;
     /**
-     * The name of the Kubernetes secret backend role to generate service 
+     * The name of the Kubernetes secret backend role to generate service
      * account tokens from.
      */
     role: string;
     /**
-     * The TTL of the generated Kubernetes service account token, specified in 
+     * The TTL of the generated Kubernetes service account token, specified in
      * seconds or as a Go duration format string.
      */
     ttl?: string;
@@ -193,17 +193,17 @@ export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputA
  */
 export interface GetServiceAccountTokenOutputArgs {
     /**
-     * The Kubernetes secret backend to generate service account 
+     * The Kubernetes secret backend to generate service account
      * tokens from.
      */
     backend: pulumi.Input<string>;
     /**
-     * If true, generate a ClusterRoleBinding to grant 
+     * If true, generate a ClusterRoleBinding to grant
      * permissions across the whole cluster instead of within a namespace.
      */
     clusterRoleBinding?: pulumi.Input<boolean>;
     /**
-     * The name of the Kubernetes namespace in which to 
+     * The name of the Kubernetes namespace in which to
      * generate the credentials.
      */
     kubernetesNamespace: pulumi.Input<string>;
@@ -215,12 +215,12 @@ export interface GetServiceAccountTokenOutputArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The name of the Kubernetes secret backend role to generate service 
+     * The name of the Kubernetes secret backend role to generate service
      * account tokens from.
      */
     role: pulumi.Input<string>;
     /**
-     * The TTL of the generated Kubernetes service account token, specified in 
+     * The TTL of the generated Kubernetes service account token, specified in
      * seconds or as a Go duration format string.
      */
     ttl?: pulumi.Input<string>;

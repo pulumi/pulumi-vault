@@ -187,7 +187,7 @@ namespace Pulumi.Vault.Jwt
         public Output<string?> GroupsClaim { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the allowable elapsed time in seconds since the last time 
+        /// Specifies the allowable elapsed time in seconds since the last time
         /// the user was actively authenticated with the OIDC provider.
         /// </summary>
         [Output("maxAge")]
@@ -461,7 +461,7 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? GroupsClaim { get; set; }
 
         /// <summary>
-        /// Specifies the allowable elapsed time in seconds since the last time 
+        /// Specifies the allowable elapsed time in seconds since the last time
         /// the user was actively authenticated with the OIDC provider.
         /// </summary>
         [Input("maxAge")]
@@ -715,7 +715,7 @@ namespace Pulumi.Vault.Jwt
         public Input<string>? GroupsClaim { get; set; }
 
         /// <summary>
-        /// Specifies the allowable elapsed time in seconds since the last time 
+        /// Specifies the allowable elapsed time in seconds since the last time
         /// the user was actively authenticated with the OIDC provider.
         /// </summary>
         [Input("maxAge")]

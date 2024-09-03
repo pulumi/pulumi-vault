@@ -80,7 +80,7 @@ class _SecretCredsState:
                  token_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretCreds resources.
-        :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a 
+        :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a
                Vault lease associated with them.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -91,7 +91,7 @@ class _SecretCredsState:
         :param pulumi.Input[str] team_id: The team id associated with the token provided.
         :param pulumi.Input[str] token: The actual token that was generated and can be used with API calls
                to identify the user of the call.
-        :param pulumi.Input[str] token_id: The public identifier for a specific token. It can be used 
+        :param pulumi.Input[str] token_id: The public identifier for a specific token. It can be used
                to look up information about a token or to revoke a token.
         """
         if backend is not None:
@@ -124,7 +124,7 @@ class _SecretCredsState:
     @pulumi.getter(name="leaseId")
     def lease_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The lease associated with the token. Only user tokens will have a 
+        The lease associated with the token. Only user tokens will have a
         Vault lease associated with them.
         """
         return pulumi.get(self, "lease_id")
@@ -201,7 +201,7 @@ class _SecretCredsState:
     @pulumi.getter(name="tokenId")
     def token_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The public identifier for a specific token. It can be used 
+        The public identifier for a specific token. It can be used
         to look up information about a token or to revoke a token.
         """
         return pulumi.get(self, "token_id")
@@ -342,7 +342,7 @@ class SecretCreds(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a 
+        :param pulumi.Input[str] lease_id: The lease associated with the token. Only user tokens will have a
                Vault lease associated with them.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -353,7 +353,7 @@ class SecretCreds(pulumi.CustomResource):
         :param pulumi.Input[str] team_id: The team id associated with the token provided.
         :param pulumi.Input[str] token: The actual token that was generated and can be used with API calls
                to identify the user of the call.
-        :param pulumi.Input[str] token_id: The public identifier for a specific token. It can be used 
+        :param pulumi.Input[str] token_id: The public identifier for a specific token. It can be used
                to look up information about a token or to revoke a token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -379,7 +379,7 @@ class SecretCreds(pulumi.CustomResource):
     @pulumi.getter(name="leaseId")
     def lease_id(self) -> pulumi.Output[str]:
         """
-        The lease associated with the token. Only user tokens will have a 
+        The lease associated with the token. Only user tokens will have a
         Vault lease associated with them.
         """
         return pulumi.get(self, "lease_id")
@@ -432,7 +432,7 @@ class SecretCreds(pulumi.CustomResource):
     @pulumi.getter(name="tokenId")
     def token_id(self) -> pulumi.Output[str]:
         """
-        The public identifier for a specific token. It can be used 
+        The public identifier for a specific token. It can be used
         to look up information about a token or to revoke a token.
         """
         return pulumi.get(self, "token_id")

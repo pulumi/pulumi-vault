@@ -172,18 +172,14 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Set of configuration blocks to define allowed\
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
-     * *See Configuration-Options for more info*
+     * Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
      * 
      */
     @Import(name="allowedUserKeyConfigs")
     private @Nullable Output<List<SecretBackendRoleAllowedUserKeyConfigArgs>> allowedUserKeyConfigs;
 
     /**
-     * @return Set of configuration blocks to define allowed\
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
-     * *See Configuration-Options for more info*
+     * @return Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
      * 
      */
     public Optional<Output<List<SecretBackendRoleAllowedUserKeyConfigArgs>>> allowedUserKeyConfigs() {
@@ -683,9 +679,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed\
-         * user key configuration, like key type and their lengths. Can be specified multiple times.
-         * *See Configuration-Options for more info*
+         * @param allowedUserKeyConfigs Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
          * 
          * @return builder
          * 
@@ -696,9 +690,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed\
-         * user key configuration, like key type and their lengths. Can be specified multiple times.
-         * *See Configuration-Options for more info*
+         * @param allowedUserKeyConfigs Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
          * 
          * @return builder
          * 
@@ -708,9 +700,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed\
-         * user key configuration, like key type and their lengths. Can be specified multiple times.
-         * *See Configuration-Options for more info*
+         * @param allowedUserKeyConfigs Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
          * 
          * @return builder
          * 

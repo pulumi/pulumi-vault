@@ -80,7 +80,7 @@ export interface GetOidcOpenidConfigResult {
      */
     readonly id: string;
     /**
-     * The signing algorithms supported by 
+     * The signing algorithms supported by
      * the provider.
      */
     readonly idTokenSigningAlgValuesSupporteds: string[];
@@ -95,7 +95,7 @@ export interface GetOidcOpenidConfigResult {
     readonly name: string;
     readonly namespace?: string;
     /**
-     * Specifies whether Request URI Parameter is 
+     * Specifies whether Request URI Parameter is
      * supported by the provider.
      */
     readonly requestUriParameterSupported: boolean;

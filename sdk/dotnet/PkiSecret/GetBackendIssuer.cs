@@ -186,7 +186,7 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         public readonly string LeafNotAfterBehavior;
         /// <summary>
-        /// Chain of issuer references to build this issuer's computed 
+        /// Chain of issuer references to build this issuer's computed
         /// CAChain field from, when non-empty.
         /// </summary>
         public readonly ImmutableArray<string> ManualChains;

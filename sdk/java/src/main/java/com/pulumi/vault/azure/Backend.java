@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### *Vault-1.9 And Above*
+ * ### vault-1.9 and above
  * 
  * You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
  * &lt;!--Start PulumiCodeChooser --&gt;
@@ -98,7 +98,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### *Vault-1.8 And Below*
+ * ### vault-1.8 and below
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

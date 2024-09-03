@@ -22,7 +22,7 @@ class OidcProviderArgs:
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a OidcProvider resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider.
                If empty, no clients are allowed. If `*`, all clients are allowed.
         :param pulumi.Input[bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
         :param pulumi.Input[str] issuer_host: The host for the issuer. Can be either host or host:port.
@@ -50,7 +50,7 @@ class OidcProviderArgs:
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The client IDs that are permitted to use the provider. 
+        The client IDs that are permitted to use the provider.
         If empty, no clients are allowed. If `*`, all clients are allowed.
         """
         return pulumi.get(self, "allowed_client_ids")
@@ -135,7 +135,7 @@ class _OidcProviderState:
                  scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering OidcProvider resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider.
                If empty, no clients are allowed. If `*`, all clients are allowed.
         :param pulumi.Input[bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
         :param pulumi.Input[str] issuer: Specifies what will be used as the `scheme://host:port`
@@ -168,7 +168,7 @@ class _OidcProviderState:
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The client IDs that are permitted to use the provider. 
+        The client IDs that are permitted to use the provider.
         If empty, no clients are allowed. If `*`, all clients are allowed.
         """
         return pulumi.get(self, "allowed_client_ids")
@@ -322,7 +322,7 @@ class OidcProvider(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider.
                If empty, no clients are allowed. If `*`, all clients are allowed.
         :param pulumi.Input[bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
         :param pulumi.Input[str] issuer_host: The host for the issuer. Can be either host or host:port.
@@ -453,7 +453,7 @@ class OidcProvider(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider. 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_client_ids: The client IDs that are permitted to use the provider.
                If empty, no clients are allowed. If `*`, all clients are allowed.
         :param pulumi.Input[bool] https_enabled: Set to true if the issuer endpoint uses HTTPS.
         :param pulumi.Input[str] issuer: Specifies what will be used as the `scheme://host:port`
@@ -484,7 +484,7 @@ class OidcProvider(pulumi.CustomResource):
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        The client IDs that are permitted to use the provider. 
+        The client IDs that are permitted to use the provider.
         If empty, no clients are allowed. If `*`, all clients are allowed.
         """
         return pulumi.get(self, "allowed_client_ids")

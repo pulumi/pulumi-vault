@@ -69,7 +69,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
         /// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         /// </summary>
         [Output("certificateBundle")]
@@ -484,7 +484,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
         /// Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         /// </summary>
         [Input("certificateBundle")]

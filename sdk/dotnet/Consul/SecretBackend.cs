@@ -12,7 +12,7 @@ namespace Pulumi.Vault.Consul
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### Creating a standard backend resource:
+    /// #### Creating a standard backend resource:
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Consul
     /// });
     /// ```
     /// 
-    /// ### Creating a backend resource to bootstrap a new Consul instance:
+    /// #### Creating a backend resource to bootstrap a new Consul instance:
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;

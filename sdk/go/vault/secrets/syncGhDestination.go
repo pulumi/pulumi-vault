@@ -55,8 +55,7 @@ type SyncGhDestination struct {
 	// Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
 	// variable.
 	AccessToken pulumi.StringPtrOutput `pulumi:"accessToken"`
-	// The user-defined name of the GitHub App configuration. This is a reference to the name used\
-	// on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+	// The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
 	// Takes precedence over the `accessToken` field.
 	AppName pulumi.StringPtrOutput `pulumi:"appName"`
 	// Determines what level of information is synced as a distinct resource
@@ -127,8 +126,7 @@ type syncGhDestinationState struct {
 	// Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
 	// variable.
 	AccessToken *string `pulumi:"accessToken"`
-	// The user-defined name of the GitHub App configuration. This is a reference to the name used\
-	// on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+	// The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
 	// Takes precedence over the `accessToken` field.
 	AppName *string `pulumi:"appName"`
 	// Determines what level of information is synced as a distinct resource
@@ -163,8 +161,7 @@ type SyncGhDestinationState struct {
 	// Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
 	// variable.
 	AccessToken pulumi.StringPtrInput
-	// The user-defined name of the GitHub App configuration. This is a reference to the name used\
-	// on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+	// The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
 	// Takes precedence over the `accessToken` field.
 	AppName pulumi.StringPtrInput
 	// Determines what level of information is synced as a distinct resource
@@ -203,8 +200,7 @@ type syncGhDestinationArgs struct {
 	// Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
 	// variable.
 	AccessToken *string `pulumi:"accessToken"`
-	// The user-defined name of the GitHub App configuration. This is a reference to the name used\
-	// on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+	// The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
 	// Takes precedence over the `accessToken` field.
 	AppName *string `pulumi:"appName"`
 	// Determines what level of information is synced as a distinct resource
@@ -238,8 +234,7 @@ type SyncGhDestinationArgs struct {
 	// Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
 	// variable.
 	AccessToken pulumi.StringPtrInput
-	// The user-defined name of the GitHub App configuration. This is a reference to the name used\
-	// on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+	// The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
 	// Takes precedence over the `accessToken` field.
 	AppName pulumi.StringPtrInput
 	// Determines what level of information is synced as a distinct resource
@@ -361,8 +356,7 @@ func (o SyncGhDestinationOutput) AccessToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncGhDestination) pulumi.StringPtrOutput { return v.AccessToken }).(pulumi.StringPtrOutput)
 }
 
-// The user-defined name of the GitHub App configuration. This is a reference to the name used\
-// on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
+// The user-defined name of the GitHub App configuration. This is a reference to the name usedon the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
 // Takes precedence over the `accessToken` field.
 func (o SyncGhDestinationOutput) AppName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncGhDestination) pulumi.StringPtrOutput { return v.AppName }).(pulumi.StringPtrOutput)

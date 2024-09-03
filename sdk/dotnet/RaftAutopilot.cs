@@ -57,7 +57,7 @@ namespace Pulumi.Vault
         public Output<bool?> CleanupDeadServers { get; private set; } = null!;
 
         /// <summary>
-        /// Limit the amount of time a 
+        /// Limit the amount of time a
         /// server can go without leader contact before being considered failed. This only takes
         /// effect when `cleanup_dead_servers` is set.
         /// </summary>
@@ -71,21 +71,21 @@ namespace Pulumi.Vault
         public Output<bool?> DisableUpgradeMigration { get; private set; } = null!;
 
         /// <summary>
-        /// Limit the amount of time a server can go 
+        /// Limit the amount of time a server can go
         /// without leader contact before being considered unhealthy.
         /// </summary>
         [Output("lastContactThreshold")]
         public Output<string?> LastContactThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum number of log entries in the Raft log 
+        /// Maximum number of log entries in the Raft log
         /// that a server can be behind its leader before being considered unhealthy.
         /// </summary>
         [Output("maxTrailingLogs")]
         public Output<int?> MaxTrailingLogs { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum number of servers allowed in a cluster before 
+        /// Minimum number of servers allowed in a cluster before
         /// autopilot can prune dead servers. This should at least be 3. Applicable only for
         /// voting nodes.
         /// </summary>
@@ -102,7 +102,7 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum amount of time a server must be 
+        /// Minimum amount of time a server must be
         /// stable in the 'healthy' state before being added to the cluster.
         /// </summary>
         [Output("serverStabilizationTime")]
@@ -162,7 +162,7 @@ namespace Pulumi.Vault
         public Input<bool>? CleanupDeadServers { get; set; }
 
         /// <summary>
-        /// Limit the amount of time a 
+        /// Limit the amount of time a
         /// server can go without leader contact before being considered failed. This only takes
         /// effect when `cleanup_dead_servers` is set.
         /// </summary>
@@ -176,21 +176,21 @@ namespace Pulumi.Vault
         public Input<bool>? DisableUpgradeMigration { get; set; }
 
         /// <summary>
-        /// Limit the amount of time a server can go 
+        /// Limit the amount of time a server can go
         /// without leader contact before being considered unhealthy.
         /// </summary>
         [Input("lastContactThreshold")]
         public Input<string>? LastContactThreshold { get; set; }
 
         /// <summary>
-        /// Maximum number of log entries in the Raft log 
+        /// Maximum number of log entries in the Raft log
         /// that a server can be behind its leader before being considered unhealthy.
         /// </summary>
         [Input("maxTrailingLogs")]
         public Input<int>? MaxTrailingLogs { get; set; }
 
         /// <summary>
-        /// Minimum number of servers allowed in a cluster before 
+        /// Minimum number of servers allowed in a cluster before
         /// autopilot can prune dead servers. This should at least be 3. Applicable only for
         /// voting nodes.
         /// </summary>
@@ -207,7 +207,7 @@ namespace Pulumi.Vault
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Minimum amount of time a server must be 
+        /// Minimum amount of time a server must be
         /// stable in the 'healthy' state before being added to the cluster.
         /// </summary>
         [Input("serverStabilizationTime")]
@@ -229,7 +229,7 @@ namespace Pulumi.Vault
         public Input<bool>? CleanupDeadServers { get; set; }
 
         /// <summary>
-        /// Limit the amount of time a 
+        /// Limit the amount of time a
         /// server can go without leader contact before being considered failed. This only takes
         /// effect when `cleanup_dead_servers` is set.
         /// </summary>
@@ -243,21 +243,21 @@ namespace Pulumi.Vault
         public Input<bool>? DisableUpgradeMigration { get; set; }
 
         /// <summary>
-        /// Limit the amount of time a server can go 
+        /// Limit the amount of time a server can go
         /// without leader contact before being considered unhealthy.
         /// </summary>
         [Input("lastContactThreshold")]
         public Input<string>? LastContactThreshold { get; set; }
 
         /// <summary>
-        /// Maximum number of log entries in the Raft log 
+        /// Maximum number of log entries in the Raft log
         /// that a server can be behind its leader before being considered unhealthy.
         /// </summary>
         [Input("maxTrailingLogs")]
         public Input<int>? MaxTrailingLogs { get; set; }
 
         /// <summary>
-        /// Minimum number of servers allowed in a cluster before 
+        /// Minimum number of servers allowed in a cluster before
         /// autopilot can prune dead servers. This should at least be 3. Applicable only for
         /// voting nodes.
         /// </summary>
@@ -274,7 +274,7 @@ namespace Pulumi.Vault
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Minimum amount of time a server must be 
+        /// Minimum amount of time a server must be
         /// stable in the 'healthy' state before being added to the cluster.
         /// </summary>
         [Input("serverStabilizationTime")]

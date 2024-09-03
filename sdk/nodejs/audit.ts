@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### File Audit Device)
+ * ### file audit device)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Socket Audit Device)
+ * ### socket audit device)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

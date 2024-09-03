@@ -58,7 +58,7 @@ export class SecretCreds extends pulumi.CustomResource {
 
     public readonly backend!: pulumi.Output<string>;
     /**
-     * The lease associated with the token. Only user tokens will have a 
+     * The lease associated with the token. Only user tokens will have a
      * Vault lease associated with them.
      */
     public /*out*/ readonly leaseId!: pulumi.Output<string>;
@@ -87,7 +87,7 @@ export class SecretCreds extends pulumi.CustomResource {
      */
     public /*out*/ readonly token!: pulumi.Output<string>;
     /**
-     * The public identifier for a specific token. It can be used 
+     * The public identifier for a specific token. It can be used
      * to look up information about a token or to revoke a token.
      */
     public /*out*/ readonly tokenId!: pulumi.Output<string>;
@@ -143,7 +143,7 @@ export class SecretCreds extends pulumi.CustomResource {
 export interface SecretCredsState {
     backend?: pulumi.Input<string>;
     /**
-     * The lease associated with the token. Only user tokens will have a 
+     * The lease associated with the token. Only user tokens will have a
      * Vault lease associated with them.
      */
     leaseId?: pulumi.Input<string>;
@@ -172,7 +172,7 @@ export interface SecretCredsState {
      */
     token?: pulumi.Input<string>;
     /**
-     * The public identifier for a specific token. It can be used 
+     * The public identifier for a specific token. It can be used
      * to look up information about a token or to revoke a token.
      */
     tokenId?: pulumi.Input<string>;

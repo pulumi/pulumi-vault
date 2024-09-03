@@ -95,7 +95,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
      */
     public readonly iamServerIdHeaderValue!: pulumi.Output<string | undefined>;
     /**
-     * The audience claim value. Mutually exclusive with `accessKey`. 
+     * The audience claim value. Mutually exclusive with `accessKey`.
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
     public readonly identityTokenAudience!: pulumi.Output<string | undefined>;
@@ -105,7 +105,7 @@ export class AuthBackendClient extends pulumi.CustomResource {
      */
     public readonly identityTokenTtl!: pulumi.Output<number>;
     /**
-     * Number of max retries the client should use for recoverable errors. 
+     * Number of max retries the client should use for recoverable errors.
      * The default `-1` falls back to the AWS SDK's default behavior.
      */
     public readonly maxRetries!: pulumi.Output<number | undefined>;
@@ -132,12 +132,12 @@ export class AuthBackendClient extends pulumi.CustomResource {
      */
     public readonly stsEndpoint!: pulumi.Output<string | undefined>;
     /**
-     * Override the default region when making STS API 
+     * Override the default region when making STS API
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
     public readonly stsRegion!: pulumi.Output<string | undefined>;
     /**
-     * Available in Vault v1.15+. If set, 
+     * Available in Vault v1.15+. If set,
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
      * This can be useful when you have client requests coming from different
@@ -227,7 +227,7 @@ export interface AuthBackendClientState {
      */
     iamServerIdHeaderValue?: pulumi.Input<string>;
     /**
-     * The audience claim value. Mutually exclusive with `accessKey`. 
+     * The audience claim value. Mutually exclusive with `accessKey`.
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
     identityTokenAudience?: pulumi.Input<string>;
@@ -237,7 +237,7 @@ export interface AuthBackendClientState {
      */
     identityTokenTtl?: pulumi.Input<number>;
     /**
-     * Number of max retries the client should use for recoverable errors. 
+     * Number of max retries the client should use for recoverable errors.
      * The default `-1` falls back to the AWS SDK's default behavior.
      */
     maxRetries?: pulumi.Input<number>;
@@ -264,12 +264,12 @@ export interface AuthBackendClientState {
      */
     stsEndpoint?: pulumi.Input<string>;
     /**
-     * Override the default region when making STS API 
+     * Override the default region when making STS API
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
     stsRegion?: pulumi.Input<string>;
     /**
-     * Available in Vault v1.15+. If set, 
+     * Available in Vault v1.15+. If set,
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
      * This can be useful when you have client requests coming from different
@@ -309,7 +309,7 @@ export interface AuthBackendClientArgs {
      */
     iamServerIdHeaderValue?: pulumi.Input<string>;
     /**
-     * The audience claim value. Mutually exclusive with `accessKey`. 
+     * The audience claim value. Mutually exclusive with `accessKey`.
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
     identityTokenAudience?: pulumi.Input<string>;
@@ -319,7 +319,7 @@ export interface AuthBackendClientArgs {
      */
     identityTokenTtl?: pulumi.Input<number>;
     /**
-     * Number of max retries the client should use for recoverable errors. 
+     * Number of max retries the client should use for recoverable errors.
      * The default `-1` falls back to the AWS SDK's default behavior.
      */
     maxRetries?: pulumi.Input<number>;
@@ -346,12 +346,12 @@ export interface AuthBackendClientArgs {
      */
     stsEndpoint?: pulumi.Input<string>;
     /**
-     * Override the default region when making STS API 
+     * Override the default region when making STS API
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
     stsRegion?: pulumi.Input<string>;
     /**
-     * Available in Vault v1.15+. If set, 
+     * Available in Vault v1.15+. If set,
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
      * specified in the client request headers for IAM-based authentication.
      * This can be useful when you have client requests coming from different

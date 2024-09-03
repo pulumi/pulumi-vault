@@ -149,7 +149,7 @@ namespace Pulumi.Vault.kv
         public string? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the version to return. If not 
+        /// Specifies the version to return. If not
         /// set the latest version is returned.
         /// </summary>
         [Input("version")]
@@ -197,7 +197,7 @@ namespace Pulumi.Vault.kv
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the version to return. If not 
+        /// Specifies the version to return. If not
         /// set the latest version is returned.
         /// </summary>
         [Input("version")]

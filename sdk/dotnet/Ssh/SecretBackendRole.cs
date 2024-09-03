@@ -122,9 +122,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> AllowedExtensions { get; private set; } = null!;
 
         /// <summary>
-        /// Set of configuration blocks to define allowed  
-        /// user key configuration, like key type and their lengths. Can be specified multiple times.
-        /// *See Configuration-Options for more info*
+        /// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         /// </summary>
         [Output("allowedUserKeyConfigs")]
         public Output<ImmutableArray<Outputs.SecretBackendRoleAllowedUserKeyConfig>> AllowedUserKeyConfigs { get; private set; } = null!;
@@ -333,9 +331,7 @@ namespace Pulumi.Vault.Ssh
         private InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs>? _allowedUserKeyConfigs;
 
         /// <summary>
-        /// Set of configuration blocks to define allowed  
-        /// user key configuration, like key type and their lengths. Can be specified multiple times.
-        /// *See Configuration-Options for more info*
+        /// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         /// </summary>
         public InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs> AllowedUserKeyConfigs
         {
@@ -521,9 +517,7 @@ namespace Pulumi.Vault.Ssh
         private InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs>? _allowedUserKeyConfigs;
 
         /// <summary>
-        /// Set of configuration blocks to define allowed  
-        /// user key configuration, like key type and their lengths. Can be specified multiple times.
-        /// *See Configuration-Options for more info*
+        /// Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         /// </summary>
         public InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs> AllowedUserKeyConfigs
         {

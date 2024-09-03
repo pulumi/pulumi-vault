@@ -89,7 +89,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly defaultStsTtl!: pulumi.Output<number>;
     /**
-     * External ID to set for assume role creds. 
+     * External ID to set for assume role creds.
      * Valid only when `credentialType` is set to `assumedRole`.
      */
     public readonly externalId!: pulumi.Output<string | undefined>;
@@ -126,7 +126,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
-     * The ARN of the AWS Permissions 
+     * The ARN of the AWS Permissions
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
@@ -163,7 +163,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly sessionTags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The path for the user name. Valid only when 
+     * The path for the user name. Valid only when
      * `credentialType` is `iamUser`. Default is `/`.
      */
     public readonly userPath!: pulumi.Output<string | undefined>;
@@ -249,7 +249,7 @@ export interface SecretBackendRoleState {
      */
     defaultStsTtl?: pulumi.Input<number>;
     /**
-     * External ID to set for assume role creds. 
+     * External ID to set for assume role creds.
      * Valid only when `credentialType` is set to `assumedRole`.
      */
     externalId?: pulumi.Input<string>;
@@ -286,7 +286,7 @@ export interface SecretBackendRoleState {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The ARN of the AWS Permissions 
+     * The ARN of the AWS Permissions
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
@@ -323,7 +323,7 @@ export interface SecretBackendRoleState {
      */
     sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The path for the user name. Valid only when 
+     * The path for the user name. Valid only when
      * `credentialType` is `iamUser`. Default is `/`.
      */
     userPath?: pulumi.Input<string>;
@@ -353,7 +353,7 @@ export interface SecretBackendRoleArgs {
      */
     defaultStsTtl?: pulumi.Input<number>;
     /**
-     * External ID to set for assume role creds. 
+     * External ID to set for assume role creds.
      * Valid only when `credentialType` is set to `assumedRole`.
      */
     externalId?: pulumi.Input<string>;
@@ -390,7 +390,7 @@ export interface SecretBackendRoleArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
-     * The ARN of the AWS Permissions 
+     * The ARN of the AWS Permissions
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
@@ -427,7 +427,7 @@ export interface SecretBackendRoleArgs {
      */
     sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The path for the user name. Valid only when 
+     * The path for the user name. Valid only when
      * `credentialType` is `iamUser`. Default is `/`.
      */
     userPath?: pulumi.Input<string>;

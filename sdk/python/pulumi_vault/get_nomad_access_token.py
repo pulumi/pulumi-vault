@@ -45,7 +45,7 @@ class GetNomadAccessTokenResult:
     @pulumi.getter(name="accessorId")
     def accessor_id(self) -> str:
         """
-        The public identifier for a specific token. It can be used 
+        The public identifier for a specific token. It can be used
         to look up information about a token or to revoke a token.
         """
         return pulumi.get(self, "accessor_id")

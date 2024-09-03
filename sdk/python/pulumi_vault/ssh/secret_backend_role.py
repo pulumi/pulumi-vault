@@ -57,9 +57,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
                identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
-               user key configuration, like key type and their lengths. Can be specified multiple times.
-               *See Configuration-Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] cidr_list: The comma-separated string of CIDR blocks for which this role is applicable.
@@ -277,9 +275,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="allowedUserKeyConfigs")
     def allowed_user_key_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
         """
-        Set of configuration blocks to define allowed  
-        user key configuration, like key type and their lengths. Can be specified multiple times.
-        *See Configuration-Options for more info*
+        Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         """
         return pulumi.get(self, "allowed_user_key_configs")
 
@@ -489,9 +485,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
                identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define allowed  
-               user key configuration, like key type and their lengths. Can be specified multiple times.
-               *See Configuration-Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]] allowed_user_key_configs: Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -689,9 +683,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="allowedUserKeyConfigs")
     def allowed_user_key_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
         """
-        Set of configuration blocks to define allowed  
-        user key configuration, like key type and their lengths. Can be specified multiple times.
-        *See Configuration-Options for more info*
+        Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         """
         return pulumi.get(self, "allowed_user_key_configs")
 
@@ -961,9 +953,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
                identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
-               user key configuration, like key type and their lengths. Can be specified multiple times.
-               *See Configuration-Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]] allowed_user_key_configs: Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -1156,9 +1146,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
                identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]] allowed_user_key_configs: Set of configuration blocks to define allowed  
-               user key configuration, like key type and their lengths. Can be specified multiple times.
-               *See Configuration-Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]] allowed_user_key_configs: Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         :param pulumi.Input[str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         :param pulumi.Input[bool] allowed_users_template: Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         :param pulumi.Input[str] backend: The path where the SSH secret backend is mounted.
@@ -1295,9 +1283,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="allowedUserKeyConfigs")
     def allowed_user_key_configs(self) -> pulumi.Output[Optional[Sequence['outputs.SecretBackendRoleAllowedUserKeyConfig']]]:
         """
-        Set of configuration blocks to define allowed  
-        user key configuration, like key type and their lengths. Can be specified multiple times.
-        *See Configuration-Options for more info*
+        Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
         """
         return pulumi.get(self, "allowed_user_key_configs")
 

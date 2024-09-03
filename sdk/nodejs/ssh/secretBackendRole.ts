@@ -111,9 +111,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly allowedExtensions!: pulumi.Output<string | undefined>;
     /**
-     * Set of configuration blocks to define allowed  
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
-     * *See Configuration-Options for more info*
+     * Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
      */
     public readonly allowedUserKeyConfigs!: pulumi.Output<outputs.ssh.SecretBackendRoleAllowedUserKeyConfig[] | undefined>;
     /**
@@ -305,9 +303,7 @@ export interface SecretBackendRoleState {
      */
     allowedExtensions?: pulumi.Input<string>;
     /**
-     * Set of configuration blocks to define allowed  
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
-     * *See Configuration-Options for more info*
+     * Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
      */
     allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
     /**
@@ -421,9 +417,7 @@ export interface SecretBackendRoleArgs {
      */
     allowedExtensions?: pulumi.Input<string>;
     /**
-     * Set of configuration blocks to define allowed  
-     * user key configuration, like key type and their lengths. Can be specified multiple times.
-     * *See Configuration-Options for more info*
+     * Set of configuration blocks to define alloweduser key configuration, like key type and their lengths. Can be specified multiple times.*See Configuration-Options for more info*
      */
     allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
     /**

@@ -38,7 +38,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -163,7 +163,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="idpSsoUrl")
     def idp_sso_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The SSO URL of the identity provider. Mutually exclusive with 
+        The SSO URL of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
         """
         return pulumi.get(self, "idp_sso_url")
@@ -242,7 +242,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -369,7 +369,7 @@ class _AuthBackendState:
     @pulumi.getter(name="idpSsoUrl")
     def idp_sso_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The SSO URL of the identity provider. Mutually exclusive with 
+        The SSO URL of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
         """
         return pulumi.get(self, "idp_sso_url")
@@ -439,6 +439,15 @@ class AuthBackend(pulumi.CustomResource):
                  verbose_logging: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
+        layout: "vault"
+        page_title: "Vault: saml.AuthBackend resource"
+        sidebar_current: "docs-vault-saml-auth-backend"
+        description: |-
+        Manages SAML Auth mounts in Vault.
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # vault\\_saml\\_auth\\_backend
+
         Manages a SAML Auth mount in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/saml/) for more
         information.
@@ -478,7 +487,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -497,6 +506,15 @@ class AuthBackend(pulumi.CustomResource):
                  args: AuthBackendArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        layout: "vault"
+        page_title: "Vault: saml.AuthBackend resource"
+        sidebar_current: "docs-vault-saml-auth-backend"
+        description: |-
+        Manages SAML Auth mounts in Vault.
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # vault\\_saml\\_auth\\_backend
+
         Manages a SAML Auth mount in a Vault server. See the [Vault
         documentation](https://www.vaultproject.io/docs/auth/saml/) for more
         information.
@@ -612,7 +630,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -705,7 +723,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="idpSsoUrl")
     def idp_sso_url(self) -> pulumi.Output[Optional[str]]:
         """
-        The SSO URL of the identity provider. Mutually exclusive with 
+        The SSO URL of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
         """
         return pulumi.get(self, "idp_sso_url")

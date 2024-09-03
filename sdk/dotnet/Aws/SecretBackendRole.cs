@@ -84,7 +84,7 @@ namespace Pulumi.Vault.Aws
         public Output<int> DefaultStsTtl { get; private set; } = null!;
 
         /// <summary>
-        /// External ID to set for assume role creds. 
+        /// External ID to set for assume role creds.
         /// Valid only when `credential_type` is set to `assumed_role`.
         /// </summary>
         [Output("externalId")]
@@ -133,7 +133,7 @@ namespace Pulumi.Vault.Aws
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// The ARN of the AWS Permissions 
+        /// The ARN of the AWS Permissions
         /// Boundary to attach to IAM users created in the role. Valid only when
         /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
         /// policy will be attached.
@@ -180,7 +180,7 @@ namespace Pulumi.Vault.Aws
         public Output<ImmutableDictionary<string, string>?> SessionTags { get; private set; } = null!;
 
         /// <summary>
-        /// The path for the user name. Valid only when 
+        /// The path for the user name. Valid only when
         /// `credential_type` is `iam_user`. Default is `/`.
         /// </summary>
         [Output("userPath")]
@@ -258,7 +258,7 @@ namespace Pulumi.Vault.Aws
         public Input<int>? DefaultStsTtl { get; set; }
 
         /// <summary>
-        /// External ID to set for assume role creds. 
+        /// External ID to set for assume role creds.
         /// Valid only when `credential_type` is set to `assumed_role`.
         /// </summary>
         [Input("externalId")]
@@ -319,7 +319,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The ARN of the AWS Permissions 
+        /// The ARN of the AWS Permissions
         /// Boundary to attach to IAM users created in the role. Valid only when
         /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
         /// policy will be attached.
@@ -384,7 +384,7 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The path for the user name. Valid only when 
+        /// The path for the user name. Valid only when
         /// `credential_type` is `iam_user`. Default is `/`.
         /// </summary>
         [Input("userPath")]
@@ -424,7 +424,7 @@ namespace Pulumi.Vault.Aws
         public Input<int>? DefaultStsTtl { get; set; }
 
         /// <summary>
-        /// External ID to set for assume role creds. 
+        /// External ID to set for assume role creds.
         /// Valid only when `credential_type` is set to `assumed_role`.
         /// </summary>
         [Input("externalId")]
@@ -485,7 +485,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The ARN of the AWS Permissions 
+        /// The ARN of the AWS Permissions
         /// Boundary to attach to IAM users created in the role. Valid only when
         /// `credential_type` is `iam_user`. If not specified, then no permissions boundary
         /// policy will be attached.
@@ -550,7 +550,7 @@ namespace Pulumi.Vault.Aws
         }
 
         /// <summary>
-        /// The path for the user name. Valid only when 
+        /// The path for the user name. Valid only when
         /// `credential_type` is `iam_user`. Default is `/`.
         /// </summary>
         [Input("userPath")]

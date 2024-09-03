@@ -46,15 +46,15 @@ class SecretBackendArgs:
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
+        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
                Vault is running.
-        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
+        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
@@ -216,7 +216,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="disableLocalCaJwt")
     def disable_local_ca_jwt(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable defaulting to the local CA certificate and 
+        Disable defaulting to the local CA certificate and
         service account JWT when Vault is running in a Kubernetes pod.
         """
         return pulumi.get(self, "disable_local_ca_jwt")
@@ -253,7 +253,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="kubernetesCaCert")
     def kubernetes_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A PEM-encoded CA certificate used by the 
+        A PEM-encoded CA certificate used by the
         secrets engine to verify the Kubernetes API server certificate. Defaults to the local
         pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         Vault is running.
@@ -268,7 +268,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="kubernetesHost")
     def kubernetes_host(self) -> Optional[pulumi.Input[str]]:
         """
-        The Kubernetes API URL to connect to. Required if the 
+        The Kubernetes API URL to connect to. Required if the
         standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
         are not set on the host that Vault is running on.
         """
@@ -428,15 +428,15 @@ class _SecretBackendState:
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
+        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
                Vault is running.
-        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
+        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
@@ -602,7 +602,7 @@ class _SecretBackendState:
     @pulumi.getter(name="disableLocalCaJwt")
     def disable_local_ca_jwt(self) -> Optional[pulumi.Input[bool]]:
         """
-        Disable defaulting to the local CA certificate and 
+        Disable defaulting to the local CA certificate and
         service account JWT when Vault is running in a Kubernetes pod.
         """
         return pulumi.get(self, "disable_local_ca_jwt")
@@ -639,7 +639,7 @@ class _SecretBackendState:
     @pulumi.getter(name="kubernetesCaCert")
     def kubernetes_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        A PEM-encoded CA certificate used by the 
+        A PEM-encoded CA certificate used by the
         secrets engine to verify the Kubernetes API server certificate. Defaults to the local
         pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         Vault is running.
@@ -654,7 +654,7 @@ class _SecretBackendState:
     @pulumi.getter(name="kubernetesHost")
     def kubernetes_host(self) -> Optional[pulumi.Input[str]]:
         """
-        The Kubernetes API URL to connect to. Required if the 
+        The Kubernetes API URL to connect to. Required if the
         standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
         are not set on the host that Vault is running on.
         """
@@ -854,15 +854,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
+        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
                Vault is running.
-        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
+        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
@@ -1035,15 +1035,15 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and 
+        :param pulumi.Input[bool] disable_local_ca_jwt: Disable defaulting to the local CA certificate and
                service account JWT when Vault is running in a Kubernetes pod.
         :param pulumi.Input[bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the 
+        :param pulumi.Input[str] kubernetes_ca_cert: A PEM-encoded CA certificate used by the
                secrets engine to verify the Kubernetes API server certificate. Defaults to the local
                pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
                Vault is running.
-        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the 
+        :param pulumi.Input[str] kubernetes_host: The Kubernetes API URL to connect to. Required if the
                standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
                are not set on the host that Vault is running on.
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
@@ -1159,7 +1159,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="disableLocalCaJwt")
     def disable_local_ca_jwt(self) -> pulumi.Output[Optional[bool]]:
         """
-        Disable defaulting to the local CA certificate and 
+        Disable defaulting to the local CA certificate and
         service account JWT when Vault is running in a Kubernetes pod.
         """
         return pulumi.get(self, "disable_local_ca_jwt")
@@ -1184,7 +1184,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesCaCert")
     def kubernetes_ca_cert(self) -> pulumi.Output[Optional[str]]:
         """
-        A PEM-encoded CA certificate used by the 
+        A PEM-encoded CA certificate used by the
         secrets engine to verify the Kubernetes API server certificate. Defaults to the local
         pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         Vault is running.
@@ -1195,7 +1195,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesHost")
     def kubernetes_host(self) -> pulumi.Output[Optional[str]]:
         """
-        The Kubernetes API URL to connect to. Required if the 
+        The Kubernetes API URL to connect to. Required if the
         standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
         are not set on the host that Vault is running on.
         """

@@ -61,55 +61,37 @@ class SecretsMountArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]] couchbases: A nested block containing configuration options for Couchbase connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]] couchbases: A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]] influxdbs: A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbArgs']]] mongodbs: A nested block containing configuration options for MongoDB connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMssqlArgs']]] mssqls: A nested block containing configuration options for MSSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlAuroraArgs']]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbArgs']]] mongodbs: A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMssqlArgs']]] mssqls: A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlAuroraArgs']]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]] snowflakes: A nested block containing configuration options for Snowflake connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]] snowflakes: A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         pulumi.set(__self__, "path", path)
         if allowed_managed_keys is not None:
@@ -249,8 +231,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def cassandras(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]]]:
         """
-        A nested block containing configuration options for Cassandra connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "cassandras")
 
@@ -262,8 +243,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def couchbases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]]]:
         """
-        A nested block containing configuration options for Couchbase connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "couchbases")
 
@@ -311,8 +291,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]]]:
         """
-        A nested block containing configuration options for Elasticsearch connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "elasticsearches")
 
@@ -336,8 +315,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def hanas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]]]:
         """
-        A nested block containing configuration options for SAP HanaDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "hanas")
 
@@ -361,8 +339,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def influxdbs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]]:
         """
-        A nested block containing configuration options for InfluxDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "influxdbs")
 
@@ -410,8 +387,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def mongodbatlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]]]:
         """
-        A nested block containing configuration options for MongoDB Atlas connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mongodbatlas")
 
@@ -423,8 +399,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def mongodbs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbArgs']]]]:
         """
-        A nested block containing configuration options for MongoDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mongodbs")
 
@@ -436,8 +411,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def mssqls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMssqlArgs']]]]:
         """
-        A nested block containing configuration options for MSSQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mssqls")
 
@@ -449,8 +423,7 @@ class SecretsMountArgs:
     @pulumi.getter(name="mysqlAuroras")
     def mysql_auroras(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlAuroraArgs']]]]:
         """
-        A nested block containing configuration options for Aurora MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_auroras")
 
@@ -462,8 +435,7 @@ class SecretsMountArgs:
     @pulumi.getter(name="mysqlLegacies")
     def mysql_legacies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]]]:
         """
-        A nested block containing configuration options for legacy MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_legacies")
 
@@ -475,8 +447,7 @@ class SecretsMountArgs:
     @pulumi.getter(name="mysqlRds")
     def mysql_rds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]]]:
         """
-        A nested block containing configuration options for RDS MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_rds")
 
@@ -488,8 +459,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def mysqls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]]]:
         """
-        A nested block containing configuration options for MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysqls")
 
@@ -525,8 +495,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def oracles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]]:
         """
-        A nested block containing configuration options for Oracle connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "oracles")
 
@@ -562,8 +531,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def postgresqls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]]:
         """
-        A nested block containing configuration options for PostgreSQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "postgresqls")
 
@@ -575,8 +543,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def redis(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]]:
         """
-        A nested block containing configuration options for Redis connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redis")
 
@@ -588,8 +555,7 @@ class SecretsMountArgs:
     @pulumi.getter(name="redisElasticaches")
     def redis_elasticaches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]:
         """
-        A nested block containing configuration options for Redis ElastiCache connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redis_elasticaches")
 
@@ -601,8 +567,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def redshifts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]]:
         """
-        A nested block containing configuration options for AWS Redshift connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redshifts")
 
@@ -626,8 +591,7 @@ class SecretsMountArgs:
     @pulumi.getter
     def snowflakes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]]]:
         """
-        A nested block containing configuration options for Snowflake connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "snowflakes")
 
@@ -686,57 +650,39 @@ class _SecretsMountState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]] couchbases: A nested block containing configuration options for Couchbase connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]] cassandras: A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]] couchbases: A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         :param pulumi.Input[int] engine_count: The total number of database secrets engines configured.
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]] hanas: A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]] influxdbs: A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbArgs']]] mongodbs: A nested block containing configuration options for MongoDB connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMssqlArgs']]] mssqls: A nested block containing configuration options for MSSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlAuroraArgs']]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbArgs']]] mongodbs: A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMssqlArgs']]] mssqls: A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlAuroraArgs']]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]] mysqls: A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]] oracles: A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]] postgresqls: A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]] redis: A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]] redshifts: A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]] snowflakes: A nested block containing configuration options for Snowflake connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]] snowflakes: A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -881,8 +827,7 @@ class _SecretsMountState:
     @pulumi.getter
     def cassandras(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCassandraArgs']]]]:
         """
-        A nested block containing configuration options for Cassandra connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "cassandras")
 
@@ -894,8 +839,7 @@ class _SecretsMountState:
     @pulumi.getter
     def couchbases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountCouchbaseArgs']]]]:
         """
-        A nested block containing configuration options for Couchbase connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "couchbases")
 
@@ -943,8 +887,7 @@ class _SecretsMountState:
     @pulumi.getter
     def elasticsearches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountElasticsearchArgs']]]]:
         """
-        A nested block containing configuration options for Elasticsearch connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "elasticsearches")
 
@@ -980,8 +923,7 @@ class _SecretsMountState:
     @pulumi.getter
     def hanas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountHanaArgs']]]]:
         """
-        A nested block containing configuration options for SAP HanaDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "hanas")
 
@@ -1005,8 +947,7 @@ class _SecretsMountState:
     @pulumi.getter
     def influxdbs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountInfluxdbArgs']]]]:
         """
-        A nested block containing configuration options for InfluxDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "influxdbs")
 
@@ -1054,8 +995,7 @@ class _SecretsMountState:
     @pulumi.getter
     def mongodbatlas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbatlaArgs']]]]:
         """
-        A nested block containing configuration options for MongoDB Atlas connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mongodbatlas")
 
@@ -1067,8 +1007,7 @@ class _SecretsMountState:
     @pulumi.getter
     def mongodbs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMongodbArgs']]]]:
         """
-        A nested block containing configuration options for MongoDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mongodbs")
 
@@ -1080,8 +1019,7 @@ class _SecretsMountState:
     @pulumi.getter
     def mssqls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMssqlArgs']]]]:
         """
-        A nested block containing configuration options for MSSQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mssqls")
 
@@ -1093,8 +1031,7 @@ class _SecretsMountState:
     @pulumi.getter(name="mysqlAuroras")
     def mysql_auroras(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlAuroraArgs']]]]:
         """
-        A nested block containing configuration options for Aurora MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_auroras")
 
@@ -1106,8 +1043,7 @@ class _SecretsMountState:
     @pulumi.getter(name="mysqlLegacies")
     def mysql_legacies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlLegacyArgs']]]]:
         """
-        A nested block containing configuration options for legacy MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_legacies")
 
@@ -1119,8 +1055,7 @@ class _SecretsMountState:
     @pulumi.getter(name="mysqlRds")
     def mysql_rds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlRdArgs']]]]:
         """
-        A nested block containing configuration options for RDS MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_rds")
 
@@ -1132,8 +1067,7 @@ class _SecretsMountState:
     @pulumi.getter
     def mysqls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountMysqlArgs']]]]:
         """
-        A nested block containing configuration options for MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysqls")
 
@@ -1169,8 +1103,7 @@ class _SecretsMountState:
     @pulumi.getter
     def oracles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountOracleArgs']]]]:
         """
-        A nested block containing configuration options for Oracle connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "oracles")
 
@@ -1218,8 +1151,7 @@ class _SecretsMountState:
     @pulumi.getter
     def postgresqls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountPostgresqlArgs']]]]:
         """
-        A nested block containing configuration options for PostgreSQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "postgresqls")
 
@@ -1231,8 +1163,7 @@ class _SecretsMountState:
     @pulumi.getter
     def redis(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRediArgs']]]]:
         """
-        A nested block containing configuration options for Redis connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redis")
 
@@ -1244,8 +1175,7 @@ class _SecretsMountState:
     @pulumi.getter(name="redisElasticaches")
     def redis_elasticaches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedisElasticachArgs']]]]:
         """
-        A nested block containing configuration options for Redis ElastiCache connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redis_elasticaches")
 
@@ -1257,8 +1187,7 @@ class _SecretsMountState:
     @pulumi.getter
     def redshifts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountRedshiftArgs']]]]:
         """
-        A nested block containing configuration options for AWS Redshift connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redshifts")
 
@@ -1282,8 +1211,7 @@ class _SecretsMountState:
     @pulumi.getter
     def snowflakes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretsMountSnowflakeArgs']]]]:
         """
-        A nested block containing configuration options for Snowflake connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "snowflakes")
 
@@ -1393,56 +1321,38 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]] couchbases: A nested block containing configuration options for Couchbase connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]] cassandras: A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]] couchbases: A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]] mongodbs: A nested block containing configuration options for MongoDB connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]] mssqls: A nested block containing configuration options for MSSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]] mongodbs: A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]] mssqls: A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticachArgs', 'SecretsMountRedisElasticachArgsDict']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticachArgs', 'SecretsMountRedisElasticachArgsDict']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]] snowflakes: A nested block containing configuration options for Snowflake connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]] snowflakes: A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         ...
     @overload
@@ -1663,57 +1573,39 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]] cassandras: A nested block containing configuration options for Cassandra connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]] couchbases: A nested block containing configuration options for Couchbase connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]] cassandras: A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]] couchbases: A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         :param pulumi.Input[int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] description: Human-friendly description of the mount
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         :param pulumi.Input[int] engine_count: The total number of database secrets engines configured.
         :param pulumi.Input[bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         :param pulumi.Input[str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]] mongodbs: A nested block containing configuration options for MongoDB connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]] mssqls: A nested block containing configuration options for MSSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]] mongodbs: A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]] mssqls: A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] options: Specifies mount type specific options that are passed to the backend
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[str] path: Where the secret backend will be mounted
         :param pulumi.Input[str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticachArgs', 'SecretsMountRedisElasticachArgsDict']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.  
-               *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticachArgs', 'SecretsMountRedisElasticachArgsDict']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         :param pulumi.Input[bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]] snowflakes: A nested block containing configuration options for Snowflake connections.  
-               *See Configuration Options for more info*
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]] snowflakes: A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1805,8 +1697,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def cassandras(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountCassandra']]]:
         """
-        A nested block containing configuration options for Cassandra connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Cassandra connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "cassandras")
 
@@ -1814,8 +1705,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def couchbases(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountCouchbase']]]:
         """
-        A nested block containing configuration options for Couchbase connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Couchbase connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "couchbases")
 
@@ -1847,8 +1737,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def elasticsearches(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountElasticsearch']]]:
         """
-        A nested block containing configuration options for Elasticsearch connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Elasticsearch connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "elasticsearches")
 
@@ -1872,8 +1761,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def hanas(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountHana']]]:
         """
-        A nested block containing configuration options for SAP HanaDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for SAP HanaDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "hanas")
 
@@ -1889,8 +1777,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def influxdbs(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountInfluxdb']]]:
         """
-        A nested block containing configuration options for InfluxDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for InfluxDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "influxdbs")
 
@@ -1922,8 +1809,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def mongodbatlas(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMongodbatla']]]:
         """
-        A nested block containing configuration options for MongoDB Atlas connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MongoDB Atlas connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mongodbatlas")
 
@@ -1931,8 +1817,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def mongodbs(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMongodb']]]:
         """
-        A nested block containing configuration options for MongoDB connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MongoDB connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mongodbs")
 
@@ -1940,8 +1825,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def mssqls(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMssql']]]:
         """
-        A nested block containing configuration options for MSSQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MSSQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mssqls")
 
@@ -1949,8 +1833,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter(name="mysqlAuroras")
     def mysql_auroras(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMysqlAurora']]]:
         """
-        A nested block containing configuration options for Aurora MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Aurora MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_auroras")
 
@@ -1958,8 +1841,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter(name="mysqlLegacies")
     def mysql_legacies(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMysqlLegacy']]]:
         """
-        A nested block containing configuration options for legacy MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for legacy MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_legacies")
 
@@ -1967,8 +1849,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter(name="mysqlRds")
     def mysql_rds(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMysqlRd']]]:
         """
-        A nested block containing configuration options for RDS MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for RDS MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysql_rds")
 
@@ -1976,8 +1857,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def mysqls(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountMysql']]]:
         """
-        A nested block containing configuration options for MySQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for MySQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "mysqls")
 
@@ -2001,8 +1881,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def oracles(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountOracle']]]:
         """
-        A nested block containing configuration options for Oracle connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Oracle connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "oracles")
 
@@ -2034,8 +1913,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def postgresqls(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountPostgresql']]]:
         """
-        A nested block containing configuration options for PostgreSQL connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for PostgreSQL connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "postgresqls")
 
@@ -2043,8 +1921,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def redis(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountRedi']]]:
         """
-        A nested block containing configuration options for Redis connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Redis connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redis")
 
@@ -2052,8 +1929,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter(name="redisElasticaches")
     def redis_elasticaches(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountRedisElasticach']]]:
         """
-        A nested block containing configuration options for Redis ElastiCache connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Redis ElastiCache connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redis_elasticaches")
 
@@ -2061,8 +1937,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def redshifts(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountRedshift']]]:
         """
-        A nested block containing configuration options for AWS Redshift connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for AWS Redshift connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "redshifts")
 
@@ -2078,8 +1953,7 @@ class SecretsMount(pulumi.CustomResource):
     @pulumi.getter
     def snowflakes(self) -> pulumi.Output[Optional[Sequence['outputs.SecretsMountSnowflake']]]:
         """
-        A nested block containing configuration options for Snowflake connections.  
-        *See Configuration Options for more info*
+        A nested block containing configuration options for Snowflake connections.*See Configuration Options for more info*
         """
         return pulumi.get(self, "snowflakes")
 

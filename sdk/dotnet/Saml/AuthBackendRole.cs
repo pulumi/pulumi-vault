@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Saml
 {
     /// <summary>
+    /// layout: "vault"
+    /// page_title: "Vault: vault.saml.AuthBackendRole resource"
+    /// sidebar_current: "docs-vault-resource-saml-auth-backend-role"
+    /// description: |-
+    /// Manages SAML auth backend roles in Vault.
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # vault\_saml\_auth\_backend\_role
+    /// 
     /// Manages an SAML auth backend role in a Vault server. See the [Vault
     /// documentation](https://www.vaultproject.io/docs/auth/saml.html) for more
     /// information.

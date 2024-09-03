@@ -69,12 +69,12 @@ export class MfaOkta extends pulumi.CustomResource {
      */
     public readonly apiToken!: pulumi.Output<string>;
     /**
-     * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+     * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
      * `oktapreview.com`, and `okta-emea.com`.
      */
     public readonly baseUrl!: pulumi.Output<string | undefined>;
     /**
-     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     public readonly mountAccessor!: pulumi.Output<string>;
@@ -94,12 +94,12 @@ export class MfaOkta extends pulumi.CustomResource {
      */
     public readonly orgName!: pulumi.Output<string>;
     /**
-     * `(string: <required>)` - If set to true, the username will only match the 
+     * `(string: <required>)` - If set to true, the username will only match the
      * primary email for the account.
      */
     public readonly primaryEmail!: pulumi.Output<boolean | undefined>;
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. 
+     * `(string)` - A format string for mapping Identity names to MFA method names.
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
      * If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
@@ -166,12 +166,12 @@ export interface MfaOktaState {
      */
     apiToken?: pulumi.Input<string>;
     /**
-     * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+     * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
      * `oktapreview.com`, and `okta-emea.com`.
      */
     baseUrl?: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     mountAccessor?: pulumi.Input<string>;
@@ -191,12 +191,12 @@ export interface MfaOktaState {
      */
     orgName?: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - If set to true, the username will only match the 
+     * `(string: <required>)` - If set to true, the username will only match the
      * primary email for the account.
      */
     primaryEmail?: pulumi.Input<boolean>;
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. 
+     * `(string)` - A format string for mapping Identity names to MFA method names.
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
      * If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
@@ -216,12 +216,12 @@ export interface MfaOktaArgs {
      */
     apiToken: pulumi.Input<string>;
     /**
-     * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+     * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
      * `oktapreview.com`, and `okta-emea.com`.
      */
     baseUrl?: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     mountAccessor: pulumi.Input<string>;
@@ -241,12 +241,12 @@ export interface MfaOktaArgs {
      */
     orgName: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - If set to true, the username will only match the 
+     * `(string: <required>)` - If set to true, the username will only match the
      * primary email for the account.
      */
     primaryEmail?: pulumi.Input<boolean>;
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. 
+     * `(string)` - A format string for mapping Identity names to MFA method names.
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
      * If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter

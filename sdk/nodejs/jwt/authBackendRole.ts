@@ -156,7 +156,7 @@ export class AuthBackendRole extends pulumi.CustomResource {
      */
     public readonly groupsClaim!: pulumi.Output<string | undefined>;
     /**
-     * Specifies the allowable elapsed time in seconds since the last time 
+     * Specifies the allowable elapsed time in seconds since the last time
      * the user was actively authenticated with the OIDC provider.
      */
     public readonly maxAge!: pulumi.Output<number | undefined>;
@@ -392,7 +392,7 @@ export interface AuthBackendRoleState {
      */
     groupsClaim?: pulumi.Input<string>;
     /**
-     * Specifies the allowable elapsed time in seconds since the last time 
+     * Specifies the allowable elapsed time in seconds since the last time
      * the user was actively authenticated with the OIDC provider.
      */
     maxAge?: pulumi.Input<number>;
@@ -544,7 +544,7 @@ export interface AuthBackendRoleArgs {
      */
     groupsClaim?: pulumi.Input<string>;
     /**
-     * Specifies the allowable elapsed time in seconds since the last time 
+     * Specifies the allowable elapsed time in seconds since the last time
      * the user was actively authenticated with the OIDC provider.
      */
     maxAge?: pulumi.Input<number>;

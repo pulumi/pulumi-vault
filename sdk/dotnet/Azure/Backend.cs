@@ -12,7 +12,7 @@ namespace Pulumi.Vault.Azure
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### *Vault-1.9 And Above*
+    /// ### vault-1.9 and above
     /// 
     /// You can setup the Azure secrets engine with Workload Identity Federation (WIF) for a secret-less configuration:
     /// ```csharp
@@ -56,7 +56,7 @@ namespace Pulumi.Vault.Azure
     /// });
     /// ```
     /// 
-    /// ### *Vault-1.8 And Below*
+    /// ### vault-1.8 and below
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

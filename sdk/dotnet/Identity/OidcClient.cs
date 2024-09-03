@@ -100,7 +100,7 @@ namespace Pulumi.Vault.Identity
         public Output<string> ClientType { get; private set; } = null!;
 
         /// <summary>
-        /// The time-to-live for ID tokens obtained by the client. 
+        /// The time-to-live for ID tokens obtained by the client.
         /// The value should be less than the `verification_ttl` on the key.
         /// </summary>
         [Output("idTokenTtl")]
@@ -130,7 +130,7 @@ namespace Pulumi.Vault.Identity
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Redirection URI values used by the client. 
+        /// Redirection URI values used by the client.
         /// One of these values must exactly match the `redirect_uri` parameter value
         /// used in each authentication request.
         /// </summary>
@@ -213,7 +213,7 @@ namespace Pulumi.Vault.Identity
         public Input<string>? ClientType { get; set; }
 
         /// <summary>
-        /// The time-to-live for ID tokens obtained by the client. 
+        /// The time-to-live for ID tokens obtained by the client.
         /// The value should be less than the `verification_ttl` on the key.
         /// </summary>
         [Input("idTokenTtl")]
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _redirectUris;
 
         /// <summary>
-        /// Redirection URI values used by the client. 
+        /// Redirection URI values used by the client.
         /// One of these values must exactly match the `redirect_uri` parameter value
         /// used in each authentication request.
         /// </summary>
@@ -313,7 +313,7 @@ namespace Pulumi.Vault.Identity
         public Input<string>? ClientType { get; set; }
 
         /// <summary>
-        /// The time-to-live for ID tokens obtained by the client. 
+        /// The time-to-live for ID tokens obtained by the client.
         /// The value should be less than the `verification_ttl` on the key.
         /// </summary>
         [Input("idTokenTtl")]
@@ -346,7 +346,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _redirectUris;
 
         /// <summary>
-        /// Redirection URI values used by the client. 
+        /// Redirection URI values used by the client.
         /// One of these values must exactly match the `redirect_uri` parameter value
         /// used in each authentication request.
         /// </summary>

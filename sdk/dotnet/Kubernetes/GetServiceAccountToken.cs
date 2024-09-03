@@ -148,21 +148,21 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetServiceAccountTokenArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The Kubernetes secret backend to generate service account 
+        /// The Kubernetes secret backend to generate service account
         /// tokens from.
         /// </summary>
         [Input("backend", required: true)]
         public string Backend { get; set; } = null!;
 
         /// <summary>
-        /// If true, generate a ClusterRoleBinding to grant 
+        /// If true, generate a ClusterRoleBinding to grant
         /// permissions across the whole cluster instead of within a namespace.
         /// </summary>
         [Input("clusterRoleBinding")]
         public bool? ClusterRoleBinding { get; set; }
 
         /// <summary>
-        /// The name of the Kubernetes namespace in which to 
+        /// The name of the Kubernetes namespace in which to
         /// generate the credentials.
         /// </summary>
         [Input("kubernetesNamespace", required: true)]
@@ -178,14 +178,14 @@ namespace Pulumi.Vault.Kubernetes
         public string? Namespace { get; set; }
 
         /// <summary>
-        /// The name of the Kubernetes secret backend role to generate service 
+        /// The name of the Kubernetes secret backend role to generate service
         /// account tokens from.
         /// </summary>
         [Input("role", required: true)]
         public string Role { get; set; } = null!;
 
         /// <summary>
-        /// The TTL of the generated Kubernetes service account token, specified in 
+        /// The TTL of the generated Kubernetes service account token, specified in
         /// seconds or as a Go duration format string.
         /// </summary>
         [Input("ttl")]
@@ -200,21 +200,21 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetServiceAccountTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The Kubernetes secret backend to generate service account 
+        /// The Kubernetes secret backend to generate service account
         /// tokens from.
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// If true, generate a ClusterRoleBinding to grant 
+        /// If true, generate a ClusterRoleBinding to grant
         /// permissions across the whole cluster instead of within a namespace.
         /// </summary>
         [Input("clusterRoleBinding")]
         public Input<bool>? ClusterRoleBinding { get; set; }
 
         /// <summary>
-        /// The name of the Kubernetes namespace in which to 
+        /// The name of the Kubernetes namespace in which to
         /// generate the credentials.
         /// </summary>
         [Input("kubernetesNamespace", required: true)]
@@ -230,14 +230,14 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// The name of the Kubernetes secret backend role to generate service 
+        /// The name of the Kubernetes secret backend role to generate service
         /// account tokens from.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
-        /// The TTL of the generated Kubernetes service account token, specified in 
+        /// The TTL of the generated Kubernetes service account token, specified in
         /// seconds or as a Go duration format string.
         /// </summary>
         [Input("ttl")]

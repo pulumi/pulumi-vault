@@ -529,7 +529,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Creating a standard backend resource:
+        #### Creating a standard backend resource:
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -541,7 +541,7 @@ class SecretBackend(pulumi.CustomResource):
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         ```
 
-        ### Creating a backend resource to bootstrap a new Consul instance:
+        #### Creating a backend resource to bootstrap a new Consul instance:
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -595,7 +595,7 @@ class SecretBackend(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Creating a standard backend resource:
+        #### Creating a standard backend resource:
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -607,7 +607,7 @@ class SecretBackend(pulumi.CustomResource):
             token="4240861b-ce3d-8530-115a-521ff070dd29")
         ```
 
-        ### Creating a backend resource to bootstrap a new Consul instance:
+        #### Creating a backend resource to bootstrap a new Consul instance:
         ```python
         import pulumi
         import pulumi_vault as vault

@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * layout: "vault"
+ * page_title: "Vault: vault.saml.AuthBackendRole resource"
+ * sidebar_current: "docs-vault-resource-saml-auth-backend-role"
+ * description: |-
+ * Manages SAML auth backend roles in Vault.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # vault\_saml\_auth\_backend\_role
+ *
  * Manages an SAML auth backend role in a Vault server. See the [Vault
  * documentation](https://www.vaultproject.io/docs/auth/saml.html) for more
  * information.

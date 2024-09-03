@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
- * ### Creating a standard backend resource:
+ * #### Creating a standard backend resource:
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code
@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Creating a backend resource to bootstrap a new Consul instance:
+ * #### Creating a backend resource to bootstrap a new Consul instance:
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code

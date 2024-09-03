@@ -37,7 +37,7 @@ class SecretRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
+        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs.
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
                Required if `organization_id` is not set.
@@ -156,7 +156,7 @@ class SecretRoleArgs:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique identifier for the organization to which the target API Key belongs. 
+        Unique identifier for the organization to which the target API Key belongs.
         Required if `project_id` is not set.
         """
         return pulumi.get(self, "organization_id")
@@ -228,7 +228,7 @@ class _SecretRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
+        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs.
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
                Required if `organization_id` is not set.
@@ -338,7 +338,7 @@ class _SecretRoleState:
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Unique identifier for the organization to which the target API Key belongs. 
+        Unique identifier for the organization to which the target API Key belongs.
         Required if `project_id` is not set.
         """
         return pulumi.get(self, "organization_id")
@@ -462,7 +462,7 @@ class SecretRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
+        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs.
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
                Required if `organization_id` is not set.
@@ -600,7 +600,7 @@ class SecretRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs. 
+        :param pulumi.Input[str] organization_id: Unique identifier for the organization to which the target API Key belongs.
                Required if `project_id` is not set.
         :param pulumi.Input[str] project_id: Unique identifier for the project to which the target API Key belongs.
                Required if `organization_id` is not set.
@@ -680,7 +680,7 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[Optional[str]]:
         """
-        Unique identifier for the organization to which the target API Key belongs. 
+        Unique identifier for the organization to which the target API Key belongs.
         Required if `project_id` is not set.
         """
         return pulumi.get(self, "organization_id")
