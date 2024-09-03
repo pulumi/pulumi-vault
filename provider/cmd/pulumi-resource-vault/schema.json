@@ -30933,7 +30933,7 @@
                 },
                 "pathSuffix": {
                     "type": "string",
-                    "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.\n\n\u003e Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.\n"
+                    "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.\n"
                 },
                 "renewable": {
                     "type": "boolean",
@@ -31036,7 +31036,7 @@
                 },
                 "pathSuffix": {
                     "type": "string",
-                    "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.\n\n\u003e Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.\n"
+                    "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.\n"
                 },
                 "renewable": {
                     "type": "boolean",
@@ -31142,7 +31142,7 @@
                     },
                     "pathSuffix": {
                         "type": "string",
-                        "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.\n\n\u003e Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.\n"
+                        "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.\n"
                     },
                     "renewable": {
                         "type": "boolean",
