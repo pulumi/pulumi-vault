@@ -185,16 +185,12 @@ public class AuthBackendRole extends com.pulumi.resources.CustomResource {
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      * 
-     * &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
-     * 
      */
     @Export(name="pathSuffix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pathSuffix;
 
     /**
      * @return Tokens created against this role will have the given suffix as part of their path in addition to the role name.
-     * 
-     * &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
      * 
      */
     public Output<Optional<String>> pathSuffix() {
