@@ -132,16 +132,12 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      * 
-     * &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
-     * 
      */
     @Import(name="pathSuffix")
     private @Nullable Output<String> pathSuffix;
 
     /**
      * @return Tokens created against this role will have the given suffix as part of their path in addition to the role name.
-     * 
-     * &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
      * 
      */
     public Optional<Output<String>> pathSuffix() {
@@ -561,8 +557,6 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
         /**
          * @param pathSuffix Tokens created against this role will have the given suffix as part of their path in addition to the role name.
          * 
-         * &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
-         * 
          * @return builder
          * 
          */
@@ -573,8 +567,6 @@ public final class AuthBackendRoleState extends com.pulumi.resources.ResourceArg
 
         /**
          * @param pathSuffix Tokens created against this role will have the given suffix as part of their path in addition to the role name.
-         * 
-         * &gt; Due to a bug the resource. This *will* cause all existing tokens issued by this role to be revoked.
          * 
          * @return builder
          * 
