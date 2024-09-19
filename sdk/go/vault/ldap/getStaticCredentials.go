@@ -46,14 +46,20 @@ type GetStaticCredentialsResult struct {
 
 func GetStaticCredentialsOutput(ctx *pulumi.Context, args GetStaticCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetStaticCredentialsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetStaticCredentialsResult, error) {
+		ApplyT(func(v interface{}) (GetStaticCredentialsResultOutput, error) {
 			args := v.(GetStaticCredentialsArgs)
-			r, err := GetStaticCredentials(ctx, &args, opts...)
-			var s GetStaticCredentialsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetStaticCredentialsResult
+			secret, err := ctx.InvokePackageRaw("vault:ldap/getStaticCredentials:getStaticCredentials", args, &rv, "", opts...)
+			if err != nil {
+				return GetStaticCredentialsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetStaticCredentialsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetStaticCredentialsResultOutput), nil
+			}
+			return output, nil
 		}).(GetStaticCredentialsResultOutput)
 }
 

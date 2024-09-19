@@ -85,14 +85,20 @@ type GetRaftAutopilotStateResult struct {
 
 func GetRaftAutopilotStateOutput(ctx *pulumi.Context, args GetRaftAutopilotStateOutputArgs, opts ...pulumi.InvokeOption) GetRaftAutopilotStateResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetRaftAutopilotStateResult, error) {
+		ApplyT(func(v interface{}) (GetRaftAutopilotStateResultOutput, error) {
 			args := v.(GetRaftAutopilotStateArgs)
-			r, err := GetRaftAutopilotState(ctx, &args, opts...)
-			var s GetRaftAutopilotStateResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetRaftAutopilotStateResult
+			secret, err := ctx.InvokePackageRaw("vault:index/getRaftAutopilotState:getRaftAutopilotState", args, &rv, "", opts...)
+			if err != nil {
+				return GetRaftAutopilotStateResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetRaftAutopilotStateResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetRaftAutopilotStateResultOutput), nil
+			}
+			return output, nil
 		}).(GetRaftAutopilotStateResultOutput)
 }
 

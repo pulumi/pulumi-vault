@@ -30,7 +30,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getBackendKey(args: GetBackendKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendKeyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:pkiSecret/getBackendKey:getBackendKey", {
         "backend": args.backend,
@@ -111,7 +110,12 @@ export interface GetBackendKeyResult {
  * ```
  */
 export function getBackendKeyOutput(args: GetBackendKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendKeyResult> {
-    return pulumi.output(args).apply((a: any) => getBackendKey(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendKey:getBackendKey", {
+        "backend": args.backend,
+        "keyRef": args.keyRef,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

@@ -38,7 +38,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getOidcOpenidConfig(args: GetOidcOpenidConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcOpenidConfigResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", {
         "name": args.name,
@@ -158,7 +157,11 @@ export interface GetOidcOpenidConfigResult {
  * ```
  */
 export function getOidcOpenidConfigOutput(args: GetOidcOpenidConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcOpenidConfigResult> {
-    return pulumi.output(args).apply((a: any) => getOidcOpenidConfig(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", {
+        "name": args.name,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

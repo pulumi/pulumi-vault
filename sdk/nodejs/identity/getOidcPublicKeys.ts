@@ -38,7 +38,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getOidcPublicKeys(args: GetOidcPublicKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcPublicKeysResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getOidcPublicKeys:getOidcPublicKeys", {
         "name": args.name,
@@ -113,7 +112,11 @@ export interface GetOidcPublicKeysResult {
  * ```
  */
 export function getOidcPublicKeysOutput(args: GetOidcPublicKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcPublicKeysResult> {
-    return pulumi.output(args).apply((a: any) => getOidcPublicKeys(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:identity/getOidcPublicKeys:getOidcPublicKeys", {
+        "name": args.name,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

@@ -48,14 +48,20 @@ type GetEncryptResult struct {
 
 func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pulumi.InvokeOption) GetEncryptResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetEncryptResult, error) {
+		ApplyT(func(v interface{}) (GetEncryptResultOutput, error) {
 			args := v.(GetEncryptArgs)
-			r, err := GetEncrypt(ctx, &args, opts...)
-			var s GetEncryptResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetEncryptResult
+			secret, err := ctx.InvokePackageRaw("vault:transit/getEncrypt:getEncrypt", args, &rv, "", opts...)
+			if err != nil {
+				return GetEncryptResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetEncryptResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetEncryptResultOutput), nil
+			}
+			return output, nil
 		}).(GetEncryptResultOutput)
 }
 

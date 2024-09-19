@@ -42,7 +42,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getEncode(args: GetEncodeArgs, opts?: pulumi.InvokeOptions): Promise<GetEncodeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transform/getEncode:getEncode", {
         "batchInputs": args.batchInputs,
@@ -158,7 +157,18 @@ export interface GetEncodeResult {
  * ```
  */
 export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
-    return pulumi.output(args).apply((a: any) => getEncode(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:transform/getEncode:getEncode", {
+        "batchInputs": args.batchInputs,
+        "batchResults": args.batchResults,
+        "encodedValue": args.encodedValue,
+        "namespace": args.namespace,
+        "path": args.path,
+        "roleName": args.roleName,
+        "transformation": args.transformation,
+        "tweak": args.tweak,
+        "value": args.value,
+    }, opts);
 }
 
 /**

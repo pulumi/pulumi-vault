@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 export function getDynamicCredentials(args: GetDynamicCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetDynamicCredentialsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:ldap/getDynamicCredentials:getDynamicCredentials", {
         "mount": args.mount,
@@ -42,7 +41,12 @@ export interface GetDynamicCredentialsResult {
     readonly username: string;
 }
 export function getDynamicCredentialsOutput(args: GetDynamicCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDynamicCredentialsResult> {
-    return pulumi.output(args).apply((a: any) => getDynamicCredentials(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:ldap/getDynamicCredentials:getDynamicCredentials", {
+        "mount": args.mount,
+        "namespace": args.namespace,
+        "roleName": args.roleName,
+    }, opts);
 }
 
 /**

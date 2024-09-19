@@ -24,7 +24,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getBackendConfigEst(args: GetBackendConfigEstArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendConfigEstResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", {
         "backend": args.backend,
@@ -111,7 +110,11 @@ export interface GetBackendConfigEstResult {
  * ```
  */
 export function getBackendConfigEstOutput(args: GetBackendConfigEstOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendConfigEstResult> {
-    return pulumi.output(args).apply((a: any) => getBackendConfigEst(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", {
+        "backend": args.backend,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

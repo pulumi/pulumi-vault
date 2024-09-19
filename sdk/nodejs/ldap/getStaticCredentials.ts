@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 export function getStaticCredentials(args: GetStaticCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetStaticCredentialsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:ldap/getStaticCredentials:getStaticCredentials", {
         "mount": args.mount,
@@ -43,7 +42,12 @@ export interface GetStaticCredentialsResult {
     readonly username: string;
 }
 export function getStaticCredentialsOutput(args: GetStaticCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStaticCredentialsResult> {
-    return pulumi.output(args).apply((a: any) => getStaticCredentials(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:ldap/getStaticCredentials:getStaticCredentials", {
+        "mount": args.mount,
+        "namespace": args.namespace,
+        "roleName": args.roleName,
+    }, opts);
 }
 
 /**

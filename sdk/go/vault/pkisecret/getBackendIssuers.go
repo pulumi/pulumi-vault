@@ -90,14 +90,20 @@ type GetBackendIssuersResult struct {
 
 func GetBackendIssuersOutput(ctx *pulumi.Context, args GetBackendIssuersOutputArgs, opts ...pulumi.InvokeOption) GetBackendIssuersResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetBackendIssuersResult, error) {
+		ApplyT(func(v interface{}) (GetBackendIssuersResultOutput, error) {
 			args := v.(GetBackendIssuersArgs)
-			r, err := GetBackendIssuers(ctx, &args, opts...)
-			var s GetBackendIssuersResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetBackendIssuersResult
+			secret, err := ctx.InvokePackageRaw("vault:pkiSecret/getBackendIssuers:getBackendIssuers", args, &rv, "", opts...)
+			if err != nil {
+				return GetBackendIssuersResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetBackendIssuersResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetBackendIssuersResultOutput), nil
+			}
+			return output, nil
 		}).(GetBackendIssuersResultOutput)
 }
 

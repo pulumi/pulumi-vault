@@ -5,7 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 export function getStaticAccessCredentials(args: GetStaticAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetStaticAccessCredentialsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", {
         "backend": args.backend,
@@ -38,7 +37,12 @@ export interface GetStaticAccessCredentialsResult {
     readonly secretKey: string;
 }
 export function getStaticAccessCredentialsOutput(args: GetStaticAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStaticAccessCredentialsResult> {
-    return pulumi.output(args).apply((a: any) => getStaticAccessCredentials(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", {
+        "backend": args.backend,
+        "name": args.name,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**
