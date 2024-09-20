@@ -117,14 +117,20 @@ type GetSecretsListResult struct {
 
 func GetSecretsListOutput(ctx *pulumi.Context, args GetSecretsListOutputArgs, opts ...pulumi.InvokeOption) GetSecretsListResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSecretsListResult, error) {
+		ApplyT(func(v interface{}) (GetSecretsListResultOutput, error) {
 			args := v.(GetSecretsListArgs)
-			r, err := GetSecretsList(ctx, &args, opts...)
-			var s GetSecretsListResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetSecretsListResult
+			secret, err := ctx.InvokePackageRaw("vault:kv/getSecretsList:getSecretsList", args, &rv, "", opts...)
+			if err != nil {
+				return GetSecretsListResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetSecretsListResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetSecretsListResultOutput), nil
+			}
+			return output, nil
 		}).(GetSecretsListResultOutput)
 }
 

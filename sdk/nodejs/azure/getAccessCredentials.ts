@@ -27,7 +27,6 @@ import * as utilities from "../utilities";
  * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
  */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:azure/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
@@ -172,7 +171,19 @@ export interface GetAccessCredentialsResult {
  * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
  */
 export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
-    return pulumi.output(args).apply((a: any) => getAccessCredentials(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:azure/getAccessCredentials:getAccessCredentials", {
+        "backend": args.backend,
+        "environment": args.environment,
+        "maxCredValidationSeconds": args.maxCredValidationSeconds,
+        "namespace": args.namespace,
+        "numSecondsBetweenTests": args.numSecondsBetweenTests,
+        "numSequentialSuccesses": args.numSequentialSuccesses,
+        "role": args.role,
+        "subscriptionId": args.subscriptionId,
+        "tenantId": args.tenantId,
+        "validateCreds": args.validateCreds,
+    }, opts);
 }
 
 /**

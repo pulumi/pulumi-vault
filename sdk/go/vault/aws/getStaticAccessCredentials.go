@@ -41,14 +41,20 @@ type GetStaticAccessCredentialsResult struct {
 
 func GetStaticAccessCredentialsOutput(ctx *pulumi.Context, args GetStaticAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetStaticAccessCredentialsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetStaticAccessCredentialsResult, error) {
+		ApplyT(func(v interface{}) (GetStaticAccessCredentialsResultOutput, error) {
 			args := v.(GetStaticAccessCredentialsArgs)
-			r, err := GetStaticAccessCredentials(ctx, &args, opts...)
-			var s GetStaticAccessCredentialsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetStaticAccessCredentialsResult
+			secret, err := ctx.InvokePackageRaw("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", args, &rv, "", opts...)
+			if err != nil {
+				return GetStaticAccessCredentialsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetStaticAccessCredentialsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetStaticAccessCredentialsResultOutput), nil
+			}
+			return output, nil
 		}).(GetStaticAccessCredentialsResultOutput)
 }
 

@@ -22,7 +22,6 @@ import * as utilities from "../utilities";
  */
 export function getGroup(args?: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getGroup:getGroup", {
         "aliasId": args.aliasId,
@@ -177,7 +176,16 @@ export interface GetGroupResult {
  * Use of this resource requires the `create` capability on `/identity/lookup/group`.
  */
 export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
-    return pulumi.output(args).apply((a: any) => getGroup(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:identity/getGroup:getGroup", {
+        "aliasId": args.aliasId,
+        "aliasMountAccessor": args.aliasMountAccessor,
+        "aliasName": args.aliasName,
+        "groupId": args.groupId,
+        "groupName": args.groupName,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  */
 export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendConfigResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {
         "backend": args.backend,
@@ -96,7 +95,18 @@ export interface GetAuthBackendConfigResult {
  * information.
  */
 export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendConfigResult> {
-    return pulumi.output(args).apply((a: any) => getAuthBackendConfig(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {
+        "backend": args.backend,
+        "disableIssValidation": args.disableIssValidation,
+        "disableLocalCaJwt": args.disableLocalCaJwt,
+        "issuer": args.issuer,
+        "kubernetesCaCert": args.kubernetesCaCert,
+        "kubernetesHost": args.kubernetesHost,
+        "namespace": args.namespace,
+        "pemKeys": args.pemKeys,
+    }, opts);
 }
 
 /**

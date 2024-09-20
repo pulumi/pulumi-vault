@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  */
 export function getAuthBackends(args?: GetAuthBackendsArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getAuthBackends:getAuthBackends", {
         "namespace": args.namespace,
@@ -89,7 +88,12 @@ export interface GetAuthBackendsResult {
  * ```
  */
 export function getAuthBackendsOutput(args?: GetAuthBackendsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendsResult> {
-    return pulumi.output(args).apply((a: any) => getAuthBackends(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:index/getAuthBackends:getAuthBackends", {
+        "namespace": args.namespace,
+        "type": args.type,
+    }, opts);
 }
 
 /**

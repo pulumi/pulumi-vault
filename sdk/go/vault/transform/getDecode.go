@@ -122,14 +122,20 @@ type GetDecodeResult struct {
 
 func GetDecodeOutput(ctx *pulumi.Context, args GetDecodeOutputArgs, opts ...pulumi.InvokeOption) GetDecodeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDecodeResult, error) {
+		ApplyT(func(v interface{}) (GetDecodeResultOutput, error) {
 			args := v.(GetDecodeArgs)
-			r, err := GetDecode(ctx, &args, opts...)
-			var s GetDecodeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDecodeResult
+			secret, err := ctx.InvokePackageRaw("vault:transform/getDecode:getDecode", args, &rv, "", opts...)
+			if err != nil {
+				return GetDecodeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDecodeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDecodeResultOutput), nil
+			}
+			return output, nil
 		}).(GetDecodeResultOutput)
 }
 

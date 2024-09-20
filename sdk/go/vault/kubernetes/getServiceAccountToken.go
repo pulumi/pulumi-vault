@@ -142,14 +142,20 @@ type GetServiceAccountTokenResult struct {
 
 func GetServiceAccountTokenOutput(ctx *pulumi.Context, args GetServiceAccountTokenOutputArgs, opts ...pulumi.InvokeOption) GetServiceAccountTokenResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetServiceAccountTokenResult, error) {
+		ApplyT(func(v interface{}) (GetServiceAccountTokenResultOutput, error) {
 			args := v.(GetServiceAccountTokenArgs)
-			r, err := GetServiceAccountToken(ctx, &args, opts...)
-			var s GetServiceAccountTokenResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetServiceAccountTokenResult
+			secret, err := ctx.InvokePackageRaw("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args, &rv, "", opts...)
+			if err != nil {
+				return GetServiceAccountTokenResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetServiceAccountTokenResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetServiceAccountTokenResultOutput), nil
+			}
+			return output, nil
 		}).(GetServiceAccountTokenResultOutput)
 }
 

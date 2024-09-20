@@ -54,14 +54,20 @@ type GetAccessCredentialsResult struct {
 
 func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAccessCredentialsResult, error) {
+		ApplyT(func(v interface{}) (GetAccessCredentialsResultOutput, error) {
 			args := v.(GetAccessCredentialsArgs)
-			r, err := GetAccessCredentials(ctx, &args, opts...)
-			var s GetAccessCredentialsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAccessCredentialsResult
+			secret, err := ctx.InvokePackageRaw("vault:ad/getAccessCredentials:getAccessCredentials", args, &rv, "", opts...)
+			if err != nil {
+				return GetAccessCredentialsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAccessCredentialsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAccessCredentialsResultOutput), nil
+			}
+			return output, nil
 		}).(GetAccessCredentialsResultOutput)
 }
 

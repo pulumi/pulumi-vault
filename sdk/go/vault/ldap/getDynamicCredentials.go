@@ -45,14 +45,20 @@ type GetDynamicCredentialsResult struct {
 
 func GetDynamicCredentialsOutput(ctx *pulumi.Context, args GetDynamicCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetDynamicCredentialsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDynamicCredentialsResult, error) {
+		ApplyT(func(v interface{}) (GetDynamicCredentialsResultOutput, error) {
 			args := v.(GetDynamicCredentialsArgs)
-			r, err := GetDynamicCredentials(ctx, &args, opts...)
-			var s GetDynamicCredentialsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDynamicCredentialsResult
+			secret, err := ctx.InvokePackageRaw("vault:ldap/getDynamicCredentials:getDynamicCredentials", args, &rv, "", opts...)
+			if err != nil {
+				return GetDynamicCredentialsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDynamicCredentialsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDynamicCredentialsResultOutput), nil
+			}
+			return output, nil
 		}).(GetDynamicCredentialsResultOutput)
 }
 

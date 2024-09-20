@@ -101,14 +101,20 @@ type GetOidcPublicKeysResult struct {
 
 func GetOidcPublicKeysOutput(ctx *pulumi.Context, args GetOidcPublicKeysOutputArgs, opts ...pulumi.InvokeOption) GetOidcPublicKeysResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOidcPublicKeysResult, error) {
+		ApplyT(func(v interface{}) (GetOidcPublicKeysResultOutput, error) {
 			args := v.(GetOidcPublicKeysArgs)
-			r, err := GetOidcPublicKeys(ctx, &args, opts...)
-			var s GetOidcPublicKeysResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetOidcPublicKeysResult
+			secret, err := ctx.InvokePackageRaw("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args, &rv, "", opts...)
+			if err != nil {
+				return GetOidcPublicKeysResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetOidcPublicKeysResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetOidcPublicKeysResultOutput), nil
+			}
+			return output, nil
 		}).(GetOidcPublicKeysResultOutput)
 }
 

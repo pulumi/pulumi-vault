@@ -24,7 +24,6 @@ import * as utilities from "../utilities";
  */
 export function getEntity(args?: GetEntityArgs, opts?: pulumi.InvokeOptions): Promise<GetEntityResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getEntity:getEntity", {
         "aliasId": args.aliasId,
@@ -155,7 +154,16 @@ export interface GetEntityResult {
  * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
  */
 export function getEntityOutput(args?: GetEntityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEntityResult> {
-    return pulumi.output(args).apply((a: any) => getEntity(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:identity/getEntity:getEntity", {
+        "aliasId": args.aliasId,
+        "aliasMountAccessor": args.aliasMountAccessor,
+        "aliasName": args.aliasName,
+        "entityId": args.entityId,
+        "entityName": args.entityName,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

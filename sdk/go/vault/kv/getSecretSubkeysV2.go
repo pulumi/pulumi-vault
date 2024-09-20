@@ -121,14 +121,20 @@ type GetSecretSubkeysV2Result struct {
 
 func GetSecretSubkeysV2Output(ctx *pulumi.Context, args GetSecretSubkeysV2OutputArgs, opts ...pulumi.InvokeOption) GetSecretSubkeysV2ResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetSecretSubkeysV2Result, error) {
+		ApplyT(func(v interface{}) (GetSecretSubkeysV2ResultOutput, error) {
 			args := v.(GetSecretSubkeysV2Args)
-			r, err := GetSecretSubkeysV2(ctx, &args, opts...)
-			var s GetSecretSubkeysV2Result
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetSecretSubkeysV2Result
+			secret, err := ctx.InvokePackageRaw("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args, &rv, "", opts...)
+			if err != nil {
+				return GetSecretSubkeysV2ResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetSecretSubkeysV2ResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetSecretSubkeysV2ResultOutput), nil
+			}
+			return output, nil
 		}).(GetSecretSubkeysV2ResultOutput)
 }
 

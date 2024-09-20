@@ -25,7 +25,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getAuthBackendRoleId(args: GetAuthBackendRoleIdArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleIdResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", {
         "backend": args.backend,
@@ -93,7 +92,12 @@ export interface GetAuthBackendRoleIdResult {
  * ```
  */
 export function getAuthBackendRoleIdOutput(args: GetAuthBackendRoleIdOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleIdResult> {
-    return pulumi.output(args).apply((a: any) => getAuthBackendRoleId(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", {
+        "backend": args.backend,
+        "namespace": args.namespace,
+        "roleName": args.roleName,
+    }, opts);
 }
 
 /**

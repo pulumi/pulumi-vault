@@ -30,7 +30,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getBackendIssuer(args: GetBackendIssuerArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendIssuerResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:pkiSecret/getBackendIssuer:getBackendIssuer", {
         "backend": args.backend,
@@ -132,7 +131,12 @@ export interface GetBackendIssuerResult {
  * ```
  */
 export function getBackendIssuerOutput(args: GetBackendIssuerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendIssuerResult> {
-    return pulumi.output(args).apply((a: any) => getBackendIssuer(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendIssuer:getBackendIssuer", {
+        "backend": args.backend,
+        "issuerRef": args.issuerRef,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

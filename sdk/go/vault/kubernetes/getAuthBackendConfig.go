@@ -66,14 +66,20 @@ type LookupAuthBackendConfigResult struct {
 
 func LookupAuthBackendConfigOutput(ctx *pulumi.Context, args LookupAuthBackendConfigOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendConfigResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAuthBackendConfigResult, error) {
+		ApplyT(func(v interface{}) (LookupAuthBackendConfigResultOutput, error) {
 			args := v.(LookupAuthBackendConfigArgs)
-			r, err := LookupAuthBackendConfig(ctx, &args, opts...)
-			var s LookupAuthBackendConfigResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAuthBackendConfigResult
+			secret, err := ctx.InvokePackageRaw("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAuthBackendConfigResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAuthBackendConfigResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAuthBackendConfigResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAuthBackendConfigResultOutput)
 }
 

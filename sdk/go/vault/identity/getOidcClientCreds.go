@@ -82,14 +82,20 @@ type GetOidcClientCredsResult struct {
 
 func GetOidcClientCredsOutput(ctx *pulumi.Context, args GetOidcClientCredsOutputArgs, opts ...pulumi.InvokeOption) GetOidcClientCredsResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOidcClientCredsResult, error) {
+		ApplyT(func(v interface{}) (GetOidcClientCredsResultOutput, error) {
 			args := v.(GetOidcClientCredsArgs)
-			r, err := GetOidcClientCreds(ctx, &args, opts...)
-			var s GetOidcClientCredsResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetOidcClientCredsResult
+			secret, err := ctx.InvokePackageRaw("vault:identity/getOidcClientCreds:getOidcClientCreds", args, &rv, "", opts...)
+			if err != nil {
+				return GetOidcClientCredsResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetOidcClientCredsResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetOidcClientCredsResultOutput), nil
+			}
+			return output, nil
 		}).(GetOidcClientCredsResultOutput)
 }
 

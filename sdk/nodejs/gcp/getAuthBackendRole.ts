@@ -25,7 +25,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getAuthBackendRole(args: GetAuthBackendRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthBackendRoleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
         "backend": args.backend,
@@ -237,7 +236,21 @@ export interface GetAuthBackendRoleResult {
  * ```
  */
 export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
-    return pulumi.output(args).apply((a: any) => getAuthBackendRole(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
+        "backend": args.backend,
+        "namespace": args.namespace,
+        "roleName": args.roleName,
+        "tokenBoundCidrs": args.tokenBoundCidrs,
+        "tokenExplicitMaxTtl": args.tokenExplicitMaxTtl,
+        "tokenMaxTtl": args.tokenMaxTtl,
+        "tokenNoDefaultPolicy": args.tokenNoDefaultPolicy,
+        "tokenNumUses": args.tokenNumUses,
+        "tokenPeriod": args.tokenPeriod,
+        "tokenPolicies": args.tokenPolicies,
+        "tokenTtl": args.tokenTtl,
+        "tokenType": args.tokenType,
+    }, opts);
 }
 
 /**
