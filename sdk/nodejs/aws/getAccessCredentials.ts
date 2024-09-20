@@ -8,7 +8,6 @@ import * as utilities from "../utilities";
  * ## Example Usage
  */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,
@@ -111,7 +110,16 @@ export interface GetAccessCredentialsResult {
  * ## Example Usage
  */
 export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
-    return pulumi.output(args).apply((a: any) => getAccessCredentials(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:aws/getAccessCredentials:getAccessCredentials", {
+        "backend": args.backend,
+        "namespace": args.namespace,
+        "region": args.region,
+        "role": args.role,
+        "roleArn": args.roleArn,
+        "ttl": args.ttl,
+        "type": args.type,
+    }, opts);
 }
 
 /**

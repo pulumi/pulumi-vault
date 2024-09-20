@@ -74,14 +74,20 @@ type GetDecryptResult struct {
 
 func GetDecryptOutput(ctx *pulumi.Context, args GetDecryptOutputArgs, opts ...pulumi.InvokeOption) GetDecryptResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDecryptResult, error) {
+		ApplyT(func(v interface{}) (GetDecryptResultOutput, error) {
 			args := v.(GetDecryptArgs)
-			r, err := GetDecrypt(ctx, &args, opts...)
-			var s GetDecryptResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDecryptResult
+			secret, err := ctx.InvokePackageRaw("vault:transit/getDecrypt:getDecrypt", args, &rv, "", opts...)
+			if err != nil {
+				return GetDecryptResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDecryptResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDecryptResultOutput), nil
+			}
+			return output, nil
 		}).(GetDecryptResultOutput)
 }
 

@@ -36,7 +36,6 @@ import * as utilities from "./utilities";
  */
 export function getPolicyDocument(args?: GetPolicyDocumentArgs, opts?: pulumi.InvokeOptions): Promise<GetPolicyDocumentResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getPolicyDocument:getPolicyDocument", {
         "namespace": args.namespace,
@@ -96,7 +95,12 @@ export interface GetPolicyDocumentResult {
  * ```
  */
 export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicyDocumentResult> {
-    return pulumi.output(args).apply((a: any) => getPolicyDocument(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:index/getPolicyDocument:getPolicyDocument", {
+        "namespace": args.namespace,
+        "rules": args.rules,
+    }, opts);
 }
 
 /**

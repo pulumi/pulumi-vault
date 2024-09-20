@@ -21,7 +21,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): Promise<GetDecryptResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transit/getDecrypt:getDecrypt", {
         "backend": args.backend,
@@ -78,7 +77,14 @@ export interface GetDecryptResult {
  * ```
  */
 export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecryptResult> {
-    return pulumi.output(args).apply((a: any) => getDecrypt(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:transit/getDecrypt:getDecrypt", {
+        "backend": args.backend,
+        "ciphertext": args.ciphertext,
+        "context": args.context,
+        "key": args.key,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

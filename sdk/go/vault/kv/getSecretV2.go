@@ -129,14 +129,20 @@ type LookupSecretV2Result struct {
 
 func LookupSecretV2Output(ctx *pulumi.Context, args LookupSecretV2OutputArgs, opts ...pulumi.InvokeOption) LookupSecretV2ResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupSecretV2Result, error) {
+		ApplyT(func(v interface{}) (LookupSecretV2ResultOutput, error) {
 			args := v.(LookupSecretV2Args)
-			r, err := LookupSecretV2(ctx, &args, opts...)
-			var s LookupSecretV2Result
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupSecretV2Result
+			secret, err := ctx.InvokePackageRaw("vault:kv/getSecretV2:getSecretV2", args, &rv, "", opts...)
+			if err != nil {
+				return LookupSecretV2ResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupSecretV2ResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupSecretV2ResultOutput), nil
+			}
+			return output, nil
 		}).(LookupSecretV2ResultOutput)
 }
 

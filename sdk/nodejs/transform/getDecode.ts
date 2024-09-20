@@ -40,7 +40,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getDecode(args: GetDecodeArgs, opts?: pulumi.InvokeOptions): Promise<GetDecodeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:transform/getDecode:getDecode", {
         "batchInputs": args.batchInputs,
@@ -154,7 +153,18 @@ export interface GetDecodeResult {
  * ```
  */
 export function getDecodeOutput(args: GetDecodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecodeResult> {
-    return pulumi.output(args).apply((a: any) => getDecode(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:transform/getDecode:getDecode", {
+        "batchInputs": args.batchInputs,
+        "batchResults": args.batchResults,
+        "decodedValue": args.decodedValue,
+        "namespace": args.namespace,
+        "path": args.path,
+        "roleName": args.roleName,
+        "transformation": args.transformation,
+        "tweak": args.tweak,
+        "value": args.value,
+    }, opts);
 }
 
 /**

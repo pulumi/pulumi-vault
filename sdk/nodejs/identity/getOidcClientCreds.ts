@@ -27,7 +27,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getOidcClientCreds(args: GetOidcClientCredsArgs, opts?: pulumi.InvokeOptions): Promise<GetOidcClientCredsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:identity/getOidcClientCreds:getOidcClientCreds", {
         "name": args.name,
@@ -95,7 +94,11 @@ export interface GetOidcClientCredsResult {
  * ```
  */
 export function getOidcClientCredsOutput(args: GetOidcClientCredsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcClientCredsResult> {
-    return pulumi.output(args).apply((a: any) => getOidcClientCreds(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:identity/getOidcClientCreds:getOidcClientCreds", {
+        "name": args.name,
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

@@ -101,14 +101,20 @@ type GetNomadAccessTokenResult struct {
 
 func GetNomadAccessTokenOutput(ctx *pulumi.Context, args GetNomadAccessTokenOutputArgs, opts ...pulumi.InvokeOption) GetNomadAccessTokenResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetNomadAccessTokenResult, error) {
+		ApplyT(func(v interface{}) (GetNomadAccessTokenResultOutput, error) {
 			args := v.(GetNomadAccessTokenArgs)
-			r, err := GetNomadAccessToken(ctx, &args, opts...)
-			var s GetNomadAccessTokenResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetNomadAccessTokenResult
+			secret, err := ctx.InvokePackageRaw("vault:index/getNomadAccessToken:getNomadAccessToken", args, &rv, "", opts...)
+			if err != nil {
+				return GetNomadAccessTokenResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetNomadAccessTokenResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetNomadAccessTokenResultOutput), nil
+			}
+			return output, nil
 		}).(GetNomadAccessTokenResultOutput)
 }
 

@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  */
 export function getRaftAutopilotState(args?: GetRaftAutopilotStateArgs, opts?: pulumi.InvokeOptions): Promise<GetRaftAutopilotStateResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getRaftAutopilotState:getRaftAutopilotState", {
         "namespace": args.namespace,
@@ -111,7 +110,11 @@ export interface GetRaftAutopilotStateResult {
  * ```
  */
 export function getRaftAutopilotStateOutput(args?: GetRaftAutopilotStateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRaftAutopilotStateResult> {
-    return pulumi.output(args).apply((a: any) => getRaftAutopilotState(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:index/getRaftAutopilotState:getRaftAutopilotState", {
+        "namespace": args.namespace,
+    }, opts);
 }
 
 /**

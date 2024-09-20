@@ -32,7 +32,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetNomadAccessTokenResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:index/getNomadAccessToken:getNomadAccessToken", {
         "backend": args.backend,
@@ -113,7 +112,12 @@ export interface GetNomadAccessTokenResult {
  * ```
  */
 export function getNomadAccessTokenOutput(args: GetNomadAccessTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNomadAccessTokenResult> {
-    return pulumi.output(args).apply((a: any) => getNomadAccessToken(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:index/getNomadAccessToken:getNomadAccessToken", {
+        "backend": args.backend,
+        "namespace": args.namespace,
+        "role": args.role,
+    }, opts);
 }
 
 /**

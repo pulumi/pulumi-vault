@@ -50,7 +50,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getServiceAccountToken(args: GetServiceAccountTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountTokenResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", {
         "backend": args.backend,
@@ -185,7 +184,15 @@ export interface GetServiceAccountTokenResult {
  * ```
  */
 export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountTokenResult> {
-    return pulumi.output(args).apply((a: any) => getServiceAccountToken(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", {
+        "backend": args.backend,
+        "clusterRoleBinding": args.clusterRoleBinding,
+        "kubernetesNamespace": args.kubernetesNamespace,
+        "namespace": args.namespace,
+        "role": args.role,
+        "ttl": args.ttl,
+    }, opts);
 }
 
 /**
