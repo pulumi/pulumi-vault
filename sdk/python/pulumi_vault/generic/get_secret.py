@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -226,9 +231,6 @@ def get_secret(namespace: Optional[str] = None,
         path=pulumi.get(__ret__, 'path'),
         version=pulumi.get(__ret__, 'version'),
         with_lease_start_time=pulumi.get(__ret__, 'with_lease_start_time'))
-
-
-@_utilities.lift_output_func(get_secret)
 def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[str]] = None,
                       version: Optional[pulumi.Input[Optional[int]]] = None,
@@ -283,4 +285,22 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
            Note that storing the `lease_start_time` in the TF state will cause a persistent drift
            on every `pulumi preview` and will require a `pulumi up`.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['path'] = path
+    __args__['version'] = version
+    __args__['withLeaseStartTime'] = with_lease_start_time
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:generic/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult)
+    return __ret__.apply(lambda __response__: GetSecretResult(
+        data=pulumi.get(__response__, 'data'),
+        data_json=pulumi.get(__response__, 'data_json'),
+        id=pulumi.get(__response__, 'id'),
+        lease_duration=pulumi.get(__response__, 'lease_duration'),
+        lease_id=pulumi.get(__response__, 'lease_id'),
+        lease_renewable=pulumi.get(__response__, 'lease_renewable'),
+        lease_start_time=pulumi.get(__response__, 'lease_start_time'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path'),
+        version=pulumi.get(__response__, 'version'),
+        with_lease_start_time=pulumi.get(__response__, 'with_lease_start_time')))

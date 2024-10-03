@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := vault.GetRaftAutopilotState(ctx, nil, nil)
+//			main, err := vault.GetRaftAutopilotState(ctx, &vault.GetRaftAutopilotStateArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
