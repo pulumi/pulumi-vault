@@ -4,14 +4,36 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'SecretBackendRoleAllowedUserKeyConfigArgs',
+    'SecretBackendRoleAllowedUserKeyConfigArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class SecretBackendRoleAllowedUserKeyConfigArgsDict(TypedDict):
+        lengths: pulumi.Input[Sequence[pulumi.Input[int]]]
+        """
+        List of allowed key lengths, vault-1.10 and above
+        """
+        type: pulumi.Input[str]
+        """
+        Key type, choices:
+        rsa, ecdsa, ec, dsa, ed25519, ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521
+        """
+elif False:
+    SecretBackendRoleAllowedUserKeyConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendRoleAllowedUserKeyConfigArgs:

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vault.LookupNamespace(ctx, nil, nil)
+//			_, err := vault.LookupNamespace(ctx, &vault.LookupNamespaceArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -139,9 +144,6 @@ def get_encrypt(backend: Optional[str] = None,
         key_version=pulumi.get(__ret__, 'key_version'),
         namespace=pulumi.get(__ret__, 'namespace'),
         plaintext=pulumi.get(__ret__, 'plaintext'))
-
-
-@_utilities.lift_output_func(get_encrypt)
 def get_encrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        context: Optional[pulumi.Input[Optional[str]]] = None,
                        key: Optional[pulumi.Input[str]] = None,
@@ -152,4 +154,21 @@ def get_encrypt_output(backend: Optional[pulumi.Input[str]] = None,
     """
     This is a data source which can be used to encrypt plaintext using a Vault Transit key.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['context'] = context
+    __args__['key'] = key
+    __args__['keyVersion'] = key_version
+    __args__['namespace'] = namespace
+    __args__['plaintext'] = plaintext
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult)
+    return __ret__.apply(lambda __response__: GetEncryptResult(
+        backend=pulumi.get(__response__, 'backend'),
+        ciphertext=pulumi.get(__response__, 'ciphertext'),
+        context=pulumi.get(__response__, 'context'),
+        id=pulumi.get(__response__, 'id'),
+        key=pulumi.get(__response__, 'key'),
+        key_version=pulumi.get(__response__, 'key_version'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        plaintext=pulumi.get(__response__, 'plaintext')))

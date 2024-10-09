@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -110,9 +115,6 @@ def get_static_access_credentials(backend: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         namespace=pulumi.get(__ret__, 'namespace'),
         secret_key=pulumi.get(__ret__, 'secret_key'))
-
-
-@_utilities.lift_output_func(get_static_access_credentials)
 def get_static_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                          name: Optional[pulumi.Input[str]] = None,
                                          namespace: Optional[pulumi.Input[Optional[str]]] = None,
@@ -120,4 +122,16 @@ def get_static_access_credentials_output(backend: Optional[pulumi.Input[str]] = 
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['name'] = name
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:aws/getStaticAccessCredentials:getStaticAccessCredentials', __args__, opts=opts, typ=GetStaticAccessCredentialsResult)
+    return __ret__.apply(lambda __response__: GetStaticAccessCredentialsResult(
+        access_key=pulumi.get(__response__, 'access_key'),
+        backend=pulumi.get(__response__, 'backend'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        secret_key=pulumi.get(__response__, 'secret_key')))

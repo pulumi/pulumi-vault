@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -393,9 +398,6 @@ def get_auth_backend_role(backend: Optional[str] = None,
         token_ttl=pulumi.get(__ret__, 'token_ttl'),
         token_type=pulumi.get(__ret__, 'token_type'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_auth_backend_role)
 def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                  role_name: Optional[pulumi.Input[str]] = None,
@@ -458,4 +460,40 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] 
            `default-service` and `default-batch` which specify the type to return unless the client
            requests a different type at generation time.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['namespace'] = namespace
+    __args__['roleName'] = role_name
+    __args__['tokenBoundCidrs'] = token_bound_cidrs
+    __args__['tokenExplicitMaxTtl'] = token_explicit_max_ttl
+    __args__['tokenMaxTtl'] = token_max_ttl
+    __args__['tokenNoDefaultPolicy'] = token_no_default_policy
+    __args__['tokenNumUses'] = token_num_uses
+    __args__['tokenPeriod'] = token_period
+    __args__['tokenPolicies'] = token_policies
+    __args__['tokenTtl'] = token_ttl
+    __args__['tokenType'] = token_type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:gcp/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult)
+    return __ret__.apply(lambda __response__: GetAuthBackendRoleResult(
+        backend=pulumi.get(__response__, 'backend'),
+        bound_instance_groups=pulumi.get(__response__, 'bound_instance_groups'),
+        bound_labels=pulumi.get(__response__, 'bound_labels'),
+        bound_projects=pulumi.get(__response__, 'bound_projects'),
+        bound_regions=pulumi.get(__response__, 'bound_regions'),
+        bound_service_accounts=pulumi.get(__response__, 'bound_service_accounts'),
+        bound_zones=pulumi.get(__response__, 'bound_zones'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        role_id=pulumi.get(__response__, 'role_id'),
+        role_name=pulumi.get(__response__, 'role_name'),
+        token_bound_cidrs=pulumi.get(__response__, 'token_bound_cidrs'),
+        token_explicit_max_ttl=pulumi.get(__response__, 'token_explicit_max_ttl'),
+        token_max_ttl=pulumi.get(__response__, 'token_max_ttl'),
+        token_no_default_policy=pulumi.get(__response__, 'token_no_default_policy'),
+        token_num_uses=pulumi.get(__response__, 'token_num_uses'),
+        token_period=pulumi.get(__response__, 'token_period'),
+        token_policies=pulumi.get(__response__, 'token_policies'),
+        token_ttl=pulumi.get(__response__, 'token_ttl'),
+        token_type=pulumi.get(__response__, 'token_type'),
+        type=pulumi.get(__response__, 'type')))

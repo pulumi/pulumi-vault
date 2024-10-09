@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -176,9 +181,6 @@ def get_auth_backend_config(backend: Optional[str] = None,
         kubernetes_host=pulumi.get(__ret__, 'kubernetes_host'),
         namespace=pulumi.get(__ret__, 'namespace'),
         pem_keys=pulumi.get(__ret__, 'pem_keys'))
-
-
-@_utilities.lift_output_func(get_auth_backend_config)
 def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
                                    disable_iss_validation: Optional[pulumi.Input[Optional[bool]]] = None,
                                    disable_local_ca_jwt: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -205,4 +207,24 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
            *Available only for Vault Enterprise*.
     :param Sequence[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['disableIssValidation'] = disable_iss_validation
+    __args__['disableLocalCaJwt'] = disable_local_ca_jwt
+    __args__['issuer'] = issuer
+    __args__['kubernetesCaCert'] = kubernetes_ca_cert
+    __args__['kubernetesHost'] = kubernetes_host
+    __args__['namespace'] = namespace
+    __args__['pemKeys'] = pem_keys
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult)
+    return __ret__.apply(lambda __response__: GetAuthBackendConfigResult(
+        backend=pulumi.get(__response__, 'backend'),
+        disable_iss_validation=pulumi.get(__response__, 'disable_iss_validation'),
+        disable_local_ca_jwt=pulumi.get(__response__, 'disable_local_ca_jwt'),
+        id=pulumi.get(__response__, 'id'),
+        issuer=pulumi.get(__response__, 'issuer'),
+        kubernetes_ca_cert=pulumi.get(__response__, 'kubernetes_ca_cert'),
+        kubernetes_host=pulumi.get(__response__, 'kubernetes_host'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        pem_keys=pulumi.get(__response__, 'pem_keys')))
