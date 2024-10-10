@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -203,9 +208,6 @@ def get_decode(batch_inputs: Optional[Sequence[Mapping[str, str]]] = None,
         transformation=pulumi.get(__ret__, 'transformation'),
         tweak=pulumi.get(__ret__, 'tweak'),
         value=pulumi.get(__ret__, 'value'))
-
-
-@_utilities.lift_output_func(get_decode)
 def get_decode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, str]]]]] = None,
                       batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, str]]]]] = None,
                       decoded_value: Optional[pulumi.Input[Optional[str]]] = None,
@@ -260,4 +262,26 @@ def get_decode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
     :param str tweak: The tweak value to use. Only applicable for FPE transformations
     :param str value: The value in which to decode.
     """
-    ...
+    __args__ = dict()
+    __args__['batchInputs'] = batch_inputs
+    __args__['batchResults'] = batch_results
+    __args__['decodedValue'] = decoded_value
+    __args__['namespace'] = namespace
+    __args__['path'] = path
+    __args__['roleName'] = role_name
+    __args__['transformation'] = transformation
+    __args__['tweak'] = tweak
+    __args__['value'] = value
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:transform/getDecode:getDecode', __args__, opts=opts, typ=GetDecodeResult)
+    return __ret__.apply(lambda __response__: GetDecodeResult(
+        batch_inputs=pulumi.get(__response__, 'batch_inputs'),
+        batch_results=pulumi.get(__response__, 'batch_results'),
+        decoded_value=pulumi.get(__response__, 'decoded_value'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path'),
+        role_name=pulumi.get(__response__, 'role_name'),
+        transformation=pulumi.get(__response__, 'transformation'),
+        tweak=pulumi.get(__response__, 'tweak'),
+        value=pulumi.get(__response__, 'value')))

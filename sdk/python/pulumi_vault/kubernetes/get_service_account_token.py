@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -254,9 +259,6 @@ def get_service_account_token(backend: Optional[str] = None,
         service_account_namespace=pulumi.get(__ret__, 'service_account_namespace'),
         service_account_token=pulumi.get(__ret__, 'service_account_token'),
         ttl=pulumi.get(__ret__, 'ttl'))
-
-
-@_utilities.lift_output_func(get_service_account_token)
 def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None,
                                      cluster_role_binding: Optional[pulumi.Input[Optional[bool]]] = None,
                                      kubernetes_namespace: Optional[pulumi.Input[str]] = None,
@@ -317,4 +319,26 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
     :param str ttl: The TTL of the generated Kubernetes service account token, specified in 
            seconds or as a Go duration format string.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['clusterRoleBinding'] = cluster_role_binding
+    __args__['kubernetesNamespace'] = kubernetes_namespace
+    __args__['namespace'] = namespace
+    __args__['role'] = role
+    __args__['ttl'] = ttl
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:kubernetes/getServiceAccountToken:getServiceAccountToken', __args__, opts=opts, typ=GetServiceAccountTokenResult)
+    return __ret__.apply(lambda __response__: GetServiceAccountTokenResult(
+        backend=pulumi.get(__response__, 'backend'),
+        cluster_role_binding=pulumi.get(__response__, 'cluster_role_binding'),
+        id=pulumi.get(__response__, 'id'),
+        kubernetes_namespace=pulumi.get(__response__, 'kubernetes_namespace'),
+        lease_duration=pulumi.get(__response__, 'lease_duration'),
+        lease_id=pulumi.get(__response__, 'lease_id'),
+        lease_renewable=pulumi.get(__response__, 'lease_renewable'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        role=pulumi.get(__response__, 'role'),
+        service_account_name=pulumi.get(__response__, 'service_account_name'),
+        service_account_namespace=pulumi.get(__response__, 'service_account_namespace'),
+        service_account_token=pulumi.get(__response__, 'service_account_token'),
+        ttl=pulumi.get(__response__, 'ttl')))

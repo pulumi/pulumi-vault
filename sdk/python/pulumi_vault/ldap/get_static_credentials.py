@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -160,9 +165,6 @@ def get_static_credentials(mount: Optional[str] = None,
         rotation_period=pulumi.get(__ret__, 'rotation_period'),
         ttl=pulumi.get(__ret__, 'ttl'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_static_credentials)
 def get_static_credentials_output(mount: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   role_name: Optional[pulumi.Input[str]] = None,
@@ -170,4 +172,21 @@ def get_static_credentials_output(mount: Optional[pulumi.Input[str]] = None,
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['mount'] = mount
+    __args__['namespace'] = namespace
+    __args__['roleName'] = role_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:ldap/getStaticCredentials:getStaticCredentials', __args__, opts=opts, typ=GetStaticCredentialsResult)
+    return __ret__.apply(lambda __response__: GetStaticCredentialsResult(
+        dn=pulumi.get(__response__, 'dn'),
+        id=pulumi.get(__response__, 'id'),
+        last_password=pulumi.get(__response__, 'last_password'),
+        last_vault_rotation=pulumi.get(__response__, 'last_vault_rotation'),
+        mount=pulumi.get(__response__, 'mount'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        password=pulumi.get(__response__, 'password'),
+        role_name=pulumi.get(__response__, 'role_name'),
+        rotation_period=pulumi.get(__response__, 'rotation_period'),
+        ttl=pulumi.get(__response__, 'ttl'),
+        username=pulumi.get(__response__, 'username')))

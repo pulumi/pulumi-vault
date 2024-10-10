@@ -4,14 +4,46 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'SecretV2CustomMetadataArgs',
+    'SecretV2CustomMetadataArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class SecretV2CustomMetadataArgsDict(TypedDict):
+        cas_required: NotRequired[pulumi.Input[bool]]
+        """
+        If true, all keys will require the cas parameter to be set on all write requests.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A mapping whose keys are the top-level data keys returned from
+        Vault and whose values are the corresponding values. This map can only
+        represent string data, so any non-string values returned from Vault are
+        serialized as JSON.
+        """
+        delete_version_after: NotRequired[pulumi.Input[int]]
+        """
+        If set, specifies the length of time before a version is deleted.
+        """
+        max_versions: NotRequired[pulumi.Input[int]]
+        """
+        The number of versions to keep per key.
+        """
+elif False:
+    SecretV2CustomMetadataArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretV2CustomMetadataArgs:

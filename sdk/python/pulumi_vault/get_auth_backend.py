@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -183,9 +188,6 @@ def get_auth_backend(namespace: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_auth_backend)
 def get_auth_backend_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                             path: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendResult]:
@@ -206,4 +208,19 @@ def get_auth_backend_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
            *Available only for Vault Enterprise*.
     :param str path: The auth backend mount point.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['path'] = path
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:index/getAuthBackend:getAuthBackend', __args__, opts=opts, typ=GetAuthBackendResult)
+    return __ret__.apply(lambda __response__: GetAuthBackendResult(
+        accessor=pulumi.get(__response__, 'accessor'),
+        default_lease_ttl_seconds=pulumi.get(__response__, 'default_lease_ttl_seconds'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        listing_visibility=pulumi.get(__response__, 'listing_visibility'),
+        local=pulumi.get(__response__, 'local'),
+        max_lease_ttl_seconds=pulumi.get(__response__, 'max_lease_ttl_seconds'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path'),
+        type=pulumi.get(__response__, 'type')))

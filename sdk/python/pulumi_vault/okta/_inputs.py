@@ -4,15 +4,37 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'AuthBackendGroupArgs',
+    'AuthBackendGroupArgsDict',
     'AuthBackendUserArgs',
+    'AuthBackendUserArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AuthBackendGroupArgsDict(TypedDict):
+        group_name: pulumi.Input[str]
+        """
+        Name of the Okta group
+        """
+        policies: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        Policies to associate with this group
+        """
+elif False:
+    AuthBackendGroupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AuthBackendGroupArgs:
@@ -50,6 +72,23 @@ class AuthBackendGroupArgs:
     def policies(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class AuthBackendUserArgsDict(TypedDict):
+        username: pulumi.Input[str]
+        """
+        Name of the user within Okta
+        """
+        groups: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Groups within the Okta auth backend to associate with this user
+        """
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Policies to associate with this user
+        """
+elif False:
+    AuthBackendUserArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AuthBackendUserArgs:

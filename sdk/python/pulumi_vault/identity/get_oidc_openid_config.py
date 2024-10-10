@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -268,9 +273,6 @@ def get_oidc_openid_config(name: Optional[str] = None,
         token_endpoint=pulumi.get(__ret__, 'token_endpoint'),
         token_endpoint_auth_methods_supporteds=pulumi.get(__ret__, 'token_endpoint_auth_methods_supporteds'),
         userinfo_endpoint=pulumi.get(__ret__, 'userinfo_endpoint'))
-
-
-@_utilities.lift_output_func(get_oidc_openid_config)
 def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcOpenidConfigResult]:
@@ -309,4 +311,24 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:identity/getOidcOpenidConfig:getOidcOpenidConfig', __args__, opts=opts, typ=GetOidcOpenidConfigResult)
+    return __ret__.apply(lambda __response__: GetOidcOpenidConfigResult(
+        authorization_endpoint=pulumi.get(__response__, 'authorization_endpoint'),
+        grant_types_supporteds=pulumi.get(__response__, 'grant_types_supporteds'),
+        id=pulumi.get(__response__, 'id'),
+        id_token_signing_alg_values_supporteds=pulumi.get(__response__, 'id_token_signing_alg_values_supporteds'),
+        issuer=pulumi.get(__response__, 'issuer'),
+        jwks_uri=pulumi.get(__response__, 'jwks_uri'),
+        name=pulumi.get(__response__, 'name'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        request_uri_parameter_supported=pulumi.get(__response__, 'request_uri_parameter_supported'),
+        response_types_supporteds=pulumi.get(__response__, 'response_types_supporteds'),
+        scopes_supporteds=pulumi.get(__response__, 'scopes_supporteds'),
+        subject_types_supporteds=pulumi.get(__response__, 'subject_types_supporteds'),
+        token_endpoint=pulumi.get(__response__, 'token_endpoint'),
+        token_endpoint_auth_methods_supporteds=pulumi.get(__response__, 'token_endpoint_auth_methods_supporteds'),
+        userinfo_endpoint=pulumi.get(__response__, 'userinfo_endpoint')))

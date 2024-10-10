@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -142,9 +147,6 @@ def get_backend_issuers(backend: Optional[str] = None,
         key_info_json=pulumi.get(__ret__, 'key_info_json'),
         keys=pulumi.get(__ret__, 'keys'),
         namespace=pulumi.get(__ret__, 'namespace'))
-
-
-@_utilities.lift_output_func(get_backend_issuers)
 def get_backend_issuers_output(backend: Optional[pulumi.Input[str]] = None,
                                namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendIssuersResult]:
@@ -176,4 +178,15 @@ def get_backend_issuers_output(backend: Optional[pulumi.Input[str]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendIssuers:getBackendIssuers', __args__, opts=opts, typ=GetBackendIssuersResult)
+    return __ret__.apply(lambda __response__: GetBackendIssuersResult(
+        backend=pulumi.get(__response__, 'backend'),
+        id=pulumi.get(__response__, 'id'),
+        key_info=pulumi.get(__response__, 'key_info'),
+        key_info_json=pulumi.get(__response__, 'key_info_json'),
+        keys=pulumi.get(__response__, 'keys'),
+        namespace=pulumi.get(__response__, 'namespace')))

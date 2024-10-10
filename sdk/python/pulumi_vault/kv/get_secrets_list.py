@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -127,9 +132,6 @@ def get_secrets_list(namespace: Optional[str] = None,
         names=pulumi.get(__ret__, 'names'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-
-
-@_utilities.lift_output_func(get_secrets_list)
 def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                             path: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsListResult]:
@@ -172,4 +174,13 @@ def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
            *Available only for Vault Enterprise*.
     :param str path: Full KV-V1 path where secrets will be listed.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['path'] = path
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:kv/getSecretsList:getSecretsList', __args__, opts=opts, typ=GetSecretsListResult)
+    return __ret__.apply(lambda __response__: GetSecretsListResult(
+        id=pulumi.get(__response__, 'id'),
+        names=pulumi.get(__response__, 'names'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path')))
