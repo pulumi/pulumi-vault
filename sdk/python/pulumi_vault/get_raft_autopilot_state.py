@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -223,9 +228,6 @@ def get_raft_autopilot_state(namespace: Optional[str] = None,
         upgrade_info=pulumi.get(__ret__, 'upgrade_info'),
         upgrade_info_json=pulumi.get(__ret__, 'upgrade_info_json'),
         voters=pulumi.get(__ret__, 'voters'))
-
-
-@_utilities.lift_output_func(get_raft_autopilot_state)
 def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRaftAutopilotStateResult]:
     """
@@ -245,4 +247,21 @@ def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[st
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:index/getRaftAutopilotState:getRaftAutopilotState', __args__, opts=opts, typ=GetRaftAutopilotStateResult)
+    return __ret__.apply(lambda __response__: GetRaftAutopilotStateResult(
+        failure_tolerance=pulumi.get(__response__, 'failure_tolerance'),
+        healthy=pulumi.get(__response__, 'healthy'),
+        id=pulumi.get(__response__, 'id'),
+        leader=pulumi.get(__response__, 'leader'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        optimistic_failure_tolerance=pulumi.get(__response__, 'optimistic_failure_tolerance'),
+        redundancy_zones=pulumi.get(__response__, 'redundancy_zones'),
+        redundancy_zones_json=pulumi.get(__response__, 'redundancy_zones_json'),
+        servers=pulumi.get(__response__, 'servers'),
+        servers_json=pulumi.get(__response__, 'servers_json'),
+        upgrade_info=pulumi.get(__response__, 'upgrade_info'),
+        upgrade_info_json=pulumi.get(__response__, 'upgrade_info_json'),
+        voters=pulumi.get(__response__, 'voters')))

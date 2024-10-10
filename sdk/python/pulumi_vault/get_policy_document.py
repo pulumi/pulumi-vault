@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -115,9 +120,6 @@ def get_policy_document(namespace: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         namespace=pulumi.get(__ret__, 'namespace'),
         rules=pulumi.get(__ret__, 'rules'))
-
-
-@_utilities.lift_output_func(get_policy_document)
 def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                rules: Optional[pulumi.Input[Optional[Sequence[Union['GetPolicyDocumentRuleArgs', 'GetPolicyDocumentRuleArgsDict']]]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPolicyDocumentResult]:
@@ -146,4 +148,13 @@ def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[str]]] 
         policy=example.hcl)
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['rules'] = rules
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:index/getPolicyDocument:getPolicyDocument', __args__, opts=opts, typ=GetPolicyDocumentResult)
+    return __ret__.apply(lambda __response__: GetPolicyDocumentResult(
+        hcl=pulumi.get(__response__, 'hcl'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        rules=pulumi.get(__response__, 'rules')))

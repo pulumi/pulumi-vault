@@ -4,15 +4,37 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'BackendConfigEstAuthenticatorsArgs',
+    'BackendConfigEstAuthenticatorsArgsDict',
     'SecretBackendRolePolicyIdentifierArgs',
+    'SecretBackendRolePolicyIdentifierArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class BackendConfigEstAuthenticatorsArgsDict(TypedDict):
+        cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
+        userpass: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        "The accessor (required) property for user pass auth backends".
+        """
+elif False:
+    BackendConfigEstAuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class BackendConfigEstAuthenticatorsArgs:
@@ -52,6 +74,25 @@ class BackendConfigEstAuthenticatorsArgs:
     def userpass(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "userpass", value)
 
+
+if not MYPY:
+    class SecretBackendRolePolicyIdentifierArgsDict(TypedDict):
+        oid: pulumi.Input[str]
+        """
+        The OID for the policy identifier
+        """
+        cps: NotRequired[pulumi.Input[str]]
+        """
+        The URL of the CPS for the policy identifier
+
+        Example usage:
+        """
+        notice: NotRequired[pulumi.Input[str]]
+        """
+        A notice for the policy identifier
+        """
+elif False:
+    SecretBackendRolePolicyIdentifierArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendRolePolicyIdentifierArgs:

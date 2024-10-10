@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -311,9 +316,6 @@ def get_entity(alias_id: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         namespace_id=pulumi.get(__ret__, 'namespace_id'),
         policies=pulumi.get(__ret__, 'policies'))
-
-
-@_utilities.lift_output_func(get_entity)
 def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                       alias_mount_accessor: Optional[pulumi.Input[Optional[str]]] = None,
                       alias_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -351,4 +353,32 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['aliasId'] = alias_id
+    __args__['aliasMountAccessor'] = alias_mount_accessor
+    __args__['aliasName'] = alias_name
+    __args__['entityId'] = entity_id
+    __args__['entityName'] = entity_name
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:identity/getEntity:getEntity', __args__, opts=opts, typ=GetEntityResult)
+    return __ret__.apply(lambda __response__: GetEntityResult(
+        alias_id=pulumi.get(__response__, 'alias_id'),
+        alias_mount_accessor=pulumi.get(__response__, 'alias_mount_accessor'),
+        alias_name=pulumi.get(__response__, 'alias_name'),
+        aliases=pulumi.get(__response__, 'aliases'),
+        creation_time=pulumi.get(__response__, 'creation_time'),
+        data_json=pulumi.get(__response__, 'data_json'),
+        direct_group_ids=pulumi.get(__response__, 'direct_group_ids'),
+        disabled=pulumi.get(__response__, 'disabled'),
+        entity_id=pulumi.get(__response__, 'entity_id'),
+        entity_name=pulumi.get(__response__, 'entity_name'),
+        group_ids=pulumi.get(__response__, 'group_ids'),
+        id=pulumi.get(__response__, 'id'),
+        inherited_group_ids=pulumi.get(__response__, 'inherited_group_ids'),
+        last_update_time=pulumi.get(__response__, 'last_update_time'),
+        merged_entity_ids=pulumi.get(__response__, 'merged_entity_ids'),
+        metadata=pulumi.get(__response__, 'metadata'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        policies=pulumi.get(__response__, 'policies')))
