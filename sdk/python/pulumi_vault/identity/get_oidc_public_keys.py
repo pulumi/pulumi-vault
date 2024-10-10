@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -124,9 +129,6 @@ def get_oidc_public_keys(name: Optional[str] = None,
         keys=pulumi.get(__ret__, 'keys'),
         name=pulumi.get(__ret__, 'name'),
         namespace=pulumi.get(__ret__, 'namespace'))
-
-
-@_utilities.lift_output_func(get_oidc_public_keys)
 def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
                                 namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcPublicKeysResult]:
@@ -165,4 +167,13 @@ def get_oidc_public_keys_output(name: Optional[pulumi.Input[str]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:identity/getOidcPublicKeys:getOidcPublicKeys', __args__, opts=opts, typ=GetOidcPublicKeysResult)
+    return __ret__.apply(lambda __response__: GetOidcPublicKeysResult(
+        id=pulumi.get(__response__, 'id'),
+        keys=pulumi.get(__response__, 'keys'),
+        name=pulumi.get(__response__, 'name'),
+        namespace=pulumi.get(__response__, 'namespace')))

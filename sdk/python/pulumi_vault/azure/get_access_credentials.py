@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -298,9 +303,6 @@ def get_access_credentials(backend: Optional[str] = None,
         subscription_id=pulumi.get(__ret__, 'subscription_id'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'),
         validate_creds=pulumi.get(__ret__, 'validate_creds'))
-
-
-@_utilities.lift_output_func(get_access_credentials)
 def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   environment: Optional[pulumi.Input[Optional[str]]] = None,
                                   max_cred_validation_seconds: Optional[pulumi.Input[Optional[int]]] = None,
@@ -365,4 +367,34 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            credentials without checking whether they have fully propagated throughout
            Azure Active Directory. Designating `true` activates testing.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['environment'] = environment
+    __args__['maxCredValidationSeconds'] = max_cred_validation_seconds
+    __args__['namespace'] = namespace
+    __args__['numSecondsBetweenTests'] = num_seconds_between_tests
+    __args__['numSequentialSuccesses'] = num_sequential_successes
+    __args__['role'] = role
+    __args__['subscriptionId'] = subscription_id
+    __args__['tenantId'] = tenant_id
+    __args__['validateCreds'] = validate_creds
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:azure/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult)
+    return __ret__.apply(lambda __response__: GetAccessCredentialsResult(
+        backend=pulumi.get(__response__, 'backend'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        client_secret=pulumi.get(__response__, 'client_secret'),
+        environment=pulumi.get(__response__, 'environment'),
+        id=pulumi.get(__response__, 'id'),
+        lease_duration=pulumi.get(__response__, 'lease_duration'),
+        lease_id=pulumi.get(__response__, 'lease_id'),
+        lease_renewable=pulumi.get(__response__, 'lease_renewable'),
+        lease_start_time=pulumi.get(__response__, 'lease_start_time'),
+        max_cred_validation_seconds=pulumi.get(__response__, 'max_cred_validation_seconds'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        num_seconds_between_tests=pulumi.get(__response__, 'num_seconds_between_tests'),
+        num_sequential_successes=pulumi.get(__response__, 'num_sequential_successes'),
+        role=pulumi.get(__response__, 'role'),
+        subscription_id=pulumi.get(__response__, 'subscription_id'),
+        tenant_id=pulumi.get(__response__, 'tenant_id'),
+        validate_creds=pulumi.get(__response__, 'validate_creds')))

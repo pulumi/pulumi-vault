@@ -4,49 +4,137 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'SecretBackendConnectionCassandraArgs',
+    'SecretBackendConnectionCassandraArgsDict',
     'SecretBackendConnectionCouchbaseArgs',
+    'SecretBackendConnectionCouchbaseArgsDict',
     'SecretBackendConnectionElasticsearchArgs',
+    'SecretBackendConnectionElasticsearchArgsDict',
     'SecretBackendConnectionHanaArgs',
+    'SecretBackendConnectionHanaArgsDict',
     'SecretBackendConnectionInfluxdbArgs',
+    'SecretBackendConnectionInfluxdbArgsDict',
     'SecretBackendConnectionMongodbArgs',
+    'SecretBackendConnectionMongodbArgsDict',
     'SecretBackendConnectionMongodbatlasArgs',
+    'SecretBackendConnectionMongodbatlasArgsDict',
     'SecretBackendConnectionMssqlArgs',
+    'SecretBackendConnectionMssqlArgsDict',
     'SecretBackendConnectionMysqlArgs',
+    'SecretBackendConnectionMysqlArgsDict',
     'SecretBackendConnectionMysqlAuroraArgs',
+    'SecretBackendConnectionMysqlAuroraArgsDict',
     'SecretBackendConnectionMysqlLegacyArgs',
+    'SecretBackendConnectionMysqlLegacyArgsDict',
     'SecretBackendConnectionMysqlRdsArgs',
+    'SecretBackendConnectionMysqlRdsArgsDict',
     'SecretBackendConnectionOracleArgs',
+    'SecretBackendConnectionOracleArgsDict',
     'SecretBackendConnectionPostgresqlArgs',
+    'SecretBackendConnectionPostgresqlArgsDict',
     'SecretBackendConnectionRedisArgs',
+    'SecretBackendConnectionRedisArgsDict',
     'SecretBackendConnectionRedisElasticacheArgs',
+    'SecretBackendConnectionRedisElasticacheArgsDict',
     'SecretBackendConnectionRedshiftArgs',
+    'SecretBackendConnectionRedshiftArgsDict',
     'SecretBackendConnectionSnowflakeArgs',
+    'SecretBackendConnectionSnowflakeArgsDict',
     'SecretsMountCassandraArgs',
+    'SecretsMountCassandraArgsDict',
     'SecretsMountCouchbaseArgs',
+    'SecretsMountCouchbaseArgsDict',
     'SecretsMountElasticsearchArgs',
+    'SecretsMountElasticsearchArgsDict',
     'SecretsMountHanaArgs',
+    'SecretsMountHanaArgsDict',
     'SecretsMountInfluxdbArgs',
+    'SecretsMountInfluxdbArgsDict',
     'SecretsMountMongodbArgs',
+    'SecretsMountMongodbArgsDict',
     'SecretsMountMongodbatlaArgs',
+    'SecretsMountMongodbatlaArgsDict',
     'SecretsMountMssqlArgs',
+    'SecretsMountMssqlArgsDict',
     'SecretsMountMysqlArgs',
+    'SecretsMountMysqlArgsDict',
     'SecretsMountMysqlAuroraArgs',
+    'SecretsMountMysqlAuroraArgsDict',
     'SecretsMountMysqlLegacyArgs',
+    'SecretsMountMysqlLegacyArgsDict',
     'SecretsMountMysqlRdArgs',
+    'SecretsMountMysqlRdArgsDict',
     'SecretsMountOracleArgs',
+    'SecretsMountOracleArgsDict',
     'SecretsMountPostgresqlArgs',
+    'SecretsMountPostgresqlArgsDict',
     'SecretsMountRediArgs',
+    'SecretsMountRediArgsDict',
     'SecretsMountRedisElasticachArgs',
+    'SecretsMountRedisElasticachArgsDict',
     'SecretsMountRedshiftArgs',
+    'SecretsMountRedshiftArgsDict',
     'SecretsMountSnowflakeArgs',
+    'SecretsMountSnowflakeArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class SecretBackendConnectionCassandraArgsDict(TypedDict):
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to use as a connection timeout.
+        """
+        hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Cassandra hosts to connect to.
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to skip verification of the server certificate when using TLS.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The password to use when authenticating with Cassandra.
+        """
+        pem_bundle: NotRequired[pulumi.Input[str]]
+        """
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        pem_json: NotRequired[pulumi.Input[str]]
+        """
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The transport port to use to connect to Cassandra.
+        """
+        protocol_version: NotRequired[pulumi.Input[int]]
+        """
+        The CQL protocol version to use.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The username to use when authenticating with Cassandra.
+        """
+elif False:
+    SecretBackendConnectionCassandraArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionCassandraArgs:
@@ -215,6 +303,43 @@ class SecretBackendConnectionCassandraArgs:
         pulumi.set(self, "username", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionCouchbaseArgsDict(TypedDict):
+        hosts: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        """
+        password: pulumi.Input[str]
+        """
+        Specifies the password corresponding to the given username.
+        """
+        username: pulumi.Input[str]
+        """
+        Specifies the username for Vault to use.
+        """
+        base64_pem: NotRequired[pulumi.Input[str]]
+        """
+        Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        """
+        bucket_name: NotRequired[pulumi.Input[str]]
+        """
+        Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to skip verification of the server certificate when using TLS.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to use TLS when connecting to Couchbase.
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
+elif False:
+    SecretBackendConnectionCouchbaseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionCouchbaseArgs:
     def __init__(__self__, *,
@@ -346,6 +471,51 @@ class SecretBackendConnectionCouchbaseArgs:
     def username_template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username_template", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionElasticsearchArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        """
+        The password to be used in the connection URL
+        """
+        url: pulumi.Input[str]
+        """
+        The URL for Elasticsearch's API
+        """
+        username: pulumi.Input[str]
+        """
+        The username to be used in the connection URL
+        """
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
+        """
+        ca_path: NotRequired[pulumi.Input[str]]
+        """
+        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to the certificate for the Elasticsearch client to present for communication
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        The path to the key for the Elasticsearch client to use for communication
+        """
+        insecure: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable certificate verification
+        """
+        tls_server_name: NotRequired[pulumi.Input[str]]
+        """
+        This, if set, is used to set the SNI host when connecting via TLS
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
+elif False:
+    SecretBackendConnectionElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionElasticsearchArgs:
@@ -511,6 +681,39 @@ class SecretBackendConnectionElasticsearchArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionHanaArgsDict(TypedDict):
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+elif False:
+    SecretBackendConnectionHanaArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionHanaArgs:
     def __init__(__self__, *,
@@ -629,6 +832,51 @@ class SecretBackendConnectionHanaArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionInfluxdbArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        Influxdb host to connect to.
+        """
+        password: pulumi.Input[str]
+        """
+        Specifies the password corresponding to the given username.
+        """
+        username: pulumi.Input[str]
+        """
+        Specifies the username to use for superuser access.
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to use as a connection timeout.
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to skip verification of the server certificate when using TLS.
+        """
+        pem_bundle: NotRequired[pulumi.Input[str]]
+        """
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        pem_json: NotRequired[pulumi.Input[str]]
+        """
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The transport port to use to connect to Influxdb.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS when connecting to Influxdb.
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
+elif False:
+    SecretBackendConnectionInfluxdbArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionInfluxdbArgs:
@@ -794,6 +1042,39 @@ class SecretBackendConnectionInfluxdbArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionMongodbArgsDict(TypedDict):
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionMongodbArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionMongodbArgs:
     def __init__(__self__, *,
@@ -913,6 +1194,23 @@ class SecretBackendConnectionMongodbArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionMongodbatlasArgsDict(TypedDict):
+        private_key: pulumi.Input[str]
+        """
+        The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        """
+        project_id: pulumi.Input[str]
+        """
+        The Project ID the Database User should be created within.
+        """
+        public_key: pulumi.Input[str]
+        """
+        The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        """
+elif False:
+    SecretBackendConnectionMongodbatlasArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionMongodbatlasArgs:
     def __init__(__self__, *,
@@ -964,6 +1262,47 @@ class SecretBackendConnectionMongodbatlasArgs:
     def public_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "public_key", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionMssqlArgsDict(TypedDict):
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        contained_db: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true when the target is a Contained Database, e.g. AzureSQL.
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionMssqlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionMssqlArgs:
@@ -1115,6 +1454,55 @@ class SecretBackendConnectionMssqlArgs:
     def username_template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username_template", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionMysqlArgsDict(TypedDict):
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionMysqlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionMysqlArgs:
@@ -1299,6 +1687,55 @@ class SecretBackendConnectionMysqlArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionMysqlAuroraArgsDict(TypedDict):
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionMysqlAuroraArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionMysqlAuroraArgs:
     def __init__(__self__, *,
@@ -1481,6 +1918,55 @@ class SecretBackendConnectionMysqlAuroraArgs:
     def username_template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username_template", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionMysqlLegacyArgsDict(TypedDict):
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionMysqlLegacyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionMysqlLegacyArgs:
@@ -1665,6 +2151,55 @@ class SecretBackendConnectionMysqlLegacyArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionMysqlRdsArgsDict(TypedDict):
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionMysqlRdsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionMysqlRdsArgs:
     def __init__(__self__, *,
@@ -1848,6 +2383,47 @@ class SecretBackendConnectionMysqlRdsArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionOracleArgsDict(TypedDict):
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        disconnect_sessions: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true to disconnect any open sessions prior to running the revocation statements.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        split_statements: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true in order to split statements after semi-colons.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionOracleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionOracleArgs:
     def __init__(__self__, *,
@@ -1998,6 +2574,51 @@ class SecretBackendConnectionOracleArgs:
     def username_template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username_template", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionPostgresqlArgsDict(TypedDict):
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionPostgresqlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionPostgresqlArgs:
@@ -2166,6 +2787,39 @@ class SecretBackendConnectionPostgresqlArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionRedisArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        Specifies the host to connect to
+        """
+        password: pulumi.Input[str]
+        """
+        Specifies the password corresponding to the given username.
+        """
+        username: pulumi.Input[str]
+        """
+        Specifies the username for Vault to use.
+        """
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to skip verification of the server certificate when using TLS.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The transport port to use to connect to Redis.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to use TLS when connecting to Redis.
+        """
+elif False:
+    SecretBackendConnectionRedisArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionRedisArgs:
     def __init__(__self__, *,
@@ -2282,6 +2936,27 @@ class SecretBackendConnectionRedisArgs:
         pulumi.set(self, "tls", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionRedisElasticacheArgsDict(TypedDict):
+        url: pulumi.Input[str]
+        """
+        The configuration endpoint for the ElastiCache cluster to connect to.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+        """
+elif False:
+    SecretBackendConnectionRedisElasticacheArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionRedisElasticacheArgs:
     def __init__(__self__, *,
@@ -2351,6 +3026,43 @@ class SecretBackendConnectionRedisElasticacheArgs:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class SecretBackendConnectionRedshiftArgsDict(TypedDict):
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionRedshiftArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretBackendConnectionRedshiftArgs:
@@ -2487,6 +3199,39 @@ class SecretBackendConnectionRedshiftArgs:
         pulumi.set(self, "username_template", value)
 
 
+if not MYPY:
+    class SecretBackendConnectionSnowflakeArgsDict(TypedDict):
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+elif False:
+    SecretBackendConnectionSnowflakeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretBackendConnectionSnowflakeArgs:
     def __init__(__self__, *,
@@ -2605,6 +3350,79 @@ class SecretBackendConnectionSnowflakeArgs:
     def username_template(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username_template", value)
 
+
+if not MYPY:
+    class SecretsMountCassandraArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to use as a connection timeout.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Cassandra hosts to connect to.
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to skip verification of the server certificate when using TLS.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The password to use when authenticating with Cassandra.
+        """
+        pem_bundle: NotRequired[pulumi.Input[str]]
+        """
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        pem_json: NotRequired[pulumi.Input[str]]
+        """
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The transport port to use to connect to Cassandra.
+        """
+        protocol_version: NotRequired[pulumi.Input[int]]
+        """
+        The CQL protocol version to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS when connecting to Cassandra.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The username to use when authenticating with Cassandra.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountCassandraArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountCassandraArgs:
@@ -2876,6 +3694,71 @@ class SecretsMountCassandraArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountCouchbaseArgsDict(TypedDict):
+        hosts: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        password: pulumi.Input[str]
+        """
+        Specifies the password corresponding to the given username.
+        """
+        username: pulumi.Input[str]
+        """
+        Specifies the username for Vault to use.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        base64_pem: NotRequired[pulumi.Input[str]]
+        """
+        Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
+        """
+        bucket_name: NotRequired[pulumi.Input[str]]
+        """
+        Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to skip verification of the server certificate when using TLS.
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to use TLS when connecting to Couchbase.
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountCouchbaseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountCouchbaseArgs:
     def __init__(__self__, *,
@@ -3110,6 +3993,79 @@ class SecretsMountCouchbaseArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountElasticsearchArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        password: pulumi.Input[str]
+        """
+        The password to be used in the connection URL
+        """
+        url: pulumi.Input[str]
+        """
+        The URL for Elasticsearch's API
+        """
+        username: pulumi.Input[str]
+        """
+        The username to be used in the connection URL
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
+        """
+        ca_path: NotRequired[pulumi.Input[str]]
+        """
+        The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
+        """
+        client_cert: NotRequired[pulumi.Input[str]]
+        """
+        The path to the certificate for the Elasticsearch client to present for communication
+        """
+        client_key: NotRequired[pulumi.Input[str]]
+        """
+        The path to the key for the Elasticsearch client to use for communication
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        insecure: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to disable certificate verification
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        tls_server_name: NotRequired[pulumi.Input[str]]
+        """
+        This, if set, is used to set the SNI host when connecting via TLS
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountElasticsearchArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountElasticsearchArgs:
@@ -3378,6 +4334,67 @@ class SecretsMountElasticsearchArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountHanaArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountHanaArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountHanaArgs:
     def __init__(__self__, *,
@@ -3599,6 +4616,79 @@ class SecretsMountHanaArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountInfluxdbArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        Influxdb host to connect to.
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        password: pulumi.Input[str]
+        """
+        Specifies the password corresponding to the given username.
+        """
+        username: pulumi.Input[str]
+        """
+        Specifies the username to use for superuser access.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connect_timeout: NotRequired[pulumi.Input[int]]
+        """
+        The number of seconds to use as a connection timeout.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to skip verification of the server certificate when using TLS.
+        """
+        pem_bundle: NotRequired[pulumi.Input[str]]
+        """
+        Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        pem_json: NotRequired[pulumi.Input[str]]
+        """
+        Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The transport port to use to connect to Influxdb.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Whether to use TLS when connecting to Influxdb.
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Template describing how dynamic usernames are generated.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountInfluxdbArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountInfluxdbArgs:
@@ -3867,6 +4957,67 @@ class SecretsMountInfluxdbArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountMongodbArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMongodbArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountMongodbArgs:
     def __init__(__self__, *,
@@ -4089,6 +5240,51 @@ class SecretsMountMongodbArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountMongodbatlaArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        private_key: pulumi.Input[str]
+        """
+        The Private Programmatic API Key used to connect with MongoDB Atlas API.
+        """
+        project_id: pulumi.Input[str]
+        """
+        The Project ID the Database User should be created within.
+        """
+        public_key: pulumi.Input[str]
+        """
+        The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMongodbatlaArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountMongodbatlaArgs:
     def __init__(__self__, *,
@@ -4243,6 +5439,75 @@ class SecretsMountMongodbatlaArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountMssqlArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        contained_db: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true when the target is a Contained Database, e.g. AzureSQL.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMssqlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountMssqlArgs:
@@ -4497,6 +5762,83 @@ class SecretsMountMssqlArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountMysqlArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMysqlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountMysqlArgs:
@@ -4784,6 +6126,83 @@ class SecretsMountMysqlArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountMysqlAuroraArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMysqlAuroraArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountMysqlAuroraArgs:
     def __init__(__self__, *,
@@ -5069,6 +6488,83 @@ class SecretsMountMysqlAuroraArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountMysqlLegacyArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMysqlLegacyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountMysqlLegacyArgs:
@@ -5356,6 +6852,83 @@ class SecretsMountMysqlLegacyArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountMysqlRdArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
+        """
+        tls_certificate_key: NotRequired[pulumi.Input[str]]
+        """
+        x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountMysqlRdArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountMysqlRdArgs:
     def __init__(__self__, *,
@@ -5642,6 +7215,75 @@ class SecretsMountMysqlRdArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountOracleArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        disconnect_sessions: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true to disconnect any open sessions prior to running the revocation statements.
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        split_statements: NotRequired[pulumi.Input[bool]]
+        """
+        Set to true in order to split statements after semi-colons.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountOracleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountOracleArgs:
     def __init__(__self__, *,
@@ -5895,6 +7537,79 @@ class SecretsMountOracleArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountPostgresqlArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        auth_type: NotRequired[pulumi.Input[str]]
+        """
+        Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        service_account_json: NotRequired[pulumi.Input[str]]
+        """
+        A JSON encoded credential for use with IAM authorization
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountPostgresqlArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountPostgresqlArgs:
@@ -6166,6 +7881,67 @@ class SecretsMountPostgresqlArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountRediArgsDict(TypedDict):
+        host: pulumi.Input[str]
+        """
+        Specifies the host to connect to
+        """
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        password: pulumi.Input[str]
+        """
+        Specifies the password corresponding to the given username.
+        """
+        username: pulumi.Input[str]
+        """
+        Specifies the username for Vault to use.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        insecure_tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to skip verification of the server certificate when using TLS.
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        port: NotRequired[pulumi.Input[int]]
+        """
+        The transport port to use to connect to Redis.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        tls: NotRequired[pulumi.Input[bool]]
+        """
+        Specifies whether to use TLS when connecting to Redis.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountRediArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountRediArgs:
     def __init__(__self__, *,
@@ -6385,6 +8161,55 @@ class SecretsMountRediArgs:
         pulumi.set(self, "verify_connection", value)
 
 
+if not MYPY:
+    class SecretsMountRedisElasticachArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        url: pulumi.Input[str]
+        """
+        The configuration endpoint for the ElastiCache cluster to connect to.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountRedisElasticachArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretsMountRedisElasticachArgs:
     def __init__(__self__, *,
@@ -6557,6 +8382,71 @@ class SecretsMountRedisElasticachArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountRedshiftArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        disable_escaping: NotRequired[pulumi.Input[bool]]
+        """
+        Disable special character escaping in username and password
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountRedshiftArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountRedshiftArgs:
@@ -6795,6 +8685,67 @@ class SecretsMountRedshiftArgs:
     def verify_connection(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "verify_connection", value)
 
+
+if not MYPY:
+    class SecretsMountSnowflakeArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        Name of the database connection.
+        """
+        allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles that are allowed to use this
+        connection.
+        """
+        connection_url: NotRequired[pulumi.Input[str]]
+        """
+        Connection string to use to connect to the database.
+        """
+        data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        max_connection_lifetime: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of seconds a connection may be reused.
+        """
+        max_idle_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of idle connections to the database.
+        """
+        max_open_connections: NotRequired[pulumi.Input[int]]
+        """
+        Maximum number of open connections to the database.
+        """
+        password: NotRequired[pulumi.Input[str]]
+        """
+        The root credential password used in the connection URL
+        """
+        plugin_name: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the name of the plugin to use.
+        """
+        root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of database statements to be executed to rotate the root user's credentials.
+        """
+        username: NotRequired[pulumi.Input[str]]
+        """
+        The root credential username used in the connection URL
+        """
+        username_template: NotRequired[pulumi.Input[str]]
+        """
+        Username generation template.
+        """
+        verify_connection: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the connection should be verified on
+        initial configuration or not.
+        """
+elif False:
+    SecretsMountSnowflakeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretsMountSnowflakeArgs:

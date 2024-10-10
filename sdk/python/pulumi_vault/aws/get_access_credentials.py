@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -246,9 +251,6 @@ def get_access_credentials(backend: Optional[str] = None,
         security_token=pulumi.get(__ret__, 'security_token'),
         ttl=pulumi.get(__ret__, 'ttl'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_access_credentials)
 def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -281,4 +283,29 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
            Key. Can also be set to `"sts"`, which will return a security token
            in addition to the keys.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['namespace'] = namespace
+    __args__['region'] = region
+    __args__['role'] = role
+    __args__['roleArn'] = role_arn
+    __args__['ttl'] = ttl
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:aws/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult)
+    return __ret__.apply(lambda __response__: GetAccessCredentialsResult(
+        access_key=pulumi.get(__response__, 'access_key'),
+        backend=pulumi.get(__response__, 'backend'),
+        id=pulumi.get(__response__, 'id'),
+        lease_duration=pulumi.get(__response__, 'lease_duration'),
+        lease_id=pulumi.get(__response__, 'lease_id'),
+        lease_renewable=pulumi.get(__response__, 'lease_renewable'),
+        lease_start_time=pulumi.get(__response__, 'lease_start_time'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        region=pulumi.get(__response__, 'region'),
+        role=pulumi.get(__response__, 'role'),
+        role_arn=pulumi.get(__response__, 'role_arn'),
+        secret_key=pulumi.get(__response__, 'secret_key'),
+        security_token=pulumi.get(__response__, 'security_token'),
+        ttl=pulumi.get(__response__, 'ttl'),
+        type=pulumi.get(__response__, 'type')))

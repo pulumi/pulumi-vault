@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -388,9 +393,6 @@ def get_group(alias_id: Optional[str] = None,
         parent_group_ids=pulumi.get(__ret__, 'parent_group_ids'),
         policies=pulumi.get(__ret__, 'policies'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_group)
 def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                      alias_mount_accessor: Optional[pulumi.Input[Optional[str]]] = None,
                      alias_name: Optional[pulumi.Input[Optional[str]]] = None,
@@ -428,4 +430,38 @@ def get_group_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['aliasId'] = alias_id
+    __args__['aliasMountAccessor'] = alias_mount_accessor
+    __args__['aliasName'] = alias_name
+    __args__['groupId'] = group_id
+    __args__['groupName'] = group_name
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:identity/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
+    return __ret__.apply(lambda __response__: GetGroupResult(
+        alias_canonical_id=pulumi.get(__response__, 'alias_canonical_id'),
+        alias_creation_time=pulumi.get(__response__, 'alias_creation_time'),
+        alias_id=pulumi.get(__response__, 'alias_id'),
+        alias_last_update_time=pulumi.get(__response__, 'alias_last_update_time'),
+        alias_merged_from_canonical_ids=pulumi.get(__response__, 'alias_merged_from_canonical_ids'),
+        alias_metadata=pulumi.get(__response__, 'alias_metadata'),
+        alias_mount_accessor=pulumi.get(__response__, 'alias_mount_accessor'),
+        alias_mount_path=pulumi.get(__response__, 'alias_mount_path'),
+        alias_mount_type=pulumi.get(__response__, 'alias_mount_type'),
+        alias_name=pulumi.get(__response__, 'alias_name'),
+        creation_time=pulumi.get(__response__, 'creation_time'),
+        data_json=pulumi.get(__response__, 'data_json'),
+        group_id=pulumi.get(__response__, 'group_id'),
+        group_name=pulumi.get(__response__, 'group_name'),
+        id=pulumi.get(__response__, 'id'),
+        last_update_time=pulumi.get(__response__, 'last_update_time'),
+        member_entity_ids=pulumi.get(__response__, 'member_entity_ids'),
+        member_group_ids=pulumi.get(__response__, 'member_group_ids'),
+        metadata=pulumi.get(__response__, 'metadata'),
+        modify_index=pulumi.get(__response__, 'modify_index'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        namespace_id=pulumi.get(__response__, 'namespace_id'),
+        parent_group_ids=pulumi.get(__response__, 'parent_group_ids'),
+        policies=pulumi.get(__response__, 'policies'),
+        type=pulumi.get(__response__, 'type')))

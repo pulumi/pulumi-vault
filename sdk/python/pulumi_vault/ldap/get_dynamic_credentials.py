@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -150,9 +155,6 @@ def get_dynamic_credentials(mount: Optional[str] = None,
         password=pulumi.get(__ret__, 'password'),
         role_name=pulumi.get(__ret__, 'role_name'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_dynamic_credentials)
 def get_dynamic_credentials_output(mount: Optional[pulumi.Input[str]] = None,
                                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                    role_name: Optional[pulumi.Input[str]] = None,
@@ -160,4 +162,20 @@ def get_dynamic_credentials_output(mount: Optional[pulumi.Input[str]] = None,
     """
     Use this data source to access information about an existing resource.
     """
-    ...
+    __args__ = dict()
+    __args__['mount'] = mount
+    __args__['namespace'] = namespace
+    __args__['roleName'] = role_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:ldap/getDynamicCredentials:getDynamicCredentials', __args__, opts=opts, typ=GetDynamicCredentialsResult)
+    return __ret__.apply(lambda __response__: GetDynamicCredentialsResult(
+        distinguished_names=pulumi.get(__response__, 'distinguished_names'),
+        id=pulumi.get(__response__, 'id'),
+        lease_duration=pulumi.get(__response__, 'lease_duration'),
+        lease_id=pulumi.get(__response__, 'lease_id'),
+        lease_renewable=pulumi.get(__response__, 'lease_renewable'),
+        mount=pulumi.get(__response__, 'mount'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        password=pulumi.get(__response__, 'password'),
+        role_name=pulumi.get(__response__, 'role_name'),
+        username=pulumi.get(__response__, 'username')))

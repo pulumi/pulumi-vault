@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -222,9 +227,6 @@ def get_backend_issuer(backend: Optional[str] = None,
         manual_chains=pulumi.get(__ret__, 'manual_chains'),
         namespace=pulumi.get(__ret__, 'namespace'),
         usage=pulumi.get(__ret__, 'usage'))
-
-
-@_utilities.lift_output_func(get_backend_issuer)
 def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
                               issuer_ref: Optional[pulumi.Input[str]] = None,
                               namespace: Optional[pulumi.Input[Optional[str]]] = None,
@@ -259,4 +261,22 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['issuerRef'] = issuer_ref
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendIssuer:getBackendIssuer', __args__, opts=opts, typ=GetBackendIssuerResult)
+    return __ret__.apply(lambda __response__: GetBackendIssuerResult(
+        backend=pulumi.get(__response__, 'backend'),
+        ca_chains=pulumi.get(__response__, 'ca_chains'),
+        certificate=pulumi.get(__response__, 'certificate'),
+        id=pulumi.get(__response__, 'id'),
+        issuer_id=pulumi.get(__response__, 'issuer_id'),
+        issuer_name=pulumi.get(__response__, 'issuer_name'),
+        issuer_ref=pulumi.get(__response__, 'issuer_ref'),
+        key_id=pulumi.get(__response__, 'key_id'),
+        leaf_not_after_behavior=pulumi.get(__response__, 'leaf_not_after_behavior'),
+        manual_chains=pulumi.get(__response__, 'manual_chains'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        usage=pulumi.get(__response__, 'usage')))
