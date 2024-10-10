@@ -17,7 +17,6 @@ package provider
 import (
 	"bytes"
 	"fmt"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	"os"
 	"path/filepath"
 	"strings"
@@ -31,6 +30,7 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -588,12 +588,14 @@ var cleanUpSecretsWarnings = tfbridge.DocsEdit{
 			"using-credentials",
 			"overview",
 		}
+
+		replacesDir := "provider/installation-replaces/"
 		for _, file := range files {
-			input, err := os.ReadFile("provider/installation-replaces/" + file + "-input.md")
+			input, err := os.ReadFile(replacesDir + file + "-input.md")
 			if err != nil {
 				return nil, err
 			}
-			replace, err := os.ReadFile("provider/installation-replaces/" + file + "-desired.md")
+			replace, err := os.ReadFile(replacesDir + file + "-desired.md")
 			if err != nil {
 				return nil, err
 			}
@@ -605,7 +607,7 @@ var cleanUpSecretsWarnings = tfbridge.DocsEdit{
 			} else {
 				// Hard error to ensure we keep this content up to date
 				return nil, fmt.Errorf("could not find text in upstream index.html.markdown, "+
-					"verify file content at %s", "provider/installation-replaces/"+file+"-input.md")
+					"verify file content at %s", replacesDir+file+"-input.md")
 			}
 
 		}
