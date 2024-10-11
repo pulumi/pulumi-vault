@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -123,9 +128,6 @@ def get_auth_backend_role_id(backend: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         role_id=pulumi.get(__ret__, 'role_id'),
         role_name=pulumi.get(__ret__, 'role_name'))
-
-
-@_utilities.lift_output_func(get_auth_backend_role_id)
 def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
                                     namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                     role_name: Optional[pulumi.Input[str]] = None,
@@ -153,4 +155,15 @@ def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[str]
            *Available only for Vault Enterprise*.
     :param str role_name: The name of the role to retrieve the Role ID for.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['namespace'] = namespace
+    __args__['roleName'] = role_name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId', __args__, opts=opts, typ=GetAuthBackendRoleIdResult)
+    return __ret__.apply(lambda __response__: GetAuthBackendRoleIdResult(
+        backend=pulumi.get(__response__, 'backend'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        role_id=pulumi.get(__response__, 'role_id'),
+        role_name=pulumi.get(__response__, 'role_name')))

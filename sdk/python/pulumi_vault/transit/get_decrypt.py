@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -138,9 +143,6 @@ def get_decrypt(backend: Optional[str] = None,
         key=pulumi.get(__ret__, 'key'),
         namespace=pulumi.get(__ret__, 'namespace'),
         plaintext=pulumi.get(__ret__, 'plaintext'))
-
-
-@_utilities.lift_output_func(get_decrypt)
 def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        ciphertext: Optional[pulumi.Input[str]] = None,
                        context: Optional[pulumi.Input[Optional[str]]] = None,
@@ -161,4 +163,19 @@ def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
         ciphertext="vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==")
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['ciphertext'] = ciphertext
+    __args__['context'] = context
+    __args__['key'] = key
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:transit/getDecrypt:getDecrypt', __args__, opts=opts, typ=GetDecryptResult)
+    return __ret__.apply(lambda __response__: GetDecryptResult(
+        backend=pulumi.get(__response__, 'backend'),
+        ciphertext=pulumi.get(__response__, 'ciphertext'),
+        context=pulumi.get(__response__, 'context'),
+        id=pulumi.get(__response__, 'id'),
+        key=pulumi.get(__response__, 'key'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        plaintext=pulumi.get(__response__, 'plaintext')))

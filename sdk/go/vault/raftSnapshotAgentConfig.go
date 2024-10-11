@@ -62,7 +62,7 @@ import (
 //			cfg := config.New(ctx, "")
 //			awsAccessKeyId := cfg.RequireObject("awsAccessKeyId")
 //			awsSecretAccessKey := cfg.RequireObject("awsSecretAccessKey")
-//			current, err := aws.GetRegion(ctx, nil, nil)
+//			current, err := aws.GetRegion(ctx, &aws.GetRegionArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

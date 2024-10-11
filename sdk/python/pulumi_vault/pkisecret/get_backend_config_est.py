@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -202,9 +207,6 @@ def get_backend_config_est(backend: Optional[str] = None,
         label_to_path_policy=pulumi.get(__ret__, 'label_to_path_policy'),
         last_updated=pulumi.get(__ret__, 'last_updated'),
         namespace=pulumi.get(__ret__, 'namespace'))
-
-
-@_utilities.lift_output_func(get_backend_config_est)
 def get_backend_config_est_output(backend: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendConfigEstResult]:
@@ -230,4 +232,20 @@ def get_backend_config_est_output(backend: Optional[pulumi.Input[str]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendConfigEst:getBackendConfigEst', __args__, opts=opts, typ=GetBackendConfigEstResult)
+    return __ret__.apply(lambda __response__: GetBackendConfigEstResult(
+        audit_fields=pulumi.get(__response__, 'audit_fields'),
+        authenticators=pulumi.get(__response__, 'authenticators'),
+        backend=pulumi.get(__response__, 'backend'),
+        default_mount=pulumi.get(__response__, 'default_mount'),
+        default_path_policy=pulumi.get(__response__, 'default_path_policy'),
+        enable_sentinel_parsing=pulumi.get(__response__, 'enable_sentinel_parsing'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        id=pulumi.get(__response__, 'id'),
+        label_to_path_policy=pulumi.get(__response__, 'label_to_path_policy'),
+        last_updated=pulumi.get(__response__, 'last_updated'),
+        namespace=pulumi.get(__response__, 'namespace')))

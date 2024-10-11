@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -125,9 +130,6 @@ def get_auth_backends(namespace: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         paths=pulumi.get(__ret__, 'paths'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_auth_backends)
 def get_auth_backends_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                              type: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendsResult]:
@@ -155,4 +157,14 @@ def get_auth_backends_output(namespace: Optional[pulumi.Input[Optional[str]]] = 
            *Available only for Vault Enterprise*.
     :param str type: The name of the auth method type. Allows filtering of backends returned by type.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:index/getAuthBackends:getAuthBackends', __args__, opts=opts, typ=GetAuthBackendsResult)
+    return __ret__.apply(lambda __response__: GetAuthBackendsResult(
+        accessors=pulumi.get(__response__, 'accessors'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        paths=pulumi.get(__response__, 'paths'),
+        type=pulumi.get(__response__, 'type')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -150,9 +155,6 @@ def get_nomad_access_token(backend: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         role=pulumi.get(__ret__, 'role'),
         secret_id=pulumi.get(__ret__, 'secret_id'))
-
-
-@_utilities.lift_output_func(get_nomad_access_token)
 def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                   role: Optional[pulumi.Input[str]] = None,
@@ -193,4 +195,16 @@ def get_nomad_access_token_output(backend: Optional[pulumi.Input[str]] = None,
     :param str role: The name of the Nomad secret backend role to generate
            a token for, with no leading or trailing `/`s.
     """
-    ...
+    __args__ = dict()
+    __args__['backend'] = backend
+    __args__['namespace'] = namespace
+    __args__['role'] = role
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:index/getNomadAccessToken:getNomadAccessToken', __args__, opts=opts, typ=GetNomadAccessTokenResult)
+    return __ret__.apply(lambda __response__: GetNomadAccessTokenResult(
+        accessor_id=pulumi.get(__response__, 'accessor_id'),
+        backend=pulumi.get(__response__, 'backend'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        role=pulumi.get(__response__, 'role'),
+        secret_id=pulumi.get(__response__, 'secret_id')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -181,9 +186,6 @@ def get_secret(namespace: Optional[str] = None,
         lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-
-
-@_utilities.lift_output_func(get_secret)
 def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
@@ -222,4 +224,17 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
            *Available only for Vault Enterprise*.
     :param str path: Full path of the KV-V1 secret.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['path'] = path
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:kv/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult)
+    return __ret__.apply(lambda __response__: GetSecretResult(
+        data=pulumi.get(__response__, 'data'),
+        data_json=pulumi.get(__response__, 'data_json'),
+        id=pulumi.get(__response__, 'id'),
+        lease_duration=pulumi.get(__response__, 'lease_duration'),
+        lease_id=pulumi.get(__response__, 'lease_id'),
+        lease_renewable=pulumi.get(__response__, 'lease_renewable'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path')))

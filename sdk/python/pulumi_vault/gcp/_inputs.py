@@ -4,17 +4,52 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'AuthBackendCustomEndpointArgs',
+    'AuthBackendCustomEndpointArgsDict',
     'AuthBackendTuneArgs',
+    'AuthBackendTuneArgsDict',
     'SecretRolesetBindingArgs',
+    'SecretRolesetBindingArgsDict',
     'SecretStaticAccountBindingArgs',
+    'SecretStaticAccountBindingArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AuthBackendCustomEndpointArgsDict(TypedDict):
+        api: NotRequired[pulumi.Input[str]]
+        """
+        Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
+        """
+        compute: NotRequired[pulumi.Input[str]]
+        """
+        Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
+
+        The endpoint value provided for a given key has the form of `scheme://host:port`.
+        The `scheme://` and `:port` portions of the endpoint value are optional.
+        """
+        crm: NotRequired[pulumi.Input[str]]
+        """
+        Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
+        """
+        iam: NotRequired[pulumi.Input[str]]
+        """
+        Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
+        """
+elif False:
+    AuthBackendCustomEndpointArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AuthBackendCustomEndpointArgs:
@@ -92,6 +127,56 @@ class AuthBackendCustomEndpointArgs:
     def iam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "iam", value)
 
+
+if not MYPY:
+    class AuthBackendTuneArgsDict(TypedDict):
+        allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of headers to whitelist and allowing
+        a plugin to include them in the response.
+        """
+        audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Specifies the list of keys that will
+        not be HMAC'd by audit devices in the request data object.
+        """
+        audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Specifies the list of keys that will
+        not be HMAC'd by audit devices in the response data object.
+        """
+        default_lease_ttl: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the default time-to-live.
+        If set, this overrides the global default.
+        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        """
+        listing_visibility: NotRequired[pulumi.Input[str]]
+        """
+        Specifies whether to show this mount in
+        the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
+        """
+        max_lease_ttl: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the maximum time-to-live.
+        If set, this overrides the global default.
+        Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
+        """
+        passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        List of headers to whitelist and
+        pass from the request to the backend.
+        """
+        token_type: NotRequired[pulumi.Input[str]]
+        """
+        Specifies the type of tokens that should be returned by
+        the mount. Valid values are "default-service", "default-batch", "service", "batch".
+
+
+        For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
+        """
+elif False:
+    AuthBackendTuneArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AuthBackendTuneArgs:
@@ -254,6 +339,19 @@ class AuthBackendTuneArgs:
         pulumi.set(self, "token_type", value)
 
 
+if not MYPY:
+    class SecretRolesetBindingArgsDict(TypedDict):
+        resource: pulumi.Input[str]
+        """
+        Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#roleset-bindings).
+        """
+        roles: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        """
+elif False:
+    SecretRolesetBindingArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class SecretRolesetBindingArgs:
     def __init__(__self__, *,
@@ -290,6 +388,19 @@ class SecretRolesetBindingArgs:
     def roles(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "roles", value)
 
+
+if not MYPY:
+    class SecretStaticAccountBindingArgsDict(TypedDict):
+        resource: pulumi.Input[str]
+        """
+        Resource or resource path for which IAM policy information will be bound. The resource path may be specified in a few different [formats](https://www.vaultproject.io/docs/secrets/gcp/index.html#bindings).
+        """
+        roles: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource.
+        """
+elif False:
+    SecretStaticAccountBindingArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class SecretStaticAccountBindingArgs:

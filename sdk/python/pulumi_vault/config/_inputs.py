@@ -4,14 +4,35 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'UiCustomMessageLinkArgs',
+    'UiCustomMessageLinkArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class UiCustomMessageLinkArgsDict(TypedDict):
+        href: pulumi.Input[str]
+        """
+        The URL of the hyperlink
+        """
+        title: pulumi.Input[str]
+        """
+        The title of the hyperlink
+        """
+elif False:
+    UiCustomMessageLinkArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UiCustomMessageLinkArgs:

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -166,9 +171,6 @@ def get_secrets_list_v2(mount: Optional[str] = None,
         names=pulumi.get(__ret__, 'names'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-
-
-@_utilities.lift_output_func(get_secrets_list_v2)
 def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                namespace: Optional[pulumi.Input[Optional[str]]] = None,
@@ -226,4 +228,16 @@ def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
     """
-    ...
+    __args__ = dict()
+    __args__['mount'] = mount
+    __args__['name'] = name
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('vault:kv/getSecretsListV2:getSecretsListV2', __args__, opts=opts, typ=GetSecretsListV2Result)
+    return __ret__.apply(lambda __response__: GetSecretsListV2Result(
+        id=pulumi.get(__response__, 'id'),
+        mount=pulumi.get(__response__, 'mount'),
+        name=pulumi.get(__response__, 'name'),
+        names=pulumi.get(__response__, 'names'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path')))
