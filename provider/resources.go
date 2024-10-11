@@ -15,7 +15,9 @@
 package provider
 
 import (
+	"bytes"
 	"fmt"
+	"os"
 	"path/filepath"
 	"strings"
 	"unicode"
@@ -28,6 +30,7 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
@@ -547,7 +550,20 @@ func Provider() tfbridge.ProviderInfo {
 }
 
 func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
-	return append(defaults, oktaAuthBackedUserImport)
+	edits := []tfbridge.DocsEdit{
+		// These sections would trigger other edit rules so they must run first for discovery.
+		cleanUpSecretsWarnings,
+	}
+	edits = append(edits,
+		defaults...,
+	)
+	return append(edits,
+		oktaAuthBackedUserImport,
+		skipConfiguringAndPopulatingSection,
+		skipBestPracticesSection,
+		skipTutorialsSection,
+		skipNamespacesSection,
+	)
 }
 
 var oktaAuthBackedUserImport = tfbridge.DocsEdit{
@@ -563,3 +579,80 @@ var oktaAuthBackedUserImport = tfbridge.DocsEdit{
 }
 
 var missingDocs = &tfbridge.DocInfo{AllowMissing: true}
+
+// Pulumi does encrypt secrets, so redact TF specific warnings.
+var cleanUpSecretsWarnings = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		files := []string{
+			"using-credentials",
+			"overview",
+		}
+
+		replacesDir := "provider/installation-replaces/"
+		for _, file := range files {
+			input, err := os.ReadFile(replacesDir + file + "-input.md")
+			if err != nil {
+				return nil, err
+			}
+			replace, err := os.ReadFile(replacesDir + file + "-desired.md")
+			if err != nil {
+				return nil, err
+			}
+			if bytes.Contains(content, input) {
+				content = bytes.ReplaceAll(
+					content,
+					input,
+					replace)
+			} else {
+				// Hard error to ensure we keep this content up to date
+				return nil, fmt.Errorf("could not find text in upstream index.html.markdown, "+
+					"verify file content at %s", replacesDir+file+"-input.md")
+			}
+
+		}
+		return content, nil
+	},
+}
+
+// Removes a "Best Practices" section that includes TF-specific recommendations
+var skipBestPracticesSection = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+			return headerText == "Best Practices"
+		})
+	},
+}
+
+// Removes a "Configuring and Populating Vault" section that talks about secrets only
+var skipConfiguringAndPopulatingSection = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+			return headerText == "Configuring and Populating Vault"
+		})
+	},
+}
+
+// This part of the documentation is very TF-specific.
+// We should consider creating our own tutorial if the need arises.
+// See https://github.com/pulumi/pulumi-vault/issues/618.
+var skipNamespacesSection = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+			return headerText == "Namespace support"
+		})
+	},
+}
+
+// Removes a TF-specific "Tutorials" section
+var skipTutorialsSection = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+			return headerText == "Tutorials"
+		})
+	},
+}
