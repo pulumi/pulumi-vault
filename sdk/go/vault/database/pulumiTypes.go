@@ -30,6 +30,8 @@ type SecretBackendConnectionCassandra struct {
 	Port *int `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion *int `pulumi:"protocolVersion"`
+	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+	SkipVerification *bool `pulumi:"skipVerification"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
 	// The username to use when authenticating with Cassandra.
@@ -64,6 +66,8 @@ type SecretBackendConnectionCassandraArgs struct {
 	Port pulumi.IntPtrInput `pulumi:"port"`
 	// The CQL protocol version to use.
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
+	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+	SkipVerification pulumi.BoolPtrInput `pulumi:"skipVerification"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The username to use when authenticating with Cassandra.
@@ -187,6 +191,11 @@ func (o SecretBackendConnectionCassandraOutput) ProtocolVersion() pulumi.IntPtrO
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *int { return v.ProtocolVersion }).(pulumi.IntPtrOutput)
 }
 
+// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+func (o SecretBackendConnectionCassandraOutput) SkipVerification() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.SkipVerification }).(pulumi.BoolPtrOutput)
+}
+
 // Whether to use TLS when connecting to Cassandra.
 func (o SecretBackendConnectionCassandraOutput) Tls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionCassandra) *bool { return v.Tls }).(pulumi.BoolPtrOutput)
@@ -299,6 +308,16 @@ func (o SecretBackendConnectionCassandraPtrOutput) ProtocolVersion() pulumi.IntP
 		}
 		return v.ProtocolVersion
 	}).(pulumi.IntPtrOutput)
+}
+
+// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+func (o SecretBackendConnectionCassandraPtrOutput) SkipVerification() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionCassandra) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SkipVerification
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Whether to use TLS when connecting to Cassandra.
@@ -3785,8 +3804,16 @@ type SecretBackendConnectionPostgresql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// The secret key used for the x509 client certificate. Must be PEM encoded.
+	PrivateKey *string `pulumi:"privateKey"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged *bool `pulumi:"selfManaged"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// The x509 client certificate for connecting to the database. Must be PEM encoded.
+	TlsCertificate *string `pulumi:"tlsCertificate"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -3819,8 +3846,16 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The secret key used for the x509 client certificate. Must be PEM encoded.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged pulumi.BoolPtrInput `pulumi:"selfManaged"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// The x509 client certificate for connecting to the database. Must be PEM encoded.
+	TlsCertificate pulumi.StringPtrInput `pulumi:"tlsCertificate"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -3939,9 +3974,29 @@ func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutp
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The secret key used for the x509 client certificate. Must be PEM encoded.
+func (o SecretBackendConnectionPostgresqlOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
+// If set, allows onboarding static roles with a rootless connection configuration.
+func (o SecretBackendConnectionPostgresqlOutput) SelfManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *bool { return v.SelfManaged }).(pulumi.BoolPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+func (o SecretBackendConnectionPostgresqlOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// The x509 client certificate for connecting to the database. Must be PEM encoded.
+func (o SecretBackendConnectionPostgresqlOutput) TlsCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.TlsCertificate }).(pulumi.StringPtrOutput)
 }
 
 // The root credential username used in the connection URL
@@ -4048,6 +4103,26 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Password() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The secret key used for the x509 client certificate. Must be PEM encoded.
+func (o SecretBackendConnectionPostgresqlPtrOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// If set, allows onboarding static roles with a rootless connection configuration.
+func (o SecretBackendConnectionPostgresqlPtrOutput) SelfManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.SelfManaged
+	}).(pulumi.BoolPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretBackendConnectionPostgresqlPtrOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
@@ -4055,6 +4130,26 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) ServiceAccountJson() pulumi.
 			return nil
 		}
 		return v.ServiceAccountJson
+	}).(pulumi.StringPtrOutput)
+}
+
+// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+func (o SecretBackendConnectionPostgresqlPtrOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCa
+	}).(pulumi.StringPtrOutput)
+}
+
+// The x509 client certificate for connecting to the database. Must be PEM encoded.
+func (o SecretBackendConnectionPostgresqlPtrOutput) TlsCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TlsCertificate
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5074,6 +5169,8 @@ type SecretsMountCassandra struct {
 	ProtocolVersion *int `pulumi:"protocolVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+	SkipVerification *bool `pulumi:"skipVerification"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls *bool `pulumi:"tls"`
 	// The username to use when authenticating with Cassandra.
@@ -5124,6 +5221,8 @@ type SecretsMountCassandraArgs struct {
 	ProtocolVersion pulumi.IntPtrInput `pulumi:"protocolVersion"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+	SkipVerification pulumi.BoolPtrInput `pulumi:"skipVerification"`
 	// Whether to use TLS when connecting to Cassandra.
 	Tls pulumi.BoolPtrInput `pulumi:"tls"`
 	// The username to use when authenticating with Cassandra.
@@ -5250,6 +5349,11 @@ func (o SecretsMountCassandraOutput) ProtocolVersion() pulumi.IntPtrOutput {
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretsMountCassandraOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountCassandra) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
+}
+
+// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+func (o SecretsMountCassandraOutput) SkipVerification() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountCassandra) *bool { return v.SkipVerification }).(pulumi.BoolPtrOutput)
 }
 
 // Whether to use TLS when connecting to Cassandra.
@@ -8125,10 +8229,18 @@ type SecretsMountPostgresql struct {
 	Password *string `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
+	// The secret key used for the x509 client certificate. Must be PEM encoded.
+	PrivateKey *string `pulumi:"privateKey"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements []string `pulumi:"rootRotationStatements"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged *bool `pulumi:"selfManaged"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson *string `pulumi:"serviceAccountJson"`
+	// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+	TlsCa *string `pulumi:"tlsCa"`
+	// The x509 client certificate for connecting to the database. Must be PEM encoded.
+	TlsCertificate *string `pulumi:"tlsCertificate"`
 	// The root credential username used in the connection URL
 	Username *string `pulumi:"username"`
 	// Username generation template.
@@ -8175,10 +8287,18 @@ type SecretsMountPostgresqlArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
+	// The secret key used for the x509 client certificate. Must be PEM encoded.
+	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
 	// A list of database statements to be executed to rotate the root user's credentials.
 	RootRotationStatements pulumi.StringArrayInput `pulumi:"rootRotationStatements"`
+	// If set, allows onboarding static roles with a rootless connection configuration.
+	SelfManaged pulumi.BoolPtrInput `pulumi:"selfManaged"`
 	// A JSON encoded credential for use with IAM authorization
 	ServiceAccountJson pulumi.StringPtrInput `pulumi:"serviceAccountJson"`
+	// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+	TlsCa pulumi.StringPtrInput `pulumi:"tlsCa"`
+	// The x509 client certificate for connecting to the database. Must be PEM encoded.
+	TlsCertificate pulumi.StringPtrInput `pulumi:"tlsCertificate"`
 	// The root credential username used in the connection URL
 	Username pulumi.StringPtrInput `pulumi:"username"`
 	// Username generation template.
@@ -8297,14 +8417,34 @@ func (o SecretsMountPostgresqlOutput) PluginName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PluginName }).(pulumi.StringPtrOutput)
 }
 
+// The secret key used for the x509 client certificate. Must be PEM encoded.
+func (o SecretsMountPostgresqlOutput) PrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
+}
+
 // A list of database statements to be executed to rotate the root user's credentials.
 func (o SecretsMountPostgresqlOutput) RootRotationStatements() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) []string { return v.RootRotationStatements }).(pulumi.StringArrayOutput)
 }
 
+// If set, allows onboarding static roles with a rootless connection configuration.
+func (o SecretsMountPostgresqlOutput) SelfManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *bool { return v.SelfManaged }).(pulumi.BoolPtrOutput)
+}
+
 // A JSON encoded credential for use with IAM authorization
 func (o SecretsMountPostgresqlOutput) ServiceAccountJson() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.ServiceAccountJson }).(pulumi.StringPtrOutput)
+}
+
+// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+func (o SecretsMountPostgresqlOutput) TlsCa() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.TlsCa }).(pulumi.StringPtrOutput)
+}
+
+// The x509 client certificate for connecting to the database. Must be PEM encoded.
+func (o SecretsMountPostgresqlOutput) TlsCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.TlsCertificate }).(pulumi.StringPtrOutput)
 }
 
 // The root credential username used in the connection URL

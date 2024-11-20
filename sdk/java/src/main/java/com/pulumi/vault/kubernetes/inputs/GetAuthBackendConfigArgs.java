@@ -34,16 +34,32 @@ public final class GetAuthBackendConfigArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.backend);
     }
 
+    /**
+     * (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     @Import(name="disableIssValidation")
     private @Nullable Output<Boolean> disableIssValidation;
 
+    /**
+     * @return (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     public Optional<Output<Boolean>> disableIssValidation() {
         return Optional.ofNullable(this.disableIssValidation);
     }
 
+    /**
+     * (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     @Import(name="disableLocalCaJwt")
     private @Nullable Output<Boolean> disableLocalCaJwt;
 
+    /**
+     * @return (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     public Optional<Output<Boolean>> disableLocalCaJwt() {
         return Optional.ofNullable(this.disableLocalCaJwt);
     }
@@ -129,6 +145,21 @@ public final class GetAuthBackendConfigArgs extends com.pulumi.resources.InvokeA
         return Optional.ofNullable(this.pemKeys);
     }
 
+    /**
+     * (Optional) Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    @Import(name="useAnnotationsAsAliasMetadata")
+    private @Nullable Output<Boolean> useAnnotationsAsAliasMetadata;
+
+    /**
+     * @return (Optional) Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    public Optional<Output<Boolean>> useAnnotationsAsAliasMetadata() {
+        return Optional.ofNullable(this.useAnnotationsAsAliasMetadata);
+    }
+
     private GetAuthBackendConfigArgs() {}
 
     private GetAuthBackendConfigArgs(GetAuthBackendConfigArgs $) {
@@ -140,6 +171,7 @@ public final class GetAuthBackendConfigArgs extends com.pulumi.resources.InvokeA
         this.kubernetesHost = $.kubernetesHost;
         this.namespace = $.namespace;
         this.pemKeys = $.pemKeys;
+        this.useAnnotationsAsAliasMetadata = $.useAnnotationsAsAliasMetadata;
     }
 
     public static Builder builder() {
@@ -183,20 +215,44 @@ public final class GetAuthBackendConfigArgs extends com.pulumi.resources.InvokeA
             return backend(Output.of(backend));
         }
 
+        /**
+         * @param disableIssValidation (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableIssValidation(@Nullable Output<Boolean> disableIssValidation) {
             $.disableIssValidation = disableIssValidation;
             return this;
         }
 
+        /**
+         * @param disableIssValidation (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableIssValidation(Boolean disableIssValidation) {
             return disableIssValidation(Output.of(disableIssValidation));
         }
 
+        /**
+         * @param disableLocalCaJwt (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableLocalCaJwt(@Nullable Output<Boolean> disableLocalCaJwt) {
             $.disableLocalCaJwt = disableLocalCaJwt;
             return this;
         }
 
+        /**
+         * @param disableLocalCaJwt (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+         * 
+         * @return builder
+         * 
+         */
         public Builder disableLocalCaJwt(Boolean disableLocalCaJwt) {
             return disableLocalCaJwt(Output.of(disableLocalCaJwt));
         }
@@ -320,6 +376,27 @@ public final class GetAuthBackendConfigArgs extends com.pulumi.resources.InvokeA
          */
         public Builder pemKeys(String... pemKeys) {
             return pemKeys(List.of(pemKeys));
+        }
+
+        /**
+         * @param useAnnotationsAsAliasMetadata (Optional) Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAnnotationsAsAliasMetadata(@Nullable Output<Boolean> useAnnotationsAsAliasMetadata) {
+            $.useAnnotationsAsAliasMetadata = useAnnotationsAsAliasMetadata;
+            return this;
+        }
+
+        /**
+         * @param useAnnotationsAsAliasMetadata (Optional) Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAnnotationsAsAliasMetadata(Boolean useAnnotationsAsAliasMetadata) {
+            return useAnnotationsAsAliasMetadata(Output.of(useAnnotationsAsAliasMetadata));
         }
 
         public GetAuthBackendConfigArgs build() {

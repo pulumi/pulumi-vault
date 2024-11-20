@@ -222,6 +222,21 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+     * 
+     */
+    @Import(name="skipVerification")
+    private @Nullable Output<Boolean> skipVerification;
+
+    /**
+     * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+     * 
+     */
+    public Optional<Output<Boolean>> skipVerification() {
+        return Optional.ofNullable(this.skipVerification);
+    }
+
+    /**
      * Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -284,6 +299,7 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
         this.port = $.port;
         this.protocolVersion = $.protocolVersion;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.skipVerification = $.skipVerification;
         this.tls = $.tls;
         this.username = $.username;
         this.verifyConnection = $.verifyConnection;
@@ -615,6 +631,27 @@ public final class SecretsMountCassandraArgs extends com.pulumi.resources.Resour
          */
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
+        }
+
+        /**
+         * @param skipVerification Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipVerification(@Nullable Output<Boolean> skipVerification) {
+            $.skipVerification = skipVerification;
+            return this;
+        }
+
+        /**
+         * @param skipVerification Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipVerification(Boolean skipVerification) {
+            return skipVerification(Output.of(skipVerification));
         }
 
         /**

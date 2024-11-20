@@ -88,6 +88,10 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * The number of uses for the secret-id.
+     */
+    public readonly numUses!: pulumi.Output<number | undefined>;
+    /**
      * The name of the role to create the SecretID for.
      */
     public readonly roleName!: pulumi.Output<string>;
@@ -96,6 +100,10 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
     public readonly secretId!: pulumi.Output<string>;
+    /**
+     * The TTL duration of the SecretID.
+     */
+    public readonly ttl!: pulumi.Output<number | undefined>;
     /**
      * Set to `true` to use the wrapped secret-id accessor as the resource ID.
      * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
@@ -137,8 +145,10 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
             resourceInputs["cidrLists"] = state ? state.cidrLists : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["numUses"] = state ? state.numUses : undefined;
             resourceInputs["roleName"] = state ? state.roleName : undefined;
             resourceInputs["secretId"] = state ? state.secretId : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["withWrappedAccessor"] = state ? state.withWrappedAccessor : undefined;
             resourceInputs["wrappingAccessor"] = state ? state.wrappingAccessor : undefined;
             resourceInputs["wrappingToken"] = state ? state.wrappingToken : undefined;
@@ -152,8 +162,10 @@ export class AuthBackendRoleSecretId extends pulumi.CustomResource {
             resourceInputs["cidrLists"] = args ? args.cidrLists : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["numUses"] = args ? args.numUses : undefined;
             resourceInputs["roleName"] = args ? args.roleName : undefined;
             resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["withWrappedAccessor"] = args ? args.withWrappedAccessor : undefined;
             resourceInputs["wrappingTtl"] = args ? args.wrappingTtl : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
@@ -199,6 +211,10 @@ export interface AuthBackendRoleSecretIdState {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * The number of uses for the secret-id.
+     */
+    numUses?: pulumi.Input<number>;
+    /**
      * The name of the role to create the SecretID for.
      */
     roleName?: pulumi.Input<string>;
@@ -207,6 +223,10 @@ export interface AuthBackendRoleSecretIdState {
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * The TTL duration of the SecretID.
+     */
+    ttl?: pulumi.Input<number>;
     /**
      * Set to `true` to use the wrapped secret-id accessor as the resource ID.
      * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
@@ -257,6 +277,10 @@ export interface AuthBackendRoleSecretIdArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * The number of uses for the secret-id.
+     */
+    numUses?: pulumi.Input<number>;
+    /**
      * The name of the role to create the SecretID for.
      */
     roleName: pulumi.Input<string>;
@@ -265,6 +289,10 @@ export interface AuthBackendRoleSecretIdArgs {
      * mode.  Defaults to Vault auto-generating SecretIDs.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * The TTL duration of the SecretID.
+     */
+    ttl?: pulumi.Input<number>;
     /**
      * Set to `true` to use the wrapped secret-id accessor as the resource ID.
      * If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or

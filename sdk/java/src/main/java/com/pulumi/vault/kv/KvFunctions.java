@@ -595,7 +595,6 @@ public final class KvFunctions {
      *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
-     *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -664,7 +663,6 @@ public final class KvFunctions {
      *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
-     *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -733,7 +731,6 @@ public final class KvFunctions {
      *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
-     *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(
@@ -802,7 +799,6 @@ public final class KvFunctions {
      *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
      *             .mount(kvv2.path())
      *             .name("secret")
-     *             .cas(1)
      *             .deleteAllVersions(true)
      *             .dataJson(serializeJson(
      *                 jsonObject(

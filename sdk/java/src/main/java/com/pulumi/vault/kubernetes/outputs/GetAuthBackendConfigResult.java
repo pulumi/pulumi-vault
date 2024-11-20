@@ -15,7 +15,15 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetAuthBackendConfigResult {
     private @Nullable String backend;
+    /**
+     * @return (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     private Boolean disableIssValidation;
+    /**
+     * @return (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     private Boolean disableLocalCaJwt;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -43,14 +51,27 @@ public final class GetAuthBackendConfigResult {
      * 
      */
     private List<String> pemKeys;
+    /**
+     * @return (Optional) Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    private Boolean useAnnotationsAsAliasMetadata;
 
     private GetAuthBackendConfigResult() {}
     public Optional<String> backend() {
         return Optional.ofNullable(this.backend);
     }
+    /**
+     * @return (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     public Boolean disableIssValidation() {
         return this.disableIssValidation;
     }
+    /**
+     * @return (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     * 
+     */
     public Boolean disableLocalCaJwt() {
         return this.disableLocalCaJwt;
     }
@@ -92,6 +113,13 @@ public final class GetAuthBackendConfigResult {
     public List<String> pemKeys() {
         return this.pemKeys;
     }
+    /**
+     * @return (Optional) Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    public Boolean useAnnotationsAsAliasMetadata() {
+        return this.useAnnotationsAsAliasMetadata;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -111,6 +139,7 @@ public final class GetAuthBackendConfigResult {
         private String kubernetesHost;
         private @Nullable String namespace;
         private List<String> pemKeys;
+        private Boolean useAnnotationsAsAliasMetadata;
         public Builder() {}
         public Builder(GetAuthBackendConfigResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -123,6 +152,7 @@ public final class GetAuthBackendConfigResult {
     	      this.kubernetesHost = defaults.kubernetesHost;
     	      this.namespace = defaults.namespace;
     	      this.pemKeys = defaults.pemKeys;
+    	      this.useAnnotationsAsAliasMetadata = defaults.useAnnotationsAsAliasMetadata;
         }
 
         @CustomType.Setter
@@ -196,6 +226,14 @@ public final class GetAuthBackendConfigResult {
         public Builder pemKeys(String... pemKeys) {
             return pemKeys(List.of(pemKeys));
         }
+        @CustomType.Setter
+        public Builder useAnnotationsAsAliasMetadata(Boolean useAnnotationsAsAliasMetadata) {
+            if (useAnnotationsAsAliasMetadata == null) {
+              throw new MissingRequiredPropertyException("GetAuthBackendConfigResult", "useAnnotationsAsAliasMetadata");
+            }
+            this.useAnnotationsAsAliasMetadata = useAnnotationsAsAliasMetadata;
+            return this;
+        }
         public GetAuthBackendConfigResult build() {
             final var _resultValue = new GetAuthBackendConfigResult();
             _resultValue.backend = backend;
@@ -207,6 +245,7 @@ public final class GetAuthBackendConfigResult {
             _resultValue.kubernetesHost = kubernetesHost;
             _resultValue.namespace = namespace;
             _resultValue.pemKeys = pemKeys;
+            _resultValue.useAnnotationsAsAliasMetadata = useAnnotationsAsAliasMetadata;
             return _resultValue;
         }
     }

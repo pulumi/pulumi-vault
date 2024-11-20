@@ -89,11 +89,15 @@ type AuthBackendRoleSecretId struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// The number of uses for the secret-id.
+	NumUses pulumi.IntPtrOutput `pulumi:"numUses"`
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
+	// The TTL duration of the SecretID.
+	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
 	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
 	// invalidated through unwrapping.
@@ -172,11 +176,15 @@ type authBackendRoleSecretIdState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// The number of uses for the secret-id.
+	NumUses *int `pulumi:"numUses"`
 	// The name of the role to create the SecretID for.
 	RoleName *string `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId *string `pulumi:"secretId"`
+	// The TTL duration of the SecretID.
+	Ttl *int `pulumi:"ttl"`
 	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
 	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
 	// invalidated through unwrapping.
@@ -209,11 +217,15 @@ type AuthBackendRoleSecretIdState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// The number of uses for the secret-id.
+	NumUses pulumi.IntPtrInput
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringPtrInput
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringPtrInput
+	// The TTL duration of the SecretID.
+	Ttl pulumi.IntPtrInput
 	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
 	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
 	// invalidated through unwrapping.
@@ -248,11 +260,15 @@ type authBackendRoleSecretIdArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// The number of uses for the secret-id.
+	NumUses *int `pulumi:"numUses"`
 	// The name of the role to create the SecretID for.
 	RoleName string `pulumi:"roleName"`
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId *string `pulumi:"secretId"`
+	// The TTL duration of the SecretID.
+	Ttl *int `pulumi:"ttl"`
 	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
 	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
 	// invalidated through unwrapping.
@@ -279,11 +295,15 @@ type AuthBackendRoleSecretIdArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// The number of uses for the secret-id.
+	NumUses pulumi.IntPtrInput
 	// The name of the role to create the SecretID for.
 	RoleName pulumi.StringInput
 	// The SecretID to be created. If set, uses "Push"
 	// mode.  Defaults to Vault auto-generating SecretIDs.
 	SecretId pulumi.StringPtrInput
+	// The TTL duration of the SecretID.
+	Ttl pulumi.IntPtrInput
 	// Set to `true` to use the wrapped secret-id accessor as the resource ID.
 	// If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
 	// invalidated through unwrapping.
@@ -412,6 +432,11 @@ func (o AuthBackendRoleSecretIdOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// The number of uses for the secret-id.
+func (o AuthBackendRoleSecretIdOutput) NumUses() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.IntPtrOutput { return v.NumUses }).(pulumi.IntPtrOutput)
+}
+
 // The name of the role to create the SecretID for.
 func (o AuthBackendRoleSecretIdOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.RoleName }).(pulumi.StringOutput)
@@ -421,6 +446,11 @@ func (o AuthBackendRoleSecretIdOutput) RoleName() pulumi.StringOutput {
 // mode.  Defaults to Vault auto-generating SecretIDs.
 func (o AuthBackendRoleSecretIdOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// The TTL duration of the SecretID.
+func (o AuthBackendRoleSecretIdOutput) Ttl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackendRoleSecretId) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
 // Set to `true` to use the wrapped secret-id accessor as the resource ID.

@@ -114,6 +114,12 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> allowBareDomains() {
         return Codegen.optional(this.allowBareDomains);
     }
+    @Export(name="allowEmptyPrincipals", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> allowEmptyPrincipals;
+
+    public Output<Optional<Boolean>> allowEmptyPrincipals() {
+        return Codegen.optional(this.allowEmptyPrincipals);
+    }
     /**
      * Specifies if certificates are allowed to be signed for use as a &#39;host&#39;.
      * 

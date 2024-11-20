@@ -26,6 +26,7 @@ class AuthBackendArgs:
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
+                 connection_timeout: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
@@ -63,6 +64,7 @@ class AuthBackendArgs:
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
@@ -112,6 +114,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "client_tls_cert", client_tls_cert)
         if client_tls_key is not None:
             pulumi.set(__self__, "client_tls_key", client_tls_key)
+        if connection_timeout is not None:
+            pulumi.set(__self__, "connection_timeout", connection_timeout)
         if deny_null_bind is not None:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
@@ -250,6 +254,18 @@ class AuthBackendArgs:
     @client_tls_key.setter
     def client_tls_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_tls_key", value)
+
+    @property
+    @pulumi.getter(name="connectionTimeout")
+    def connection_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        """
+        return pulumi.get(self, "connection_timeout")
+
+    @connection_timeout.setter
+    def connection_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connection_timeout", value)
 
     @property
     @pulumi.getter(name="denyNullBind")
@@ -627,6 +643,7 @@ class _AuthBackendState:
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
+                 connection_timeout: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
@@ -665,6 +682,7 @@ class _AuthBackendState:
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
@@ -716,6 +734,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "client_tls_cert", client_tls_cert)
         if client_tls_key is not None:
             pulumi.set(__self__, "client_tls_key", client_tls_key)
+        if connection_timeout is not None:
+            pulumi.set(__self__, "connection_timeout", connection_timeout)
         if deny_null_bind is not None:
             pulumi.set(__self__, "deny_null_bind", deny_null_bind)
         if description is not None:
@@ -856,6 +876,18 @@ class _AuthBackendState:
     @client_tls_key.setter
     def client_tls_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "client_tls_key", value)
+
+    @property
+    @pulumi.getter(name="connectionTimeout")
+    def connection_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        """
+        return pulumi.get(self, "connection_timeout")
+
+    @connection_timeout.setter
+    def connection_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connection_timeout", value)
 
     @property
     @pulumi.getter(name="denyNullBind")
@@ -1246,6 +1278,7 @@ class AuthBackend(pulumi.CustomResource):
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
+                 connection_timeout: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
@@ -1312,6 +1345,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
@@ -1404,6 +1438,7 @@ class AuthBackend(pulumi.CustomResource):
                  certificate: Optional[pulumi.Input[str]] = None,
                  client_tls_cert: Optional[pulumi.Input[str]] = None,
                  client_tls_key: Optional[pulumi.Input[str]] = None,
+                 connection_timeout: Optional[pulumi.Input[int]] = None,
                  deny_null_bind: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
@@ -1450,6 +1485,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["client_tls_cert"] = client_tls_cert
             __props__.__dict__["client_tls_key"] = None if client_tls_key is None else pulumi.Output.secret(client_tls_key)
+            __props__.__dict__["connection_timeout"] = connection_timeout
             __props__.__dict__["deny_null_bind"] = deny_null_bind
             __props__.__dict__["description"] = description
             __props__.__dict__["disable_remount"] = disable_remount
@@ -1503,6 +1539,7 @@ class AuthBackend(pulumi.CustomResource):
             certificate: Optional[pulumi.Input[str]] = None,
             client_tls_cert: Optional[pulumi.Input[str]] = None,
             client_tls_key: Optional[pulumi.Input[str]] = None,
+            connection_timeout: Optional[pulumi.Input[int]] = None,
             deny_null_bind: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
@@ -1546,6 +1583,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[str] bindpass: Password to use with `binddn` when performing user search
         :param pulumi.Input[bool] case_sensitive_names: Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
         :param pulumi.Input[str] certificate: Trusted CA to validate TLS certificate
+        :param pulumi.Input[int] connection_timeout: Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
         :param pulumi.Input[bool] deny_null_bind: Prevents users from bypassing authentication when providing an empty password.
         :param pulumi.Input[str] description: Description for the LDAP auth backend mount
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
@@ -1594,6 +1632,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["client_tls_cert"] = client_tls_cert
         __props__.__dict__["client_tls_key"] = client_tls_key
+        __props__.__dict__["connection_timeout"] = connection_timeout
         __props__.__dict__["deny_null_bind"] = deny_null_bind
         __props__.__dict__["description"] = description
         __props__.__dict__["disable_remount"] = disable_remount
@@ -1676,6 +1715,14 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="clientTlsKey")
     def client_tls_key(self) -> pulumi.Output[str]:
         return pulumi.get(self, "client_tls_key")
+
+    @property
+    @pulumi.getter(name="connectionTimeout")
+    def connection_timeout(self) -> pulumi.Output[int]:
+        """
+        Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        """
+        return pulumi.get(self, "connection_timeout")
 
     @property
     @pulumi.getter(name="denyNullBind")

@@ -97,6 +97,12 @@ namespace Pulumi.Vault.Database.Inputs
         public Input<int>? ProtocolVersion { get; set; }
 
         /// <summary>
+        /// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        /// </summary>
+        [Input("skipVerification")]
+        public Input<bool>? SkipVerification { get; set; }
+
+        /// <summary>
         /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         [Input("tls")]

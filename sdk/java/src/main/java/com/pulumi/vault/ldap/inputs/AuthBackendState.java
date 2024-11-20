@@ -108,6 +108,21 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     * 
+     */
+    @Import(name="connectionTimeout")
+    private @Nullable Output<Integer> connectionTimeout;
+
+    /**
+     * @return Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     * 
+     */
+    public Optional<Output<Integer>> connectionTimeout() {
+        return Optional.ofNullable(this.connectionTimeout);
+    }
+
+    /**
      * Prevents users from bypassing authentication when providing an empty password.
      * 
      */
@@ -592,6 +607,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.certificate = $.certificate;
         this.clientTlsCert = $.clientTlsCert;
         this.clientTlsKey = $.clientTlsKey;
+        this.connectionTimeout = $.connectionTimeout;
         this.denyNullBind = $.denyNullBind;
         this.description = $.description;
         this.disableRemount = $.disableRemount;
@@ -764,6 +780,27 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
 
         public Builder clientTlsKey(String clientTlsKey) {
             return clientTlsKey(Output.of(clientTlsKey));
+        }
+
+        /**
+         * @param connectionTimeout Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionTimeout(@Nullable Output<Integer> connectionTimeout) {
+            $.connectionTimeout = connectionTimeout;
+            return this;
+        }
+
+        /**
+         * @param connectionTimeout Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionTimeout(Integer connectionTimeout) {
+            return connectionTimeout(Output.of(connectionTimeout));
         }
 
         /**

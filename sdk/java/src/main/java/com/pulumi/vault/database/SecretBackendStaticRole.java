@@ -234,6 +234,24 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.rotationWindow);
     }
     /**
+     * The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    @Export(name="selfManagedPassword", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> selfManagedPassword;
+
+    /**
+     * @return The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    public Output<Optional<String>> selfManagedPassword() {
+        return Codegen.optional(this.selfManagedPassword);
+    }
+    /**
      * The database username that this static role corresponds to.
      * 
      */
@@ -287,6 +305,9 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "selfManagedPassword"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

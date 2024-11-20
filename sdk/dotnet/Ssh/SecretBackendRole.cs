@@ -72,6 +72,9 @@ namespace Pulumi.Vault.Ssh
         [Output("allowBareDomains")]
         public Output<bool?> AllowBareDomains { get; private set; } = null!;
 
+        [Output("allowEmptyPrincipals")]
+        public Output<bool?> AllowEmptyPrincipals { get; private set; } = null!;
+
         /// <summary>
         /// Specifies if certificates are allowed to be signed for use as a 'host'.
         /// </summary>
@@ -280,6 +283,9 @@ namespace Pulumi.Vault.Ssh
         [Input("allowBareDomains")]
         public Input<bool>? AllowBareDomains { get; set; }
 
+        [Input("allowEmptyPrincipals")]
+        public Input<bool>? AllowEmptyPrincipals { get; set; }
+
         /// <summary>
         /// Specifies if certificates are allowed to be signed for use as a 'host'.
         /// </summary>
@@ -467,6 +473,9 @@ namespace Pulumi.Vault.Ssh
         /// </summary>
         [Input("allowBareDomains")]
         public Input<bool>? AllowBareDomains { get; set; }
+
+        [Input("allowEmptyPrincipals")]
+        public Input<bool>? AllowEmptyPrincipals { get; set; }
 
         /// <summary>
         /// Specifies if certificates are allowed to be signed for use as a 'host'.

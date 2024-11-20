@@ -158,6 +158,21 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.tokenReviewerJwt);
     }
 
+    /**
+     * Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    @Import(name="useAnnotationsAsAliasMetadata")
+    private @Nullable Output<Boolean> useAnnotationsAsAliasMetadata;
+
+    /**
+     * @return Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    public Optional<Output<Boolean>> useAnnotationsAsAliasMetadata() {
+        return Optional.ofNullable(this.useAnnotationsAsAliasMetadata);
+    }
+
     private AuthBackendConfigState() {}
 
     private AuthBackendConfigState(AuthBackendConfigState $) {
@@ -170,6 +185,7 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
         this.namespace = $.namespace;
         this.pemKeys = $.pemKeys;
         this.tokenReviewerJwt = $.tokenReviewerJwt;
+        this.useAnnotationsAsAliasMetadata = $.useAnnotationsAsAliasMetadata;
     }
 
     public static Builder builder() {
@@ -393,6 +409,27 @@ public final class AuthBackendConfigState extends com.pulumi.resources.ResourceA
          */
         public Builder tokenReviewerJwt(String tokenReviewerJwt) {
             return tokenReviewerJwt(Output.of(tokenReviewerJwt));
+        }
+
+        /**
+         * @param useAnnotationsAsAliasMetadata Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAnnotationsAsAliasMetadata(@Nullable Output<Boolean> useAnnotationsAsAliasMetadata) {
+            $.useAnnotationsAsAliasMetadata = useAnnotationsAsAliasMetadata;
+            return this;
+        }
+
+        /**
+         * @param useAnnotationsAsAliasMetadata Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAnnotationsAsAliasMetadata(Boolean useAnnotationsAsAliasMetadata) {
+            return useAnnotationsAsAliasMetadata(Output.of(useAnnotationsAsAliasMetadata));
         }
 
         public AuthBackendConfigState build() {

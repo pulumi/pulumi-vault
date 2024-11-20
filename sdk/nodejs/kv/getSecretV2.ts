@@ -22,7 +22,6 @@ import * as utilities from "../utilities";
  * const exampleSecretV2 = new vault.kv.SecretV2("example", {
  *     mount: kvv2.path,
  *     name: "secret",
- *     cas: 1,
  *     deleteAllVersions: true,
  *     dataJson: JSON.stringify({
  *         zip: "zap",
@@ -143,7 +142,6 @@ export interface GetSecretV2Result {
  * const exampleSecretV2 = new vault.kv.SecretV2("example", {
  *     mount: kvv2.path,
  *     name: "secret",
- *     cas: 1,
  *     deleteAllVersions: true,
  *     dataJson: JSON.stringify({
  *         zip: "zap",

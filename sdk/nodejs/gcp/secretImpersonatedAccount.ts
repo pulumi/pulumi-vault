@@ -93,6 +93,11 @@ export class SecretImpersonatedAccount extends pulumi.CustomResource {
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      */
     public readonly tokenScopes!: pulumi.Output<string[] | undefined>;
+    /**
+     * Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+     */
+    public readonly ttl!: pulumi.Output<string>;
 
     /**
      * Create a SecretImpersonatedAccount resource with the given unique name, arguments, and options.
@@ -113,6 +118,7 @@ export class SecretImpersonatedAccount extends pulumi.CustomResource {
             resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
             resourceInputs["serviceAccountProject"] = state ? state.serviceAccountProject : undefined;
             resourceInputs["tokenScopes"] = state ? state.tokenScopes : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
         } else {
             const args = argsOrState as SecretImpersonatedAccountArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -129,6 +135,7 @@ export class SecretImpersonatedAccount extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
             resourceInputs["tokenScopes"] = args ? args.tokenScopes : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["serviceAccountProject"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -164,6 +171,11 @@ export interface SecretImpersonatedAccountState {
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      */
     tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+     */
+    ttl?: pulumi.Input<string>;
 }
 
 /**
@@ -190,4 +202,9 @@ export interface SecretImpersonatedAccountArgs {
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      */
     tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+     */
+    ttl?: pulumi.Input<string>;
 }

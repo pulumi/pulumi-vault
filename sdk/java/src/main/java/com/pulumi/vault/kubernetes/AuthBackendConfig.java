@@ -213,6 +213,20 @@ public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> tokenReviewerJwt() {
         return Codegen.optional(this.tokenReviewerJwt);
     }
+    /**
+     * Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    @Export(name="useAnnotationsAsAliasMetadata", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> useAnnotationsAsAliasMetadata;
+
+    /**
+     * @return Use annotations from the client token&#39;s associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     * 
+     */
+    public Output<Boolean> useAnnotationsAsAliasMetadata() {
+        return this.useAnnotationsAsAliasMetadata;
+    }
 
     /**
      *

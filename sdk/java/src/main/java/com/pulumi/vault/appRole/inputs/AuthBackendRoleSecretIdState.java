@@ -6,6 +6,7 @@ package com.pulumi.vault.appRole.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -103,6 +104,21 @@ public final class AuthBackendRoleSecretIdState extends com.pulumi.resources.Res
     }
 
     /**
+     * The number of uses for the secret-id.
+     * 
+     */
+    @Import(name="numUses")
+    private @Nullable Output<Integer> numUses;
+
+    /**
+     * @return The number of uses for the secret-id.
+     * 
+     */
+    public Optional<Output<Integer>> numUses() {
+        return Optional.ofNullable(this.numUses);
+    }
+
+    /**
      * The name of the role to create the SecretID for.
      * 
      */
@@ -132,6 +148,21 @@ public final class AuthBackendRoleSecretIdState extends com.pulumi.resources.Res
      */
     public Optional<Output<String>> secretId() {
         return Optional.ofNullable(this.secretId);
+    }
+
+    /**
+     * The TTL duration of the SecretID.
+     * 
+     */
+    @Import(name="ttl")
+    private @Nullable Output<Integer> ttl;
+
+    /**
+     * @return The TTL duration of the SecretID.
+     * 
+     */
+    public Optional<Output<Integer>> ttl() {
+        return Optional.ofNullable(this.ttl);
     }
 
     /**
@@ -214,8 +245,10 @@ public final class AuthBackendRoleSecretIdState extends com.pulumi.resources.Res
         this.cidrLists = $.cidrLists;
         this.metadata = $.metadata;
         this.namespace = $.namespace;
+        this.numUses = $.numUses;
         this.roleName = $.roleName;
         this.secretId = $.secretId;
+        this.ttl = $.ttl;
         this.withWrappedAccessor = $.withWrappedAccessor;
         this.wrappingAccessor = $.wrappingAccessor;
         this.wrappingToken = $.wrappingToken;
@@ -367,6 +400,27 @@ public final class AuthBackendRoleSecretIdState extends com.pulumi.resources.Res
         }
 
         /**
+         * @param numUses The number of uses for the secret-id.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder numUses(@Nullable Output<Integer> numUses) {
+            $.numUses = numUses;
+            return this;
+        }
+
+        /**
+         * @param numUses The number of uses for the secret-id.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder numUses(Integer numUses) {
+            return numUses(Output.of(numUses));
+        }
+
+        /**
          * @param roleName The name of the role to create the SecretID for.
          * 
          * @return builder
@@ -408,6 +462,27 @@ public final class AuthBackendRoleSecretIdState extends com.pulumi.resources.Res
          */
         public Builder secretId(String secretId) {
             return secretId(Output.of(secretId));
+        }
+
+        /**
+         * @param ttl The TTL duration of the SecretID.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ttl(@Nullable Output<Integer> ttl) {
+            $.ttl = ttl;
+            return this;
+        }
+
+        /**
+         * @param ttl The TTL duration of the SecretID.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ttl(Integer ttl) {
+            return ttl(Output.of(ttl));
         }
 
         /**

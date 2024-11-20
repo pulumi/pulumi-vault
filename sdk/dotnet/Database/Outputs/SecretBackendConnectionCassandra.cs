@@ -46,6 +46,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly int? ProtocolVersion;
         /// <summary>
+        /// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        /// </summary>
+        public readonly bool? SkipVerification;
+        /// <summary>
         /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         public readonly bool? Tls;
@@ -72,6 +76,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             int? protocolVersion,
 
+            bool? skipVerification,
+
             bool? tls,
 
             string? username)
@@ -84,6 +90,7 @@ namespace Pulumi.Vault.Database.Outputs
             PemJson = pemJson;
             Port = port;
             ProtocolVersion = protocolVersion;
+            SkipVerification = skipVerification;
             Tls = tls;
             Username = username;
         }

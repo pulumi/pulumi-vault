@@ -94,6 +94,12 @@ namespace Pulumi.Vault.AppRole
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// The number of uses for the secret-id.
+        /// </summary>
+        [Output("numUses")]
+        public Output<int?> NumUses { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Output("roleName")]
@@ -105,6 +111,12 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         [Output("secretId")]
         public Output<string> SecretId { get; private set; } = null!;
+
+        /// <summary>
+        /// The TTL duration of the SecretID.
+        /// </summary>
+        [Output("ttl")]
+        public Output<int?> Ttl { get; private set; } = null!;
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -227,6 +239,12 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// The number of uses for the secret-id.
+        /// </summary>
+        [Input("numUses")]
+        public Input<int>? NumUses { get; set; }
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Input("roleName", required: true)]
@@ -248,6 +266,12 @@ namespace Pulumi.Vault.AppRole
                 _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The TTL duration of the SecretID.
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.
@@ -316,6 +340,12 @@ namespace Pulumi.Vault.AppRole
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// The number of uses for the secret-id.
+        /// </summary>
+        [Input("numUses")]
+        public Input<int>? NumUses { get; set; }
+
+        /// <summary>
         /// The name of the role to create the SecretID for.
         /// </summary>
         [Input("roleName")]
@@ -337,6 +367,12 @@ namespace Pulumi.Vault.AppRole
                 _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The TTL duration of the SecretID.
+        /// </summary>
+        [Input("ttl")]
+        public Input<int>? Ttl { get; set; }
 
         /// <summary>
         /// Set to `true` to use the wrapped secret-id accessor as the resource ID.

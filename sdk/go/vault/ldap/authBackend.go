@@ -69,6 +69,8 @@ type AuthBackend struct {
 	Certificate   pulumi.StringOutput `pulumi:"certificate"`
 	ClientTlsCert pulumi.StringOutput `pulumi:"clientTlsCert"`
 	ClientTlsKey  pulumi.StringOutput `pulumi:"clientTlsKey"`
+	// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+	ConnectionTimeout pulumi.IntOutput `pulumi:"connectionTimeout"`
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind pulumi.BoolOutput `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
@@ -194,6 +196,8 @@ type authBackendState struct {
 	Certificate   *string `pulumi:"certificate"`
 	ClientTlsCert *string `pulumi:"clientTlsCert"`
 	ClientTlsKey  *string `pulumi:"clientTlsKey"`
+	// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+	ConnectionTimeout *int `pulumi:"connectionTimeout"`
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
@@ -276,6 +280,8 @@ type AuthBackendState struct {
 	Certificate   pulumi.StringPtrInput
 	ClientTlsCert pulumi.StringPtrInput
 	ClientTlsKey  pulumi.StringPtrInput
+	// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+	ConnectionTimeout pulumi.IntPtrInput
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
@@ -360,6 +366,8 @@ type authBackendArgs struct {
 	Certificate   *string `pulumi:"certificate"`
 	ClientTlsCert *string `pulumi:"clientTlsCert"`
 	ClientTlsKey  *string `pulumi:"clientTlsKey"`
+	// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+	ConnectionTimeout *int `pulumi:"connectionTimeout"`
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind *bool `pulumi:"denyNullBind"`
 	// Description for the LDAP auth backend mount
@@ -441,6 +449,8 @@ type AuthBackendArgs struct {
 	Certificate   pulumi.StringPtrInput
 	ClientTlsCert pulumi.StringPtrInput
 	ClientTlsKey  pulumi.StringPtrInput
+	// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+	ConnectionTimeout pulumi.IntPtrInput
 	// Prevents users from bypassing authentication when providing an empty password.
 	DenyNullBind pulumi.BoolPtrInput
 	// Description for the LDAP auth backend mount
@@ -628,6 +638,11 @@ func (o AuthBackendOutput) ClientTlsCert() pulumi.StringOutput {
 
 func (o AuthBackendOutput) ClientTlsKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.ClientTlsKey }).(pulumi.StringOutput)
+}
+
+// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+func (o AuthBackendOutput) ConnectionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntOutput { return v.ConnectionTimeout }).(pulumi.IntOutput)
 }
 
 // Prevents users from bypassing authentication when providing an empty password.

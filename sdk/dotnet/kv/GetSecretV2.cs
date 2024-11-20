@@ -38,7 +38,6 @@ namespace Pulumi.Vault.kv
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = "secret",
-        ///         Cas = 1,
         ///         DeleteAllVersions = true,
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {
@@ -90,7 +89,6 @@ namespace Pulumi.Vault.kv
         ///     {
         ///         Mount = kvv2.Path,
         ///         Name = "secret",
-        ///         Cas = 1,
         ///         DeleteAllVersions = true,
         ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
         ///         {

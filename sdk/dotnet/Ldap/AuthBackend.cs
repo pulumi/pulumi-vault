@@ -85,6 +85,12 @@ namespace Pulumi.Vault.Ldap
         public Output<string> ClientTlsKey { get; private set; } = null!;
 
         /// <summary>
+        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        /// </summary>
+        [Output("connectionTimeout")]
+        public Output<int> ConnectionTimeout { get; private set; } = null!;
+
+        /// <summary>
         /// Prevents users from bypassing authentication when providing an empty password.
         /// </summary>
         [Output("denyNullBind")]
@@ -376,6 +382,12 @@ namespace Pulumi.Vault.Ldap
         }
 
         /// <summary>
+        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        /// </summary>
+        [Input("connectionTimeout")]
+        public Input<int>? ConnectionTimeout { get; set; }
+
+        /// <summary>
         /// Prevents users from bypassing authentication when providing an empty password.
         /// </summary>
         [Input("denyNullBind")]
@@ -640,6 +652,12 @@ namespace Pulumi.Vault.Ldap
                 _clientTlsKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+        /// </summary>
+        [Input("connectionTimeout")]
+        public Input<int>? ConnectionTimeout { get; set; }
 
         /// <summary>
         /// Prevents users from bypassing authentication when providing an empty password.

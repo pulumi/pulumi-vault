@@ -169,6 +169,22 @@ public class SecretImpersonatedAccount extends com.pulumi.resources.CustomResour
     public Output<Optional<List<String>>> tokenScopes() {
         return Codegen.optional(this.tokenScopes);
     }
+    /**
+     * Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * 
+     */
+    @Export(name="ttl", refs={String.class}, tree="[0]")
+    private Output<String> ttl;
+
+    /**
+     * @return Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * 
+     */
+    public Output<String> ttl() {
+        return this.ttl;
+    }
 
     /**
      *

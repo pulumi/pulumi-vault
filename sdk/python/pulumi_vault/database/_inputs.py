@@ -125,6 +125,10 @@ if not MYPY:
         """
         The CQL protocol version to use.
         """
+        skip_verification: NotRequired[pulumi.Input[bool]]
+        """
+        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        """
         tls: NotRequired[pulumi.Input[bool]]
         """
         Whether to use TLS when connecting to Cassandra.
@@ -147,6 +151,7 @@ class SecretBackendConnectionCassandraArgs:
                  pem_json: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol_version: Optional[pulumi.Input[int]] = None,
+                 skip_verification: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
@@ -158,6 +163,7 @@ class SecretBackendConnectionCassandraArgs:
         :param pulumi.Input[str] pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param pulumi.Input[int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[int] protocol_version: The CQL protocol version to use.
+        :param pulumi.Input[bool] skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
         :param pulumi.Input[str] username: The username to use when authenticating with Cassandra.
         """
@@ -177,6 +183,8 @@ class SecretBackendConnectionCassandraArgs:
             pulumi.set(__self__, "port", port)
         if protocol_version is not None:
             pulumi.set(__self__, "protocol_version", protocol_version)
+        if skip_verification is not None:
+            pulumi.set(__self__, "skip_verification", skip_verification)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username is not None:
@@ -277,6 +285,18 @@ class SecretBackendConnectionCassandraArgs:
     @protocol_version.setter
     def protocol_version(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "protocol_version", value)
+
+    @property
+    @pulumi.getter(name="skipVerification")
+    def skip_verification(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        """
+        return pulumi.get(self, "skip_verification")
+
+    @skip_verification.setter
+    def skip_verification(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_verification", value)
 
     @property
     @pulumi.getter
@@ -2605,9 +2625,25 @@ if not MYPY:
         """
         The root credential password used in the connection URL
         """
+        private_key: NotRequired[pulumi.Input[str]]
+        """
+        The secret key used for the x509 client certificate. Must be PEM encoded.
+        """
+        self_managed: NotRequired[pulumi.Input[bool]]
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
         service_account_json: NotRequired[pulumi.Input[str]]
         """
         A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        """
+        tls_certificate: NotRequired[pulumi.Input[str]]
+        """
+        The x509 client certificate for connecting to the database. Must be PEM encoded.
         """
         username: NotRequired[pulumi.Input[str]]
         """
@@ -2630,7 +2666,11 @@ class SecretBackendConnectionPostgresqlArgs:
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 self_managed: Optional[pulumi.Input[bool]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
+                 tls_ca: Optional[pulumi.Input[str]] = None,
+                 tls_certificate: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None):
         """
@@ -2641,7 +2681,11 @@ class SecretBackendConnectionPostgresqlArgs:
         :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
+        :param pulumi.Input[bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[str] tls_ca: The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        :param pulumi.Input[str] tls_certificate: The x509 client certificate for connecting to the database. Must be PEM encoded.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
         """
@@ -2659,8 +2703,16 @@ class SecretBackendConnectionPostgresqlArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate is not None:
+            pulumi.set(__self__, "tls_certificate", tls_certificate)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -2751,6 +2803,30 @@ class SecretBackendConnectionPostgresqlArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret key used for the x509 client certificate. Must be PEM encoded.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @self_managed.setter
+    def self_managed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "self_managed", value)
+
+    @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2761,6 +2837,30 @@ class SecretBackendConnectionPostgresqlArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @tls_ca.setter
+    def tls_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ca", value)
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        The x509 client certificate for connecting to the database. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_certificate")
+
+    @tls_certificate.setter
+    def tls_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_certificate", value)
 
     @property
     @pulumi.getter
@@ -3408,6 +3508,10 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        skip_verification: NotRequired[pulumi.Input[bool]]
+        """
+        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        """
         tls: NotRequired[pulumi.Input[bool]]
         """
         Whether to use TLS when connecting to Cassandra.
@@ -3440,6 +3544,7 @@ class SecretsMountCassandraArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  protocol_version: Optional[pulumi.Input[int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 skip_verification: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -3460,6 +3565,7 @@ class SecretsMountCassandraArgs:
         :param pulumi.Input[int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[bool] skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
         :param pulumi.Input[str] username: The username to use when authenticating with Cassandra.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -3490,6 +3596,8 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "protocol_version", protocol_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if skip_verification is not None:
+            pulumi.set(__self__, "skip_verification", skip_verification)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username is not None:
@@ -3655,6 +3763,18 @@ class SecretsMountCassandraArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="skipVerification")
+    def skip_verification(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        """
+        return pulumi.get(self, "skip_verification")
+
+    @skip_verification.setter
+    def skip_verification(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_verification", value)
 
     @property
     @pulumi.getter
@@ -7587,13 +7707,29 @@ if not MYPY:
         """
         Specifies the name of the plugin to use.
         """
+        private_key: NotRequired[pulumi.Input[str]]
+        """
+        The secret key used for the x509 client certificate. Must be PEM encoded.
+        """
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        self_managed: NotRequired[pulumi.Input[bool]]
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
         service_account_json: NotRequired[pulumi.Input[str]]
         """
         A JSON encoded credential for use with IAM authorization
+        """
+        tls_ca: NotRequired[pulumi.Input[str]]
+        """
+        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        """
+        tls_certificate: NotRequired[pulumi.Input[str]]
+        """
+        The x509 client certificate for connecting to the database. Must be PEM encoded.
         """
         username: NotRequired[pulumi.Input[str]]
         """
@@ -7625,8 +7761,12 @@ class SecretsMountPostgresqlArgs:
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
+                 private_key: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 self_managed: Optional[pulumi.Input[bool]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
+                 tls_ca: Optional[pulumi.Input[str]] = None,
+                 tls_certificate: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -7645,8 +7785,12 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
+        :param pulumi.Input[str] private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
+        :param pulumi.Input[str] tls_ca: The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        :param pulumi.Input[str] tls_certificate: The x509 client certificate for connecting to the database. Must be PEM encoded.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -7673,10 +7817,18 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "password", password)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate is not None:
+            pulumi.set(__self__, "tls_certificate", tls_certificate)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -7820,6 +7972,18 @@ class SecretsMountPostgresqlArgs:
         pulumi.set(self, "plugin_name", value)
 
     @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret key used for the x509 client certificate. Must be PEM encoded.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
     @pulumi.getter(name="rootRotationStatements")
     def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -7832,6 +7996,18 @@ class SecretsMountPostgresqlArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @self_managed.setter
+    def self_managed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "self_managed", value)
+
+    @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[pulumi.Input[str]]:
         """
@@ -7842,6 +8018,30 @@ class SecretsMountPostgresqlArgs:
     @service_account_json.setter
     def service_account_json(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_json", value)
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @tls_ca.setter
+    def tls_ca(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_ca", value)
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        The x509 client certificate for connecting to the database. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_certificate")
+
+    @tls_certificate.setter
+    def tls_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_certificate", value)
 
     @property
     @pulumi.getter

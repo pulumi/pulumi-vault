@@ -61,13 +61,29 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? PluginName;
         /// <summary>
+        /// The secret key used for the x509 client certificate. Must be PEM encoded.
+        /// </summary>
+        public readonly string? PrivateKey;
+        /// <summary>
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
+        /// If set, allows onboarding static roles with a rootless connection configuration.
+        /// </summary>
+        public readonly bool? SelfManaged;
+        /// <summary>
         /// A JSON encoded credential for use with IAM authorization
         /// </summary>
         public readonly string? ServiceAccountJson;
+        /// <summary>
+        /// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCa;
+        /// <summary>
+        /// The x509 client certificate for connecting to the database. Must be PEM encoded.
+        /// </summary>
+        public readonly string? TlsCertificate;
         /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
@@ -106,9 +122,17 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? pluginName,
 
+            string? privateKey,
+
             ImmutableArray<string> rootRotationStatements,
 
+            bool? selfManaged,
+
             string? serviceAccountJson,
+
+            string? tlsCa,
+
+            string? tlsCertificate,
 
             string? username,
 
@@ -127,8 +151,12 @@ namespace Pulumi.Vault.Database.Outputs
             Name = name;
             Password = password;
             PluginName = pluginName;
+            PrivateKey = privateKey;
             RootRotationStatements = rootRotationStatements;
+            SelfManaged = selfManaged;
             ServiceAccountJson = serviceAccountJson;
+            TlsCa = tlsCa;
+            TlsCertificate = tlsCertificate;
             Username = username;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;

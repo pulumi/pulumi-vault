@@ -75,7 +75,8 @@ type SecretBackendRole struct {
 	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
 	AlgorithmSigner pulumi.StringOutput `pulumi:"algorithmSigner"`
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
-	AllowBareDomains pulumi.BoolPtrOutput `pulumi:"allowBareDomains"`
+	AllowBareDomains     pulumi.BoolPtrOutput `pulumi:"allowBareDomains"`
+	AllowEmptyPrincipals pulumi.BoolPtrOutput `pulumi:"allowEmptyPrincipals"`
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
 	AllowHostCertificates pulumi.BoolPtrOutput `pulumi:"allowHostCertificates"`
 	// Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
@@ -171,7 +172,8 @@ type secretBackendRoleState struct {
 	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
 	AlgorithmSigner *string `pulumi:"algorithmSigner"`
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
-	AllowBareDomains *bool `pulumi:"allowBareDomains"`
+	AllowBareDomains     *bool `pulumi:"allowBareDomains"`
+	AllowEmptyPrincipals *bool `pulumi:"allowEmptyPrincipals"`
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
 	AllowHostCertificates *bool `pulumi:"allowHostCertificates"`
 	// Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
@@ -232,7 +234,8 @@ type SecretBackendRoleState struct {
 	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
 	AlgorithmSigner pulumi.StringPtrInput
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
-	AllowBareDomains pulumi.BoolPtrInput
+	AllowBareDomains     pulumi.BoolPtrInput
+	AllowEmptyPrincipals pulumi.BoolPtrInput
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
 	AllowHostCertificates pulumi.BoolPtrInput
 	// Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
@@ -297,7 +300,8 @@ type secretBackendRoleArgs struct {
 	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
 	AlgorithmSigner *string `pulumi:"algorithmSigner"`
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
-	AllowBareDomains *bool `pulumi:"allowBareDomains"`
+	AllowBareDomains     *bool `pulumi:"allowBareDomains"`
+	AllowEmptyPrincipals *bool `pulumi:"allowEmptyPrincipals"`
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
 	AllowHostCertificates *bool `pulumi:"allowHostCertificates"`
 	// Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
@@ -359,7 +363,8 @@ type SecretBackendRoleArgs struct {
 	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
 	AlgorithmSigner pulumi.StringPtrInput
 	// Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
-	AllowBareDomains pulumi.BoolPtrInput
+	AllowBareDomains     pulumi.BoolPtrInput
+	AllowEmptyPrincipals pulumi.BoolPtrInput
 	// Specifies if certificates are allowed to be signed for use as a 'host'.
 	AllowHostCertificates pulumi.BoolPtrInput
 	// Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
@@ -511,6 +516,10 @@ func (o SecretBackendRoleOutput) AlgorithmSigner() pulumi.StringOutput {
 // Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
 func (o SecretBackendRoleOutput) AllowBareDomains() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowBareDomains }).(pulumi.BoolPtrOutput)
+}
+
+func (o SecretBackendRoleOutput) AllowEmptyPrincipals() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.AllowEmptyPrincipals }).(pulumi.BoolPtrOutput)
 }
 
 // Specifies if certificates are allowed to be signed for use as a 'host'.

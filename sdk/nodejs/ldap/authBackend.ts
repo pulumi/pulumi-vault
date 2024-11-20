@@ -84,6 +84,10 @@ export class AuthBackend extends pulumi.CustomResource {
     public readonly clientTlsCert!: pulumi.Output<string>;
     public readonly clientTlsKey!: pulumi.Output<string>;
     /**
+     * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     */
+    public readonly connectionTimeout!: pulumi.Output<number>;
+    /**
      * Prevents users from bypassing authentication when providing an empty password.
      */
     public readonly denyNullBind!: pulumi.Output<boolean>;
@@ -233,6 +237,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["clientTlsCert"] = state ? state.clientTlsCert : undefined;
             resourceInputs["clientTlsKey"] = state ? state.clientTlsKey : undefined;
+            resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
             resourceInputs["denyNullBind"] = state ? state.denyNullBind : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
@@ -275,6 +280,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["clientTlsCert"] = args ? args.clientTlsCert : undefined;
             resourceInputs["clientTlsKey"] = args?.clientTlsKey ? pulumi.secret(args.clientTlsKey) : undefined;
+            resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
             resourceInputs["denyNullBind"] = args ? args.denyNullBind : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
@@ -341,6 +347,10 @@ export interface AuthBackendState {
     certificate?: pulumi.Input<string>;
     clientTlsCert?: pulumi.Input<string>;
     clientTlsKey?: pulumi.Input<string>;
+    /**
+     * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     */
+    connectionTimeout?: pulumi.Input<number>;
     /**
      * Prevents users from bypassing authentication when providing an empty password.
      */
@@ -494,6 +504,10 @@ export interface AuthBackendArgs {
     certificate?: pulumi.Input<string>;
     clientTlsCert?: pulumi.Input<string>;
     clientTlsKey?: pulumi.Input<string>;
+    /**
+     * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     */
+    connectionTimeout?: pulumi.Input<number>;
     /**
      * Prevents users from bypassing authentication when providing an empty password.
      */

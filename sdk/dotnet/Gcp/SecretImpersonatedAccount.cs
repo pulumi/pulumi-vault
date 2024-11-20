@@ -102,6 +102,13 @@ namespace Pulumi.Vault.Gcp
         [Output("tokenScopes")]
         public Output<ImmutableArray<string>> TokenScopes { get; private set; } = null!;
 
+        /// <summary>
+        /// Specifies the default TTL for service principals generated using this role.
+        /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        /// </summary>
+        [Output("ttl")]
+        public Output<string> Ttl { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecretImpersonatedAccount resource with the given unique name, arguments, and options.
@@ -184,6 +191,13 @@ namespace Pulumi.Vault.Gcp
             set => _tokenScopes = value;
         }
 
+        /// <summary>
+        /// Specifies the default TTL for service principals generated using this role.
+        /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        /// </summary>
+        [Input("ttl")]
+        public Input<string>? Ttl { get; set; }
+
         public SecretImpersonatedAccountArgs()
         {
         }
@@ -233,6 +247,13 @@ namespace Pulumi.Vault.Gcp
             get => _tokenScopes ?? (_tokenScopes = new InputList<string>());
             set => _tokenScopes = value;
         }
+
+        /// <summary>
+        /// Specifies the default TTL for service principals generated using this role.
+        /// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        /// </summary>
+        [Input("ttl")]
+        public Input<string>? Ttl { get; set; }
 
         public SecretImpersonatedAccountState()
         {
