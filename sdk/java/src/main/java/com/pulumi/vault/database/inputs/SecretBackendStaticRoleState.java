@@ -156,6 +156,25 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
+     * The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    @Import(name="selfManagedPassword")
+    private @Nullable Output<String> selfManagedPassword;
+
+    /**
+     * @return The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    public Optional<Output<String>> selfManagedPassword() {
+        return Optional.ofNullable(this.selfManagedPassword);
+    }
+
+    /**
      * The database username that this static role corresponds to.
      * 
      */
@@ -181,6 +200,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         this.rotationSchedule = $.rotationSchedule;
         this.rotationStatements = $.rotationStatements;
         this.rotationWindow = $.rotationWindow;
+        this.selfManagedPassword = $.selfManagedPassword;
         this.username = $.username;
     }
 
@@ -396,6 +416,31 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          */
         public Builder rotationWindow(Integer rotationWindow) {
             return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
+         * @param selfManagedPassword The password corresponding to the username in the database.
+         * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+         * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManagedPassword(@Nullable Output<String> selfManagedPassword) {
+            $.selfManagedPassword = selfManagedPassword;
+            return this;
+        }
+
+        /**
+         * @param selfManagedPassword The password corresponding to the username in the database.
+         * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+         * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManagedPassword(String selfManagedPassword) {
+            return selfManagedPassword(Output.of(selfManagedPassword));
         }
 
         /**

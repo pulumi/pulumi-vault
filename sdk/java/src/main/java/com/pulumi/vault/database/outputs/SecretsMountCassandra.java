@@ -85,6 +85,11 @@ public final class SecretsMountCassandra {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
+     * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+     * 
+     */
+    private @Nullable Boolean skipVerification;
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -197,6 +202,13 @@ public final class SecretsMountCassandra {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
+     * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+     * 
+     */
+    public Optional<Boolean> skipVerification() {
+        return Optional.ofNullable(this.skipVerification);
+    }
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -241,6 +253,7 @@ public final class SecretsMountCassandra {
         private @Nullable Integer port;
         private @Nullable Integer protocolVersion;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable Boolean skipVerification;
         private @Nullable Boolean tls;
         private @Nullable String username;
         private @Nullable Boolean verifyConnection;
@@ -260,6 +273,7 @@ public final class SecretsMountCassandra {
     	      this.port = defaults.port;
     	      this.protocolVersion = defaults.protocolVersion;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.skipVerification = defaults.skipVerification;
     	      this.tls = defaults.tls;
     	      this.username = defaults.username;
     	      this.verifyConnection = defaults.verifyConnection;
@@ -355,6 +369,12 @@ public final class SecretsMountCassandra {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder skipVerification(@Nullable Boolean skipVerification) {
+
+            this.skipVerification = skipVerification;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
 
             this.tls = tls;
@@ -387,6 +407,7 @@ public final class SecretsMountCassandra {
             _resultValue.port = port;
             _resultValue.protocolVersion = protocolVersion;
             _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.skipVerification = skipVerification;
             _resultValue.tls = tls;
             _resultValue.username = username;
             _resultValue.verifyConnection = verifyConnection;

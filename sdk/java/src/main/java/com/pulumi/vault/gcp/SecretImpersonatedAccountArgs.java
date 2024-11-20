@@ -92,6 +92,23 @@ public final class SecretImpersonatedAccountArgs extends com.pulumi.resources.Re
         return Optional.ofNullable(this.tokenScopes);
     }
 
+    /**
+     * Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * 
+     */
+    @Import(name="ttl")
+    private @Nullable Output<String> ttl;
+
+    /**
+     * @return Specifies the default TTL for service principals generated using this role.
+     * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
+     * 
+     */
+    public Optional<Output<String>> ttl() {
+        return Optional.ofNullable(this.ttl);
+    }
+
     private SecretImpersonatedAccountArgs() {}
 
     private SecretImpersonatedAccountArgs(SecretImpersonatedAccountArgs $) {
@@ -100,6 +117,7 @@ public final class SecretImpersonatedAccountArgs extends com.pulumi.resources.Re
         this.namespace = $.namespace;
         this.serviceAccountEmail = $.serviceAccountEmail;
         this.tokenScopes = $.tokenScopes;
+        this.ttl = $.ttl;
     }
 
     public static Builder builder() {
@@ -233,6 +251,29 @@ public final class SecretImpersonatedAccountArgs extends com.pulumi.resources.Re
          */
         public Builder tokenScopes(String... tokenScopes) {
             return tokenScopes(List.of(tokenScopes));
+        }
+
+        /**
+         * @param ttl Specifies the default TTL for service principals generated using this role.
+         * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ttl(@Nullable Output<String> ttl) {
+            $.ttl = ttl;
+            return this;
+        }
+
+        /**
+         * @param ttl Specifies the default TTL for service principals generated using this role.
+         * Accepts time suffixed strings (&#34;1h&#34;) or an integer number of seconds. Defaults to the system/engine default TTL time.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ttl(String ttl) {
+            return ttl(Output.of(ttl));
         }
 
         public SecretImpersonatedAccountArgs build() {

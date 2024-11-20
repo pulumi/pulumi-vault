@@ -21,6 +21,7 @@ export function getAuthBackendConfig(args?: GetAuthBackendConfigArgs, opts?: pul
         "kubernetesHost": args.kubernetesHost,
         "namespace": args.namespace,
         "pemKeys": args.pemKeys,
+        "useAnnotationsAsAliasMetadata": args.useAnnotationsAsAliasMetadata,
     }, opts);
 }
 
@@ -33,7 +34,13 @@ export interface GetAuthBackendConfigArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     backend?: string;
+    /**
+     * (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
     disableIssValidation?: boolean;
+    /**
+     * (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
     disableLocalCaJwt?: boolean;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
@@ -58,6 +65,10 @@ export interface GetAuthBackendConfigArgs {
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     pemKeys?: string[];
+    /**
+     * (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     */
+    useAnnotationsAsAliasMetadata?: boolean;
 }
 
 /**
@@ -65,7 +76,13 @@ export interface GetAuthBackendConfigArgs {
  */
 export interface GetAuthBackendConfigResult {
     readonly backend?: string;
+    /**
+     * (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
     readonly disableIssValidation: boolean;
+    /**
+     * (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
     readonly disableLocalCaJwt: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -88,6 +105,10 @@ export interface GetAuthBackendConfigResult {
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     readonly pemKeys: string[];
+    /**
+     * (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     */
+    readonly useAnnotationsAsAliasMetadata: boolean;
 }
 /**
  * Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -106,6 +127,7 @@ export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs
         "kubernetesHost": args.kubernetesHost,
         "namespace": args.namespace,
         "pemKeys": args.pemKeys,
+        "useAnnotationsAsAliasMetadata": args.useAnnotationsAsAliasMetadata,
     }, opts);
 }
 
@@ -118,7 +140,13 @@ export interface GetAuthBackendConfigOutputArgs {
      * retrieve Role attributes for resides in. Defaults to "kubernetes".
      */
     backend?: pulumi.Input<string>;
+    /**
+     * (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
     disableIssValidation?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+     */
     disableLocalCaJwt?: pulumi.Input<boolean>;
     /**
      * Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
@@ -143,4 +171,8 @@ export interface GetAuthBackendConfigOutputArgs {
      * Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
     pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     */
+    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean>;
 }

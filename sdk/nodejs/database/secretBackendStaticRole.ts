@@ -126,6 +126,12 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     public readonly rotationWindow!: pulumi.Output<number | undefined>;
     /**
+     * The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     */
+    public readonly selfManagedPassword!: pulumi.Output<string | undefined>;
+    /**
      * The database username that this static role corresponds to.
      */
     public readonly username!: pulumi.Output<string>;
@@ -151,6 +157,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
             resourceInputs["rotationStatements"] = state ? state.rotationStatements : undefined;
             resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
+            resourceInputs["selfManagedPassword"] = state ? state.selfManagedPassword : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
@@ -171,9 +178,12 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
             resourceInputs["rotationStatements"] = args ? args.rotationStatements : undefined;
             resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
+            resourceInputs["selfManagedPassword"] = args?.selfManagedPassword ? pulumi.secret(args.selfManagedPassword) : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["selfManagedPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackendStaticRole.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -223,6 +233,12 @@ export interface SecretBackendStaticRoleState {
      * from a given `rotationSchedule`.
      */
     rotationWindow?: pulumi.Input<number>;
+    /**
+     * The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     */
+    selfManagedPassword?: pulumi.Input<string>;
     /**
      * The database username that this static role corresponds to.
      */
@@ -274,6 +290,12 @@ export interface SecretBackendStaticRoleArgs {
      * from a given `rotationSchedule`.
      */
     rotationWindow?: pulumi.Input<number>;
+    /**
+     * The password corresponding to the username in the database.
+     * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+     * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+     */
+    selfManagedPassword?: pulumi.Input<string>;
     /**
      * The database username that this static role corresponds to.
      */

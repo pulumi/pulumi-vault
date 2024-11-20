@@ -64,6 +64,28 @@ namespace Pulumi.Vault.Database.Inputs
             }
         }
 
+        [Input("privateKey")]
+        private Input<string>? _privateKey;
+
+        /// <summary>
+        /// The secret key used for the x509 client certificate. Must be PEM encoded.
+        /// </summary>
+        public Input<string>? PrivateKey
+        {
+            get => _privateKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _privateKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// If set, allows onboarding static roles with a rootless connection configuration.
+        /// </summary>
+        [Input("selfManaged")]
+        public Input<bool>? SelfManaged { get; set; }
+
         [Input("serviceAccountJson")]
         private Input<string>? _serviceAccountJson;
 
@@ -79,6 +101,18 @@ namespace Pulumi.Vault.Database.Inputs
                 _serviceAccountJson = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        /// </summary>
+        [Input("tlsCa")]
+        public Input<string>? TlsCa { get; set; }
+
+        /// <summary>
+        /// The x509 client certificate for connecting to the database. Must be PEM encoded.
+        /// </summary>
+        [Input("tlsCertificate")]
+        public Input<string>? TlsCertificate { get; set; }
 
         /// <summary>
         /// The root credential username used in the connection URL

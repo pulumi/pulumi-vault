@@ -24,7 +24,9 @@ class AuthBackendRoleSecretIdArgs:
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
                  wrapping_ttl: Optional[pulumi.Input[str]] = None):
         """
@@ -39,8 +41,10 @@ class AuthBackendRoleSecretIdArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] num_uses: The number of uses for the secret-id.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
+        :param pulumi.Input[int] ttl: The TTL duration of the SecretID.
         :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
                If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
                invalidated through unwrapping.
@@ -58,8 +62,12 @@ class AuthBackendRoleSecretIdArgs:
             pulumi.set(__self__, "metadata", metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if num_uses is not None:
+            pulumi.set(__self__, "num_uses", num_uses)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
         if with_wrapped_accessor is not None:
             pulumi.set(__self__, "with_wrapped_accessor", with_wrapped_accessor)
         if wrapping_ttl is not None:
@@ -131,6 +139,18 @@ class AuthBackendRoleSecretIdArgs:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of uses for the secret-id.
+        """
+        return pulumi.get(self, "num_uses")
+
+    @num_uses.setter
+    def num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_uses", value)
+
+    @property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -142,6 +162,18 @@ class AuthBackendRoleSecretIdArgs:
     @secret_id.setter
     def secret_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret_id", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL duration of the SecretID.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
 
     @property
     @pulumi.getter(name="withWrappedAccessor")
@@ -181,8 +213,10 @@ class _AuthBackendRoleSecretIdState:
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
                  wrapping_accessor: Optional[pulumi.Input[str]] = None,
                  wrapping_token: Optional[pulumi.Input[str]] = None,
@@ -199,9 +233,11 @@ class _AuthBackendRoleSecretIdState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] num_uses: The number of uses for the secret-id.
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
+        :param pulumi.Input[int] ttl: The TTL duration of the SecretID.
         :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
                If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
                invalidated through unwrapping.
@@ -223,10 +259,14 @@ class _AuthBackendRoleSecretIdState:
             pulumi.set(__self__, "metadata", metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if num_uses is not None:
+            pulumi.set(__self__, "num_uses", num_uses)
         if role_name is not None:
             pulumi.set(__self__, "role_name", role_name)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
         if with_wrapped_accessor is not None:
             pulumi.set(__self__, "with_wrapped_accessor", with_wrapped_accessor)
         if wrapping_accessor is not None:
@@ -302,6 +342,18 @@ class _AuthBackendRoleSecretIdState:
         pulumi.set(self, "namespace", value)
 
     @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of uses for the secret-id.
+        """
+        return pulumi.get(self, "num_uses")
+
+    @num_uses.setter
+    def num_uses(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_uses", value)
+
+    @property
     @pulumi.getter(name="roleName")
     def role_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -325,6 +377,18 @@ class _AuthBackendRoleSecretIdState:
     @secret_id.setter
     def secret_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "secret_id", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TTL duration of the SecretID.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
 
     @property
     @pulumi.getter(name="withWrappedAccessor")
@@ -390,8 +454,10 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
                  wrapping_ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -435,9 +501,11 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] num_uses: The number of uses for the secret-id.
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
+        :param pulumi.Input[int] ttl: The TTL duration of the SecretID.
         :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
                If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
                invalidated through unwrapping.
@@ -500,8 +568,10 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
                  cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
+                 num_uses: Optional[pulumi.Input[int]] = None,
                  role_name: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
                  wrapping_ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -517,10 +587,12 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
             __props__.__dict__["cidr_lists"] = cidr_lists
             __props__.__dict__["metadata"] = metadata
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["num_uses"] = num_uses
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
             __props__.__dict__["secret_id"] = None if secret_id is None else pulumi.Output.secret(secret_id)
+            __props__.__dict__["ttl"] = ttl
             __props__.__dict__["with_wrapped_accessor"] = with_wrapped_accessor
             __props__.__dict__["wrapping_ttl"] = wrapping_ttl
             __props__.__dict__["accessor"] = None
@@ -545,8 +617,10 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
             cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             metadata: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
+            num_uses: Optional[pulumi.Input[int]] = None,
             role_name: Optional[pulumi.Input[str]] = None,
             secret_id: Optional[pulumi.Input[str]] = None,
+            ttl: Optional[pulumi.Input[int]] = None,
             with_wrapped_accessor: Optional[pulumi.Input[bool]] = None,
             wrapping_accessor: Optional[pulumi.Input[str]] = None,
             wrapping_token: Optional[pulumi.Input[str]] = None,
@@ -568,9 +642,11 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[int] num_uses: The number of uses for the secret-id.
         :param pulumi.Input[str] role_name: The name of the role to create the SecretID for.
         :param pulumi.Input[str] secret_id: The SecretID to be created. If set, uses "Push"
                mode.  Defaults to Vault auto-generating SecretIDs.
+        :param pulumi.Input[int] ttl: The TTL duration of the SecretID.
         :param pulumi.Input[bool] with_wrapped_accessor: Set to `true` to use the wrapped secret-id accessor as the resource ID.
                If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
                invalidated through unwrapping.
@@ -591,8 +667,10 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
         __props__.__dict__["cidr_lists"] = cidr_lists
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["num_uses"] = num_uses
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["secret_id"] = secret_id
+        __props__.__dict__["ttl"] = ttl
         __props__.__dict__["with_wrapped_accessor"] = with_wrapped_accessor
         __props__.__dict__["wrapping_accessor"] = wrapping_accessor
         __props__.__dict__["wrapping_token"] = wrapping_token
@@ -645,6 +723,14 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @property
+    @pulumi.getter(name="numUses")
+    def num_uses(self) -> pulumi.Output[Optional[int]]:
+        """
+        The number of uses for the secret-id.
+        """
+        return pulumi.get(self, "num_uses")
+
+    @property
     @pulumi.getter(name="roleName")
     def role_name(self) -> pulumi.Output[str]:
         """
@@ -660,6 +746,14 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
         mode.  Defaults to Vault auto-generating SecretIDs.
         """
         return pulumi.get(self, "secret_id")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[Optional[int]]:
+        """
+        The TTL duration of the SecretID.
+        """
+        return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter(name="withWrappedAccessor")

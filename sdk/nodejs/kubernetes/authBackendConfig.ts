@@ -103,6 +103,10 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
     public readonly tokenReviewerJwt!: pulumi.Output<string | undefined>;
+    /**
+     * Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     */
+    public readonly useAnnotationsAsAliasMetadata!: pulumi.Output<boolean>;
 
     /**
      * Create a AuthBackendConfig resource with the given unique name, arguments, and options.
@@ -126,6 +130,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["pemKeys"] = state ? state.pemKeys : undefined;
             resourceInputs["tokenReviewerJwt"] = state ? state.tokenReviewerJwt : undefined;
+            resourceInputs["useAnnotationsAsAliasMetadata"] = state ? state.useAnnotationsAsAliasMetadata : undefined;
         } else {
             const args = argsOrState as AuthBackendConfigArgs | undefined;
             if ((!args || args.kubernetesHost === undefined) && !opts.urn) {
@@ -140,6 +145,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["pemKeys"] = args ? args.pemKeys : undefined;
             resourceInputs["tokenReviewerJwt"] = args?.tokenReviewerJwt ? pulumi.secret(args.tokenReviewerJwt) : undefined;
+            resourceInputs["useAnnotationsAsAliasMetadata"] = args ? args.useAnnotationsAsAliasMetadata : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["tokenReviewerJwt"] };
@@ -191,6 +197,10 @@ export interface AuthBackendConfigState {
      * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
     tokenReviewerJwt?: pulumi.Input<string>;
+    /**
+     * Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     */
+    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean>;
 }
 
 /**
@@ -236,4 +246,8 @@ export interface AuthBackendConfigArgs {
      * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
     tokenReviewerJwt?: pulumi.Input<string>;
+    /**
+     * Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+     */
+    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean>;
 }

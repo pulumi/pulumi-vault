@@ -68,6 +68,8 @@ class SecretBackendConnectionCassandra(dict):
             suggest = "pem_json"
         elif key == "protocolVersion":
             suggest = "protocol_version"
+        elif key == "skipVerification":
+            suggest = "skip_verification"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SecretBackendConnectionCassandra. Access the value via the '{suggest}' property getter instead.")
@@ -89,6 +91,7 @@ class SecretBackendConnectionCassandra(dict):
                  pem_json: Optional[str] = None,
                  port: Optional[int] = None,
                  protocol_version: Optional[int] = None,
+                 skip_verification: Optional[bool] = None,
                  tls: Optional[bool] = None,
                  username: Optional[str] = None):
         """
@@ -100,6 +103,7 @@ class SecretBackendConnectionCassandra(dict):
         :param str pem_json: Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         :param int port: The transport port to use to connect to Cassandra.
         :param int protocol_version: The CQL protocol version to use.
+        :param bool skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         :param bool tls: Whether to use TLS when connecting to Cassandra.
         :param str username: The username to use when authenticating with Cassandra.
         """
@@ -119,6 +123,8 @@ class SecretBackendConnectionCassandra(dict):
             pulumi.set(__self__, "port", port)
         if protocol_version is not None:
             pulumi.set(__self__, "protocol_version", protocol_version)
+        if skip_verification is not None:
+            pulumi.set(__self__, "skip_verification", skip_verification)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username is not None:
@@ -187,6 +193,14 @@ class SecretBackendConnectionCassandra(dict):
         The CQL protocol version to use.
         """
         return pulumi.get(self, "protocol_version")
+
+    @property
+    @pulumi.getter(name="skipVerification")
+    def skip_verification(self) -> Optional[bool]:
+        """
+        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        """
+        return pulumi.get(self, "skip_verification")
 
     @property
     @pulumi.getter
@@ -1914,8 +1928,16 @@ class SecretBackendConnectionPostgresql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "privateKey":
+            suggest = "private_key"
+        elif key == "selfManaged":
+            suggest = "self_managed"
         elif key == "serviceAccountJson":
             suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificate":
+            suggest = "tls_certificate"
         elif key == "usernameTemplate":
             suggest = "username_template"
 
@@ -1938,7 +1960,11 @@ class SecretBackendConnectionPostgresql(dict):
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 private_key: Optional[str] = None,
+                 self_managed: Optional[bool] = None,
                  service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None):
         """
@@ -1949,7 +1975,11 @@ class SecretBackendConnectionPostgresql(dict):
         :param int max_idle_connections: Maximum number of idle connections to the database.
         :param int max_open_connections: Maximum number of open connections to the database.
         :param str password: The root credential password used in the connection URL
+        :param str private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
+        :param bool self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param str service_account_json: A JSON encoded credential for use with IAM authorization
+        :param str tls_ca: The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        :param str tls_certificate: The x509 client certificate for connecting to the database. Must be PEM encoded.
         :param str username: The root credential username used in the connection URL
         :param str username_template: Username generation template.
         """
@@ -1967,8 +1997,16 @@ class SecretBackendConnectionPostgresql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate is not None:
+            pulumi.set(__self__, "tls_certificate", tls_certificate)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -2031,12 +2069,44 @@ class SecretBackendConnectionPostgresql(dict):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[str]:
+        """
+        The secret key used for the x509 client certificate. Must be PEM encoded.
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[bool]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[str]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> Optional[str]:
+        """
+        The x509 client certificate for connecting to the database. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_certificate")
 
     @property
     @pulumi.getter
@@ -2483,6 +2553,8 @@ class SecretsMountCassandra(dict):
             suggest = "protocol_version"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "skipVerification":
+            suggest = "skip_verification"
         elif key == "verifyConnection":
             suggest = "verify_connection"
 
@@ -2511,6 +2583,7 @@ class SecretsMountCassandra(dict):
                  port: Optional[int] = None,
                  protocol_version: Optional[int] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 skip_verification: Optional[bool] = None,
                  tls: Optional[bool] = None,
                  username: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -2531,6 +2604,7 @@ class SecretsMountCassandra(dict):
         :param int port: The transport port to use to connect to Cassandra.
         :param int protocol_version: The CQL protocol version to use.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         :param bool tls: Whether to use TLS when connecting to Cassandra.
         :param str username: The username to use when authenticating with Cassandra.
         :param bool verify_connection: Whether the connection should be verified on
@@ -2561,6 +2635,8 @@ class SecretsMountCassandra(dict):
             pulumi.set(__self__, "protocol_version", protocol_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if skip_verification is not None:
+            pulumi.set(__self__, "skip_verification", skip_verification)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username is not None:
@@ -2674,6 +2750,14 @@ class SecretsMountCassandra(dict):
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
+
+    @property
+    @pulumi.getter(name="skipVerification")
+    def skip_verification(self) -> Optional[bool]:
+        """
+        Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        """
+        return pulumi.get(self, "skip_verification")
 
     @property
     @pulumi.getter
@@ -5458,10 +5542,18 @@ class SecretsMountPostgresql(dict):
             suggest = "max_open_connections"
         elif key == "pluginName":
             suggest = "plugin_name"
+        elif key == "privateKey":
+            suggest = "private_key"
         elif key == "rootRotationStatements":
             suggest = "root_rotation_statements"
+        elif key == "selfManaged":
+            suggest = "self_managed"
         elif key == "serviceAccountJson":
             suggest = "service_account_json"
+        elif key == "tlsCa":
+            suggest = "tls_ca"
+        elif key == "tlsCertificate":
+            suggest = "tls_certificate"
         elif key == "usernameTemplate":
             suggest = "username_template"
         elif key == "verifyConnection":
@@ -5490,8 +5582,12 @@ class SecretsMountPostgresql(dict):
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
                  plugin_name: Optional[str] = None,
+                 private_key: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
+                 self_managed: Optional[bool] = None,
                  service_account_json: Optional[str] = None,
+                 tls_ca: Optional[str] = None,
+                 tls_certificate: Optional[str] = None,
                  username: Optional[str] = None,
                  username_template: Optional[str] = None,
                  verify_connection: Optional[bool] = None):
@@ -5510,8 +5606,12 @@ class SecretsMountPostgresql(dict):
         :param int max_open_connections: Maximum number of open connections to the database.
         :param str password: The root credential password used in the connection URL
         :param str plugin_name: Specifies the name of the plugin to use.
+        :param str private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param bool self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param str service_account_json: A JSON encoded credential for use with IAM authorization
+        :param str tls_ca: The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        :param str tls_certificate: The x509 client certificate for connecting to the database. Must be PEM encoded.
         :param str username: The root credential username used in the connection URL
         :param str username_template: Username generation template.
         :param bool verify_connection: Whether the connection should be verified on
@@ -5538,10 +5638,18 @@ class SecretsMountPostgresql(dict):
             pulumi.set(__self__, "password", password)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
+        if tls_ca is not None:
+            pulumi.set(__self__, "tls_ca", tls_ca)
+        if tls_certificate is not None:
+            pulumi.set(__self__, "tls_certificate", tls_certificate)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -5641,6 +5749,14 @@ class SecretsMountPostgresql(dict):
         return pulumi.get(self, "plugin_name")
 
     @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[str]:
+        """
+        The secret key used for the x509 client certificate. Must be PEM encoded.
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
     @pulumi.getter(name="rootRotationStatements")
     def root_rotation_statements(self) -> Optional[Sequence[str]]:
         """
@@ -5649,12 +5765,36 @@ class SecretsMountPostgresql(dict):
         return pulumi.get(self, "root_rotation_statements")
 
     @property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> Optional[bool]:
+        """
+        If set, allows onboarding static roles with a rootless connection configuration.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @property
     @pulumi.getter(name="serviceAccountJson")
     def service_account_json(self) -> Optional[str]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
+
+    @property
+    @pulumi.getter(name="tlsCa")
+    def tls_ca(self) -> Optional[str]:
+        """
+        The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_ca")
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> Optional[str]:
+        """
+        The x509 client certificate for connecting to the database. Must be PEM encoded.
+        """
+        return pulumi.get(self, "tls_certificate")
 
     @property
     @pulumi.getter

@@ -50,7 +50,6 @@ import (
 //			exampleSecretV2, err := kv.NewSecretV2(ctx, "example", &kv.SecretV2Args{
 //				Mount:             kvv2.Path,
 //				Name:              pulumi.String("secret"),
-//				Cas:               pulumi.Int(1),
 //				DeleteAllVersions: pulumi.Bool(true),
 //				DataJson:          pulumi.String(json0),
 //			})

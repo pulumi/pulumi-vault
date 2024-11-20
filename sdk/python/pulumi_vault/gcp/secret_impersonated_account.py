@@ -23,7 +23,8 @@ class SecretImpersonatedAccountArgs:
                  impersonated_account: pulumi.Input[str],
                  service_account_email: pulumi.Input[str],
                  namespace: Optional[pulumi.Input[str]] = None,
-                 token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretImpersonatedAccount resource.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
@@ -31,6 +32,8 @@ class SecretImpersonatedAccountArgs:
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to impersonate.
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to access tokens generated under this impersonated account.
+        :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
+               Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "impersonated_account", impersonated_account)
@@ -39,6 +42,8 @@ class SecretImpersonatedAccountArgs:
             pulumi.set(__self__, "namespace", namespace)
         if token_scopes is not None:
             pulumi.set(__self__, "token_scopes", token_scopes)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
@@ -100,6 +105,19 @@ class SecretImpersonatedAccountArgs:
     def token_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "token_scopes", value)
 
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default TTL for service principals generated using this role.
+        Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
 
 @pulumi.input_type
 class _SecretImpersonatedAccountState:
@@ -109,7 +127,8 @@ class _SecretImpersonatedAccountState:
                  namespace: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
                  service_account_project: Optional[pulumi.Input[str]] = None,
-                 token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretImpersonatedAccount resources.
         :param pulumi.Input[str] backend: Path where the GCP Secrets Engine is mounted
@@ -118,6 +137,8 @@ class _SecretImpersonatedAccountState:
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to impersonate.
         :param pulumi.Input[str] service_account_project: Project the service account belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to access tokens generated under this impersonated account.
+        :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
+               Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -131,6 +152,8 @@ class _SecretImpersonatedAccountState:
             pulumi.set(__self__, "service_account_project", service_account_project)
         if token_scopes is not None:
             pulumi.set(__self__, "token_scopes", token_scopes)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
@@ -204,6 +227,19 @@ class _SecretImpersonatedAccountState:
     def token_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "token_scopes", value)
 
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default TTL for service principals generated using this role.
+        Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ttl", value)
+
 
 class SecretImpersonatedAccount(pulumi.CustomResource):
     @overload
@@ -215,6 +251,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates a Impersonated Account in the [GCP Secrets Engine](https://www.vaultproject.io/docs/secrets/gcp/index.html) for Vault.
@@ -256,6 +293,8 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         :param pulumi.Input[str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to impersonate.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to access tokens generated under this impersonated account.
+        :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
+               Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
         ...
     @overload
@@ -316,6 +355,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  service_account_email: Optional[pulumi.Input[str]] = None,
                  token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ttl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -336,6 +376,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
                 raise TypeError("Missing required property 'service_account_email'")
             __props__.__dict__["service_account_email"] = service_account_email
             __props__.__dict__["token_scopes"] = token_scopes
+            __props__.__dict__["ttl"] = ttl
             __props__.__dict__["service_account_project"] = None
         super(SecretImpersonatedAccount, __self__).__init__(
             'vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount',
@@ -352,7 +393,8 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
             namespace: Optional[pulumi.Input[str]] = None,
             service_account_email: Optional[pulumi.Input[str]] = None,
             service_account_project: Optional[pulumi.Input[str]] = None,
-            token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretImpersonatedAccount':
+            token_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            ttl: Optional[pulumi.Input[str]] = None) -> 'SecretImpersonatedAccount':
         """
         Get an existing SecretImpersonatedAccount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -366,6 +408,8 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         :param pulumi.Input[str] service_account_email: Email of the GCP service account to impersonate.
         :param pulumi.Input[str] service_account_project: Project the service account belongs to.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] token_scopes: List of OAuth scopes to assign to access tokens generated under this impersonated account.
+        :param pulumi.Input[str] ttl: Specifies the default TTL for service principals generated using this role.
+               Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -377,6 +421,7 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         __props__.__dict__["service_account_email"] = service_account_email
         __props__.__dict__["service_account_project"] = service_account_project
         __props__.__dict__["token_scopes"] = token_scopes
+        __props__.__dict__["ttl"] = ttl
         return SecretImpersonatedAccount(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -426,4 +471,13 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         List of OAuth scopes to assign to access tokens generated under this impersonated account.
         """
         return pulumi.get(self, "token_scopes")
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Output[str]:
+        """
+        Specifies the default TTL for service principals generated using this role.
+        Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+        """
+        return pulumi.get(self, "ttl")
 

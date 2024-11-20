@@ -49,10 +49,30 @@ public final class SecretBackendConnectionPostgresql {
      */
     private @Nullable String password;
     /**
+     * @return The secret key used for the x509 client certificate. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String privateKey;
+    /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    private @Nullable Boolean selfManaged;
+    /**
      * @return A JSON encoded credential for use with IAM authorization
      * 
      */
     private @Nullable String serviceAccountJson;
+    /**
+     * @return The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCa;
+    /**
+     * @return The x509 client certificate for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    private @Nullable String tlsCertificate;
     /**
      * @return The root credential username used in the connection URL
      * 
@@ -115,11 +135,39 @@ public final class SecretBackendConnectionPostgresql {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return The secret key used for the x509 client certificate. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> privateKey() {
+        return Optional.ofNullable(this.privateKey);
+    }
+    /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    public Optional<Boolean> selfManaged() {
+        return Optional.ofNullable(this.selfManaged);
+    }
+    /**
      * @return A JSON encoded credential for use with IAM authorization
      * 
      */
     public Optional<String> serviceAccountJson() {
         return Optional.ofNullable(this.serviceAccountJson);
+    }
+    /**
+     * @return The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+    /**
+     * @return The x509 client certificate for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    public Optional<String> tlsCertificate() {
+        return Optional.ofNullable(this.tlsCertificate);
     }
     /**
      * @return The root credential username used in the connection URL
@@ -152,7 +200,11 @@ public final class SecretBackendConnectionPostgresql {
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable String privateKey;
+        private @Nullable Boolean selfManaged;
         private @Nullable String serviceAccountJson;
+        private @Nullable String tlsCa;
+        private @Nullable String tlsCertificate;
         private @Nullable String username;
         private @Nullable String usernameTemplate;
         public Builder() {}
@@ -165,7 +217,11 @@ public final class SecretBackendConnectionPostgresql {
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.privateKey = defaults.privateKey;
+    	      this.selfManaged = defaults.selfManaged;
     	      this.serviceAccountJson = defaults.serviceAccountJson;
+    	      this.tlsCa = defaults.tlsCa;
+    	      this.tlsCertificate = defaults.tlsCertificate;
     	      this.username = defaults.username;
     	      this.usernameTemplate = defaults.usernameTemplate;
         }
@@ -213,9 +269,33 @@ public final class SecretBackendConnectionPostgresql {
             return this;
         }
         @CustomType.Setter
+        public Builder privateKey(@Nullable String privateKey) {
+
+            this.privateKey = privateKey;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder selfManaged(@Nullable Boolean selfManaged) {
+
+            this.selfManaged = selfManaged;
+            return this;
+        }
+        @CustomType.Setter
         public Builder serviceAccountJson(@Nullable String serviceAccountJson) {
 
             this.serviceAccountJson = serviceAccountJson;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCa(@Nullable String tlsCa) {
+
+            this.tlsCa = tlsCa;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tlsCertificate(@Nullable String tlsCertificate) {
+
+            this.tlsCertificate = tlsCertificate;
             return this;
         }
         @CustomType.Setter
@@ -239,7 +319,11 @@ public final class SecretBackendConnectionPostgresql {
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.privateKey = privateKey;
+            _resultValue.selfManaged = selfManaged;
             _resultValue.serviceAccountJson = serviceAccountJson;
+            _resultValue.tlsCa = tlsCa;
+            _resultValue.tlsCertificate = tlsCertificate;
             _resultValue.username = username;
             _resultValue.usernameTemplate = usernameTemplate;
             return _resultValue;

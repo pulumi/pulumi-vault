@@ -69,6 +69,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
+        /// Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+        /// </summary>
+        public readonly bool? SkipVerification;
+        /// <summary>
         /// Whether to use TLS when connecting to Cassandra.
         /// </summary>
         public readonly bool? Tls;
@@ -110,6 +114,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            bool? skipVerification,
+
             bool? tls,
 
             string? username,
@@ -129,6 +135,7 @@ namespace Pulumi.Vault.Database.Outputs
             Port = port;
             ProtocolVersion = protocolVersion;
             RootRotationStatements = rootRotationStatements;
+            SkipVerification = skipVerification;
             Tls = tls;
             Username = username;
             VerifyConnection = verifyConnection;

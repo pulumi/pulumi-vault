@@ -156,6 +156,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         return this.clientTlsKey;
     }
     /**
+     * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     * 
+     */
+    @Export(name="connectionTimeout", refs={Integer.class}, tree="[0]")
+    private Output<Integer> connectionTimeout;
+
+    /**
+     * @return Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
+     * 
+     */
+    public Output<Integer> connectionTimeout() {
+        return this.connectionTimeout;
+    }
+    /**
      * Prevents users from bypassing authentication when providing an empty password.
      * 
      */

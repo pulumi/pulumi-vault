@@ -85,6 +85,8 @@ type AuthBackendConfig struct {
 	PemKeys pulumi.StringArrayOutput `pulumi:"pemKeys"`
 	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt pulumi.StringPtrOutput `pulumi:"tokenReviewerJwt"`
+	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata pulumi.BoolOutput `pulumi:"useAnnotationsAsAliasMetadata"`
 }
 
 // NewAuthBackendConfig registers a new resource with the given unique name, arguments, and options.
@@ -148,6 +150,8 @@ type authBackendConfigState struct {
 	PemKeys []string `pulumi:"pemKeys"`
 	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt *string `pulumi:"tokenReviewerJwt"`
+	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata *bool `pulumi:"useAnnotationsAsAliasMetadata"`
 }
 
 type AuthBackendConfigState struct {
@@ -172,6 +176,8 @@ type AuthBackendConfigState struct {
 	PemKeys pulumi.StringArrayInput
 	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt pulumi.StringPtrInput
+	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata pulumi.BoolPtrInput
 }
 
 func (AuthBackendConfigState) ElementType() reflect.Type {
@@ -200,6 +206,8 @@ type authBackendConfigArgs struct {
 	PemKeys []string `pulumi:"pemKeys"`
 	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt *string `pulumi:"tokenReviewerJwt"`
+	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata *bool `pulumi:"useAnnotationsAsAliasMetadata"`
 }
 
 // The set of arguments for constructing a AuthBackendConfig resource.
@@ -225,6 +233,8 @@ type AuthBackendConfigArgs struct {
 	PemKeys pulumi.StringArrayInput
 	// A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 	TokenReviewerJwt pulumi.StringPtrInput
+	// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata pulumi.BoolPtrInput
 }
 
 func (AuthBackendConfigArgs) ElementType() reflect.Type {
@@ -360,6 +370,11 @@ func (o AuthBackendConfigOutput) PemKeys() pulumi.StringArrayOutput {
 // A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
 func (o AuthBackendConfigOutput) TokenReviewerJwt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.TokenReviewerJwt }).(pulumi.StringPtrOutput)
+}
+
+// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+func (o AuthBackendConfigOutput) UseAnnotationsAsAliasMetadata() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.BoolOutput { return v.UseAnnotationsAsAliasMetadata }).(pulumi.BoolOutput)
 }
 
 type AuthBackendConfigArrayOutput struct{ *pulumi.OutputState }

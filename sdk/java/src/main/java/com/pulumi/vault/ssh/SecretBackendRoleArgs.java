@@ -50,6 +50,13 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.allowBareDomains);
     }
 
+    @Import(name="allowEmptyPrincipals")
+    private @Nullable Output<Boolean> allowEmptyPrincipals;
+
+    public Optional<Output<Boolean>> allowEmptyPrincipals() {
+        return Optional.ofNullable(this.allowEmptyPrincipals);
+    }
+
     /**
      * Specifies if certificates are allowed to be signed for use as a &#39;host&#39;.
      * 
@@ -427,6 +434,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     private SecretBackendRoleArgs(SecretBackendRoleArgs $) {
         this.algorithmSigner = $.algorithmSigner;
         this.allowBareDomains = $.allowBareDomains;
+        this.allowEmptyPrincipals = $.allowEmptyPrincipals;
         this.allowHostCertificates = $.allowHostCertificates;
         this.allowSubdomains = $.allowSubdomains;
         this.allowUserCertificates = $.allowUserCertificates;
@@ -511,6 +519,15 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder allowBareDomains(Boolean allowBareDomains) {
             return allowBareDomains(Output.of(allowBareDomains));
+        }
+
+        public Builder allowEmptyPrincipals(@Nullable Output<Boolean> allowEmptyPrincipals) {
+            $.allowEmptyPrincipals = allowEmptyPrincipals;
+            return this;
+        }
+
+        public Builder allowEmptyPrincipals(Boolean allowEmptyPrincipals) {
+            return allowEmptyPrincipals(Output.of(allowEmptyPrincipals));
         }
 
         /**

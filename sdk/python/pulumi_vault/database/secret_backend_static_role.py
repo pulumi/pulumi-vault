@@ -27,7 +27,8 @@ class SecretBackendStaticRoleArgs:
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  rotation_schedule: Optional[pulumi.Input[str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 rotation_window: Optional[pulumi.Input[int]] = None):
+                 rotation_window: Optional[pulumi.Input[int]] = None,
+                 self_managed_password: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
         :param pulumi.Input[str] backend: The unique name of the Vault mount to configure.
@@ -48,6 +49,9 @@ class SecretBackendStaticRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
+        :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
+               Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+               select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "db_name", db_name)
@@ -64,6 +68,8 @@ class SecretBackendStaticRoleArgs:
             pulumi.set(__self__, "rotation_statements", rotation_statements)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if self_managed_password is not None:
+            pulumi.set(__self__, "self_managed_password", self_managed_password)
 
     @property
     @pulumi.getter
@@ -182,6 +188,20 @@ class SecretBackendStaticRoleArgs:
     def rotation_window(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "rotation_window", value)
 
+    @property
+    @pulumi.getter(name="selfManagedPassword")
+    def self_managed_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password corresponding to the username in the database.
+        Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+        select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        """
+        return pulumi.get(self, "self_managed_password")
+
+    @self_managed_password.setter
+    def self_managed_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "self_managed_password", value)
+
 
 @pulumi.input_type
 class _SecretBackendStaticRoleState:
@@ -194,6 +214,7 @@ class _SecretBackendStaticRoleState:
                  rotation_schedule: Optional[pulumi.Input[str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
+                 self_managed_password: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
@@ -214,6 +235,9 @@ class _SecretBackendStaticRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
+        :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
+               Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+               select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         if backend is not None:
@@ -232,6 +256,8 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "rotation_statements", rotation_statements)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if self_managed_password is not None:
+            pulumi.set(__self__, "self_managed_password", self_managed_password)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -341,6 +367,20 @@ class _SecretBackendStaticRoleState:
         pulumi.set(self, "rotation_window", value)
 
     @property
+    @pulumi.getter(name="selfManagedPassword")
+    def self_managed_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password corresponding to the username in the database.
+        Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+        select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        """
+        return pulumi.get(self, "self_managed_password")
+
+    @self_managed_password.setter
+    def self_managed_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "self_managed_password", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -366,6 +406,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  rotation_schedule: Optional[pulumi.Input[str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
+                 self_managed_password: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -435,6 +476,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
+        :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
+               Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+               select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         ...
@@ -514,6 +558,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  rotation_schedule: Optional[pulumi.Input[str]] = None,
                  rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  rotation_window: Optional[pulumi.Input[int]] = None,
+                 self_managed_password: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -536,9 +581,12 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_statements"] = rotation_statements
             __props__.__dict__["rotation_window"] = rotation_window
+            __props__.__dict__["self_managed_password"] = None if self_managed_password is None else pulumi.Output.secret(self_managed_password)
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["selfManagedPassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretBackendStaticRole, __self__).__init__(
             'vault:database/secretBackendStaticRole:SecretBackendStaticRole',
             resource_name,
@@ -557,6 +605,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_schedule: Optional[pulumi.Input[str]] = None,
             rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             rotation_window: Optional[pulumi.Input[int]] = None,
+            self_managed_password: Optional[pulumi.Input[str]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'SecretBackendStaticRole':
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
@@ -582,6 +631,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] rotation_statements: Database statements to execute to rotate the password for the configured database user.
         :param pulumi.Input[int] rotation_window: The amount of time, in seconds, in which rotations are allowed to occur starting
                from a given `rotation_schedule`.
+        :param pulumi.Input[str] self_managed_password: The password corresponding to the username in the database.
+               Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+               select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
         :param pulumi.Input[str] username: The database username that this static role corresponds to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -596,6 +648,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_statements"] = rotation_statements
         __props__.__dict__["rotation_window"] = rotation_window
+        __props__.__dict__["self_managed_password"] = self_managed_password
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
@@ -671,6 +724,16 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         from a given `rotation_schedule`.
         """
         return pulumi.get(self, "rotation_window")
+
+    @property
+    @pulumi.getter(name="selfManagedPassword")
+    def self_managed_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        The password corresponding to the username in the database.
+        Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+        select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        """
+        return pulumi.get(self, "self_managed_password")
 
     @property
     @pulumi.getter

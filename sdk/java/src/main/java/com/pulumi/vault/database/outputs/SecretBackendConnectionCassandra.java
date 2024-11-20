@@ -55,6 +55,11 @@ public final class SecretBackendConnectionCassandra {
      */
     private @Nullable Integer protocolVersion;
     /**
+     * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+     * 
+     */
+    private @Nullable Boolean skipVerification;
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -123,6 +128,13 @@ public final class SecretBackendConnectionCassandra {
         return Optional.ofNullable(this.protocolVersion);
     }
     /**
+     * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+     * 
+     */
+    public Optional<Boolean> skipVerification() {
+        return Optional.ofNullable(this.skipVerification);
+    }
+    /**
      * @return Whether to use TLS when connecting to Cassandra.
      * 
      */
@@ -154,6 +166,7 @@ public final class SecretBackendConnectionCassandra {
         private @Nullable String pemJson;
         private @Nullable Integer port;
         private @Nullable Integer protocolVersion;
+        private @Nullable Boolean skipVerification;
         private @Nullable Boolean tls;
         private @Nullable String username;
         public Builder() {}
@@ -167,6 +180,7 @@ public final class SecretBackendConnectionCassandra {
     	      this.pemJson = defaults.pemJson;
     	      this.port = defaults.port;
     	      this.protocolVersion = defaults.protocolVersion;
+    	      this.skipVerification = defaults.skipVerification;
     	      this.tls = defaults.tls;
     	      this.username = defaults.username;
         }
@@ -223,6 +237,12 @@ public final class SecretBackendConnectionCassandra {
             return this;
         }
         @CustomType.Setter
+        public Builder skipVerification(@Nullable Boolean skipVerification) {
+
+            this.skipVerification = skipVerification;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
 
             this.tls = tls;
@@ -244,6 +264,7 @@ public final class SecretBackendConnectionCassandra {
             _resultValue.pemJson = pemJson;
             _resultValue.port = port;
             _resultValue.protocolVersion = protocolVersion;
+            _resultValue.skipVerification = skipVerification;
             _resultValue.tls = tls;
             _resultValue.username = username;
             return _resultValue;

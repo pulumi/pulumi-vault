@@ -91,6 +91,9 @@ type SecretImpersonatedAccount struct {
 	ServiceAccountProject pulumi.StringOutput `pulumi:"serviceAccountProject"`
 	// List of OAuth scopes to assign to access tokens generated under this impersonated account.
 	TokenScopes pulumi.StringArrayOutput `pulumi:"tokenScopes"`
+	// Specifies the default TTL for service principals generated using this role.
+	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	Ttl pulumi.StringOutput `pulumi:"ttl"`
 }
 
 // NewSecretImpersonatedAccount registers a new resource with the given unique name, arguments, and options.
@@ -144,6 +147,9 @@ type secretImpersonatedAccountState struct {
 	ServiceAccountProject *string `pulumi:"serviceAccountProject"`
 	// List of OAuth scopes to assign to access tokens generated under this impersonated account.
 	TokenScopes []string `pulumi:"tokenScopes"`
+	// Specifies the default TTL for service principals generated using this role.
+	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	Ttl *string `pulumi:"ttl"`
 }
 
 type SecretImpersonatedAccountState struct {
@@ -159,6 +165,9 @@ type SecretImpersonatedAccountState struct {
 	ServiceAccountProject pulumi.StringPtrInput
 	// List of OAuth scopes to assign to access tokens generated under this impersonated account.
 	TokenScopes pulumi.StringArrayInput
+	// Specifies the default TTL for service principals generated using this role.
+	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	Ttl pulumi.StringPtrInput
 }
 
 func (SecretImpersonatedAccountState) ElementType() reflect.Type {
@@ -176,6 +185,9 @@ type secretImpersonatedAccountArgs struct {
 	ServiceAccountEmail string `pulumi:"serviceAccountEmail"`
 	// List of OAuth scopes to assign to access tokens generated under this impersonated account.
 	TokenScopes []string `pulumi:"tokenScopes"`
+	// Specifies the default TTL for service principals generated using this role.
+	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	Ttl *string `pulumi:"ttl"`
 }
 
 // The set of arguments for constructing a SecretImpersonatedAccount resource.
@@ -190,6 +202,9 @@ type SecretImpersonatedAccountArgs struct {
 	ServiceAccountEmail pulumi.StringInput
 	// List of OAuth scopes to assign to access tokens generated under this impersonated account.
 	TokenScopes pulumi.StringArrayInput
+	// Specifies the default TTL for service principals generated using this role.
+	// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+	Ttl pulumi.StringPtrInput
 }
 
 func (SecretImpersonatedAccountArgs) ElementType() reflect.Type {
@@ -307,6 +322,12 @@ func (o SecretImpersonatedAccountOutput) ServiceAccountProject() pulumi.StringOu
 // List of OAuth scopes to assign to access tokens generated under this impersonated account.
 func (o SecretImpersonatedAccountOutput) TokenScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretImpersonatedAccount) pulumi.StringArrayOutput { return v.TokenScopes }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the default TTL for service principals generated using this role.
+// Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
+func (o SecretImpersonatedAccountOutput) Ttl() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretImpersonatedAccount) pulumi.StringOutput { return v.Ttl }).(pulumi.StringOutput)
 }
 
 type SecretImpersonatedAccountArrayOutput struct{ *pulumi.OutputState }

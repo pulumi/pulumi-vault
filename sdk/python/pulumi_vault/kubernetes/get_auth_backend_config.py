@@ -26,7 +26,7 @@ class GetAuthBackendConfigResult:
     """
     A collection of values returned by getAuthBackendConfig.
     """
-    def __init__(__self__, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, namespace=None, pem_keys=None):
+    def __init__(__self__, backend=None, disable_iss_validation=None, disable_local_ca_jwt=None, id=None, issuer=None, kubernetes_ca_cert=None, kubernetes_host=None, namespace=None, pem_keys=None, use_annotations_as_alias_metadata=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -54,6 +54,9 @@ class GetAuthBackendConfigResult:
         if pem_keys and not isinstance(pem_keys, list):
             raise TypeError("Expected argument 'pem_keys' to be a list")
         pulumi.set(__self__, "pem_keys", pem_keys)
+        if use_annotations_as_alias_metadata and not isinstance(use_annotations_as_alias_metadata, bool):
+            raise TypeError("Expected argument 'use_annotations_as_alias_metadata' to be a bool")
+        pulumi.set(__self__, "use_annotations_as_alias_metadata", use_annotations_as_alias_metadata)
 
     @property
     @pulumi.getter
@@ -63,11 +66,17 @@ class GetAuthBackendConfigResult:
     @property
     @pulumi.getter(name="disableIssValidation")
     def disable_iss_validation(self) -> bool:
+        """
+        (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        """
         return pulumi.get(self, "disable_iss_validation")
 
     @property
     @pulumi.getter(name="disableLocalCaJwt")
     def disable_local_ca_jwt(self) -> bool:
+        """
+        (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        """
         return pulumi.get(self, "disable_local_ca_jwt")
 
     @property
@@ -115,6 +124,14 @@ class GetAuthBackendConfigResult:
         """
         return pulumi.get(self, "pem_keys")
 
+    @property
+    @pulumi.getter(name="useAnnotationsAsAliasMetadata")
+    def use_annotations_as_alias_metadata(self) -> bool:
+        """
+        (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        """
+        return pulumi.get(self, "use_annotations_as_alias_metadata")
+
 
 class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
     # pylint: disable=using-constant-test
@@ -130,7 +147,8 @@ class AwaitableGetAuthBackendConfigResult(GetAuthBackendConfigResult):
             kubernetes_ca_cert=self.kubernetes_ca_cert,
             kubernetes_host=self.kubernetes_host,
             namespace=self.namespace,
-            pem_keys=self.pem_keys)
+            pem_keys=self.pem_keys,
+            use_annotations_as_alias_metadata=self.use_annotations_as_alias_metadata)
 
 
 def get_auth_backend_config(backend: Optional[str] = None,
@@ -141,6 +159,7 @@ def get_auth_backend_config(backend: Optional[str] = None,
                             kubernetes_host: Optional[str] = None,
                             namespace: Optional[str] = None,
                             pem_keys: Optional[Sequence[str]] = None,
+                            use_annotations_as_alias_metadata: Optional[bool] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAuthBackendConfigResult:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -150,6 +169,8 @@ def get_auth_backend_config(backend: Optional[str] = None,
 
     :param str backend: The unique name for the Kubernetes backend the config to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param bool disable_iss_validation: (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+    :param bool disable_local_ca_jwt: (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
     :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
     :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
     :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
@@ -158,6 +179,7 @@ def get_auth_backend_config(backend: Optional[str] = None,
            The `namespace` is always relative to the provider's configured namespace.
            *Available only for Vault Enterprise*.
     :param Sequence[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+    :param bool use_annotations_as_alias_metadata: (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
     """
     __args__ = dict()
     __args__['backend'] = backend
@@ -168,6 +190,7 @@ def get_auth_backend_config(backend: Optional[str] = None,
     __args__['kubernetesHost'] = kubernetes_host
     __args__['namespace'] = namespace
     __args__['pemKeys'] = pem_keys
+    __args__['useAnnotationsAsAliasMetadata'] = use_annotations_as_alias_metadata
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult).value
 
@@ -180,7 +203,8 @@ def get_auth_backend_config(backend: Optional[str] = None,
         kubernetes_ca_cert=pulumi.get(__ret__, 'kubernetes_ca_cert'),
         kubernetes_host=pulumi.get(__ret__, 'kubernetes_host'),
         namespace=pulumi.get(__ret__, 'namespace'),
-        pem_keys=pulumi.get(__ret__, 'pem_keys'))
+        pem_keys=pulumi.get(__ret__, 'pem_keys'),
+        use_annotations_as_alias_metadata=pulumi.get(__ret__, 'use_annotations_as_alias_metadata'))
 def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]] = None,
                                    disable_iss_validation: Optional[pulumi.Input[Optional[bool]]] = None,
                                    disable_local_ca_jwt: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -189,6 +213,7 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
                                    kubernetes_host: Optional[pulumi.Input[Optional[str]]] = None,
                                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                    pem_keys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                                   use_annotations_as_alias_metadata: Optional[pulumi.Input[Optional[bool]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendConfigResult]:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
@@ -198,6 +223,8 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
 
     :param str backend: The unique name for the Kubernetes backend the config to
            retrieve Role attributes for resides in. Defaults to "kubernetes".
+    :param bool disable_iss_validation: (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+    :param bool disable_local_ca_jwt: (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
     :param str issuer: Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
     :param str kubernetes_ca_cert: PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
     :param str kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
@@ -206,6 +233,7 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
            The `namespace` is always relative to the provider's configured namespace.
            *Available only for Vault Enterprise*.
     :param Sequence[str] pem_keys: Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+    :param bool use_annotations_as_alias_metadata: (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
     """
     __args__ = dict()
     __args__['backend'] = backend
@@ -216,6 +244,7 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
     __args__['kubernetesHost'] = kubernetes_host
     __args__['namespace'] = namespace
     __args__['pemKeys'] = pem_keys
+    __args__['useAnnotationsAsAliasMetadata'] = use_annotations_as_alias_metadata
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult)
     return __ret__.apply(lambda __response__: GetAuthBackendConfigResult(
@@ -227,4 +256,5 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
         kubernetes_ca_cert=pulumi.get(__response__, 'kubernetes_ca_cert'),
         kubernetes_host=pulumi.get(__response__, 'kubernetes_host'),
         namespace=pulumi.get(__response__, 'namespace'),
-        pem_keys=pulumi.get(__response__, 'pem_keys')))
+        pem_keys=pulumi.get(__response__, 'pem_keys'),
+        use_annotations_as_alias_metadata=pulumi.get(__response__, 'use_annotations_as_alias_metadata')))

@@ -77,6 +77,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     public readonly allowBareDomains!: pulumi.Output<boolean | undefined>;
+    public readonly allowEmptyPrincipals!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
      */
@@ -195,6 +196,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendRoleState | undefined;
             resourceInputs["algorithmSigner"] = state ? state.algorithmSigner : undefined;
             resourceInputs["allowBareDomains"] = state ? state.allowBareDomains : undefined;
+            resourceInputs["allowEmptyPrincipals"] = state ? state.allowEmptyPrincipals : undefined;
             resourceInputs["allowHostCertificates"] = state ? state.allowHostCertificates : undefined;
             resourceInputs["allowSubdomains"] = state ? state.allowSubdomains : undefined;
             resourceInputs["allowUserCertificates"] = state ? state.allowUserCertificates : undefined;
@@ -229,6 +231,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             }
             resourceInputs["algorithmSigner"] = args ? args.algorithmSigner : undefined;
             resourceInputs["allowBareDomains"] = args ? args.allowBareDomains : undefined;
+            resourceInputs["allowEmptyPrincipals"] = args ? args.allowEmptyPrincipals : undefined;
             resourceInputs["allowHostCertificates"] = args ? args.allowHostCertificates : undefined;
             resourceInputs["allowSubdomains"] = args ? args.allowSubdomains : undefined;
             resourceInputs["allowUserCertificates"] = args ? args.allowUserCertificates : undefined;
@@ -271,6 +274,7 @@ export interface SecretBackendRoleState {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     allowBareDomains?: pulumi.Input<boolean>;
+    allowEmptyPrincipals?: pulumi.Input<boolean>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
      */
@@ -387,6 +391,7 @@ export interface SecretBackendRoleArgs {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     allowBareDomains?: pulumi.Input<boolean>;
+    allowEmptyPrincipals?: pulumi.Input<boolean>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
      */

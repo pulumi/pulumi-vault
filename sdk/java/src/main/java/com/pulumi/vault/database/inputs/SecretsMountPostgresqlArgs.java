@@ -192,6 +192,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * The secret key used for the x509 client certificate. Must be PEM encoded.
+     * 
+     */
+    @Import(name="privateKey")
+    private @Nullable Output<String> privateKey;
+
+    /**
+     * @return The secret key used for the x509 client certificate. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> privateKey() {
+        return Optional.ofNullable(this.privateKey);
+    }
+
+    /**
      * A list of database statements to be executed to rotate the root user&#39;s credentials.
      * 
      */
@@ -207,6 +222,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    @Import(name="selfManaged")
+    private @Nullable Output<Boolean> selfManaged;
+
+    /**
+     * @return If set, allows onboarding static roles with a rootless connection configuration.
+     * 
+     */
+    public Optional<Output<Boolean>> selfManaged() {
+        return Optional.ofNullable(this.selfManaged);
+    }
+
+    /**
      * A JSON encoded credential for use with IAM authorization
      * 
      */
@@ -219,6 +249,36 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> serviceAccountJson() {
         return Optional.ofNullable(this.serviceAccountJson);
+    }
+
+    /**
+     * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCa")
+    private @Nullable Output<String> tlsCa;
+
+    /**
+     * @return The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCa() {
+        return Optional.ofNullable(this.tlsCa);
+    }
+
+    /**
+     * The x509 client certificate for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    @Import(name="tlsCertificate")
+    private @Nullable Output<String> tlsCertificate;
+
+    /**
+     * @return The x509 client certificate for connecting to the database. Must be PEM encoded.
+     * 
+     */
+    public Optional<Output<String>> tlsCertificate() {
+        return Optional.ofNullable(this.tlsCertificate);
     }
 
     /**
@@ -282,8 +342,12 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.name = $.name;
         this.password = $.password;
         this.pluginName = $.pluginName;
+        this.privateKey = $.privateKey;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.selfManaged = $.selfManaged;
         this.serviceAccountJson = $.serviceAccountJson;
+        this.tlsCa = $.tlsCa;
+        this.tlsCertificate = $.tlsCertificate;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
@@ -556,6 +620,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param privateKey The secret key used for the x509 client certificate. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKey(@Nullable Output<String> privateKey) {
+            $.privateKey = privateKey;
+            return this;
+        }
+
+        /**
+         * @param privateKey The secret key used for the x509 client certificate. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateKey(String privateKey) {
+            return privateKey(Output.of(privateKey));
+        }
+
+        /**
          * @param rootRotationStatements A list of database statements to be executed to rotate the root user&#39;s credentials.
          * 
          * @return builder
@@ -587,6 +672,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         }
 
         /**
+         * @param selfManaged If set, allows onboarding static roles with a rootless connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManaged(@Nullable Output<Boolean> selfManaged) {
+            $.selfManaged = selfManaged;
+            return this;
+        }
+
+        /**
+         * @param selfManaged If set, allows onboarding static roles with a rootless connection configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManaged(Boolean selfManaged) {
+            return selfManaged(Output.of(selfManaged));
+        }
+
+        /**
          * @param serviceAccountJson A JSON encoded credential for use with IAM authorization
          * 
          * @return builder
@@ -605,6 +711,48 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder serviceAccountJson(String serviceAccountJson) {
             return serviceAccountJson(Output.of(serviceAccountJson));
+        }
+
+        /**
+         * @param tlsCa The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(@Nullable Output<String> tlsCa) {
+            $.tlsCa = tlsCa;
+            return this;
+        }
+
+        /**
+         * @param tlsCa The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCa(String tlsCa) {
+            return tlsCa(Output.of(tlsCa));
+        }
+
+        /**
+         * @param tlsCertificate The x509 client certificate for connecting to the database. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificate(@Nullable Output<String> tlsCertificate) {
+            $.tlsCertificate = tlsCertificate;
+            return this;
+        }
+
+        /**
+         * @param tlsCertificate The x509 client certificate for connecting to the database. Must be PEM encoded.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsCertificate(String tlsCertificate) {
+            return tlsCertificate(Output.of(tlsCertificate));
         }
 
         /**

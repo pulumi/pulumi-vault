@@ -28,9 +28,11 @@ func LookupAuthBackendConfig(ctx *pulumi.Context, args *LookupAuthBackendConfigA
 type LookupAuthBackendConfigArgs struct {
 	// The unique name for the Kubernetes backend the config to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
-	Backend              *string `pulumi:"backend"`
-	DisableIssValidation *bool   `pulumi:"disableIssValidation"`
-	DisableLocalCaJwt    *bool   `pulumi:"disableLocalCaJwt"`
+	Backend *string `pulumi:"backend"`
+	// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+	DisableIssValidation *bool `pulumi:"disableIssValidation"`
+	// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+	DisableLocalCaJwt *bool `pulumi:"disableLocalCaJwt"`
 	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer *string `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
@@ -44,13 +46,17 @@ type LookupAuthBackendConfigArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
+	// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata *bool `pulumi:"useAnnotationsAsAliasMetadata"`
 }
 
 // A collection of values returned by getAuthBackendConfig.
 type LookupAuthBackendConfigResult struct {
-	Backend              *string `pulumi:"backend"`
-	DisableIssValidation bool    `pulumi:"disableIssValidation"`
-	DisableLocalCaJwt    bool    `pulumi:"disableLocalCaJwt"`
+	Backend *string `pulumi:"backend"`
+	// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+	DisableIssValidation bool `pulumi:"disableIssValidation"`
+	// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+	DisableLocalCaJwt bool `pulumi:"disableLocalCaJwt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
@@ -62,6 +68,8 @@ type LookupAuthBackendConfigResult struct {
 	Namespace      *string `pulumi:"namespace"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys []string `pulumi:"pemKeys"`
+	// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata bool `pulumi:"useAnnotationsAsAliasMetadata"`
 }
 
 func LookupAuthBackendConfigOutput(ctx *pulumi.Context, args LookupAuthBackendConfigOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendConfigResultOutput {
@@ -87,9 +95,11 @@ func LookupAuthBackendConfigOutput(ctx *pulumi.Context, args LookupAuthBackendCo
 type LookupAuthBackendConfigOutputArgs struct {
 	// The unique name for the Kubernetes backend the config to
 	// retrieve Role attributes for resides in. Defaults to "kubernetes".
-	Backend              pulumi.StringPtrInput `pulumi:"backend"`
-	DisableIssValidation pulumi.BoolPtrInput   `pulumi:"disableIssValidation"`
-	DisableLocalCaJwt    pulumi.BoolPtrInput   `pulumi:"disableLocalCaJwt"`
+	Backend pulumi.StringPtrInput `pulumi:"backend"`
+	// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+	DisableIssValidation pulumi.BoolPtrInput `pulumi:"disableIssValidation"`
+	// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+	DisableLocalCaJwt pulumi.BoolPtrInput `pulumi:"disableLocalCaJwt"`
 	// Optional JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
 	Issuer pulumi.StringPtrInput `pulumi:"issuer"`
 	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
@@ -103,6 +113,8 @@ type LookupAuthBackendConfigOutputArgs struct {
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 	PemKeys pulumi.StringArrayInput `pulumi:"pemKeys"`
+	// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+	UseAnnotationsAsAliasMetadata pulumi.BoolPtrInput `pulumi:"useAnnotationsAsAliasMetadata"`
 }
 
 func (LookupAuthBackendConfigOutputArgs) ElementType() reflect.Type {
@@ -128,10 +140,12 @@ func (o LookupAuthBackendConfigResultOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupAuthBackendConfigResult) *string { return v.Backend }).(pulumi.StringPtrOutput)
 }
 
+// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 func (o LookupAuthBackendConfigResultOutput) DisableIssValidation() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAuthBackendConfigResult) bool { return v.DisableIssValidation }).(pulumi.BoolOutput)
 }
 
+// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
 func (o LookupAuthBackendConfigResultOutput) DisableLocalCaJwt() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAuthBackendConfigResult) bool { return v.DisableLocalCaJwt }).(pulumi.BoolOutput)
 }
@@ -163,6 +177,11 @@ func (o LookupAuthBackendConfigResultOutput) Namespace() pulumi.StringPtrOutput 
 // Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
 func (o LookupAuthBackendConfigResultOutput) PemKeys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAuthBackendConfigResult) []string { return v.PemKeys }).(pulumi.StringArrayOutput)
+}
+
+// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+func (o LookupAuthBackendConfigResultOutput) UseAnnotationsAsAliasMetadata() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAuthBackendConfigResult) bool { return v.UseAnnotationsAsAliasMetadata }).(pulumi.BoolOutput)
 }
 
 func init() {

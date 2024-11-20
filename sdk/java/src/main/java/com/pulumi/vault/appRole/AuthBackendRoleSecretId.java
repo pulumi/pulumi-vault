@@ -12,6 +12,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.appRole.AuthBackendRoleSecretIdArgs;
 import com.pulumi.vault.appRole.inputs.AuthBackendRoleSecretIdState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -164,6 +165,20 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.namespace);
     }
     /**
+     * The number of uses for the secret-id.
+     * 
+     */
+    @Export(name="numUses", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> numUses;
+
+    /**
+     * @return The number of uses for the secret-id.
+     * 
+     */
+    public Output<Optional<Integer>> numUses() {
+        return Codegen.optional(this.numUses);
+    }
+    /**
      * The name of the role to create the SecretID for.
      * 
      */
@@ -192,6 +207,20 @@ public class AuthBackendRoleSecretId extends com.pulumi.resources.CustomResource
      */
     public Output<String> secretId() {
         return this.secretId;
+    }
+    /**
+     * The TTL duration of the SecretID.
+     * 
+     */
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> ttl;
+
+    /**
+     * @return The TTL duration of the SecretID.
+     * 
+     */
+    public Output<Optional<Integer>> ttl() {
+        return Codegen.optional(this.ttl);
     }
     /**
      * Set to `true` to use the wrapped secret-id accessor as the resource ID.

@@ -145,6 +145,14 @@ namespace Pulumi.Vault.Database
         public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
+        /// The password corresponding to the username in the database.
+        /// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+        /// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        /// </summary>
+        [Output("selfManagedPassword")]
+        public Output<string?> SelfManagedPassword { get; private set; } = null!;
+
+        /// <summary>
         /// The database username that this static role corresponds to.
         /// </summary>
         [Output("username")]
@@ -173,6 +181,10 @@ namespace Pulumi.Vault.Database
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "selfManagedPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -259,6 +271,24 @@ namespace Pulumi.Vault.Database
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
 
+        [Input("selfManagedPassword")]
+        private Input<string>? _selfManagedPassword;
+
+        /// <summary>
+        /// The password corresponding to the username in the database.
+        /// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+        /// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        /// </summary>
+        public Input<string>? SelfManagedPassword
+        {
+            get => _selfManagedPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _selfManagedPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         /// <summary>
         /// The database username that this static role corresponds to.
         /// </summary>
@@ -335,6 +365,24 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
+
+        [Input("selfManagedPassword")]
+        private Input<string>? _selfManagedPassword;
+
+        /// <summary>
+        /// The password corresponding to the username in the database.
+        /// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+        /// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+        /// </summary>
+        public Input<string>? SelfManagedPassword
+        {
+            get => _selfManagedPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _selfManagedPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The database username that this static role corresponds to.

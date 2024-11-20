@@ -621,6 +621,10 @@ export namespace database {
          */
         protocolVersion?: pulumi.Input<number>;
         /**
+         * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+         */
+        skipVerification?: pulumi.Input<boolean>;
+        /**
          * Whether to use TLS when connecting to Cassandra.
          */
         tls?: pulumi.Input<boolean>;
@@ -1124,9 +1128,25 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * The secret key used for the x509 client certificate. Must be PEM encoded.
+         */
+        privateKey?: pulumi.Input<string>;
+        /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: pulumi.Input<boolean>;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+         */
+        tlsCa?: pulumi.Input<string>;
+        /**
+         * The x509 client certificate for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificate?: pulumi.Input<string>;
         /**
          * The root credential username used in the connection URL
          */
@@ -1309,6 +1329,10 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+         */
+        skipVerification?: pulumi.Input<boolean>;
         /**
          * Whether to use TLS when connecting to Cassandra.
          */
@@ -2173,13 +2197,29 @@ export namespace database {
          */
         pluginName?: pulumi.Input<string>;
         /**
+         * The secret key used for the x509 client certificate. Must be PEM encoded.
+         */
+        privateKey?: pulumi.Input<string>;
+        /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
         /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: pulumi.Input<boolean>;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: pulumi.Input<string>;
+        /**
+         * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+         */
+        tlsCa?: pulumi.Input<string>;
+        /**
+         * The x509 client certificate for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificate?: pulumi.Input<string>;
         /**
          * The root credential username used in the connection URL
          */

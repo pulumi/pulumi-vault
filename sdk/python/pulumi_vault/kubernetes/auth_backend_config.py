@@ -27,7 +27,8 @@ class AuthBackendConfigArgs:
                  kubernetes_ca_cert: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_reviewer_jwt: Optional[pulumi.Input[str]] = None):
+                 token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
+                 use_annotations_as_alias_metadata: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
         :param pulumi.Input[str] kubernetes_host: Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
@@ -42,6 +43,7 @@ class AuthBackendConfigArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         pulumi.set(__self__, "kubernetes_host", kubernetes_host)
         if backend is not None:
@@ -60,6 +62,8 @@ class AuthBackendConfigArgs:
             pulumi.set(__self__, "pem_keys", pem_keys)
         if token_reviewer_jwt is not None:
             pulumi.set(__self__, "token_reviewer_jwt", token_reviewer_jwt)
+        if use_annotations_as_alias_metadata is not None:
+            pulumi.set(__self__, "use_annotations_as_alias_metadata", use_annotations_as_alias_metadata)
 
     @property
     @pulumi.getter(name="kubernetesHost")
@@ -172,6 +176,18 @@ class AuthBackendConfigArgs:
     def token_reviewer_jwt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_reviewer_jwt", value)
 
+    @property
+    @pulumi.getter(name="useAnnotationsAsAliasMetadata")
+    def use_annotations_as_alias_metadata(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        """
+        return pulumi.get(self, "use_annotations_as_alias_metadata")
+
+    @use_annotations_as_alias_metadata.setter
+    def use_annotations_as_alias_metadata(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_annotations_as_alias_metadata", value)
+
 
 @pulumi.input_type
 class _AuthBackendConfigState:
@@ -184,7 +200,8 @@ class _AuthBackendConfigState:
                  kubernetes_host: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 token_reviewer_jwt: Optional[pulumi.Input[str]] = None):
+                 token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
+                 use_annotations_as_alias_metadata: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
         :param pulumi.Input[str] backend: Unique name of the kubernetes backend to configure.
@@ -199,6 +216,7 @@ class _AuthBackendConfigState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -218,6 +236,8 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "pem_keys", pem_keys)
         if token_reviewer_jwt is not None:
             pulumi.set(__self__, "token_reviewer_jwt", token_reviewer_jwt)
+        if use_annotations_as_alias_metadata is not None:
+            pulumi.set(__self__, "use_annotations_as_alias_metadata", use_annotations_as_alias_metadata)
 
     @property
     @pulumi.getter
@@ -330,6 +350,18 @@ class _AuthBackendConfigState:
     def token_reviewer_jwt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "token_reviewer_jwt", value)
 
+    @property
+    @pulumi.getter(name="useAnnotationsAsAliasMetadata")
+    def use_annotations_as_alias_metadata(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        """
+        return pulumi.get(self, "use_annotations_as_alias_metadata")
+
+    @use_annotations_as_alias_metadata.setter
+    def use_annotations_as_alias_metadata(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_annotations_as_alias_metadata", value)
+
 
 class AuthBackendConfig(pulumi.CustomResource):
     @overload
@@ -345,6 +377,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
+                 use_annotations_as_alias_metadata: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Manages an Kubernetes auth backend config in a Vault server. See the [Vault
@@ -391,6 +424,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         ...
     @overload
@@ -453,6 +487,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                  namespace: Optional[pulumi.Input[str]] = None,
                  pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
+                 use_annotations_as_alias_metadata: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -473,6 +508,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["pem_keys"] = pem_keys
             __props__.__dict__["token_reviewer_jwt"] = None if token_reviewer_jwt is None else pulumi.Output.secret(token_reviewer_jwt)
+            __props__.__dict__["use_annotations_as_alias_metadata"] = use_annotations_as_alias_metadata
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["tokenReviewerJwt"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackendConfig, __self__).__init__(
@@ -493,7 +529,8 @@ class AuthBackendConfig(pulumi.CustomResource):
             kubernetes_host: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            token_reviewer_jwt: Optional[pulumi.Input[str]] = None) -> 'AuthBackendConfig':
+            token_reviewer_jwt: Optional[pulumi.Input[str]] = None,
+            use_annotations_as_alias_metadata: Optional[pulumi.Input[bool]] = None) -> 'AuthBackendConfig':
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -513,6 +550,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pem_keys: List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         :param pulumi.Input[str] token_reviewer_jwt: A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+        :param pulumi.Input[bool] use_annotations_as_alias_metadata: Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -527,6 +565,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["pem_keys"] = pem_keys
         __props__.__dict__["token_reviewer_jwt"] = token_reviewer_jwt
+        __props__.__dict__["use_annotations_as_alias_metadata"] = use_annotations_as_alias_metadata
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -603,4 +642,12 @@ class AuthBackendConfig(pulumi.CustomResource):
         A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
         """
         return pulumi.get(self, "token_reviewer_jwt")
+
+    @property
+    @pulumi.getter(name="useAnnotationsAsAliasMetadata")
+    def use_annotations_as_alias_metadata(self) -> pulumi.Output[bool]:
+        """
+        Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        """
+        return pulumi.get(self, "use_annotations_as_alias_metadata")
 

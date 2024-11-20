@@ -25,6 +25,7 @@ class SecretBackendRoleArgs:
                  key_type: pulumi.Input[str],
                  algorithm_signer: Optional[pulumi.Input[str]] = None,
                  allow_bare_domains: Optional[pulumi.Input[bool]] = None,
+                 allow_empty_principals: Optional[pulumi.Input[bool]] = None,
                  allow_host_certificates: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
                  allow_user_certificates: Optional[pulumi.Input[bool]] = None,
@@ -88,6 +89,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "algorithm_signer", algorithm_signer)
         if allow_bare_domains is not None:
             pulumi.set(__self__, "allow_bare_domains", allow_bare_domains)
+        if allow_empty_principals is not None:
+            pulumi.set(__self__, "allow_empty_principals", allow_empty_principals)
         if allow_host_certificates is not None:
             pulumi.set(__self__, "allow_host_certificates", allow_host_certificates)
         if allow_subdomains is not None:
@@ -180,6 +183,15 @@ class SecretBackendRoleArgs:
     @allow_bare_domains.setter
     def allow_bare_domains(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_bare_domains", value)
+
+    @property
+    @pulumi.getter(name="allowEmptyPrincipals")
+    def allow_empty_principals(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "allow_empty_principals")
+
+    @allow_empty_principals.setter
+    def allow_empty_principals(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_empty_principals", value)
 
     @property
     @pulumi.getter(name="allowHostCertificates")
@@ -457,6 +469,7 @@ class _SecretBackendRoleState:
     def __init__(__self__, *,
                  algorithm_signer: Optional[pulumi.Input[str]] = None,
                  allow_bare_domains: Optional[pulumi.Input[bool]] = None,
+                 allow_empty_principals: Optional[pulumi.Input[bool]] = None,
                  allow_host_certificates: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
                  allow_user_certificates: Optional[pulumi.Input[bool]] = None,
@@ -520,6 +533,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "algorithm_signer", algorithm_signer)
         if allow_bare_domains is not None:
             pulumi.set(__self__, "allow_bare_domains", allow_bare_domains)
+        if allow_empty_principals is not None:
+            pulumi.set(__self__, "allow_empty_principals", allow_empty_principals)
         if allow_host_certificates is not None:
             pulumi.set(__self__, "allow_host_certificates", allow_host_certificates)
         if allow_subdomains is not None:
@@ -592,6 +607,15 @@ class _SecretBackendRoleState:
     @allow_bare_domains.setter
     def allow_bare_domains(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_bare_domains", value)
+
+    @property
+    @pulumi.getter(name="allowEmptyPrincipals")
+    def allow_empty_principals(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "allow_empty_principals")
+
+    @allow_empty_principals.setter
+    def allow_empty_principals(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allow_empty_principals", value)
 
     @property
     @pulumi.getter(name="allowHostCertificates")
@@ -895,6 +919,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm_signer: Optional[pulumi.Input[str]] = None,
                  allow_bare_domains: Optional[pulumi.Input[bool]] = None,
+                 allow_empty_principals: Optional[pulumi.Input[bool]] = None,
                  allow_host_certificates: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
                  allow_user_certificates: Optional[pulumi.Input[bool]] = None,
@@ -1044,6 +1069,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  algorithm_signer: Optional[pulumi.Input[str]] = None,
                  allow_bare_domains: Optional[pulumi.Input[bool]] = None,
+                 allow_empty_principals: Optional[pulumi.Input[bool]] = None,
                  allow_host_certificates: Optional[pulumi.Input[bool]] = None,
                  allow_subdomains: Optional[pulumi.Input[bool]] = None,
                  allow_user_certificates: Optional[pulumi.Input[bool]] = None,
@@ -1079,6 +1105,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
             __props__.__dict__["algorithm_signer"] = algorithm_signer
             __props__.__dict__["allow_bare_domains"] = allow_bare_domains
+            __props__.__dict__["allow_empty_principals"] = allow_empty_principals
             __props__.__dict__["allow_host_certificates"] = allow_host_certificates
             __props__.__dict__["allow_subdomains"] = allow_subdomains
             __props__.__dict__["allow_user_certificates"] = allow_user_certificates
@@ -1119,6 +1146,7 @@ class SecretBackendRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             algorithm_signer: Optional[pulumi.Input[str]] = None,
             allow_bare_domains: Optional[pulumi.Input[bool]] = None,
+            allow_empty_principals: Optional[pulumi.Input[bool]] = None,
             allow_host_certificates: Optional[pulumi.Input[bool]] = None,
             allow_subdomains: Optional[pulumi.Input[bool]] = None,
             allow_user_certificates: Optional[pulumi.Input[bool]] = None,
@@ -1189,6 +1217,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         __props__.__dict__["algorithm_signer"] = algorithm_signer
         __props__.__dict__["allow_bare_domains"] = allow_bare_domains
+        __props__.__dict__["allow_empty_principals"] = allow_empty_principals
         __props__.__dict__["allow_host_certificates"] = allow_host_certificates
         __props__.__dict__["allow_subdomains"] = allow_subdomains
         __props__.__dict__["allow_user_certificates"] = allow_user_certificates
@@ -1230,6 +1259,11 @@ class SecretBackendRole(pulumi.CustomResource):
         Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         """
         return pulumi.get(self, "allow_bare_domains")
+
+    @property
+    @pulumi.getter(name="allowEmptyPrincipals")
+    def allow_empty_principals(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "allow_empty_principals")
 
     @property
     @pulumi.getter(name="allowHostCertificates")

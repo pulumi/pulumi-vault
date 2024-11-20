@@ -112,6 +112,12 @@ namespace Pulumi.Vault.Kubernetes
         [Output("tokenReviewerJwt")]
         public Output<string?> TokenReviewerJwt { get; private set; } = null!;
 
+        /// <summary>
+        /// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        /// </summary>
+        [Output("useAnnotationsAsAliasMetadata")]
+        public Output<bool> UseAnnotationsAsAliasMetadata { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackendConfig resource with the given unique name, arguments, and options.
@@ -235,6 +241,12 @@ namespace Pulumi.Vault.Kubernetes
             }
         }
 
+        /// <summary>
+        /// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        /// </summary>
+        [Input("useAnnotationsAsAliasMetadata")]
+        public Input<bool>? UseAnnotationsAsAliasMetadata { get; set; }
+
         public AuthBackendConfigArgs()
         {
         }
@@ -315,6 +327,12 @@ namespace Pulumi.Vault.Kubernetes
                 _tokenReviewerJwt = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        /// </summary>
+        [Input("useAnnotationsAsAliasMetadata")]
+        public Input<bool>? UseAnnotationsAsAliasMetadata { get; set; }
 
         public AuthBackendConfigState()
         {

@@ -121,6 +121,10 @@ type SecretBackendStaticRole struct {
 	// The amount of time, in seconds, in which rotations are allowed to occur starting
 	// from a given `rotationSchedule`.
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
+	// The password corresponding to the username in the database.
+	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	SelfManagedPassword pulumi.StringPtrOutput `pulumi:"selfManagedPassword"`
 	// The database username that this static role corresponds to.
 	Username pulumi.StringOutput `pulumi:"username"`
 }
@@ -141,6 +145,13 @@ func NewSecretBackendStaticRole(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	if args.SelfManagedPassword != nil {
+		args.SelfManagedPassword = pulumi.ToSecret(args.SelfManagedPassword).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"selfManagedPassword",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SecretBackendStaticRole
 	err := ctx.RegisterResource("vault:database/secretBackendStaticRole:SecretBackendStaticRole", name, args, &resource, opts...)
@@ -189,6 +200,10 @@ type secretBackendStaticRoleState struct {
 	// The amount of time, in seconds, in which rotations are allowed to occur starting
 	// from a given `rotationSchedule`.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// The password corresponding to the username in the database.
+	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	SelfManagedPassword *string `pulumi:"selfManagedPassword"`
 	// The database username that this static role corresponds to.
 	Username *string `pulumi:"username"`
 }
@@ -219,6 +234,10 @@ type SecretBackendStaticRoleState struct {
 	// The amount of time, in seconds, in which rotations are allowed to occur starting
 	// from a given `rotationSchedule`.
 	RotationWindow pulumi.IntPtrInput
+	// The password corresponding to the username in the database.
+	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	SelfManagedPassword pulumi.StringPtrInput
 	// The database username that this static role corresponds to.
 	Username pulumi.StringPtrInput
 }
@@ -253,6 +272,10 @@ type secretBackendStaticRoleArgs struct {
 	// The amount of time, in seconds, in which rotations are allowed to occur starting
 	// from a given `rotationSchedule`.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// The password corresponding to the username in the database.
+	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	SelfManagedPassword *string `pulumi:"selfManagedPassword"`
 	// The database username that this static role corresponds to.
 	Username string `pulumi:"username"`
 }
@@ -284,6 +307,10 @@ type SecretBackendStaticRoleArgs struct {
 	// The amount of time, in seconds, in which rotations are allowed to occur starting
 	// from a given `rotationSchedule`.
 	RotationWindow pulumi.IntPtrInput
+	// The password corresponding to the username in the database.
+	// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+	// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+	SelfManagedPassword pulumi.StringPtrInput
 	// The database username that this static role corresponds to.
 	Username pulumi.StringInput
 }
@@ -422,6 +449,13 @@ func (o SecretBackendStaticRoleOutput) RotationStatements() pulumi.StringArrayOu
 // from a given `rotationSchedule`.
 func (o SecretBackendStaticRoleOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// The password corresponding to the username in the database.
+// Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
+// select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
+func (o SecretBackendStaticRoleOutput) SelfManagedPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.StringPtrOutput { return v.SelfManagedPassword }).(pulumi.StringPtrOutput)
 }
 
 // The database username that this static role corresponds to.

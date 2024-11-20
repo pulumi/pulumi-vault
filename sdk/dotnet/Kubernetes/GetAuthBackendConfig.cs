@@ -38,9 +38,15 @@ namespace Pulumi.Vault.Kubernetes
         [Input("backend")]
         public string? Backend { get; set; }
 
+        /// <summary>
+        /// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        /// </summary>
         [Input("disableIssValidation")]
         public bool? DisableIssValidation { get; set; }
 
+        /// <summary>
+        /// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        /// </summary>
         [Input("disableLocalCaJwt")]
         public bool? DisableLocalCaJwt { get; set; }
 
@@ -83,6 +89,12 @@ namespace Pulumi.Vault.Kubernetes
             set => _pemKeys = value;
         }
 
+        /// <summary>
+        /// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        /// </summary>
+        [Input("useAnnotationsAsAliasMetadata")]
+        public bool? UseAnnotationsAsAliasMetadata { get; set; }
+
         public GetAuthBackendConfigArgs()
         {
         }
@@ -98,9 +110,15 @@ namespace Pulumi.Vault.Kubernetes
         [Input("backend")]
         public Input<string>? Backend { get; set; }
 
+        /// <summary>
+        /// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        /// </summary>
         [Input("disableIssValidation")]
         public Input<bool>? DisableIssValidation { get; set; }
 
+        /// <summary>
+        /// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        /// </summary>
         [Input("disableLocalCaJwt")]
         public Input<bool>? DisableLocalCaJwt { get; set; }
 
@@ -143,6 +161,12 @@ namespace Pulumi.Vault.Kubernetes
             set => _pemKeys = value;
         }
 
+        /// <summary>
+        /// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        /// </summary>
+        [Input("useAnnotationsAsAliasMetadata")]
+        public Input<bool>? UseAnnotationsAsAliasMetadata { get; set; }
+
         public GetAuthBackendConfigInvokeArgs()
         {
         }
@@ -154,7 +178,13 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class GetAuthBackendConfigResult
     {
         public readonly string? Backend;
+        /// <summary>
+        /// (Optional) Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        /// </summary>
         public readonly bool DisableIssValidation;
+        /// <summary>
+        /// (Optional) Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
+        /// </summary>
         public readonly bool DisableLocalCaJwt;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -177,6 +207,10 @@ namespace Pulumi.Vault.Kubernetes
         /// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         /// </summary>
         public readonly ImmutableArray<string> PemKeys;
+        /// <summary>
+        /// (Optional) Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
+        /// </summary>
+        public readonly bool UseAnnotationsAsAliasMetadata;
 
         [OutputConstructor]
         private GetAuthBackendConfigResult(
@@ -196,7 +230,9 @@ namespace Pulumi.Vault.Kubernetes
 
             string? @namespace,
 
-            ImmutableArray<string> pemKeys)
+            ImmutableArray<string> pemKeys,
+
+            bool useAnnotationsAsAliasMetadata)
         {
             Backend = backend;
             DisableIssValidation = disableIssValidation;
@@ -207,6 +243,7 @@ namespace Pulumi.Vault.Kubernetes
             KubernetesHost = kubernetesHost;
             Namespace = @namespace;
             PemKeys = pemKeys;
+            UseAnnotationsAsAliasMetadata = useAnnotationsAsAliasMetadata;
         }
     }
 }

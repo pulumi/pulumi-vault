@@ -567,6 +567,10 @@ export namespace database {
          */
         protocolVersion?: number;
         /**
+         * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+         */
+        skipVerification?: boolean;
+        /**
          * Whether to use TLS when connecting to Cassandra.
          */
         tls?: boolean;
@@ -1070,9 +1074,25 @@ export namespace database {
          */
         password?: string;
         /**
+         * The secret key used for the x509 client certificate. Must be PEM encoded.
+         */
+        privateKey?: string;
+        /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: boolean;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: string;
+        /**
+         * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * The x509 client certificate for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificate?: string;
         /**
          * The root credential username used in the connection URL
          */
@@ -1255,6 +1275,10 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
+         */
+        skipVerification?: boolean;
         /**
          * Whether to use TLS when connecting to Cassandra.
          */
@@ -2119,13 +2143,29 @@ export namespace database {
          */
         pluginName: string;
         /**
+         * The secret key used for the x509 client certificate. Must be PEM encoded.
+         */
+        privateKey?: string;
+        /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
         /**
+         * If set, allows onboarding static roles with a rootless connection configuration.
+         */
+        selfManaged?: boolean;
+        /**
          * A JSON encoded credential for use with IAM authorization
          */
         serviceAccountJson?: string;
+        /**
+         * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
+         */
+        tlsCa?: string;
+        /**
+         * The x509 client certificate for connecting to the database. Must be PEM encoded.
+         */
+        tlsCertificate?: string;
         /**
          * The root credential username used in the connection URL
          */
