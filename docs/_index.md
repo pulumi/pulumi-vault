@@ -1,7 +1,7 @@
 ---
 # *** WARNING: This file was auto-generated. Do not edit by hand unless you're certain you know what you are doing! ***
-title: Pulumi Vault Provider
-meta_desc: Provides an overview on how to configure the Pulumi Pulumi Vault provider.
+title: HashiCorp Vault Provider
+meta_desc: Provides an overview on how to configure the Pulumi HashiCorp Vault provider.
 layout: package
 ---
 ## Installation
