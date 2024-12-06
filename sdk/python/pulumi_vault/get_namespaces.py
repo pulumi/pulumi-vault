@@ -112,7 +112,7 @@ def get_namespaces(namespace: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         paths=pulumi.get(__ret__, 'paths'))
 def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespacesResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespacesResult]:
     """
     ## Example Usage
 
@@ -145,7 +145,7 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[str]]] = Non
     """
     __args__ = dict()
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:index/getNamespaces:getNamespaces', __args__, opts=opts, typ=GetNamespacesResult)
     return __ret__.apply(lambda __response__: GetNamespacesResult(
         id=pulumi.get(__response__, 'id'),

@@ -128,7 +128,7 @@ export interface GetSecretResult {
  *
  * Use of this resource requires the `read` capability on the given path.
  */
-export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretResult> {
+export function getSecretOutput(args: GetSecretOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kv/getSecret:getSecret", {
         "namespace": args.namespace,

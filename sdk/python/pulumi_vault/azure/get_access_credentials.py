@@ -313,7 +313,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   subscription_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   tenant_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   validate_creds: Optional[pulumi.Input[Optional[bool]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
     ## Example Usage
 
@@ -378,7 +378,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
     __args__['subscriptionId'] = subscription_id
     __args__['tenantId'] = tenant_id
     __args__['validateCreds'] = validate_creds
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:azure/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult)
     return __ret__.apply(lambda __response__: GetAccessCredentialsResult(
         backend=pulumi.get(__response__, 'backend'),

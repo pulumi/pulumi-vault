@@ -158,7 +158,7 @@ def get_dynamic_credentials(mount: Optional[str] = None,
 def get_dynamic_credentials_output(mount: Optional[pulumi.Input[str]] = None,
                                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                    role_name: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDynamicCredentialsResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDynamicCredentialsResult]:
     """
     Use this data source to access information about an existing resource.
     """
@@ -166,7 +166,7 @@ def get_dynamic_credentials_output(mount: Optional[pulumi.Input[str]] = None,
     __args__['mount'] = mount
     __args__['namespace'] = namespace
     __args__['roleName'] = role_name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:ldap/getDynamicCredentials:getDynamicCredentials', __args__, opts=opts, typ=GetDynamicCredentialsResult)
     return __ret__.apply(lambda __response__: GetDynamicCredentialsResult(
         distinguished_names=pulumi.get(__response__, 'distinguished_names'),

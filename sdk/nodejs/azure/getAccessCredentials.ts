@@ -170,7 +170,7 @@ export interface GetAccessCredentialsResult {
  * If the effective Vault role does not have the required permissions then valid values
  * are required to be set for: `subscriptionId`, `tenantId`, `environment`.
  */
-export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
+export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:azure/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,

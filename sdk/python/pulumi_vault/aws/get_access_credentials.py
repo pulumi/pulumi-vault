@@ -258,7 +258,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                   role_arn: Optional[pulumi.Input[Optional[str]]] = None,
                                   ttl: Optional[pulumi.Input[Optional[str]]] = None,
                                   type: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAccessCredentialsResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
     ## Example Usage
 
@@ -291,7 +291,7 @@ def get_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
     __args__['roleArn'] = role_arn
     __args__['ttl'] = ttl
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:aws/getAccessCredentials:getAccessCredentials', __args__, opts=opts, typ=GetAccessCredentialsResult)
     return __ret__.apply(lambda __response__: GetAccessCredentialsResult(
         access_key=pulumi.get(__response__, 'access_key'),

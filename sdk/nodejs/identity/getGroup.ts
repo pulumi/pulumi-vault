@@ -175,7 +175,7 @@ export interface GetGroupResult {
  *
  * Use of this resource requires the `create` capability on `/identity/lookup/group`.
  */
-export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
+export function getGroupOutput(args?: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:identity/getGroup:getGroup", {
