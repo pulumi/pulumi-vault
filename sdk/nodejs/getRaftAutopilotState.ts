@@ -109,7 +109,7 @@ export interface GetRaftAutopilotStateResult {
  * }
  * ```
  */
-export function getRaftAutopilotStateOutput(args?: GetRaftAutopilotStateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRaftAutopilotStateResult> {
+export function getRaftAutopilotStateOutput(args?: GetRaftAutopilotStateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRaftAutopilotStateResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:index/getRaftAutopilotState:getRaftAutopilotState", {

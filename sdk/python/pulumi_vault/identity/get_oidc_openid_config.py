@@ -275,7 +275,7 @@ def get_oidc_openid_config(name: Optional[str] = None,
         userinfo_endpoint=pulumi.get(__ret__, 'userinfo_endpoint'))
 def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcOpenidConfigResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOidcOpenidConfigResult]:
     """
     ## Example Usage
 
@@ -314,7 +314,7 @@ def get_oidc_openid_config_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:identity/getOidcOpenidConfig:getOidcOpenidConfig', __args__, opts=opts, typ=GetOidcOpenidConfigResult)
     return __ret__.apply(lambda __response__: GetOidcOpenidConfigResult(
         authorization_endpoint=pulumi.get(__response__, 'authorization_endpoint'),

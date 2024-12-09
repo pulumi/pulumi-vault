@@ -53,7 +53,7 @@ export interface GetEncryptResult {
 /**
  * This is a data source which can be used to encrypt plaintext using a Vault Transit key.
  */
-export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncryptResult> {
+export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncryptResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:transit/getEncrypt:getEncrypt", {
         "backend": args.backend,

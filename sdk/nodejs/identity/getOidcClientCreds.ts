@@ -93,7 +93,7 @@ export interface GetOidcClientCredsResult {
  * });
  * ```
  */
-export function getOidcClientCredsOutput(args: GetOidcClientCredsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcClientCredsResult> {
+export function getOidcClientCredsOutput(args: GetOidcClientCredsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOidcClientCredsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:identity/getOidcClientCreds:getOidcClientCreds", {
         "name": args.name,

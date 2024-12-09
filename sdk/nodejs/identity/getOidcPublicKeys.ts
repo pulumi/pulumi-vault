@@ -111,7 +111,7 @@ export interface GetOidcPublicKeysResult {
  * });
  * ```
  */
-export function getOidcPublicKeysOutput(args: GetOidcPublicKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcPublicKeysResult> {
+export function getOidcPublicKeysOutput(args: GetOidcPublicKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOidcPublicKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:identity/getOidcPublicKeys:getOidcPublicKeys", {
         "name": args.name,

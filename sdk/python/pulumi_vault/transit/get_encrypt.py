@@ -150,7 +150,7 @@ def get_encrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        key_version: Optional[pulumi.Input[Optional[int]]] = None,
                        namespace: Optional[pulumi.Input[Optional[str]]] = None,
                        plaintext: Optional[pulumi.Input[str]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncryptResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptResult]:
     """
     This is a data source which can be used to encrypt plaintext using a Vault Transit key.
     """
@@ -161,7 +161,7 @@ def get_encrypt_output(backend: Optional[pulumi.Input[str]] = None,
     __args__['keyVersion'] = key_version
     __args__['namespace'] = namespace
     __args__['plaintext'] = plaintext
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult)
     return __ret__.apply(lambda __response__: GetEncryptResult(
         backend=pulumi.get(__response__, 'backend'),

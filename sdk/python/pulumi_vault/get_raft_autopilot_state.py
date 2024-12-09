@@ -229,7 +229,7 @@ def get_raft_autopilot_state(namespace: Optional[str] = None,
         upgrade_info_json=pulumi.get(__ret__, 'upgrade_info_json'),
         voters=pulumi.get(__ret__, 'voters'))
 def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRaftAutopilotStateResult]:
+                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRaftAutopilotStateResult]:
     """
     ## Example Usage
 
@@ -249,7 +249,7 @@ def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[st
     """
     __args__ = dict()
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:index/getRaftAutopilotState:getRaftAutopilotState', __args__, opts=opts, typ=GetRaftAutopilotStateResult)
     return __ret__.apply(lambda __response__: GetRaftAutopilotStateResult(
         failure_tolerance=pulumi.get(__response__, 'failure_tolerance'),

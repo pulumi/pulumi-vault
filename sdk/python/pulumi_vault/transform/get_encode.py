@@ -219,7 +219,7 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
                       transformation: Optional[pulumi.Input[Optional[str]]] = None,
                       tweak: Optional[pulumi.Input[Optional[str]]] = None,
                       value: Optional[pulumi.Input[Optional[str]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEncodeResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncodeResult]:
     """
     This data source supports the "/transform/encode/{role_name}" Vault endpoint.
 
@@ -276,7 +276,7 @@ def get_encode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapp
     __args__['transformation'] = transformation
     __args__['tweak'] = tweak
     __args__['value'] = value
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:transform/getEncode:getEncode', __args__, opts=opts, typ=GetEncodeResult)
     return __ret__.apply(lambda __response__: GetEncodeResult(
         batch_inputs=pulumi.get(__response__, 'batch_inputs'),

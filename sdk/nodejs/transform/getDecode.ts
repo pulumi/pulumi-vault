@@ -152,7 +152,7 @@ export interface GetDecodeResult {
  * });
  * ```
  */
-export function getDecodeOutput(args: GetDecodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecodeResult> {
+export function getDecodeOutput(args: GetDecodeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDecodeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:transform/getDecode:getDecode", {
         "batchInputs": args.batchInputs,
