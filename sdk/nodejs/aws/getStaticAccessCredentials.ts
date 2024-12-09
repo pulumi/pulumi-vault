@@ -36,7 +36,7 @@ export interface GetStaticAccessCredentialsResult {
     readonly namespace?: string;
     readonly secretKey: string;
 }
-export function getStaticAccessCredentialsOutput(args: GetStaticAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStaticAccessCredentialsResult> {
+export function getStaticAccessCredentialsOutput(args: GetStaticAccessCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStaticAccessCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", {
         "backend": args.backend,

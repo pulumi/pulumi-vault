@@ -130,7 +130,7 @@ export interface GetBackendIssuerResult {
  * }));
  * ```
  */
-export function getBackendIssuerOutput(args: GetBackendIssuerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendIssuerResult> {
+export function getBackendIssuerOutput(args: GetBackendIssuerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackendIssuerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendIssuer:getBackendIssuer", {
         "backend": args.backend,

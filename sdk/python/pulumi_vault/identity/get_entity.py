@@ -322,7 +322,7 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
                       entity_id: Optional[pulumi.Input[Optional[str]]] = None,
                       entity_name: Optional[pulumi.Input[Optional[str]]] = None,
                       namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetEntityResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEntityResult]:
     """
     ## Example Usage
 
@@ -360,7 +360,7 @@ def get_entity_output(alias_id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['entityId'] = entity_id
     __args__['entityName'] = entity_name
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:identity/getEntity:getEntity', __args__, opts=opts, typ=GetEntityResult)
     return __ret__.apply(lambda __response__: GetEntityResult(
         alias_id=pulumi.get(__response__, 'alias_id'),

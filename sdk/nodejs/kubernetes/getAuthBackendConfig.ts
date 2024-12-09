@@ -115,7 +115,7 @@ export interface GetAuthBackendConfigResult {
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
  * information.
  */
-export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendConfigResult> {
+export function getAuthBackendConfigOutput(args?: GetAuthBackendConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendConfigResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", {

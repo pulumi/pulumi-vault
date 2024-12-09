@@ -41,7 +41,7 @@ export interface GetStaticCredentialsResult {
     readonly ttl: number;
     readonly username: string;
 }
-export function getStaticCredentialsOutput(args: GetStaticCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetStaticCredentialsResult> {
+export function getStaticCredentialsOutput(args: GetStaticCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStaticCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:ldap/getStaticCredentials:getStaticCredentials", {
         "mount": args.mount,

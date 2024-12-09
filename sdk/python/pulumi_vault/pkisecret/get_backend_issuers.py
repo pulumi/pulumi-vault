@@ -149,7 +149,7 @@ def get_backend_issuers(backend: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'))
 def get_backend_issuers_output(backend: Optional[pulumi.Input[str]] = None,
                                namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendIssuersResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendIssuersResult]:
     """
     ## Example Usage
 
@@ -181,7 +181,7 @@ def get_backend_issuers_output(backend: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['backend'] = backend
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendIssuers:getBackendIssuers', __args__, opts=opts, typ=GetBackendIssuersResult)
     return __ret__.apply(lambda __response__: GetBackendIssuersResult(
         backend=pulumi.get(__response__, 'backend'),

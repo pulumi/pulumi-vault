@@ -76,7 +76,7 @@ export interface GetDecryptResult {
  * });
  * ```
  */
-export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDecryptResult> {
+export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDecryptResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:transit/getDecrypt:getDecrypt", {
         "backend": args.backend,
