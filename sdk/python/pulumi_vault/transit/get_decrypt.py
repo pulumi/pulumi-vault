@@ -148,7 +148,7 @@ def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
                        context: Optional[pulumi.Input[Optional[str]]] = None,
                        key: Optional[pulumi.Input[str]] = None,
                        namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDecryptResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDecryptResult]:
     """
     This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
 
@@ -169,7 +169,7 @@ def get_decrypt_output(backend: Optional[pulumi.Input[str]] = None,
     __args__['context'] = context
     __args__['key'] = key
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:transit/getDecrypt:getDecrypt', __args__, opts=opts, typ=GetDecryptResult)
     return __ret__.apply(lambda __response__: GetDecryptResult(
         backend=pulumi.get(__response__, 'backend'),

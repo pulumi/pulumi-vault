@@ -410,7 +410,7 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] 
                                  token_policies: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                  token_ttl: Optional[pulumi.Input[Optional[int]]] = None,
                                  token_type: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendRoleResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthBackendRoleResult]:
     """
     Reads a GCP auth role from a Vault server.
 
@@ -473,7 +473,7 @@ def get_auth_backend_role_output(backend: Optional[pulumi.Input[Optional[str]]] 
     __args__['tokenPolicies'] = token_policies
     __args__['tokenTtl'] = token_ttl
     __args__['tokenType'] = token_type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:gcp/getAuthBackendRole:getAuthBackendRole', __args__, opts=opts, typ=GetAuthBackendRoleResult)
     return __ret__.apply(lambda __response__: GetAuthBackendRoleResult(
         backend=pulumi.get(__response__, 'backend'),

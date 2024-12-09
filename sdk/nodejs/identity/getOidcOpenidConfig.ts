@@ -156,7 +156,7 @@ export interface GetOidcOpenidConfigResult {
  * });
  * ```
  */
-export function getOidcOpenidConfigOutput(args: GetOidcOpenidConfigOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOidcOpenidConfigResult> {
+export function getOidcOpenidConfigOutput(args: GetOidcOpenidConfigOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOidcOpenidConfigResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", {
         "name": args.name,

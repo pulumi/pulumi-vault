@@ -118,7 +118,7 @@ def get_static_access_credentials(backend: Optional[str] = None,
 def get_static_access_credentials_output(backend: Optional[pulumi.Input[str]] = None,
                                          name: Optional[pulumi.Input[str]] = None,
                                          namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetStaticAccessCredentialsResult]:
+                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStaticAccessCredentialsResult]:
     """
     Use this data source to access information about an existing resource.
     """
@@ -126,7 +126,7 @@ def get_static_access_credentials_output(backend: Optional[pulumi.Input[str]] = 
     __args__['backend'] = backend
     __args__['name'] = name
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:aws/getStaticAccessCredentials:getStaticAccessCredentials', __args__, opts=opts, typ=GetStaticAccessCredentialsResult)
     return __ret__.apply(lambda __response__: GetStaticAccessCredentialsResult(
         access_key=pulumi.get(__response__, 'access_key'),

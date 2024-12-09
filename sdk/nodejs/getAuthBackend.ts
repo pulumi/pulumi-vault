@@ -92,7 +92,7 @@ export interface GetAuthBackendResult {
  * });
  * ```
  */
-export function getAuthBackendOutput(args: GetAuthBackendOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendResult> {
+export function getAuthBackendOutput(args: GetAuthBackendOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:index/getAuthBackend:getAuthBackend", {
         "namespace": args.namespace,

@@ -109,7 +109,7 @@ export interface GetBackendConfigEstResult {
  * });
  * ```
  */
-export function getBackendConfigEstOutput(args: GetBackendConfigEstOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendConfigEstResult> {
+export function getBackendConfigEstOutput(args: GetBackendConfigEstOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackendConfigEstResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", {
         "backend": args.backend,

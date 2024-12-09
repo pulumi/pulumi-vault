@@ -94,7 +94,7 @@ export interface GetPolicyDocumentResult {
  * });
  * ```
  */
-export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPolicyDocumentResult> {
+export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPolicyDocumentResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:index/getPolicyDocument:getPolicyDocument", {

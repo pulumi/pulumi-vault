@@ -235,7 +235,7 @@ export interface GetAuthBackendRoleResult {
  * }
  * ```
  */
-export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
+export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:gcp/getAuthBackendRole:getAuthBackendRole", {
         "backend": args.backend,

@@ -207,7 +207,7 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
                                  name: Optional[pulumi.Input[str]] = None,
                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                  version: Optional[pulumi.Input[Optional[int]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretSubkeysV2Result]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretSubkeysV2Result]:
     """
     ## Example Usage
 
@@ -261,7 +261,7 @@ def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[int]]] = 
     __args__['name'] = name
     __args__['namespace'] = namespace
     __args__['version'] = version
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:kv/getSecretSubkeysV2:getSecretSubkeysV2', __args__, opts=opts, typ=GetSecretSubkeysV2Result)
     return __ret__.apply(lambda __response__: GetSecretSubkeysV2Result(
         data=pulumi.get(__response__, 'data'),

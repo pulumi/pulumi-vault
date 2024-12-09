@@ -156,7 +156,7 @@ export interface GetEncodeResult {
  * });
  * ```
  */
-export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEncodeResult> {
+export function getEncodeOutput(args: GetEncodeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncodeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:transform/getEncode:getEncode", {
         "batchInputs": args.batchInputs,

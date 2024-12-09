@@ -188,7 +188,7 @@ def get_secret(namespace: Optional[str] = None,
         path=pulumi.get(__ret__, 'path'))
 def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretResult]:
     """
     ## Example Usage
 
@@ -227,7 +227,7 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['namespace'] = namespace
     __args__['path'] = path
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:kv/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult)
     return __ret__.apply(lambda __response__: GetSecretResult(
         data=pulumi.get(__response__, 'data'),

@@ -265,7 +265,7 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
                                      namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                      role: Optional[pulumi.Input[str]] = None,
                                      ttl: Optional[pulumi.Input[Optional[str]]] = None,
-                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServiceAccountTokenResult]:
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountTokenResult]:
     """
     ## Example Usage
 
@@ -326,7 +326,7 @@ def get_service_account_token_output(backend: Optional[pulumi.Input[str]] = None
     __args__['namespace'] = namespace
     __args__['role'] = role
     __args__['ttl'] = ttl
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:kubernetes/getServiceAccountToken:getServiceAccountToken', __args__, opts=opts, typ=GetServiceAccountTokenResult)
     return __ret__.apply(lambda __response__: GetServiceAccountTokenResult(
         backend=pulumi.get(__response__, 'backend'),
