@@ -214,7 +214,7 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
                                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
                                    pem_keys: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                    use_annotations_as_alias_metadata: Optional[pulumi.Input[Optional[bool]]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendConfigResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthBackendConfigResult]:
     """
     Reads the Role of an Kubernetes from a Vault server. See the [Vault
     documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
@@ -245,7 +245,7 @@ def get_auth_backend_config_output(backend: Optional[pulumi.Input[Optional[str]]
     __args__['namespace'] = namespace
     __args__['pemKeys'] = pem_keys
     __args__['useAnnotationsAsAliasMetadata'] = use_annotations_as_alias_metadata
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig', __args__, opts=opts, typ=GetAuthBackendConfigResult)
     return __ret__.apply(lambda __response__: GetAuthBackendConfigResult(
         backend=pulumi.get(__response__, 'backend'),

@@ -101,7 +101,7 @@ export interface GetBackendKeysResult {
  * });
  * ```
  */
-export function getBackendKeysOutput(args: GetBackendKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetBackendKeysResult> {
+export function getBackendKeysOutput(args: GetBackendKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackendKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:pkiSecret/getBackendKeys:getBackendKeys", {
         "backend": args.backend,

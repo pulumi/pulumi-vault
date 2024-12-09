@@ -195,7 +195,7 @@ export interface GetAuthBackendRoleResult {
  * documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-role) for more
  * information.
  */
-export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleResult> {
+export function getAuthBackendRoleOutput(args: GetAuthBackendRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", {
         "audience": args.audience,

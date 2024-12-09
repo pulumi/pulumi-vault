@@ -174,7 +174,7 @@ def get_secrets_list_v2(mount: Optional[str] = None,
 def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretsListV2Result]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretsListV2Result]:
     """
     ## Example Usage
 
@@ -232,7 +232,7 @@ def get_secrets_list_v2_output(mount: Optional[pulumi.Input[str]] = None,
     __args__['mount'] = mount
     __args__['name'] = name
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:kv/getSecretsListV2:getSecretsListV2', __args__, opts=opts, typ=GetSecretsListV2Result)
     return __ret__.apply(lambda __response__: GetSecretsListV2Result(
         id=pulumi.get(__response__, 'id'),

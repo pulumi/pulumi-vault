@@ -143,7 +143,7 @@ export interface GetSecretSubkeysV2Result {
  *
  * Use of this resource requires the `read` capability on the given path.
  */
-export function getSecretSubkeysV2Output(args: GetSecretSubkeysV2OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretSubkeysV2Result> {
+export function getSecretSubkeysV2Output(args: GetSecretSubkeysV2OutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretSubkeysV2Result> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", {
         "depth": args.depth,

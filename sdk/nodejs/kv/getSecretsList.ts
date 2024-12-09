@@ -116,7 +116,7 @@ export interface GetSecretsListResult {
  *
  * Use of this resource requires the `read` capability on the given path.
  */
-export function getSecretsListOutput(args: GetSecretsListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSecretsListResult> {
+export function getSecretsListOutput(args: GetSecretsListOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretsListResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kv/getSecretsList:getSecretsList", {
         "namespace": args.namespace,
