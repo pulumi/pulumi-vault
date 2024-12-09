@@ -135,7 +135,7 @@ def get_oidc_client_creds(name: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'))
 def get_oidc_client_creds_output(name: Optional[pulumi.Input[str]] = None,
                                  namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOidcClientCredsResult]:
+                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOidcClientCredsResult]:
     """
     ## Example Usage
 
@@ -165,7 +165,7 @@ def get_oidc_client_creds_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:identity/getOidcClientCreds:getOidcClientCreds', __args__, opts=opts, typ=GetOidcClientCredsResult)
     return __ret__.apply(lambda __response__: GetOidcClientCredsResult(
         client_id=pulumi.get(__response__, 'client_id'),

@@ -153,7 +153,7 @@ export interface GetEntityResult {
  *
  * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
  */
-export function getEntityOutput(args?: GetEntityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetEntityResult> {
+export function getEntityOutput(args?: GetEntityOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEntityResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:identity/getEntity:getEntity", {

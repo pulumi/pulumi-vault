@@ -149,7 +149,7 @@ def get_backend_keys(backend: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'))
 def get_backend_keys_output(backend: Optional[pulumi.Input[str]] = None,
                             namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendKeysResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendKeysResult]:
     """
     ## Example Usage
 
@@ -181,7 +181,7 @@ def get_backend_keys_output(backend: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['backend'] = backend
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendKeys:getBackendKeys', __args__, opts=opts, typ=GetBackendKeysResult)
     return __ret__.apply(lambda __response__: GetBackendKeysResult(
         backend=pulumi.get(__response__, 'backend'),

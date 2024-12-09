@@ -91,7 +91,7 @@ export interface GetAuthBackendRoleIdResult {
  * }
  * ```
  */
-export function getAuthBackendRoleIdOutput(args: GetAuthBackendRoleIdOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthBackendRoleIdResult> {
+export function getAuthBackendRoleIdOutput(args: GetAuthBackendRoleIdOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthBackendRoleIdResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", {
         "backend": args.backend,

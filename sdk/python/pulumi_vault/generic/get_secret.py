@@ -235,7 +235,7 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[str]] = None,
                       version: Optional[pulumi.Input[Optional[int]]] = None,
                       with_lease_start_time: Optional[pulumi.Input[Optional[bool]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSecretResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretResult]:
     """
     ## Example Usage
 
@@ -290,7 +290,7 @@ def get_secret_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['path'] = path
     __args__['version'] = version
     __args__['withLeaseStartTime'] = with_lease_start_time
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:generic/getSecret:getSecret', __args__, opts=opts, typ=GetSecretResult)
     return __ret__.apply(lambda __response__: GetSecretResult(
         data=pulumi.get(__response__, 'data'),

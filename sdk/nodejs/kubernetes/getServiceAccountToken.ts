@@ -183,7 +183,7 @@ export interface GetServiceAccountTokenResult {
  * });
  * ```
  */
-export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServiceAccountTokenResult> {
+export function getServiceAccountTokenOutput(args: GetServiceAccountTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountTokenResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", {
         "backend": args.backend,

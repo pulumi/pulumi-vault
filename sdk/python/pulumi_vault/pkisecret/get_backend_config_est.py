@@ -209,7 +209,7 @@ def get_backend_config_est(backend: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'))
 def get_backend_config_est_output(backend: Optional[pulumi.Input[str]] = None,
                                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetBackendConfigEstResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendConfigEstResult]:
     """
     ## Example Usage
 
@@ -235,7 +235,7 @@ def get_backend_config_est_output(backend: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['backend'] = backend
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:pkiSecret/getBackendConfigEst:getBackendConfigEst', __args__, opts=opts, typ=GetBackendConfigEstResult)
     return __ret__.apply(lambda __response__: GetBackendConfigEstResult(
         audit_fields=pulumi.get(__response__, 'audit_fields'),

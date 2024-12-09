@@ -111,7 +111,7 @@ export interface GetNomadAccessTokenResult {
  * }));
  * ```
  */
-export function getNomadAccessTokenOutput(args: GetNomadAccessTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNomadAccessTokenResult> {
+export function getNomadAccessTokenOutput(args: GetNomadAccessTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNomadAccessTokenResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:index/getNomadAccessToken:getNomadAccessToken", {
         "backend": args.backend,

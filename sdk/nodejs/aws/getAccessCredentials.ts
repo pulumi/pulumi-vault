@@ -109,7 +109,7 @@ export interface GetAccessCredentialsResult {
 /**
  * ## Example Usage
  */
-export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAccessCredentialsResult> {
+export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:aws/getAccessCredentials:getAccessCredentials", {
         "backend": args.backend,

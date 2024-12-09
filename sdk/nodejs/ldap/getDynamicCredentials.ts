@@ -40,7 +40,7 @@ export interface GetDynamicCredentialsResult {
     readonly roleName: string;
     readonly username: string;
 }
-export function getDynamicCredentialsOutput(args: GetDynamicCredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDynamicCredentialsResult> {
+export function getDynamicCredentialsOutput(args: GetDynamicCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDynamicCredentialsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:ldap/getDynamicCredentials:getDynamicCredentials", {
         "mount": args.mount,

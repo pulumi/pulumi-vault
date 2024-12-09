@@ -96,7 +96,7 @@ export interface GetNamespacesResult {
  * }) }));
  * ```
  */
-export function getNamespacesOutput(args?: GetNamespacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespacesResult> {
+export function getNamespacesOutput(args?: GetNamespacesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNamespacesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("vault:index/getNamespaces:getNamespaces", {

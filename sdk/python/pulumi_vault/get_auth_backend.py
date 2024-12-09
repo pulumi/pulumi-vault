@@ -190,7 +190,7 @@ def get_auth_backend(namespace: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_auth_backend_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                             path: Optional[pulumi.Input[str]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthBackendResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthBackendResult]:
     """
     ## Example Usage
 
@@ -211,7 +211,7 @@ def get_auth_backend_output(namespace: Optional[pulumi.Input[Optional[str]]] = N
     __args__ = dict()
     __args__['namespace'] = namespace
     __args__['path'] = path
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:index/getAuthBackend:getAuthBackend', __args__, opts=opts, typ=GetAuthBackendResult)
     return __ret__.apply(lambda __response__: GetAuthBackendResult(
         accessor=pulumi.get(__response__, 'accessor'),
