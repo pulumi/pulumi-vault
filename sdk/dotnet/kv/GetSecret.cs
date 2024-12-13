@@ -106,6 +106,54 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:kv/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kvv1 = new Vault.Mount("kvv1", new()
+        ///     {
+        ///         Path = "kvv1",
+        ///         Type = "kv",
+        ///         Options = 
+        ///         {
+        ///             { "version", "1" },
+        ///         },
+        ///         Description = "KV Version 1 secret engine mount",
+        ///     });
+        /// 
+        ///     var secret = new Vault.Kv.Secret("secret", new()
+        ///     {
+        ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/secret"),
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["zip"] = "zap",
+        ///             ["foo"] = "bar",
+        ///         }),
+        ///     });
+        /// 
+        ///     var secretData = Vault.kv.GetSecret.Invoke(new()
+        ///     {
+        ///         Path = secret.Path,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `read` capability on the given path.
+        /// </summary>
+        public static Output<GetSecretResult> Invoke(GetSecretInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("vault:kv/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
     }
 
 

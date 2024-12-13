@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.ldap.inputs.GetDynamicCredentialsArgs;
 import com.pulumi.vault.ldap.inputs.GetDynamicCredentialsPlainArgs;
@@ -26,6 +27,9 @@ public final class LdapFunctions {
     public static Output<GetDynamicCredentialsResult> getDynamicCredentials(GetDynamicCredentialsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:ldap/getDynamicCredentials:getDynamicCredentials", TypeShape.of(GetDynamicCredentialsResult.class), args, Utilities.withVersion(options));
     }
+    public static Output<GetDynamicCredentialsResult> getDynamicCredentials(GetDynamicCredentialsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:ldap/getDynamicCredentials:getDynamicCredentials", TypeShape.of(GetDynamicCredentialsResult.class), args, Utilities.withVersion(options));
+    }
     public static CompletableFuture<GetDynamicCredentialsResult> getDynamicCredentialsPlain(GetDynamicCredentialsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:ldap/getDynamicCredentials:getDynamicCredentials", TypeShape.of(GetDynamicCredentialsResult.class), args, Utilities.withVersion(options));
     }
@@ -36,6 +40,9 @@ public final class LdapFunctions {
         return getStaticCredentialsPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetStaticCredentialsResult> getStaticCredentials(GetStaticCredentialsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:ldap/getStaticCredentials:getStaticCredentials", TypeShape.of(GetStaticCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetStaticCredentialsResult> getStaticCredentials(GetStaticCredentialsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:ldap/getStaticCredentials:getStaticCredentials", TypeShape.of(GetStaticCredentialsResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetStaticCredentialsResult> getStaticCredentialsPlain(GetStaticCredentialsPlainArgs args, InvokeOptions options) {

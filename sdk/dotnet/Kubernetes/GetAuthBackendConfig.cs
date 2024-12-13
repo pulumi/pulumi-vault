@@ -26,6 +26,14 @@ namespace Pulumi.Vault.Kubernetes
         /// </summary>
         public static Output<GetAuthBackendConfigResult> Invoke(GetAuthBackendConfigInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Reads the Role of an Kubernetes from a Vault server. See the [Vault
+        /// documentation](https://www.vaultproject.io/api-docs/auth/kubernetes#read-config) for more
+        /// information.
+        /// </summary>
+        public static Output<GetAuthBackendConfigResult> Invoke(GetAuthBackendConfigInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendConfigResult>("vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig", args ?? new GetAuthBackendConfigInvokeArgs(), options.WithDefaults());
     }
 
 

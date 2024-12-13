@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstPlainArgs;
@@ -168,6 +169,54 @@ public final class PkiSecretFunctions {
      * 
      */
     public static Output<GetBackendConfigEstResult> getBackendConfigEst(GetBackendConfigEstArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", TypeShape.of(GetBackendConfigEstResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         final var estConfig = PkiSecretFunctions.getBackendConfigEst(GetBackendConfigEstArgs.builder()
+     *             .backend(pki.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetBackendConfigEstResult> getBackendConfigEst(GetBackendConfigEstArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", TypeShape.of(GetBackendConfigEstResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -451,6 +500,65 @@ public final class PkiSecretFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetBackendIssuerResult> getBackendIssuer(GetBackendIssuerArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendIssuer:getBackendIssuer", TypeShape.of(GetBackendIssuerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
+     *             .backend(root.path())
+     *             .issuerRef(root.issuerId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetBackendIssuerResult> getBackendIssuerPlain(GetBackendIssuerPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:pkiSecret/getBackendIssuer:getBackendIssuer", TypeShape.of(GetBackendIssuerResult.class), args, Utilities.withVersion(options));
     }
@@ -626,6 +734,64 @@ public final class PkiSecretFunctions {
      * 
      */
     public static Output<GetBackendIssuersResult> getBackendIssuers(GetBackendIssuersArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendIssuers:getBackendIssuers", TypeShape.of(GetBackendIssuersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         final var test = PkiSecretFunctions.getBackendIssuers(GetBackendIssuersArgs.builder()
+     *             .backend(root.backend())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetBackendIssuersResult> getBackendIssuers(GetBackendIssuersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:pkiSecret/getBackendIssuers:getBackendIssuers", TypeShape.of(GetBackendIssuersResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -919,6 +1085,65 @@ public final class PkiSecretFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetBackendKeyResult> getBackendKey(GetBackendKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendKey:getBackendKey", TypeShape.of(GetBackendKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendKey;
+     * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var key = new SecretBackendKey("key", SecretBackendKeyArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .keyName("example")
+     *             .keyType("rsa")
+     *             .keyBits("4096")
+     *             .build());
+     * 
+     *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
+     *             .backend(keyVaultMount.path())
+     *             .keyRef(key.keyId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetBackendKeyResult> getBackendKeyPlain(GetBackendKeyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:pkiSecret/getBackendKey:getBackendKey", TypeShape.of(GetBackendKeyResult.class), args, Utilities.withVersion(options));
     }
@@ -1094,6 +1319,64 @@ public final class PkiSecretFunctions {
      * 
      */
     public static Output<GetBackendKeysResult> getBackendKeys(GetBackendKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendKeys:getBackendKeys", TypeShape.of(GetBackendKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .keyName("example")
+     *             .build());
+     * 
+     *         final var example = PkiSecretFunctions.getBackendKeys(GetBackendKeysArgs.builder()
+     *             .backend(root.backend())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetBackendKeysResult> getBackendKeys(GetBackendKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:pkiSecret/getBackendKeys:getBackendKeys", TypeShape.of(GetBackendKeysResult.class), args, Utilities.withVersion(options));
     }
     /**

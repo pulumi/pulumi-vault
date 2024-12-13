@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.transform.inputs.GetDecodeArgs;
 import com.pulumi.vault.transform.inputs.GetDecodePlainArgs;
@@ -302,6 +303,78 @@ public final class TransformFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDecodeResult> getDecode(GetDecodeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:transform/getDecode:getDecode", TypeShape.of(GetDecodeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source supports the &#34;/transform/decode/{role_name}&#34; Vault endpoint.
+     * 
+     * It decodes the provided value using a named role.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe.path())
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getDecode(GetDecodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .value("9300-3376-4943-8903")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDecodeResult> getDecodePlain(GetDecodePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transform/getDecode:getDecode", TypeShape.of(GetDecodeResult.class), args, Utilities.withVersion(options));
     }
@@ -519,6 +592,78 @@ public final class TransformFunctions {
      * 
      */
     public static Output<GetEncodeResult> getEncode(GetEncodeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:transform/getEncode:getEncode", TypeShape.of(GetEncodeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source supports the &#34;/transform/encode/{role_name}&#34; Vault endpoint.
+     * 
+     * It encodes the provided value using a named role.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe = new Transformation("ccn-fpe", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe.path())
+     *             .name("payments")
+     *             .transformations("ccn-fpe")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .batchInputs(Map.of("value", "1111-2222-3333-4444"))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetEncodeResult> getEncode(GetEncodeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:transform/getEncode:getEncode", TypeShape.of(GetEncodeResult.class), args, Utilities.withVersion(options));
     }
     /**

@@ -123,21 +123,11 @@ type GetOidcOpenidConfigResult struct {
 }
 
 func GetOidcOpenidConfigOutput(ctx *pulumi.Context, args GetOidcOpenidConfigOutputArgs, opts ...pulumi.InvokeOption) GetOidcOpenidConfigResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetOidcOpenidConfigResultOutput, error) {
 			args := v.(GetOidcOpenidConfigArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetOidcOpenidConfigResult
-			secret, err := ctx.InvokePackageRaw("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args, &rv, "", opts...)
-			if err != nil {
-				return GetOidcOpenidConfigResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetOidcOpenidConfigResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetOidcOpenidConfigResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args, GetOidcOpenidConfigResultOutput{}, options).(GetOidcOpenidConfigResultOutput), nil
 		}).(GetOidcOpenidConfigResultOutput)
 }
 

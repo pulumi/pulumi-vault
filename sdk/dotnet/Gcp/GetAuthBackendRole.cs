@@ -68,6 +68,35 @@ namespace Pulumi.Vault.Gcp
         /// </summary>
         public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Reads a GCP auth role from a Vault server.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.Gcp.GetAuthBackendRole.Invoke(new()
+        ///     {
+        ///         Backend = "my-gcp-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["role-id"] = role.Apply(getAuthBackendRoleResult =&gt; getAuthBackendRoleResult.RoleId),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAuthBackendRoleResult> Invoke(GetAuthBackendRoleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleResult>("vault:gcp/getAuthBackendRole:getAuthBackendRole", args ?? new GetAuthBackendRoleInvokeArgs(), options.WithDefaults());
     }
 
 

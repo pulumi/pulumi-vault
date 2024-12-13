@@ -112,21 +112,11 @@ type LookupEntityResult struct {
 }
 
 func LookupEntityOutput(ctx *pulumi.Context, args LookupEntityOutputArgs, opts ...pulumi.InvokeOption) LookupEntityResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupEntityResultOutput, error) {
 			args := v.(LookupEntityArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupEntityResult
-			secret, err := ctx.InvokePackageRaw("vault:identity/getEntity:getEntity", args, &rv, "", opts...)
-			if err != nil {
-				return LookupEntityResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupEntityResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupEntityResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("vault:identity/getEntity:getEntity", args, LookupEntityResultOutput{}, options).(LookupEntityResultOutput), nil
 		}).(LookupEntityResultOutput)
 }
 

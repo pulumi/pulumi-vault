@@ -130,21 +130,11 @@ type GetAccessCredentialsResult struct {
 }
 
 func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAccessCredentialsResultOutput, error) {
 			args := v.(GetAccessCredentialsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAccessCredentialsResult
-			secret, err := ctx.InvokePackageRaw("vault:azure/getAccessCredentials:getAccessCredentials", args, &rv, "", opts...)
-			if err != nil {
-				return GetAccessCredentialsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAccessCredentialsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAccessCredentialsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("vault:azure/getAccessCredentials:getAccessCredentials", args, GetAccessCredentialsResultOutput{}, options).(GetAccessCredentialsResultOutput), nil
 		}).(GetAccessCredentialsResultOutput)
 }
 

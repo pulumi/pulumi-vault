@@ -158,6 +158,80 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public static Output<GetSecretsListV2Result> Invoke(GetSecretsListV2InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretsListV2Result>("vault:kv/getSecretsListV2:getSecretsListV2", args ?? new GetSecretsListV2InvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kvv2 = new Vault.Mount("kvv2", new()
+        ///     {
+        ///         Path = "kvv2",
+        ///         Type = "kv",
+        ///         Options = 
+        ///         {
+        ///             { "version", "2" },
+        ///         },
+        ///         Description = "KV Version 2 secret engine mount",
+        ///     });
+        /// 
+        ///     var awsSecret = new Vault.Kv.SecretV2("aws_secret", new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = "aws_secret",
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["zip"] = "zap",
+        ///         }),
+        ///     });
+        /// 
+        ///     var azureSecret = new Vault.Kv.SecretV2("azure_secret", new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = "azure_secret",
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["foo"] = "bar",
+        ///         }),
+        ///     });
+        /// 
+        ///     var nestedSecret = new Vault.Kv.SecretV2("nested_secret", new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = azureSecret.Name.Apply(name =&gt; $"{name}/dev"),
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["password"] = "test",
+        ///         }),
+        ///     });
+        /// 
+        ///     var secrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///     });
+        /// 
+        ///     var nestedSecrets = Vault.kv.GetSecretsListV2.Invoke(new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = test2.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `read` capability on the given path.
+        /// </summary>
+        public static Output<GetSecretsListV2Result> Invoke(GetSecretsListV2InvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretsListV2Result>("vault:kv/getSecretsListV2:getSecretsListV2", args ?? new GetSecretsListV2InvokeArgs(), options.WithDefaults());
     }
 
 

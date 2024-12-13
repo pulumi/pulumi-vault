@@ -112,6 +112,57 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public static Output<GetSecretV2Result> Invoke(GetSecretV2InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2InvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kvv2 = new Vault.Mount("kvv2", new()
+        ///     {
+        ///         Path = "kvv2",
+        ///         Type = "kv",
+        ///         Options = 
+        ///         {
+        ///             { "version", "2" },
+        ///         },
+        ///         Description = "KV Version 2 secret engine mount",
+        ///     });
+        /// 
+        ///     var exampleSecretV2 = new Vault.Kv.SecretV2("example", new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = "secret",
+        ///         DeleteAllVersions = true,
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["zip"] = "zap",
+        ///             ["foo"] = "bar",
+        ///         }),
+        ///     });
+        /// 
+        ///     var example = Vault.kv.GetSecretV2.Invoke(new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = exampleSecretV2.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `read` capability on the given path.
+        /// </summary>
+        public static Output<GetSecretV2Result> Invoke(GetSecretV2InvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretV2Result>("vault:kv/getSecretV2:getSecretV2", args ?? new GetSecretV2InvokeArgs(), options.WithDefaults());
     }
 
 

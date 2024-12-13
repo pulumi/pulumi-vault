@@ -80,6 +80,41 @@ namespace Pulumi.Vault
         /// </summary>
         public static Output<GetAuthBackendsResult> Invoke(GetAuthBackendsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Vault.GetAuthBackends.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example_filter = Vault.GetAuthBackends.Invoke(new()
+        ///     {
+        ///         Type = "kubernetes",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAuthBackendsResult> Invoke(GetAuthBackendsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendsResult>("vault:index/getAuthBackends:getAuthBackends", args ?? new GetAuthBackendsInvokeArgs(), options.WithDefaults());
     }
 
 

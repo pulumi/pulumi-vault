@@ -16,6 +16,9 @@ namespace Pulumi.Vault.Ldap
 
         public static Output<GetDynamicCredentialsResult> Invoke(GetDynamicCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDynamicCredentialsResult>("vault:ldap/getDynamicCredentials:getDynamicCredentials", args ?? new GetDynamicCredentialsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetDynamicCredentialsResult> Invoke(GetDynamicCredentialsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDynamicCredentialsResult>("vault:ldap/getDynamicCredentials:getDynamicCredentials", args ?? new GetDynamicCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 

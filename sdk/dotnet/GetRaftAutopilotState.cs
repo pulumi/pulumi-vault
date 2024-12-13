@@ -56,6 +56,29 @@ namespace Pulumi.Vault
         /// </summary>
         public static Output<GetRaftAutopilotStateResult> Invoke(GetRaftAutopilotStateInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRaftAutopilotStateResult>("vault:index/getRaftAutopilotState:getRaftAutopilotState", args ?? new GetRaftAutopilotStateInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = Vault.GetRaftAutopilotState.Invoke();
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["failure-tolerance"] = main.Apply(getRaftAutopilotStateResult =&gt; getRaftAutopilotStateResult.FailureTolerance),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRaftAutopilotStateResult> Invoke(GetRaftAutopilotStateInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRaftAutopilotStateResult>("vault:index/getRaftAutopilotState:getRaftAutopilotState", args ?? new GetRaftAutopilotStateInvokeArgs(), options.WithDefaults());
     }
 
 

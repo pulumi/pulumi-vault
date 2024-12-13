@@ -124,6 +124,63 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source supports the "/transform/decode/{role_name}" Vault endpoint.
+        /// 
+        /// It decodes the provided value using a named role.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var transform = new Vault.Mount("transform", new()
+        ///     {
+        ///         Path = "transform",
+        ///         Type = "transform",
+        ///     });
+        /// 
+        ///     var ccn_fpe = new Vault.Transform.Transformation("ccn-fpe", new()
+        ///     {
+        ///         Path = transform.Path,
+        ///         Name = "ccn-fpe",
+        ///         Type = "fpe",
+        ///         Template = "builtin/creditcardnumber",
+        ///         TweakSource = "internal",
+        ///         AllowedRoles = new[]
+        ///         {
+        ///             "payments",
+        ///         },
+        ///     });
+        /// 
+        ///     var payments = new Vault.Transform.Role("payments", new()
+        ///     {
+        ///         Path = ccn_fpe.Path,
+        ///         Name = "payments",
+        ///         Transformations = new[]
+        ///         {
+        ///             "ccn-fpe",
+        ///         },
+        ///     });
+        /// 
+        ///     var test = Vault.Transform.GetDecode.Invoke(new()
+        ///     {
+        ///         Path = payments.Path,
+        ///         RoleName = "payments",
+        ///         Value = "9300-3376-4943-8903",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDecodeResult> Invoke(GetDecodeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDecodeResult>("vault:transform/getDecode:getDecode", args ?? new GetDecodeInvokeArgs(), options.WithDefaults());
     }
 
 

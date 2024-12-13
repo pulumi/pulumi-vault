@@ -74,6 +74,38 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var creds = Vault.Azure.GetAccessCredentials.Invoke(new()
+        ///     {
+        ///         Role = "my-role",
+        ///         ValidateCreds = true,
+        ///         NumSequentialSuccesses = 8,
+        ///         NumSecondsBetweenTests = 1,
+        ///         MaxCredValidationSeconds = 300,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Caveats
+        /// 
+        /// The `validate_creds` option requires read-access to the `backend` config endpoint.
+        /// If the effective Vault role does not have the required permissions then valid values 
+        /// are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+        /// </summary>
+        public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAccessCredentialsResult>("vault:azure/getAccessCredentials:getAccessCredentials", args ?? new GetAccessCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 

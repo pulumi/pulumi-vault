@@ -110,6 +110,56 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public static Output<GetSecretSubkeysV2Result> Invoke(GetSecretSubkeysV2InvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2InvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kvv2 = new Vault.Mount("kvv2", new()
+        ///     {
+        ///         Path = "kvv2",
+        ///         Type = "kv",
+        ///         Options = 
+        ///         {
+        ///             { "version", "2" },
+        ///         },
+        ///         Description = "KV Version 2 secret engine mount",
+        ///     });
+        /// 
+        ///     var awsSecret = new Vault.Kv.SecretV2("aws_secret", new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = "aws_secret",
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["zip"] = "zap",
+        ///             ["foo"] = "bar",
+        ///         }),
+        ///     });
+        /// 
+        ///     var test = Vault.kv.GetSecretSubkeysV2.Invoke(new()
+        ///     {
+        ///         Mount = kvv2.Path,
+        ///         Name = awsSecret.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `read` capability on the given path.
+        /// </summary>
+        public static Output<GetSecretSubkeysV2Result> Invoke(GetSecretSubkeysV2InvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretSubkeysV2Result>("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", args ?? new GetSecretSubkeysV2InvokeArgs(), options.WithDefaults());
     }
 
 
