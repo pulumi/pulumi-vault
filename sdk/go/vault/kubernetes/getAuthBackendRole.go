@@ -130,21 +130,11 @@ type LookupAuthBackendRoleResult struct {
 }
 
 func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRoleOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendRoleResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupAuthBackendRoleResultOutput, error) {
 			args := v.(LookupAuthBackendRoleArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupAuthBackendRoleResult
-			secret, err := ctx.InvokePackageRaw("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args, &rv, "", opts...)
-			if err != nil {
-				return LookupAuthBackendRoleResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupAuthBackendRoleResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupAuthBackendRoleResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("vault:kubernetes/getAuthBackendRole:getAuthBackendRole", args, LookupAuthBackendRoleResultOutput{}, options).(LookupAuthBackendRoleResultOutput), nil
 		}).(LookupAuthBackendRoleResultOutput)
 }
 

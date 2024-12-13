@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
 import com.pulumi.vault.aws.inputs.GetAccessCredentialsPlainArgs;
@@ -54,6 +55,16 @@ public final class AwsFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:aws/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAccessCredentialsResult> getAccessCredentialsPlain(GetAccessCredentialsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:aws/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
     }
@@ -64,6 +75,9 @@ public final class AwsFunctions {
         return getStaticAccessCredentialsPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetStaticAccessCredentialsResult> getStaticAccessCredentials(GetStaticAccessCredentialsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", TypeShape.of(GetStaticAccessCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetStaticAccessCredentialsResult> getStaticAccessCredentials(GetStaticAccessCredentialsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", TypeShape.of(GetStaticAccessCredentialsResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetStaticAccessCredentialsResult> getStaticAccessCredentialsPlain(GetStaticAccessCredentialsPlainArgs args, InvokeOptions options) {

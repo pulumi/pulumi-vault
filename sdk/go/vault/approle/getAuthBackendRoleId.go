@@ -76,21 +76,11 @@ type GetAuthBackendRoleIdResult struct {
 }
 
 func GetAuthBackendRoleIdOutput(ctx *pulumi.Context, args GetAuthBackendRoleIdOutputArgs, opts ...pulumi.InvokeOption) GetAuthBackendRoleIdResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAuthBackendRoleIdResultOutput, error) {
 			args := v.(GetAuthBackendRoleIdArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAuthBackendRoleIdResult
-			secret, err := ctx.InvokePackageRaw("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args, &rv, "", opts...)
-			if err != nil {
-				return GetAuthBackendRoleIdResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAuthBackendRoleIdResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAuthBackendRoleIdResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args, GetAuthBackendRoleIdResultOutput{}, options).(GetAuthBackendRoleIdResultOutput), nil
 		}).(GetAuthBackendRoleIdResultOutput)
 }
 

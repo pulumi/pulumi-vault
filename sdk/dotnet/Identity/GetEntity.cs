@@ -62,6 +62,32 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public static Output<GetEntityResult> Invoke(GetEntityInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var entity = Vault.Identity.GetEntity.Invoke(new()
+        ///     {
+        ///         EntityName = "entity_12345",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `update` capability on `/identity/lookup/entity`.
+        /// </summary>
+        public static Output<GetEntityResult> Invoke(GetEntityInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetEntityResult>("vault:identity/getEntity:getEntity", args ?? new GetEntityInvokeArgs(), options.WithDefaults());
     }
 
 

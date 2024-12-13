@@ -86,6 +86,44 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         public static Output<GetBackendKeysResult> Invoke(GetBackendKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendKeysResult>("vault:pkiSecret/getBackendKeys:getBackendKeys", args ?? new GetBackendKeysInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pki = new Vault.Mount("pki", new()
+        ///     {
+        ///         Path = "pki",
+        ///         Type = "pki",
+        ///         Description = "PKI secret engine mount",
+        ///     });
+        /// 
+        ///     var root = new Vault.PkiSecret.SecretBackendRootCert("root", new()
+        ///     {
+        ///         Backend = pki.Path,
+        ///         Type = "internal",
+        ///         CommonName = "example",
+        ///         Ttl = "86400",
+        ///         KeyName = "example",
+        ///     });
+        /// 
+        ///     var example = Vault.PkiSecret.GetBackendKeys.Invoke(new()
+        ///     {
+        ///         Backend = root.Backend,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBackendKeysResult> Invoke(GetBackendKeysInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBackendKeysResult>("vault:pkiSecret/getBackendKeys:getBackendKeys", args ?? new GetBackendKeysInvokeArgs(), options.WithDefaults());
     }
 
 

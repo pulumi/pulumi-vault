@@ -68,6 +68,35 @@ namespace Pulumi.Vault.AppRole
         /// </summary>
         public static Output<GetAuthBackendRoleIdResult> Invoke(GetAuthBackendRoleIdInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Reads the Role ID of an AppRole from a Vault server.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var role = Vault.AppRole.GetAuthBackendRoleId.Invoke(new()
+        ///     {
+        ///         Backend = "my-approle-backend",
+        ///         RoleName = "my-role",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["role-id"] = role.Apply(getAuthBackendRoleIdResult =&gt; getAuthBackendRoleIdResult.RoleId),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAuthBackendRoleIdResult> Invoke(GetAuthBackendRoleIdInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAuthBackendRoleIdResult>("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args ?? new GetAuthBackendRoleIdInvokeArgs(), options.WithDefaults());
     }
 
 

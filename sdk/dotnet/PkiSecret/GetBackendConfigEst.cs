@@ -68,6 +68,35 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         public static Output<GetBackendConfigEstResult> Invoke(GetBackendConfigEstInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBackendConfigEstResult>("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", args ?? new GetBackendConfigEstInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var pki = new Vault.Mount("pki", new()
+        ///     {
+        ///         Path = "pki",
+        ///         Type = "pki",
+        ///         Description = "PKI secret engine mount",
+        ///     });
+        /// 
+        ///     var estConfig = Vault.PkiSecret.GetBackendConfigEst.Invoke(new()
+        ///     {
+        ///         Backend = pki.Path,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetBackendConfigEstResult> Invoke(GetBackendConfigEstInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBackendConfigEstResult>("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", args ?? new GetBackendConfigEstInvokeArgs(), options.WithDefaults());
     }
 
 

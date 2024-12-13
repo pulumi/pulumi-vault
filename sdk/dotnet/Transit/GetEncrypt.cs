@@ -22,6 +22,12 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public static Output<GetEncryptResult> Invoke(GetEncryptInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This is a data source which can be used to encrypt plaintext using a Vault Transit key.
+        /// </summary>
+        public static Output<GetEncryptResult> Invoke(GetEncryptInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetEncryptResult>("vault:transit/getEncrypt:getEncrypt", args ?? new GetEncryptInvokeArgs(), options.WithDefaults());
     }
 
 

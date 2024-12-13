@@ -122,6 +122,62 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public static Output<GetSecretsListResult> Invoke(GetSecretsListInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretsListResult>("vault:kv/getSecretsList:getSecretsList", args ?? new GetSecretsListInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Text.Json;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var kvv1 = new Vault.Mount("kvv1", new()
+        ///     {
+        ///         Path = "kvv1",
+        ///         Type = "kv",
+        ///         Options = 
+        ///         {
+        ///             { "version", "1" },
+        ///         },
+        ///         Description = "KV Version 1 secret engine mount",
+        ///     });
+        /// 
+        ///     var awsSecret = new Vault.Kv.Secret("aws_secret", new()
+        ///     {
+        ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/aws-secret"),
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["zip"] = "zap",
+        ///         }),
+        ///     });
+        /// 
+        ///     var azureSecret = new Vault.Kv.Secret("azure_secret", new()
+        ///     {
+        ///         Path = kvv1.Path.Apply(path =&gt; $"{path}/azure-secret"),
+        ///         DataJson = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+        ///         {
+        ///             ["foo"] = "bar",
+        ///         }),
+        ///     });
+        /// 
+        ///     var secrets = Vault.kv.GetSecretsList.Invoke(new()
+        ///     {
+        ///         Path = kvv1.Path,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Required Vault Capabilities
+        /// 
+        /// Use of this resource requires the `read` capability on the given path.
+        /// </summary>
+        public static Output<GetSecretsListResult> Invoke(GetSecretsListInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSecretsListResult>("vault:kv/getSecretsList:getSecretsList", args ?? new GetSecretsListInvokeArgs(), options.WithDefaults());
     }
 
 

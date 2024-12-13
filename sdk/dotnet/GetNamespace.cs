@@ -136,6 +136,69 @@ namespace Pulumi.Vault
         /// </summary>
         public static Output<GetNamespaceResult> Invoke(GetNamespaceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespaceResult>("vault:index/getNamespace:getNamespace", args ?? new GetNamespaceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ### Current namespace
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var current = Vault.GetNamespace.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Single namespace
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var ns1 = Vault.GetNamespace.Invoke(new()
+        ///     {
+        ///         Path = "ns1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Nested namespace
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var child = Vault.GetNamespace.Invoke(new()
+        ///     {
+        ///         Namespace = "parent",
+        ///         Path = "child",
+        ///     });
+        /// 
+        ///     var fullPath = child.Apply(getNamespaceResult =&gt; getNamespaceResult.Id);
+        /// 
+        ///     // -&gt; foo/parent/child/
+        ///     var pathFq = child.Apply(getNamespaceResult =&gt; getNamespaceResult.PathFq);
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNamespaceResult> Invoke(GetNamespaceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNamespaceResult>("vault:index/getNamespace:getNamespace", args ?? new GetNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

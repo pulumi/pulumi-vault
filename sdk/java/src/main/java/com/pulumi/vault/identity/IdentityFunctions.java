@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.identity.inputs.GetEntityArgs;
 import com.pulumi.vault.identity.inputs.GetEntityPlainArgs;
@@ -244,6 +245,50 @@ public final class IdentityFunctions {
      * 
      */
     public static Output<GetEntityResult> getEntity(GetEntityArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:identity/getEntity:getEntity", TypeShape.of(GetEntityResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.identity.IdentityFunctions;
+     * import com.pulumi.vault.identity.inputs.GetEntityArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var entity = IdentityFunctions.getEntity(GetEntityArgs.builder()
+     *             .entityName("entity_12345")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `update` capability on `/identity/lookup/entity`.
+     * 
+     */
+    public static Output<GetEntityResult> getEntity(GetEntityArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:identity/getEntity:getEntity", TypeShape.of(GetEntityResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -551,6 +596,50 @@ public final class IdentityFunctions {
      * Use of this resource requires the `create` capability on `/identity/lookup/group`.
      * 
      */
+    public static Output<GetGroupResult> getGroup(GetGroupArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:identity/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.identity.IdentityFunctions;
+     * import com.pulumi.vault.identity.inputs.GetGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var group = IdentityFunctions.getGroup(GetGroupArgs.builder()
+     *             .groupName("user")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `create` capability on `/identity/lookup/group`.
+     * 
+     */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:identity/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
@@ -708,6 +797,58 @@ public final class IdentityFunctions {
      * 
      */
     public static Output<GetOidcClientCredsResult> getOidcClientCreds(GetOidcClientCredsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:identity/getOidcClientCreds:getOidcClientCreds", TypeShape.of(GetOidcClientCredsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.identity.OidcClient;
+     * import com.pulumi.vault.identity.OidcClientArgs;
+     * import com.pulumi.vault.identity.IdentityFunctions;
+     * import com.pulumi.vault.identity.inputs.GetOidcClientCredsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
+     *             .name("application")
+     *             .redirectUris(            
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
+     *             .idTokenTtl(2400)
+     *             .accessTokenTtl(7200)
+     *             .build());
+     * 
+     *         final var creds = IdentityFunctions.getOidcClientCreds(GetOidcClientCredsArgs.builder()
+     *             .name(app.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetOidcClientCredsResult> getOidcClientCreds(GetOidcClientCredsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:identity/getOidcClientCreds:getOidcClientCreds", TypeShape.of(GetOidcClientCredsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1035,6 +1176,75 @@ public final class IdentityFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetOidcOpenidConfigResult> getOidcOpenidConfig(GetOidcOpenidConfigArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", TypeShape.of(GetOidcOpenidConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.identity.OidcKey;
+     * import com.pulumi.vault.identity.OidcKeyArgs;
+     * import com.pulumi.vault.identity.OidcClient;
+     * import com.pulumi.vault.identity.OidcClientArgs;
+     * import com.pulumi.vault.identity.OidcProvider;
+     * import com.pulumi.vault.identity.OidcProviderArgs;
+     * import com.pulumi.vault.identity.IdentityFunctions;
+     * import com.pulumi.vault.identity.inputs.GetOidcOpenidConfigArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
+     *             .name("key")
+     *             .allowedClientIds("*")
+     *             .rotationPeriod(3600)
+     *             .verificationTtl(3600)
+     *             .build());
+     * 
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
+     *             .name("application")
+     *             .key(key.name())
+     *             .redirectUris(            
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
+     *             .idTokenTtl(2400)
+     *             .accessTokenTtl(7200)
+     *             .build());
+     * 
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
+     *             .name("provider")
+     *             .allowedClientIds(test.clientId())
+     *             .build());
+     * 
+     *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
+     *             .name(provider.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetOidcOpenidConfigResult> getOidcOpenidConfigPlain(GetOidcOpenidConfigPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", TypeShape.of(GetOidcOpenidConfigResult.class), args, Utilities.withVersion(options));
     }
@@ -1243,6 +1453,75 @@ public final class IdentityFunctions {
      * 
      */
     public static Output<GetOidcPublicKeysResult> getOidcPublicKeys(GetOidcPublicKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:identity/getOidcPublicKeys:getOidcPublicKeys", TypeShape.of(GetOidcPublicKeysResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.identity.OidcKey;
+     * import com.pulumi.vault.identity.OidcKeyArgs;
+     * import com.pulumi.vault.identity.OidcClient;
+     * import com.pulumi.vault.identity.OidcClientArgs;
+     * import com.pulumi.vault.identity.OidcProvider;
+     * import com.pulumi.vault.identity.OidcProviderArgs;
+     * import com.pulumi.vault.identity.IdentityFunctions;
+     * import com.pulumi.vault.identity.inputs.GetOidcPublicKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var key = new OidcKey("key", OidcKeyArgs.builder()
+     *             .name("key")
+     *             .allowedClientIds("*")
+     *             .rotationPeriod(3600)
+     *             .verificationTtl(3600)
+     *             .build());
+     * 
+     *         var app = new OidcClient("app", OidcClientArgs.builder()
+     *             .name("application")
+     *             .key(key.name())
+     *             .redirectUris(            
+     *                 "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+     *                 "http://127.0.0.1:8251/callback",
+     *                 "http://127.0.0.1:8080/callback")
+     *             .idTokenTtl(2400)
+     *             .accessTokenTtl(7200)
+     *             .build());
+     * 
+     *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
+     *             .name("provider")
+     *             .allowedClientIds(test.clientId())
+     *             .build());
+     * 
+     *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
+     *             .name(provider.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetOidcPublicKeysResult> getOidcPublicKeys(GetOidcPublicKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:identity/getOidcPublicKeys:getOidcPublicKeys", TypeShape.of(GetOidcPublicKeysResult.class), args, Utilities.withVersion(options));
     }
     /**

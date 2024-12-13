@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.azure.inputs.GetAccessCredentialsArgs;
 import com.pulumi.vault.azure.inputs.GetAccessCredentialsPlainArgs;
@@ -162,6 +163,56 @@ public final class AzureFunctions {
      * 
      */
     public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:azure/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.azure.AzureFunctions;
+     * import com.pulumi.vault.azure.inputs.GetAccessCredentialsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var creds = AzureFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
+     *             .role("my-role")
+     *             .validateCreds(true)
+     *             .numSequentialSuccesses(8)
+     *             .numSecondsBetweenTests(1)
+     *             .maxCredValidationSeconds(300)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Caveats
+     * 
+     * The `validate_creds` option requires read-access to the `backend` config endpoint.
+     * If the effective Vault role does not have the required permissions then valid values
+     * are required to be set for: `subscription_id`, `tenant_id`, `environment`.
+     * 
+     */
+    public static Output<GetAccessCredentialsResult> getAccessCredentials(GetAccessCredentialsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:azure/getAccessCredentials:getAccessCredentials", TypeShape.of(GetAccessCredentialsResult.class), args, Utilities.withVersion(options));
     }
     /**
