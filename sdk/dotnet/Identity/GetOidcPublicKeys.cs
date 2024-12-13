@@ -122,6 +122,62 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public static Output<GetOidcPublicKeysResult> Invoke(GetOidcPublicKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var key = new Vault.Identity.OidcKey("key", new()
+        ///     {
+        ///         Name = "key",
+        ///         AllowedClientIds = new[]
+        ///         {
+        ///             "*",
+        ///         },
+        ///         RotationPeriod = 3600,
+        ///         VerificationTtl = 3600,
+        ///     });
+        /// 
+        ///     var app = new Vault.Identity.OidcClient("app", new()
+        ///     {
+        ///         Name = "application",
+        ///         Key = key.Name,
+        ///         RedirectUris = new[]
+        ///         {
+        ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///             "http://127.0.0.1:8251/callback",
+        ///             "http://127.0.0.1:8080/callback",
+        ///         },
+        ///         IdTokenTtl = 2400,
+        ///         AccessTokenTtl = 7200,
+        ///     });
+        /// 
+        ///     var provider = new Vault.Identity.OidcProvider("provider", new()
+        ///     {
+        ///         Name = "provider",
+        ///         AllowedClientIds = new[]
+        ///         {
+        ///             test.ClientId,
+        ///         },
+        ///     });
+        /// 
+        ///     var publicKeys = Vault.Identity.GetOidcPublicKeys.Invoke(new()
+        ///     {
+        ///         Name = provider.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOidcPublicKeysResult> Invoke(GetOidcPublicKeysInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOidcPublicKeysResult>("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args ?? new GetOidcPublicKeysInvokeArgs(), options.WithDefaults());
     }
 
 

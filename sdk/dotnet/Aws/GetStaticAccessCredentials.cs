@@ -16,6 +16,9 @@ namespace Pulumi.Vault.Aws
 
         public static Output<GetStaticAccessCredentialsResult> Invoke(GetStaticAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStaticAccessCredentialsResult>("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", args ?? new GetStaticAccessCredentialsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetStaticAccessCredentialsResult> Invoke(GetStaticAccessCredentialsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStaticAccessCredentialsResult>("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", args ?? new GetStaticAccessCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 

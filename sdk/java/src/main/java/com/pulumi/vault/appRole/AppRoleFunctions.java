@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.appRole.inputs.GetAuthBackendRoleIdArgs;
 import com.pulumi.vault.appRole.inputs.GetAuthBackendRoleIdPlainArgs;
@@ -144,6 +145,50 @@ public final class AppRoleFunctions {
      * 
      */
     public static Output<GetAuthBackendRoleIdResult> getAuthBackendRoleId(GetAuthBackendRoleIdArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", TypeShape.of(GetAuthBackendRoleIdResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the Role ID of an AppRole from a Vault server.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.appRole.AppRoleFunctions;
+     * import com.pulumi.vault.appRole.inputs.GetAuthBackendRoleIdArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var role = AppRoleFunctions.getAuthBackendRoleId(GetAuthBackendRoleIdArgs.builder()
+     *             .backend("my-approle-backend")
+     *             .roleName("my-role")
+     *             .build());
+     * 
+     *         ctx.export("role-id", role.applyValue(getAuthBackendRoleIdResult -> getAuthBackendRoleIdResult.roleId()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAuthBackendRoleIdResult> getAuthBackendRoleId(GetAuthBackendRoleIdArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", TypeShape.of(GetAuthBackendRoleIdResult.class), args, Utilities.withVersion(options));
     }
     /**

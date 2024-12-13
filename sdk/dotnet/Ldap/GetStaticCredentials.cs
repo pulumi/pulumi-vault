@@ -16,6 +16,9 @@ namespace Pulumi.Vault.Ldap
 
         public static Output<GetStaticCredentialsResult> Invoke(GetStaticCredentialsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStaticCredentialsResult>("vault:ldap/getStaticCredentials:getStaticCredentials", args ?? new GetStaticCredentialsInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetStaticCredentialsResult> Invoke(GetStaticCredentialsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetStaticCredentialsResult>("vault:ldap/getStaticCredentials:getStaticCredentials", args ?? new GetStaticCredentialsInvokeArgs(), options.WithDefaults());
     }
 
 

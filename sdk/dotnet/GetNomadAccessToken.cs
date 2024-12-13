@@ -98,6 +98,50 @@ namespace Pulumi.Vault
         /// </summary>
         public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var config = new Vault.NomadSecretBackend("config", new()
+        ///     {
+        ///         Backend = "nomad",
+        ///         Description = "test description",
+        ///         DefaultLeaseTtlSeconds = 3600,
+        ///         MaxLeaseTtlSeconds = 7200,
+        ///         Address = "https://127.0.0.1:4646",
+        ///         Token = "ae20ceaa-...",
+        ///     });
+        /// 
+        ///     var test = new Vault.NomadSecretRole("test", new()
+        ///     {
+        ///         Backend = config.Backend,
+        ///         Role = "test",
+        ///         Type = "client",
+        ///         Policies = new[]
+        ///         {
+        ///             "readonly",
+        ///         },
+        ///     });
+        /// 
+        ///     var token = Vault.GetNomadAccessToken.Invoke(new()
+        ///     {
+        ///         Backend = config.Backend,
+        ///         Role = test.Role,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNomadAccessTokenResult> Invoke(GetNomadAccessTokenInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNomadAccessTokenResult>("vault:index/getNomadAccessToken:getNomadAccessToken", args ?? new GetNomadAccessTokenInvokeArgs(), options.WithDefaults());
     }
 
 

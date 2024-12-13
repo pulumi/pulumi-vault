@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.transit.inputs.GetDecryptArgs;
 import com.pulumi.vault.transit.inputs.GetDecryptPlainArgs;
@@ -190,6 +191,50 @@ public final class TransitFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDecryptResult> getDecrypt(GetDecryptArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:transit/getDecrypt:getDecrypt", TypeShape.of(GetDecryptResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This is a data source which can be used to decrypt ciphertext using a Vault Transit key.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetDecryptArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getDecrypt(GetDecryptArgs.builder()
+     *             .backend("transit")
+     *             .key("test")
+     *             .ciphertext("vault:v1:S3GtnJ5GUNCWV+/pdL9+g1Feu/nzAv+RlmTmE91Tu0rBkeIU8MEb2nSspC/1IQ==")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDecryptResult> getDecryptPlain(GetDecryptPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transit/getDecrypt:getDecrypt", TypeShape.of(GetDecryptResult.class), args, Utilities.withVersion(options));
     }
@@ -212,6 +257,13 @@ public final class TransitFunctions {
      * 
      */
     public static Output<GetEncryptResult> getEncrypt(GetEncryptArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:transit/getEncrypt:getEncrypt", TypeShape.of(GetEncryptResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This is a data source which can be used to encrypt plaintext using a Vault Transit key.
+     * 
+     */
+    public static Output<GetEncryptResult> getEncrypt(GetEncryptArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:transit/getEncrypt:getEncrypt", TypeShape.of(GetEncryptResult.class), args, Utilities.withVersion(options));
     }
     /**

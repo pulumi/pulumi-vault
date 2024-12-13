@@ -100,6 +100,51 @@ namespace Pulumi.Vault
         /// </summary>
         public static Output<GetPolicyDocumentResult> Invoke(GetPolicyDocumentInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Vault.GetPolicyDocument.Invoke(new()
+        ///     {
+        ///         Rules = new[]
+        ///         {
+        ///             new Vault.Inputs.GetPolicyDocumentRuleInputArgs
+        ///             {
+        ///                 Path = "secret/*",
+        ///                 Capabilities = new[]
+        ///                 {
+        ///                     "create",
+        ///                     "read",
+        ///                     "update",
+        ///                     "delete",
+        ///                     "list",
+        ///                 },
+        ///                 Description = "allow all on secrets",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var examplePolicy = new Vault.Policy("example", new()
+        ///     {
+        ///         Name = "example_policy",
+        ///         PolicyContents = example.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Hcl),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetPolicyDocumentResult> Invoke(GetPolicyDocumentInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPolicyDocumentResult>("vault:index/getPolicyDocument:getPolicyDocument", args ?? new GetPolicyDocumentInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -116,6 +116,59 @@ namespace Pulumi.Vault
         /// </summary>
         public static Output<GetNamespacesResult> Invoke(GetNamespacesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespacesResult>("vault:index/getNamespaces:getNamespaces", args ?? new GetNamespacesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ### Child namespaces
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var children = Vault.GetNamespaces.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Nested namespace
+        /// 
+        /// To fetch the details of nested namespaces:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var children = Vault.GetNamespaces.Invoke(new()
+        ///     {
+        ///         Namespace = "parent",
+        ///     });
+        /// 
+        ///     var child = .ToDictionary(item =&gt; {
+        ///         var __key = item.Key;
+        ///         return __key;
+        ///     }, item =&gt; {
+        ///         var __key = item.Key;
+        ///         return Vault.GetNamespace.Invoke(new()
+        ///         {
+        ///             Namespace = _arg0_.Namespace,
+        ///             Path = __key,
+        ///         });
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNamespacesResult> Invoke(GetNamespacesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNamespacesResult>("vault:index/getNamespaces:getNamespaces", args ?? new GetNamespacesInvokeArgs(), options.WithDefaults());
     }
 
 

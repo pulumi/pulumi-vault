@@ -92,21 +92,11 @@ type GetAuthBackendsResult struct {
 }
 
 func GetAuthBackendsOutput(ctx *pulumi.Context, args GetAuthBackendsOutputArgs, opts ...pulumi.InvokeOption) GetAuthBackendsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAuthBackendsResultOutput, error) {
 			args := v.(GetAuthBackendsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAuthBackendsResult
-			secret, err := ctx.InvokePackageRaw("vault:index/getAuthBackends:getAuthBackends", args, &rv, "", opts...)
-			if err != nil {
-				return GetAuthBackendsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAuthBackendsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAuthBackendsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("vault:index/getAuthBackends:getAuthBackends", args, GetAuthBackendsResultOutput{}, options).(GetAuthBackendsResultOutput), nil
 		}).(GetAuthBackendsResultOutput)
 }
 

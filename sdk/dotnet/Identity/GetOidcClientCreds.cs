@@ -80,6 +80,41 @@ namespace Pulumi.Vault.Identity
         /// </summary>
         public static Output<GetOidcClientCredsResult> Invoke(GetOidcClientCredsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var app = new Vault.Identity.OidcClient("app", new()
+        ///     {
+        ///         Name = "application",
+        ///         RedirectUris = new[]
+        ///         {
+        ///             "http://127.0.0.1:9200/v1/auth-methods/oidc:authenticate:callback",
+        ///             "http://127.0.0.1:8251/callback",
+        ///             "http://127.0.0.1:8080/callback",
+        ///         },
+        ///         IdTokenTtl = 2400,
+        ///         AccessTokenTtl = 7200,
+        ///     });
+        /// 
+        ///     var creds = Vault.Identity.GetOidcClientCreds.Invoke(new()
+        ///     {
+        ///         Name = app.Name,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetOidcClientCredsResult> Invoke(GetOidcClientCredsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetOidcClientCredsResult>("vault:identity/getOidcClientCreds:getOidcClientCreds", args ?? new GetOidcClientCredsInvokeArgs(), options.WithDefaults());
     }
 
 

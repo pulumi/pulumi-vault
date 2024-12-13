@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.kv.inputs.GetSecretArgs;
 import com.pulumi.vault.kv.inputs.GetSecretPlainArgs;
@@ -219,6 +220,71 @@ public final class KvFunctions {
      * 
      */
     public static Output<GetSecretResult> getSecret(GetSecretArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecret:getSecret", TypeShape.of(GetSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.kv.Secret;
+     * import com.pulumi.vault.kv.SecretArgs;
+     * import com.pulumi.vault.kv.KvFunctions;
+     * import com.pulumi.vault.kv.inputs.GetSecretArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
+     *             .build());
+     * 
+     *         var secret = new Secret("secret", SecretArgs.builder()
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/secret", path)))
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
+     *                 )))
+     *             .build());
+     * 
+     *         final var secretData = KvFunctions.getSecret(GetSecretArgs.builder()
+     *             .path(secret.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
+     */
+    public static Output<GetSecretResult> getSecret(GetSecretArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:kv/getSecret:getSecret", TypeShape.of(GetSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -551,6 +617,73 @@ public final class KvFunctions {
      * Use of this resource requires the `read` capability on the given path.
      * 
      */
+    public static Output<GetSecretSubkeysV2Result> getSecretSubkeysV2(GetSecretSubkeysV2Args args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", TypeShape.of(GetSecretSubkeysV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.kv.SecretV2;
+     * import com.pulumi.vault.kv.SecretV2Args;
+     * import com.pulumi.vault.kv.KvFunctions;
+     * import com.pulumi.vault.kv.inputs.GetSecretSubkeysV2Args;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
+     *             .build());
+     * 
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name("aws_secret")
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
+     *                 )))
+     *             .build());
+     * 
+     *         final var test = KvFunctions.getSecretSubkeysV2(GetSecretSubkeysV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name(awsSecret.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
+     */
     public static CompletableFuture<GetSecretSubkeysV2Result> getSecretSubkeysV2Plain(GetSecretSubkeysV2PlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:kv/getSecretSubkeysV2:getSecretSubkeysV2", TypeShape.of(GetSecretSubkeysV2Result.class), args, Utilities.withVersion(options));
     }
@@ -756,6 +889,74 @@ public final class KvFunctions {
      * 
      */
     public static Output<GetSecretV2Result> getSecretV2(GetSecretV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecretV2:getSecretV2", TypeShape.of(GetSecretV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.kv.SecretV2;
+     * import com.pulumi.vault.kv.SecretV2Args;
+     * import com.pulumi.vault.kv.KvFunctions;
+     * import com.pulumi.vault.kv.inputs.GetSecretV2Args;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
+     *             .build());
+     * 
+     *         var exampleSecretV2 = new SecretV2("exampleSecretV2", SecretV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name("secret")
+     *             .deleteAllVersions(true)
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("zip", "zap"),
+     *                     jsonProperty("foo", "bar")
+     *                 )))
+     *             .build());
+     * 
+     *         final var example = KvFunctions.getSecretV2(GetSecretV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name(exampleSecretV2.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
+     */
+    public static Output<GetSecretV2Result> getSecretV2(GetSecretV2Args args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:kv/getSecretV2:getSecretV2", TypeShape.of(GetSecretV2Result.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1111,6 +1312,78 @@ public final class KvFunctions {
      * Use of this resource requires the `read` capability on the given path.
      * 
      */
+    public static Output<GetSecretsListResult> getSecretsList(GetSecretsListArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecretsList:getSecretsList", TypeShape.of(GetSecretsListResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.kv.Secret;
+     * import com.pulumi.vault.kv.SecretArgs;
+     * import com.pulumi.vault.kv.KvFunctions;
+     * import com.pulumi.vault.kv.inputs.GetSecretsListArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var kvv1 = new Mount("kvv1", MountArgs.builder()
+     *             .path("kvv1")
+     *             .type("kv")
+     *             .options(Map.of("version", "1"))
+     *             .description("KV Version 1 secret engine mount")
+     *             .build());
+     * 
+     *         var awsSecret = new Secret("awsSecret", SecretArgs.builder()
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/aws-secret", path)))
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("zip", "zap")
+     *                 )))
+     *             .build());
+     * 
+     *         var azureSecret = new Secret("azureSecret", SecretArgs.builder()
+     *             .path(kvv1.path().applyValue(path -> String.format("%s/azure-secret", path)))
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("foo", "bar")
+     *                 )))
+     *             .build());
+     * 
+     *         final var secrets = KvFunctions.getSecretsList(GetSecretsListArgs.builder()
+     *             .path(kvv1.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
+     */
     public static CompletableFuture<GetSecretsListResult> getSecretsListPlain(GetSecretsListPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:kv/getSecretsList:getSecretsList", TypeShape.of(GetSecretsListResult.class), args, Utilities.withVersion(options));
     }
@@ -1376,6 +1649,94 @@ public final class KvFunctions {
      * 
      */
     public static Output<GetSecretsListV2Result> getSecretsListV2(GetSecretsListV2Args args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:kv/getSecretsListV2:getSecretsListV2", TypeShape.of(GetSecretsListV2Result.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.kv.SecretV2;
+     * import com.pulumi.vault.kv.SecretV2Args;
+     * import com.pulumi.vault.kv.KvFunctions;
+     * import com.pulumi.vault.kv.inputs.GetSecretsListV2Args;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var kvv2 = new Mount("kvv2", MountArgs.builder()
+     *             .path("kvv2")
+     *             .type("kv")
+     *             .options(Map.of("version", "2"))
+     *             .description("KV Version 2 secret engine mount")
+     *             .build());
+     * 
+     *         var awsSecret = new SecretV2("awsSecret", SecretV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name("aws_secret")
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("zip", "zap")
+     *                 )))
+     *             .build());
+     * 
+     *         var azureSecret = new SecretV2("azureSecret", SecretV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name("azure_secret")
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("foo", "bar")
+     *                 )))
+     *             .build());
+     * 
+     *         var nestedSecret = new SecretV2("nestedSecret", SecretV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name(azureSecret.name().applyValue(name -> String.format("%s/dev", name)))
+     *             .dataJson(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("password", "test")
+     *                 )))
+     *             .build());
+     * 
+     *         final var secrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .build());
+     * 
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
+     *             .name(test2.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ## Required Vault Capabilities
+     * 
+     * Use of this resource requires the `read` capability on the given path.
+     * 
+     */
+    public static Output<GetSecretsListV2Result> getSecretsListV2(GetSecretsListV2Args args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:kv/getSecretsListV2:getSecretsListV2", TypeShape.of(GetSecretsListV2Result.class), args, Utilities.withVersion(options));
     }
     /**
