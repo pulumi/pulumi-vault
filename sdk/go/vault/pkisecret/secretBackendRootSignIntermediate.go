@@ -21,14 +21,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkiSecret.SecretBackendRootSignIntermediateArgs{
+//			_, err := pkisecret.NewSecretBackendRootSignIntermediate(ctx, "root", &pkisecret.SecretBackendRootSignIntermediateArgs{
 //				Backend:           pulumi.Any(rootVaultMount.Path),
 //				Csr:               pulumi.Any(intermediate.Csr),
 //				CommonName:        pulumi.String("Intermediate CA"),

@@ -19,7 +19,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			key, err := pkiSecret.NewSecretBackendKey(ctx, "key", &pkiSecret.SecretBackendKeyArgs{
+//			key, err := pkisecret.NewSecretBackendKey(ctx, "key", &pkisecret.SecretBackendKeyArgs{
 //				Backend: pki.Path,
 //				Type:    pulumi.String("internal"),
 //				KeyName: pulumi.String("example"),
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			_ = key.KeyId.ApplyT(func(keyId string) (pkisecret.GetBackendKeyResult, error) {
-//				return pkisecret.GetBackendKeyResult(interface{}(pkiSecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
+//				return pkisecret.GetBackendKeyResult(interface{}(pkisecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
 //					Backend: keyVaultMount.Path,
 //					KeyRef:  keyId,
 //				}, nil))), nil
