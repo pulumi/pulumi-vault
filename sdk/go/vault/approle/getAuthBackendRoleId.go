@@ -20,14 +20,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/appRole"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/approle"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			role, err := appRole.GetAuthBackendRoleId(ctx, &approle.GetAuthBackendRoleIdArgs{
+//			role, err := approle.GetAuthBackendRoleId(ctx, &approle.GetAuthBackendRoleIdArgs{
 //				Backend:  pulumi.StringRef("my-approle-backend"),
 //				RoleName: "my-role",
 //			}, nil)

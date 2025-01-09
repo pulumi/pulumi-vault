@@ -22,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = pkiSecret.NewSecretBackendRole(ctx, "role", &pkiSecret.SecretBackendRoleArgs{
+//			_, err = pkisecret.NewSecretBackendRole(ctx, "role", &pkisecret.SecretBackendRoleArgs{
 //				Backend:     pki.Path,
 //				Name:        pulumi.String("my_role"),
 //				Ttl:         pulumi.String("3600"),

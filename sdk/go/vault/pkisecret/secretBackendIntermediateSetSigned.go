@@ -20,7 +20,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -47,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			example, err := pkiSecret.NewSecretBackendRootCert(ctx, "example", &pkiSecret.SecretBackendRootCertArgs{
+//			example, err := pkisecret.NewSecretBackendRootCert(ctx, "example", &pkisecret.SecretBackendRootCertArgs{
 //				Backend:           root.Path,
 //				Type:              pulumi.String("internal"),
 //				CommonName:        pulumi.String("RootOrg Root CA"),
@@ -66,7 +66,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleSecretBackendIntermediateCertRequest, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, "example", &pkiSecret.SecretBackendIntermediateCertRequestArgs{
+//			exampleSecretBackendIntermediateCertRequest, err := pkisecret.NewSecretBackendIntermediateCertRequest(ctx, "example", &pkisecret.SecretBackendIntermediateCertRequestArgs{
 //				Backend:    intermediate.Path,
 //				Type:       example.Type,
 //				CommonName: pulumi.String("SubOrg Intermediate CA"),
@@ -74,7 +74,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			exampleSecretBackendRootSignIntermediate, err := pkiSecret.NewSecretBackendRootSignIntermediate(ctx, "example", &pkiSecret.SecretBackendRootSignIntermediateArgs{
+//			exampleSecretBackendRootSignIntermediate, err := pkisecret.NewSecretBackendRootSignIntermediate(ctx, "example", &pkisecret.SecretBackendRootSignIntermediateArgs{
 //				Backend:           root.Path,
 //				Csr:               exampleSecretBackendIntermediateCertRequest.Csr,
 //				CommonName:        pulumi.String("SubOrg Intermediate CA"),
@@ -89,7 +89,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = pkiSecret.NewSecretBackendIntermediateSetSigned(ctx, "example", &pkiSecret.SecretBackendIntermediateSetSignedArgs{
+//			_, err = pkisecret.NewSecretBackendIntermediateSetSigned(ctx, "example", &pkisecret.SecretBackendIntermediateSetSignedArgs{
 //				Backend:     intermediate.Path,
 //				Certificate: exampleSecretBackendRootSignIntermediate.Certificate,
 //			})
