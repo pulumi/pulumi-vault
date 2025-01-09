@@ -19,14 +19,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/rabbitMq"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/rabbitmq"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+//			_, err := rabbitmq.NewSecretBackend(ctx, "rabbitmq", &rabbitmq.SecretBackendArgs{
 //				ConnectionUri: pulumi.String("https://....."),
 //				Username:      pulumi.String("user"),
 //				Password:      pulumi.String("password"),

@@ -22,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = pkiSecret.NewSecretBackendCrlConfig(ctx, "crl_config", &pkiSecret.SecretBackendCrlConfigArgs{
+//			_, err = pkisecret.NewSecretBackendCrlConfig(ctx, "crl_config", &pkisecret.SecretBackendCrlConfigArgs{
 //				Backend: pki.Path,
 //				Expiry:  pulumi.String("72h"),
 //				Disable: pulumi.Bool(false),

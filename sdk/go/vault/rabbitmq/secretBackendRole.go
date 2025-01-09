@@ -19,14 +19,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/rabbitMq"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/rabbitmq"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			rabbitmq, err := rabbitMq.NewSecretBackend(ctx, "rabbitmq", &rabbitMq.SecretBackendArgs{
+//			rabbitmq, err := rabbitmq.NewSecretBackend(ctx, "rabbitmq", &rabbitmq.SecretBackendArgs{
 //				ConnectionUri: pulumi.String("https://....."),
 //				Username:      pulumi.String("user"),
 //				Password:      pulumi.String("password"),
@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = rabbitMq.NewSecretBackendRole(ctx, "role", &rabbitMq.SecretBackendRoleArgs{
+//			_, err = rabbitmq.NewSecretBackendRole(ctx, "role", &rabbitmq.SecretBackendRoleArgs{
 //				Backend: rabbitmq.Path,
 //				Name:    pulumi.String("deploy"),
 //				Tags:    pulumi.String("tag1,tag2"),

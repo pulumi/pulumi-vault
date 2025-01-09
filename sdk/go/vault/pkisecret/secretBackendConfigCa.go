@@ -19,14 +19,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendConfigCa(ctx, "intermediate", &pkiSecret.SecretBackendConfigCaArgs{
+//			_, err := pkisecret.NewSecretBackendConfigCa(ctx, "intermediate", &pkisecret.SecretBackendConfigCaArgs{
 //				Backend: pulumi.Any(intermediateVaultMount.Path),
 //				PemBundle: pulumi.String(`-----BEGIN RSA PRIVATE KEY-----
 //

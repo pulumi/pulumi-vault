@@ -22,7 +22,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = pkiSecret.NewSecretBackendConfigUrls(ctx, "example", &pkiSecret.SecretBackendConfigUrlsArgs{
+//			_, err = pkisecret.NewSecretBackendConfigUrls(ctx, "example", &pkisecret.SecretBackendConfigUrlsArgs{
 //				Backend: root.Path,
 //				IssuingCertificates: pulumi.StringArray{
 //					pulumi.String("http://127.0.0.1:8200/v1/pki/ca"),

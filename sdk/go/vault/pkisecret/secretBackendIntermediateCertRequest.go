@@ -19,14 +19,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := pkiSecret.NewSecretBackendIntermediateCertRequest(ctx, "test", &pkiSecret.SecretBackendIntermediateCertRequestArgs{
+//			_, err := pkisecret.NewSecretBackendIntermediateCertRequest(ctx, "test", &pkisecret.SecretBackendIntermediateCertRequestArgs{
 //				Backend:    pulumi.Any(pki.Path),
 //				Type:       pulumi.String("internal"),
 //				CommonName: pulumi.String("app.my.domain"),

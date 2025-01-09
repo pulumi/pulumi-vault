@@ -19,7 +19,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault"
-//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkiSecret"
+//	"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -34,7 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = pkiSecret.GetBackendConfigEstOutput(ctx, pkisecret.GetBackendConfigEstOutputArgs{
+//			_ = pkisecret.GetBackendConfigEstOutput(ctx, pkisecret.GetBackendConfigEstOutputArgs{
 //				Backend: pki.Path,
 //			}, nil)
 //			return nil
