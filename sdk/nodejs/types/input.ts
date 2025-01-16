@@ -1128,6 +1128,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         */
+        passwordAuthentication?: pulumi.Input<string>;
+        /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
         privateKey?: pulumi.Input<string>;
@@ -2193,6 +2197,10 @@ export namespace database {
          */
         password?: pulumi.Input<string>;
         /**
+         * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         */
+        passwordAuthentication?: pulumi.Input<string>;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName?: pulumi.Input<string>;
@@ -2899,6 +2907,13 @@ export namespace okta {
 }
 
 export namespace pkiSecret {
+    export interface BackendConfigCmpv2Authenticators {
+        /**
+         * "The accessor (required) and certRole (optional) properties for cert auth backends".
+         */
+        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    }
+
     export interface BackendConfigEstAuthenticators {
         /**
          * "The accessor (required) and certRole (optional) properties for cert auth backends".

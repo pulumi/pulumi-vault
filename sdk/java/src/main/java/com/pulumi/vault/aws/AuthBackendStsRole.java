@@ -100,6 +100,20 @@ public class AuthBackendStsRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
+     * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     * 
+     */
+    @Export(name="externalId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> externalId;
+
+    /**
+     * @return External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     * 
+     */
+    public Output<Optional<String>> externalId() {
+        return Codegen.optional(this.externalId);
+    }
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).

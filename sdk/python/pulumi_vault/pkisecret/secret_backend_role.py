@@ -38,6 +38,7 @@ class SecretBackendRoleArgs:
                  allowed_user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
+                 cn_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
@@ -86,6 +87,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_user_ids: Defines allowed User IDs
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cn_validations: Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
@@ -158,6 +160,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "basic_constraints_valid_for_non_ca", basic_constraints_valid_for_non_ca)
         if client_flag is not None:
             pulumi.set(__self__, "client_flag", client_flag)
+        if cn_validations is not None:
+            pulumi.set(__self__, "cn_validations", cn_validations)
         if code_signing_flag is not None:
             pulumi.set(__self__, "code_signing_flag", code_signing_flag)
         if countries is not None:
@@ -420,6 +424,18 @@ class SecretBackendRoleArgs:
     @client_flag.setter
     def client_flag(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "client_flag", value)
+
+    @property
+    @pulumi.getter(name="cnValidations")
+    def cn_validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        """
+        return pulumi.get(self, "cn_validations")
+
+    @cn_validations.setter
+    def cn_validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cn_validations", value)
 
     @property
     @pulumi.getter(name="codeSigningFlag")
@@ -799,6 +815,7 @@ class _SecretBackendRoleState:
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
+                 cn_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
@@ -847,6 +864,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cn_validations: Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
@@ -920,6 +938,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "basic_constraints_valid_for_non_ca", basic_constraints_valid_for_non_ca)
         if client_flag is not None:
             pulumi.set(__self__, "client_flag", client_flag)
+        if cn_validations is not None:
+            pulumi.set(__self__, "cn_validations", cn_validations)
         if code_signing_flag is not None:
             pulumi.set(__self__, "code_signing_flag", code_signing_flag)
         if countries is not None:
@@ -1182,6 +1202,18 @@ class _SecretBackendRoleState:
     @client_flag.setter
     def client_flag(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "client_flag", value)
+
+    @property
+    @pulumi.getter(name="cnValidations")
+    def cn_validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        """
+        return pulumi.get(self, "cn_validations")
+
+    @cn_validations.setter
+    def cn_validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cn_validations", value)
 
     @property
     @pulumi.getter(name="codeSigningFlag")
@@ -1563,6 +1595,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
+                 cn_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
@@ -1648,6 +1681,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cn_validations: Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
@@ -1761,6 +1795,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  backend: Optional[pulumi.Input[str]] = None,
                  basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
                  client_flag: Optional[pulumi.Input[bool]] = None,
+                 cn_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  code_signing_flag: Optional[pulumi.Input[bool]] = None,
                  countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  email_protection_flag: Optional[pulumi.Input[bool]] = None,
@@ -1818,6 +1853,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["backend"] = backend
             __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
             __props__.__dict__["client_flag"] = client_flag
+            __props__.__dict__["cn_validations"] = cn_validations
             __props__.__dict__["code_signing_flag"] = code_signing_flag
             __props__.__dict__["countries"] = countries
             __props__.__dict__["email_protection_flag"] = email_protection_flag
@@ -1874,6 +1910,7 @@ class SecretBackendRole(pulumi.CustomResource):
             backend: Optional[pulumi.Input[str]] = None,
             basic_constraints_valid_for_non_ca: Optional[pulumi.Input[bool]] = None,
             client_flag: Optional[pulumi.Input[bool]] = None,
+            cn_validations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             code_signing_flag: Optional[pulumi.Input[bool]] = None,
             countries: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             email_protection_flag: Optional[pulumi.Input[bool]] = None,
@@ -1927,6 +1964,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[bool] basic_constraints_valid_for_non_ca: Flag to mark basic constraints valid when issuing non-CA certificates
         :param pulumi.Input[bool] client_flag: Flag to specify certificates for client use
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cn_validations: Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
         :param pulumi.Input[bool] code_signing_flag: Flag to specify certificates for code signing use
         :param pulumi.Input[Sequence[pulumi.Input[str]]] countries: The country of generated certificates
         :param pulumi.Input[bool] email_protection_flag: Flag to specify certificates for email protection use
@@ -1987,6 +2025,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["backend"] = backend
         __props__.__dict__["basic_constraints_valid_for_non_ca"] = basic_constraints_valid_for_non_ca
         __props__.__dict__["client_flag"] = client_flag
+        __props__.__dict__["cn_validations"] = cn_validations
         __props__.__dict__["code_signing_flag"] = code_signing_flag
         __props__.__dict__["countries"] = countries
         __props__.__dict__["email_protection_flag"] = email_protection_flag
@@ -2153,6 +2192,14 @@ class SecretBackendRole(pulumi.CustomResource):
         Flag to specify certificates for client use
         """
         return pulumi.get(self, "client_flag")
+
+    @property
+    @pulumi.getter(name="cnValidations")
+    def cn_validations(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        """
+        return pulumi.get(self, "cn_validations")
 
     @property
     @pulumi.getter(name="codeSigningFlag")

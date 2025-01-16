@@ -49,9 +49,21 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.allowBareDomains);
     }
 
+    /**
+     * Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     * 
+     */
     @Import(name="allowEmptyPrincipals")
     private @Nullable Output<Boolean> allowEmptyPrincipals;
 
+    /**
+     * @return Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     * 
+     */
     public Optional<Output<Boolean>> allowEmptyPrincipals() {
         return Optional.ofNullable(this.allowEmptyPrincipals);
     }
@@ -520,11 +532,27 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
             return allowBareDomains(Output.of(allowBareDomains));
         }
 
+        /**
+         * @param allowEmptyPrincipals Allow signing certificates with no
+         * valid principals (e.g. any valid principal). For backwards compatibility
+         * only. The default of false is highly recommended.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowEmptyPrincipals(@Nullable Output<Boolean> allowEmptyPrincipals) {
             $.allowEmptyPrincipals = allowEmptyPrincipals;
             return this;
         }
 
+        /**
+         * @param allowEmptyPrincipals Allow signing certificates with no
+         * valid principals (e.g. any valid principal). For backwards compatibility
+         * only. The default of false is highly recommended.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowEmptyPrincipals(Boolean allowEmptyPrincipals) {
             return allowEmptyPrincipals(Output.of(allowEmptyPrincipals));
         }

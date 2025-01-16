@@ -2625,6 +2625,10 @@ if not MYPY:
         """
         The root credential password used in the connection URL
         """
+        password_authentication: NotRequired[pulumi.Input[str]]
+        """
+        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        """
         private_key: NotRequired[pulumi.Input[str]]
         """
         The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -2666,6 +2670,7 @@ class SecretBackendConnectionPostgresqlArgs:
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_authentication: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  self_managed: Optional[pulumi.Input[bool]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
@@ -2681,6 +2686,7 @@ class SecretBackendConnectionPostgresqlArgs:
         :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         :param pulumi.Input[str] private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param pulumi.Input[bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
@@ -2703,6 +2709,8 @@ class SecretBackendConnectionPostgresqlArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_authentication is not None:
+            pulumi.set(__self__, "password_authentication", password_authentication)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if self_managed is not None:
@@ -2801,6 +2809,18 @@ class SecretBackendConnectionPostgresqlArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="passwordAuthentication")
+    def password_authentication(self) -> Optional[pulumi.Input[str]]:
+        """
+        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        """
+        return pulumi.get(self, "password_authentication")
+
+    @password_authentication.setter
+    def password_authentication(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_authentication", value)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -7703,6 +7723,10 @@ if not MYPY:
         """
         The root credential password used in the connection URL
         """
+        password_authentication: NotRequired[pulumi.Input[str]]
+        """
+        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        """
         plugin_name: NotRequired[pulumi.Input[str]]
         """
         Specifies the name of the plugin to use.
@@ -7760,6 +7784,7 @@ class SecretsMountPostgresqlArgs:
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_authentication: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -7784,6 +7809,7 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[int] max_idle_connections: Maximum number of idle connections to the database.
         :param pulumi.Input[int] max_open_connections: Maximum number of open connections to the database.
         :param pulumi.Input[str] password: The root credential password used in the connection URL
+        :param pulumi.Input[str] password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[str] private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -7815,6 +7841,8 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_authentication is not None:
+            pulumi.set(__self__, "password_authentication", password_authentication)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if private_key is not None:
@@ -7958,6 +7986,18 @@ class SecretsMountPostgresqlArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="passwordAuthentication")
+    def password_authentication(self) -> Optional[pulumi.Input[str]]:
+        """
+        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        """
+        return pulumi.get(self, "password_authentication")
+
+    @password_authentication.setter
+    def password_authentication(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_authentication", value)
 
     @property
     @pulumi.getter(name="pluginName")

@@ -135,6 +135,24 @@ namespace Pulumi.Vault.Aws
         public Output<string?> StsEndpoint { get; private set; } = null!;
 
         /// <summary>
+        /// Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        /// </summary>
+        [Output("stsFallbackEndpoints")]
+        public Output<ImmutableArray<string>> StsFallbackEndpoints { get; private set; } = null!;
+
+        /// <summary>
+        /// Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        /// </summary>
+        [Output("stsFallbackRegions")]
+        public Output<ImmutableArray<string>> StsFallbackRegions { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        /// </summary>
+        [Output("stsRegion")]
+        public Output<string?> StsRegion { get; private set; } = null!;
+
+        /// <summary>
         /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         /// </summary>
         [Output("usernameTemplate")]
@@ -324,6 +342,36 @@ namespace Pulumi.Vault.Aws
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
 
+        [Input("stsFallbackEndpoints")]
+        private InputList<string>? _stsFallbackEndpoints;
+
+        /// <summary>
+        /// Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        /// </summary>
+        public InputList<string> StsFallbackEndpoints
+        {
+            get => _stsFallbackEndpoints ?? (_stsFallbackEndpoints = new InputList<string>());
+            set => _stsFallbackEndpoints = value;
+        }
+
+        [Input("stsFallbackRegions")]
+        private InputList<string>? _stsFallbackRegions;
+
+        /// <summary>
+        /// Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        /// </summary>
+        public InputList<string> StsFallbackRegions
+        {
+            get => _stsFallbackRegions ?? (_stsFallbackRegions = new InputList<string>());
+            set => _stsFallbackRegions = value;
+        }
+
+        /// <summary>
+        /// Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        /// </summary>
+        [Input("stsRegion")]
+        public Input<string>? StsRegion { get; set; }
+
         /// <summary>
         /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         /// </summary>
@@ -470,6 +518,36 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("stsEndpoint")]
         public Input<string>? StsEndpoint { get; set; }
+
+        [Input("stsFallbackEndpoints")]
+        private InputList<string>? _stsFallbackEndpoints;
+
+        /// <summary>
+        /// Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        /// </summary>
+        public InputList<string> StsFallbackEndpoints
+        {
+            get => _stsFallbackEndpoints ?? (_stsFallbackEndpoints = new InputList<string>());
+            set => _stsFallbackEndpoints = value;
+        }
+
+        [Input("stsFallbackRegions")]
+        private InputList<string>? _stsFallbackRegions;
+
+        /// <summary>
+        /// Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        /// </summary>
+        public InputList<string> StsFallbackRegions
+        {
+            get => _stsFallbackRegions ?? (_stsFallbackRegions = new InputList<string>());
+            set => _stsFallbackRegions = value;
+        }
+
+        /// <summary>
+        /// Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        /// </summary>
+        [Input("stsRegion")]
+        public Input<string>? StsRegion { get; set; }
 
         /// <summary>
         /// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:

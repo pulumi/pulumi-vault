@@ -141,6 +141,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     public readonly clientFlag!: pulumi.Output<boolean | undefined>;
     /**
+     * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     */
+    public readonly cnValidations!: pulumi.Output<string[]>;
+    /**
      * Flag to specify certificates for code signing use
      */
     public readonly codeSigningFlag!: pulumi.Output<boolean | undefined>;
@@ -296,6 +300,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = state ? state.basicConstraintsValidForNonCa : undefined;
             resourceInputs["clientFlag"] = state ? state.clientFlag : undefined;
+            resourceInputs["cnValidations"] = state ? state.cnValidations : undefined;
             resourceInputs["codeSigningFlag"] = state ? state.codeSigningFlag : undefined;
             resourceInputs["countries"] = state ? state.countries : undefined;
             resourceInputs["emailProtectionFlag"] = state ? state.emailProtectionFlag : undefined;
@@ -347,6 +352,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["basicConstraintsValidForNonCa"] = args ? args.basicConstraintsValidForNonCa : undefined;
             resourceInputs["clientFlag"] = args ? args.clientFlag : undefined;
+            resourceInputs["cnValidations"] = args ? args.cnValidations : undefined;
             resourceInputs["codeSigningFlag"] = args ? args.codeSigningFlag : undefined;
             resourceInputs["countries"] = args ? args.countries : undefined;
             resourceInputs["emailProtectionFlag"] = args ? args.emailProtectionFlag : undefined;
@@ -454,6 +460,10 @@ export interface SecretBackendRoleState {
      * Flag to specify certificates for client use
      */
     clientFlag?: pulumi.Input<boolean>;
+    /**
+     * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     */
+    cnValidations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Flag to specify certificates for code signing use
      */
@@ -653,6 +663,10 @@ export interface SecretBackendRoleArgs {
      * Flag to specify certificates for client use
      */
     clientFlag?: pulumi.Input<boolean>;
+    /**
+     * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     */
+    cnValidations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Flag to specify certificates for code signing use
      */

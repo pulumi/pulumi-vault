@@ -13,6 +13,143 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type BackendConfigCmpv2Authenticators struct {
+	// "The accessor (required) and certRole (optional) properties for cert auth backends".
+	Cert map[string]string `pulumi:"cert"`
+}
+
+// BackendConfigCmpv2AuthenticatorsInput is an input type that accepts BackendConfigCmpv2AuthenticatorsArgs and BackendConfigCmpv2AuthenticatorsOutput values.
+// You can construct a concrete instance of `BackendConfigCmpv2AuthenticatorsInput` via:
+//
+//	BackendConfigCmpv2AuthenticatorsArgs{...}
+type BackendConfigCmpv2AuthenticatorsInput interface {
+	pulumi.Input
+
+	ToBackendConfigCmpv2AuthenticatorsOutput() BackendConfigCmpv2AuthenticatorsOutput
+	ToBackendConfigCmpv2AuthenticatorsOutputWithContext(context.Context) BackendConfigCmpv2AuthenticatorsOutput
+}
+
+type BackendConfigCmpv2AuthenticatorsArgs struct {
+	// "The accessor (required) and certRole (optional) properties for cert auth backends".
+	Cert pulumi.StringMapInput `pulumi:"cert"`
+}
+
+func (BackendConfigCmpv2AuthenticatorsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigCmpv2Authenticators)(nil)).Elem()
+}
+
+func (i BackendConfigCmpv2AuthenticatorsArgs) ToBackendConfigCmpv2AuthenticatorsOutput() BackendConfigCmpv2AuthenticatorsOutput {
+	return i.ToBackendConfigCmpv2AuthenticatorsOutputWithContext(context.Background())
+}
+
+func (i BackendConfigCmpv2AuthenticatorsArgs) ToBackendConfigCmpv2AuthenticatorsOutputWithContext(ctx context.Context) BackendConfigCmpv2AuthenticatorsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigCmpv2AuthenticatorsOutput)
+}
+
+func (i BackendConfigCmpv2AuthenticatorsArgs) ToBackendConfigCmpv2AuthenticatorsPtrOutput() BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return i.ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (i BackendConfigCmpv2AuthenticatorsArgs) ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigCmpv2AuthenticatorsOutput).ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(ctx)
+}
+
+// BackendConfigCmpv2AuthenticatorsPtrInput is an input type that accepts BackendConfigCmpv2AuthenticatorsArgs, BackendConfigCmpv2AuthenticatorsPtr and BackendConfigCmpv2AuthenticatorsPtrOutput values.
+// You can construct a concrete instance of `BackendConfigCmpv2AuthenticatorsPtrInput` via:
+//
+//	        BackendConfigCmpv2AuthenticatorsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackendConfigCmpv2AuthenticatorsPtrInput interface {
+	pulumi.Input
+
+	ToBackendConfigCmpv2AuthenticatorsPtrOutput() BackendConfigCmpv2AuthenticatorsPtrOutput
+	ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(context.Context) BackendConfigCmpv2AuthenticatorsPtrOutput
+}
+
+type backendConfigCmpv2AuthenticatorsPtrType BackendConfigCmpv2AuthenticatorsArgs
+
+func BackendConfigCmpv2AuthenticatorsPtr(v *BackendConfigCmpv2AuthenticatorsArgs) BackendConfigCmpv2AuthenticatorsPtrInput {
+	return (*backendConfigCmpv2AuthenticatorsPtrType)(v)
+}
+
+func (*backendConfigCmpv2AuthenticatorsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendConfigCmpv2Authenticators)(nil)).Elem()
+}
+
+func (i *backendConfigCmpv2AuthenticatorsPtrType) ToBackendConfigCmpv2AuthenticatorsPtrOutput() BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return i.ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (i *backendConfigCmpv2AuthenticatorsPtrType) ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackendConfigCmpv2AuthenticatorsPtrOutput)
+}
+
+type BackendConfigCmpv2AuthenticatorsOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigCmpv2AuthenticatorsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackendConfigCmpv2Authenticators)(nil)).Elem()
+}
+
+func (o BackendConfigCmpv2AuthenticatorsOutput) ToBackendConfigCmpv2AuthenticatorsOutput() BackendConfigCmpv2AuthenticatorsOutput {
+	return o
+}
+
+func (o BackendConfigCmpv2AuthenticatorsOutput) ToBackendConfigCmpv2AuthenticatorsOutputWithContext(ctx context.Context) BackendConfigCmpv2AuthenticatorsOutput {
+	return o
+}
+
+func (o BackendConfigCmpv2AuthenticatorsOutput) ToBackendConfigCmpv2AuthenticatorsPtrOutput() BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return o.ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(context.Background())
+}
+
+func (o BackendConfigCmpv2AuthenticatorsOutput) ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackendConfigCmpv2Authenticators) *BackendConfigCmpv2Authenticators {
+		return &v
+	}).(BackendConfigCmpv2AuthenticatorsPtrOutput)
+}
+
+// "The accessor (required) and certRole (optional) properties for cert auth backends".
+func (o BackendConfigCmpv2AuthenticatorsOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackendConfigCmpv2Authenticators) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
+}
+
+type BackendConfigCmpv2AuthenticatorsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackendConfigCmpv2AuthenticatorsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackendConfigCmpv2Authenticators)(nil)).Elem()
+}
+
+func (o BackendConfigCmpv2AuthenticatorsPtrOutput) ToBackendConfigCmpv2AuthenticatorsPtrOutput() BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return o
+}
+
+func (o BackendConfigCmpv2AuthenticatorsPtrOutput) ToBackendConfigCmpv2AuthenticatorsPtrOutputWithContext(ctx context.Context) BackendConfigCmpv2AuthenticatorsPtrOutput {
+	return o
+}
+
+func (o BackendConfigCmpv2AuthenticatorsPtrOutput) Elem() BackendConfigCmpv2AuthenticatorsOutput {
+	return o.ApplyT(func(v *BackendConfigCmpv2Authenticators) BackendConfigCmpv2Authenticators {
+		if v != nil {
+			return *v
+		}
+		var ret BackendConfigCmpv2Authenticators
+		return ret
+	}).(BackendConfigCmpv2AuthenticatorsOutput)
+}
+
+// "The accessor (required) and certRole (optional) properties for cert auth backends".
+func (o BackendConfigCmpv2AuthenticatorsPtrOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendConfigCmpv2Authenticators) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Cert
+	}).(pulumi.StringMapOutput)
+}
+
 type BackendConfigEstAuthenticators struct {
 	// "The accessor (required) and certRole (optional) properties for cert auth backends".
 	Cert map[string]string `pulumi:"cert"`
@@ -290,6 +427,103 @@ func (o SecretBackendRolePolicyIdentifierArrayOutput) Index(i pulumi.IntInput) S
 	}).(SecretBackendRolePolicyIdentifierOutput)
 }
 
+type GetBackendConfigCmpv2Authenticator struct {
+	// The accessor and certRole properties for cert auth backends
+	Cert map[string]string `pulumi:"cert"`
+}
+
+// GetBackendConfigCmpv2AuthenticatorInput is an input type that accepts GetBackendConfigCmpv2AuthenticatorArgs and GetBackendConfigCmpv2AuthenticatorOutput values.
+// You can construct a concrete instance of `GetBackendConfigCmpv2AuthenticatorInput` via:
+//
+//	GetBackendConfigCmpv2AuthenticatorArgs{...}
+type GetBackendConfigCmpv2AuthenticatorInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigCmpv2AuthenticatorOutput() GetBackendConfigCmpv2AuthenticatorOutput
+	ToGetBackendConfigCmpv2AuthenticatorOutputWithContext(context.Context) GetBackendConfigCmpv2AuthenticatorOutput
+}
+
+type GetBackendConfigCmpv2AuthenticatorArgs struct {
+	// The accessor and certRole properties for cert auth backends
+	Cert pulumi.StringMapInput `pulumi:"cert"`
+}
+
+func (GetBackendConfigCmpv2AuthenticatorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigCmpv2Authenticator)(nil)).Elem()
+}
+
+func (i GetBackendConfigCmpv2AuthenticatorArgs) ToGetBackendConfigCmpv2AuthenticatorOutput() GetBackendConfigCmpv2AuthenticatorOutput {
+	return i.ToGetBackendConfigCmpv2AuthenticatorOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigCmpv2AuthenticatorArgs) ToGetBackendConfigCmpv2AuthenticatorOutputWithContext(ctx context.Context) GetBackendConfigCmpv2AuthenticatorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigCmpv2AuthenticatorOutput)
+}
+
+// GetBackendConfigCmpv2AuthenticatorArrayInput is an input type that accepts GetBackendConfigCmpv2AuthenticatorArray and GetBackendConfigCmpv2AuthenticatorArrayOutput values.
+// You can construct a concrete instance of `GetBackendConfigCmpv2AuthenticatorArrayInput` via:
+//
+//	GetBackendConfigCmpv2AuthenticatorArray{ GetBackendConfigCmpv2AuthenticatorArgs{...} }
+type GetBackendConfigCmpv2AuthenticatorArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendConfigCmpv2AuthenticatorArrayOutput() GetBackendConfigCmpv2AuthenticatorArrayOutput
+	ToGetBackendConfigCmpv2AuthenticatorArrayOutputWithContext(context.Context) GetBackendConfigCmpv2AuthenticatorArrayOutput
+}
+
+type GetBackendConfigCmpv2AuthenticatorArray []GetBackendConfigCmpv2AuthenticatorInput
+
+func (GetBackendConfigCmpv2AuthenticatorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigCmpv2Authenticator)(nil)).Elem()
+}
+
+func (i GetBackendConfigCmpv2AuthenticatorArray) ToGetBackendConfigCmpv2AuthenticatorArrayOutput() GetBackendConfigCmpv2AuthenticatorArrayOutput {
+	return i.ToGetBackendConfigCmpv2AuthenticatorArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendConfigCmpv2AuthenticatorArray) ToGetBackendConfigCmpv2AuthenticatorArrayOutputWithContext(ctx context.Context) GetBackendConfigCmpv2AuthenticatorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendConfigCmpv2AuthenticatorArrayOutput)
+}
+
+type GetBackendConfigCmpv2AuthenticatorOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigCmpv2AuthenticatorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendConfigCmpv2Authenticator)(nil)).Elem()
+}
+
+func (o GetBackendConfigCmpv2AuthenticatorOutput) ToGetBackendConfigCmpv2AuthenticatorOutput() GetBackendConfigCmpv2AuthenticatorOutput {
+	return o
+}
+
+func (o GetBackendConfigCmpv2AuthenticatorOutput) ToGetBackendConfigCmpv2AuthenticatorOutputWithContext(ctx context.Context) GetBackendConfigCmpv2AuthenticatorOutput {
+	return o
+}
+
+// The accessor and certRole properties for cert auth backends
+func (o GetBackendConfigCmpv2AuthenticatorOutput) Cert() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackendConfigCmpv2Authenticator) map[string]string { return v.Cert }).(pulumi.StringMapOutput)
+}
+
+type GetBackendConfigCmpv2AuthenticatorArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendConfigCmpv2AuthenticatorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendConfigCmpv2Authenticator)(nil)).Elem()
+}
+
+func (o GetBackendConfigCmpv2AuthenticatorArrayOutput) ToGetBackendConfigCmpv2AuthenticatorArrayOutput() GetBackendConfigCmpv2AuthenticatorArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigCmpv2AuthenticatorArrayOutput) ToGetBackendConfigCmpv2AuthenticatorArrayOutputWithContext(ctx context.Context) GetBackendConfigCmpv2AuthenticatorArrayOutput {
+	return o
+}
+
+func (o GetBackendConfigCmpv2AuthenticatorArrayOutput) Index(i pulumi.IntInput) GetBackendConfigCmpv2AuthenticatorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendConfigCmpv2Authenticator {
+		return vs[0].([]GetBackendConfigCmpv2Authenticator)[vs[1].(int)]
+	}).(GetBackendConfigCmpv2AuthenticatorOutput)
+}
+
 type GetBackendConfigEstAuthenticator struct {
 	// "The accessor and certRole properties for cert auth backends".
 	Cert map[string]string `pulumi:"cert"`
@@ -397,16 +631,24 @@ func (o GetBackendConfigEstAuthenticatorArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigCmpv2AuthenticatorsInput)(nil)).Elem(), BackendConfigCmpv2AuthenticatorsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigCmpv2AuthenticatorsPtrInput)(nil)).Elem(), BackendConfigCmpv2AuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigEstAuthenticatorsInput)(nil)).Elem(), BackendConfigEstAuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendConfigEstAuthenticatorsPtrInput)(nil)).Elem(), BackendConfigEstAuthenticatorsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRolePolicyIdentifierInput)(nil)).Elem(), SecretBackendRolePolicyIdentifierArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretBackendRolePolicyIdentifierArrayInput)(nil)).Elem(), SecretBackendRolePolicyIdentifierArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigCmpv2AuthenticatorInput)(nil)).Elem(), GetBackendConfigCmpv2AuthenticatorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigCmpv2AuthenticatorArrayInput)(nil)).Elem(), GetBackendConfigCmpv2AuthenticatorArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigEstAuthenticatorInput)(nil)).Elem(), GetBackendConfigEstAuthenticatorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendConfigEstAuthenticatorArrayInput)(nil)).Elem(), GetBackendConfigEstAuthenticatorArray{})
+	pulumi.RegisterOutputType(BackendConfigCmpv2AuthenticatorsOutput{})
+	pulumi.RegisterOutputType(BackendConfigCmpv2AuthenticatorsPtrOutput{})
 	pulumi.RegisterOutputType(BackendConfigEstAuthenticatorsOutput{})
 	pulumi.RegisterOutputType(BackendConfigEstAuthenticatorsPtrOutput{})
 	pulumi.RegisterOutputType(SecretBackendRolePolicyIdentifierOutput{})
 	pulumi.RegisterOutputType(SecretBackendRolePolicyIdentifierArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigCmpv2AuthenticatorOutput{})
+	pulumi.RegisterOutputType(GetBackendConfigCmpv2AuthenticatorArrayOutput{})
 	pulumi.RegisterOutputType(GetBackendConfigEstAuthenticatorOutput{})
 	pulumi.RegisterOutputType(GetBackendConfigEstAuthenticatorArrayOutput{})
 }

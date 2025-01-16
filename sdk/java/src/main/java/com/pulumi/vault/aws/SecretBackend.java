@@ -270,6 +270,48 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.stsEndpoint);
     }
     /**
+     * Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+     * 
+     */
+    @Export(name="stsFallbackEndpoints", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> stsFallbackEndpoints;
+
+    /**
+     * @return Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+     * 
+     */
+    public Output<Optional<List<String>>> stsFallbackEndpoints() {
+        return Codegen.optional(this.stsFallbackEndpoints);
+    }
+    /**
+     * Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     * 
+     */
+    @Export(name="stsFallbackRegions", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> stsFallbackRegions;
+
+    /**
+     * @return Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     * 
+     */
+    public Output<Optional<List<String>>> stsFallbackRegions() {
+        return Codegen.optional(this.stsFallbackRegions);
+    }
+    /**
+     * Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+     * 
+     */
+    @Export(name="stsRegion", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> stsRegion;
+
+    /**
+     * @return Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+     * 
+     */
+    public Output<Optional<String>> stsRegion() {
+        return Codegen.optional(this.stsRegion);
+    }
+    /**
      * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
      * 
      */

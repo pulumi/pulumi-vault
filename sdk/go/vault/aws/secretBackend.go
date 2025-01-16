@@ -61,6 +61,12 @@ type SecretBackend struct {
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrOutput `pulumi:"stsEndpoint"`
+	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+	StsFallbackEndpoints pulumi.StringArrayOutput `pulumi:"stsFallbackEndpoints"`
+	// Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+	StsFallbackRegions pulumi.StringArrayOutput `pulumi:"stsFallbackRegions"`
+	// Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+	StsRegion pulumi.StringPtrOutput `pulumi:"stsRegion"`
 	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 	UsernameTemplate pulumi.StringOutput `pulumi:"usernameTemplate"`
 }
@@ -146,6 +152,12 @@ type secretBackendState struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
+	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+	StsFallbackEndpoints []string `pulumi:"stsFallbackEndpoints"`
+	// Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+	StsFallbackRegions []string `pulumi:"stsFallbackRegions"`
+	// Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+	StsRegion *string `pulumi:"stsRegion"`
 	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -191,6 +203,12 @@ type SecretBackendState struct {
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
+	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+	StsFallbackEndpoints pulumi.StringArrayInput
+	// Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+	StsFallbackRegions pulumi.StringArrayInput
+	// Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+	StsRegion pulumi.StringPtrInput
 	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 	UsernameTemplate pulumi.StringPtrInput
 }
@@ -240,6 +258,12 @@ type secretBackendArgs struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint *string `pulumi:"stsEndpoint"`
+	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+	StsFallbackEndpoints []string `pulumi:"stsFallbackEndpoints"`
+	// Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+	StsFallbackRegions []string `pulumi:"stsFallbackRegions"`
+	// Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+	StsRegion *string `pulumi:"stsRegion"`
 	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 	UsernameTemplate *string `pulumi:"usernameTemplate"`
 }
@@ -286,6 +310,12 @@ type SecretBackendArgs struct {
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
 	StsEndpoint pulumi.StringPtrInput
+	// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+	StsFallbackEndpoints pulumi.StringArrayInput
+	// Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+	StsFallbackRegions pulumi.StringArrayInput
+	// Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+	StsRegion pulumi.StringPtrInput
 	// Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 	UsernameTemplate pulumi.StringPtrInput
 }
@@ -463,6 +493,21 @@ func (o SecretBackendOutput) SecretKey() pulumi.StringPtrOutput {
 // Specifies a custom HTTP STS endpoint to use.
 func (o SecretBackendOutput) StsEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.StsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+func (o SecretBackendOutput) StsFallbackEndpoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.StsFallbackEndpoints }).(pulumi.StringArrayOutput)
+}
+
+// Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+func (o SecretBackendOutput) StsFallbackRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringArrayOutput { return v.StsFallbackRegions }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+func (o SecretBackendOutput) StsRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.StsRegion }).(pulumi.StringPtrOutput)
 }
 
 // Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:

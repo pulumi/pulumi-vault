@@ -72,6 +72,11 @@ namespace Pulumi.Vault.Ssh
         [Output("allowBareDomains")]
         public Output<bool?> AllowBareDomains { get; private set; } = null!;
 
+        /// <summary>
+        /// Allow signing certificates with no
+        /// valid principals (e.g. any valid principal). For backwards compatibility
+        /// only. The default of false is highly recommended.
+        /// </summary>
         [Output("allowEmptyPrincipals")]
         public Output<bool?> AllowEmptyPrincipals { get; private set; } = null!;
 
@@ -283,6 +288,11 @@ namespace Pulumi.Vault.Ssh
         [Input("allowBareDomains")]
         public Input<bool>? AllowBareDomains { get; set; }
 
+        /// <summary>
+        /// Allow signing certificates with no
+        /// valid principals (e.g. any valid principal). For backwards compatibility
+        /// only. The default of false is highly recommended.
+        /// </summary>
         [Input("allowEmptyPrincipals")]
         public Input<bool>? AllowEmptyPrincipals { get; set; }
 
@@ -474,6 +484,11 @@ namespace Pulumi.Vault.Ssh
         [Input("allowBareDomains")]
         public Input<bool>? AllowBareDomains { get; set; }
 
+        /// <summary>
+        /// Allow signing certificates with no
+        /// valid principals (e.g. any valid principal). For backwards compatibility
+        /// only. The default of false is highly recommended.
+        /// </summary>
         [Input("allowEmptyPrincipals")]
         public Input<bool>? AllowEmptyPrincipals { get; set; }
 

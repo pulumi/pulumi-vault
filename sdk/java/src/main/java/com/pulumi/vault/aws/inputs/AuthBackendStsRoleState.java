@@ -48,6 +48,21 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
     }
 
     /**
+     * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     * 
+     */
+    @Import(name="externalId")
+    private @Nullable Output<String> externalId;
+
+    /**
+     * @return External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     * 
+     */
+    public Optional<Output<String>> externalId() {
+        return Optional.ofNullable(this.externalId);
+    }
+
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -90,6 +105,7 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
     private AuthBackendStsRoleState(AuthBackendStsRoleState $) {
         this.accountId = $.accountId;
         this.backend = $.backend;
+        this.externalId = $.externalId;
         this.namespace = $.namespace;
         this.stsRole = $.stsRole;
     }
@@ -154,6 +170,27 @@ public final class AuthBackendStsRoleState extends com.pulumi.resources.Resource
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param externalId External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(@Nullable Output<String> externalId) {
+            $.externalId = externalId;
+            return this;
+        }
+
+        /**
+         * @param externalId External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(String externalId) {
+            return externalId(Output.of(externalId));
         }
 
         /**

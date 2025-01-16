@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -274,6 +275,51 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+     * 
+     */
+    @Import(name="stsFallbackEndpoints")
+    private @Nullable Output<List<String>> stsFallbackEndpoints;
+
+    /**
+     * @return Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+     * 
+     */
+    public Optional<Output<List<String>>> stsFallbackEndpoints() {
+        return Optional.ofNullable(this.stsFallbackEndpoints);
+    }
+
+    /**
+     * Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     * 
+     */
+    @Import(name="stsFallbackRegions")
+    private @Nullable Output<List<String>> stsFallbackRegions;
+
+    /**
+     * @return Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     * 
+     */
+    public Optional<Output<List<String>>> stsFallbackRegions() {
+        return Optional.ofNullable(this.stsFallbackRegions);
+    }
+
+    /**
+     * Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+     * 
+     */
+    @Import(name="stsRegion")
+    private @Nullable Output<String> stsRegion;
+
+    /**
+     * @return Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+     * 
+     */
+    public Optional<Output<String>> stsRegion() {
+        return Optional.ofNullable(this.stsRegion);
+    }
+
+    /**
      * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
      * 
      */
@@ -307,6 +353,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.roleArn = $.roleArn;
         this.secretKey = $.secretKey;
         this.stsEndpoint = $.stsEndpoint;
+        this.stsFallbackEndpoints = $.stsFallbackEndpoints;
+        this.stsFallbackRegions = $.stsFallbackRegions;
+        this.stsRegion = $.stsRegion;
         this.usernameTemplate = $.usernameTemplate;
     }
 
@@ -678,6 +727,89 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder stsEndpoint(String stsEndpoint) {
             return stsEndpoint(Output.of(stsEndpoint));
+        }
+
+        /**
+         * @param stsFallbackEndpoints Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsFallbackEndpoints(@Nullable Output<List<String>> stsFallbackEndpoints) {
+            $.stsFallbackEndpoints = stsFallbackEndpoints;
+            return this;
+        }
+
+        /**
+         * @param stsFallbackEndpoints Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsFallbackEndpoints(List<String> stsFallbackEndpoints) {
+            return stsFallbackEndpoints(Output.of(stsFallbackEndpoints));
+        }
+
+        /**
+         * @param stsFallbackEndpoints Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsFallbackEndpoints(String... stsFallbackEndpoints) {
+            return stsFallbackEndpoints(List.of(stsFallbackEndpoints));
+        }
+
+        /**
+         * @param stsFallbackRegions Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsFallbackRegions(@Nullable Output<List<String>> stsFallbackRegions) {
+            $.stsFallbackRegions = stsFallbackRegions;
+            return this;
+        }
+
+        /**
+         * @param stsFallbackRegions Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsFallbackRegions(List<String> stsFallbackRegions) {
+            return stsFallbackRegions(Output.of(stsFallbackRegions));
+        }
+
+        /**
+         * @param stsFallbackRegions Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsFallbackRegions(String... stsFallbackRegions) {
+            return stsFallbackRegions(List.of(stsFallbackRegions));
+        }
+
+        /**
+         * @param stsRegion Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsRegion(@Nullable Output<String> stsRegion) {
+            $.stsRegion = stsRegion;
+            return this;
+        }
+
+        /**
+         * @param stsRegion Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stsRegion(String stsRegion) {
+            return stsRegion(Output.of(stsRegion));
         }
 
         /**

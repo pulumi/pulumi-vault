@@ -77,6 +77,11 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     public readonly allowBareDomains!: pulumi.Output<boolean | undefined>;
+    /**
+     * Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     */
     public readonly allowEmptyPrincipals!: pulumi.Output<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -274,6 +279,11 @@ export interface SecretBackendRoleState {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     allowBareDomains?: pulumi.Input<boolean>;
+    /**
+     * Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     */
     allowEmptyPrincipals?: pulumi.Input<boolean>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
@@ -391,6 +401,11 @@ export interface SecretBackendRoleArgs {
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
     allowBareDomains?: pulumi.Input<boolean>;
+    /**
+     * Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     */
     allowEmptyPrincipals?: pulumi.Input<boolean>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.

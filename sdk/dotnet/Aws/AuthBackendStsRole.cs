@@ -60,6 +60,12 @@ namespace Pulumi.Vault.Aws
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+        /// </summary>
+        [Output("externalId")]
+        public Output<string?> ExternalId { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -135,6 +141,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -170,6 +182,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        /// <summary>
+        /// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

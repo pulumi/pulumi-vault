@@ -98,6 +98,12 @@ namespace Pulumi.Vault.Database.Inputs
         }
 
         /// <summary>
+        /// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        /// </summary>
+        [Input("passwordAuthentication")]
+        public Input<string>? PasswordAuthentication { get; set; }
+
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         [Input("pluginName")]

@@ -57,6 +57,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        /// </summary>
+        public readonly string? PasswordAuthentication;
+        /// <summary>
         /// Specifies the name of the plugin to use.
         /// </summary>
         public readonly string? PluginName;
@@ -120,6 +124,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? passwordAuthentication,
+
             string? pluginName,
 
             string? privateKey,
@@ -150,6 +156,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxOpenConnections = maxOpenConnections;
             Name = name;
             Password = password;
+            PasswordAuthentication = passwordAuthentication;
             PluginName = pluginName;
             PrivateKey = privateKey;
             RootRotationStatements = rootRotationStatements;

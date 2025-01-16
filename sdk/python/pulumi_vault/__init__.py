@@ -1015,10 +1015,34 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "pkiSecret/backendAcmeEab",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendAcmeEab:BackendAcmeEab": "BackendAcmeEab"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/backendConfigAcme",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendConfigAcme:BackendConfigAcme": "BackendConfigAcme"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "pkiSecret/backendConfigCluster",
   "fqn": "pulumi_vault.pkisecret",
   "classes": {
    "vault:pkiSecret/backendConfigCluster:BackendConfigCluster": "BackendConfigCluster"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/backendConfigCmpv2",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2": "BackendConfigCmpv2"
   }
  },
  {

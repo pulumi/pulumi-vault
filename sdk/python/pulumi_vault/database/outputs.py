@@ -1928,6 +1928,8 @@ class SecretBackendConnectionPostgresql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordAuthentication":
+            suggest = "password_authentication"
         elif key == "privateKey":
             suggest = "private_key"
         elif key == "selfManaged":
@@ -1960,6 +1962,7 @@ class SecretBackendConnectionPostgresql(dict):
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 password_authentication: Optional[str] = None,
                  private_key: Optional[str] = None,
                  self_managed: Optional[bool] = None,
                  service_account_json: Optional[str] = None,
@@ -1975,6 +1978,7 @@ class SecretBackendConnectionPostgresql(dict):
         :param int max_idle_connections: Maximum number of idle connections to the database.
         :param int max_open_connections: Maximum number of open connections to the database.
         :param str password: The root credential password used in the connection URL
+        :param str password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         :param str private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param bool self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param str service_account_json: A JSON encoded credential for use with IAM authorization
@@ -1997,6 +2001,8 @@ class SecretBackendConnectionPostgresql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_authentication is not None:
+            pulumi.set(__self__, "password_authentication", password_authentication)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
         if self_managed is not None:
@@ -2067,6 +2073,14 @@ class SecretBackendConnectionPostgresql(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordAuthentication")
+    def password_authentication(self) -> Optional[str]:
+        """
+        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        """
+        return pulumi.get(self, "password_authentication")
 
     @property
     @pulumi.getter(name="privateKey")
@@ -5540,6 +5554,8 @@ class SecretsMountPostgresql(dict):
             suggest = "max_idle_connections"
         elif key == "maxOpenConnections":
             suggest = "max_open_connections"
+        elif key == "passwordAuthentication":
+            suggest = "password_authentication"
         elif key == "pluginName":
             suggest = "plugin_name"
         elif key == "privateKey":
@@ -5581,6 +5597,7 @@ class SecretsMountPostgresql(dict):
                  max_idle_connections: Optional[int] = None,
                  max_open_connections: Optional[int] = None,
                  password: Optional[str] = None,
+                 password_authentication: Optional[str] = None,
                  plugin_name: Optional[str] = None,
                  private_key: Optional[str] = None,
                  root_rotation_statements: Optional[Sequence[str]] = None,
@@ -5605,6 +5622,7 @@ class SecretsMountPostgresql(dict):
         :param int max_idle_connections: Maximum number of idle connections to the database.
         :param int max_open_connections: Maximum number of open connections to the database.
         :param str password: The root credential password used in the connection URL
+        :param str password_authentication: When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         :param str plugin_name: Specifies the name of the plugin to use.
         :param str private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param Sequence[str] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
@@ -5636,6 +5654,8 @@ class SecretsMountPostgresql(dict):
             pulumi.set(__self__, "max_open_connections", max_open_connections)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_authentication is not None:
+            pulumi.set(__self__, "password_authentication", password_authentication)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if private_key is not None:
@@ -5739,6 +5759,14 @@ class SecretsMountPostgresql(dict):
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="passwordAuthentication")
+    def password_authentication(self) -> Optional[str]:
+        """
+        When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        """
+        return pulumi.get(self, "password_authentication")
 
     @property
     @pulumi.getter(name="pluginName")
