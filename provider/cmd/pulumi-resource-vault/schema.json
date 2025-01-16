@@ -1462,6 +1462,10 @@
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
                 },
+                "passwordAuthentication": {
+                    "type": "string",
+                    "description": "When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.\n"
+                },
                 "privateKey": {
                     "type": "string",
                     "description": "The secret key used for the x509 client certificate. Must be PEM encoded.\n",
@@ -2845,6 +2849,10 @@
                     "type": "string",
                     "description": "The root credential password used in the connection URL\n",
                     "secret": true
+                },
+                "passwordAuthentication": {
+                    "type": "string",
+                    "description": "When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.\n"
                 },
                 "pluginName": {
                     "type": "string",
@@ -4528,6 +4536,18 @@
                 "username"
             ]
         },
+        "vault:pkiSecret/BackendConfigCmpv2Authenticators:BackendConfigCmpv2Authenticators": {
+            "properties": {
+                "cert": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "\"The accessor (required) and cert_role (optional) properties for cert auth backends\".\n"
+                }
+            },
+            "type": "object"
+        },
         "vault:pkiSecret/BackendConfigEstAuthenticators:BackendConfigEstAuthenticators": {
             "properties": {
                 "cert": {
@@ -4566,6 +4586,18 @@
             "required": [
                 "oid"
             ]
+        },
+        "vault:pkiSecret/getBackendConfigCmpv2Authenticator:getBackendConfigCmpv2Authenticator": {
+            "properties": {
+                "cert": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The accessor and cert_role properties for cert auth backends\n"
+                }
+            },
+            "type": "object"
         },
         "vault:pkiSecret/getBackendConfigEstAuthenticator:getBackendConfigEstAuthenticator": {
             "properties": {
@@ -7907,6 +7939,10 @@
                     "type": "string",
                     "description": "The path the AWS auth backend being configured was\nmounted at.  Defaults to `aws`.\n"
                 },
+                "externalId": {
+                    "type": "string",
+                    "description": "External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.\n"
+                },
                 "namespace": {
                     "type": "string",
                     "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
@@ -7929,6 +7965,10 @@
                     "type": "string",
                     "description": "The path the AWS auth backend being configured was\nmounted at.  Defaults to `aws`.\n",
                     "willReplaceOnChanges": true
+                },
+                "externalId": {
+                    "type": "string",
+                    "description": "External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -7955,6 +7995,10 @@
                         "type": "string",
                         "description": "The path the AWS auth backend being configured was\nmounted at.  Defaults to `aws`.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "externalId": {
+                        "type": "string",
+                        "description": "External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -8038,6 +8082,24 @@
                     "type": "string",
                     "description": "Specifies a custom HTTP STS endpoint to use.\n"
                 },
+                "stsFallbackEndpoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+\n"
+                },
+                "stsFallbackRegions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+\n"
+                },
+                "stsRegion": {
+                    "type": "string",
+                    "description": "Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+\n"
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:\n"
@@ -8119,6 +8181,24 @@
                     "type": "string",
                     "description": "Specifies a custom HTTP STS endpoint to use.\n"
                 },
+                "stsFallbackEndpoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+\n"
+                },
+                "stsFallbackRegions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+\n"
+                },
+                "stsRegion": {
+                    "type": "string",
+                    "description": "Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+\n"
+                },
                 "usernameTemplate": {
                     "type": "string",
                     "description": "Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:\n"
@@ -8194,6 +8274,24 @@
                     "stsEndpoint": {
                         "type": "string",
                         "description": "Specifies a custom HTTP STS endpoint to use.\n"
+                    },
+                    "stsFallbackEndpoints": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+\n"
+                    },
+                    "stsFallbackRegions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+\n"
+                    },
+                    "stsRegion": {
+                        "type": "string",
+                        "description": "Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+\n"
                     },
                     "usernameTemplate": {
                         "type": "string",
@@ -24510,6 +24608,283 @@
                 "type": "object"
             }
         },
+        "vault:pkiSecret/backendAcmeEab:BackendAcmeEab": {
+            "description": "Allows creating ACME EAB (External Account Binding) tokens and deleting unused ones.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst test = new vault.Mount(\"test\", {\n    path: \"pki\",\n    type: \"pki\",\n    description: \"PKI secret engine mount\",\n});\nconst testBackendAcmeEab = new vault.pkisecret.BackendAcmeEab(\"test\", {backend: test.path});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntest = vault.Mount(\"test\",\n    path=\"pki\",\n    type=\"pki\",\n    description=\"PKI secret engine mount\")\ntest_backend_acme_eab = vault.pki_secret.BackendAcmeEab(\"test\", backend=test.path)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = new Vault.Mount(\"test\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        Description = \"PKI secret engine mount\",\n    });\n\n    var testBackendAcmeEab = new Vault.PkiSecret.BackendAcmeEab(\"test\", new()\n    {\n        Backend = test.Path,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttest, err := vault.NewMount(ctx, \"test\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"pki\"),\n\t\t\tType:        pulumi.String(\"pki\"),\n\t\t\tDescription: pulumi.String(\"PKI secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkisecret.NewBackendAcmeEab(ctx, \"test\", \u0026pkisecret.BackendAcmeEabArgs{\n\t\t\tBackend: test.Path,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.BackendAcmeEab;\nimport com.pulumi.vault.pkiSecret.BackendAcmeEabArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test = new Mount(\"test\", MountArgs.builder()\n            .path(\"pki\")\n            .type(\"pki\")\n            .description(\"PKI secret engine mount\")\n            .build());\n\n        var testBackendAcmeEab = new BackendAcmeEab(\"testBackendAcmeEab\", BackendAcmeEabArgs.builder()\n            .backend(test.path())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      description: PKI secret engine mount\n  testBackendAcmeEab:\n    type: vault:pkiSecret:BackendAcmeEab\n    name: test\n    properties:\n      backend: ${test.path}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAs EAB tokens are only available on initial creation there is no possibility to \n\nimport or update this resource.\n\n",
+            "properties": {
+                "acmeDirectory": {
+                    "type": "string",
+                    "description": "The ACME directory to which the key belongs\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path to the PKI secret backend to\ncreate the EAB token within, with no leading or trailing `/`s.\n"
+                },
+                "createdOn": {
+                    "type": "string",
+                    "description": "An RFC3339 formatted date time when the EAB token was created\n"
+                },
+                "eabId": {
+                    "type": "string",
+                    "description": "The identifier of a specific ACME EAB token\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "Create an EAB token that is specific to an issuer's ACME directory.\n"
+                },
+                "key": {
+                    "type": "string",
+                    "description": "The EAB token\n",
+                    "secret": true
+                },
+                "keyType": {
+                    "type": "string",
+                    "description": "The key type of the EAB key\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Create an EAB token that is specific to a role's ACME directory.\n\n**NOTE**: Within Vault ACME there are different ACME directories which an EAB token is associated with;\n\n1. Default directory (`pki/acme/`) - Do not specify a value for issuer nor role parameters.\n2. Issuer specific (`pki/issuer/:issuer_ref/acme/`) - Specify a value for the issuer parameter\n3. Role specific (`pki/roles/:role/acme/`) - Specify a value for the role parameter\n4. Issuer and Role specific (`pki/issuer/:issuer_ref/roles/:role/acme/`) - Specify a value for both the issuer and role parameters\n"
+                }
+            },
+            "required": [
+                "acmeDirectory",
+                "backend",
+                "createdOn",
+                "eabId",
+                "key",
+                "keyType"
+            ],
+            "inputProperties": {
+                "backend": {
+                    "type": "string",
+                    "description": "The path to the PKI secret backend to\ncreate the EAB token within, with no leading or trailing `/`s.\n",
+                    "willReplaceOnChanges": true
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "Create an EAB token that is specific to an issuer's ACME directory.\n",
+                    "willReplaceOnChanges": true
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Create an EAB token that is specific to a role's ACME directory.\n\n**NOTE**: Within Vault ACME there are different ACME directories which an EAB token is associated with;\n\n1. Default directory (`pki/acme/`) - Do not specify a value for issuer nor role parameters.\n2. Issuer specific (`pki/issuer/:issuer_ref/acme/`) - Specify a value for the issuer parameter\n3. Role specific (`pki/roles/:role/acme/`) - Specify a value for the role parameter\n4. Issuer and Role specific (`pki/issuer/:issuer_ref/roles/:role/acme/`) - Specify a value for both the issuer and role parameters\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "backend"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BackendAcmeEab resources.\n",
+                "properties": {
+                    "acmeDirectory": {
+                        "type": "string",
+                        "description": "The ACME directory to which the key belongs\n"
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the PKI secret backend to\ncreate the EAB token within, with no leading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "createdOn": {
+                        "type": "string",
+                        "description": "An RFC3339 formatted date time when the EAB token was created\n"
+                    },
+                    "eabId": {
+                        "type": "string",
+                        "description": "The identifier of a specific ACME EAB token\n"
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "description": "Create an EAB token that is specific to an issuer's ACME directory.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "The EAB token\n",
+                        "secret": true
+                    },
+                    "keyType": {
+                        "type": "string",
+                        "description": "The key type of the EAB key\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "Create an EAB token that is specific to a role's ACME directory.\n\n**NOTE**: Within Vault ACME there are different ACME directories which an EAB token is associated with;\n\n1. Default directory (`pki/acme/`) - Do not specify a value for issuer nor role parameters.\n2. Issuer specific (`pki/issuer/:issuer_ref/acme/`) - Specify a value for the issuer parameter\n3. Role specific (`pki/roles/:role/acme/`) - Specify a value for the role parameter\n4. Issuer and Role specific (`pki/issuer/:issuer_ref/roles/:role/acme/`) - Specify a value for both the issuer and role parameters\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:pkiSecret/backendConfigAcme:BackendConfigAcme": {
+            "description": "Allows setting the ACME server configuration used by specified mount.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    defaultLeaseTtlSeconds: 3600,\n    maxLeaseTtlSeconds: 86400,\n});\nconst pkiConfigCluster = new vault.pkisecret.BackendConfigCluster(\"pki_config_cluster\", {\n    backend: pki.path,\n    path: \"http://127.0.0.1:8200/v1/pki\",\n    aiaPath: \"http://127.0.0.1:8200/v1/pki\",\n});\nconst example = new vault.pkisecret.BackendConfigAcme(\"example\", {\n    backend: pki.path,\n    enabled: true,\n    allowedIssuers: [\"*\"],\n    allowedRoles: [\"*\"],\n    allowRoleExtKeyUsage: false,\n    defaultDirectoryPolicy: \"sign-verbatim\",\n    dnsResolver: \"\",\n    eabPolicy: \"not-required\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    default_lease_ttl_seconds=3600,\n    max_lease_ttl_seconds=86400)\npki_config_cluster = vault.pki_secret.BackendConfigCluster(\"pki_config_cluster\",\n    backend=pki.path,\n    path=\"http://127.0.0.1:8200/v1/pki\",\n    aia_path=\"http://127.0.0.1:8200/v1/pki\")\nexample = vault.pki_secret.BackendConfigAcme(\"example\",\n    backend=pki.path,\n    enabled=True,\n    allowed_issuers=[\"*\"],\n    allowed_roles=[\"*\"],\n    allow_role_ext_key_usage=False,\n    default_directory_policy=\"sign-verbatim\",\n    dns_resolver=\"\",\n    eab_policy=\"not-required\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        DefaultLeaseTtlSeconds = 3600,\n        MaxLeaseTtlSeconds = 86400,\n    });\n\n    var pkiConfigCluster = new Vault.PkiSecret.BackendConfigCluster(\"pki_config_cluster\", new()\n    {\n        Backend = pki.Path,\n        Path = \"http://127.0.0.1:8200/v1/pki\",\n        AiaPath = \"http://127.0.0.1:8200/v1/pki\",\n    });\n\n    var example = new Vault.PkiSecret.BackendConfigAcme(\"example\", new()\n    {\n        Backend = pki.Path,\n        Enabled = true,\n        AllowedIssuers = new[]\n        {\n            \"*\",\n        },\n        AllowedRoles = new[]\n        {\n            \"*\",\n        },\n        AllowRoleExtKeyUsage = false,\n        DefaultDirectoryPolicy = \"sign-verbatim\",\n        DnsResolver = \"\",\n        EabPolicy = \"not-required\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(3600),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(86400),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkisecret.NewBackendConfigCluster(ctx, \"pki_config_cluster\", \u0026pkisecret.BackendConfigClusterArgs{\n\t\t\tBackend: pki.Path,\n\t\t\tPath:    pulumi.String(\"http://127.0.0.1:8200/v1/pki\"),\n\t\t\tAiaPath: pulumi.String(\"http://127.0.0.1:8200/v1/pki\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkisecret.NewBackendConfigAcme(ctx, \"example\", \u0026pkisecret.BackendConfigAcmeArgs{\n\t\t\tBackend: pki.Path,\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t\tAllowedIssuers: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"*\"),\n\t\t\t},\n\t\t\tAllowRoleExtKeyUsage:   pulumi.Bool(false),\n\t\t\tDefaultDirectoryPolicy: pulumi.String(\"sign-verbatim\"),\n\t\t\tDnsResolver:            pulumi.String(\"\"),\n\t\t\tEabPolicy:              pulumi.String(\"not-required\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.BackendConfigCluster;\nimport com.pulumi.vault.pkiSecret.BackendConfigClusterArgs;\nimport com.pulumi.vault.pkiSecret.BackendConfigAcme;\nimport com.pulumi.vault.pkiSecret.BackendConfigAcmeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()\n            .path(\"pki\")\n            .type(\"pki\")\n            .defaultLeaseTtlSeconds(3600)\n            .maxLeaseTtlSeconds(86400)\n            .build());\n\n        var pkiConfigCluster = new BackendConfigCluster(\"pkiConfigCluster\", BackendConfigClusterArgs.builder()\n            .backend(pki.path())\n            .path(\"http://127.0.0.1:8200/v1/pki\")\n            .aiaPath(\"http://127.0.0.1:8200/v1/pki\")\n            .build());\n\n        var example = new BackendConfigAcme(\"example\", BackendConfigAcmeArgs.builder()\n            .backend(pki.path())\n            .enabled(true)\n            .allowedIssuers(\"*\")\n            .allowedRoles(\"*\")\n            .allowRoleExtKeyUsage(false)\n            .defaultDirectoryPolicy(\"sign-verbatim\")\n            .dnsResolver(\"\")\n            .eabPolicy(\"not-required\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      defaultLeaseTtlSeconds: 3600\n      maxLeaseTtlSeconds: 86400\n  pkiConfigCluster:\n    type: vault:pkiSecret:BackendConfigCluster\n    name: pki_config_cluster\n    properties:\n      backend: ${pki.path}\n      path: http://127.0.0.1:8200/v1/pki\n      aiaPath: http://127.0.0.1:8200/v1/pki\n  example:\n    type: vault:pkiSecret:BackendConfigAcme\n    properties:\n      backend: ${pki.path}\n      enabled: true\n      allowedIssuers:\n        - '*'\n      allowedRoles:\n        - '*'\n      allowRoleExtKeyUsage: false\n      defaultDirectoryPolicy: sign-verbatim\n      dnsResolver: \"\"\n      eabPolicy: not-required\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe ACME configuration can be imported using the resource's `id`.\nIn the case of the example above the `id` would be `pki/config/acme`,\nwhere the `pki` component is the resource's `backend`, e.g.\n\n```sh\n$ pulumi import vault:pkiSecret/backendConfigAcme:BackendConfigAcme example pki/config/acme\n```\n",
+            "properties": {
+                "allowRoleExtKeyUsage": {
+                    "type": "boolean",
+                    "description": "Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**\n"
+                },
+                "allowedIssuers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies which issuers are allowed for use with ACME.\n"
+                },
+                "allowedRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies which roles are allowed for use with ACME.\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n"
+                },
+                "defaultDirectoryPolicy": {
+                    "type": "string",
+                    "description": "Specifies the policy to be used for non-role-qualified ACME requests.\nAllowed values are `forbid`, `sign-verbatim`, `role:\u003crole_name\u003e`, `external-policy` or `external-policy:\u003cpolicy\u003e`.\n"
+                },
+                "dnsResolver": {
+                    "type": "string",
+                    "description": "DNS resolver to use for domain resolution on this mount.\nMust be in the format `\u003chost\u003e:\u003cport\u003e`, with both parts mandatory.\n"
+                },
+                "eabPolicy": {
+                    "type": "string",
+                    "description": "Specifies the policy to use for external account binding behaviour.\nAllowed values are `not-required`, `new-account-required` or `always-required`.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether ACME is enabled.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n"
+                }
+            },
+            "required": [
+                "allowedIssuers",
+                "allowedRoles",
+                "backend",
+                "defaultDirectoryPolicy",
+                "eabPolicy",
+                "enabled"
+            ],
+            "inputProperties": {
+                "allowRoleExtKeyUsage": {
+                    "type": "boolean",
+                    "description": "Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**\n"
+                },
+                "allowedIssuers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies which issuers are allowed for use with ACME.\n"
+                },
+                "allowedRoles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Specifies which roles are allowed for use with ACME.\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
+                    "willReplaceOnChanges": true
+                },
+                "defaultDirectoryPolicy": {
+                    "type": "string",
+                    "description": "Specifies the policy to be used for non-role-qualified ACME requests.\nAllowed values are `forbid`, `sign-verbatim`, `role:\u003crole_name\u003e`, `external-policy` or `external-policy:\u003cpolicy\u003e`.\n"
+                },
+                "dnsResolver": {
+                    "type": "string",
+                    "description": "DNS resolver to use for domain resolution on this mount.\nMust be in the format `\u003chost\u003e:\u003cport\u003e`, with both parts mandatory.\n"
+                },
+                "eabPolicy": {
+                    "type": "string",
+                    "description": "Specifies the policy to use for external account binding behaviour.\nAllowed values are `not-required`, `new-account-required` or `always-required`.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether ACME is enabled.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "backend",
+                "enabled"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BackendConfigAcme resources.\n",
+                "properties": {
+                    "allowRoleExtKeyUsage": {
+                        "type": "boolean",
+                        "description": "Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**\n"
+                    },
+                    "allowedIssuers": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies which issuers are allowed for use with ACME.\n"
+                    },
+                    "allowedRoles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specifies which roles are allowed for use with ACME.\n"
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "The path the PKI secret backend is mounted at, with no leading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "defaultDirectoryPolicy": {
+                        "type": "string",
+                        "description": "Specifies the policy to be used for non-role-qualified ACME requests.\nAllowed values are `forbid`, `sign-verbatim`, `role:\u003crole_name\u003e`, `external-policy` or `external-policy:\u003cpolicy\u003e`.\n"
+                    },
+                    "dnsResolver": {
+                        "type": "string",
+                        "description": "DNS resolver to use for domain resolution on this mount.\nMust be in the format `\u003chost\u003e:\u003cport\u003e`, with both parts mandatory.\n"
+                    },
+                    "eabPolicy": {
+                        "type": "string",
+                        "description": "Specifies the policy to use for external account binding behaviour.\nAllowed values are `not-required`, `new-account-required` or `always-required`.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Specifies whether ACME is enabled.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "vault:pkiSecret/backendConfigCluster:BackendConfigCluster": {
             "description": "Allows setting the cluster-local's API mount path and AIA distribution point on a particular performance replication cluster.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst root = new vault.Mount(\"root\", {\n    path: \"pki-root\",\n    type: \"pki\",\n    description: \"root PKI\",\n    defaultLeaseTtlSeconds: 8640000,\n    maxLeaseTtlSeconds: 8640000,\n});\nconst example = new vault.pkisecret.BackendConfigCluster(\"example\", {\n    backend: root.path,\n    path: \"http://127.0.0.1:8200/v1/pki-root\",\n    aiaPath: \"http://127.0.0.1:8200/v1/pki-root\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nroot = vault.Mount(\"root\",\n    path=\"pki-root\",\n    type=\"pki\",\n    description=\"root PKI\",\n    default_lease_ttl_seconds=8640000,\n    max_lease_ttl_seconds=8640000)\nexample = vault.pki_secret.BackendConfigCluster(\"example\",\n    backend=root.path,\n    path=\"http://127.0.0.1:8200/v1/pki-root\",\n    aia_path=\"http://127.0.0.1:8200/v1/pki-root\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var root = new Vault.Mount(\"root\", new()\n    {\n        Path = \"pki-root\",\n        Type = \"pki\",\n        Description = \"root PKI\",\n        DefaultLeaseTtlSeconds = 8640000,\n        MaxLeaseTtlSeconds = 8640000,\n    });\n\n    var example = new Vault.PkiSecret.BackendConfigCluster(\"example\", new()\n    {\n        Backend = root.Path,\n        Path = \"http://127.0.0.1:8200/v1/pki-root\",\n        AiaPath = \"http://127.0.0.1:8200/v1/pki-root\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\troot, err := vault.NewMount(ctx, \"root\", \u0026vault.MountArgs{\n\t\t\tPath:                   pulumi.String(\"pki-root\"),\n\t\t\tType:                   pulumi.String(\"pki\"),\n\t\t\tDescription:            pulumi.String(\"root PKI\"),\n\t\t\tDefaultLeaseTtlSeconds: pulumi.Int(8640000),\n\t\t\tMaxLeaseTtlSeconds:     pulumi.Int(8640000),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = pkisecret.NewBackendConfigCluster(ctx, \"example\", \u0026pkisecret.BackendConfigClusterArgs{\n\t\t\tBackend: root.Path,\n\t\t\tPath:    pulumi.String(\"http://127.0.0.1:8200/v1/pki-root\"),\n\t\t\tAiaPath: pulumi.String(\"http://127.0.0.1:8200/v1/pki-root\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.BackendConfigCluster;\nimport com.pulumi.vault.pkiSecret.BackendConfigClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var root = new Mount(\"root\", MountArgs.builder()\n            .path(\"pki-root\")\n            .type(\"pki\")\n            .description(\"root PKI\")\n            .defaultLeaseTtlSeconds(8640000)\n            .maxLeaseTtlSeconds(8640000)\n            .build());\n\n        var example = new BackendConfigCluster(\"example\", BackendConfigClusterArgs.builder()\n            .backend(root.path())\n            .path(\"http://127.0.0.1:8200/v1/pki-root\")\n            .aiaPath(\"http://127.0.0.1:8200/v1/pki-root\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  root:\n    type: vault:Mount\n    properties:\n      path: pki-root\n      type: pki\n      description: root PKI\n      defaultLeaseTtlSeconds: 8.64e+06\n      maxLeaseTtlSeconds: 8.64e+06\n  example:\n    type: vault:pkiSecret:BackendConfigCluster\n    properties:\n      backend: ${root.path}\n      path: http://127.0.0.1:8200/v1/pki-root\n      aiaPath: http://127.0.0.1:8200/v1/pki-root\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThe PKI config cluster can be imported using the resource's `id`.\nIn the case of the example above the `id` would be `pki-root/config/cluster`,\nwhere the `pki-root` component is the resource's `backend`, e.g.\n\n```sh\n$ pulumi import vault:pkiSecret/backendConfigCluster:BackendConfigCluster example pki-root/config/cluster\n```\n",
             "properties": {
@@ -24576,6 +24951,133 @@
                     "path": {
                         "type": "string",
                         "description": "Specifies the path to this performance replication cluster's API mount path.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2": {
+            "description": "Allows setting the CMPv2 configuration on a PKI Secret Backend\n\n## Import\n\nThe PKI config cluster can be imported using the resource's `id`.\nIn the case of the example above the `id` would be `pki-root/config/cmpv2`,\nwhere the `pki-root` component is the resource's `backend`, e.g.\n\n```sh\n$ pulumi import vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2 example pki-root/config/cmpv2\n```\n",
+            "properties": {
+                "auditFields": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.\n\n\u003ca id=\"nestedatt--authenticators\"\u003e\u003c/a\u003e\n"
+                },
+                "authenticators": {
+                    "$ref": "#/types/vault:pkiSecret/BackendConfigCmpv2Authenticators:BackendConfigCmpv2Authenticators",
+                    "description": "Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path to the PKI secret backend to\nread the CMPv2 configuration from, with no leading or trailing `/`s.\n"
+                },
+                "defaultPathPolicy": {
+                    "type": "string",
+                    "description": "Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:\u003crole_name\u003e.\n"
+                },
+                "enableSentinelParsing": {
+                    "type": "boolean",
+                    "description": "If set, parse out fields from the provided CSR making them available for Sentinel policies.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether CMPv2 is enabled.\n"
+                },
+                "lastUpdated": {
+                    "type": "string",
+                    "description": "A read-only timestamp representing the last time the configuration was updated.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
+                }
+            },
+            "required": [
+                "auditFields",
+                "authenticators",
+                "backend",
+                "lastUpdated"
+            ],
+            "inputProperties": {
+                "auditFields": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.\n\n\u003ca id=\"nestedatt--authenticators\"\u003e\u003c/a\u003e\n"
+                },
+                "authenticators": {
+                    "$ref": "#/types/vault:pkiSecret/BackendConfigCmpv2Authenticators:BackendConfigCmpv2Authenticators",
+                    "description": "Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).\n"
+                },
+                "backend": {
+                    "type": "string",
+                    "description": "The path to the PKI secret backend to\nread the CMPv2 configuration from, with no leading or trailing `/`s.\n",
+                    "willReplaceOnChanges": true
+                },
+                "defaultPathPolicy": {
+                    "type": "string",
+                    "description": "Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:\u003crole_name\u003e.\n"
+                },
+                "enableSentinelParsing": {
+                    "type": "boolean",
+                    "description": "If set, parse out fields from the provided CSR making them available for Sentinel policies.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Specifies whether CMPv2 is enabled.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "backend"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering BackendConfigCmpv2 resources.\n",
+                "properties": {
+                    "auditFields": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.\n\n\u003ca id=\"nestedatt--authenticators\"\u003e\u003c/a\u003e\n"
+                    },
+                    "authenticators": {
+                        "$ref": "#/types/vault:pkiSecret/BackendConfigCmpv2Authenticators:BackendConfigCmpv2Authenticators",
+                        "description": "Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).\n"
+                    },
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the PKI secret backend to\nread the CMPv2 configuration from, with no leading or trailing `/`s.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "defaultPathPolicy": {
+                        "type": "string",
+                        "description": "Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:\u003crole_name\u003e.\n"
+                    },
+                    "enableSentinelParsing": {
+                        "type": "boolean",
+                        "description": "If set, parse out fields from the provided CSR making them available for Sentinel policies.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Specifies whether CMPv2 is enabled.\n"
+                    },
+                    "lastUpdated": {
+                        "type": "string",
+                        "description": "A read-only timestamp representing the last time the configuration was updated.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -26537,6 +27039,13 @@
                     "type": "boolean",
                     "description": "Flag to specify certificates for client use\n"
                 },
+                "cnValidations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`\n"
+                },
                 "codeSigningFlag": {
                     "type": "boolean",
                     "description": "Flag to specify certificates for code signing use\n"
@@ -26693,6 +27202,7 @@
             "required": [
                 "allowedUriSansTemplate",
                 "backend",
+                "cnValidations",
                 "issuerRef",
                 "keyUsages",
                 "maxTtl",
@@ -26784,6 +27294,13 @@
                 "clientFlag": {
                     "type": "boolean",
                     "description": "Flag to specify certificates for client use\n"
+                },
+                "cnValidations": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`\n"
                 },
                 "codeSigningFlag": {
                     "type": "boolean",
@@ -27029,6 +27546,13 @@
                     "clientFlag": {
                         "type": "boolean",
                         "description": "Flag to specify certificates for client use\n"
+                    },
+                    "cnValidations": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`\n"
                     },
                     "codeSigningFlag": {
                         "type": "boolean",
@@ -30319,7 +30843,8 @@
                     "description": "Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.\n"
                 },
                 "allowEmptyPrincipals": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Allow signing certificates with no\nvalid principals (e.g. any valid principal). For backwards compatibility\nonly. The default of false is highly recommended.\n"
                 },
                 "allowHostCertificates": {
                     "type": "boolean",
@@ -30447,7 +30972,8 @@
                     "description": "Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.\n"
                 },
                 "allowEmptyPrincipals": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Allow signing certificates with no\nvalid principals (e.g. any valid principal). For backwards compatibility\nonly. The default of false is highly recommended.\n"
                 },
                 "allowHostCertificates": {
                     "type": "boolean",
@@ -30574,7 +31100,8 @@
                         "description": "Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.\n"
                     },
                     "allowEmptyPrincipals": {
-                        "type": "boolean"
+                        "type": "boolean",
+                        "description": "Allow signing certificates with no\nvalid principals (e.g. any valid principal). For backwards compatibility\nonly. The default of false is highly recommended.\n"
                     },
                     "allowHostCertificates": {
                         "type": "boolean",
@@ -34695,6 +35222,78 @@
                     "rotationPeriod",
                     "ttl",
                     "username",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2": {
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst pki = new vault.Mount(\"pki\", {\n    path: \"pki\",\n    type: \"pki\",\n    description: \"PKI secret engine mount\",\n});\nconst cmpv2Config = vault.pkiSecret.getBackendConfigCmpv2Output({\n    backend: pki.path,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\npki = vault.Mount(\"pki\",\n    path=\"pki\",\n    type=\"pki\",\n    description=\"PKI secret engine mount\")\ncmpv2_config = vault.pkiSecret.get_backend_config_cmpv2_output(backend=pki.path)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var pki = new Vault.Mount(\"pki\", new()\n    {\n        Path = \"pki\",\n        Type = \"pki\",\n        Description = \"PKI secret engine mount\",\n    });\n\n    var cmpv2Config = Vault.PkiSecret.GetBackendConfigCmpv2.Invoke(new()\n    {\n        Backend = pki.Path,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v6/go/vault/pkisecret\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tpki, err := vault.NewMount(ctx, \"pki\", \u0026vault.MountArgs{\n\t\t\tPath:        pulumi.String(\"pki\"),\n\t\t\tType:        pulumi.String(\"pki\"),\n\t\t\tDescription: pulumi.String(\"PKI secret engine mount\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_ = pkisecret.GetBackendConfigCmpv2Output(ctx, pkisecret.GetBackendConfigCmpv2OutputArgs{\n\t\t\tBackend: pki.Path,\n\t\t}, nil)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.pkiSecret.PkiSecretFunctions;\nimport com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var pki = new Mount(\"pki\", MountArgs.builder()\n            .path(\"pki\")\n            .type(\"pki\")\n            .description(\"PKI secret engine mount\")\n            .build());\n\n        final var cmpv2Config = PkiSecretFunctions.getBackendConfigCmpv2(GetBackendConfigCmpv2Args.builder()\n            .backend(pki.path())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  pki:\n    type: vault:Mount\n    properties:\n      path: pki\n      type: pki\n      description: PKI secret engine mount\nvariables:\n  cmpv2Config:\n    fn::invoke:\n      function: vault:pkiSecret:getBackendConfigCmpv2\n      arguments:\n        backend: ${pki.path}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getBackendConfigCmpv2.\n",
+                "properties": {
+                    "backend": {
+                        "type": "string",
+                        "description": "The path to the PKI secret backend to\nread the CMPv2 configuration from, with no leading or trailing `/`s.\n\n# Attributes Reference\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the target resource.\nThe value should not contain leading or trailing forward slashes.\nThe `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backend"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBackendConfigCmpv2.\n",
+                "properties": {
+                    "auditFields": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "authenticators": {
+                        "items": {
+                            "$ref": "#/types/vault:pkiSecret/getBackendConfigCmpv2Authenticator:getBackendConfigCmpv2Authenticator"
+                        },
+                        "type": "array"
+                    },
+                    "backend": {
+                        "type": "string"
+                    },
+                    "defaultPathPolicy": {
+                        "type": "string"
+                    },
+                    "enableSentinelParsing": {
+                        "type": "boolean"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "lastUpdated": {
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "auditFields",
+                    "authenticators",
+                    "backend",
+                    "defaultPathPolicy",
+                    "enableSentinelParsing",
+                    "enabled",
+                    "lastUpdated",
                     "id"
                 ],
                 "type": "object"
