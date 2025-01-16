@@ -3804,6 +3804,8 @@ type SecretBackendConnectionPostgresql struct {
 	MaxOpenConnections *int `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
 	PrivateKey *string `pulumi:"privateKey"`
 	// If set, allows onboarding static roles with a rootless connection configuration.
@@ -3846,6 +3848,8 @@ type SecretBackendConnectionPostgresqlArgs struct {
 	MaxOpenConnections pulumi.IntPtrInput `pulumi:"maxOpenConnections"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
 	PrivateKey pulumi.StringPtrInput `pulumi:"privateKey"`
 	// If set, allows onboarding static roles with a rootless connection configuration.
@@ -3974,6 +3978,11 @@ func (o SecretBackendConnectionPostgresqlOutput) Password() pulumi.StringPtrOutp
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+func (o SecretBackendConnectionPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
+}
+
 // The secret key used for the x509 client certificate. Must be PEM encoded.
 func (o SecretBackendConnectionPostgresqlOutput) PrivateKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendConnectionPostgresql) *string { return v.PrivateKey }).(pulumi.StringPtrOutput)
@@ -4100,6 +4109,16 @@ func (o SecretBackendConnectionPostgresqlPtrOutput) Password() pulumi.StringPtrO
 			return nil
 		}
 		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+func (o SecretBackendConnectionPostgresqlPtrOutput) PasswordAuthentication() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendConnectionPostgresql) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordAuthentication
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -8227,6 +8246,8 @@ type SecretsMountPostgresql struct {
 	Name string `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password *string `pulumi:"password"`
+	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+	PasswordAuthentication *string `pulumi:"passwordAuthentication"`
 	// Specifies the name of the plugin to use.
 	PluginName *string `pulumi:"pluginName"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -8285,6 +8306,8 @@ type SecretsMountPostgresqlArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The root credential password used in the connection URL
 	Password pulumi.StringPtrInput `pulumi:"password"`
+	// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+	PasswordAuthentication pulumi.StringPtrInput `pulumi:"passwordAuthentication"`
 	// Specifies the name of the plugin to use.
 	PluginName pulumi.StringPtrInput `pulumi:"pluginName"`
 	// The secret key used for the x509 client certificate. Must be PEM encoded.
@@ -8410,6 +8433,11 @@ func (o SecretsMountPostgresqlOutput) Name() pulumi.StringOutput {
 // The root credential password used in the connection URL
 func (o SecretsMountPostgresqlOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+func (o SecretsMountPostgresqlOutput) PasswordAuthentication() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretsMountPostgresql) *string { return v.PasswordAuthentication }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the name of the plugin to use.

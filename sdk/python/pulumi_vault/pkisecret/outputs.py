@@ -15,10 +15,31 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'BackendConfigCmpv2Authenticators',
     'BackendConfigEstAuthenticators',
     'SecretBackendRolePolicyIdentifier',
+    'GetBackendConfigCmpv2AuthenticatorResult',
     'GetBackendConfigEstAuthenticatorResult',
 ]
+
+@pulumi.output_type
+class BackendConfigCmpv2Authenticators(dict):
+    def __init__(__self__, *,
+                 cert: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[Mapping[str, str]]:
+        """
+        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
+        return pulumi.get(self, "cert")
+
 
 @pulumi.output_type
 class BackendConfigEstAuthenticators(dict):
@@ -95,6 +116,25 @@ class SecretBackendRolePolicyIdentifier(dict):
         A notice for the policy identifier
         """
         return pulumi.get(self, "notice")
+
+
+@pulumi.output_type
+class GetBackendConfigCmpv2AuthenticatorResult(dict):
+    def __init__(__self__, *,
+                 cert: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] cert: The accessor and cert_role properties for cert auth backends
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[Mapping[str, str]]:
+        """
+        The accessor and cert_role properties for cert auth backends
+        """
+        return pulumi.get(self, "cert")
 
 
 @pulumi.output_type

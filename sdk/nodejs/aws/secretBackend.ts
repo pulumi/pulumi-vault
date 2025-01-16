@@ -123,6 +123,18 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly stsEndpoint!: pulumi.Output<string | undefined>;
     /**
+     * Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+     */
+    public readonly stsFallbackEndpoints!: pulumi.Output<string[] | undefined>;
+    /**
+     * Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     */
+    public readonly stsFallbackRegions!: pulumi.Output<string[] | undefined>;
+    /**
+     * Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+     */
+    public readonly stsRegion!: pulumi.Output<string | undefined>;
+    /**
      * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
      */
     public readonly usernameTemplate!: pulumi.Output<string>;
@@ -156,6 +168,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["roleArn"] = state ? state.roleArn : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["stsEndpoint"] = state ? state.stsEndpoint : undefined;
+            resourceInputs["stsFallbackEndpoints"] = state ? state.stsFallbackEndpoints : undefined;
+            resourceInputs["stsFallbackRegions"] = state ? state.stsFallbackRegions : undefined;
+            resourceInputs["stsRegion"] = state ? state.stsRegion : undefined;
             resourceInputs["usernameTemplate"] = state ? state.usernameTemplate : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
@@ -175,6 +190,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["roleArn"] = args ? args.roleArn : undefined;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["stsEndpoint"] = args ? args.stsEndpoint : undefined;
+            resourceInputs["stsFallbackEndpoints"] = args ? args.stsFallbackEndpoints : undefined;
+            resourceInputs["stsFallbackRegions"] = args ? args.stsFallbackRegions : undefined;
+            resourceInputs["stsRegion"] = args ? args.stsRegion : undefined;
             resourceInputs["usernameTemplate"] = args ? args.usernameTemplate : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -270,6 +288,18 @@ export interface SecretBackendState {
      */
     stsEndpoint?: pulumi.Input<string>;
     /**
+     * Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+     */
+    stsFallbackEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     */
+    stsFallbackRegions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+     */
+    stsRegion?: pulumi.Input<string>;
+    /**
      * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
      */
     usernameTemplate?: pulumi.Input<string>;
@@ -360,6 +390,18 @@ export interface SecretBackendArgs {
      * Specifies a custom HTTP STS endpoint to use.
      */
     stsEndpoint?: pulumi.Input<string>;
+    /**
+     * Ordered list of `stsEndpoint`s to try if the defined one fails. Requires Vault 1.19+
+     */
+    stsFallbackEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Ordered list of `stsRegion`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+     */
+    stsFallbackRegions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the region of the STS endpoint. Should be included if `stsEndpoint` is supplied. Requires Vault 1.19+
+     */
+    stsRegion?: pulumi.Input<string>;
     /**
      * Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
      */

@@ -22,6 +22,7 @@ class AuthBackendStsRoleArgs:
                  account_id: pulumi.Input[str],
                  sts_role: pulumi.Input[str],
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthBackendStsRole resource.
@@ -30,6 +31,7 @@ class AuthBackendStsRoleArgs:
                by EC2 instances in the account specified by `account_id`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] external_id: External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -39,6 +41,8 @@ class AuthBackendStsRoleArgs:
         pulumi.set(__self__, "sts_role", sts_role)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
 
@@ -81,6 +85,18 @@ class AuthBackendStsRoleArgs:
         pulumi.set(self, "backend", value)
 
     @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -101,6 +117,7 @@ class _AuthBackendStsRoleState:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  sts_role: Optional[pulumi.Input[str]] = None):
         """
@@ -108,6 +125,7 @@ class _AuthBackendStsRoleState:
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] external_id: External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -119,6 +137,8 @@ class _AuthBackendStsRoleState:
             pulumi.set(__self__, "account_id", account_id)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if sts_role is not None:
@@ -148,6 +168,18 @@ class _AuthBackendStsRoleState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter
@@ -185,6 +217,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  sts_role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -215,6 +248,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] external_id: External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -267,6 +301,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_id: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  sts_role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -282,6 +317,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
                 raise TypeError("Missing required property 'account_id'")
             __props__.__dict__["account_id"] = account_id
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["external_id"] = external_id
             __props__.__dict__["namespace"] = namespace
             if sts_role is None and not opts.urn:
                 raise TypeError("Missing required property 'sts_role'")
@@ -298,6 +334,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             account_id: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            external_id: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             sts_role: Optional[pulumi.Input[str]] = None) -> 'AuthBackendStsRole':
         """
@@ -310,6 +347,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: The AWS account ID to configure the STS role for.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[str] external_id: External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -323,6 +361,7 @@ class AuthBackendStsRole(pulumi.CustomResource):
 
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["external_id"] = external_id
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["sts_role"] = sts_role
         return AuthBackendStsRole(resource_name, opts=opts, __props__=__props__)
@@ -343,6 +382,14 @@ class AuthBackendStsRole(pulumi.CustomResource):
         mounted at.  Defaults to `aws`.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+        """
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter

@@ -123,6 +123,21 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
     }
 
     /**
+     * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    @Import(name="passwordAuthentication")
+    private @Nullable Output<String> passwordAuthentication;
+
+    /**
+     * @return When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    public Optional<Output<String>> passwordAuthentication() {
+        return Optional.ofNullable(this.passwordAuthentication);
+    }
+
+    /**
      * The secret key used for the x509 client certificate. Must be PEM encoded.
      * 
      */
@@ -237,6 +252,7 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
         this.maxIdleConnections = $.maxIdleConnections;
         this.maxOpenConnections = $.maxOpenConnections;
         this.password = $.password;
+        this.passwordAuthentication = $.passwordAuthentication;
         this.privateKey = $.privateKey;
         this.selfManaged = $.selfManaged;
         this.serviceAccountJson = $.serviceAccountJson;
@@ -409,6 +425,27 @@ public final class SecretBackendConnectionPostgresqlArgs extends com.pulumi.reso
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordAuthentication When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordAuthentication(@Nullable Output<String> passwordAuthentication) {
+            $.passwordAuthentication = passwordAuthentication;
+            return this;
+        }
+
+        /**
+         * @param passwordAuthentication When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordAuthentication(String passwordAuthentication) {
+            return passwordAuthentication(Output.of(passwordAuthentication));
         }
 
         /**

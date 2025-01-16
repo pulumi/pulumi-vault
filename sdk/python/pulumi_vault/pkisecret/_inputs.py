@@ -15,6 +15,8 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'BackendConfigCmpv2AuthenticatorsArgs',
+    'BackendConfigCmpv2AuthenticatorsArgsDict',
     'BackendConfigEstAuthenticatorsArgs',
     'BackendConfigEstAuthenticatorsArgsDict',
     'SecretBackendRolePolicyIdentifierArgs',
@@ -22,6 +24,38 @@ __all__ = [
 ]
 
 MYPY = False
+
+if not MYPY:
+    class BackendConfigCmpv2AuthenticatorsArgsDict(TypedDict):
+        cert: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
+elif False:
+    BackendConfigCmpv2AuthenticatorsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BackendConfigCmpv2AuthenticatorsArgs:
+    def __init__(__self__, *,
+                 cert: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] cert: "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        "The accessor (required) and cert_role (optional) properties for cert auth backends".
+        """
+        return pulumi.get(self, "cert")
+
+    @cert.setter
+    def cert(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "cert", value)
+
 
 if not MYPY:
     class BackendConfigEstAuthenticatorsArgsDict(TypedDict):

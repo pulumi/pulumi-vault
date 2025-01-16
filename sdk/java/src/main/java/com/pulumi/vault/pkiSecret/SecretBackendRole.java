@@ -324,6 +324,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.clientFlag);
     }
     /**
+     * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     * 
+     */
+    @Export(name="cnValidations", refs={List.class,String.class}, tree="[0,1]")
+    private Output<List<String>> cnValidations;
+
+    /**
+     * @return Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     * 
+     */
+    public Output<List<String>> cnValidations() {
+        return this.cnValidations;
+    }
+    /**
      * Flag to specify certificates for code signing use
      * 
      */

@@ -5,15 +5,35 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { BackendAcmeEabArgs, BackendAcmeEabState } from "./backendAcmeEab";
+export type BackendAcmeEab = import("./backendAcmeEab").BackendAcmeEab;
+export const BackendAcmeEab: typeof import("./backendAcmeEab").BackendAcmeEab = null as any;
+utilities.lazyLoad(exports, ["BackendAcmeEab"], () => require("./backendAcmeEab"));
+
+export { BackendConfigAcmeArgs, BackendConfigAcmeState } from "./backendConfigAcme";
+export type BackendConfigAcme = import("./backendConfigAcme").BackendConfigAcme;
+export const BackendConfigAcme: typeof import("./backendConfigAcme").BackendConfigAcme = null as any;
+utilities.lazyLoad(exports, ["BackendConfigAcme"], () => require("./backendConfigAcme"));
+
 export { BackendConfigClusterArgs, BackendConfigClusterState } from "./backendConfigCluster";
 export type BackendConfigCluster = import("./backendConfigCluster").BackendConfigCluster;
 export const BackendConfigCluster: typeof import("./backendConfigCluster").BackendConfigCluster = null as any;
 utilities.lazyLoad(exports, ["BackendConfigCluster"], () => require("./backendConfigCluster"));
 
+export { BackendConfigCmpv2Args, BackendConfigCmpv2State } from "./backendConfigCmpv2";
+export type BackendConfigCmpv2 = import("./backendConfigCmpv2").BackendConfigCmpv2;
+export const BackendConfigCmpv2: typeof import("./backendConfigCmpv2").BackendConfigCmpv2 = null as any;
+utilities.lazyLoad(exports, ["BackendConfigCmpv2"], () => require("./backendConfigCmpv2"));
+
 export { BackendConfigEstArgs, BackendConfigEstState } from "./backendConfigEst";
 export type BackendConfigEst = import("./backendConfigEst").BackendConfigEst;
 export const BackendConfigEst: typeof import("./backendConfigEst").BackendConfigEst = null as any;
 utilities.lazyLoad(exports, ["BackendConfigEst"], () => require("./backendConfigEst"));
+
+export { GetBackendConfigCmpv2Args, GetBackendConfigCmpv2Result, GetBackendConfigCmpv2OutputArgs } from "./getBackendConfigCmpv2";
+export const getBackendConfigCmpv2: typeof import("./getBackendConfigCmpv2").getBackendConfigCmpv2 = null as any;
+export const getBackendConfigCmpv2Output: typeof import("./getBackendConfigCmpv2").getBackendConfigCmpv2Output = null as any;
+utilities.lazyLoad(exports, ["getBackendConfigCmpv2","getBackendConfigCmpv2Output"], () => require("./getBackendConfigCmpv2"));
 
 export { GetBackendConfigEstArgs, GetBackendConfigEstResult, GetBackendConfigEstOutputArgs } from "./getBackendConfigEst";
 export const getBackendConfigEst: typeof import("./getBackendConfigEst").getBackendConfigEst = null as any;
@@ -110,8 +130,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "vault:pkiSecret/backendAcmeEab:BackendAcmeEab":
+                return new BackendAcmeEab(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendConfigAcme:BackendConfigAcme":
+                return new BackendConfigAcme(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigCluster:BackendConfigCluster":
                 return new BackendConfigCluster(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2":
+                return new BackendConfigCmpv2(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigEst:BackendConfigEst":
                 return new BackendConfigEst(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
@@ -145,7 +171,10 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendAcmeEab", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigAcme", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCluster", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCmpv2", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigEst", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)

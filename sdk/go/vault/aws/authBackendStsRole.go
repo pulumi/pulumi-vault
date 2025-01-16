@@ -62,6 +62,8 @@ type AuthBackendStsRole struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
+	// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+	ExternalId pulumi.StringPtrOutput `pulumi:"externalId"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -113,6 +115,8 @@ type authBackendStsRoleState struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
+	// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+	ExternalId *string `pulumi:"externalId"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -129,6 +133,8 @@ type AuthBackendStsRoleState struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
+	// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+	ExternalId pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -149,6 +155,8 @@ type authBackendStsRoleArgs struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend *string `pulumi:"backend"`
+	// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+	ExternalId *string `pulumi:"externalId"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -166,6 +174,8 @@ type AuthBackendStsRoleArgs struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.
 	Backend pulumi.StringPtrInput
+	// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+	ExternalId pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -272,6 +282,11 @@ func (o AuthBackendStsRoleOutput) AccountId() pulumi.StringOutput {
 // mounted at.  Defaults to `aws`.
 func (o AuthBackendStsRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
+}
+
+// External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+func (o AuthBackendStsRoleOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendStsRole) pulumi.StringPtrOutput { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
 // The namespace to provision the resource in.

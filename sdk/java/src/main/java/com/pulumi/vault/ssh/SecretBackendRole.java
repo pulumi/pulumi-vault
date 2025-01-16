@@ -114,9 +114,21 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> allowBareDomains() {
         return Codegen.optional(this.allowBareDomains);
     }
+    /**
+     * Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     * 
+     */
     @Export(name="allowEmptyPrincipals", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> allowEmptyPrincipals;
 
+    /**
+     * @return Allow signing certificates with no
+     * valid principals (e.g. any valid principal). For backwards compatibility
+     * only. The default of false is highly recommended.
+     * 
+     */
     public Output<Optional<Boolean>> allowEmptyPrincipals() {
         return Codegen.optional(this.allowEmptyPrincipals);
     }

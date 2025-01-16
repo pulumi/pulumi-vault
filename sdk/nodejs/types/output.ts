@@ -1074,6 +1074,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         */
+        passwordAuthentication?: string;
+        /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
         privateKey?: string;
@@ -2139,6 +2143,10 @@ export namespace database {
          */
         password?: string;
         /**
+         * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         */
+        passwordAuthentication?: string;
+        /**
          * Specifies the name of the plugin to use.
          */
         pluginName: string;
@@ -2895,6 +2903,13 @@ export namespace okta {
 }
 
 export namespace pkiSecret {
+    export interface BackendConfigCmpv2Authenticators {
+        /**
+         * "The accessor (required) and certRole (optional) properties for cert auth backends".
+         */
+        cert?: {[key: string]: string};
+    }
+
     export interface BackendConfigEstAuthenticators {
         /**
          * "The accessor (required) and certRole (optional) properties for cert auth backends".
@@ -2904,6 +2919,13 @@ export namespace pkiSecret {
          * "The accessor (required) property for user pass auth backends".
          */
         userpass?: {[key: string]: string};
+    }
+
+    export interface GetBackendConfigCmpv2Authenticator {
+        /**
+         * The accessor and certRole properties for cert auth backends
+         */
+        cert?: {[key: string]: string};
     }
 
     export interface GetBackendConfigEstAuthenticator {

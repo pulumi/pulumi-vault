@@ -70,6 +70,11 @@ public final class SecretsMountPostgresql {
      */
     private @Nullable String password;
     /**
+     * @return When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    private @Nullable String passwordAuthentication;
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
@@ -196,6 +201,13 @@ public final class SecretsMountPostgresql {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    public Optional<String> passwordAuthentication() {
+        return Optional.ofNullable(this.passwordAuthentication);
+    }
+    /**
      * @return Specifies the name of the plugin to use.
      * 
      */
@@ -286,6 +298,7 @@ public final class SecretsMountPostgresql {
         private @Nullable Integer maxOpenConnections;
         private String name;
         private @Nullable String password;
+        private @Nullable String passwordAuthentication;
         private @Nullable String pluginName;
         private @Nullable String privateKey;
         private @Nullable List<String> rootRotationStatements;
@@ -309,6 +322,7 @@ public final class SecretsMountPostgresql {
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
+    	      this.passwordAuthentication = defaults.passwordAuthentication;
     	      this.pluginName = defaults.pluginName;
     	      this.privateKey = defaults.privateKey;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
@@ -387,6 +401,12 @@ public final class SecretsMountPostgresql {
             return this;
         }
         @CustomType.Setter
+        public Builder passwordAuthentication(@Nullable String passwordAuthentication) {
+
+            this.passwordAuthentication = passwordAuthentication;
+            return this;
+        }
+        @CustomType.Setter
         public Builder pluginName(@Nullable String pluginName) {
 
             this.pluginName = pluginName;
@@ -461,6 +481,7 @@ public final class SecretsMountPostgresql {
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.name = name;
             _resultValue.password = password;
+            _resultValue.passwordAuthentication = passwordAuthentication;
             _resultValue.pluginName = pluginName;
             _resultValue.privateKey = privateKey;
             _resultValue.rootRotationStatements = rootRotationStatements;

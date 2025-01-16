@@ -42,6 +42,10 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly string? Password;
         /// <summary>
+        /// When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+        /// </summary>
+        public readonly string? PasswordAuthentication;
+        /// <summary>
         /// The secret key used for the x509 client certificate. Must be PEM encoded.
         /// </summary>
         public readonly string? PrivateKey;
@@ -86,6 +90,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? password,
 
+            string? passwordAuthentication,
+
             string? privateKey,
 
             bool? selfManaged,
@@ -107,6 +113,7 @@ namespace Pulumi.Vault.Database.Outputs
             MaxIdleConnections = maxIdleConnections;
             MaxOpenConnections = maxOpenConnections;
             Password = password;
+            PasswordAuthentication = passwordAuthentication;
             PrivateKey = privateKey;
             SelfManaged = selfManaged;
             ServiceAccountJson = serviceAccountJson;

@@ -49,6 +49,11 @@ public final class SecretBackendConnectionPostgresql {
      */
     private @Nullable String password;
     /**
+     * @return When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    private @Nullable String passwordAuthentication;
+    /**
      * @return The secret key used for the x509 client certificate. Must be PEM encoded.
      * 
      */
@@ -135,6 +140,13 @@ public final class SecretBackendConnectionPostgresql {
         return Optional.ofNullable(this.password);
     }
     /**
+     * @return When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    public Optional<String> passwordAuthentication() {
+        return Optional.ofNullable(this.passwordAuthentication);
+    }
+    /**
      * @return The secret key used for the x509 client certificate. Must be PEM encoded.
      * 
      */
@@ -200,6 +212,7 @@ public final class SecretBackendConnectionPostgresql {
         private @Nullable Integer maxIdleConnections;
         private @Nullable Integer maxOpenConnections;
         private @Nullable String password;
+        private @Nullable String passwordAuthentication;
         private @Nullable String privateKey;
         private @Nullable Boolean selfManaged;
         private @Nullable String serviceAccountJson;
@@ -217,6 +230,7 @@ public final class SecretBackendConnectionPostgresql {
     	      this.maxIdleConnections = defaults.maxIdleConnections;
     	      this.maxOpenConnections = defaults.maxOpenConnections;
     	      this.password = defaults.password;
+    	      this.passwordAuthentication = defaults.passwordAuthentication;
     	      this.privateKey = defaults.privateKey;
     	      this.selfManaged = defaults.selfManaged;
     	      this.serviceAccountJson = defaults.serviceAccountJson;
@@ -266,6 +280,12 @@ public final class SecretBackendConnectionPostgresql {
         public Builder password(@Nullable String password) {
 
             this.password = password;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder passwordAuthentication(@Nullable String passwordAuthentication) {
+
+            this.passwordAuthentication = passwordAuthentication;
             return this;
         }
         @CustomType.Setter
@@ -319,6 +339,7 @@ public final class SecretBackendConnectionPostgresql {
             _resultValue.maxIdleConnections = maxIdleConnections;
             _resultValue.maxOpenConnections = maxOpenConnections;
             _resultValue.password = password;
+            _resultValue.passwordAuthentication = passwordAuthentication;
             _resultValue.privateKey = privateKey;
             _resultValue.selfManaged = selfManaged;
             _resultValue.serviceAccountJson = serviceAccountJson;

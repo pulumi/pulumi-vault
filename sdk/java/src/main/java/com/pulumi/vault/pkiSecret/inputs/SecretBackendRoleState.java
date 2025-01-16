@@ -275,6 +275,21 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     * 
+     */
+    @Import(name="cnValidations")
+    private @Nullable Output<List<String>> cnValidations;
+
+    /**
+     * @return Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+     * 
+     */
+    public Optional<Output<List<String>>> cnValidations() {
+        return Optional.ofNullable(this.cnValidations);
+    }
+
+    /**
      * Flag to specify certificates for code signing use
      * 
      */
@@ -747,6 +762,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.backend = $.backend;
         this.basicConstraintsValidForNonCa = $.basicConstraintsValidForNonCa;
         this.clientFlag = $.clientFlag;
+        this.cnValidations = $.cnValidations;
         this.codeSigningFlag = $.codeSigningFlag;
         this.countries = $.countries;
         this.emailProtectionFlag = $.emailProtectionFlag;
@@ -1201,6 +1217,37 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder clientFlag(Boolean clientFlag) {
             return clientFlag(Output.of(clientFlag));
+        }
+
+        /**
+         * @param cnValidations Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cnValidations(@Nullable Output<List<String>> cnValidations) {
+            $.cnValidations = cnValidations;
+            return this;
+        }
+
+        /**
+         * @param cnValidations Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cnValidations(List<String> cnValidations) {
+            return cnValidations(Output.of(cnValidations));
+        }
+
+        /**
+         * @param cnValidations Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cnValidations(String... cnValidations) {
+            return cnValidations(List.of(cnValidations));
         }
 
         /**

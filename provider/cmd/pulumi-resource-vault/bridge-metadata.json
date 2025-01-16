@@ -187,7 +187,15 @@
             },
             "vault_aws_secret_backend": {
                 "current": "vault:aws/secretBackend:SecretBackend",
-                "majorVersion": 6
+                "majorVersion": 6,
+                "fields": {
+                    "sts_fallback_endpoints": {
+                        "maxItemsOne": false
+                    },
+                    "sts_fallback_regions": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_aws_secret_backend_role": {
                 "current": "vault:aws/secretBackendRole:SecretBackendRole",
@@ -1431,6 +1439,10 @@
                 "current": "vault:index/passwordPolicy:PasswordPolicy",
                 "majorVersion": 6
             },
+            "vault_pki_secret_backend_acme_eab": {
+                "current": "vault:pkiSecret/backendAcmeEab:BackendAcmeEab",
+                "majorVersion": 6
+            },
             "vault_pki_secret_backend_cert": {
                 "current": "vault:pkiSecret/secretBackendCert:SecretBackendCert",
                 "majorVersion": 6,
@@ -1452,6 +1464,18 @@
                     }
                 }
             },
+            "vault_pki_secret_backend_config_acme": {
+                "current": "vault:pkiSecret/backendConfigAcme:BackendConfigAcme",
+                "majorVersion": 6,
+                "fields": {
+                    "allowed_issuers": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_pki_secret_backend_config_ca": {
                 "current": "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa",
                 "majorVersion": 6
@@ -1459,6 +1483,18 @@
             "vault_pki_secret_backend_config_cluster": {
                 "current": "vault:pkiSecret/backendConfigCluster:BackendConfigCluster",
                 "majorVersion": 6
+            },
+            "vault_pki_secret_backend_config_cmpv2": {
+                "current": "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2",
+                "majorVersion": 6,
+                "fields": {
+                    "audit_fields": {
+                        "maxItemsOne": false
+                    },
+                    "authenticators": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "vault_pki_secret_backend_config_est": {
                 "current": "vault:pkiSecret/backendConfigEst:BackendConfigEst",
@@ -1564,6 +1600,9 @@
                         "maxItemsOne": false
                     },
                     "allowed_user_ids": {
+                        "maxItemsOne": false
+                    },
+                    "cn_validations": {
                         "maxItemsOne": false
                     },
                     "country": {
@@ -2160,6 +2199,18 @@
             "vault_nomad_access_token": {
                 "current": "vault:index/getNomadAccessToken:getNomadAccessToken",
                 "majorVersion": 6
+            },
+            "vault_pki_secret_backend_config_cmpv2": {
+                "current": "vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2",
+                "majorVersion": 6,
+                "fields": {
+                    "audit_fields": {
+                        "maxItemsOne": false
+                    },
+                    "authenticators": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_pki_secret_backend_config_est": {
                 "current": "vault:pkiSecret/getBackendConfigEst:getBackendConfigEst",

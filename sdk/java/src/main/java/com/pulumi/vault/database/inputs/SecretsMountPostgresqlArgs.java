@@ -177,6 +177,21 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    @Import(name="passwordAuthentication")
+    private @Nullable Output<String> passwordAuthentication;
+
+    /**
+     * @return When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+     * 
+     */
+    public Optional<Output<String>> passwordAuthentication() {
+        return Optional.ofNullable(this.passwordAuthentication);
+    }
+
+    /**
      * Specifies the name of the plugin to use.
      * 
      */
@@ -341,6 +356,7 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
         this.maxOpenConnections = $.maxOpenConnections;
         this.name = $.name;
         this.password = $.password;
+        this.passwordAuthentication = $.passwordAuthentication;
         this.pluginName = $.pluginName;
         this.privateKey = $.privateKey;
         this.rootRotationStatements = $.rootRotationStatements;
@@ -596,6 +612,27 @@ public final class SecretsMountPostgresqlArgs extends com.pulumi.resources.Resou
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordAuthentication When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordAuthentication(@Nullable Output<String> passwordAuthentication) {
+            $.passwordAuthentication = passwordAuthentication;
+            return this;
+        }
+
+        /**
+         * @param passwordAuthentication When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordAuthentication(String passwordAuthentication) {
+            return passwordAuthentication(Output.of(passwordAuthentication));
         }
 
         /**

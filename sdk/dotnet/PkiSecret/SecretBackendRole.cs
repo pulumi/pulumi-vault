@@ -163,6 +163,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> ClientFlag { get; private set; } = null!;
 
         /// <summary>
+        /// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        /// </summary>
+        [Output("cnValidations")]
+        public Output<ImmutableArray<string>> CnValidations { get; private set; } = null!;
+
+        /// <summary>
         /// Flag to specify certificates for code signing use
         /// </summary>
         [Output("codeSigningFlag")]
@@ -522,6 +528,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("clientFlag")]
         public Input<bool>? ClientFlag { get; set; }
+
+        [Input("cnValidations")]
+        private InputList<string>? _cnValidations;
+
+        /// <summary>
+        /// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        /// </summary>
+        public InputList<string> CnValidations
+        {
+            get => _cnValidations ?? (_cnValidations = new InputList<string>());
+            set => _cnValidations = value;
+        }
 
         /// <summary>
         /// Flag to specify certificates for code signing use
@@ -917,6 +935,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("clientFlag")]
         public Input<bool>? ClientFlag { get; set; }
+
+        [Input("cnValidations")]
+        private InputList<string>? _cnValidations;
+
+        /// <summary>
+        /// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+        /// </summary>
+        public InputList<string> CnValidations
+        {
+            get => _cnValidations ?? (_cnValidations = new InputList<string>());
+            set => _cnValidations = value;
+        }
 
         /// <summary>
         /// Flag to specify certificates for code signing use

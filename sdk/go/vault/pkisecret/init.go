@@ -21,8 +21,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "vault:pkiSecret/backendAcmeEab:BackendAcmeEab":
+		r = &BackendAcmeEab{}
+	case "vault:pkiSecret/backendConfigAcme:BackendConfigAcme":
+		r = &BackendConfigAcme{}
 	case "vault:pkiSecret/backendConfigCluster:BackendConfigCluster":
 		r = &BackendConfigCluster{}
+	case "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2":
+		r = &BackendConfigCmpv2{}
 	case "vault:pkiSecret/backendConfigEst:BackendConfigEst":
 		r = &BackendConfigEst{}
 	case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
@@ -66,7 +72,22 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"vault",
+		"pkiSecret/backendAcmeEab",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiSecret/backendConfigAcme",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"pkiSecret/backendConfigCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiSecret/backendConfigCmpv2",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

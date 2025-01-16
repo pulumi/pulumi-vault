@@ -104,6 +104,8 @@ type SecretBackendRole struct {
 	BasicConstraintsValidForNonCa pulumi.BoolPtrOutput `pulumi:"basicConstraintsValidForNonCa"`
 	// Flag to specify certificates for client use
 	ClientFlag pulumi.BoolPtrOutput `pulumi:"clientFlag"`
+	// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+	CnValidations pulumi.StringArrayOutput `pulumi:"cnValidations"`
 	// Flag to specify certificates for code signing use
 	CodeSigningFlag pulumi.BoolPtrOutput `pulumi:"codeSigningFlag"`
 	// The country of generated certificates
@@ -240,6 +242,8 @@ type secretBackendRoleState struct {
 	BasicConstraintsValidForNonCa *bool `pulumi:"basicConstraintsValidForNonCa"`
 	// Flag to specify certificates for client use
 	ClientFlag *bool `pulumi:"clientFlag"`
+	// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+	CnValidations []string `pulumi:"cnValidations"`
 	// Flag to specify certificates for code signing use
 	CodeSigningFlag *bool `pulumi:"codeSigningFlag"`
 	// The country of generated certificates
@@ -344,6 +348,8 @@ type SecretBackendRoleState struct {
 	BasicConstraintsValidForNonCa pulumi.BoolPtrInput
 	// Flag to specify certificates for client use
 	ClientFlag pulumi.BoolPtrInput
+	// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+	CnValidations pulumi.StringArrayInput
 	// Flag to specify certificates for code signing use
 	CodeSigningFlag pulumi.BoolPtrInput
 	// The country of generated certificates
@@ -452,6 +458,8 @@ type secretBackendRoleArgs struct {
 	BasicConstraintsValidForNonCa *bool `pulumi:"basicConstraintsValidForNonCa"`
 	// Flag to specify certificates for client use
 	ClientFlag *bool `pulumi:"clientFlag"`
+	// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+	CnValidations []string `pulumi:"cnValidations"`
 	// Flag to specify certificates for code signing use
 	CodeSigningFlag *bool `pulumi:"codeSigningFlag"`
 	// The country of generated certificates
@@ -557,6 +565,8 @@ type SecretBackendRoleArgs struct {
 	BasicConstraintsValidForNonCa pulumi.BoolPtrInput
 	// Flag to specify certificates for client use
 	ClientFlag pulumi.BoolPtrInput
+	// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+	CnValidations pulumi.StringArrayInput
 	// Flag to specify certificates for code signing use
 	CodeSigningFlag pulumi.BoolPtrInput
 	// The country of generated certificates
@@ -796,6 +806,11 @@ func (o SecretBackendRoleOutput) BasicConstraintsValidForNonCa() pulumi.BoolPtrO
 // Flag to specify certificates for client use
 func (o SecretBackendRoleOutput) ClientFlag() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.BoolPtrOutput { return v.ClientFlag }).(pulumi.BoolPtrOutput)
+}
+
+// Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
+func (o SecretBackendRoleOutput) CnValidations() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.CnValidations }).(pulumi.StringArrayOutput)
 }
 
 // Flag to specify certificates for code signing use

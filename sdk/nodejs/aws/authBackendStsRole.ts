@@ -65,6 +65,10 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
      */
     public readonly backend!: pulumi.Output<string | undefined>;
     /**
+     * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     */
+    public readonly externalId!: pulumi.Output<string | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -92,6 +96,7 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
             const state = argsOrState as AuthBackendStsRoleState | undefined;
             resourceInputs["accountId"] = state ? state.accountId : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["externalId"] = state ? state.externalId : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["stsRole"] = state ? state.stsRole : undefined;
         } else {
@@ -104,6 +109,7 @@ export class AuthBackendStsRole extends pulumi.CustomResource {
             }
             resourceInputs["accountId"] = args ? args.accountId : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["externalId"] = args ? args.externalId : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["stsRole"] = args ? args.stsRole : undefined;
         }
@@ -125,6 +131,10 @@ export interface AuthBackendStsRoleState {
      * mounted at.  Defaults to `aws`.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     */
+    externalId?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -152,6 +162,10 @@ export interface AuthBackendStsRoleArgs {
      * mounted at.  Defaults to `aws`.
      */
     backend?: pulumi.Input<string>;
+    /**
+     * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
+     */
+    externalId?: pulumi.Input<string>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
