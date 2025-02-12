@@ -30,7 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
+//			_default, err := kmip.NewSecretBackend(ctx, "default", &kmip.SecretBackendArgs{
 //				Path:        pulumi.String("kmip"),
 //				Description: pulumi.String("Vault KMIP backend"),
 //			})
