@@ -37,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = transform.NewTransformation(ctx, "ccn-fpe", &transform.TransformationArgs{
+//			ccn_fpe, err := transform.NewTransformation(ctx, "ccn-fpe", &transform.TransformationArgs{
 //				Path:        transform.Path,
 //				Name:        pulumi.String("ccn-fpe"),
 //				Type:        pulumi.String("fpe"),
