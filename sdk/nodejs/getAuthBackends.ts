@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example-filter = vault.getAuthBackends({
+ * const example_filter = vault.getAuthBackends({
  *     type: "kubernetes",
  * });
  * ```
@@ -82,7 +82,7 @@ export interface GetAuthBackendsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * const example-filter = vault.getAuthBackends({
+ * const example_filter = vault.getAuthBackends({
  *     type: "kubernetes",
  * });
  * ```
