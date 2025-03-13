@@ -1476,6 +1476,10 @@
                     }
                 }
             },
+            "vault_pki_secret_backend_config_auto_tidy": {
+                "current": "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy",
+                "majorVersion": 6
+            },
             "vault_pki_secret_backend_config_ca": {
                 "current": "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa",
                 "majorVersion": 6
@@ -1493,6 +1497,9 @@
                     },
                     "authenticators": {
                         "maxItemsOne": true
+                    },
+                    "disabled_validations": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1539,6 +1546,9 @@
                         "maxItemsOne": false
                     },
                     "ip_sans": {
+                        "maxItemsOne": false
+                    },
+                    "key_usage": {
                         "maxItemsOne": false
                     },
                     "other_sans": {
@@ -1650,6 +1660,18 @@
                     "alt_names": {
                         "maxItemsOne": false
                     },
+                    "excluded_dns_domains": {
+                        "maxItemsOne": false
+                    },
+                    "excluded_email_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "excluded_ip_ranges": {
+                        "maxItemsOne": false
+                    },
+                    "excluded_uri_domains": {
+                        "maxItemsOne": false
+                    },
                     "ip_sans": {
                         "maxItemsOne": false
                     },
@@ -1657,6 +1679,15 @@
                         "maxItemsOne": false
                     },
                     "permitted_dns_domains": {
+                        "maxItemsOne": false
+                    },
+                    "permitted_email_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "permitted_ip_ranges": {
+                        "maxItemsOne": false
+                    },
+                    "permitted_uri_domains": {
                         "maxItemsOne": false
                     },
                     "uri_sans": {
@@ -1674,6 +1705,18 @@
                     "ca_chain": {
                         "maxItemsOne": false
                     },
+                    "excluded_dns_domains": {
+                        "maxItemsOne": false
+                    },
+                    "excluded_email_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "excluded_ip_ranges": {
+                        "maxItemsOne": false
+                    },
+                    "excluded_uri_domains": {
+                        "maxItemsOne": false
+                    },
                     "ip_sans": {
                         "maxItemsOne": false
                     },
@@ -1681,6 +1724,15 @@
                         "maxItemsOne": false
                     },
                     "permitted_dns_domains": {
+                        "maxItemsOne": false
+                    },
+                    "permitted_email_addresses": {
+                        "maxItemsOne": false
+                    },
+                    "permitted_ip_ranges": {
+                        "maxItemsOne": false
+                    },
+                    "permitted_uri_domains": {
                         "maxItemsOne": false
                     },
                     "uri_sans": {
@@ -2200,6 +2252,10 @@
                 "current": "vault:index/getNomadAccessToken:getNomadAccessToken",
                 "majorVersion": 6
             },
+            "vault_pki_secret_backend_cert_metadata": {
+                "current": "vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata",
+                "majorVersion": 6
+            },
             "vault_pki_secret_backend_config_cmpv2": {
                 "current": "vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2",
                 "majorVersion": 6,
@@ -2208,6 +2264,9 @@
                         "maxItemsOne": false
                     },
                     "authenticators": {
+                        "maxItemsOne": false
+                    },
+                    "disabled_validations": {
                         "maxItemsOne": false
                     }
                 }
@@ -2306,6 +2365,10 @@
                     }
                 }
             },
+            "vault_ssh_secret_backend_sign": {
+                "current": "vault:ssh/getSecretBackendSign:getSecretBackendSign",
+                "majorVersion": 6
+            },
             "vault_transform_decode": {
                 "current": "vault:transform/getDecode:getDecode",
                 "majorVersion": 6,
@@ -2337,6 +2400,30 @@
             "vault_transit_encrypt": {
                 "current": "vault:transit/getEncrypt:getEncrypt",
                 "majorVersion": 6
+            },
+            "vault_transit_sign": {
+                "current": "vault:transit/getSign:getSign",
+                "majorVersion": 6,
+                "fields": {
+                    "batch_input": {
+                        "maxItemsOne": false
+                    },
+                    "batch_results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_transit_verify": {
+                "current": "vault:transit/getVerify:getVerify",
+                "majorVersion": 6,
+                "fields": {
+                    "batch_input": {
+                        "maxItemsOne": false
+                    },
+                    "batch_results": {
+                        "maxItemsOne": false
+                    }
+                }
             }
         }
     },
