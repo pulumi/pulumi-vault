@@ -27,6 +27,7 @@ class SecretBackendCrlConfigArgs:
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
+                 max_crl_entries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
                  ocsp_expiry: Optional[pulumi.Input[str]] = None,
@@ -43,6 +44,8 @@ class SecretBackendCrlConfigArgs:
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+               accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -69,6 +72,8 @@ class SecretBackendCrlConfigArgs:
             pulumi.set(__self__, "enable_delta", enable_delta)
         if expiry is not None:
             pulumi.set(__self__, "expiry", expiry)
+        if max_crl_entries is not None:
+            pulumi.set(__self__, "max_crl_entries", max_crl_entries)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if ocsp_disable is not None:
@@ -178,6 +183,19 @@ class SecretBackendCrlConfigArgs:
         pulumi.set(self, "expiry", value)
 
     @property
+    @pulumi.getter(name="maxCrlEntries")
+    def max_crl_entries(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of entries a CRL can contain. This option exists to prevent 
+        accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+        """
+        return pulumi.get(self, "max_crl_entries")
+
+    @max_crl_entries.setter
+    def max_crl_entries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_crl_entries", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -254,6 +272,7 @@ class _SecretBackendCrlConfigState:
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
+                 max_crl_entries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
                  ocsp_expiry: Optional[pulumi.Input[str]] = None,
@@ -270,6 +289,8 @@ class _SecretBackendCrlConfigState:
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+               accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -297,6 +318,8 @@ class _SecretBackendCrlConfigState:
             pulumi.set(__self__, "enable_delta", enable_delta)
         if expiry is not None:
             pulumi.set(__self__, "expiry", expiry)
+        if max_crl_entries is not None:
+            pulumi.set(__self__, "max_crl_entries", max_crl_entries)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if ocsp_disable is not None:
@@ -406,6 +429,19 @@ class _SecretBackendCrlConfigState:
         pulumi.set(self, "expiry", value)
 
     @property
+    @pulumi.getter(name="maxCrlEntries")
+    def max_crl_entries(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of entries a CRL can contain. This option exists to prevent 
+        accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+        """
+        return pulumi.get(self, "max_crl_entries")
+
+    @max_crl_entries.setter
+    def max_crl_entries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_crl_entries", value)
+
+    @property
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
@@ -484,6 +520,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
+                 max_crl_entries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
                  ocsp_expiry: Optional[pulumi.Input[str]] = None,
@@ -521,6 +558,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+               accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -581,6 +620,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
                  disable: Optional[pulumi.Input[bool]] = None,
                  enable_delta: Optional[pulumi.Input[bool]] = None,
                  expiry: Optional[pulumi.Input[str]] = None,
+                 max_crl_entries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  ocsp_disable: Optional[pulumi.Input[bool]] = None,
                  ocsp_expiry: Optional[pulumi.Input[str]] = None,
@@ -605,6 +645,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             __props__.__dict__["disable"] = disable
             __props__.__dict__["enable_delta"] = enable_delta
             __props__.__dict__["expiry"] = expiry
+            __props__.__dict__["max_crl_entries"] = max_crl_entries
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["ocsp_disable"] = ocsp_disable
             __props__.__dict__["ocsp_expiry"] = ocsp_expiry
@@ -628,6 +669,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
             disable: Optional[pulumi.Input[bool]] = None,
             enable_delta: Optional[pulumi.Input[bool]] = None,
             expiry: Optional[pulumi.Input[str]] = None,
+            max_crl_entries: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             ocsp_disable: Optional[pulumi.Input[bool]] = None,
             ocsp_expiry: Optional[pulumi.Input[str]] = None,
@@ -649,6 +691,8 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[str] expiry: Specifies the time until expiration.
+        :param pulumi.Input[int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+               accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -672,6 +716,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         __props__.__dict__["disable"] = disable
         __props__.__dict__["enable_delta"] = enable_delta
         __props__.__dict__["expiry"] = expiry
+        __props__.__dict__["max_crl_entries"] = max_crl_entries
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["ocsp_disable"] = ocsp_disable
         __props__.__dict__["ocsp_expiry"] = ocsp_expiry
@@ -743,6 +788,15 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         Specifies the time until expiration.
         """
         return pulumi.get(self, "expiry")
+
+    @property
+    @pulumi.getter(name="maxCrlEntries")
+    def max_crl_entries(self) -> pulumi.Output[int]:
+        """
+        The maximum number of entries a CRL can contain. This option exists to prevent 
+        accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+        """
+        return pulumi.get(self, "max_crl_entries")
 
     @property
     @pulumi.getter

@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiSecret.BackendConfigAcmeArgs;
 import com.pulumi.vault.pkiSecret.inputs.BackendConfigAcmeState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -208,6 +209,20 @@ public class BackendConfigAcme extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> enabled() {
         return this.enabled;
+    }
+    /**
+     * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     * 
+     */
+    @Export(name="maxTtl", refs={Integer.class}, tree="[0]")
+    private Output<Integer> maxTtl;
+
+    /**
+     * @return The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+     * 
+     */
+    public Output<Integer> maxTtl() {
+        return this.maxTtl;
     }
     /**
      * The namespace to provision the resource in.

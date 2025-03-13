@@ -24,10 +24,14 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly int? ConnectTimeout;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Data;
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, string>? Data;
+        public readonly bool? DisableAutomatedRotation;
         /// <summary>
         /// Influxdb host to connect to.
         /// </summary>
@@ -65,6 +69,22 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly int? RotationPeriod;
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly string? RotationSchedule;
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly int? RotationWindow;
+        /// <summary>
         /// Whether to use TLS when connecting to Influxdb.
         /// </summary>
         public readonly bool? Tls;
@@ -90,6 +110,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableDictionary<string, string>? data,
 
+            bool? disableAutomatedRotation,
+
             string host,
 
             bool? insecureTls,
@@ -108,6 +130,12 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            int? rotationPeriod,
+
+            string? rotationSchedule,
+
+            int? rotationWindow,
+
             bool? tls,
 
             string username,
@@ -119,6 +147,7 @@ namespace Pulumi.Vault.Database.Outputs
             AllowedRoles = allowedRoles;
             ConnectTimeout = connectTimeout;
             Data = data;
+            DisableAutomatedRotation = disableAutomatedRotation;
             Host = host;
             InsecureTls = insecureTls;
             Name = name;
@@ -128,6 +157,9 @@ namespace Pulumi.Vault.Database.Outputs
             PluginName = pluginName;
             Port = port;
             RootRotationStatements = rootRotationStatements;
+            RotationPeriod = rotationPeriod;
+            RotationSchedule = rotationSchedule;
+            RotationWindow = rotationWindow;
             Tls = tls;
             Username = username;
             UsernameTemplate = usernameTemplate;

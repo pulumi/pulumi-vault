@@ -29,6 +29,8 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
@@ -57,6 +59,16 @@ type SecretBackend struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
 	RoleArn pulumi.StringPtrOutput `pulumi:"roleArn"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -120,6 +132,8 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
@@ -148,6 +162,16 @@ type secretBackendState struct {
 	Region *string `pulumi:"region"`
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
 	RoleArn *string `pulumi:"roleArn"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -171,6 +195,8 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
@@ -199,6 +225,16 @@ type SecretBackendState struct {
 	Region pulumi.StringPtrInput
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
 	RoleArn pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
@@ -226,6 +262,8 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
@@ -254,6 +292,16 @@ type secretBackendArgs struct {
 	Region *string `pulumi:"region"`
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
 	RoleArn *string `pulumi:"roleArn"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey *string `pulumi:"secretKey"`
 	// Specifies a custom HTTP STS endpoint to use.
@@ -278,6 +326,8 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
@@ -306,6 +356,16 @@ type SecretBackendArgs struct {
 	Region pulumi.StringPtrInput
 	// Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
 	RoleArn pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+	RotationWindow pulumi.IntPtrInput
 	// The AWS Secret Access Key to use when generating new credentials.
 	SecretKey pulumi.StringPtrInput
 	// Specifies a custom HTTP STS endpoint to use.
@@ -424,6 +484,11 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // If set, opts out of mount migration on path updates.
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
@@ -483,6 +548,25 @@ func (o SecretBackendOutput) Region() pulumi.StringOutput {
 // Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
 func (o SecretBackendOutput) RoleArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.RoleArn }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time in seconds Vault should wait before rotating the root credential.
+// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+func (o SecretBackendOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // The AWS Secret Access Key to use when generating new credentials.

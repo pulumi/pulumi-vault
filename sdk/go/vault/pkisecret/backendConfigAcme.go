@@ -100,6 +100,8 @@ type BackendConfigAcme struct {
 	EabPolicy pulumi.StringOutput `pulumi:"eabPolicy"`
 	// Specifies whether ACME is enabled.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
+	// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+	MaxTtl pulumi.IntOutput `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -162,6 +164,8 @@ type backendConfigAcmeState struct {
 	EabPolicy *string `pulumi:"eabPolicy"`
 	// Specifies whether ACME is enabled.
 	Enabled *bool `pulumi:"enabled"`
+	// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+	MaxTtl *int `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -189,6 +193,8 @@ type BackendConfigAcmeState struct {
 	EabPolicy pulumi.StringPtrInput
 	// Specifies whether ACME is enabled.
 	Enabled pulumi.BoolPtrInput
+	// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+	MaxTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -220,6 +226,8 @@ type backendConfigAcmeArgs struct {
 	EabPolicy *string `pulumi:"eabPolicy"`
 	// Specifies whether ACME is enabled.
 	Enabled bool `pulumi:"enabled"`
+	// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+	MaxTtl *int `pulumi:"maxTtl"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -248,6 +256,8 @@ type BackendConfigAcmeArgs struct {
 	EabPolicy pulumi.StringPtrInput
 	// Specifies whether ACME is enabled.
 	Enabled pulumi.BoolInput
+	// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+	MaxTtl pulumi.IntPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -383,6 +393,11 @@ func (o BackendConfigAcmeOutput) EabPolicy() pulumi.StringOutput {
 // Specifies whether ACME is enabled.
 func (o BackendConfigAcmeOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *BackendConfigAcme) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+func (o BackendConfigAcmeOutput) MaxTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *BackendConfigAcme) pulumi.IntOutput { return v.MaxTtl }).(pulumi.IntOutput)
 }
 
 // The namespace to provision the resource in.

@@ -32,6 +32,7 @@ class SecretBackendIntermediateCertRequestArgs:
                  key_name: Optional[pulumi.Input[str]] = None,
                  key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
                  managed_key_name: Optional[pulumi.Input[str]] = None,
@@ -42,6 +43,8 @@ class SecretBackendIntermediateCertRequestArgs:
                  postal_code: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -64,6 +67,7 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -79,6 +83,8 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
+        :param pulumi.Input[str] serial_number: The requested Subject's named Serial Number
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[Sequence[pulumi.Input[str]]] uri_sans: List of alternative URIs
         """
@@ -105,6 +111,8 @@ class SecretBackendIntermediateCertRequestArgs:
             pulumi.set(__self__, "key_ref", key_ref)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if managed_key_id is not None:
@@ -125,6 +133,10 @@ class SecretBackendIntermediateCertRequestArgs:
             pulumi.set(__self__, "private_key_format", private_key_format)
         if province is not None:
             pulumi.set(__self__, "province", province)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
+        if signature_bits is not None:
+            pulumi.set(__self__, "signature_bits", signature_bits)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if uri_sans is not None:
@@ -292,6 +304,18 @@ class SecretBackendIntermediateCertRequestArgs:
         pulumi.set(self, "key_type", value)
 
     @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies key_usage to encode in the generated certificate.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "key_usages", value)
+
+    @property
     @pulumi.getter
     def locality(self) -> Optional[pulumi.Input[str]]:
         """
@@ -417,6 +441,30 @@ class SecretBackendIntermediateCertRequestArgs:
         pulumi.set(self, "province", value)
 
     @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The requested Subject's named Serial Number
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @signature_bits.setter
+    def signature_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "signature_bits", value)
+
+    @property
     @pulumi.getter(name="streetAddress")
     def street_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -458,6 +506,7 @@ class _SecretBackendIntermediateCertRequestState:
                  key_name: Optional[pulumi.Input[str]] = None,
                  key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
                  managed_key_name: Optional[pulumi.Input[str]] = None,
@@ -470,6 +519,8 @@ class _SecretBackendIntermediateCertRequestState:
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  private_key_type: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -493,6 +544,7 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -510,6 +562,8 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] private_key_type: The private key type
         :param pulumi.Input[str] province: The province
+        :param pulumi.Input[str] serial_number: The requested Subject's named Serial Number
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
                or \\"kms\\"
@@ -543,6 +597,8 @@ class _SecretBackendIntermediateCertRequestState:
             pulumi.set(__self__, "key_ref", key_ref)
         if key_type is not None:
             pulumi.set(__self__, "key_type", key_type)
+        if key_usages is not None:
+            pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
             pulumi.set(__self__, "locality", locality)
         if managed_key_id is not None:
@@ -567,6 +623,10 @@ class _SecretBackendIntermediateCertRequestState:
             pulumi.set(__self__, "private_key_type", private_key_type)
         if province is not None:
             pulumi.set(__self__, "province", province)
+        if serial_number is not None:
+            pulumi.set(__self__, "serial_number", serial_number)
+        if signature_bits is not None:
+            pulumi.set(__self__, "signature_bits", signature_bits)
         if street_address is not None:
             pulumi.set(__self__, "street_address", street_address)
         if type is not None:
@@ -747,6 +807,18 @@ class _SecretBackendIntermediateCertRequestState:
         pulumi.set(self, "key_type", value)
 
     @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies key_usage to encode in the generated certificate.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @key_usages.setter
+    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "key_usages", value)
+
+    @property
     @pulumi.getter
     def locality(self) -> Optional[pulumi.Input[str]]:
         """
@@ -896,6 +968,30 @@ class _SecretBackendIntermediateCertRequestState:
         pulumi.set(self, "province", value)
 
     @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The requested Subject's named Serial Number
+        """
+        return pulumi.get(self, "serial_number")
+
+    @serial_number.setter
+    def serial_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number", value)
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @signature_bits.setter
+    def signature_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "signature_bits", value)
+
+    @property
     @pulumi.getter(name="streetAddress")
     def street_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -950,6 +1046,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  key_name: Optional[pulumi.Input[str]] = None,
                  key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
                  managed_key_name: Optional[pulumi.Input[str]] = None,
@@ -960,6 +1057,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  postal_code: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -996,6 +1095,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -1011,6 +1111,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] postal_code: The postal code
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] province: The province
+        :param pulumi.Input[str] serial_number: The requested Subject's named Serial Number
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
                or \\"kms\\"
@@ -1063,6 +1165,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  key_name: Optional[pulumi.Input[str]] = None,
                  key_ref: Optional[pulumi.Input[str]] = None,
                  key_type: Optional[pulumi.Input[str]] = None,
+                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  locality: Optional[pulumi.Input[str]] = None,
                  managed_key_id: Optional[pulumi.Input[str]] = None,
                  managed_key_name: Optional[pulumi.Input[str]] = None,
@@ -1073,6 +1176,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  postal_code: Optional[pulumi.Input[str]] = None,
                  private_key_format: Optional[pulumi.Input[str]] = None,
                  province: Optional[pulumi.Input[str]] = None,
+                 serial_number: Optional[pulumi.Input[str]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_address: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1101,6 +1206,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["key_name"] = key_name
             __props__.__dict__["key_ref"] = key_ref
             __props__.__dict__["key_type"] = key_type
+            __props__.__dict__["key_usages"] = key_usages
             __props__.__dict__["locality"] = locality
             __props__.__dict__["managed_key_id"] = managed_key_id
             __props__.__dict__["managed_key_name"] = managed_key_name
@@ -1111,6 +1217,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["postal_code"] = postal_code
             __props__.__dict__["private_key_format"] = private_key_format
             __props__.__dict__["province"] = province
+            __props__.__dict__["serial_number"] = serial_number
+            __props__.__dict__["signature_bits"] = signature_bits
             __props__.__dict__["street_address"] = street_address
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -1146,6 +1254,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             key_name: Optional[pulumi.Input[str]] = None,
             key_ref: Optional[pulumi.Input[str]] = None,
             key_type: Optional[pulumi.Input[str]] = None,
+            key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             locality: Optional[pulumi.Input[str]] = None,
             managed_key_id: Optional[pulumi.Input[str]] = None,
             managed_key_name: Optional[pulumi.Input[str]] = None,
@@ -1158,6 +1267,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             private_key_format: Optional[pulumi.Input[str]] = None,
             private_key_type: Optional[pulumi.Input[str]] = None,
             province: Optional[pulumi.Input[str]] = None,
+            serial_number: Optional[pulumi.Input[str]] = None,
+            signature_bits: Optional[pulumi.Input[int]] = None,
             street_address: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'SecretBackendIntermediateCertRequest':
@@ -1186,6 +1297,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] key_ref: Specifies the key (either default, by name, or by identifier) to use
                for generating this request. Only suitable for `type=existing` requests.
         :param pulumi.Input[str] key_type: The desired key type
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[str] locality: The locality
         :param pulumi.Input[str] managed_key_id: The ID of the previously configured managed key. This field is
                required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -1203,6 +1315,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[str] private_key_format: The private key format
         :param pulumi.Input[str] private_key_type: The private key type
         :param pulumi.Input[str] province: The province
+        :param pulumi.Input[str] serial_number: The requested Subject's named Serial Number
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[str] street_address: The street address
         :param pulumi.Input[str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
                or \\"kms\\"
@@ -1226,6 +1340,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["key_name"] = key_name
         __props__.__dict__["key_ref"] = key_ref
         __props__.__dict__["key_type"] = key_type
+        __props__.__dict__["key_usages"] = key_usages
         __props__.__dict__["locality"] = locality
         __props__.__dict__["managed_key_id"] = managed_key_id
         __props__.__dict__["managed_key_name"] = managed_key_name
@@ -1238,6 +1353,8 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["private_key_format"] = private_key_format
         __props__.__dict__["private_key_type"] = private_key_type
         __props__.__dict__["province"] = province
+        __props__.__dict__["serial_number"] = serial_number
+        __props__.__dict__["signature_bits"] = signature_bits
         __props__.__dict__["street_address"] = street_address
         __props__.__dict__["type"] = type
         __props__.__dict__["uri_sans"] = uri_sans
@@ -1360,6 +1477,14 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         return pulumi.get(self, "key_type")
 
     @property
+    @pulumi.getter(name="keyUsages")
+    def key_usages(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Specifies key_usage to encode in the generated certificate.
+        """
+        return pulumi.get(self, "key_usages")
+
+    @property
     @pulumi.getter
     def locality(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1459,6 +1584,22 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         The province
         """
         return pulumi.get(self, "province")
+
+    @property
+    @pulumi.getter(name="serialNumber")
+    def serial_number(self) -> pulumi.Output[Optional[str]]:
+        """
+        The requested Subject's named Serial Number
+        """
+        return pulumi.get(self, "serial_number")
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> pulumi.Output[Optional[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
 
     @property
     @pulumi.getter(name="streetAddress")

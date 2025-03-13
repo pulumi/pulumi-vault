@@ -76,6 +76,20 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="disableAutomatedRotation", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableAutomatedRotation;
+
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<Boolean>> disableAutomatedRotation() {
+        return Codegen.optional(this.disableAutomatedRotation);
+    }
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
@@ -240,6 +254,56 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> roleArn() {
         return Codegen.optional(this.roleArn);
+    }
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationPeriod;
+
+    /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<Integer>> rotationPeriod() {
+        return Codegen.optional(this.rotationPeriod);
+    }
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="rotationSchedule", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> rotationSchedule;
+
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<String>> rotationSchedule() {
+        return Codegen.optional(this.rotationSchedule);
+    }
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Export(name="rotationWindow", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationWindow;
+
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Output<Optional<Integer>> rotationWindow() {
+        return Codegen.optional(this.rotationWindow);
     }
     /**
      * The AWS Secret Access Key to use when generating new credentials.

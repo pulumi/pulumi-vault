@@ -88,6 +88,12 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * The unique name of the Vault mount to configure.
      */
     public readonly backend!: pulumi.Output<string>;
+    public readonly credentialConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+     * be done in `credentialConfig`.
+     */
+    public readonly credentialType!: pulumi.Output<string>;
     /**
      * The unique name of the database connection to use for the static role.
      */
@@ -132,6 +138,11 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     public readonly selfManagedPassword!: pulumi.Output<string | undefined>;
     /**
+     * If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     */
+    public readonly skipImportRotation!: pulumi.Output<boolean | undefined>;
+    /**
      * The database username that this static role corresponds to.
      */
     public readonly username!: pulumi.Output<string>;
@@ -150,6 +161,8 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
+            resourceInputs["credentialConfig"] = state ? state.credentialConfig : undefined;
+            resourceInputs["credentialType"] = state ? state.credentialType : undefined;
             resourceInputs["dbName"] = state ? state.dbName : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -158,6 +171,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["rotationStatements"] = state ? state.rotationStatements : undefined;
             resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["selfManagedPassword"] = state ? state.selfManagedPassword : undefined;
+            resourceInputs["skipImportRotation"] = state ? state.skipImportRotation : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as SecretBackendStaticRoleArgs | undefined;
@@ -171,6 +185,8 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
                 throw new Error("Missing required property 'username'");
             }
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["credentialConfig"] = args ? args.credentialConfig : undefined;
+            resourceInputs["credentialType"] = args ? args.credentialType : undefined;
             resourceInputs["dbName"] = args ? args.dbName : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -179,6 +195,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["rotationStatements"] = args ? args.rotationStatements : undefined;
             resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["selfManagedPassword"] = args?.selfManagedPassword ? pulumi.secret(args.selfManagedPassword) : undefined;
+            resourceInputs["skipImportRotation"] = args ? args.skipImportRotation : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -196,6 +213,12 @@ export interface SecretBackendStaticRoleState {
      * The unique name of the Vault mount to configure.
      */
     backend?: pulumi.Input<string>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+     * be done in `credentialConfig`.
+     */
+    credentialType?: pulumi.Input<string>;
     /**
      * The unique name of the database connection to use for the static role.
      */
@@ -240,6 +263,11 @@ export interface SecretBackendStaticRoleState {
      */
     selfManagedPassword?: pulumi.Input<string>;
     /**
+     * If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     */
+    skipImportRotation?: pulumi.Input<boolean>;
+    /**
      * The database username that this static role corresponds to.
      */
     username?: pulumi.Input<string>;
@@ -253,6 +281,12 @@ export interface SecretBackendStaticRoleArgs {
      * The unique name of the Vault mount to configure.
      */
     backend: pulumi.Input<string>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can
+     * be done in `credentialConfig`.
+     */
+    credentialType?: pulumi.Input<string>;
     /**
      * The unique name of the database connection to use for the static role.
      */
@@ -296,6 +330,11 @@ export interface SecretBackendStaticRoleArgs {
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
      */
     selfManagedPassword?: pulumi.Input<string>;
+    /**
+     * If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     */
+    skipImportRotation?: pulumi.Input<boolean>;
     /**
      * The database username that this static role corresponds to.
      */

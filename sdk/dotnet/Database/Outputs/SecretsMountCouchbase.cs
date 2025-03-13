@@ -28,10 +28,14 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly string? BucketName;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Data;
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, string>? Data;
+        public readonly bool? DisableAutomatedRotation;
         /// <summary>
         /// A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         /// </summary>
@@ -56,6 +60,22 @@ namespace Pulumi.Vault.Database.Outputs
         /// A list of database statements to be executed to rotate the root user's credentials.
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly int? RotationPeriod;
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly string? RotationSchedule;
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly int? RotationWindow;
         /// <summary>
         /// Specifies whether to use TLS when connecting to Couchbase.
         /// </summary>
@@ -84,6 +104,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableDictionary<string, string>? data,
 
+            bool? disableAutomatedRotation,
+
             ImmutableArray<string> hosts,
 
             bool? insecureTls,
@@ -95,6 +117,12 @@ namespace Pulumi.Vault.Database.Outputs
             string? pluginName,
 
             ImmutableArray<string> rootRotationStatements,
+
+            int? rotationPeriod,
+
+            string? rotationSchedule,
+
+            int? rotationWindow,
 
             bool? tls,
 
@@ -108,12 +136,16 @@ namespace Pulumi.Vault.Database.Outputs
             Base64Pem = base64Pem;
             BucketName = bucketName;
             Data = data;
+            DisableAutomatedRotation = disableAutomatedRotation;
             Hosts = hosts;
             InsecureTls = insecureTls;
             Name = name;
             Password = password;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
+            RotationPeriod = rotationPeriod;
+            RotationSchedule = rotationSchedule;
+            RotationWindow = rotationWindow;
             Tls = tls;
             Username = username;
             UsernameTemplate = usernameTemplate;

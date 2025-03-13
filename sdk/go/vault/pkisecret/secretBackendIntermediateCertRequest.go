@@ -76,6 +76,8 @@ type SecretBackendIntermediateCertRequest struct {
 	KeyRef pulumi.StringOutput `pulumi:"keyRef"`
 	// The desired key type
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
+	// Specifies keyUsage to encode in the generated certificate.
+	KeyUsages pulumi.StringArrayOutput `pulumi:"keyUsages"`
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
@@ -105,6 +107,10 @@ type SecretBackendIntermediateCertRequest struct {
 	PrivateKeyType pulumi.StringOutput `pulumi:"privateKeyType"`
 	// The province
 	Province pulumi.StringPtrOutput `pulumi:"province"`
+	// The requested Subject's named Serial Number
+	SerialNumber pulumi.StringPtrOutput `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrOutput `pulumi:"signatureBits"`
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -189,6 +195,8 @@ type secretBackendIntermediateCertRequestState struct {
 	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
+	// Specifies keyUsage to encode in the generated certificate.
+	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
@@ -218,6 +226,10 @@ type secretBackendIntermediateCertRequestState struct {
 	PrivateKeyType *string `pulumi:"privateKeyType"`
 	// The province
 	Province *string `pulumi:"province"`
+	// The requested Subject's named Serial Number
+	SerialNumber *string `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -260,6 +272,8 @@ type SecretBackendIntermediateCertRequestState struct {
 	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
+	// Specifies keyUsage to encode in the generated certificate.
+	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The ID of the previously configured managed key. This field is
@@ -289,6 +303,10 @@ type SecretBackendIntermediateCertRequestState struct {
 	PrivateKeyType pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
+	// The requested Subject's named Serial Number
+	SerialNumber pulumi.StringPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -331,6 +349,8 @@ type secretBackendIntermediateCertRequestArgs struct {
 	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
+	// Specifies keyUsage to encode in the generated certificate.
+	KeyUsages []string `pulumi:"keyUsages"`
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
@@ -356,6 +376,10 @@ type secretBackendIntermediateCertRequestArgs struct {
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The province
 	Province *string `pulumi:"province"`
+	// The requested Subject's named Serial Number
+	SerialNumber *string `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -395,6 +419,8 @@ type SecretBackendIntermediateCertRequestArgs struct {
 	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
+	// Specifies keyUsage to encode in the generated certificate.
+	KeyUsages pulumi.StringArrayInput
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The ID of the previously configured managed key. This field is
@@ -420,6 +446,10 @@ type SecretBackendIntermediateCertRequestArgs struct {
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
+	// The requested Subject's named Serial Number
+	SerialNumber pulumi.StringPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Type of intermediate to create. Must be either \"exported\" or \"internal\"
@@ -590,6 +620,11 @@ func (o SecretBackendIntermediateCertRequestOutput) KeyType() pulumi.StringPtrOu
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
+// Specifies keyUsage to encode in the generated certificate.
+func (o SecretBackendIntermediateCertRequestOutput) KeyUsages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringArrayOutput { return v.KeyUsages }).(pulumi.StringArrayOutput)
+}
+
 // The locality
 func (o SecretBackendIntermediateCertRequestOutput) Locality() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.Locality }).(pulumi.StringPtrOutput)
@@ -653,6 +688,16 @@ func (o SecretBackendIntermediateCertRequestOutput) PrivateKeyType() pulumi.Stri
 // The province
 func (o SecretBackendIntermediateCertRequestOutput) Province() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.Province }).(pulumi.StringPtrOutput)
+}
+
+// The requested Subject's named Serial Number
+func (o SecretBackendIntermediateCertRequestOutput) SerialNumber() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.SerialNumber }).(pulumi.StringPtrOutput)
+}
+
+// The number of bits to use in the signature algorithm
+func (o SecretBackendIntermediateCertRequestOutput) SignatureBits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.IntPtrOutput { return v.SignatureBits }).(pulumi.IntPtrOutput)
 }
 
 // The street address

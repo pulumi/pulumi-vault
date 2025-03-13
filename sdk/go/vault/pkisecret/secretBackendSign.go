@@ -82,6 +82,8 @@ type SecretBackendSign struct {
 	Backend pulumi.StringOutput `pulumi:"backend"`
 	// The CA chain
 	CaChains pulumi.StringArrayOutput `pulumi:"caChains"`
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata pulumi.StringPtrOutput `pulumi:"certMetadata"`
 	// The certificate
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// CN of certificate to create
@@ -112,6 +114,8 @@ type SecretBackendSign struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
@@ -171,6 +175,8 @@ type secretBackendSignState struct {
 	Backend *string `pulumi:"backend"`
 	// The CA chain
 	CaChains []string `pulumi:"caChains"`
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata *string `pulumi:"certMetadata"`
 	// The certificate
 	Certificate *string `pulumi:"certificate"`
 	// CN of certificate to create
@@ -201,6 +207,8 @@ type secretBackendSignState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
@@ -222,6 +230,8 @@ type SecretBackendSignState struct {
 	Backend pulumi.StringPtrInput
 	// The CA chain
 	CaChains pulumi.StringArrayInput
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata pulumi.StringPtrInput
 	// The certificate
 	Certificate pulumi.StringPtrInput
 	// CN of certificate to create
@@ -252,6 +262,8 @@ type SecretBackendSignState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
@@ -275,6 +287,8 @@ type secretBackendSignArgs struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata *string `pulumi:"certMetadata"`
 	// CN of certificate to create
 	CommonName string `pulumi:"commonName"`
 	// The CSR
@@ -299,6 +313,8 @@ type secretBackendSignArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
 	// Time to live
@@ -315,6 +331,8 @@ type SecretBackendSignArgs struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The PKI secret backend the resource belongs to.
 	Backend pulumi.StringInput
+	// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+	CertMetadata pulumi.StringPtrInput
 	// CN of certificate to create
 	CommonName pulumi.StringInput
 	// The CSR
@@ -339,6 +357,8 @@ type SecretBackendSignArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
 	// Time to live
@@ -454,6 +474,11 @@ func (o SecretBackendSignOutput) CaChains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.CaChains }).(pulumi.StringArrayOutput)
 }
 
+// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+func (o SecretBackendSignOutput) CertMetadata() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.CertMetadata }).(pulumi.StringPtrOutput)
+}
+
 // The certificate
 func (o SecretBackendSignOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
@@ -518,6 +543,11 @@ func (o SecretBackendSignOutput) Name() pulumi.StringOutput {
 // *Available only for Vault Enterprise*.
 func (o SecretBackendSignOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+func (o SecretBackendSignOutput) NotAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
 }
 
 // List of other SANs

@@ -27,8 +27,6 @@ namespace Pulumi.Vault.PkiSecret
     {
         /// <summary>
         /// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-        /// 
-        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         [Output("auditFields")]
         public Output<ImmutableArray<string>> AuditFields { get; private set; } = null!;
@@ -51,6 +49,14 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("defaultPathPolicy")]
         public Output<string?> DefaultPathPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// A comma-separated list of validations not to perform on CMPv2 messages.
+        /// 
+        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
+        /// </summary>
+        [Output("disabledValidations")]
+        public Output<ImmutableArray<string>> DisabledValidations { get; private set; } = null!;
 
         /// <summary>
         /// If set, parse out fields from the provided CSR making them available for Sentinel policies.
@@ -130,8 +136,6 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-        /// 
-        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         public InputList<string> AuditFields
         {
@@ -157,6 +161,20 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("defaultPathPolicy")]
         public Input<string>? DefaultPathPolicy { get; set; }
+
+        [Input("disabledValidations")]
+        private InputList<string>? _disabledValidations;
+
+        /// <summary>
+        /// A comma-separated list of validations not to perform on CMPv2 messages.
+        /// 
+        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
+        /// </summary>
+        public InputList<string> DisabledValidations
+        {
+            get => _disabledValidations ?? (_disabledValidations = new InputList<string>());
+            set => _disabledValidations = value;
+        }
 
         /// <summary>
         /// If set, parse out fields from the provided CSR making them available for Sentinel policies.
@@ -192,8 +210,6 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-        /// 
-        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         public InputList<string> AuditFields
         {
@@ -219,6 +235,20 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("defaultPathPolicy")]
         public Input<string>? DefaultPathPolicy { get; set; }
+
+        [Input("disabledValidations")]
+        private InputList<string>? _disabledValidations;
+
+        /// <summary>
+        /// A comma-separated list of validations not to perform on CMPv2 messages.
+        /// 
+        /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
+        /// </summary>
+        public InputList<string> DisabledValidations
+        {
+            get => _disabledValidations ?? (_disabledValidations = new InputList<string>());
+            set => _disabledValidations = value;
+        }
 
         /// <summary>
         /// If set, parse out fields from the provided CSR making them available for Sentinel policies.

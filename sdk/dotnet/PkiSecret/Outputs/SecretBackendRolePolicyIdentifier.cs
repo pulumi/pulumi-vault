@@ -15,8 +15,6 @@ namespace Pulumi.Vault.PkiSecret.Outputs
     {
         /// <summary>
         /// The URL of the CPS for the policy identifier
-        /// 
-        /// Example usage:
         /// </summary>
         public readonly string? Cps;
         /// <summary>

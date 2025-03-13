@@ -30,10 +30,15 @@ public final class SecretsMountCassandra {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     */
+    private @Nullable Map<String,String> data;
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,String> data;
+    private @Nullable Boolean disableAutomatedRotation;
     /**
      * @return Cassandra hosts to connect to.
      * 
@@ -85,6 +90,25 @@ public final class SecretsMountCassandra {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Integer rotationPeriod;
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable String rotationSchedule;
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Integer rotationWindow;
+    /**
      * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
      * 
      */
@@ -125,11 +149,18 @@ public final class SecretsMountCassandra {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
-     * Supported list of database secrets engines that can be configured:
-     * 
      */
     public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
+    }
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     * Supported list of database secrets engines that can be configured:
+     * 
+     */
+    public Optional<Boolean> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
     }
     /**
      * @return Cassandra hosts to connect to.
@@ -202,6 +233,31 @@ public final class SecretsMountCassandra {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Integer> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<String> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Integer> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
+    }
+    /**
      * @return Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
      * 
      */
@@ -243,6 +299,7 @@ public final class SecretsMountCassandra {
         private @Nullable List<String> allowedRoles;
         private @Nullable Integer connectTimeout;
         private @Nullable Map<String,String> data;
+        private @Nullable Boolean disableAutomatedRotation;
         private @Nullable List<String> hosts;
         private @Nullable Boolean insecureTls;
         private String name;
@@ -253,6 +310,9 @@ public final class SecretsMountCassandra {
         private @Nullable Integer port;
         private @Nullable Integer protocolVersion;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable Integer rotationPeriod;
+        private @Nullable String rotationSchedule;
+        private @Nullable Integer rotationWindow;
         private @Nullable Boolean skipVerification;
         private @Nullable Boolean tls;
         private @Nullable String username;
@@ -263,6 +323,7 @@ public final class SecretsMountCassandra {
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.connectTimeout = defaults.connectTimeout;
     	      this.data = defaults.data;
+    	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
     	      this.hosts = defaults.hosts;
     	      this.insecureTls = defaults.insecureTls;
     	      this.name = defaults.name;
@@ -273,6 +334,9 @@ public final class SecretsMountCassandra {
     	      this.port = defaults.port;
     	      this.protocolVersion = defaults.protocolVersion;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.rotationPeriod = defaults.rotationPeriod;
+    	      this.rotationSchedule = defaults.rotationSchedule;
+    	      this.rotationWindow = defaults.rotationWindow;
     	      this.skipVerification = defaults.skipVerification;
     	      this.tls = defaults.tls;
     	      this.username = defaults.username;
@@ -298,6 +362,12 @@ public final class SecretsMountCassandra {
         public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disableAutomatedRotation(@Nullable Boolean disableAutomatedRotation) {
+
+            this.disableAutomatedRotation = disableAutomatedRotation;
             return this;
         }
         @CustomType.Setter
@@ -369,6 +439,24 @@ public final class SecretsMountCassandra {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder rotationPeriod(@Nullable Integer rotationPeriod) {
+
+            this.rotationPeriod = rotationPeriod;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder rotationSchedule(@Nullable String rotationSchedule) {
+
+            this.rotationSchedule = rotationSchedule;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder rotationWindow(@Nullable Integer rotationWindow) {
+
+            this.rotationWindow = rotationWindow;
+            return this;
+        }
+        @CustomType.Setter
         public Builder skipVerification(@Nullable Boolean skipVerification) {
 
             this.skipVerification = skipVerification;
@@ -397,6 +485,7 @@ public final class SecretsMountCassandra {
             _resultValue.allowedRoles = allowedRoles;
             _resultValue.connectTimeout = connectTimeout;
             _resultValue.data = data;
+            _resultValue.disableAutomatedRotation = disableAutomatedRotation;
             _resultValue.hosts = hosts;
             _resultValue.insecureTls = insecureTls;
             _resultValue.name = name;
@@ -407,6 +496,9 @@ public final class SecretsMountCassandra {
             _resultValue.port = port;
             _resultValue.protocolVersion = protocolVersion;
             _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.rotationPeriod = rotationPeriod;
+            _resultValue.rotationSchedule = rotationSchedule;
+            _resultValue.rotationWindow = rotationWindow;
             _resultValue.skipVerification = skipVerification;
             _resultValue.tls = tls;
             _resultValue.username = username;

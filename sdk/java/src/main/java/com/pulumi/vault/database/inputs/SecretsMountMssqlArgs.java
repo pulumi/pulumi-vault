@@ -70,8 +70,6 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
-     * Supported list of database secrets engines that can be configured:
-     * 
      */
     @Import(name="data")
     private @Nullable Output<Map<String,String>> data;
@@ -79,11 +77,28 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
-     * Supported list of database secrets engines that can be configured:
-     * 
      */
     public Optional<Output<Map<String,String>>> data() {
         return Optional.ofNullable(this.data);
+    }
+
+    /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     * Supported list of database secrets engines that can be configured:
+     * 
+     */
+    @Import(name="disableAutomatedRotation")
+    private @Nullable Output<Boolean> disableAutomatedRotation;
+
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     * Supported list of database secrets engines that can be configured:
+     * 
+     */
+    public Optional<Output<Boolean>> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
     }
 
     /**
@@ -207,6 +222,59 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Import(name="rotationPeriod")
+    private @Nullable Output<Integer> rotationPeriod;
+
+    /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Output<Integer>> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Import(name="rotationSchedule")
+    private @Nullable Output<String> rotationSchedule;
+
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Output<String>> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    @Import(name="rotationWindow")
+    private @Nullable Output<Integer> rotationWindow;
+
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Output<Integer>> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
+    }
+
+    /**
      * The root credential username used in the connection URL
      * 
      */
@@ -260,6 +328,7 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         this.connectionUrl = $.connectionUrl;
         this.containedDb = $.containedDb;
         this.data = $.data;
+        this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.disableEscaping = $.disableEscaping;
         this.maxConnectionLifetime = $.maxConnectionLifetime;
         this.maxIdleConnections = $.maxIdleConnections;
@@ -268,6 +337,9 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         this.password = $.password;
         this.pluginName = $.pluginName;
         this.rootRotationStatements = $.rootRotationStatements;
+        this.rotationPeriod = $.rotationPeriod;
+        this.rotationSchedule = $.rotationSchedule;
+        this.rotationWindow = $.rotationWindow;
         this.username = $.username;
         this.usernameTemplate = $.usernameTemplate;
         this.verifyConnection = $.verifyConnection;
@@ -370,8 +442,6 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
-         * Supported list of database secrets engines that can be configured:
-         * 
          * @return builder
          * 
          */
@@ -383,13 +453,36 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param data A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          * 
-         * Supported list of database secrets engines that can be configured:
-         * 
          * @return builder
          * 
          */
         public Builder data(Map<String,String> data) {
             return data(Output.of(data));
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+         * 
+         * Supported list of database secrets engines that can be configured:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(@Nullable Output<Boolean> disableAutomatedRotation) {
+            $.disableAutomatedRotation = disableAutomatedRotation;
+            return this;
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+         * 
+         * Supported list of database secrets engines that can be configured:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(Boolean disableAutomatedRotation) {
+            return disableAutomatedRotation(Output.of(disableAutomatedRotation));
         }
 
         /**
@@ -568,6 +661,77 @@ public final class SecretsMountMssqlArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder rootRotationStatements(String... rootRotationStatements) {
             return rootRotationStatements(List.of(rootRotationStatements));
+        }
+
+        /**
+         * @param rotationPeriod The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(@Nullable Output<Integer> rotationPeriod) {
+            $.rotationPeriod = rotationPeriod;
+            return this;
+        }
+
+        /**
+         * @param rotationPeriod The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(Integer rotationPeriod) {
+            return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(@Nullable Output<String> rotationSchedule) {
+            $.rotationSchedule = rotationSchedule;
+            return this;
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(String rotationSchedule) {
+            return rotationSchedule(Output.of(rotationSchedule));
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(@Nullable Output<Integer> rotationWindow) {
+            $.rotationWindow = rotationWindow;
+            return this;
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(Integer rotationWindow) {
+            return rotationWindow(Output.of(rotationWindow));
         }
 
         /**

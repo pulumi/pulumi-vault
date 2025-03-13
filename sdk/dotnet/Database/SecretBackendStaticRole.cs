@@ -93,6 +93,16 @@ namespace Pulumi.Vault.Database
         [Output("backend")]
         public Output<string> Backend { get; private set; } = null!;
 
+        [Output("credentialConfig")]
+        public Output<ImmutableDictionary<string, string>?> CredentialConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+        /// can be done in `credential_config`.
+        /// </summary>
+        [Output("credentialType")]
+        public Output<string> CredentialType { get; private set; } = null!;
+
         /// <summary>
         /// The unique name of the database connection to use for the static role.
         /// </summary>
@@ -151,6 +161,13 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("selfManagedPassword")]
         public Output<string?> SelfManagedPassword { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to true, Vault will skip the
+        /// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+        /// </summary>
+        [Output("skipImportRotation")]
+        public Output<bool?> SkipImportRotation { get; private set; } = null!;
 
         /// <summary>
         /// The database username that this static role corresponds to.
@@ -213,6 +230,21 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
+
+        [Input("credentialConfig")]
+        private InputMap<string>? _credentialConfig;
+        public InputMap<string> CredentialConfig
+        {
+            get => _credentialConfig ?? (_credentialConfig = new InputMap<string>());
+            set => _credentialConfig = value;
+        }
+
+        /// <summary>
+        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+        /// can be done in `credential_config`.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
 
         /// <summary>
         /// The unique name of the database connection to use for the static role.
@@ -290,6 +322,13 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
+        /// If set to true, Vault will skip the
+        /// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+        /// </summary>
+        [Input("skipImportRotation")]
+        public Input<bool>? SkipImportRotation { get; set; }
+
+        /// <summary>
         /// The database username that this static role corresponds to.
         /// </summary>
         [Input("username", required: true)]
@@ -308,6 +347,21 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        [Input("credentialConfig")]
+        private InputMap<string>? _credentialConfig;
+        public InputMap<string> CredentialConfig
+        {
+            get => _credentialConfig ?? (_credentialConfig = new InputMap<string>());
+            set => _credentialConfig = value;
+        }
+
+        /// <summary>
+        /// The credential type for the user, can be one of "password", "rsa_private_key" or "client_certificate".The configuration
+        /// can be done in `credential_config`.
+        /// </summary>
+        [Input("credentialType")]
+        public Input<string>? CredentialType { get; set; }
 
         /// <summary>
         /// The unique name of the database connection to use for the static role.
@@ -383,6 +437,13 @@ namespace Pulumi.Vault.Database
                 _selfManagedPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// If set to true, Vault will skip the
+        /// initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+        /// </summary>
+        [Input("skipImportRotation")]
+        public Input<bool>? SkipImportRotation { get; set; }
 
         /// <summary>
         /// The database username that this static role corresponds to.

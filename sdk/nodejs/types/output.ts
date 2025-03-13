@@ -1235,10 +1235,14 @@ export namespace database {
         connectTimeout?: number;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Cassandra hosts to connect to.
          */
@@ -1280,6 +1284,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
          */
         skipVerification?: boolean;
@@ -1314,10 +1334,14 @@ export namespace database {
         bucketName?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
@@ -1342,6 +1366,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * Specifies whether to use TLS when connecting to Couchbase.
          */
@@ -1385,10 +1425,14 @@ export namespace database {
         clientKey?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Whether to disable certificate verification
          */
@@ -1409,6 +1453,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * This, if set, is used to set the SNI host when connecting via TLS
          */
@@ -1444,10 +1504,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Disable special character escaping in username and password
          */
@@ -1481,6 +1545,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -1503,10 +1583,14 @@ export namespace database {
         connectTimeout?: number;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Influxdb host to connect to.
          */
@@ -1544,6 +1628,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * Whether to use TLS when connecting to Influxdb.
          */
         tls?: boolean;
@@ -1574,10 +1674,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1607,6 +1711,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -1629,10 +1749,14 @@ export namespace database {
         allowedRoles?: string[];
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Name of the database connection.
          */
@@ -1658,6 +1782,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
@@ -1680,10 +1820,14 @@ export namespace database {
         containedDb?: boolean;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Disable special character escaping in username and password
          */
@@ -1717,6 +1861,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -1747,10 +1907,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1779,6 +1943,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -1822,10 +2002,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1854,6 +2038,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -1897,10 +2097,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -1929,6 +2133,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -1972,10 +2192,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2004,6 +2228,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
@@ -2043,10 +2283,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
@@ -2079,6 +2323,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * Set to true in order to split statements after semi-colons.
          */
@@ -2114,10 +2374,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Disable special character escaping in username and password
          */
@@ -2158,6 +2422,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
@@ -2201,10 +2481,14 @@ export namespace database {
         caCert?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Specifies the host to connect to
          */
@@ -2234,6 +2518,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * Specifies whether to use TLS when connecting to Redis.
          */
         tls?: boolean;
@@ -2256,10 +2556,14 @@ export namespace database {
         allowedRoles?: string[];
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Name of the database connection.
          */
@@ -2280,6 +2584,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * The configuration endpoint for the ElastiCache cluster to connect to.
          */
@@ -2307,10 +2627,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Disable special character escaping in username and password
          */
@@ -2344,6 +2668,22 @@ export namespace database {
          */
         rootRotationStatements?: string[];
         /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
+        /**
          * The root credential username used in the connection URL
          */
         username?: string;
@@ -2370,10 +2710,14 @@ export namespace database {
         connectionUrl?: string;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+         */
+        data?: {[key: string]: string};
+        /**
+         * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        data?: {[key: string]: string};
+        disableAutomatedRotation?: boolean;
         /**
          * Maximum number of seconds a connection may be reused.
          */
@@ -2402,6 +2746,22 @@ export namespace database {
          * A list of database statements to be executed to rotate the root user's credentials.
          */
         rootRotationStatements?: string[];
+        /**
+         * The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         */
+        rotationPeriod?: number;
+        /**
+         * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         */
+        rotationSchedule?: string;
+        /**
+         * The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         */
+        rotationWindow?: number;
         /**
          * The root credential username used in the connection URL
          */
@@ -2942,8 +3302,6 @@ export namespace pkiSecret {
     export interface SecretBackendRolePolicyIdentifier {
         /**
          * The URL of the CPS for the policy identifier
-         *
-         * Example usage:
          */
         cps?: string;
         /**

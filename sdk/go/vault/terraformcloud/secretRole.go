@@ -69,7 +69,7 @@ type SecretRole struct {
 	Namespace    pulumi.StringPtrOutput `pulumi:"namespace"`
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	TeamId       pulumi.StringPtrOutput `pulumi:"teamId"`
-	// Specifies the TTL for this role.
+	// Specifies the TTL for this role, in seconds.
 	Ttl    pulumi.IntPtrOutput    `pulumi:"ttl"`
 	UserId pulumi.StringPtrOutput `pulumi:"userId"`
 }
@@ -115,7 +115,7 @@ type secretRoleState struct {
 	Namespace    *string `pulumi:"namespace"`
 	Organization *string `pulumi:"organization"`
 	TeamId       *string `pulumi:"teamId"`
-	// Specifies the TTL for this role.
+	// Specifies the TTL for this role, in seconds.
 	Ttl    *int    `pulumi:"ttl"`
 	UserId *string `pulumi:"userId"`
 }
@@ -132,7 +132,7 @@ type SecretRoleState struct {
 	Namespace    pulumi.StringPtrInput
 	Organization pulumi.StringPtrInput
 	TeamId       pulumi.StringPtrInput
-	// Specifies the TTL for this role.
+	// Specifies the TTL for this role, in seconds.
 	Ttl    pulumi.IntPtrInput
 	UserId pulumi.StringPtrInput
 }
@@ -153,7 +153,7 @@ type secretRoleArgs struct {
 	Namespace    *string `pulumi:"namespace"`
 	Organization *string `pulumi:"organization"`
 	TeamId       *string `pulumi:"teamId"`
-	// Specifies the TTL for this role.
+	// Specifies the TTL for this role, in seconds.
 	Ttl    *int    `pulumi:"ttl"`
 	UserId *string `pulumi:"userId"`
 }
@@ -171,7 +171,7 @@ type SecretRoleArgs struct {
 	Namespace    pulumi.StringPtrInput
 	Organization pulumi.StringPtrInput
 	TeamId       pulumi.StringPtrInput
-	// Specifies the TTL for this role.
+	// Specifies the TTL for this role, in seconds.
 	Ttl    pulumi.IntPtrInput
 	UserId pulumi.StringPtrInput
 }
@@ -292,7 +292,7 @@ func (o SecretRoleOutput) TeamId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.StringPtrOutput { return v.TeamId }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the TTL for this role.
+// Specifies the TTL for this role, in seconds.
 func (o SecretRoleOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretRole) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }

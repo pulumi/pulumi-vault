@@ -91,6 +91,22 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly excludeCnFromSans!: pulumi.Output<boolean | undefined>;
     /**
+     * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly excludedDnsDomains!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly excludedEmailAddresses!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly excludedIpRanges!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly excludedUriDomains!: pulumi.Output<string[] | undefined>;
+    /**
      * The format of data
      */
     public readonly format!: pulumi.Output<string | undefined>;
@@ -125,6 +141,16 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Set the Not After field of the certificate with specified date value. 
+     * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+     * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    public readonly notAfter!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    public readonly notBeforeDuration!: pulumi.Output<string | undefined>;
+    /**
      * The organization
      */
     public readonly organization!: pulumi.Output<string | undefined>;
@@ -140,6 +166,18 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      * List of domains for which certificates are allowed to be issued
      */
     public readonly permittedDnsDomains!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly permittedEmailAddresses!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly permittedIpRanges!: pulumi.Output<string[] | undefined>;
+    /**
+     * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    public readonly permittedUriDomains!: pulumi.Output<string[] | undefined>;
     /**
      * The postal code
      */
@@ -157,6 +195,14 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     public /*out*/ readonly serialNumber!: pulumi.Output<string>;
     /**
+     * The number of bits to use in the signature algorithm
+     */
+    public readonly signatureBits!: pulumi.Output<number | undefined>;
+    /**
+     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     */
+    public readonly skid!: pulumi.Output<string | undefined>;
+    /**
      * The street address
      */
     public readonly streetAddress!: pulumi.Output<string | undefined>;
@@ -172,6 +218,10 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      * Preserve CSR values
      */
     public readonly useCsrValues!: pulumi.Output<boolean | undefined>;
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     */
+    public readonly usePss!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a SecretBackendRootSignIntermediate resource with the given unique name, arguments, and options.
@@ -195,6 +245,10 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["country"] = state ? state.country : undefined;
             resourceInputs["csr"] = state ? state.csr : undefined;
             resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
+            resourceInputs["excludedDnsDomains"] = state ? state.excludedDnsDomains : undefined;
+            resourceInputs["excludedEmailAddresses"] = state ? state.excludedEmailAddresses : undefined;
+            resourceInputs["excludedIpRanges"] = state ? state.excludedIpRanges : undefined;
+            resourceInputs["excludedUriDomains"] = state ? state.excludedUriDomains : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
             resourceInputs["ipSans"] = state ? state.ipSans : undefined;
             resourceInputs["issuerRef"] = state ? state.issuerRef : undefined;
@@ -202,18 +256,26 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["locality"] = state ? state.locality : undefined;
             resourceInputs["maxPathLength"] = state ? state.maxPathLength : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
+            resourceInputs["notBeforeDuration"] = state ? state.notBeforeDuration : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["ou"] = state ? state.ou : undefined;
             resourceInputs["permittedDnsDomains"] = state ? state.permittedDnsDomains : undefined;
+            resourceInputs["permittedEmailAddresses"] = state ? state.permittedEmailAddresses : undefined;
+            resourceInputs["permittedIpRanges"] = state ? state.permittedIpRanges : undefined;
+            resourceInputs["permittedUriDomains"] = state ? state.permittedUriDomains : undefined;
             resourceInputs["postalCode"] = state ? state.postalCode : undefined;
             resourceInputs["province"] = state ? state.province : undefined;
             resourceInputs["revoke"] = state ? state.revoke : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["signatureBits"] = state ? state.signatureBits : undefined;
+            resourceInputs["skid"] = state ? state.skid : undefined;
             resourceInputs["streetAddress"] = state ? state.streetAddress : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
             resourceInputs["useCsrValues"] = state ? state.useCsrValues : undefined;
+            resourceInputs["usePss"] = state ? state.usePss : undefined;
         } else {
             const args = argsOrState as SecretBackendRootSignIntermediateArgs | undefined;
             if ((!args || args.backend === undefined) && !opts.urn) {
@@ -231,23 +293,35 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["country"] = args ? args.country : undefined;
             resourceInputs["csr"] = args ? args.csr : undefined;
             resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
+            resourceInputs["excludedDnsDomains"] = args ? args.excludedDnsDomains : undefined;
+            resourceInputs["excludedEmailAddresses"] = args ? args.excludedEmailAddresses : undefined;
+            resourceInputs["excludedIpRanges"] = args ? args.excludedIpRanges : undefined;
+            resourceInputs["excludedUriDomains"] = args ? args.excludedUriDomains : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
             resourceInputs["ipSans"] = args ? args.ipSans : undefined;
             resourceInputs["issuerRef"] = args ? args.issuerRef : undefined;
             resourceInputs["locality"] = args ? args.locality : undefined;
             resourceInputs["maxPathLength"] = args ? args.maxPathLength : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
+            resourceInputs["notBeforeDuration"] = args ? args.notBeforeDuration : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["ou"] = args ? args.ou : undefined;
             resourceInputs["permittedDnsDomains"] = args ? args.permittedDnsDomains : undefined;
+            resourceInputs["permittedEmailAddresses"] = args ? args.permittedEmailAddresses : undefined;
+            resourceInputs["permittedIpRanges"] = args ? args.permittedIpRanges : undefined;
+            resourceInputs["permittedUriDomains"] = args ? args.permittedUriDomains : undefined;
             resourceInputs["postalCode"] = args ? args.postalCode : undefined;
             resourceInputs["province"] = args ? args.province : undefined;
             resourceInputs["revoke"] = args ? args.revoke : undefined;
+            resourceInputs["signatureBits"] = args ? args.signatureBits : undefined;
+            resourceInputs["skid"] = args ? args.skid : undefined;
             resourceInputs["streetAddress"] = args ? args.streetAddress : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
             resourceInputs["useCsrValues"] = args ? args.useCsrValues : undefined;
+            resourceInputs["usePss"] = args ? args.usePss : undefined;
             resourceInputs["caChains"] = undefined /*out*/;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["certificateBundle"] = undefined /*out*/;
@@ -301,6 +375,22 @@ export interface SecretBackendRootSignIntermediateState {
      */
     excludeCnFromSans?: pulumi.Input<boolean>;
     /**
+     * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The format of data
      */
     format?: pulumi.Input<string>;
@@ -335,6 +425,16 @@ export interface SecretBackendRootSignIntermediateState {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Set the Not After field of the certificate with specified date value. 
+     * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+     * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    notBeforeDuration?: pulumi.Input<string>;
+    /**
      * The organization
      */
     organization?: pulumi.Input<string>;
@@ -350,6 +450,18 @@ export interface SecretBackendRootSignIntermediateState {
      * List of domains for which certificates are allowed to be issued
      */
     permittedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    permittedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    permittedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    permittedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The postal code
      */
@@ -367,6 +479,14 @@ export interface SecretBackendRootSignIntermediateState {
      */
     serialNumber?: pulumi.Input<string>;
     /**
+     * The number of bits to use in the signature algorithm
+     */
+    signatureBits?: pulumi.Input<number>;
+    /**
+     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     */
+    skid?: pulumi.Input<string>;
+    /**
      * The street address
      */
     streetAddress?: pulumi.Input<string>;
@@ -382,6 +502,10 @@ export interface SecretBackendRootSignIntermediateState {
      * Preserve CSR values
      */
     useCsrValues?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     */
+    usePss?: pulumi.Input<boolean>;
 }
 
 /**
@@ -413,6 +537,22 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     excludeCnFromSans?: pulumi.Input<boolean>;
     /**
+     * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     */
+    excludedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The format of data
      */
     format?: pulumi.Input<string>;
@@ -443,6 +583,16 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Set the Not After field of the certificate with specified date value. 
+     * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+     * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
+     * Specifies the duration by which to backdate the NotBefore property.
+     */
+    notBeforeDuration?: pulumi.Input<string>;
+    /**
      * The organization
      */
     organization?: pulumi.Input<string>;
@@ -459,6 +609,18 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     permittedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    permittedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    permittedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     */
+    permittedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The postal code
      */
     postalCode?: pulumi.Input<string>;
@@ -470,6 +632,14 @@ export interface SecretBackendRootSignIntermediateArgs {
      * If set to `true`, the certificate will be revoked on resource destruction.
      */
     revoke?: pulumi.Input<boolean>;
+    /**
+     * The number of bits to use in the signature algorithm
+     */
+    signatureBits?: pulumi.Input<number>;
+    /**
+     * Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+     */
+    skid?: pulumi.Input<string>;
     /**
      * The street address
      */
@@ -486,4 +656,8 @@ export interface SecretBackendRootSignIntermediateArgs {
      * Preserve CSR values
      */
     useCsrValues?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+     */
+    usePss?: pulumi.Input<boolean>;
 }

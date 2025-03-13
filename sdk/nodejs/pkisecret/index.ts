@@ -15,6 +15,11 @@ export type BackendConfigAcme = import("./backendConfigAcme").BackendConfigAcme;
 export const BackendConfigAcme: typeof import("./backendConfigAcme").BackendConfigAcme = null as any;
 utilities.lazyLoad(exports, ["BackendConfigAcme"], () => require("./backendConfigAcme"));
 
+export { BackendConfigAutoTidyArgs, BackendConfigAutoTidyState } from "./backendConfigAutoTidy";
+export type BackendConfigAutoTidy = import("./backendConfigAutoTidy").BackendConfigAutoTidy;
+export const BackendConfigAutoTidy: typeof import("./backendConfigAutoTidy").BackendConfigAutoTidy = null as any;
+utilities.lazyLoad(exports, ["BackendConfigAutoTidy"], () => require("./backendConfigAutoTidy"));
+
 export { BackendConfigClusterArgs, BackendConfigClusterState } from "./backendConfigCluster";
 export type BackendConfigCluster = import("./backendConfigCluster").BackendConfigCluster;
 export const BackendConfigCluster: typeof import("./backendConfigCluster").BackendConfigCluster = null as any;
@@ -29,6 +34,11 @@ export { BackendConfigEstArgs, BackendConfigEstState } from "./backendConfigEst"
 export type BackendConfigEst = import("./backendConfigEst").BackendConfigEst;
 export const BackendConfigEst: typeof import("./backendConfigEst").BackendConfigEst = null as any;
 utilities.lazyLoad(exports, ["BackendConfigEst"], () => require("./backendConfigEst"));
+
+export { GetBackendCertMetadataArgs, GetBackendCertMetadataResult, GetBackendCertMetadataOutputArgs } from "./getBackendCertMetadata";
+export const getBackendCertMetadata: typeof import("./getBackendCertMetadata").getBackendCertMetadata = null as any;
+export const getBackendCertMetadataOutput: typeof import("./getBackendCertMetadata").getBackendCertMetadataOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendCertMetadata","getBackendCertMetadataOutput"], () => require("./getBackendCertMetadata"));
 
 export { GetBackendConfigCmpv2Args, GetBackendConfigCmpv2Result, GetBackendConfigCmpv2OutputArgs } from "./getBackendConfigCmpv2";
 export const getBackendConfigCmpv2: typeof import("./getBackendConfigCmpv2").getBackendConfigCmpv2 = null as any;
@@ -134,6 +144,8 @@ const _module = {
                 return new BackendAcmeEab(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigAcme:BackendConfigAcme":
                 return new BackendConfigAcme(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy":
+                return new BackendConfigAutoTidy(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigCluster:BackendConfigCluster":
                 return new BackendConfigCluster(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2":
@@ -173,6 +185,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendAcmeEab", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigAcme", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigAutoTidy", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCluster", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCmpv2", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigEst", _module)

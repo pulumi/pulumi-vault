@@ -181,6 +181,38 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.exportable);
     }
     /**
+     * The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     * 
+     */
+    @Export(name="hybridKeyTypeEc", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> hybridKeyTypeEc;
+
+    /**
+     * @return The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     * 
+     */
+    public Output<Optional<String>> hybridKeyTypeEc() {
+        return Codegen.optional(this.hybridKeyTypeEc);
+    }
+    /**
+     * The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     * 
+     */
+    @Export(name="hybridKeyTypePqc", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> hybridKeyTypePqc;
+
+    /**
+     * @return The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     * 
+     */
+    public Output<Optional<String>> hybridKeyTypePqc() {
+        return Codegen.optional(this.hybridKeyTypePqc);
+    }
+    /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      * 
      */
@@ -301,6 +333,22 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     * 
+     */
+    @Export(name="parameterSet", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> parameterSet;
+
+    /**
+     * @return The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     * 
+     */
+    public Output<Optional<String>> parameterSet() {
+        return Codegen.optional(this.parameterSet);
     }
     /**
      * Whether or not the key supports decryption, based on key type.

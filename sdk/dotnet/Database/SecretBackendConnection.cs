@@ -35,6 +35,8 @@ namespace Pulumi.Vault.Database
     ///             "dev",
     ///             "prod",
     ///         },
+    ///         RotationSchedule = "0 * * * SAT",
+    ///         RotationWindow = 3600,
     ///         Postgresql = new Vault.Database.Inputs.SecretBackendConnectionPostgresqlArgs
     ///         {
     ///             ConnectionUrl = "postgres://username:password@host:port/database",
@@ -85,6 +87,12 @@ namespace Pulumi.Vault.Database
         /// </summary>
         [Output("data")]
         public Output<ImmutableDictionary<string, string>?> Data { get; private set; } = null!;
+
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("disableAutomatedRotation")]
+        public Output<bool?> DisableAutomatedRotation { get; private set; } = null!;
 
         /// <summary>
         /// A nested block containing configuration options for Elasticsearch connections.
@@ -206,6 +214,28 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<string>> RootRotationStatements { get; private set; } = null!;
 
         /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationPeriod")]
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
+
+        /// <summary>
         /// A nested block containing configuration options for Snowflake connections.
         /// </summary>
         [Output("snowflake")]
@@ -306,6 +336,12 @@ namespace Pulumi.Vault.Database
             get => _data ?? (_data = new InputMap<string>());
             set => _data = value;
         }
+
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for Elasticsearch connections.
@@ -433,6 +469,28 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
+
+        /// <summary>
         /// A nested block containing configuration options for Snowflake connections.
         /// </summary>
         [Input("snowflake")]
@@ -495,6 +553,12 @@ namespace Pulumi.Vault.Database
             get => _data ?? (_data = new InputMap<string>());
             set => _data = value;
         }
+
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for Elasticsearch connections.
@@ -620,6 +684,28 @@ namespace Pulumi.Vault.Database
             get => _rootRotationStatements ?? (_rootRotationStatements = new InputList<string>());
             set => _rootRotationStatements = value;
         }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// A nested block containing configuration options for Snowflake connections.

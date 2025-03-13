@@ -9,6 +9,8 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.vault.Utilities;
+import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
+import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataPlainArgs;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2PlainArgs;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
@@ -21,6 +23,7 @@ import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyPlainArgs;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
 import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysPlainArgs;
+import com.pulumi.vault.pkiSecret.outputs.GetBackendCertMetadataResult;
 import com.pulumi.vault.pkiSecret.outputs.GetBackendConfigCmpv2Result;
 import com.pulumi.vault.pkiSecret.outputs.GetBackendConfigEstResult;
 import com.pulumi.vault.pkiSecret.outputs.GetBackendIssuerResult;
@@ -30,6 +33,431 @@ import com.pulumi.vault.pkiSecret.outputs.GetBackendKeysResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class PkiSecretFunctions {
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
+     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .name("test")
+     *             .allowedDomains("test.my.domain")
+     *             .allowSubdomains(true)
+     *             .maxTtl("3600")
+     *             .keyUsages(            
+     *                 "DigitalSignature",
+     *                 "KeyAgreement",
+     *                 "KeyEncipherment")
+     *             .noStoreMetadata(false)
+     *             .build());
+     * 
+     *         var testSecretBackendCert = new SecretBackendCert("testSecretBackendCert", SecretBackendCertArgs.builder()
+     *             .backend(testSecretBackendRole.backend())
+     *             .name(testSecretBackendRole.name())
+     *             .commonName("cert.test.my.domain")
+     *             .ttl("720h")
+     *             .minSecondsRemaining(60)
+     *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
+     *             .build());
+     * 
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *             .path(test_root.path())
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetBackendCertMetadataResult> getBackendCertMetadata(GetBackendCertMetadataArgs args) {
+        return getBackendCertMetadata(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
+     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .name("test")
+     *             .allowedDomains("test.my.domain")
+     *             .allowSubdomains(true)
+     *             .maxTtl("3600")
+     *             .keyUsages(            
+     *                 "DigitalSignature",
+     *                 "KeyAgreement",
+     *                 "KeyEncipherment")
+     *             .noStoreMetadata(false)
+     *             .build());
+     * 
+     *         var testSecretBackendCert = new SecretBackendCert("testSecretBackendCert", SecretBackendCertArgs.builder()
+     *             .backend(testSecretBackendRole.backend())
+     *             .name(testSecretBackendRole.name())
+     *             .commonName("cert.test.my.domain")
+     *             .ttl("720h")
+     *             .minSecondsRemaining(60)
+     *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
+     *             .build());
+     * 
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *             .path(test_root.path())
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetBackendCertMetadataResult> getBackendCertMetadataPlain(GetBackendCertMetadataPlainArgs args) {
+        return getBackendCertMetadataPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
+     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .name("test")
+     *             .allowedDomains("test.my.domain")
+     *             .allowSubdomains(true)
+     *             .maxTtl("3600")
+     *             .keyUsages(            
+     *                 "DigitalSignature",
+     *                 "KeyAgreement",
+     *                 "KeyEncipherment")
+     *             .noStoreMetadata(false)
+     *             .build());
+     * 
+     *         var testSecretBackendCert = new SecretBackendCert("testSecretBackendCert", SecretBackendCertArgs.builder()
+     *             .backend(testSecretBackendRole.backend())
+     *             .name(testSecretBackendRole.name())
+     *             .commonName("cert.test.my.domain")
+     *             .ttl("720h")
+     *             .minSecondsRemaining(60)
+     *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
+     *             .build());
+     * 
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *             .path(test_root.path())
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetBackendCertMetadataResult> getBackendCertMetadata(GetBackendCertMetadataArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata", TypeShape.of(GetBackendCertMetadataResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
+     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .name("test")
+     *             .allowedDomains("test.my.domain")
+     *             .allowSubdomains(true)
+     *             .maxTtl("3600")
+     *             .keyUsages(            
+     *                 "DigitalSignature",
+     *                 "KeyAgreement",
+     *                 "KeyEncipherment")
+     *             .noStoreMetadata(false)
+     *             .build());
+     * 
+     *         var testSecretBackendCert = new SecretBackendCert("testSecretBackendCert", SecretBackendCertArgs.builder()
+     *             .backend(testSecretBackendRole.backend())
+     *             .name(testSecretBackendRole.name())
+     *             .commonName("cert.test.my.domain")
+     *             .ttl("720h")
+     *             .minSecondsRemaining(60)
+     *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
+     *             .build());
+     * 
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *             .path(test_root.path())
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetBackendCertMetadataResult> getBackendCertMetadata(GetBackendCertMetadataArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata", TypeShape.of(GetBackendCertMetadataResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRole;
+     * import com.pulumi.vault.pkiSecret.SecretBackendRoleArgs;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCert;
+     * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
+     * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
+     * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var pki = new Mount("pki", MountArgs.builder()
+     *             .path("pki")
+     *             .type("pki")
+     *             .description("PKI secret engine mount")
+     *             .build());
+     * 
+     *         var root = new SecretBackendRootCert("root", SecretBackendRootCertArgs.builder()
+     *             .backend(pki.path())
+     *             .type("internal")
+     *             .commonName("example")
+     *             .ttl("86400")
+     *             .issuerName("example")
+     *             .build());
+     * 
+     *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
+     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .name("test")
+     *             .allowedDomains("test.my.domain")
+     *             .allowSubdomains(true)
+     *             .maxTtl("3600")
+     *             .keyUsages(            
+     *                 "DigitalSignature",
+     *                 "KeyAgreement",
+     *                 "KeyEncipherment")
+     *             .noStoreMetadata(false)
+     *             .build());
+     * 
+     *         var testSecretBackendCert = new SecretBackendCert("testSecretBackendCert", SecretBackendCertArgs.builder()
+     *             .backend(testSecretBackendRole.backend())
+     *             .name(testSecretBackendRole.name())
+     *             .commonName("cert.test.my.domain")
+     *             .ttl("720h")
+     *             .minSecondsRemaining(60)
+     *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
+     *             .build());
+     * 
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *             .path(test_root.path())
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetBackendCertMetadataResult> getBackendCertMetadataPlain(GetBackendCertMetadataPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata", TypeShape.of(GetBackendCertMetadataResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * ## Example Usage
      * 

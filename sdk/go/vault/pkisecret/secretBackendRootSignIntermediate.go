@@ -68,6 +68,14 @@ type SecretBackendRootSignIntermediate struct {
 	Csr pulumi.StringOutput `pulumi:"csr"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrOutput `pulumi:"excludeCnFromSans"`
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains pulumi.StringArrayOutput `pulumi:"excludedDnsDomains"`
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses pulumi.StringArrayOutput `pulumi:"excludedEmailAddresses"`
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges pulumi.StringArrayOutput `pulumi:"excludedIpRanges"`
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains pulumi.StringArrayOutput `pulumi:"excludedUriDomains"`
 	// The format of data
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
@@ -88,6 +96,12 @@ type SecretBackendRootSignIntermediate struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value.
+	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrOutput `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// List of other SANs
@@ -96,6 +110,12 @@ type SecretBackendRootSignIntermediate struct {
 	Ou pulumi.StringPtrOutput `pulumi:"ou"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayOutput `pulumi:"permittedDnsDomains"`
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses pulumi.StringArrayOutput `pulumi:"permittedEmailAddresses"`
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges pulumi.StringArrayOutput `pulumi:"permittedIpRanges"`
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains pulumi.StringArrayOutput `pulumi:"permittedUriDomains"`
 	// The postal code
 	PostalCode pulumi.StringPtrOutput `pulumi:"postalCode"`
 	// The province
@@ -104,6 +124,10 @@ type SecretBackendRootSignIntermediate struct {
 	Revoke pulumi.BoolPtrOutput `pulumi:"revoke"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrOutput `pulumi:"signatureBits"`
+	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	Skid pulumi.StringPtrOutput `pulumi:"skid"`
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Time to live
@@ -112,6 +136,8 @@ type SecretBackendRootSignIntermediate struct {
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
 	// Preserve CSR values
 	UseCsrValues pulumi.BoolPtrOutput `pulumi:"useCsrValues"`
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	UsePss pulumi.BoolPtrOutput `pulumi:"usePss"`
 }
 
 // NewSecretBackendRootSignIntermediate registers a new resource with the given unique name, arguments, and options.
@@ -172,6 +198,14 @@ type secretBackendRootSignIntermediateState struct {
 	Csr *string `pulumi:"csr"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains []string `pulumi:"excludedDnsDomains"`
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses []string `pulumi:"excludedEmailAddresses"`
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
 	// The format of data
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
@@ -192,6 +226,12 @@ type secretBackendRootSignIntermediateState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value.
+	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -200,6 +240,12 @@ type secretBackendRootSignIntermediateState struct {
 	Ou *string `pulumi:"ou"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains []string `pulumi:"permittedDnsDomains"`
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses []string `pulumi:"permittedEmailAddresses"`
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges []string `pulumi:"permittedIpRanges"`
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains []string `pulumi:"permittedUriDomains"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The province
@@ -208,6 +254,10 @@ type secretBackendRootSignIntermediateState struct {
 	Revoke *bool `pulumi:"revoke"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
+	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	Skid *string `pulumi:"skid"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -216,6 +266,8 @@ type secretBackendRootSignIntermediateState struct {
 	UriSans []string `pulumi:"uriSans"`
 	// Preserve CSR values
 	UseCsrValues *bool `pulumi:"useCsrValues"`
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	UsePss *bool `pulumi:"usePss"`
 }
 
 type SecretBackendRootSignIntermediateState struct {
@@ -238,6 +290,14 @@ type SecretBackendRootSignIntermediateState struct {
 	Csr pulumi.StringPtrInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains pulumi.StringArrayInput
 	// The format of data
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
@@ -258,6 +318,12 @@ type SecretBackendRootSignIntermediateState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value.
+	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -266,6 +332,12 @@ type SecretBackendRootSignIntermediateState struct {
 	Ou pulumi.StringPtrInput
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains pulumi.StringArrayInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The province
@@ -274,6 +346,10 @@ type SecretBackendRootSignIntermediateState struct {
 	Revoke pulumi.BoolPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
+	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	Skid pulumi.StringPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
@@ -282,6 +358,8 @@ type SecretBackendRootSignIntermediateState struct {
 	UriSans pulumi.StringArrayInput
 	// Preserve CSR values
 	UseCsrValues pulumi.BoolPtrInput
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	UsePss pulumi.BoolPtrInput
 }
 
 func (SecretBackendRootSignIntermediateState) ElementType() reflect.Type {
@@ -301,6 +379,14 @@ type secretBackendRootSignIntermediateArgs struct {
 	Csr string `pulumi:"csr"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains []string `pulumi:"excludedDnsDomains"`
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses []string `pulumi:"excludedEmailAddresses"`
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
 	// The format of data
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
@@ -319,6 +405,12 @@ type secretBackendRootSignIntermediateArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value.
+	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration *string `pulumi:"notBeforeDuration"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -327,12 +419,22 @@ type secretBackendRootSignIntermediateArgs struct {
 	Ou *string `pulumi:"ou"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains []string `pulumi:"permittedDnsDomains"`
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses []string `pulumi:"permittedEmailAddresses"`
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges []string `pulumi:"permittedIpRanges"`
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains []string `pulumi:"permittedUriDomains"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The province
 	Province *string `pulumi:"province"`
 	// If set to `true`, the certificate will be revoked on resource destruction.
 	Revoke *bool `pulumi:"revoke"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
+	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	Skid *string `pulumi:"skid"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -341,6 +443,8 @@ type secretBackendRootSignIntermediateArgs struct {
 	UriSans []string `pulumi:"uriSans"`
 	// Preserve CSR values
 	UseCsrValues *bool `pulumi:"useCsrValues"`
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	UsePss *bool `pulumi:"usePss"`
 }
 
 // The set of arguments for constructing a SecretBackendRootSignIntermediate resource.
@@ -357,6 +461,14 @@ type SecretBackendRootSignIntermediateArgs struct {
 	Csr pulumi.StringInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains pulumi.StringArrayInput
 	// The format of data
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
@@ -375,6 +487,12 @@ type SecretBackendRootSignIntermediateArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value.
+	// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+	// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
+	// Specifies the duration by which to backdate the NotBefore property.
+	NotBeforeDuration pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -383,12 +501,22 @@ type SecretBackendRootSignIntermediateArgs struct {
 	Ou pulumi.StringPtrInput
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains pulumi.StringArrayInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
 	// If set to `true`, the certificate will be revoked on resource destruction.
 	Revoke pulumi.BoolPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
+	// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+	Skid pulumi.StringPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
@@ -397,6 +525,8 @@ type SecretBackendRootSignIntermediateArgs struct {
 	UriSans pulumi.StringArrayInput
 	// Preserve CSR values
 	UseCsrValues pulumi.BoolPtrInput
+	// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+	UsePss pulumi.BoolPtrInput
 }
 
 func (SecretBackendRootSignIntermediateArgs) ElementType() reflect.Type {
@@ -532,6 +662,26 @@ func (o SecretBackendRootSignIntermediateOutput) ExcludeCnFromSans() pulumi.Bool
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.ExcludeCnFromSans }).(pulumi.BoolPtrOutput)
 }
 
+// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) ExcludedDnsDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.ExcludedDnsDomains }).(pulumi.StringArrayOutput)
+}
+
+// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) ExcludedEmailAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.ExcludedEmailAddresses }).(pulumi.StringArrayOutput)
+}
+
+// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) ExcludedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.ExcludedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) ExcludedUriDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.ExcludedUriDomains }).(pulumi.StringArrayOutput)
+}
+
 // The format of data
 func (o SecretBackendRootSignIntermediateOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
@@ -573,6 +723,18 @@ func (o SecretBackendRootSignIntermediateOutput) Namespace() pulumi.StringPtrOut
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// Set the Not After field of the certificate with specified date value.
+// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
+// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+func (o SecretBackendRootSignIntermediateOutput) NotAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
+}
+
+// Specifies the duration by which to backdate the NotBefore property.
+func (o SecretBackendRootSignIntermediateOutput) NotBeforeDuration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.NotBeforeDuration }).(pulumi.StringPtrOutput)
+}
+
 // The organization
 func (o SecretBackendRootSignIntermediateOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
@@ -591,6 +753,21 @@ func (o SecretBackendRootSignIntermediateOutput) Ou() pulumi.StringPtrOutput {
 // List of domains for which certificates are allowed to be issued
 func (o SecretBackendRootSignIntermediateOutput) PermittedDnsDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.PermittedDnsDomains }).(pulumi.StringArrayOutput)
+}
+
+// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) PermittedEmailAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.PermittedEmailAddresses }).(pulumi.StringArrayOutput)
+}
+
+// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) PermittedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.PermittedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootSignIntermediateOutput) PermittedUriDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringArrayOutput { return v.PermittedUriDomains }).(pulumi.StringArrayOutput)
 }
 
 // The postal code
@@ -613,6 +790,16 @@ func (o SecretBackendRootSignIntermediateOutput) SerialNumber() pulumi.StringOut
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
 }
 
+// The number of bits to use in the signature algorithm
+func (o SecretBackendRootSignIntermediateOutput) SignatureBits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.IntPtrOutput { return v.SignatureBits }).(pulumi.IntPtrOutput)
+}
+
+// Value for the Subject Key Identifier field (RFC 5280 Section 4.2.1.2). Specified as a string in hex format.
+func (o SecretBackendRootSignIntermediateOutput) Skid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.Skid }).(pulumi.StringPtrOutput)
+}
+
 // The street address
 func (o SecretBackendRootSignIntermediateOutput) StreetAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.StringPtrOutput { return v.StreetAddress }).(pulumi.StringPtrOutput)
@@ -631,6 +818,11 @@ func (o SecretBackendRootSignIntermediateOutput) UriSans() pulumi.StringArrayOut
 // Preserve CSR values
 func (o SecretBackendRootSignIntermediateOutput) UseCsrValues() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.UseCsrValues }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used.
+func (o SecretBackendRootSignIntermediateOutput) UsePss() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootSignIntermediate) pulumi.BoolPtrOutput { return v.UsePss }).(pulumi.BoolPtrOutput)
 }
 
 type SecretBackendRootSignIntermediateArrayOutput struct{ *pulumi.OutputState }

@@ -77,7 +77,7 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<string?> TeamId { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the TTL for this role.
+        /// Specifies the TTL for this role, in seconds.
         /// </summary>
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
@@ -159,7 +159,7 @@ namespace Pulumi.Vault.TerraformCloud
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// Specifies the TTL for this role.
+        /// Specifies the TTL for this role, in seconds.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumi.Vault.TerraformCloud
         public Input<string>? TeamId { get; set; }
 
         /// <summary>
-        /// Specifies the TTL for this role.
+        /// Specifies the TTL for this role, in seconds.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }

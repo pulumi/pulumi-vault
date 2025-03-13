@@ -28,10 +28,14 @@ namespace Pulumi.Vault.Database.Outputs
         public readonly bool? ContainedDb;
         /// <summary>
         /// A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string>? Data;
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         /// 
         /// Supported list of database secrets engines that can be configured:
         /// </summary>
-        public readonly ImmutableDictionary<string, string>? Data;
+        public readonly bool? DisableAutomatedRotation;
         /// <summary>
         /// Disable special character escaping in username and password
         /// </summary>
@@ -65,6 +69,22 @@ namespace Pulumi.Vault.Database.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RootRotationStatements;
         /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly int? RotationPeriod;
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly string? RotationSchedule;
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        public readonly int? RotationWindow;
+        /// <summary>
         /// The root credential username used in the connection URL
         /// </summary>
         public readonly string? Username;
@@ -88,6 +108,8 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableDictionary<string, string>? data,
 
+            bool? disableAutomatedRotation,
+
             bool? disableEscaping,
 
             int? maxConnectionLifetime,
@@ -104,6 +126,12 @@ namespace Pulumi.Vault.Database.Outputs
 
             ImmutableArray<string> rootRotationStatements,
 
+            int? rotationPeriod,
+
+            string? rotationSchedule,
+
+            int? rotationWindow,
+
             string? username,
 
             string? usernameTemplate,
@@ -114,6 +142,7 @@ namespace Pulumi.Vault.Database.Outputs
             ConnectionUrl = connectionUrl;
             ContainedDb = containedDb;
             Data = data;
+            DisableAutomatedRotation = disableAutomatedRotation;
             DisableEscaping = disableEscaping;
             MaxConnectionLifetime = maxConnectionLifetime;
             MaxIdleConnections = maxIdleConnections;
@@ -122,6 +151,9 @@ namespace Pulumi.Vault.Database.Outputs
             Password = password;
             PluginName = pluginName;
             RootRotationStatements = rootRotationStatements;
+            RotationPeriod = rotationPeriod;
+            RotationSchedule = rotationSchedule;
+            RotationWindow = rotationWindow;
             Username = username;
             UsernameTemplate = usernameTemplate;
             VerifyConnection = verifyConnection;

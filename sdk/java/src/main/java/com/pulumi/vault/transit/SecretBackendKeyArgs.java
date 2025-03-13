@@ -128,6 +128,40 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     * 
+     */
+    @Import(name="hybridKeyTypeEc")
+    private @Nullable Output<String> hybridKeyTypeEc;
+
+    /**
+     * @return The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     * 
+     */
+    public Optional<Output<String>> hybridKeyTypeEc() {
+        return Optional.ofNullable(this.hybridKeyTypeEc);
+    }
+
+    /**
+     * The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     * 
+     */
+    @Import(name="hybridKeyTypePqc")
+    private @Nullable Output<String> hybridKeyTypePqc;
+
+    /**
+     * @return The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     * 
+     */
+    public Optional<Output<String>> hybridKeyTypePqc() {
+        return Optional.ofNullable(this.hybridKeyTypePqc);
+    }
+
+    /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      * 
      */
@@ -209,6 +243,23 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     * 
+     */
+    @Import(name="parameterSet")
+    private @Nullable Output<String> parameterSet;
+
+    /**
+     * @return The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     * 
+     */
+    public Optional<Output<String>> parameterSet() {
+        return Optional.ofNullable(this.parameterSet);
+    }
+
+    /**
      * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      * 
@@ -235,11 +286,14 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         this.deletionAllowed = $.deletionAllowed;
         this.derived = $.derived;
         this.exportable = $.exportable;
+        this.hybridKeyTypeEc = $.hybridKeyTypeEc;
+        this.hybridKeyTypePqc = $.hybridKeyTypePqc;
         this.keySize = $.keySize;
         this.minDecryptionVersion = $.minDecryptionVersion;
         this.minEncryptionVersion = $.minEncryptionVersion;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.parameterSet = $.parameterSet;
         this.type = $.type;
     }
 
@@ -413,6 +467,52 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param hybridKeyTypeEc The elliptic curve algorithm to use for hybrid signatures.
+         * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hybridKeyTypeEc(@Nullable Output<String> hybridKeyTypeEc) {
+            $.hybridKeyTypeEc = hybridKeyTypeEc;
+            return this;
+        }
+
+        /**
+         * @param hybridKeyTypeEc The elliptic curve algorithm to use for hybrid signatures.
+         * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hybridKeyTypeEc(String hybridKeyTypeEc) {
+            return hybridKeyTypeEc(Output.of(hybridKeyTypeEc));
+        }
+
+        /**
+         * @param hybridKeyTypePqc The post-quantum algorithm to use for hybrid signatures.
+         * Currently, ML-DSA is the only supported key type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hybridKeyTypePqc(@Nullable Output<String> hybridKeyTypePqc) {
+            $.hybridKeyTypePqc = hybridKeyTypePqc;
+            return this;
+        }
+
+        /**
+         * @param hybridKeyTypePqc The post-quantum algorithm to use for hybrid signatures.
+         * Currently, ML-DSA is the only supported key type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hybridKeyTypePqc(String hybridKeyTypePqc) {
+            return hybridKeyTypePqc(Output.of(hybridKeyTypePqc));
+        }
+
+        /**
          * @param keySize The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
          * 
          * @return builder
@@ -521,6 +621,29 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param parameterSet The parameter set to use for ML-DSA. Required for
+         * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(@Nullable Output<String> parameterSet) {
+            $.parameterSet = parameterSet;
+            return this;
+        }
+
+        /**
+         * @param parameterSet The parameter set to use for ML-DSA. Required for
+         * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(String parameterSet) {
+            return parameterSet(Output.of(parameterSet));
         }
 
         /**

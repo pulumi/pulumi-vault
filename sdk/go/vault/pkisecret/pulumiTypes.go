@@ -308,8 +308,6 @@ func (o BackendConfigEstAuthenticatorsPtrOutput) Userpass() pulumi.StringMapOutp
 
 type SecretBackendRolePolicyIdentifier struct {
 	// The URL of the CPS for the policy identifier
-	//
-	// Example usage:
 	Cps *string `pulumi:"cps"`
 	// A notice for the policy identifier
 	Notice *string `pulumi:"notice"`
@@ -330,8 +328,6 @@ type SecretBackendRolePolicyIdentifierInput interface {
 
 type SecretBackendRolePolicyIdentifierArgs struct {
 	// The URL of the CPS for the policy identifier
-	//
-	// Example usage:
 	Cps pulumi.StringPtrInput `pulumi:"cps"`
 	// A notice for the policy identifier
 	Notice pulumi.StringPtrInput `pulumi:"notice"`
@@ -391,8 +387,6 @@ func (o SecretBackendRolePolicyIdentifierOutput) ToSecretBackendRolePolicyIdenti
 }
 
 // The URL of the CPS for the policy identifier
-//
-// Example usage:
 func (o SecretBackendRolePolicyIdentifierOutput) Cps() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SecretBackendRolePolicyIdentifier) *string { return v.Cps }).(pulumi.StringPtrOutput)
 }

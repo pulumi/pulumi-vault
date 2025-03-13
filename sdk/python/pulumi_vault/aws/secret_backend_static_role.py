@@ -21,15 +21,27 @@ class SecretBackendStaticRoleArgs:
     def __init__(__self__, *,
                  rotation_period: pulumi.Input[int],
                  username: pulumi.Input[str],
+                 assume_role_arn: Optional[pulumi.Input[str]] = None,
+                 assume_role_session_name: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
         :param pulumi.Input[int] rotation_period: How often Vault should rotate the password of the user entry.
         :param pulumi.Input[str] username: The username of the existing AWS IAM to manage password rotation for.
+        :param pulumi.Input[str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
+               When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+               If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] assume_role_session_name: Specifies the session name to use when assuming the role.
+               If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`
+        :param pulumi.Input[str] external_id: Specifies the external ID to use when assuming the role.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -39,8 +51,14 @@ class SecretBackendStaticRoleArgs:
         """
         pulumi.set(__self__, "rotation_period", rotation_period)
         pulumi.set(__self__, "username", username)
+        if assume_role_arn is not None:
+            pulumi.set(__self__, "assume_role_arn", assume_role_arn)
+        if assume_role_session_name is not None:
+            pulumi.set(__self__, "assume_role_session_name", assume_role_session_name)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -71,6 +89,35 @@ class SecretBackendStaticRoleArgs:
         pulumi.set(self, "username", value)
 
     @property
+    @pulumi.getter(name="assumeRoleArn")
+    def assume_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ARN of the role that Vault should assume.
+        When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+        If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "assume_role_arn")
+
+    @assume_role_arn.setter
+    def assume_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assume_role_arn", value)
+
+    @property
+    @pulumi.getter(name="assumeRoleSessionName")
+    def assume_role_session_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the session name to use when assuming the role.
+        If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "assume_role_session_name")
+
+    @assume_role_session_name.setter
+    def assume_role_session_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assume_role_session_name", value)
+
+    @property
     @pulumi.getter
     def backend(self) -> Optional[pulumi.Input[str]]:
         """
@@ -82,6 +129,19 @@ class SecretBackendStaticRoleArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the external ID to use when assuming the role.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter
@@ -115,15 +175,27 @@ class SecretBackendStaticRoleArgs:
 @pulumi.input_type
 class _SecretBackendStaticRoleState:
     def __init__(__self__, *,
+                 assume_role_arn: Optional[pulumi.Input[str]] = None,
+                 assume_role_session_name: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
+        :param pulumi.Input[str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
+               When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+               If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] assume_role_session_name: Specifies the session name to use when assuming the role.
+               If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`
+        :param pulumi.Input[str] external_id: Specifies the external ID to use when assuming the role.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -133,8 +205,14 @@ class _SecretBackendStaticRoleState:
         :param pulumi.Input[int] rotation_period: How often Vault should rotate the password of the user entry.
         :param pulumi.Input[str] username: The username of the existing AWS IAM to manage password rotation for.
         """
+        if assume_role_arn is not None:
+            pulumi.set(__self__, "assume_role_arn", assume_role_arn)
+        if assume_role_session_name is not None:
+            pulumi.set(__self__, "assume_role_session_name", assume_role_session_name)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -143,6 +221,35 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="assumeRoleArn")
+    def assume_role_arn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the ARN of the role that Vault should assume.
+        When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+        If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "assume_role_arn")
+
+    @assume_role_arn.setter
+    def assume_role_arn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assume_role_arn", value)
+
+    @property
+    @pulumi.getter(name="assumeRoleSessionName")
+    def assume_role_session_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the session name to use when assuming the role.
+        If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "assume_role_session_name")
+
+    @assume_role_session_name.setter
+    def assume_role_session_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "assume_role_session_name", value)
 
     @property
     @pulumi.getter
@@ -156,6 +263,19 @@ class _SecretBackendStaticRoleState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the external ID to use when assuming the role.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter
@@ -215,7 +335,10 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 assume_role_arn: Optional[pulumi.Input[str]] = None,
+                 assume_role_session_name: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
@@ -238,6 +361,23 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_period=3600)
         ```
 
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            path="my-aws",
+            description="Obtain AWS credentials.")
+        assume_role = vault.aws.SecretBackendStaticRole("assume-role",
+            backend=aws.path,
+            name="assume-role-test",
+            username="my-assume-role-user",
+            assume_role_arn="arn:aws:iam::123456789012:role/assume-role",
+            assume_role_session_name="assume-role-session",
+            external_id="test-id",
+            rotation_period=3600)
+        ```
+
         ## Import
 
         AWS secret backend static role can be imported using the full path to the role
@@ -249,8 +389,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
+               When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+               If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] assume_role_session_name: Specifies the session name to use when assuming the role.
+               If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`
+        :param pulumi.Input[str] external_id: Specifies the external ID to use when assuming the role.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -283,6 +432,23 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             rotation_period=3600)
         ```
 
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws = vault.aws.SecretBackend("aws",
+            path="my-aws",
+            description="Obtain AWS credentials.")
+        assume_role = vault.aws.SecretBackendStaticRole("assume-role",
+            backend=aws.path,
+            name="assume-role-test",
+            username="my-assume-role-user",
+            assume_role_arn="arn:aws:iam::123456789012:role/assume-role",
+            assume_role_session_name="assume-role-session",
+            external_id="test-id",
+            rotation_period=3600)
+        ```
+
         ## Import
 
         AWS secret backend static role can be imported using the full path to the role
@@ -307,7 +473,10 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 assume_role_arn: Optional[pulumi.Input[str]] = None,
+                 assume_role_session_name: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  rotation_period: Optional[pulumi.Input[int]] = None,
@@ -321,7 +490,10 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretBackendStaticRoleArgs.__new__(SecretBackendStaticRoleArgs)
 
+            __props__.__dict__["assume_role_arn"] = assume_role_arn
+            __props__.__dict__["assume_role_session_name"] = assume_role_session_name
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["external_id"] = external_id
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             if rotation_period is None and not opts.urn:
@@ -340,7 +512,10 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            assume_role_arn: Optional[pulumi.Input[str]] = None,
+            assume_role_session_name: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            external_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             rotation_period: Optional[pulumi.Input[int]] = None,
@@ -352,8 +527,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] assume_role_arn: Specifies the ARN of the role that Vault should assume.
+               When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+               If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        :param pulumi.Input[str] assume_role_session_name: Specifies the session name to use when assuming the role.
+               If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] backend: The unique path this backend should be mounted at. Must
                not begin or end with a `/`. Defaults to `aws`
+        :param pulumi.Input[str] external_id: Specifies the external ID to use when assuming the role.
+               Requires Vault 1.19+. *Available only for Vault Enterprise*.
         :param pulumi.Input[str] name: The name to identify this role within the backend.
                Must be unique within the backend.
         :param pulumi.Input[str] namespace: The namespace to provision the resource in.
@@ -367,12 +551,36 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         __props__ = _SecretBackendStaticRoleState.__new__(_SecretBackendStaticRoleState)
 
+        __props__.__dict__["assume_role_arn"] = assume_role_arn
+        __props__.__dict__["assume_role_session_name"] = assume_role_session_name
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["external_id"] = external_id
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="assumeRoleArn")
+    def assume_role_arn(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the ARN of the role that Vault should assume.
+        When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
+        If `assume_role_arn` is provided, `assume_role_session_name` must also be provided.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "assume_role_arn")
+
+    @property
+    @pulumi.getter(name="assumeRoleSessionName")
+    def assume_role_session_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the session name to use when assuming the role.
+        If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "assume_role_session_name")
 
     @property
     @pulumi.getter
@@ -382,6 +590,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         not begin or end with a `/`. Defaults to `aws`
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies the external ID to use when assuming the role.
+        Requires Vault 1.19+. *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter

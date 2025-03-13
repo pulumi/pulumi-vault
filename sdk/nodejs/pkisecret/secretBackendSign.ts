@@ -93,6 +93,10 @@ export class SecretBackendSign extends pulumi.CustomResource {
      */
     public /*out*/ readonly caChains!: pulumi.Output<string[]>;
     /**
+     * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+     */
+    public readonly certMetadata!: pulumi.Output<string | undefined>;
+    /**
      * The certificate
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
@@ -147,6 +151,10 @@ export class SecretBackendSign extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    public readonly notAfter!: pulumi.Output<string | undefined>;
+    /**
      * List of other SANs
      */
     public readonly otherSans!: pulumi.Output<string[] | undefined>;
@@ -184,6 +192,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["caChains"] = state ? state.caChains : undefined;
+            resourceInputs["certMetadata"] = state ? state.certMetadata : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["commonName"] = state ? state.commonName : undefined;
             resourceInputs["csr"] = state ? state.csr : undefined;
@@ -196,6 +205,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["renewPending"] = state ? state.renewPending : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
@@ -215,6 +225,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["altNames"] = args ? args.altNames : undefined;
             resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["certMetadata"] = args ? args.certMetadata : undefined;
             resourceInputs["commonName"] = args ? args.commonName : undefined;
             resourceInputs["csr"] = args ? args.csr : undefined;
             resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
@@ -224,6 +235,7 @@ export class SecretBackendSign extends pulumi.CustomResource {
             resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
@@ -259,6 +271,10 @@ export interface SecretBackendSignState {
      * The CA chain
      */
     caChains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+     */
+    certMetadata?: pulumi.Input<string>;
     /**
      * The certificate
      */
@@ -314,6 +330,10 @@ export interface SecretBackendSignState {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
      * List of other SANs
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
@@ -351,6 +371,10 @@ export interface SecretBackendSignArgs {
      * The PKI secret backend the resource belongs to.
      */
     backend: pulumi.Input<string>;
+    /**
+     * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+     */
+    certMetadata?: pulumi.Input<string>;
     /**
      * CN of certificate to create
      */
@@ -393,6 +417,10 @@ export interface SecretBackendSignArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
     /**
      * List of other SANs
      */

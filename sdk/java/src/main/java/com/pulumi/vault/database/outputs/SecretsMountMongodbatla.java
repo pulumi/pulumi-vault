@@ -6,6 +6,7 @@ package com.pulumi.vault.database.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -24,10 +25,15 @@ public final class SecretsMountMongodbatla {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     */
+    private @Nullable Map<String,String> data;
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,String> data;
+    private @Nullable Boolean disableAutomatedRotation;
     /**
      * @return Name of the database connection.
      * 
@@ -59,6 +65,25 @@ public final class SecretsMountMongodbatla {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Integer rotationPeriod;
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable String rotationSchedule;
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Integer rotationWindow;
+    /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -77,11 +102,18 @@ public final class SecretsMountMongodbatla {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
-     * Supported list of database secrets engines that can be configured:
-     * 
      */
     public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
+    }
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     * Supported list of database secrets engines that can be configured:
+     * 
+     */
+    public Optional<Boolean> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
     }
     /**
      * @return Name of the database connection.
@@ -126,6 +158,31 @@ public final class SecretsMountMongodbatla {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Integer> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<String> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Integer> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
+    }
+    /**
      * @return Whether the connection should be verified on
      * initial configuration or not.
      * 
@@ -145,24 +202,32 @@ public final class SecretsMountMongodbatla {
     public static final class Builder {
         private @Nullable List<String> allowedRoles;
         private @Nullable Map<String,String> data;
+        private @Nullable Boolean disableAutomatedRotation;
         private String name;
         private @Nullable String pluginName;
         private String privateKey;
         private String projectId;
         private String publicKey;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable Integer rotationPeriod;
+        private @Nullable String rotationSchedule;
+        private @Nullable Integer rotationWindow;
         private @Nullable Boolean verifyConnection;
         public Builder() {}
         public Builder(SecretsMountMongodbatla defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.data = defaults.data;
+    	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
     	      this.name = defaults.name;
     	      this.pluginName = defaults.pluginName;
     	      this.privateKey = defaults.privateKey;
     	      this.projectId = defaults.projectId;
     	      this.publicKey = defaults.publicKey;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.rotationPeriod = defaults.rotationPeriod;
+    	      this.rotationSchedule = defaults.rotationSchedule;
+    	      this.rotationWindow = defaults.rotationWindow;
     	      this.verifyConnection = defaults.verifyConnection;
         }
 
@@ -179,6 +244,12 @@ public final class SecretsMountMongodbatla {
         public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disableAutomatedRotation(@Nullable Boolean disableAutomatedRotation) {
+
+            this.disableAutomatedRotation = disableAutomatedRotation;
             return this;
         }
         @CustomType.Setter
@@ -229,6 +300,24 @@ public final class SecretsMountMongodbatla {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder rotationPeriod(@Nullable Integer rotationPeriod) {
+
+            this.rotationPeriod = rotationPeriod;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder rotationSchedule(@Nullable String rotationSchedule) {
+
+            this.rotationSchedule = rotationSchedule;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder rotationWindow(@Nullable Integer rotationWindow) {
+
+            this.rotationWindow = rotationWindow;
+            return this;
+        }
+        @CustomType.Setter
         public Builder verifyConnection(@Nullable Boolean verifyConnection) {
 
             this.verifyConnection = verifyConnection;
@@ -238,12 +327,16 @@ public final class SecretsMountMongodbatla {
             final var _resultValue = new SecretsMountMongodbatla();
             _resultValue.allowedRoles = allowedRoles;
             _resultValue.data = data;
+            _resultValue.disableAutomatedRotation = disableAutomatedRotation;
             _resultValue.name = name;
             _resultValue.pluginName = pluginName;
             _resultValue.privateKey = privateKey;
             _resultValue.projectId = projectId;
             _resultValue.publicKey = publicKey;
             _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.rotationPeriod = rotationPeriod;
+            _resultValue.rotationSchedule = rotationSchedule;
+            _resultValue.rotationWindow = rotationWindow;
             _resultValue.verifyConnection = verifyConnection;
             return _resultValue;
         }

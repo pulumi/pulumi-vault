@@ -10,9 +10,11 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.database.SecretBackendStaticRoleArgs;
 import com.pulumi.vault.database.inputs.SecretBackendStaticRoleState;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -116,6 +118,28 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      */
     public Output<String> backend() {
         return this.backend;
+    }
+    @Export(name="credentialConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> credentialConfig;
+
+    public Output<Optional<Map<String,String>>> credentialConfig() {
+        return Codegen.optional(this.credentialConfig);
+    }
+    /**
+     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
+     * can be done in `credential_config`.
+     * 
+     */
+    @Export(name="credentialType", refs={String.class}, tree="[0]")
+    private Output<String> credentialType;
+
+    /**
+     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
+     * can be done in `credential_config`.
+     * 
+     */
+    public Output<String> credentialType() {
+        return this.credentialType;
     }
     /**
      * The unique name of the database connection to use for the static role.
@@ -250,6 +274,22 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      */
     public Output<Optional<String>> selfManagedPassword() {
         return Codegen.optional(this.selfManagedPassword);
+    }
+    /**
+     * If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    @Export(name="skipImportRotation", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> skipImportRotation;
+
+    /**
+     * @return If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    public Output<Optional<Boolean>> skipImportRotation() {
+        return Codegen.optional(this.skipImportRotation);
     }
     /**
      * The database username that this static role corresponds to.

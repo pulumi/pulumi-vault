@@ -21,6 +21,7 @@ class AuthBackendClientArgs:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
@@ -29,6 +30,9 @@ class AuthBackendClientArgs:
                  max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -39,6 +43,7 @@ class AuthBackendClientArgs:
                auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
                calls.
         :param pulumi.Input[str] iam_endpoint: Override the URL Vault uses when making IAM API
@@ -58,6 +63,13 @@ class AuthBackendClientArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -74,6 +86,8 @@ class AuthBackendClientArgs:
             pulumi.set(__self__, "access_key", access_key)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if ec2_endpoint is not None:
             pulumi.set(__self__, "ec2_endpoint", ec2_endpoint)
         if iam_endpoint is not None:
@@ -90,6 +104,12 @@ class AuthBackendClientArgs:
             pulumi.set(__self__, "namespace", namespace)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -124,6 +144,18 @@ class AuthBackendClientArgs:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="ec2Endpoint")
@@ -231,6 +263,46 @@ class AuthBackendClientArgs:
     @role_arn.setter
     def role_arn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_arn", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -293,6 +365,7 @@ class _AuthBackendClientState:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
@@ -301,6 +374,9 @@ class _AuthBackendClientState:
                  max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -311,6 +387,7 @@ class _AuthBackendClientState:
                auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
                calls.
         :param pulumi.Input[str] iam_endpoint: Override the URL Vault uses when making IAM API
@@ -330,6 +407,13 @@ class _AuthBackendClientState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -346,6 +430,8 @@ class _AuthBackendClientState:
             pulumi.set(__self__, "access_key", access_key)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if ec2_endpoint is not None:
             pulumi.set(__self__, "ec2_endpoint", ec2_endpoint)
         if iam_endpoint is not None:
@@ -362,6 +448,12 @@ class _AuthBackendClientState:
             pulumi.set(__self__, "namespace", namespace)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -396,6 +488,18 @@ class _AuthBackendClientState:
     @backend.setter
     def backend(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="ec2Endpoint")
@@ -503,6 +607,46 @@ class _AuthBackendClientState:
     @role_arn.setter
     def role_arn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_arn", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -567,6 +711,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
@@ -575,6 +720,9 @@ class AuthBackendClient(pulumi.CustomResource):
                  max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -592,7 +740,9 @@ class AuthBackendClient(pulumi.CustomResource):
         example_auth_backend_client = vault.aws.AuthBackendClient("example",
             identity_token_audience="<TOKEN_AUDIENCE>",
             identity_token_ttl="<TOKEN_TTL>",
-            role_arn="<AWS_ROLE_ARN>")
+            role_arn="<AWS_ROLE_ARN>",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
         ```
 
         ```python
@@ -603,7 +753,9 @@ class AuthBackendClient(pulumi.CustomResource):
         example_auth_backend_client = vault.aws.AuthBackendClient("example",
             backend=example.path,
             access_key="INSERT_AWS_ACCESS_KEY",
-            secret_key="INSERT_AWS_SECRET_KEY")
+            secret_key="INSERT_AWS_SECRET_KEY",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
         ```
 
         ## Import
@@ -620,6 +772,7 @@ class AuthBackendClient(pulumi.CustomResource):
                auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
                calls.
         :param pulumi.Input[str] iam_endpoint: Override the URL Vault uses when making IAM API
@@ -639,6 +792,13 @@ class AuthBackendClient(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -669,7 +829,9 @@ class AuthBackendClient(pulumi.CustomResource):
         example_auth_backend_client = vault.aws.AuthBackendClient("example",
             identity_token_audience="<TOKEN_AUDIENCE>",
             identity_token_ttl="<TOKEN_TTL>",
-            role_arn="<AWS_ROLE_ARN>")
+            role_arn="<AWS_ROLE_ARN>",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
         ```
 
         ```python
@@ -680,7 +842,9 @@ class AuthBackendClient(pulumi.CustomResource):
         example_auth_backend_client = vault.aws.AuthBackendClient("example",
             backend=example.path,
             access_key="INSERT_AWS_ACCESS_KEY",
-            secret_key="INSERT_AWS_SECRET_KEY")
+            secret_key="INSERT_AWS_SECRET_KEY",
+            rotation_schedule="0 * * * SAT",
+            rotation_window=3600)
         ```
 
         ## Import
@@ -708,6 +872,7 @@ class AuthBackendClient(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
                  backend: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  ec2_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
@@ -716,6 +881,9 @@ class AuthBackendClient(pulumi.CustomResource):
                  max_retries: Optional[pulumi.Input[int]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_region: Optional[pulumi.Input[str]] = None,
@@ -731,6 +899,7 @@ class AuthBackendClient(pulumi.CustomResource):
 
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["ec2_endpoint"] = ec2_endpoint
             __props__.__dict__["iam_endpoint"] = iam_endpoint
             __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
@@ -739,6 +908,9 @@ class AuthBackendClient(pulumi.CustomResource):
             __props__.__dict__["max_retries"] = max_retries
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["role_arn"] = role_arn
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["rotation_schedule"] = rotation_schedule
+            __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_region"] = sts_region
@@ -757,6 +929,7 @@ class AuthBackendClient(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
             backend: Optional[pulumi.Input[str]] = None,
+            disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
             ec2_endpoint: Optional[pulumi.Input[str]] = None,
             iam_endpoint: Optional[pulumi.Input[str]] = None,
             iam_server_id_header_value: Optional[pulumi.Input[str]] = None,
@@ -765,6 +938,9 @@ class AuthBackendClient(pulumi.CustomResource):
             max_retries: Optional[pulumi.Input[int]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             role_arn: Optional[pulumi.Input[str]] = None,
+            rotation_period: Optional[pulumi.Input[int]] = None,
+            rotation_schedule: Optional[pulumi.Input[str]] = None,
+            rotation_window: Optional[pulumi.Input[int]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             sts_endpoint: Optional[pulumi.Input[str]] = None,
             sts_region: Optional[pulumi.Input[str]] = None,
@@ -780,6 +956,7 @@ class AuthBackendClient(pulumi.CustomResource):
                auth backend. Mutually exclusive with `identity_token_audience`.
         :param pulumi.Input[str] backend: The path the AWS auth backend being configured was
                mounted at.  Defaults to `aws`.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] ec2_endpoint: Override the URL Vault uses when making EC2 API
                calls.
         :param pulumi.Input[str] iam_endpoint: Override the URL Vault uses when making IAM API
@@ -799,6 +976,13 @@ class AuthBackendClient(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] secret_key: The AWS secret key that Vault should use for the
                auth backend.
         :param pulumi.Input[str] sts_endpoint: Override the URL Vault uses when making STS API
@@ -817,6 +1001,7 @@ class AuthBackendClient(pulumi.CustomResource):
 
         __props__.__dict__["access_key"] = access_key
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["ec2_endpoint"] = ec2_endpoint
         __props__.__dict__["iam_endpoint"] = iam_endpoint
         __props__.__dict__["iam_server_id_header_value"] = iam_server_id_header_value
@@ -825,6 +1010,9 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__.__dict__["max_retries"] = max_retries
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role_arn"] = role_arn
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["rotation_schedule"] = rotation_schedule
+        __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_region"] = sts_region
@@ -848,6 +1036,14 @@ class AuthBackendClient(pulumi.CustomResource):
         mounted at.  Defaults to `aws`.
         """
         return pulumi.get(self, "backend")
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
 
     @property
     @pulumi.getter(name="ec2Endpoint")
@@ -923,6 +1119,34 @@ class AuthBackendClient(pulumi.CustomResource):
         *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "role_arn")
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Output[Optional[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Output[Optional[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
 
     @property
     @pulumi.getter(name="secretKey")

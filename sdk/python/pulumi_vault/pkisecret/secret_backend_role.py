@@ -55,6 +55,8 @@ class SecretBackendRoleArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
+                 no_store_metadata: Optional[pulumi.Input[bool]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -63,11 +65,14 @@ class SecretBackendRoleArgs:
                  postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  require_cn: Optional[pulumi.Input[bool]] = None,
+                 serial_number_source: Optional[pulumi.Input[str]] = None,
                  server_flag: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  use_csr_common_name: Optional[pulumi.Input[bool]] = None,
-                 use_csr_sans: Optional[pulumi.Input[bool]] = None):
+                 use_csr_sans: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
         :param pulumi.Input[str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
@@ -113,6 +118,8 @@ class SecretBackendRoleArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
@@ -121,11 +128,16 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
+        :param pulumi.Input[str] serial_number_source: Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+               
+               Example usage:
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
         :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         pulumi.set(__self__, "backend", backend)
         if allow_any_name is not None:
@@ -194,6 +206,10 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "namespace", namespace)
         if no_store is not None:
             pulumi.set(__self__, "no_store", no_store)
+        if no_store_metadata is not None:
+            pulumi.set(__self__, "no_store_metadata", no_store_metadata)
+        if not_after is not None:
+            pulumi.set(__self__, "not_after", not_after)
         if not_before_duration is not None:
             pulumi.set(__self__, "not_before_duration", not_before_duration)
         if organization_unit is not None:
@@ -210,8 +226,12 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "provinces", provinces)
         if require_cn is not None:
             pulumi.set(__self__, "require_cn", require_cn)
+        if serial_number_source is not None:
+            pulumi.set(__self__, "serial_number_source", serial_number_source)
         if server_flag is not None:
             pulumi.set(__self__, "server_flag", server_flag)
+        if signature_bits is not None:
+            pulumi.set(__self__, "signature_bits", signature_bits)
         if street_addresses is not None:
             pulumi.set(__self__, "street_addresses", street_addresses)
         if ttl is not None:
@@ -220,6 +240,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "use_csr_common_name", use_csr_common_name)
         if use_csr_sans is not None:
             pulumi.set(__self__, "use_csr_sans", use_csr_sans)
+        if use_pss is not None:
+            pulumi.set(__self__, "use_pss", use_pss)
 
     @property
     @pulumi.getter
@@ -639,6 +661,30 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "no_store", value)
 
     @property
+    @pulumi.getter(name="noStoreMetadata")
+    def no_store_metadata(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        """
+        return pulumi.get(self, "no_store_metadata")
+
+    @no_store_metadata.setter
+    def no_store_metadata(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_store_metadata", value)
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @not_after.setter
+    def not_after(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_after", value)
+
+    @property
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[str]]:
         """
@@ -735,6 +781,20 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "require_cn", value)
 
     @property
+    @pulumi.getter(name="serialNumberSource")
+    def serial_number_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+
+        Example usage:
+        """
+        return pulumi.get(self, "serial_number_source")
+
+    @serial_number_source.setter
+    def serial_number_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number_source", value)
+
+    @property
     @pulumi.getter(name="serverFlag")
     def server_flag(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -745,6 +805,18 @@ class SecretBackendRoleArgs:
     @server_flag.setter
     def server_flag(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "server_flag", value)
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @signature_bits.setter
+    def signature_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "signature_bits", value)
 
     @property
     @pulumi.getter(name="streetAddresses")
@@ -794,6 +866,18 @@ class SecretBackendRoleArgs:
     def use_csr_sans(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_csr_sans", value)
 
+    @property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+        """
+        return pulumi.get(self, "use_pss")
+
+    @use_pss.setter
+    def use_pss(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_pss", value)
+
 
 @pulumi.input_type
 class _SecretBackendRoleState:
@@ -832,6 +916,8 @@ class _SecretBackendRoleState:
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
+                 no_store_metadata: Optional[pulumi.Input[bool]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -840,11 +926,14 @@ class _SecretBackendRoleState:
                  postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  require_cn: Optional[pulumi.Input[bool]] = None,
+                 serial_number_source: Optional[pulumi.Input[str]] = None,
                  server_flag: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  use_csr_common_name: Optional[pulumi.Input[bool]] = None,
-                 use_csr_sans: Optional[pulumi.Input[bool]] = None):
+                 use_csr_sans: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
         :param pulumi.Input[bool] allow_any_name: Flag to allow any name
@@ -890,6 +979,8 @@ class _SecretBackendRoleState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
@@ -898,11 +989,16 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
+        :param pulumi.Input[str] serial_number_source: Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+               
+               Example usage:
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
         :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         if allow_any_name is not None:
             pulumi.set(__self__, "allow_any_name", allow_any_name)
@@ -972,6 +1068,10 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "namespace", namespace)
         if no_store is not None:
             pulumi.set(__self__, "no_store", no_store)
+        if no_store_metadata is not None:
+            pulumi.set(__self__, "no_store_metadata", no_store_metadata)
+        if not_after is not None:
+            pulumi.set(__self__, "not_after", not_after)
         if not_before_duration is not None:
             pulumi.set(__self__, "not_before_duration", not_before_duration)
         if organization_unit is not None:
@@ -988,8 +1088,12 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "provinces", provinces)
         if require_cn is not None:
             pulumi.set(__self__, "require_cn", require_cn)
+        if serial_number_source is not None:
+            pulumi.set(__self__, "serial_number_source", serial_number_source)
         if server_flag is not None:
             pulumi.set(__self__, "server_flag", server_flag)
+        if signature_bits is not None:
+            pulumi.set(__self__, "signature_bits", signature_bits)
         if street_addresses is not None:
             pulumi.set(__self__, "street_addresses", street_addresses)
         if ttl is not None:
@@ -998,6 +1102,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "use_csr_common_name", use_csr_common_name)
         if use_csr_sans is not None:
             pulumi.set(__self__, "use_csr_sans", use_csr_sans)
+        if use_pss is not None:
+            pulumi.set(__self__, "use_pss", use_pss)
 
     @property
     @pulumi.getter(name="allowAnyName")
@@ -1417,6 +1523,30 @@ class _SecretBackendRoleState:
         pulumi.set(self, "no_store", value)
 
     @property
+    @pulumi.getter(name="noStoreMetadata")
+    def no_store_metadata(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        """
+        return pulumi.get(self, "no_store_metadata")
+
+    @no_store_metadata.setter
+    def no_store_metadata(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "no_store_metadata", value)
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @not_after.setter
+    def not_after(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_after", value)
+
+    @property
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1513,6 +1643,20 @@ class _SecretBackendRoleState:
         pulumi.set(self, "require_cn", value)
 
     @property
+    @pulumi.getter(name="serialNumberSource")
+    def serial_number_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+
+        Example usage:
+        """
+        return pulumi.get(self, "serial_number_source")
+
+    @serial_number_source.setter
+    def serial_number_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial_number_source", value)
+
+    @property
     @pulumi.getter(name="serverFlag")
     def server_flag(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -1523,6 +1667,18 @@ class _SecretBackendRoleState:
     @server_flag.setter
     def server_flag(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "server_flag", value)
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
+
+    @signature_bits.setter
+    def signature_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "signature_bits", value)
 
     @property
     @pulumi.getter(name="streetAddresses")
@@ -1572,6 +1728,18 @@ class _SecretBackendRoleState:
     def use_csr_sans(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_csr_sans", value)
 
+    @property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+        """
+        return pulumi.get(self, "use_pss")
+
+    @use_pss.setter
+    def use_pss(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "use_pss", value)
+
 
 class SecretBackendRole(pulumi.CustomResource):
     @overload
@@ -1612,6 +1780,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
+                 no_store_metadata: Optional[pulumi.Input[bool]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1620,11 +1790,14 @@ class SecretBackendRole(pulumi.CustomResource):
                  postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  require_cn: Optional[pulumi.Input[bool]] = None,
+                 serial_number_source: Optional[pulumi.Input[str]] = None,
                  server_flag: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  use_csr_common_name: Optional[pulumi.Input[bool]] = None,
                  use_csr_sans: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Creates a role on an PKI Secret Backend for Vault.
@@ -1707,6 +1880,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
@@ -1715,11 +1890,16 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
+        :param pulumi.Input[str] serial_number_source: Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+               
+               Example usage:
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
         :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         ...
     @overload
@@ -1812,6 +1992,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  no_store: Optional[pulumi.Input[bool]] = None,
+                 no_store_metadata: Optional[pulumi.Input[bool]] = None,
+                 not_after: Optional[pulumi.Input[str]] = None,
                  not_before_duration: Optional[pulumi.Input[str]] = None,
                  organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1820,11 +2002,14 @@ class SecretBackendRole(pulumi.CustomResource):
                  postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  require_cn: Optional[pulumi.Input[bool]] = None,
+                 serial_number_source: Optional[pulumi.Input[str]] = None,
                  server_flag: Optional[pulumi.Input[bool]] = None,
+                 signature_bits: Optional[pulumi.Input[int]] = None,
                  street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ttl: Optional[pulumi.Input[str]] = None,
                  use_csr_common_name: Optional[pulumi.Input[bool]] = None,
                  use_csr_sans: Optional[pulumi.Input[bool]] = None,
+                 use_pss: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1870,6 +2055,8 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["no_store"] = no_store
+            __props__.__dict__["no_store_metadata"] = no_store_metadata
+            __props__.__dict__["not_after"] = not_after
             __props__.__dict__["not_before_duration"] = not_before_duration
             __props__.__dict__["organization_unit"] = organization_unit
             __props__.__dict__["organizations"] = organizations
@@ -1878,11 +2065,14 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["postal_codes"] = postal_codes
             __props__.__dict__["provinces"] = provinces
             __props__.__dict__["require_cn"] = require_cn
+            __props__.__dict__["serial_number_source"] = serial_number_source
             __props__.__dict__["server_flag"] = server_flag
+            __props__.__dict__["signature_bits"] = signature_bits
             __props__.__dict__["street_addresses"] = street_addresses
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["use_csr_common_name"] = use_csr_common_name
             __props__.__dict__["use_csr_sans"] = use_csr_sans
+            __props__.__dict__["use_pss"] = use_pss
         super(SecretBackendRole, __self__).__init__(
             'vault:pkiSecret/secretBackendRole:SecretBackendRole',
             resource_name,
@@ -1927,6 +2117,8 @@ class SecretBackendRole(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             no_store: Optional[pulumi.Input[bool]] = None,
+            no_store_metadata: Optional[pulumi.Input[bool]] = None,
+            not_after: Optional[pulumi.Input[str]] = None,
             not_before_duration: Optional[pulumi.Input[str]] = None,
             organization_unit: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             organizations: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -1935,11 +2127,14 @@ class SecretBackendRole(pulumi.CustomResource):
             postal_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             provinces: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             require_cn: Optional[pulumi.Input[bool]] = None,
+            serial_number_source: Optional[pulumi.Input[str]] = None,
             server_flag: Optional[pulumi.Input[bool]] = None,
+            signature_bits: Optional[pulumi.Input[int]] = None,
             street_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             ttl: Optional[pulumi.Input[str]] = None,
             use_csr_common_name: Optional[pulumi.Input[bool]] = None,
-            use_csr_sans: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendRole':
+            use_csr_sans: Optional[pulumi.Input[bool]] = None,
+            use_pss: Optional[pulumi.Input[bool]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1990,6 +2185,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[bool] no_store: Flag to not store certificates in the storage backend
+        :param pulumi.Input[bool] no_store_metadata: Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        :param pulumi.Input[str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[str] not_before_duration: Specifies the duration by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] organizations: The organization of generated certificates
@@ -1998,11 +2195,16 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] postal_codes: The postal code of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[str]]] provinces: The province of generated certificates
         :param pulumi.Input[bool] require_cn: Flag to force CN usage
+        :param pulumi.Input[str] serial_number_source: Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+               
+               Example usage:
         :param pulumi.Input[bool] server_flag: Flag to specify certificates for server use
+        :param pulumi.Input[int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[Sequence[pulumi.Input[str]]] street_addresses: The street address of generated certificates
         :param pulumi.Input[str] ttl: The TTL, in seconds, for any certificate issued against this role.
         :param pulumi.Input[bool] use_csr_common_name: Flag to use the CN in the CSR
         :param pulumi.Input[bool] use_csr_sans: Flag to use the SANs in the CSR
+        :param pulumi.Input[bool] use_pss: Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2042,6 +2244,8 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["no_store"] = no_store
+        __props__.__dict__["no_store_metadata"] = no_store_metadata
+        __props__.__dict__["not_after"] = not_after
         __props__.__dict__["not_before_duration"] = not_before_duration
         __props__.__dict__["organization_unit"] = organization_unit
         __props__.__dict__["organizations"] = organizations
@@ -2050,11 +2254,14 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["postal_codes"] = postal_codes
         __props__.__dict__["provinces"] = provinces
         __props__.__dict__["require_cn"] = require_cn
+        __props__.__dict__["serial_number_source"] = serial_number_source
         __props__.__dict__["server_flag"] = server_flag
+        __props__.__dict__["signature_bits"] = signature_bits
         __props__.__dict__["street_addresses"] = street_addresses
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["use_csr_common_name"] = use_csr_common_name
         __props__.__dict__["use_csr_sans"] = use_csr_sans
+        __props__.__dict__["use_pss"] = use_pss
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -2339,6 +2546,22 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "no_store")
 
     @property
+    @pulumi.getter(name="noStoreMetadata")
+    def no_store_metadata(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        """
+        return pulumi.get(self, "no_store_metadata")
+
+    @property
+    @pulumi.getter(name="notAfter")
+    def not_after(self) -> pulumi.Output[Optional[str]]:
+        """
+        Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        """
+        return pulumi.get(self, "not_after")
+
+    @property
     @pulumi.getter(name="notBeforeDuration")
     def not_before_duration(self) -> pulumi.Output[str]:
         """
@@ -2403,12 +2626,30 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "require_cn")
 
     @property
+    @pulumi.getter(name="serialNumberSource")
+    def serial_number_source(self) -> pulumi.Output[str]:
+        """
+        Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+
+        Example usage:
+        """
+        return pulumi.get(self, "serial_number_source")
+
+    @property
     @pulumi.getter(name="serverFlag")
     def server_flag(self) -> pulumi.Output[Optional[bool]]:
         """
         Flag to specify certificates for server use
         """
         return pulumi.get(self, "server_flag")
+
+    @property
+    @pulumi.getter(name="signatureBits")
+    def signature_bits(self) -> pulumi.Output[int]:
+        """
+        The number of bits to use in the signature algorithm
+        """
+        return pulumi.get(self, "signature_bits")
 
     @property
     @pulumi.getter(name="streetAddresses")
@@ -2441,4 +2682,12 @@ class SecretBackendRole(pulumi.CustomResource):
         Flag to use the SANs in the CSR
         """
         return pulumi.get(self, "use_csr_sans")
+
+    @property
+    @pulumi.getter(name="usePss")
+    def use_pss(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+        """
+        return pulumi.get(self, "use_pss")
 

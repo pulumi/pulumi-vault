@@ -93,6 +93,16 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     public readonly exportable!: pulumi.Output<boolean | undefined>;
     /**
+     * The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     */
+    public readonly hybridKeyTypeEc!: pulumi.Output<string | undefined>;
+    /**
+     * The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     */
+    public readonly hybridKeyTypePqc!: pulumi.Output<string | undefined>;
+    /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
     public readonly keySize!: pulumi.Output<number | undefined>;
@@ -129,6 +139,11 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * *Available only for Vault Enterprise*.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     */
+    public readonly parameterSet!: pulumi.Output<string | undefined>;
     /**
      * Whether or not the key supports decryption, based on key type.
      */
@@ -171,6 +186,8 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["deletionAllowed"] = state ? state.deletionAllowed : undefined;
             resourceInputs["derived"] = state ? state.derived : undefined;
             resourceInputs["exportable"] = state ? state.exportable : undefined;
+            resourceInputs["hybridKeyTypeEc"] = state ? state.hybridKeyTypeEc : undefined;
+            resourceInputs["hybridKeyTypePqc"] = state ? state.hybridKeyTypePqc : undefined;
             resourceInputs["keySize"] = state ? state.keySize : undefined;
             resourceInputs["keys"] = state ? state.keys : undefined;
             resourceInputs["latestVersion"] = state ? state.latestVersion : undefined;
@@ -179,6 +196,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["minEncryptionVersion"] = state ? state.minEncryptionVersion : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["parameterSet"] = state ? state.parameterSet : undefined;
             resourceInputs["supportsDecryption"] = state ? state.supportsDecryption : undefined;
             resourceInputs["supportsDerivation"] = state ? state.supportsDerivation : undefined;
             resourceInputs["supportsEncryption"] = state ? state.supportsEncryption : undefined;
@@ -196,11 +214,14 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["deletionAllowed"] = args ? args.deletionAllowed : undefined;
             resourceInputs["derived"] = args ? args.derived : undefined;
             resourceInputs["exportable"] = args ? args.exportable : undefined;
+            resourceInputs["hybridKeyTypeEc"] = args ? args.hybridKeyTypeEc : undefined;
+            resourceInputs["hybridKeyTypePqc"] = args ? args.hybridKeyTypePqc : undefined;
             resourceInputs["keySize"] = args ? args.keySize : undefined;
             resourceInputs["minDecryptionVersion"] = args ? args.minDecryptionVersion : undefined;
             resourceInputs["minEncryptionVersion"] = args ? args.minEncryptionVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["parameterSet"] = args ? args.parameterSet : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["keys"] = undefined /*out*/;
             resourceInputs["latestVersion"] = undefined /*out*/;
@@ -250,6 +271,16 @@ export interface SecretBackendKeyState {
      */
     exportable?: pulumi.Input<boolean>;
     /**
+     * The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     */
+    hybridKeyTypeEc?: pulumi.Input<string>;
+    /**
+     * The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     */
+    hybridKeyTypePqc?: pulumi.Input<string>;
+    /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
     keySize?: pulumi.Input<number>;
@@ -286,6 +317,11 @@ export interface SecretBackendKeyState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     */
+    parameterSet?: pulumi.Input<string>;
     /**
      * Whether or not the key supports decryption, based on key type.
      */
@@ -344,6 +380,16 @@ export interface SecretBackendKeyArgs {
      */
     exportable?: pulumi.Input<boolean>;
     /**
+     * The elliptic curve algorithm to use for hybrid signatures.
+     * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+     */
+    hybridKeyTypeEc?: pulumi.Input<string>;
+    /**
+     * The post-quantum algorithm to use for hybrid signatures.
+     * Currently, ML-DSA is the only supported key type.
+     */
+    hybridKeyTypePqc?: pulumi.Input<string>;
+    /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
     keySize?: pulumi.Input<number>;
@@ -366,6 +412,11 @@ export interface SecretBackendKeyArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * The parameter set to use for ML-DSA. Required for
+     * ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+     */
+    parameterSet?: pulumi.Input<string>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)

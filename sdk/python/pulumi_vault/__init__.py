@@ -1031,6 +1031,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "pkiSecret/backendConfigAutoTidy",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy": "BackendConfigAutoTidy"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "pkiSecret/backendConfigCluster",
   "fqn": "pulumi_vault.pkisecret",
   "classes": {

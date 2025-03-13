@@ -237,6 +237,21 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
     }
 
     /**
+     * Specifies key_usage to encode in the generated certificate.
+     * 
+     */
+    @Import(name="keyUsages")
+    private @Nullable Output<List<String>> keyUsages;
+
+    /**
+     * @return Specifies key_usage to encode in the generated certificate.
+     * 
+     */
+    public Optional<Output<List<String>>> keyUsages() {
+        return Optional.ofNullable(this.keyUsages);
+    }
+
+    /**
      * The locality
      * 
      */
@@ -427,6 +442,36 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
     }
 
     /**
+     * The requested Subject&#39;s named Serial Number
+     * 
+     */
+    @Import(name="serialNumber")
+    private @Nullable Output<String> serialNumber;
+
+    /**
+     * @return The requested Subject&#39;s named Serial Number
+     * 
+     */
+    public Optional<Output<String>> serialNumber() {
+        return Optional.ofNullable(this.serialNumber);
+    }
+
+    /**
+     * The number of bits to use in the signature algorithm
+     * 
+     */
+    @Import(name="signatureBits")
+    private @Nullable Output<Integer> signatureBits;
+
+    /**
+     * @return The number of bits to use in the signature algorithm
+     * 
+     */
+    public Optional<Output<Integer>> signatureBits() {
+        return Optional.ofNullable(this.signatureBits);
+    }
+
+    /**
      * The street address
      * 
      */
@@ -490,6 +535,7 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
         this.keyName = $.keyName;
         this.keyRef = $.keyRef;
         this.keyType = $.keyType;
+        this.keyUsages = $.keyUsages;
         this.locality = $.locality;
         this.managedKeyId = $.managedKeyId;
         this.managedKeyName = $.managedKeyName;
@@ -502,6 +548,8 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
         this.privateKeyFormat = $.privateKeyFormat;
         this.privateKeyType = $.privateKeyType;
         this.province = $.province;
+        this.serialNumber = $.serialNumber;
+        this.signatureBits = $.signatureBits;
         this.streetAddress = $.streetAddress;
         this.type = $.type;
         this.uriSans = $.uriSans;
@@ -848,6 +896,37 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
         }
 
         /**
+         * @param keyUsages Specifies key_usage to encode in the generated certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(@Nullable Output<List<String>> keyUsages) {
+            $.keyUsages = keyUsages;
+            return this;
+        }
+
+        /**
+         * @param keyUsages Specifies key_usage to encode in the generated certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(List<String> keyUsages) {
+            return keyUsages(Output.of(keyUsages));
+        }
+
+        /**
+         * @param keyUsages Specifies key_usage to encode in the generated certificate.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder keyUsages(String... keyUsages) {
+            return keyUsages(List.of(keyUsages));
+        }
+
+        /**
          * @param locality The locality
          * 
          * @return builder
@@ -1117,6 +1196,48 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
          */
         public Builder province(String province) {
             return province(Output.of(province));
+        }
+
+        /**
+         * @param serialNumber The requested Subject&#39;s named Serial Number
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serialNumber(@Nullable Output<String> serialNumber) {
+            $.serialNumber = serialNumber;
+            return this;
+        }
+
+        /**
+         * @param serialNumber The requested Subject&#39;s named Serial Number
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serialNumber(String serialNumber) {
+            return serialNumber(Output.of(serialNumber));
+        }
+
+        /**
+         * @param signatureBits The number of bits to use in the signature algorithm
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureBits(@Nullable Output<Integer> signatureBits) {
+            $.signatureBits = signatureBits;
+            return this;
+        }
+
+        /**
+         * @param signatureBits The number of bits to use in the signature algorithm
+         * 
+         * @return builder
+         * 
+         */
+        public Builder signatureBits(Integer signatureBits) {
+            return signatureBits(Output.of(signatureBits));
         }
 
         /**

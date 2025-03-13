@@ -22,6 +22,7 @@ class SecretBackendArgs:
                  access_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,9 @@ class SecretBackendArgs:
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -46,6 +50,7 @@ class SecretBackendArgs:
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
@@ -63,6 +68,19 @@ class SecretBackendArgs:
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
                
                ```
                {{ if (eq .Type "STS") }}
@@ -72,12 +90,6 @@ class SecretBackendArgs:
                {{ end }}
                
                ```
-        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
-        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
-        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -85,6 +97,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if iam_endpoint is not None:
@@ -107,6 +121,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "region", region)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -157,6 +177,18 @@ class SecretBackendArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableRemount")
@@ -289,21 +321,52 @@ class SecretBackendArgs:
     def role_arn(self) -> Optional[pulumi.Input[str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-
-        ```
-        {{ if (eq .Type "STS") }}
-        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
-        {{ else }}
-        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
-        {{ end }}
-
-        ```
         """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_arn", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential. 
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -370,6 +433,15 @@ class SecretBackendArgs:
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
         Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+
+        ```
+        {{ if (eq .Type "STS") }}
+        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        {{ else }}
+        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        {{ end }}
+
+        ```
         """
         return pulumi.get(self, "username_template")
 
@@ -384,6 +456,7 @@ class _SecretBackendState:
                  access_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -395,6 +468,9 @@ class _SecretBackendState:
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -408,6 +484,7 @@ class _SecretBackendState:
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
@@ -425,6 +502,19 @@ class _SecretBackendState:
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
                
                ```
                {{ if (eq .Type "STS") }}
@@ -434,12 +524,6 @@ class _SecretBackendState:
                {{ end }}
                
                ```
-        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
-        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
-        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -447,6 +531,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "default_lease_ttl_seconds", default_lease_ttl_seconds)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
         if iam_endpoint is not None:
@@ -469,6 +555,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "region", region)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if sts_endpoint is not None:
@@ -519,6 +611,18 @@ class _SecretBackendState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableRemount")
@@ -651,21 +755,52 @@ class _SecretBackendState:
     def role_arn(self) -> Optional[pulumi.Input[str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-
-        ```
-        {{ if (eq .Type "STS") }}
-        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
-        {{ else }}
-        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
-        {{ end }}
-
-        ```
         """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
     def role_arn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "role_arn", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential. 
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="secretKey")
@@ -732,6 +867,15 @@ class _SecretBackendState:
     def username_template(self) -> Optional[pulumi.Input[str]]:
         """
         Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+
+        ```
+        {{ if (eq .Type "STS") }}
+        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        {{ else }}
+        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        {{ end }}
+
+        ```
         """
         return pulumi.get(self, "username_template")
 
@@ -748,6 +892,7 @@ class SecretBackend(pulumi.CustomResource):
                  access_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -759,6 +904,9 @@ class SecretBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -782,6 +930,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
@@ -799,6 +948,19 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
                
                ```
                {{ if (eq .Type "STS") }}
@@ -808,12 +970,6 @@ class SecretBackend(pulumi.CustomResource):
                {{ end }}
                
                ```
-        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
-        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
-        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         ...
     @overload
@@ -848,6 +1004,7 @@ class SecretBackend(pulumi.CustomResource):
                  access_key: Optional[pulumi.Input[str]] = None,
                  default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_remount: Optional[pulumi.Input[bool]] = None,
                  iam_endpoint: Optional[pulumi.Input[str]] = None,
                  identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -859,6 +1016,9 @@ class SecretBackend(pulumi.CustomResource):
                  path: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  role_arn: Optional[pulumi.Input[str]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sts_endpoint: Optional[pulumi.Input[str]] = None,
                  sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -877,6 +1037,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
             __props__.__dict__["iam_endpoint"] = iam_endpoint
             __props__.__dict__["identity_token_audience"] = identity_token_audience
@@ -888,6 +1049,9 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["path"] = path
             __props__.__dict__["region"] = region
             __props__.__dict__["role_arn"] = role_arn
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["rotation_schedule"] = rotation_schedule
+            __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["sts_endpoint"] = sts_endpoint
             __props__.__dict__["sts_fallback_endpoints"] = sts_fallback_endpoints
@@ -909,6 +1073,7 @@ class SecretBackend(pulumi.CustomResource):
             access_key: Optional[pulumi.Input[str]] = None,
             default_lease_ttl_seconds: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
             disable_remount: Optional[pulumi.Input[bool]] = None,
             iam_endpoint: Optional[pulumi.Input[str]] = None,
             identity_token_audience: Optional[pulumi.Input[str]] = None,
@@ -920,6 +1085,9 @@ class SecretBackend(pulumi.CustomResource):
             path: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             role_arn: Optional[pulumi.Input[str]] = None,
+            rotation_period: Optional[pulumi.Input[int]] = None,
+            rotation_schedule: Optional[pulumi.Input[str]] = None,
+            rotation_window: Optional[pulumi.Input[int]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             sts_endpoint: Optional[pulumi.Input[str]] = None,
             sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -938,6 +1106,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[int] default_lease_ttl_seconds: The default TTL for credentials
                issued by this backend.
         :param pulumi.Input[str] description: A human-friendly description for this backend.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         :param pulumi.Input[str] iam_endpoint: Specifies a custom HTTP IAM endpoint to use.
@@ -955,6 +1124,19 @@ class SecretBackend(pulumi.CustomResource):
                not begin or end with a `/`. Defaults to `aws`.
         :param pulumi.Input[str] region: The AWS region to make API calls against. Defaults to us-east-1.
         :param pulumi.Input[str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
+        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
+        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
+        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
                
                ```
                {{ if (eq .Type "STS") }}
@@ -964,12 +1146,6 @@ class SecretBackend(pulumi.CustomResource):
                {{ end }}
                
                ```
-        :param pulumi.Input[str] secret_key: The AWS Secret Access Key to use when generating new credentials.
-        :param pulumi.Input[str] sts_endpoint: Specifies a custom HTTP STS endpoint to use.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_endpoints: Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] sts_fallback_regions: Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
-        :param pulumi.Input[str] sts_region: Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
-        :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -978,6 +1154,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["access_key"] = access_key
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
         __props__.__dict__["iam_endpoint"] = iam_endpoint
         __props__.__dict__["identity_token_audience"] = identity_token_audience
@@ -989,6 +1166,9 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["region"] = region
         __props__.__dict__["role_arn"] = role_arn
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["rotation_schedule"] = rotation_schedule
+        __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["sts_endpoint"] = sts_endpoint
         __props__.__dict__["sts_fallback_endpoints"] = sts_fallback_endpoints
@@ -1022,6 +1202,14 @@ class SecretBackend(pulumi.CustomResource):
         A human-friendly description for this backend.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
 
     @property
     @pulumi.getter(name="disableRemount")
@@ -1114,17 +1302,36 @@ class SecretBackend(pulumi.CustomResource):
     def role_arn(self) -> pulumi.Output[Optional[str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-
-        ```
-        {{ if (eq .Type "STS") }}
-        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
-        {{ else }}
-        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
-        {{ end }}
-
-        ```
         """
         return pulumi.get(self, "role_arn")
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential. 
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Output[Optional[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Output[Optional[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
 
     @property
     @pulumi.getter(name="secretKey")
@@ -1171,6 +1378,15 @@ class SecretBackend(pulumi.CustomResource):
     def username_template(self) -> pulumi.Output[str]:
         """
         Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
+
+        ```
+        {{ if (eq .Type "STS") }}
+        {{ printf "vault-%s-%s" (unix_time) (random 20) | truncate 32 }}
+        {{ else }}
+        {{ printf "vault-%s-%s-%s" (printf "%s-%s" (.DisplayName) (.PolicyName) | truncate 42) (unix_time) (random 20) | truncate 64 }}
+        {{ end }}
+
+        ```
         """
         return pulumi.get(self, "username_template")
 

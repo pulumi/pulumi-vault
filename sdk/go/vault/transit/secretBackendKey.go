@@ -78,6 +78,12 @@ type SecretBackendKey struct {
 	Derived pulumi.BoolPtrOutput `pulumi:"derived"`
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrOutput `pulumi:"exportable"`
+	// The elliptic curve algorithm to use for hybrid signatures.
+	// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+	HybridKeyTypeEc pulumi.StringPtrOutput `pulumi:"hybridKeyTypeEc"`
+	// The post-quantum algorithm to use for hybrid signatures.
+	// Currently, ML-DSA is the only supported key type.
+	HybridKeyTypePqc pulumi.StringPtrOutput `pulumi:"hybridKeyTypePqc"`
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize pulumi.IntPtrOutput `pulumi:"keySize"`
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -99,6 +105,9 @@ type SecretBackendKey struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// The parameter set to use for ML-DSA. Required for
+	// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+	ParameterSet pulumi.StringPtrOutput `pulumi:"parameterSet"`
 	// Whether or not the key supports decryption, based on key type.
 	SupportsDecryption pulumi.BoolOutput `pulumi:"supportsDecryption"`
 	// Whether or not the key supports derivation, based on key type.
@@ -161,6 +170,12 @@ type secretBackendKeyState struct {
 	Derived *bool `pulumi:"derived"`
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable *bool `pulumi:"exportable"`
+	// The elliptic curve algorithm to use for hybrid signatures.
+	// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+	HybridKeyTypeEc *string `pulumi:"hybridKeyTypeEc"`
+	// The post-quantum algorithm to use for hybrid signatures.
+	// Currently, ML-DSA is the only supported key type.
+	HybridKeyTypePqc *string `pulumi:"hybridKeyTypePqc"`
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize *int `pulumi:"keySize"`
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -182,6 +197,9 @@ type secretBackendKeyState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// The parameter set to use for ML-DSA. Required for
+	// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+	ParameterSet *string `pulumi:"parameterSet"`
 	// Whether or not the key supports decryption, based on key type.
 	SupportsDecryption *bool `pulumi:"supportsDecryption"`
 	// Whether or not the key supports derivation, based on key type.
@@ -212,6 +230,12 @@ type SecretBackendKeyState struct {
 	Derived pulumi.BoolPtrInput
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrInput
+	// The elliptic curve algorithm to use for hybrid signatures.
+	// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+	HybridKeyTypeEc pulumi.StringPtrInput
+	// The post-quantum algorithm to use for hybrid signatures.
+	// Currently, ML-DSA is the only supported key type.
+	HybridKeyTypePqc pulumi.StringPtrInput
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize pulumi.IntPtrInput
 	// List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
@@ -233,6 +257,9 @@ type SecretBackendKeyState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// The parameter set to use for ML-DSA. Required for
+	// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+	ParameterSet pulumi.StringPtrInput
 	// Whether or not the key supports decryption, based on key type.
 	SupportsDecryption pulumi.BoolPtrInput
 	// Whether or not the key supports derivation, based on key type.
@@ -267,6 +294,12 @@ type secretBackendKeyArgs struct {
 	Derived *bool `pulumi:"derived"`
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable *bool `pulumi:"exportable"`
+	// The elliptic curve algorithm to use for hybrid signatures.
+	// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+	HybridKeyTypeEc *string `pulumi:"hybridKeyTypeEc"`
+	// The post-quantum algorithm to use for hybrid signatures.
+	// Currently, ML-DSA is the only supported key type.
+	HybridKeyTypePqc *string `pulumi:"hybridKeyTypePqc"`
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize *int `pulumi:"keySize"`
 	// Minimum key version to use for decryption.
@@ -280,6 +313,9 @@ type secretBackendKeyArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// The parameter set to use for ML-DSA. Required for
+	// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+	ParameterSet *string `pulumi:"parameterSet"`
 	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type *string `pulumi:"type"`
@@ -303,6 +339,12 @@ type SecretBackendKeyArgs struct {
 	Derived pulumi.BoolPtrInput
 	// Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
 	Exportable pulumi.BoolPtrInput
+	// The elliptic curve algorithm to use for hybrid signatures.
+	// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+	HybridKeyTypeEc pulumi.StringPtrInput
+	// The post-quantum algorithm to use for hybrid signatures.
+	// Currently, ML-DSA is the only supported key type.
+	HybridKeyTypePqc pulumi.StringPtrInput
 	// The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 	KeySize pulumi.IntPtrInput
 	// Minimum key version to use for decryption.
@@ -316,6 +358,9 @@ type SecretBackendKeyArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// The parameter set to use for ML-DSA. Required for
+	// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+	ParameterSet pulumi.StringPtrInput
 	// Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072` and `rsa-4096`.
 	// * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
 	Type pulumi.StringPtrInput
@@ -445,6 +490,18 @@ func (o SecretBackendKeyOutput) Exportable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.BoolPtrOutput { return v.Exportable }).(pulumi.BoolPtrOutput)
 }
 
+// The elliptic curve algorithm to use for hybrid signatures.
+// Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
+func (o SecretBackendKeyOutput) HybridKeyTypeEc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.HybridKeyTypeEc }).(pulumi.StringPtrOutput)
+}
+
+// The post-quantum algorithm to use for hybrid signatures.
+// Currently, ML-DSA is the only supported key type.
+func (o SecretBackendKeyOutput) HybridKeyTypePqc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.HybridKeyTypePqc }).(pulumi.StringPtrOutput)
+}
+
 // The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
 func (o SecretBackendKeyOutput) KeySize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.IntPtrOutput { return v.KeySize }).(pulumi.IntPtrOutput)
@@ -488,6 +545,12 @@ func (o SecretBackendKeyOutput) Name() pulumi.StringOutput {
 // *Available only for Vault Enterprise*.
 func (o SecretBackendKeyOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// The parameter set to use for ML-DSA. Required for
+// ML-DSA and hybrid keys. Valid values are `44`, `65`, and `87`.
+func (o SecretBackendKeyOutput) ParameterSet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.ParameterSet }).(pulumi.StringPtrOutput)
 }
 
 // Whether or not the key supports decryption, based on key type.

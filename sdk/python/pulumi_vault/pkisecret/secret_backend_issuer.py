@@ -22,6 +22,10 @@ class SecretBackendIssuerArgs:
                  backend: pulumi.Input[str],
                  issuer_ref: pulumi.Input[str],
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disable_critical_extension_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_constraint_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_path_length_checks: Optional[pulumi.Input[bool]] = None,
                  enable_aia_url_templating: Optional[pulumi.Input[bool]] = None,
                  issuer_name: Optional[pulumi.Input[str]] = None,
                  issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -38,6 +42,21 @@ class SecretBackendIssuerArgs:
         :param pulumi.Input[str] issuer_ref: Reference to an existing issuer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[bool] disable_critical_extension_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               issued certificate) contain critical extensions not processed by Vault.
+        :param pulumi.Input[bool] disable_name_checks: This determines whether this issuer is able
+               to issue certificates where the chain of trust (including the final issued
+               certificate) contains a link in which the subject of the issuing certificate
+               does not match the named issuer of the certificate it signed.
+        :param pulumi.Input[bool] disable_name_constraint_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               final issued certificate) violates the name constraints critical extension of
+               one of the issuer certificates in the chain.
+        :param pulumi.Input[bool] disable_path_length_checks: This determines whether this issuer
+               is able to issue certificates where the chain of trust (including the final
+               issued certificate) is longer than allowed by a certificate authority in that
+               chain.
         :param pulumi.Input[bool] enable_aia_url_templating: Specifies that the AIA URL values should
                be templated.
         :param pulumi.Input[str] issuer_name: Name of the issuer.
@@ -60,6 +79,14 @@ class SecretBackendIssuerArgs:
         pulumi.set(__self__, "issuer_ref", issuer_ref)
         if crl_distribution_points is not None:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if disable_critical_extension_checks is not None:
+            pulumi.set(__self__, "disable_critical_extension_checks", disable_critical_extension_checks)
+        if disable_name_checks is not None:
+            pulumi.set(__self__, "disable_name_checks", disable_name_checks)
+        if disable_name_constraint_checks is not None:
+            pulumi.set(__self__, "disable_name_constraint_checks", disable_name_constraint_checks)
+        if disable_path_length_checks is not None:
+            pulumi.set(__self__, "disable_path_length_checks", disable_path_length_checks)
         if enable_aia_url_templating is not None:
             pulumi.set(__self__, "enable_aia_url_templating", enable_aia_url_templating)
         if issuer_name is not None:
@@ -116,6 +143,65 @@ class SecretBackendIssuerArgs:
     @crl_distribution_points.setter
     def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
+
+    @property
+    @pulumi.getter(name="disableCriticalExtensionChecks")
+    def disable_critical_extension_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        issued certificate) contain critical extensions not processed by Vault.
+        """
+        return pulumi.get(self, "disable_critical_extension_checks")
+
+    @disable_critical_extension_checks.setter
+    def disable_critical_extension_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_critical_extension_checks", value)
+
+    @property
+    @pulumi.getter(name="disableNameChecks")
+    def disable_name_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this issuer is able
+        to issue certificates where the chain of trust (including the final issued
+        certificate) contains a link in which the subject of the issuing certificate
+        does not match the named issuer of the certificate it signed.
+        """
+        return pulumi.get(self, "disable_name_checks")
+
+    @disable_name_checks.setter
+    def disable_name_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_name_checks", value)
+
+    @property
+    @pulumi.getter(name="disableNameConstraintChecks")
+    def disable_name_constraint_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        final issued certificate) violates the name constraints critical extension of
+        one of the issuer certificates in the chain.
+        """
+        return pulumi.get(self, "disable_name_constraint_checks")
+
+    @disable_name_constraint_checks.setter
+    def disable_name_constraint_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_name_constraint_checks", value)
+
+    @property
+    @pulumi.getter(name="disablePathLengthChecks")
+    def disable_path_length_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this issuer
+        is able to issue certificates where the chain of trust (including the final
+        issued certificate) is longer than allowed by a certificate authority in that
+        chain.
+        """
+        return pulumi.get(self, "disable_path_length_checks")
+
+    @disable_path_length_checks.setter
+    def disable_path_length_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_path_length_checks", value)
 
     @property
     @pulumi.getter(name="enableAiaUrlTemplating")
@@ -239,6 +325,10 @@ class _SecretBackendIssuerState:
     def __init__(__self__, *,
                  backend: Optional[pulumi.Input[str]] = None,
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disable_critical_extension_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_constraint_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_path_length_checks: Optional[pulumi.Input[bool]] = None,
                  enable_aia_url_templating: Optional[pulumi.Input[bool]] = None,
                  issuer_id: Optional[pulumi.Input[str]] = None,
                  issuer_name: Optional[pulumi.Input[str]] = None,
@@ -256,6 +346,21 @@ class _SecretBackendIssuerState:
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[bool] disable_critical_extension_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               issued certificate) contain critical extensions not processed by Vault.
+        :param pulumi.Input[bool] disable_name_checks: This determines whether this issuer is able
+               to issue certificates where the chain of trust (including the final issued
+               certificate) contains a link in which the subject of the issuing certificate
+               does not match the named issuer of the certificate it signed.
+        :param pulumi.Input[bool] disable_name_constraint_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               final issued certificate) violates the name constraints critical extension of
+               one of the issuer certificates in the chain.
+        :param pulumi.Input[bool] disable_path_length_checks: This determines whether this issuer
+               is able to issue certificates where the chain of trust (including the final
+               issued certificate) is longer than allowed by a certificate authority in that
+               chain.
         :param pulumi.Input[bool] enable_aia_url_templating: Specifies that the AIA URL values should
                be templated.
         :param pulumi.Input[str] issuer_id: ID of the issuer.
@@ -280,6 +385,14 @@ class _SecretBackendIssuerState:
             pulumi.set(__self__, "backend", backend)
         if crl_distribution_points is not None:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if disable_critical_extension_checks is not None:
+            pulumi.set(__self__, "disable_critical_extension_checks", disable_critical_extension_checks)
+        if disable_name_checks is not None:
+            pulumi.set(__self__, "disable_name_checks", disable_name_checks)
+        if disable_name_constraint_checks is not None:
+            pulumi.set(__self__, "disable_name_constraint_checks", disable_name_constraint_checks)
+        if disable_path_length_checks is not None:
+            pulumi.set(__self__, "disable_path_length_checks", disable_path_length_checks)
         if enable_aia_url_templating is not None:
             pulumi.set(__self__, "enable_aia_url_templating", enable_aia_url_templating)
         if issuer_id is not None:
@@ -328,6 +441,65 @@ class _SecretBackendIssuerState:
     @crl_distribution_points.setter
     def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
+
+    @property
+    @pulumi.getter(name="disableCriticalExtensionChecks")
+    def disable_critical_extension_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        issued certificate) contain critical extensions not processed by Vault.
+        """
+        return pulumi.get(self, "disable_critical_extension_checks")
+
+    @disable_critical_extension_checks.setter
+    def disable_critical_extension_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_critical_extension_checks", value)
+
+    @property
+    @pulumi.getter(name="disableNameChecks")
+    def disable_name_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this issuer is able
+        to issue certificates where the chain of trust (including the final issued
+        certificate) contains a link in which the subject of the issuing certificate
+        does not match the named issuer of the certificate it signed.
+        """
+        return pulumi.get(self, "disable_name_checks")
+
+    @disable_name_checks.setter
+    def disable_name_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_name_checks", value)
+
+    @property
+    @pulumi.getter(name="disableNameConstraintChecks")
+    def disable_name_constraint_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        final issued certificate) violates the name constraints critical extension of
+        one of the issuer certificates in the chain.
+        """
+        return pulumi.get(self, "disable_name_constraint_checks")
+
+    @disable_name_constraint_checks.setter
+    def disable_name_constraint_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_name_constraint_checks", value)
+
+    @property
+    @pulumi.getter(name="disablePathLengthChecks")
+    def disable_path_length_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        This determines whether this issuer
+        is able to issue certificates where the chain of trust (including the final
+        issued certificate) is longer than allowed by a certificate authority in that
+        chain.
+        """
+        return pulumi.get(self, "disable_path_length_checks")
+
+    @disable_path_length_checks.setter
+    def disable_path_length_checks(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_path_length_checks", value)
 
     @property
     @pulumi.getter(name="enableAiaUrlTemplating")
@@ -477,6 +649,10 @@ class SecretBackendIssuer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disable_critical_extension_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_constraint_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_path_length_checks: Optional[pulumi.Input[bool]] = None,
                  enable_aia_url_templating: Optional[pulumi.Input[bool]] = None,
                  issuer_name: Optional[pulumi.Input[str]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -525,6 +701,21 @@ class SecretBackendIssuer(pulumi.CustomResource):
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[bool] disable_critical_extension_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               issued certificate) contain critical extensions not processed by Vault.
+        :param pulumi.Input[bool] disable_name_checks: This determines whether this issuer is able
+               to issue certificates where the chain of trust (including the final issued
+               certificate) contains a link in which the subject of the issuing certificate
+               does not match the named issuer of the certificate it signed.
+        :param pulumi.Input[bool] disable_name_constraint_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               final issued certificate) violates the name constraints critical extension of
+               one of the issuer certificates in the chain.
+        :param pulumi.Input[bool] disable_path_length_checks: This determines whether this issuer
+               is able to issue certificates where the chain of trust (including the final
+               issued certificate) is longer than allowed by a certificate authority in that
+               chain.
         :param pulumi.Input[bool] enable_aia_url_templating: Specifies that the AIA URL values should
                be templated.
         :param pulumi.Input[str] issuer_name: Name of the issuer.
@@ -598,6 +789,10 @@ class SecretBackendIssuer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: Optional[pulumi.Input[str]] = None,
                  crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 disable_critical_extension_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_name_constraint_checks: Optional[pulumi.Input[bool]] = None,
+                 disable_path_length_checks: Optional[pulumi.Input[bool]] = None,
                  enable_aia_url_templating: Optional[pulumi.Input[bool]] = None,
                  issuer_name: Optional[pulumi.Input[str]] = None,
                  issuer_ref: Optional[pulumi.Input[str]] = None,
@@ -621,6 +816,10 @@ class SecretBackendIssuer(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+            __props__.__dict__["disable_critical_extension_checks"] = disable_critical_extension_checks
+            __props__.__dict__["disable_name_checks"] = disable_name_checks
+            __props__.__dict__["disable_name_constraint_checks"] = disable_name_constraint_checks
+            __props__.__dict__["disable_path_length_checks"] = disable_path_length_checks
             __props__.__dict__["enable_aia_url_templating"] = enable_aia_url_templating
             __props__.__dict__["issuer_name"] = issuer_name
             if issuer_ref is None and not opts.urn:
@@ -646,6 +845,10 @@ class SecretBackendIssuer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: Optional[pulumi.Input[str]] = None,
             crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            disable_critical_extension_checks: Optional[pulumi.Input[bool]] = None,
+            disable_name_checks: Optional[pulumi.Input[bool]] = None,
+            disable_name_constraint_checks: Optional[pulumi.Input[bool]] = None,
+            disable_path_length_checks: Optional[pulumi.Input[bool]] = None,
             enable_aia_url_templating: Optional[pulumi.Input[bool]] = None,
             issuer_id: Optional[pulumi.Input[str]] = None,
             issuer_name: Optional[pulumi.Input[str]] = None,
@@ -668,6 +871,21 @@ class SecretBackendIssuer(pulumi.CustomResource):
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[bool] disable_critical_extension_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               issued certificate) contain critical extensions not processed by Vault.
+        :param pulumi.Input[bool] disable_name_checks: This determines whether this issuer is able
+               to issue certificates where the chain of trust (including the final issued
+               certificate) contains a link in which the subject of the issuing certificate
+               does not match the named issuer of the certificate it signed.
+        :param pulumi.Input[bool] disable_name_constraint_checks: This determines whether this
+               issuer is able to issue certificates where the chain of trust (including the
+               final issued certificate) violates the name constraints critical extension of
+               one of the issuer certificates in the chain.
+        :param pulumi.Input[bool] disable_path_length_checks: This determines whether this issuer
+               is able to issue certificates where the chain of trust (including the final
+               issued certificate) is longer than allowed by a certificate authority in that
+               chain.
         :param pulumi.Input[bool] enable_aia_url_templating: Specifies that the AIA URL values should
                be templated.
         :param pulumi.Input[str] issuer_id: ID of the issuer.
@@ -694,6 +912,10 @@ class SecretBackendIssuer(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+        __props__.__dict__["disable_critical_extension_checks"] = disable_critical_extension_checks
+        __props__.__dict__["disable_name_checks"] = disable_name_checks
+        __props__.__dict__["disable_name_constraint_checks"] = disable_name_constraint_checks
+        __props__.__dict__["disable_path_length_checks"] = disable_path_length_checks
         __props__.__dict__["enable_aia_url_templating"] = enable_aia_url_templating
         __props__.__dict__["issuer_id"] = issuer_id
         __props__.__dict__["issuer_name"] = issuer_name
@@ -724,6 +946,49 @@ class SecretBackendIssuer(pulumi.CustomResource):
         Distribution Points field.
         """
         return pulumi.get(self, "crl_distribution_points")
+
+    @property
+    @pulumi.getter(name="disableCriticalExtensionChecks")
+    def disable_critical_extension_checks(self) -> pulumi.Output[Optional[bool]]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        issued certificate) contain critical extensions not processed by Vault.
+        """
+        return pulumi.get(self, "disable_critical_extension_checks")
+
+    @property
+    @pulumi.getter(name="disableNameChecks")
+    def disable_name_checks(self) -> pulumi.Output[Optional[bool]]:
+        """
+        This determines whether this issuer is able
+        to issue certificates where the chain of trust (including the final issued
+        certificate) contains a link in which the subject of the issuing certificate
+        does not match the named issuer of the certificate it signed.
+        """
+        return pulumi.get(self, "disable_name_checks")
+
+    @property
+    @pulumi.getter(name="disableNameConstraintChecks")
+    def disable_name_constraint_checks(self) -> pulumi.Output[Optional[bool]]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        final issued certificate) violates the name constraints critical extension of
+        one of the issuer certificates in the chain.
+        """
+        return pulumi.get(self, "disable_name_constraint_checks")
+
+    @property
+    @pulumi.getter(name="disablePathLengthChecks")
+    def disable_path_length_checks(self) -> pulumi.Output[Optional[bool]]:
+        """
+        This determines whether this issuer
+        is able to issue certificates where the chain of trust (including the final
+        issued certificate) is longer than allowed by a certificate authority in that
+        chain.
+        """
+        return pulumi.get(self, "disable_path_length_checks")
 
     @property
     @pulumi.getter(name="enableAiaUrlTemplating")

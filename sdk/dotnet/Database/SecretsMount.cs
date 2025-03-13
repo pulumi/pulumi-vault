@@ -35,6 +35,8 @@ namespace Pulumi.Vault.Database
     ///                 {
     ///                     "dev1",
     ///                 },
+    ///                 RotationSchedule = "0 * * * SAT",
+    ///                 RotationWindow = 3600,
     ///             },
     ///         },
     ///         Postgresqls = new[]
@@ -50,6 +52,8 @@ namespace Pulumi.Vault.Database
     ///                 {
     ///                     "dev2",
     ///                 },
+    ///                 RotationSchedule = "0 * * * SAT",
+    ///                 RotationWindow = 3600,
     ///             },
     ///         },
     ///     });

@@ -274,6 +274,18 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> NoStore { get; private set; } = null!;
 
         /// <summary>
+        /// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        /// </summary>
+        [Output("noStoreMetadata")]
+        public Output<bool?> NoStoreMetadata { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Output("notAfter")]
+        public Output<string?> NotAfter { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the duration by which to backdate the NotBefore property.
         /// </summary>
         [Output("notBeforeDuration")]
@@ -322,10 +334,24 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> RequireCn { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+        /// 
+        /// Example usage:
+        /// </summary>
+        [Output("serialNumberSource")]
+        public Output<string> SerialNumberSource { get; private set; } = null!;
+
+        /// <summary>
         /// Flag to specify certificates for server use
         /// </summary>
         [Output("serverFlag")]
         public Output<bool?> ServerFlag { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Output("signatureBits")]
+        public Output<int> SignatureBits { get; private set; } = null!;
 
         /// <summary>
         /// The street address of generated certificates
@@ -350,6 +376,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("useCsrSans")]
         public Output<bool?> UseCsrSans { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+        /// </summary>
+        [Output("usePss")]
+        public Output<bool?> UsePss { get; private set; } = null!;
 
 
         /// <summary>
@@ -677,6 +709,18 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? NoStore { get; set; }
 
         /// <summary>
+        /// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        /// </summary>
+        [Input("noStoreMetadata")]
+        public Input<bool>? NoStoreMetadata { get; set; }
+
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
+
+        /// <summary>
         /// Specifies the duration by which to backdate the NotBefore property.
         /// </summary>
         [Input("notBeforeDuration")]
@@ -761,10 +805,24 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? RequireCn { get; set; }
 
         /// <summary>
+        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+        /// 
+        /// Example usage:
+        /// </summary>
+        [Input("serialNumberSource")]
+        public Input<string>? SerialNumberSource { get; set; }
+
+        /// <summary>
         /// Flag to specify certificates for server use
         /// </summary>
         [Input("serverFlag")]
         public Input<bool>? ServerFlag { get; set; }
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Input("signatureBits")]
+        public Input<int>? SignatureBits { get; set; }
 
         [Input("streetAddresses")]
         private InputList<string>? _streetAddresses;
@@ -795,6 +853,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("useCsrSans")]
         public Input<bool>? UseCsrSans { get; set; }
+
+        /// <summary>
+        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+        /// </summary>
+        [Input("usePss")]
+        public Input<bool>? UsePss { get; set; }
 
         public SecretBackendRoleArgs()
         {
@@ -1084,6 +1148,18 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? NoStore { get; set; }
 
         /// <summary>
+        /// Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
+        /// </summary>
+        [Input("noStoreMetadata")]
+        public Input<bool>? NoStoreMetadata { get; set; }
+
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
+
+        /// <summary>
         /// Specifies the duration by which to backdate the NotBefore property.
         /// </summary>
         [Input("notBeforeDuration")]
@@ -1168,10 +1244,24 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? RequireCn { get; set; }
 
         /// <summary>
+        /// Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serial_number parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serial_number parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
+        /// 
+        /// Example usage:
+        /// </summary>
+        [Input("serialNumberSource")]
+        public Input<string>? SerialNumberSource { get; set; }
+
+        /// <summary>
         /// Flag to specify certificates for server use
         /// </summary>
         [Input("serverFlag")]
         public Input<bool>? ServerFlag { get; set; }
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Input("signatureBits")]
+        public Input<int>? SignatureBits { get; set; }
 
         [Input("streetAddresses")]
         private InputList<string>? _streetAddresses;
@@ -1202,6 +1292,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("useCsrSans")]
         public Input<bool>? UseCsrSans { get; set; }
+
+        /// <summary>
+        /// Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
+        /// </summary>
+        [Input("usePss")]
+        public Input<bool>? UsePss { get; set; }
 
         public SecretBackendRoleState()
         {

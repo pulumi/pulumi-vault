@@ -31,6 +31,8 @@ namespace Pulumi.Vault.Aws
     ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
     ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
     ///         RoleArn = "&lt;AWS_ROLE_ARN&gt;",
+    ///         RotationSchedule = "0 * * * SAT",
+    ///         RotationWindow = 3600,
     ///     });
     /// 
     /// });
@@ -54,6 +56,8 @@ namespace Pulumi.Vault.Aws
     ///         Backend = example.Path,
     ///         AccessKey = "INSERT_AWS_ACCESS_KEY",
     ///         SecretKey = "INSERT_AWS_SECRET_KEY",
+    ///         RotationSchedule = "0 * * * SAT",
+    ///         RotationWindow = 3600,
     ///     });
     /// 
     /// });
@@ -83,6 +87,12 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("backend")]
         public Output<string?> Backend { get; private set; } = null!;
+
+        /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("disableAutomatedRotation")]
+        public Output<bool?> DisableAutomatedRotation { get; private set; } = null!;
 
         /// <summary>
         /// Override the URL Vault uses when making EC2 API
@@ -142,6 +152,28 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Output("roleArn")]
         public Output<string?> RoleArn { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationPeriod")]
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
         /// The AWS secret key that Vault should use for the
@@ -250,6 +282,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// Override the URL Vault uses when making EC2 API
         /// calls.
         /// </summary>
@@ -307,6 +345,28 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;
@@ -382,6 +442,12 @@ namespace Pulumi.Vault.Aws
         public Input<string>? Backend { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// Override the URL Vault uses when making EC2 API
         /// calls.
         /// </summary>
@@ -439,6 +505,28 @@ namespace Pulumi.Vault.Aws
         /// </summary>
         [Input("roleArn")]
         public Input<string>? RoleArn { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;

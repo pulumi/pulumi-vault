@@ -123,6 +123,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
+        /// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+        /// </summary>
+        [Output("maxTtl")]
+        public Output<int> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -241,6 +247,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool> Enabled { get; set; } = null!;
 
         /// <summary>
+        /// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+        /// </summary>
+        [Input("maxTtl")]
+        public Input<int>? MaxTtl { get; set; }
+
+        /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
         /// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
@@ -319,6 +331,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
+        /// </summary>
+        [Input("maxTtl")]
+        public Input<int>? MaxTtl { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

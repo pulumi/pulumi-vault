@@ -65,6 +65,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public /*out*/ readonly caChain!: pulumi.Output<string>;
     /**
+     * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+     */
+    public readonly certMetadata!: pulumi.Output<string | undefined>;
+    /**
      * The certificate
      */
     public /*out*/ readonly certificate!: pulumi.Output<string>;
@@ -112,6 +116,10 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    public readonly notAfter!: pulumi.Output<string | undefined>;
+    /**
      * List of other SANs
      */
     public readonly otherSans!: pulumi.Output<string[] | undefined>;
@@ -132,9 +140,13 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     public /*out*/ readonly renewPending!: pulumi.Output<boolean>;
     /**
-     * If set to `true`, the certificate will be revoked on resource destruction.
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      */
     public readonly revoke!: pulumi.Output<boolean | undefined>;
+    /**
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+     */
+    public readonly revokeWithKey!: pulumi.Output<boolean | undefined>;
     /**
      * The serial number
      */
@@ -169,6 +181,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["caChain"] = state ? state.caChain : undefined;
+            resourceInputs["certMetadata"] = state ? state.certMetadata : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["commonName"] = state ? state.commonName : undefined;
             resourceInputs["excludeCnFromSans"] = state ? state.excludeCnFromSans : undefined;
@@ -180,12 +193,14 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["minSecondsRemaining"] = state ? state.minSecondsRemaining : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["notAfter"] = state ? state.notAfter : undefined;
             resourceInputs["otherSans"] = state ? state.otherSans : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["privateKeyFormat"] = state ? state.privateKeyFormat : undefined;
             resourceInputs["privateKeyType"] = state ? state.privateKeyType : undefined;
             resourceInputs["renewPending"] = state ? state.renewPending : undefined;
             resourceInputs["revoke"] = state ? state.revoke : undefined;
+            resourceInputs["revokeWithKey"] = state ? state.revokeWithKey : undefined;
             resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
             resourceInputs["ttl"] = state ? state.ttl : undefined;
             resourceInputs["uriSans"] = state ? state.uriSans : undefined;
@@ -201,6 +216,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["altNames"] = args ? args.altNames : undefined;
             resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
+            resourceInputs["certMetadata"] = args ? args.certMetadata : undefined;
             resourceInputs["commonName"] = args ? args.commonName : undefined;
             resourceInputs["excludeCnFromSans"] = args ? args.excludeCnFromSans : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
@@ -209,9 +225,11 @@ export class SecretBackendCert extends pulumi.CustomResource {
             resourceInputs["minSecondsRemaining"] = args ? args.minSecondsRemaining : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["notAfter"] = args ? args.notAfter : undefined;
             resourceInputs["otherSans"] = args ? args.otherSans : undefined;
             resourceInputs["privateKeyFormat"] = args ? args.privateKeyFormat : undefined;
             resourceInputs["revoke"] = args ? args.revoke : undefined;
+            resourceInputs["revokeWithKey"] = args ? args.revokeWithKey : undefined;
             resourceInputs["ttl"] = args ? args.ttl : undefined;
             resourceInputs["uriSans"] = args ? args.uriSans : undefined;
             resourceInputs["userIds"] = args ? args.userIds : undefined;
@@ -251,6 +269,10 @@ export interface SecretBackendCertState {
      * The CA chain
      */
     caChain?: pulumi.Input<string>;
+    /**
+     * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+     */
+    certMetadata?: pulumi.Input<string>;
     /**
      * The certificate
      */
@@ -299,6 +321,10 @@ export interface SecretBackendCertState {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
      * List of other SANs
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
@@ -319,9 +345,13 @@ export interface SecretBackendCertState {
      */
     renewPending?: pulumi.Input<boolean>;
     /**
-     * If set to `true`, the certificate will be revoked on resource destruction.
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      */
     revoke?: pulumi.Input<boolean>;
+    /**
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+     */
+    revokeWithKey?: pulumi.Input<boolean>;
     /**
      * The serial number
      */
@@ -356,6 +386,10 @@ export interface SecretBackendCertArgs {
      * The PKI secret backend the resource belongs to.
      */
     backend: pulumi.Input<string>;
+    /**
+     * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
+     */
+    certMetadata?: pulumi.Input<string>;
     /**
      * CN of certificate to create
      */
@@ -392,6 +426,10 @@ export interface SecretBackendCertArgs {
      */
     namespace?: pulumi.Input<string>;
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     */
+    notAfter?: pulumi.Input<string>;
+    /**
      * List of other SANs
      */
     otherSans?: pulumi.Input<pulumi.Input<string>[]>;
@@ -400,9 +438,13 @@ export interface SecretBackendCertArgs {
      */
     privateKeyFormat?: pulumi.Input<string>;
     /**
-     * If set to `true`, the certificate will be revoked on resource destruction.
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      */
     revoke?: pulumi.Input<boolean>;
+    /**
+     * If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+     */
+    revokeWithKey?: pulumi.Input<boolean>;
     /**
      * Time to live
      */

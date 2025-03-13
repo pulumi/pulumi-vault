@@ -6,6 +6,7 @@ package com.pulumi.vault.azure;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -66,6 +67,23 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<String>> clientSecret() {
         return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="disableAutomatedRotation")
+    private @Nullable Output<Boolean> disableAutomatedRotation;
+
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<Boolean>> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
     }
 
     /**
@@ -158,6 +176,65 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="rotationPeriod")
+    private @Nullable Output<Integer> rotationPeriod;
+
+    /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<Integer>> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="rotationSchedule")
+    private @Nullable Output<String> rotationSchedule;
+
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<String>> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    @Import(name="rotationWindow")
+    private @Nullable Output<Integer> rotationWindow;
+
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*
+     * 
+     */
+    public Optional<Output<Integer>> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
+    }
+
+    /**
      * The tenant id for the Azure Active Directory
      * organization.
      * 
@@ -180,11 +257,15 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
         this.backend = $.backend;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.environment = $.environment;
         this.identityTokenAudience = $.identityTokenAudience;
         this.identityTokenTtl = $.identityTokenTtl;
         this.namespace = $.namespace;
         this.resource = $.resource;
+        this.rotationPeriod = $.rotationPeriod;
+        this.rotationSchedule = $.rotationSchedule;
+        this.rotationWindow = $.rotationWindow;
         this.tenantId = $.tenantId;
     }
 
@@ -273,6 +354,29 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(@Nullable Output<Boolean> disableAutomatedRotation) {
+            $.disableAutomatedRotation = disableAutomatedRotation;
+            return this;
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(Boolean disableAutomatedRotation) {
+            return disableAutomatedRotation(Output.of(disableAutomatedRotation));
         }
 
         /**
@@ -392,6 +496,83 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder resource(String resource) {
             return resource(Output.of(resource));
+        }
+
+        /**
+         * @param rotationPeriod The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(@Nullable Output<Integer> rotationPeriod) {
+            $.rotationPeriod = rotationPeriod;
+            return this;
+        }
+
+        /**
+         * @param rotationPeriod The amount of time in seconds Vault should wait before rotating the root credential.
+         * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(Integer rotationPeriod) {
+            return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(@Nullable Output<String> rotationSchedule) {
+            $.rotationSchedule = rotationSchedule;
+            return this;
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(String rotationSchedule) {
+            return rotationSchedule(Output.of(rotationSchedule));
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(@Nullable Output<Integer> rotationWindow) {
+            $.rotationWindow = rotationWindow;
+            return this;
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+         * *Available only for Vault Enterprise*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(Integer rotationWindow) {
+            return rotationWindow(Output.of(rotationWindow));
         }
 
         /**

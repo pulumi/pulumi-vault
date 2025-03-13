@@ -154,6 +154,62 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.excludeCnFromSans);
     }
     /**
+     * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="excludedDnsDomains", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> excludedDnsDomains;
+
+    /**
+     * @return List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> excludedDnsDomains() {
+        return Codegen.optional(this.excludedDnsDomains);
+    }
+    /**
+     * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="excludedEmailAddresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> excludedEmailAddresses;
+
+    /**
+     * @return List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> excludedEmailAddresses() {
+        return Codegen.optional(this.excludedEmailAddresses);
+    }
+    /**
+     * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="excludedIpRanges", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> excludedIpRanges;
+
+    /**
+     * @return List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> excludedIpRanges() {
+        return Codegen.optional(this.excludedIpRanges);
+    }
+    /**
+     * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="excludedUriDomains", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> excludedUriDomains;
+
+    /**
+     * @return List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> excludedUriDomains() {
+        return Codegen.optional(this.excludedUriDomains);
+    }
+    /**
      * The format of data
      * 
      */
@@ -380,6 +436,20 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.namespace);
     }
     /**
+     * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    @Export(name="notAfter", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> notAfter;
+
+    /**
+     * @return Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+     * 
+     */
+    public Output<Optional<String>> notAfter() {
+        return Codegen.optional(this.notAfter);
+    }
+    /**
      * The organization
      * 
      */
@@ -436,6 +506,48 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.permittedDnsDomains);
     }
     /**
+     * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="permittedEmailAddresses", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> permittedEmailAddresses;
+
+    /**
+     * @return List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> permittedEmailAddresses() {
+        return Codegen.optional(this.permittedEmailAddresses);
+    }
+    /**
+     * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="permittedIpRanges", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> permittedIpRanges;
+
+    /**
+     * @return List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> permittedIpRanges() {
+        return Codegen.optional(this.permittedIpRanges);
+    }
+    /**
+     * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    @Export(name="permittedUriDomains", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> permittedUriDomains;
+
+    /**
+     * @return List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+     * 
+     */
+    public Output<Optional<List<String>>> permittedUriDomains() {
+        return Codegen.optional(this.permittedUriDomains);
+    }
+    /**
      * The postal code
      * 
      */
@@ -490,6 +602,20 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
      */
     public Output<String> serialNumber() {
         return this.serialNumber;
+    }
+    /**
+     * The number of bits to use in the signature algorithm
+     * 
+     */
+    @Export(name="signatureBits", refs={Integer.class}, tree="[0]")
+    private Output<Integer> signatureBits;
+
+    /**
+     * @return The number of bits to use in the signature algorithm
+     * 
+     */
+    public Output<Integer> signatureBits() {
+        return this.signatureBits;
     }
     /**
      * The street address

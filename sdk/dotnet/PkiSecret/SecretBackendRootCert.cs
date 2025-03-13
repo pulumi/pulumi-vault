@@ -84,6 +84,30 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> ExcludeCnFromSans { get; private set; } = null!;
 
         /// <summary>
+        /// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("excludedDnsDomains")]
+        public Output<ImmutableArray<string>> ExcludedDnsDomains { get; private set; } = null!;
+
+        /// <summary>
+        /// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("excludedEmailAddresses")]
+        public Output<ImmutableArray<string>> ExcludedEmailAddresses { get; private set; } = null!;
+
+        /// <summary>
+        /// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("excludedIpRanges")]
+        public Output<ImmutableArray<string>> ExcludedIpRanges { get; private set; } = null!;
+
+        /// <summary>
+        /// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("excludedUriDomains")]
+        public Output<ImmutableArray<string>> ExcludedUriDomains { get; private set; } = null!;
+
+        /// <summary>
         /// The format of data
         /// </summary>
         [Output("format")]
@@ -182,6 +206,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Output("notAfter")]
+        public Output<string?> NotAfter { get; private set; } = null!;
+
+        /// <summary>
         /// The organization
         /// </summary>
         [Output("organization")]
@@ -206,6 +236,24 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> PermittedDnsDomains { get; private set; } = null!;
 
         /// <summary>
+        /// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("permittedEmailAddresses")]
+        public Output<ImmutableArray<string>> PermittedEmailAddresses { get; private set; } = null!;
+
+        /// <summary>
+        /// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("permittedIpRanges")]
+        public Output<ImmutableArray<string>> PermittedIpRanges { get; private set; } = null!;
+
+        /// <summary>
+        /// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        [Output("permittedUriDomains")]
+        public Output<ImmutableArray<string>> PermittedUriDomains { get; private set; } = null!;
+
+        /// <summary>
         /// The postal code
         /// </summary>
         [Output("postalCode")]
@@ -228,6 +276,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("serialNumber")]
         public Output<string> SerialNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Output("signatureBits")]
+        public Output<int> SignatureBits { get; private set; } = null!;
 
         /// <summary>
         /// The street address
@@ -336,6 +390,54 @@ namespace Pulumi.Vault.PkiSecret
         [Input("excludeCnFromSans")]
         public Input<bool>? ExcludeCnFromSans { get; set; }
 
+        [Input("excludedDnsDomains")]
+        private InputList<string>? _excludedDnsDomains;
+
+        /// <summary>
+        /// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedDnsDomains
+        {
+            get => _excludedDnsDomains ?? (_excludedDnsDomains = new InputList<string>());
+            set => _excludedDnsDomains = value;
+        }
+
+        [Input("excludedEmailAddresses")]
+        private InputList<string>? _excludedEmailAddresses;
+
+        /// <summary>
+        /// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedEmailAddresses
+        {
+            get => _excludedEmailAddresses ?? (_excludedEmailAddresses = new InputList<string>());
+            set => _excludedEmailAddresses = value;
+        }
+
+        [Input("excludedIpRanges")]
+        private InputList<string>? _excludedIpRanges;
+
+        /// <summary>
+        /// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedIpRanges
+        {
+            get => _excludedIpRanges ?? (_excludedIpRanges = new InputList<string>());
+            set => _excludedIpRanges = value;
+        }
+
+        [Input("excludedUriDomains")]
+        private InputList<string>? _excludedUriDomains;
+
+        /// <summary>
+        /// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedUriDomains
+        {
+            get => _excludedUriDomains ?? (_excludedUriDomains = new InputList<string>());
+            set => _excludedUriDomains = value;
+        }
+
         /// <summary>
         /// The format of data
         /// </summary>
@@ -423,6 +525,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
+
+        /// <summary>
         /// The organization
         /// </summary>
         [Input("organization")]
@@ -458,6 +566,42 @@ namespace Pulumi.Vault.PkiSecret
             set => _permittedDnsDomains = value;
         }
 
+        [Input("permittedEmailAddresses")]
+        private InputList<string>? _permittedEmailAddresses;
+
+        /// <summary>
+        /// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> PermittedEmailAddresses
+        {
+            get => _permittedEmailAddresses ?? (_permittedEmailAddresses = new InputList<string>());
+            set => _permittedEmailAddresses = value;
+        }
+
+        [Input("permittedIpRanges")]
+        private InputList<string>? _permittedIpRanges;
+
+        /// <summary>
+        /// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> PermittedIpRanges
+        {
+            get => _permittedIpRanges ?? (_permittedIpRanges = new InputList<string>());
+            set => _permittedIpRanges = value;
+        }
+
+        [Input("permittedUriDomains")]
+        private InputList<string>? _permittedUriDomains;
+
+        /// <summary>
+        /// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> PermittedUriDomains
+        {
+            get => _permittedUriDomains ?? (_permittedUriDomains = new InputList<string>());
+            set => _permittedUriDomains = value;
+        }
+
         /// <summary>
         /// The postal code
         /// </summary>
@@ -475,6 +619,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("province")]
         public Input<string>? Province { get; set; }
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Input("signatureBits")]
+        public Input<int>? SignatureBits { get; set; }
 
         /// <summary>
         /// The street address
@@ -556,6 +706,54 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("excludeCnFromSans")]
         public Input<bool>? ExcludeCnFromSans { get; set; }
+
+        [Input("excludedDnsDomains")]
+        private InputList<string>? _excludedDnsDomains;
+
+        /// <summary>
+        /// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedDnsDomains
+        {
+            get => _excludedDnsDomains ?? (_excludedDnsDomains = new InputList<string>());
+            set => _excludedDnsDomains = value;
+        }
+
+        [Input("excludedEmailAddresses")]
+        private InputList<string>? _excludedEmailAddresses;
+
+        /// <summary>
+        /// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedEmailAddresses
+        {
+            get => _excludedEmailAddresses ?? (_excludedEmailAddresses = new InputList<string>());
+            set => _excludedEmailAddresses = value;
+        }
+
+        [Input("excludedIpRanges")]
+        private InputList<string>? _excludedIpRanges;
+
+        /// <summary>
+        /// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedIpRanges
+        {
+            get => _excludedIpRanges ?? (_excludedIpRanges = new InputList<string>());
+            set => _excludedIpRanges = value;
+        }
+
+        [Input("excludedUriDomains")]
+        private InputList<string>? _excludedUriDomains;
+
+        /// <summary>
+        /// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> ExcludedUriDomains
+        {
+            get => _excludedUriDomains ?? (_excludedUriDomains = new InputList<string>());
+            set => _excludedUriDomains = value;
+        }
 
         /// <summary>
         /// The format of data
@@ -662,6 +860,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
+
+        /// <summary>
         /// The organization
         /// </summary>
         [Input("organization")]
@@ -697,6 +901,42 @@ namespace Pulumi.Vault.PkiSecret
             set => _permittedDnsDomains = value;
         }
 
+        [Input("permittedEmailAddresses")]
+        private InputList<string>? _permittedEmailAddresses;
+
+        /// <summary>
+        /// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> PermittedEmailAddresses
+        {
+            get => _permittedEmailAddresses ?? (_permittedEmailAddresses = new InputList<string>());
+            set => _permittedEmailAddresses = value;
+        }
+
+        [Input("permittedIpRanges")]
+        private InputList<string>? _permittedIpRanges;
+
+        /// <summary>
+        /// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> PermittedIpRanges
+        {
+            get => _permittedIpRanges ?? (_permittedIpRanges = new InputList<string>());
+            set => _permittedIpRanges = value;
+        }
+
+        [Input("permittedUriDomains")]
+        private InputList<string>? _permittedUriDomains;
+
+        /// <summary>
+        /// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        /// </summary>
+        public InputList<string> PermittedUriDomains
+        {
+            get => _permittedUriDomains ?? (_permittedUriDomains = new InputList<string>());
+            set => _permittedUriDomains = value;
+        }
+
         /// <summary>
         /// The postal code
         /// </summary>
@@ -720,6 +960,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("serialNumber")]
         public Input<string>? SerialNumber { get; set; }
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Input("signatureBits")]
+        public Input<int>? SignatureBits { get; set; }
 
         /// <summary>
         /// The street address

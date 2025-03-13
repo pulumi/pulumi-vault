@@ -92,6 +92,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> CaChains { get; private set; } = null!;
 
         /// <summary>
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// </summary>
+        [Output("certMetadata")]
+        public Output<string?> CertMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// The certificate
         /// </summary>
         [Output("certificate")]
@@ -168,6 +174,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Output("notAfter")]
+        public Output<string?> NotAfter { get; private set; } = null!;
 
         /// <summary>
         /// List of other SANs
@@ -270,6 +282,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// </summary>
+        [Input("certMetadata")]
+        public Input<string>? CertMetadata { get; set; }
+
+        /// <summary>
         /// CN of certificate to create
         /// </summary>
         [Input("commonName", required: true)]
@@ -334,6 +352,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
 
         [Input("otherSans")]
         private InputList<string>? _otherSans;
@@ -408,6 +432,12 @@ namespace Pulumi.Vault.PkiSecret
             get => _caChains ?? (_caChains = new InputList<string>());
             set => _caChains = value;
         }
+
+        /// <summary>
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// </summary>
+        [Input("certMetadata")]
+        public Input<string>? CertMetadata { get; set; }
 
         /// <summary>
         /// The certificate
@@ -492,6 +522,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
 
         [Input("otherSans")]
         private InputList<string>? _otherSans;

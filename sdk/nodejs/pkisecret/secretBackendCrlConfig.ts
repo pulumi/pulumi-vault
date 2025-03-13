@@ -88,6 +88,11 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     public readonly expiry!: pulumi.Output<string | undefined>;
     /**
+     * The maximum number of entries a CRL can contain. This option exists to prevent 
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     */
+    public readonly maxCrlEntries!: pulumi.Output<number>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -134,6 +139,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["disable"] = state ? state.disable : undefined;
             resourceInputs["enableDelta"] = state ? state.enableDelta : undefined;
             resourceInputs["expiry"] = state ? state.expiry : undefined;
+            resourceInputs["maxCrlEntries"] = state ? state.maxCrlEntries : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["ocspDisable"] = state ? state.ocspDisable : undefined;
             resourceInputs["ocspExpiry"] = state ? state.ocspExpiry : undefined;
@@ -152,6 +158,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
             resourceInputs["disable"] = args ? args.disable : undefined;
             resourceInputs["enableDelta"] = args ? args.enableDelta : undefined;
             resourceInputs["expiry"] = args ? args.expiry : undefined;
+            resourceInputs["maxCrlEntries"] = args ? args.maxCrlEntries : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["ocspDisable"] = args ? args.ocspDisable : undefined;
             resourceInputs["ocspExpiry"] = args ? args.ocspExpiry : undefined;
@@ -200,6 +207,11 @@ export interface SecretBackendCrlConfigState {
      * Specifies the time until expiration.
      */
     expiry?: pulumi.Input<string>;
+    /**
+     * The maximum number of entries a CRL can contain. This option exists to prevent 
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     */
+    maxCrlEntries?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -264,6 +276,11 @@ export interface SecretBackendCrlConfigArgs {
      * Specifies the time until expiration.
      */
     expiry?: pulumi.Input<string>;
+    /**
+     * The maximum number of entries a CRL can contain. This option exists to prevent 
+     * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
+     */
+    maxCrlEntries?: pulumi.Input<number>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

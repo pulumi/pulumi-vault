@@ -3489,6 +3489,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -3528,6 +3532,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         skip_verification: NotRequired[pulumi.Input[bool]]
         """
         Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
@@ -3555,6 +3575,7 @@ class SecretsMountCassandraArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connect_timeout: Optional[pulumi.Input[int]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -3564,6 +3585,9 @@ class SecretsMountCassandraArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  protocol_version: Optional[pulumi.Input[int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  skip_verification: Optional[pulumi.Input[bool]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
@@ -3574,6 +3598,7 @@ class SecretsMountCassandraArgs:
                connection.
         :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection timeout.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Cassandra hosts to connect to.
@@ -3585,6 +3610,13 @@ class SecretsMountCassandraArgs:
         :param pulumi.Input[int] port: The transport port to use to connect to Cassandra.
         :param pulumi.Input[int] protocol_version: The CQL protocol version to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] skip_verification: Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Cassandra.
         :param pulumi.Input[str] username: The username to use when authenticating with Cassandra.
@@ -3598,6 +3630,8 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if insecure_tls is not None:
@@ -3616,6 +3650,12 @@ class SecretsMountCassandraArgs:
             pulumi.set(__self__, "protocol_version", protocol_version)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if skip_verification is not None:
             pulumi.set(__self__, "skip_verification", skip_verification)
         if tls is not None:
@@ -3667,14 +3707,26 @@ class SecretsMountCassandraArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter
@@ -3785,6 +3837,46 @@ class SecretsMountCassandraArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter(name="skipVerification")
     def skip_verification(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -3868,6 +3960,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -3882,6 +3978,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         tls: NotRequired[pulumi.Input[bool]]
         """
@@ -3910,9 +4022,13 @@ class SecretsMountCouchbaseArgs:
                  base64_pem: Optional[pulumi.Input[str]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -3926,11 +4042,19 @@ class SecretsMountCouchbaseArgs:
         :param pulumi.Input[str] base64_pem: Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         :param pulumi.Input[str] bucket_name: Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] tls: Specifies whether to use TLS when connecting to Couchbase.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -3948,12 +4072,20 @@ class SecretsMountCouchbaseArgs:
             pulumi.set(__self__, "bucket_name", bucket_name)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username_template is not None:
@@ -4051,14 +4183,26 @@ class SecretsMountCouchbaseArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="insecureTls")
@@ -4095,6 +4239,46 @@ class SecretsMountCouchbaseArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter
@@ -4176,6 +4360,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -4190,6 +4378,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         tls_server_name: NotRequired[pulumi.Input[str]]
         """
@@ -4220,9 +4424,13 @@ class SecretsMountElasticsearchArgs:
                  client_cert: Optional[pulumi.Input[str]] = None,
                  client_key: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  insecure: Optional[pulumi.Input[bool]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  tls_server_name: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -4238,11 +4446,19 @@ class SecretsMountElasticsearchArgs:
         :param pulumi.Input[str] client_cert: The path to the certificate for the Elasticsearch client to present for communication
         :param pulumi.Input[str] client_key: The path to the key for the Elasticsearch client to use for communication
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] insecure: Whether to disable certificate verification
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] tls_server_name: This, if set, is used to set the SNI host when connecting via TLS
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -4264,12 +4480,20 @@ class SecretsMountElasticsearchArgs:
             pulumi.set(__self__, "client_key", client_key)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure is not None:
             pulumi.set(__self__, "insecure", insecure)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if tls_server_name is not None:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
         if username_template is not None:
@@ -4391,14 +4615,26 @@ class SecretsMountElasticsearchArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter
@@ -4435,6 +4671,46 @@ class SecretsMountElasticsearchArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="tlsServerName")
@@ -4492,6 +4768,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -4523,6 +4803,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         username: NotRequired[pulumi.Input[str]]
         """
         The root credential username used in the connection URL
@@ -4542,6 +4838,7 @@ class SecretsMountHanaArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
@@ -4549,6 +4846,9 @@ class SecretsMountHanaArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
@@ -4557,6 +4857,7 @@ class SecretsMountHanaArgs:
                connection.
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
@@ -4566,6 +4867,13 @@ class SecretsMountHanaArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -4577,6 +4885,8 @@ class SecretsMountHanaArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_escaping is not None:
             pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
@@ -4591,6 +4901,12 @@ class SecretsMountHanaArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if verify_connection is not None:
@@ -4638,14 +4954,26 @@ class SecretsMountHanaArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableEscaping")
@@ -4732,6 +5060,46 @@ class SecretsMountHanaArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4787,6 +5155,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -4814,6 +5186,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         tls: NotRequired[pulumi.Input[bool]]
         """
         Whether to use TLS when connecting to Influxdb.
@@ -4840,12 +5228,16 @@ class SecretsMountInfluxdbArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connect_timeout: Optional[pulumi.Input[int]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  pem_bundle: Optional[pulumi.Input[str]] = None,
                  pem_json: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -4858,6 +5250,7 @@ class SecretsMountInfluxdbArgs:
                connection.
         :param pulumi.Input[int] connect_timeout: The number of seconds to use as a connection timeout.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] insecure_tls: Whether to skip verification of the server certificate when using TLS.
@@ -4866,6 +5259,13 @@ class SecretsMountInfluxdbArgs:
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[int] port: The transport port to use to connect to Influxdb.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] tls: Whether to use TLS when connecting to Influxdb.
         :param pulumi.Input[str] username_template: Template describing how dynamic usernames are generated.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -4881,6 +5281,8 @@ class SecretsMountInfluxdbArgs:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if pem_bundle is not None:
@@ -4893,6 +5295,12 @@ class SecretsMountInfluxdbArgs:
             pulumi.set(__self__, "port", port)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if username_template is not None:
@@ -4978,14 +5386,26 @@ class SecretsMountInfluxdbArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="insecureTls")
@@ -5060,6 +5480,46 @@ class SecretsMountInfluxdbArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -5115,6 +5575,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -5142,6 +5606,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         username: NotRequired[pulumi.Input[str]]
         """
         The root credential username used in the connection URL
@@ -5165,12 +5645,16 @@ class SecretsMountMongodbArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -5180,6 +5664,7 @@ class SecretsMountMongodbArgs:
                connection.
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -5188,6 +5673,13 @@ class SecretsMountMongodbArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -5200,6 +5692,8 @@ class SecretsMountMongodbArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -5212,6 +5706,12 @@ class SecretsMountMongodbArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -5261,14 +5761,26 @@ class SecretsMountMongodbArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -5343,6 +5855,46 @@ class SecretsMountMongodbArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5406,6 +5958,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -5416,6 +5972,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         verify_connection: NotRequired[pulumi.Input[bool]]
         """
@@ -5434,8 +6006,12 @@ class SecretsMountMongodbatlaArgs:
                  public_key: pulumi.Input[str],
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[str] name: Name of the database connection.
@@ -5445,10 +6021,18 @@ class SecretsMountMongodbatlaArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
         """
@@ -5460,10 +6044,18 @@ class SecretsMountMongodbatlaArgs:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if plugin_name is not None:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if verify_connection is not None:
             pulumi.set(__self__, "verify_connection", verify_connection)
 
@@ -5533,14 +6125,26 @@ class SecretsMountMongodbatlaArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="pluginName")
@@ -5565,6 +6169,46 @@ class SecretsMountMongodbatlaArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="verifyConnection")
@@ -5602,6 +6246,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -5633,6 +6281,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         username: NotRequired[pulumi.Input[str]]
         """
         The root credential username used in the connection URL
@@ -5657,6 +6321,7 @@ class SecretsMountMssqlArgs:
                  connection_url: Optional[pulumi.Input[str]] = None,
                  contained_db: Optional[pulumi.Input[bool]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
@@ -5664,6 +6329,9 @@ class SecretsMountMssqlArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -5674,6 +6342,7 @@ class SecretsMountMssqlArgs:
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[bool] contained_db: Set to true when the target is a Contained Database, e.g. AzureSQL.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
@@ -5683,6 +6352,13 @@ class SecretsMountMssqlArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -5697,6 +6373,8 @@ class SecretsMountMssqlArgs:
             pulumi.set(__self__, "contained_db", contained_db)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_escaping is not None:
             pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
@@ -5711,6 +6389,12 @@ class SecretsMountMssqlArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -5772,14 +6456,26 @@ class SecretsMountMssqlArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableEscaping")
@@ -5866,6 +6562,46 @@ class SecretsMountMssqlArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5925,6 +6661,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -5951,6 +6691,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         service_account_json: NotRequired[pulumi.Input[str]]
         """
@@ -5988,12 +6744,16 @@ class SecretsMountMysqlArgs:
                  auth_type: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
                  tls_ca: Optional[pulumi.Input[str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[str]] = None,
@@ -6007,6 +6767,7 @@ class SecretsMountMysqlArgs:
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -6015,6 +6776,13 @@ class SecretsMountMysqlArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -6032,6 +6800,8 @@ class SecretsMountMysqlArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -6044,6 +6814,12 @@ class SecretsMountMysqlArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -6111,14 +6887,26 @@ class SecretsMountMysqlArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -6191,6 +6979,46 @@ class SecretsMountMysqlArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -6288,6 +7116,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -6314,6 +7146,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         service_account_json: NotRequired[pulumi.Input[str]]
         """
@@ -6351,12 +7199,16 @@ class SecretsMountMysqlAuroraArgs:
                  auth_type: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
                  tls_ca: Optional[pulumi.Input[str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[str]] = None,
@@ -6370,6 +7222,7 @@ class SecretsMountMysqlAuroraArgs:
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -6378,6 +7231,13 @@ class SecretsMountMysqlAuroraArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -6395,6 +7255,8 @@ class SecretsMountMysqlAuroraArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -6407,6 +7269,12 @@ class SecretsMountMysqlAuroraArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -6474,14 +7342,26 @@ class SecretsMountMysqlAuroraArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -6554,6 +7434,46 @@ class SecretsMountMysqlAuroraArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -6651,6 +7571,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -6677,6 +7601,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         service_account_json: NotRequired[pulumi.Input[str]]
         """
@@ -6714,12 +7654,16 @@ class SecretsMountMysqlLegacyArgs:
                  auth_type: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
                  tls_ca: Optional[pulumi.Input[str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[str]] = None,
@@ -6733,6 +7677,7 @@ class SecretsMountMysqlLegacyArgs:
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -6741,6 +7686,13 @@ class SecretsMountMysqlLegacyArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -6758,6 +7710,8 @@ class SecretsMountMysqlLegacyArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -6770,6 +7724,12 @@ class SecretsMountMysqlLegacyArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -6837,14 +7797,26 @@ class SecretsMountMysqlLegacyArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -6917,6 +7889,46 @@ class SecretsMountMysqlLegacyArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -7014,6 +8026,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -7040,6 +8056,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         service_account_json: NotRequired[pulumi.Input[str]]
         """
@@ -7077,12 +8109,16 @@ class SecretsMountMysqlRdArgs:
                  auth_type: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
                  tls_ca: Optional[pulumi.Input[str]] = None,
                  tls_certificate_key: Optional[pulumi.Input[str]] = None,
@@ -7096,6 +8132,7 @@ class SecretsMountMysqlRdArgs:
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -7104,6 +8141,13 @@ class SecretsMountMysqlRdArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         :param pulumi.Input[str] tls_certificate_key: x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
@@ -7121,6 +8165,8 @@ class SecretsMountMysqlRdArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -7133,6 +8179,12 @@ class SecretsMountMysqlRdArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if service_account_json is not None:
             pulumi.set(__self__, "service_account_json", service_account_json)
         if tls_ca is not None:
@@ -7200,14 +8252,26 @@ class SecretsMountMysqlRdArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -7280,6 +8344,46 @@ class SecretsMountMysqlRdArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="serviceAccountJson")
@@ -7373,6 +8477,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -7404,6 +8512,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         split_statements: NotRequired[pulumi.Input[bool]]
         """
         Set to true in order to split statements after semi-colons.
@@ -7431,6 +8555,7 @@ class SecretsMountOracleArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disconnect_sessions: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
@@ -7438,6 +8563,9 @@ class SecretsMountOracleArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  split_statements: Optional[pulumi.Input[bool]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
@@ -7448,6 +8576,7 @@ class SecretsMountOracleArgs:
                connection.
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] disconnect_sessions: Set to true to disconnect any open sessions prior to running the revocation statements.
@@ -7457,6 +8586,13 @@ class SecretsMountOracleArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] split_statements: Set to true in order to split statements after semi-colons.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
@@ -7470,6 +8606,8 @@ class SecretsMountOracleArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disconnect_sessions is not None:
             pulumi.set(__self__, "disconnect_sessions", disconnect_sessions)
         if max_connection_lifetime is not None:
@@ -7484,6 +8622,12 @@ class SecretsMountOracleArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if split_statements is not None:
             pulumi.set(__self__, "split_statements", split_statements)
         if username is not None:
@@ -7535,14 +8679,26 @@ class SecretsMountOracleArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disconnectSessions")
@@ -7629,6 +8785,46 @@ class SecretsMountOracleArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter(name="splitStatements")
     def split_statements(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -7700,6 +8896,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -7738,6 +8938,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         self_managed: NotRequired[pulumi.Input[bool]]
         """
@@ -7779,6 +8995,7 @@ class SecretsMountPostgresqlArgs:
                  auth_type: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
@@ -7788,6 +9005,9 @@ class SecretsMountPostgresqlArgs:
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  self_managed: Optional[pulumi.Input[bool]] = None,
                  service_account_json: Optional[pulumi.Input[str]] = None,
                  tls_ca: Optional[pulumi.Input[str]] = None,
@@ -7802,6 +9022,7 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
@@ -7813,6 +9034,13 @@ class SecretsMountPostgresqlArgs:
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[str] private_key: The secret key used for the x509 client certificate. Must be PEM encoded.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] self_managed: If set, allows onboarding static roles with a rootless connection configuration.
         :param pulumi.Input[str] service_account_json: A JSON encoded credential for use with IAM authorization
         :param pulumi.Input[str] tls_ca: The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
@@ -7831,6 +9059,8 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_escaping is not None:
             pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
@@ -7849,6 +9079,12 @@ class SecretsMountPostgresqlArgs:
             pulumi.set(__self__, "private_key", private_key)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if self_managed is not None:
             pulumi.set(__self__, "self_managed", self_managed)
         if service_account_json is not None:
@@ -7918,14 +9154,26 @@ class SecretsMountPostgresqlArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableEscaping")
@@ -8034,6 +9282,46 @@ class SecretsMountPostgresqlArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter(name="selfManaged")
@@ -8151,6 +9439,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -8169,6 +9461,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         tls: NotRequired[pulumi.Input[bool]]
         """
@@ -8192,10 +9500,14 @@ class SecretsMountRediArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  insecure_tls: Optional[pulumi.Input[bool]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input[bool]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
@@ -8207,12 +9519,20 @@ class SecretsMountRediArgs:
                connection.
         :param pulumi.Input[str] ca_cert: The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] insecure_tls: Specifies whether to skip verification of the server certificate when using TLS.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[int] port: The transport port to use to connect to Redis.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[bool] tls: Specifies whether to use TLS when connecting to Redis.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -8227,6 +9547,8 @@ class SecretsMountRediArgs:
             pulumi.set(__self__, "ca_cert", ca_cert)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if insecure_tls is not None:
             pulumi.set(__self__, "insecure_tls", insecure_tls)
         if plugin_name is not None:
@@ -8235,6 +9557,12 @@ class SecretsMountRediArgs:
             pulumi.set(__self__, "port", port)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if tls is not None:
             pulumi.set(__self__, "tls", tls)
         if verify_connection is not None:
@@ -8318,14 +9646,26 @@ class SecretsMountRediArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="insecureTls")
@@ -8376,6 +9716,46 @@ class SecretsMountRediArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -8419,6 +9799,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -8437,6 +9821,22 @@ if not MYPY:
         root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         A list of database statements to be executed to rotate the root user's credentials.
+        """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         username: NotRequired[pulumi.Input[str]]
         """
@@ -8457,10 +9857,14 @@ class SecretsMountRedisElasticachArgs:
                  url: pulumi.Input[str],
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
         """
@@ -8469,12 +9873,20 @@ class SecretsMountRedisElasticachArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_roles: A list of roles that are allowed to use this
                connection.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[str] password: The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[str] region: The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] username: The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
                initial configuration or not.
@@ -8485,6 +9897,8 @@ class SecretsMountRedisElasticachArgs:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if plugin_name is not None:
@@ -8493,6 +9907,12 @@ class SecretsMountRedisElasticachArgs:
             pulumi.set(__self__, "region", region)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if verify_connection is not None:
@@ -8540,14 +9960,26 @@ class SecretsMountRedisElasticachArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter
@@ -8598,6 +10030,46 @@ class SecretsMountRedisElasticachArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -8641,6 +10113,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -8672,6 +10148,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         username: NotRequired[pulumi.Input[str]]
         """
         The root credential username used in the connection URL
@@ -8695,6 +10187,7 @@ class SecretsMountRedshiftArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  disable_escaping: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
@@ -8702,6 +10195,9 @@ class SecretsMountRedshiftArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -8711,6 +10207,7 @@ class SecretsMountRedshiftArgs:
                connection.
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[bool] disable_escaping: Disable special character escaping in username and password
@@ -8720,6 +10217,13 @@ class SecretsMountRedshiftArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -8732,6 +10236,8 @@ class SecretsMountRedshiftArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_escaping is not None:
             pulumi.set(__self__, "disable_escaping", disable_escaping)
         if max_connection_lifetime is not None:
@@ -8746,6 +10252,12 @@ class SecretsMountRedshiftArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -8795,14 +10307,26 @@ class SecretsMountRedshiftArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="disableEscaping")
@@ -8889,6 +10413,46 @@ class SecretsMountRedshiftArgs:
         pulumi.set(self, "root_rotation_statements", value)
 
     @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -8944,6 +10508,10 @@ if not MYPY:
         data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        """
+        disable_automated_rotation: NotRequired[pulumi.Input[bool]]
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
         Supported list of database secrets engines that can be configured:
         """
@@ -8971,6 +10539,22 @@ if not MYPY:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
+        rotation_period: NotRequired[pulumi.Input[int]]
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        rotation_schedule: NotRequired[pulumi.Input[str]]
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        rotation_window: NotRequired[pulumi.Input[int]]
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
         username: NotRequired[pulumi.Input[str]]
         """
         The root credential username used in the connection URL
@@ -8994,12 +10578,16 @@ class SecretsMountSnowflakeArgs:
                  allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
                  data: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 disable_automated_rotation: Optional[pulumi.Input[bool]] = None,
                  max_connection_lifetime: Optional[pulumi.Input[int]] = None,
                  max_idle_connections: Optional[pulumi.Input[int]] = None,
                  max_open_connections: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  plugin_name: Optional[pulumi.Input[str]] = None,
                  root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 rotation_period: Optional[pulumi.Input[int]] = None,
+                 rotation_schedule: Optional[pulumi.Input[str]] = None,
+                 rotation_window: Optional[pulumi.Input[int]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  username_template: Optional[pulumi.Input[str]] = None,
                  verify_connection: Optional[pulumi.Input[bool]] = None):
@@ -9009,6 +10597,7 @@ class SecretsMountSnowflakeArgs:
                connection.
         :param pulumi.Input[str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] data: A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
+        :param pulumi.Input[bool] disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
         :param pulumi.Input[int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -9017,6 +10606,13 @@ class SecretsMountSnowflakeArgs:
         :param pulumi.Input[str] password: The root credential password used in the connection URL
         :param pulumi.Input[str] plugin_name: Specifies the name of the plugin to use.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] root_rotation_statements: A list of database statements to be executed to rotate the root user's credentials.
+        :param pulumi.Input[int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
+               A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+               defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[str] username: The root credential username used in the connection URL
         :param pulumi.Input[str] username_template: Username generation template.
         :param pulumi.Input[bool] verify_connection: Whether the connection should be verified on
@@ -9029,6 +10625,8 @@ class SecretsMountSnowflakeArgs:
             pulumi.set(__self__, "connection_url", connection_url)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if max_connection_lifetime is not None:
             pulumi.set(__self__, "max_connection_lifetime", max_connection_lifetime)
         if max_idle_connections is not None:
@@ -9041,6 +10639,12 @@ class SecretsMountSnowflakeArgs:
             pulumi.set(__self__, "plugin_name", plugin_name)
         if root_rotation_statements is not None:
             pulumi.set(__self__, "root_rotation_statements", root_rotation_statements)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if username is not None:
             pulumi.set(__self__, "username", username)
         if username_template is not None:
@@ -9090,14 +10694,26 @@ class SecretsMountSnowflakeArgs:
     def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
-
-        Supported list of database secrets engines that can be configured:
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+
+        Supported list of database secrets engines that can be configured:
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
 
     @property
     @pulumi.getter(name="maxConnectionLifetime")
@@ -9170,6 +10786,46 @@ class SecretsMountSnowflakeArgs:
     @root_rotation_statements.setter
     def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds Vault should wait before rotating the root credential.
+        A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> Optional[pulumi.Input[str]]:
+        """
+        The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "rotation_window", value)
 
     @property
     @pulumi.getter

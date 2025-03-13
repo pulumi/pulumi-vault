@@ -21,6 +21,8 @@ import * as utilities from "../utilities";
  *         password: "super_secret_1",
  *         connectionUrl: "sqlserver://{{username}}:{{password}}@127.0.0.1:1433",
  *         allowedRoles: ["dev1"],
+ *         rotationSchedule: "0 * * * SAT",
+ *         rotationWindow: 3600,
  *     }],
  *     postgresqls: [{
  *         name: "db2",
@@ -29,6 +31,8 @@ import * as utilities from "../utilities";
  *         connectionUrl: "postgresql://{{username}}:{{password}}@127.0.0.1:5432/postgres",
  *         verifyConnection: true,
  *         allowedRoles: ["dev2"],
+ *         rotationSchedule: "0 * * * SAT",
+ *         rotationWindow: 3600,
  *     }],
  * });
  * const dev1 = new vault.database.SecretBackendRole("dev1", {

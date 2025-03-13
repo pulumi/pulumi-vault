@@ -30,6 +30,8 @@ namespace Pulumi.Vault.Azure
     ///         ClientId = "11111111-2222-3333-4444-333333333333",
     ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
     ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
+    ///         RotationSchedule = "0 * * * SAT",
+    ///         RotationWindow = 3600,
     ///     });
     /// 
     /// });
@@ -51,6 +53,8 @@ namespace Pulumi.Vault.Azure
     ///         ClientId = "11111111-2222-3333-4444-333333333333",
     ///         ClientSecret = "12345678901234567890",
     ///         Environment = "AzurePublicCloud",
+    ///         RotationSchedule = "0 * * * SAT",
+    ///         RotationWindow = 3600,
     ///     });
     /// 
     /// });
@@ -101,6 +105,13 @@ namespace Pulumi.Vault.Azure
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("disableAutomatedRotation")]
+        public Output<bool?> DisableAutomatedRotation { get; private set; } = null!;
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
@@ -148,6 +159,30 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("path")]
         public Output<string?> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("rotationPeriod")]
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
         /// The subscription id for the Azure Active Directory.
@@ -259,6 +294,13 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
@@ -306,6 +348,30 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         [Input("subscriptionId", required: true)]
         private Input<string>? _subscriptionId;
@@ -392,6 +458,13 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
@@ -439,6 +512,30 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
+        /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+        /// *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         [Input("subscriptionId")]
         private Input<string>? _subscriptionId;

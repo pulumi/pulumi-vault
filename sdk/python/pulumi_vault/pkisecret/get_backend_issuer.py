@@ -26,7 +26,7 @@ class GetBackendIssuerResult:
     """
     A collection of values returned by getBackendIssuer.
     """
-    def __init__(__self__, backend=None, ca_chains=None, certificate=None, id=None, issuer_id=None, issuer_name=None, issuer_ref=None, key_id=None, leaf_not_after_behavior=None, manual_chains=None, namespace=None, usage=None):
+    def __init__(__self__, backend=None, ca_chains=None, certificate=None, disable_critical_extension_checks=None, disable_name_checks=None, disable_name_constraint_checks=None, disable_path_length_checks=None, id=None, issuer_id=None, issuer_name=None, issuer_ref=None, key_id=None, leaf_not_after_behavior=None, manual_chains=None, namespace=None, usage=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -36,6 +36,18 @@ class GetBackendIssuerResult:
         if certificate and not isinstance(certificate, str):
             raise TypeError("Expected argument 'certificate' to be a str")
         pulumi.set(__self__, "certificate", certificate)
+        if disable_critical_extension_checks and not isinstance(disable_critical_extension_checks, bool):
+            raise TypeError("Expected argument 'disable_critical_extension_checks' to be a bool")
+        pulumi.set(__self__, "disable_critical_extension_checks", disable_critical_extension_checks)
+        if disable_name_checks and not isinstance(disable_name_checks, bool):
+            raise TypeError("Expected argument 'disable_name_checks' to be a bool")
+        pulumi.set(__self__, "disable_name_checks", disable_name_checks)
+        if disable_name_constraint_checks and not isinstance(disable_name_constraint_checks, bool):
+            raise TypeError("Expected argument 'disable_name_constraint_checks' to be a bool")
+        pulumi.set(__self__, "disable_name_constraint_checks", disable_name_constraint_checks)
+        if disable_path_length_checks and not isinstance(disable_path_length_checks, bool):
+            raise TypeError("Expected argument 'disable_path_length_checks' to be a bool")
+        pulumi.set(__self__, "disable_path_length_checks", disable_path_length_checks)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -84,6 +96,49 @@ class GetBackendIssuerResult:
         Certificate associated with this issuer.
         """
         return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="disableCriticalExtensionChecks")
+    def disable_critical_extension_checks(self) -> Optional[bool]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        issued certificate) contain critical extensions not processed by Vault.
+        """
+        return pulumi.get(self, "disable_critical_extension_checks")
+
+    @property
+    @pulumi.getter(name="disableNameChecks")
+    def disable_name_checks(self) -> Optional[bool]:
+        """
+        This determines whether this issuer is able
+        to issue certificates where the chain of trust (including the final issued
+        certificate) contains a link in which the subject of the issuing certificate
+        does not match the named issuer of the certificate it signed.
+        """
+        return pulumi.get(self, "disable_name_checks")
+
+    @property
+    @pulumi.getter(name="disableNameConstraintChecks")
+    def disable_name_constraint_checks(self) -> Optional[bool]:
+        """
+        This determines whether this
+        issuer is able to issue certificates where the chain of trust (including the
+        final issued certificate) violates the name constraints critical extension of
+        one of the issuer certificates in the chain.
+        """
+        return pulumi.get(self, "disable_name_constraint_checks")
+
+    @property
+    @pulumi.getter(name="disablePathLengthChecks")
+    def disable_path_length_checks(self) -> Optional[bool]:
+        """
+        This determines whether this issuer
+        is able to issue certificates where the chain of trust (including the final
+        issued certificate) is longer than allowed by a certificate authority in that
+        chain.
+        """
+        return pulumi.get(self, "disable_path_length_checks")
 
     @property
     @pulumi.getter
@@ -162,6 +217,10 @@ class AwaitableGetBackendIssuerResult(GetBackendIssuerResult):
             backend=self.backend,
             ca_chains=self.ca_chains,
             certificate=self.certificate,
+            disable_critical_extension_checks=self.disable_critical_extension_checks,
+            disable_name_checks=self.disable_name_checks,
+            disable_name_constraint_checks=self.disable_name_constraint_checks,
+            disable_path_length_checks=self.disable_path_length_checks,
             id=self.id,
             issuer_id=self.issuer_id,
             issuer_name=self.issuer_name,
@@ -174,6 +233,10 @@ class AwaitableGetBackendIssuerResult(GetBackendIssuerResult):
 
 
 def get_backend_issuer(backend: Optional[str] = None,
+                       disable_critical_extension_checks: Optional[bool] = None,
+                       disable_name_checks: Optional[bool] = None,
+                       disable_name_constraint_checks: Optional[bool] = None,
+                       disable_path_length_checks: Optional[bool] = None,
                        issuer_ref: Optional[str] = None,
                        namespace: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendIssuerResult:
@@ -201,6 +264,21 @@ def get_backend_issuer(backend: Optional[str] = None,
 
     :param str backend: The path to the PKI secret backend to
            read the issuer from, with no leading or trailing `/`s.
+    :param bool disable_critical_extension_checks: This determines whether this
+           issuer is able to issue certificates where the chain of trust (including the
+           issued certificate) contain critical extensions not processed by Vault.
+    :param bool disable_name_checks: This determines whether this issuer is able
+           to issue certificates where the chain of trust (including the final issued
+           certificate) contains a link in which the subject of the issuing certificate
+           does not match the named issuer of the certificate it signed.
+    :param bool disable_name_constraint_checks: This determines whether this
+           issuer is able to issue certificates where the chain of trust (including the
+           final issued certificate) violates the name constraints critical extension of
+           one of the issuer certificates in the chain.
+    :param bool disable_path_length_checks: This determines whether this issuer
+           is able to issue certificates where the chain of trust (including the final
+           issued certificate) is longer than allowed by a certificate authority in that
+           chain.
     :param str issuer_ref: Reference to an existing issuer.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
@@ -209,6 +287,10 @@ def get_backend_issuer(backend: Optional[str] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['disableCriticalExtensionChecks'] = disable_critical_extension_checks
+    __args__['disableNameChecks'] = disable_name_checks
+    __args__['disableNameConstraintChecks'] = disable_name_constraint_checks
+    __args__['disablePathLengthChecks'] = disable_path_length_checks
     __args__['issuerRef'] = issuer_ref
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -218,6 +300,10 @@ def get_backend_issuer(backend: Optional[str] = None,
         backend=pulumi.get(__ret__, 'backend'),
         ca_chains=pulumi.get(__ret__, 'ca_chains'),
         certificate=pulumi.get(__ret__, 'certificate'),
+        disable_critical_extension_checks=pulumi.get(__ret__, 'disable_critical_extension_checks'),
+        disable_name_checks=pulumi.get(__ret__, 'disable_name_checks'),
+        disable_name_constraint_checks=pulumi.get(__ret__, 'disable_name_constraint_checks'),
+        disable_path_length_checks=pulumi.get(__ret__, 'disable_path_length_checks'),
         id=pulumi.get(__ret__, 'id'),
         issuer_id=pulumi.get(__ret__, 'issuer_id'),
         issuer_name=pulumi.get(__ret__, 'issuer_name'),
@@ -228,6 +314,10 @@ def get_backend_issuer(backend: Optional[str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         usage=pulumi.get(__ret__, 'usage'))
 def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
+                              disable_critical_extension_checks: Optional[pulumi.Input[Optional[bool]]] = None,
+                              disable_name_checks: Optional[pulumi.Input[Optional[bool]]] = None,
+                              disable_name_constraint_checks: Optional[pulumi.Input[Optional[bool]]] = None,
+                              disable_path_length_checks: Optional[pulumi.Input[Optional[bool]]] = None,
                               issuer_ref: Optional[pulumi.Input[str]] = None,
                               namespace: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendIssuerResult]:
@@ -255,6 +345,21 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
 
     :param str backend: The path to the PKI secret backend to
            read the issuer from, with no leading or trailing `/`s.
+    :param bool disable_critical_extension_checks: This determines whether this
+           issuer is able to issue certificates where the chain of trust (including the
+           issued certificate) contain critical extensions not processed by Vault.
+    :param bool disable_name_checks: This determines whether this issuer is able
+           to issue certificates where the chain of trust (including the final issued
+           certificate) contains a link in which the subject of the issuing certificate
+           does not match the named issuer of the certificate it signed.
+    :param bool disable_name_constraint_checks: This determines whether this
+           issuer is able to issue certificates where the chain of trust (including the
+           final issued certificate) violates the name constraints critical extension of
+           one of the issuer certificates in the chain.
+    :param bool disable_path_length_checks: This determines whether this issuer
+           is able to issue certificates where the chain of trust (including the final
+           issued certificate) is longer than allowed by a certificate authority in that
+           chain.
     :param str issuer_ref: Reference to an existing issuer.
     :param str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
@@ -263,6 +368,10 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['backend'] = backend
+    __args__['disableCriticalExtensionChecks'] = disable_critical_extension_checks
+    __args__['disableNameChecks'] = disable_name_checks
+    __args__['disableNameConstraintChecks'] = disable_name_constraint_checks
+    __args__['disablePathLengthChecks'] = disable_path_length_checks
     __args__['issuerRef'] = issuer_ref
     __args__['namespace'] = namespace
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -271,6 +380,10 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[str]] = None,
         backend=pulumi.get(__response__, 'backend'),
         ca_chains=pulumi.get(__response__, 'ca_chains'),
         certificate=pulumi.get(__response__, 'certificate'),
+        disable_critical_extension_checks=pulumi.get(__response__, 'disable_critical_extension_checks'),
+        disable_name_checks=pulumi.get(__response__, 'disable_name_checks'),
+        disable_name_constraint_checks=pulumi.get(__response__, 'disable_name_constraint_checks'),
+        disable_path_length_checks=pulumi.get(__response__, 'disable_path_length_checks'),
         id=pulumi.get(__response__, 'id'),
         issuer_id=pulumi.get(__response__, 'issuer_id'),
         issuer_name=pulumi.get(__response__, 'issuer_name'),

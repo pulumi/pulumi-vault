@@ -70,6 +70,25 @@ type GetBackendIssuerArgs struct {
 	// The path to the PKI secret backend to
 	// read the issuer from, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks *bool `pulumi:"disableCriticalExtensionChecks"`
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks *bool `pulumi:"disableNameChecks"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks *bool `pulumi:"disableNameConstraintChecks"`
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks *bool `pulumi:"disablePathLengthChecks"`
 	// Reference to an existing issuer.
 	IssuerRef string `pulumi:"issuerRef"`
 	// The namespace of the target resource.
@@ -86,6 +105,25 @@ type GetBackendIssuerResult struct {
 	CaChains []string `pulumi:"caChains"`
 	// Certificate associated with this issuer.
 	Certificate string `pulumi:"certificate"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks *bool `pulumi:"disableCriticalExtensionChecks"`
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks *bool `pulumi:"disableNameChecks"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks *bool `pulumi:"disableNameConstraintChecks"`
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks *bool `pulumi:"disablePathLengthChecks"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// ID of the issuer.
@@ -119,6 +157,25 @@ type GetBackendIssuerOutputArgs struct {
 	// The path to the PKI secret backend to
 	// read the issuer from, with no leading or trailing `/`s.
 	Backend pulumi.StringInput `pulumi:"backend"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// issued certificate) contain critical extensions not processed by Vault.
+	DisableCriticalExtensionChecks pulumi.BoolPtrInput `pulumi:"disableCriticalExtensionChecks"`
+	// This determines whether this issuer is able
+	// to issue certificates where the chain of trust (including the final issued
+	// certificate) contains a link in which the subject of the issuing certificate
+	// does not match the named issuer of the certificate it signed.
+	DisableNameChecks pulumi.BoolPtrInput `pulumi:"disableNameChecks"`
+	// This determines whether this
+	// issuer is able to issue certificates where the chain of trust (including the
+	// final issued certificate) violates the name constraints critical extension of
+	// one of the issuer certificates in the chain.
+	DisableNameConstraintChecks pulumi.BoolPtrInput `pulumi:"disableNameConstraintChecks"`
+	// This determines whether this issuer
+	// is able to issue certificates where the chain of trust (including the final
+	// issued certificate) is longer than allowed by a certificate authority in that
+	// chain.
+	DisablePathLengthChecks pulumi.BoolPtrInput `pulumi:"disablePathLengthChecks"`
 	// Reference to an existing issuer.
 	IssuerRef pulumi.StringInput `pulumi:"issuerRef"`
 	// The namespace of the target resource.
@@ -159,6 +216,37 @@ func (o GetBackendIssuerResultOutput) CaChains() pulumi.StringArrayOutput {
 // Certificate associated with this issuer.
 func (o GetBackendIssuerResultOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackendIssuerResult) string { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// This determines whether this
+// issuer is able to issue certificates where the chain of trust (including the
+// issued certificate) contain critical extensions not processed by Vault.
+func (o GetBackendIssuerResultOutput) DisableCriticalExtensionChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetBackendIssuerResult) *bool { return v.DisableCriticalExtensionChecks }).(pulumi.BoolPtrOutput)
+}
+
+// This determines whether this issuer is able
+// to issue certificates where the chain of trust (including the final issued
+// certificate) contains a link in which the subject of the issuing certificate
+// does not match the named issuer of the certificate it signed.
+func (o GetBackendIssuerResultOutput) DisableNameChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetBackendIssuerResult) *bool { return v.DisableNameChecks }).(pulumi.BoolPtrOutput)
+}
+
+// This determines whether this
+// issuer is able to issue certificates where the chain of trust (including the
+// final issued certificate) violates the name constraints critical extension of
+// one of the issuer certificates in the chain.
+func (o GetBackendIssuerResultOutput) DisableNameConstraintChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetBackendIssuerResult) *bool { return v.DisableNameConstraintChecks }).(pulumi.BoolPtrOutput)
+}
+
+// This determines whether this issuer
+// is able to issue certificates where the chain of trust (including the final
+// issued certificate) is longer than allowed by a certificate authority in that
+// chain.
+func (o GetBackendIssuerResultOutput) DisablePathLengthChecks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetBackendIssuerResult) *bool { return v.DisablePathLengthChecks }).(pulumi.BoolPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

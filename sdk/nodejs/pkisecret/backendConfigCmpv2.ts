@@ -49,8 +49,6 @@ export class BackendConfigCmpv2 extends pulumi.CustomResource {
 
     /**
      * Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-     *
-     * <a id="nestedatt--authenticators"></a>
      */
     public readonly auditFields!: pulumi.Output<string[]>;
     /**
@@ -66,6 +64,12 @@ export class BackendConfigCmpv2 extends pulumi.CustomResource {
      * Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
      */
     public readonly defaultPathPolicy!: pulumi.Output<string | undefined>;
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     *
+     * <a id="nestedatt--authenticators"></a>
+     */
+    public readonly disabledValidations!: pulumi.Output<string[] | undefined>;
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.
      */
@@ -103,6 +107,7 @@ export class BackendConfigCmpv2 extends pulumi.CustomResource {
             resourceInputs["authenticators"] = state ? state.authenticators : undefined;
             resourceInputs["backend"] = state ? state.backend : undefined;
             resourceInputs["defaultPathPolicy"] = state ? state.defaultPathPolicy : undefined;
+            resourceInputs["disabledValidations"] = state ? state.disabledValidations : undefined;
             resourceInputs["enableSentinelParsing"] = state ? state.enableSentinelParsing : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
@@ -116,6 +121,7 @@ export class BackendConfigCmpv2 extends pulumi.CustomResource {
             resourceInputs["authenticators"] = args ? args.authenticators : undefined;
             resourceInputs["backend"] = args ? args.backend : undefined;
             resourceInputs["defaultPathPolicy"] = args ? args.defaultPathPolicy : undefined;
+            resourceInputs["disabledValidations"] = args ? args.disabledValidations : undefined;
             resourceInputs["enableSentinelParsing"] = args ? args.enableSentinelParsing : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
@@ -132,8 +138,6 @@ export class BackendConfigCmpv2 extends pulumi.CustomResource {
 export interface BackendConfigCmpv2State {
     /**
      * Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-     *
-     * <a id="nestedatt--authenticators"></a>
      */
     auditFields?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -149,6 +153,12 @@ export interface BackendConfigCmpv2State {
      * Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
      */
     defaultPathPolicy?: pulumi.Input<string>;
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     *
+     * <a id="nestedatt--authenticators"></a>
+     */
+    disabledValidations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.
      */
@@ -176,8 +186,6 @@ export interface BackendConfigCmpv2State {
 export interface BackendConfigCmpv2Args {
     /**
      * Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-     *
-     * <a id="nestedatt--authenticators"></a>
      */
     auditFields?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -193,6 +201,12 @@ export interface BackendConfigCmpv2Args {
      * Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
      */
     defaultPathPolicy?: pulumi.Input<string>;
+    /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     *
+     * <a id="nestedatt--authenticators"></a>
+     */
+    disabledValidations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.
      */

@@ -266,6 +266,20 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return Codegen.optional(this.keyType);
     }
     /**
+     * Specifies key_usage to encode in the generated certificate.
+     * 
+     */
+    @Export(name="keyUsages", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> keyUsages;
+
+    /**
+     * @return Specifies key_usage to encode in the generated certificate.
+     * 
+     */
+    public Output<Optional<List<String>>> keyUsages() {
+        return Codegen.optional(this.keyUsages);
+    }
+    /**
      * The locality
      * 
      */
@@ -442,6 +456,34 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
      */
     public Output<Optional<String>> province() {
         return Codegen.optional(this.province);
+    }
+    /**
+     * The requested Subject&#39;s named Serial Number
+     * 
+     */
+    @Export(name="serialNumber", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> serialNumber;
+
+    /**
+     * @return The requested Subject&#39;s named Serial Number
+     * 
+     */
+    public Output<Optional<String>> serialNumber() {
+        return Codegen.optional(this.serialNumber);
+    }
+    /**
+     * The number of bits to use in the signature algorithm
+     * 
+     */
+    @Export(name="signatureBits", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> signatureBits;
+
+    /**
+     * @return The number of bits to use in the signature algorithm
+     * 
+     */
+    public Output<Optional<Integer>> signatureBits() {
+        return Codegen.optional(this.signatureBits);
     }
     /**
      * The street address

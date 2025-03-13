@@ -64,6 +64,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> CaChain { get; private set; } = null!;
 
         /// <summary>
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// </summary>
+        [Output("certMetadata")]
+        public Output<string?> CertMetadata { get; private set; } = null!;
+
+        /// <summary>
         /// The certificate
         /// </summary>
         [Output("certificate")]
@@ -133,6 +139,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Output("notAfter")]
+        public Output<string?> NotAfter { get; private set; } = null!;
+
+        /// <summary>
         /// List of other SANs
         /// </summary>
         [Output("otherSans")]
@@ -163,10 +175,16 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool> RenewPending { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         /// </summary>
         [Output("revoke")]
         public Output<bool?> Revoke { get; private set; } = null!;
+
+        /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        /// </summary>
+        [Output("revokeWithKey")]
+        public Output<bool?> RevokeWithKey { get; private set; } = null!;
 
         /// <summary>
         /// The serial number
@@ -267,6 +285,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// </summary>
+        [Input("certMetadata")]
+        public Input<string>? CertMetadata { get; set; }
+
+        /// <summary>
         /// CN of certificate to create
         /// </summary>
         [Input("commonName", required: true)]
@@ -323,6 +347,12 @@ namespace Pulumi.Vault.PkiSecret
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
+
         [Input("otherSans")]
         private InputList<string>? _otherSans;
 
@@ -342,10 +372,16 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? PrivateKeyFormat { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }
+
+        /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        /// </summary>
+        [Input("revokeWithKey")]
+        public Input<bool>? RevokeWithKey { get; set; }
 
         /// <summary>
         /// Time to live
@@ -414,6 +450,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("caChain")]
         public Input<string>? CaChain { get; set; }
+
+        /// <summary>
+        /// A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
+        /// </summary>
+        [Input("certMetadata")]
+        public Input<string>? CertMetadata { get; set; }
 
         /// <summary>
         /// The certificate
@@ -490,6 +532,12 @@ namespace Pulumi.Vault.PkiSecret
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+        /// </summary>
+        [Input("notAfter")]
+        public Input<string>? NotAfter { get; set; }
+
         [Input("otherSans")]
         private InputList<string>? _otherSans;
 
@@ -537,10 +585,16 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? RenewPending { get; set; }
 
         /// <summary>
-        /// If set to `true`, the certificate will be revoked on resource destruction.
+        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revoke_with_key`. Default `false`.
         /// </summary>
         [Input("revoke")]
         public Input<bool>? Revoke { get; set; }
+
+        /// <summary>
+        /// If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
+        /// </summary>
+        [Input("revokeWithKey")]
+        public Input<bool>? RevokeWithKey { get; set; }
 
         /// <summary>
         /// The serial number

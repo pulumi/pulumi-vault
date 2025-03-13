@@ -37,6 +37,8 @@ import (
 //						AllowedRoles: pulumi.StringArray{
 //							pulumi.String("dev1"),
 //						},
+//						RotationSchedule: pulumi.String("0 * * * SAT"),
+//						RotationWindow:   pulumi.Int(3600),
 //					},
 //				},
 //				Postgresqls: database.SecretsMountPostgresqlArray{
@@ -49,6 +51,8 @@ import (
 //						AllowedRoles: pulumi.StringArray{
 //							pulumi.String("dev2"),
 //						},
+//						RotationSchedule: pulumi.String("0 * * * SAT"),
+//						RotationWindow:   pulumi.Int(3600),
 //					},
 //				},
 //			})

@@ -64,6 +64,14 @@ type SecretBackendRootCert struct {
 	Country pulumi.StringPtrOutput `pulumi:"country"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrOutput `pulumi:"excludeCnFromSans"`
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains pulumi.StringArrayOutput `pulumi:"excludedDnsDomains"`
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses pulumi.StringArrayOutput `pulumi:"excludedEmailAddresses"`
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges pulumi.StringArrayOutput `pulumi:"excludedIpRanges"`
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains pulumi.StringArrayOutput `pulumi:"excludedUriDomains"`
 	// The format of data
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
@@ -102,6 +110,8 @@ type SecretBackendRootCert struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// The organization
 	Organization pulumi.StringPtrOutput `pulumi:"organization"`
 	// List of other SANs
@@ -110,6 +120,12 @@ type SecretBackendRootCert struct {
 	Ou pulumi.StringPtrOutput `pulumi:"ou"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayOutput `pulumi:"permittedDnsDomains"`
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses pulumi.StringArrayOutput `pulumi:"permittedEmailAddresses"`
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges pulumi.StringArrayOutput `pulumi:"permittedIpRanges"`
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains pulumi.StringArrayOutput `pulumi:"permittedUriDomains"`
 	// The postal code
 	PostalCode pulumi.StringPtrOutput `pulumi:"postalCode"`
 	// The private key format
@@ -118,6 +134,8 @@ type SecretBackendRootCert struct {
 	Province pulumi.StringPtrOutput `pulumi:"province"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntOutput `pulumi:"signatureBits"`
 	// The street address
 	StreetAddress pulumi.StringPtrOutput `pulumi:"streetAddress"`
 	// Time to live
@@ -180,6 +198,14 @@ type secretBackendRootCertState struct {
 	Country *string `pulumi:"country"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains []string `pulumi:"excludedDnsDomains"`
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses []string `pulumi:"excludedEmailAddresses"`
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
 	// The format of data
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
@@ -218,6 +244,8 @@ type secretBackendRootCertState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -226,6 +254,12 @@ type secretBackendRootCertState struct {
 	Ou *string `pulumi:"ou"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains []string `pulumi:"permittedDnsDomains"`
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses []string `pulumi:"permittedEmailAddresses"`
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges []string `pulumi:"permittedIpRanges"`
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains []string `pulumi:"permittedUriDomains"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The private key format
@@ -234,6 +268,8 @@ type secretBackendRootCertState struct {
 	Province *string `pulumi:"province"`
 	// The certificate's serial number, hex formatted.
 	SerialNumber *string `pulumi:"serialNumber"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -258,6 +294,14 @@ type SecretBackendRootCertState struct {
 	Country pulumi.StringPtrInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains pulumi.StringArrayInput
 	// The format of data
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
@@ -296,6 +340,8 @@ type SecretBackendRootCertState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -304,6 +350,12 @@ type SecretBackendRootCertState struct {
 	Ou pulumi.StringPtrInput
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains pulumi.StringArrayInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The private key format
@@ -312,6 +364,8 @@ type SecretBackendRootCertState struct {
 	Province pulumi.StringPtrInput
 	// The certificate's serial number, hex formatted.
 	SerialNumber pulumi.StringPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
@@ -338,6 +392,14 @@ type secretBackendRootCertArgs struct {
 	Country *string `pulumi:"country"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains []string `pulumi:"excludedDnsDomains"`
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses []string `pulumi:"excludedEmailAddresses"`
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
 	// The format of data
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
@@ -370,6 +432,8 @@ type secretBackendRootCertArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter *string `pulumi:"notAfter"`
 	// The organization
 	Organization *string `pulumi:"organization"`
 	// List of other SANs
@@ -378,12 +442,20 @@ type secretBackendRootCertArgs struct {
 	Ou *string `pulumi:"ou"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains []string `pulumi:"permittedDnsDomains"`
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses []string `pulumi:"permittedEmailAddresses"`
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges []string `pulumi:"permittedIpRanges"`
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains []string `pulumi:"permittedUriDomains"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The private key format
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// The province
 	Province *string `pulumi:"province"`
+	// The number of bits to use in the signature algorithm
+	SignatureBits *int `pulumi:"signatureBits"`
 	// The street address
 	StreetAddress *string `pulumi:"streetAddress"`
 	// Time to live
@@ -407,6 +479,14 @@ type SecretBackendRootCertArgs struct {
 	Country pulumi.StringPtrInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
+	// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+	ExcludedUriDomains pulumi.StringArrayInput
 	// The format of data
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
@@ -439,6 +519,8 @@ type SecretBackendRootCertArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+	NotAfter pulumi.StringPtrInput
 	// The organization
 	Organization pulumi.StringPtrInput
 	// List of other SANs
@@ -447,12 +529,20 @@ type SecretBackendRootCertArgs struct {
 	Ou pulumi.StringPtrInput
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayInput
+	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedEmailAddresses pulumi.StringArrayInput
+	// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedIpRanges pulumi.StringArrayInput
+	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+	PermittedUriDomains pulumi.StringArrayInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The private key format
 	PrivateKeyFormat pulumi.StringPtrInput
 	// The province
 	Province pulumi.StringPtrInput
+	// The number of bits to use in the signature algorithm
+	SignatureBits pulumi.IntPtrInput
 	// The street address
 	StreetAddress pulumi.StringPtrInput
 	// Time to live
@@ -581,6 +671,26 @@ func (o SecretBackendRootCertOutput) ExcludeCnFromSans() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.BoolPtrOutput { return v.ExcludeCnFromSans }).(pulumi.BoolPtrOutput)
 }
 
+// List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) ExcludedDnsDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.ExcludedDnsDomains }).(pulumi.StringArrayOutput)
+}
+
+// List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) ExcludedEmailAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.ExcludedEmailAddresses }).(pulumi.StringArrayOutput)
+}
+
+// List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) ExcludedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.ExcludedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) ExcludedUriDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.ExcludedUriDomains }).(pulumi.StringArrayOutput)
+}
+
 // The format of data
 func (o SecretBackendRootCertOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
@@ -664,6 +774,11 @@ func (o SecretBackendRootCertOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
+func (o SecretBackendRootCertOutput) NotAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.NotAfter }).(pulumi.StringPtrOutput)
+}
+
 // The organization
 func (o SecretBackendRootCertOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
@@ -684,6 +799,21 @@ func (o SecretBackendRootCertOutput) PermittedDnsDomains() pulumi.StringArrayOut
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.PermittedDnsDomains }).(pulumi.StringArrayOutput)
 }
 
+// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) PermittedEmailAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.PermittedEmailAddresses }).(pulumi.StringArrayOutput)
+}
+
+// List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) PermittedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.PermittedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+func (o SecretBackendRootCertOutput) PermittedUriDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.PermittedUriDomains }).(pulumi.StringArrayOutput)
+}
+
 // The postal code
 func (o SecretBackendRootCertOutput) PostalCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.PostalCode }).(pulumi.StringPtrOutput)
@@ -702,6 +832,11 @@ func (o SecretBackendRootCertOutput) Province() pulumi.StringPtrOutput {
 // The certificate's serial number, hex formatted.
 func (o SecretBackendRootCertOutput) SerialNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// The number of bits to use in the signature algorithm
+func (o SecretBackendRootCertOutput) SignatureBits() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.IntOutput { return v.SignatureBits }).(pulumi.IntOutput)
 }
 
 // The street address

@@ -31,6 +31,8 @@ import (
 //				IdentityTokenTtl:      pulumi.Int(1800),
 //				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
 //				ServiceAccountEmail:   pulumi.String("<SERVICE_ACCOUNT_EMAIL>"),
+//				RotationSchedule:      pulumi.String("0 * * * SAT"),
+//				RotationWindow:        pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -61,7 +63,9 @@ import (
 //				return err
 //			}
 //			_, err = gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
-//				Credentials: pulumi.String(invokeFile.Result),
+//				Credentials:      pulumi.String(invokeFile.Result),
+//				RotationSchedule: pulumi.String("0 * * * SAT"),
+//				RotationWindow:   pulumi.Int(3600),
 //			})
 //			if err != nil {
 //				return err
@@ -83,6 +87,9 @@ type SecretBackend struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrOutput `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
@@ -108,6 +115,17 @@ type SecretBackend struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrOutput `pulumi:"path"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail pulumi.StringPtrOutput `pulumi:"serviceAccountEmail"`
@@ -159,6 +177,9 @@ type secretBackendState struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
@@ -184,6 +205,17 @@ type secretBackendState struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path *string `pulumi:"path"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
@@ -199,6 +231,9 @@ type SecretBackendState struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
@@ -224,6 +259,17 @@ type SecretBackendState struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationWindow pulumi.IntPtrInput
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail pulumi.StringPtrInput
@@ -241,6 +287,9 @@ type secretBackendArgs struct {
 	DefaultLeaseTtlSeconds *int `pulumi:"defaultLeaseTtlSeconds"`
 	// A human-friendly description for this backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
@@ -266,6 +315,17 @@ type secretBackendArgs struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path *string `pulumi:"path"`
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
@@ -280,6 +340,9 @@ type SecretBackendArgs struct {
 	DefaultLeaseTtlSeconds pulumi.IntPtrInput
 	// A human-friendly description for this backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
@@ -305,6 +368,17 @@ type SecretBackendArgs struct {
 	// The unique path this backend should be mounted at. Must
 	// not begin or end with a `/`. Defaults to `gcp`.
 	Path pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before rotating the root credential.
+	// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+	// *Available only for Vault Enterprise*.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+	// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+	RotationWindow pulumi.IntPtrInput
 	// Service Account to impersonate for plugin workload identity federation.
 	// Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
 	ServiceAccountEmail pulumi.StringPtrInput
@@ -418,6 +492,12 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // If set, opts out of mount migration on path updates.
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
@@ -465,6 +545,26 @@ func (o SecretBackendOutput) Namespace() pulumi.StringPtrOutput {
 // not begin or end with a `/`. Defaults to `gcp`.
 func (o SecretBackendOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Path }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time in seconds Vault should wait before rotating the root credential.
+// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+// *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+// defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+func (o SecretBackendOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // Service Account to impersonate for plugin workload identity federation.

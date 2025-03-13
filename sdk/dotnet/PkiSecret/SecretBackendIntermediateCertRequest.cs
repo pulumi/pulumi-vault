@@ -128,6 +128,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> KeyType { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies key_usage to encode in the generated certificate.
+        /// </summary>
+        [Output("keyUsages")]
+        public Output<ImmutableArray<string>> KeyUsages { get; private set; } = null!;
+
+        /// <summary>
         /// The locality
         /// </summary>
         [Output("locality")]
@@ -203,6 +209,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("province")]
         public Output<string?> Province { get; private set; } = null!;
+
+        /// <summary>
+        /// The requested Subject's named Serial Number
+        /// </summary>
+        [Output("serialNumber")]
+        public Output<string?> SerialNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Output("signatureBits")]
+        public Output<int?> SignatureBits { get; private set; } = null!;
 
         /// <summary>
         /// The street address
@@ -361,6 +379,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
+        [Input("keyUsages")]
+        private InputList<string>? _keyUsages;
+
+        /// <summary>
+        /// Specifies key_usage to encode in the generated certificate.
+        /// </summary>
+        public InputList<string> KeyUsages
+        {
+            get => _keyUsages ?? (_keyUsages = new InputList<string>());
+            set => _keyUsages = value;
+        }
+
         /// <summary>
         /// The locality
         /// </summary>
@@ -431,6 +461,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("province")]
         public Input<string>? Province { get; set; }
+
+        /// <summary>
+        /// The requested Subject's named Serial Number
+        /// </summary>
+        [Input("serialNumber")]
+        public Input<string>? SerialNumber { get; set; }
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Input("signatureBits")]
+        public Input<int>? SignatureBits { get; set; }
 
         /// <summary>
         /// The street address
@@ -565,6 +607,18 @@ namespace Pulumi.Vault.PkiSecret
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
+        [Input("keyUsages")]
+        private InputList<string>? _keyUsages;
+
+        /// <summary>
+        /// Specifies key_usage to encode in the generated certificate.
+        /// </summary>
+        public InputList<string> KeyUsages
+        {
+            get => _keyUsages ?? (_keyUsages = new InputList<string>());
+            set => _keyUsages = value;
+        }
+
         /// <summary>
         /// The locality
         /// </summary>
@@ -657,6 +711,18 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("province")]
         public Input<string>? Province { get; set; }
+
+        /// <summary>
+        /// The requested Subject's named Serial Number
+        /// </summary>
+        [Input("serialNumber")]
+        public Input<string>? SerialNumber { get; set; }
+
+        /// <summary>
+        /// The number of bits to use in the signature algorithm
+        /// </summary>
+        [Input("signatureBits")]
+        public Input<int>? SignatureBits { get; set; }
 
         /// <summary>
         /// The street address

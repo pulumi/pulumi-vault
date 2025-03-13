@@ -34,7 +34,7 @@ class SecretRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role, in seconds.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -120,7 +120,7 @@ class SecretRoleArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        Specifies the TTL for this role.
+        Specifies the TTL for this role, in seconds.
         """
         return pulumi.get(self, "ttl")
 
@@ -156,7 +156,7 @@ class _SecretRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role, in seconds.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -242,7 +242,7 @@ class _SecretRoleState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        Specifies the TTL for this role.
+        Specifies the TTL for this role, in seconds.
         """
         return pulumi.get(self, "ttl")
 
@@ -307,7 +307,7 @@ class SecretRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role, in seconds.
         """
         ...
     @overload
@@ -411,7 +411,7 @@ class SecretRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[int] ttl: Specifies the TTL for this role.
+        :param pulumi.Input[int] ttl: Specifies the TTL for this role, in seconds.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -470,7 +470,7 @@ class SecretRole(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        Specifies the TTL for this role.
+        Specifies the TTL for this role, in seconds.
         """
         return pulumi.get(self, "ttl")
 

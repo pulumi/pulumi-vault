@@ -5,9 +5,11 @@ package com.pulumi.vault.database.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -30,6 +32,30 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
      */
     public Optional<Output<String>> backend() {
         return Optional.ofNullable(this.backend);
+    }
+
+    @Import(name="credentialConfig")
+    private @Nullable Output<Map<String,String>> credentialConfig;
+
+    public Optional<Output<Map<String,String>>> credentialConfig() {
+        return Optional.ofNullable(this.credentialConfig);
+    }
+
+    /**
+     * The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
+     * can be done in `credential_config`.
+     * 
+     */
+    @Import(name="credentialType")
+    private @Nullable Output<String> credentialType;
+
+    /**
+     * @return The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
+     * can be done in `credential_config`.
+     * 
+     */
+    public Optional<Output<String>> credentialType() {
+        return Optional.ofNullable(this.credentialType);
     }
 
     /**
@@ -175,6 +201,23 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
+     * If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    @Import(name="skipImportRotation")
+    private @Nullable Output<Boolean> skipImportRotation;
+
+    /**
+     * @return If set to true, Vault will skip the
+     * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+     * 
+     */
+    public Optional<Output<Boolean>> skipImportRotation() {
+        return Optional.ofNullable(this.skipImportRotation);
+    }
+
+    /**
      * The database username that this static role corresponds to.
      * 
      */
@@ -193,6 +236,8 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
     private SecretBackendStaticRoleState(SecretBackendStaticRoleState $) {
         this.backend = $.backend;
+        this.credentialConfig = $.credentialConfig;
+        this.credentialType = $.credentialType;
         this.dbName = $.dbName;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -201,6 +246,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         this.rotationStatements = $.rotationStatements;
         this.rotationWindow = $.rotationWindow;
         this.selfManagedPassword = $.selfManagedPassword;
+        this.skipImportRotation = $.skipImportRotation;
         this.username = $.username;
     }
 
@@ -241,6 +287,38 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        public Builder credentialConfig(@Nullable Output<Map<String,String>> credentialConfig) {
+            $.credentialConfig = credentialConfig;
+            return this;
+        }
+
+        public Builder credentialConfig(Map<String,String> credentialConfig) {
+            return credentialConfig(Output.of(credentialConfig));
+        }
+
+        /**
+         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
+         * can be done in `credential_config`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(@Nullable Output<String> credentialType) {
+            $.credentialType = credentialType;
+            return this;
+        }
+
+        /**
+         * @param credentialType The credential type for the user, can be one of &#34;password&#34;, &#34;rsa_private_key&#34; or &#34;client_certificate&#34;.The configuration
+         * can be done in `credential_config`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialType(String credentialType) {
+            return credentialType(Output.of(credentialType));
         }
 
         /**
@@ -441,6 +519,29 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          */
         public Builder selfManagedPassword(String selfManagedPassword) {
             return selfManagedPassword(Output.of(selfManagedPassword));
+        }
+
+        /**
+         * @param skipImportRotation If set to true, Vault will skip the
+         * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipImportRotation(@Nullable Output<Boolean> skipImportRotation) {
+            $.skipImportRotation = skipImportRotation;
+            return this;
+        }
+
+        /**
+         * @param skipImportRotation If set to true, Vault will skip the
+         * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipImportRotation(Boolean skipImportRotation) {
+            return skipImportRotation(Output.of(skipImportRotation));
         }
 
         /**

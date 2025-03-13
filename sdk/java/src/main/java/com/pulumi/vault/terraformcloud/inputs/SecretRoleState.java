@@ -81,14 +81,14 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Specifies the TTL for this role.
+     * Specifies the TTL for this role, in seconds.
      * 
      */
     @Import(name="ttl")
     private @Nullable Output<Integer> ttl;
 
     /**
-     * @return Specifies the TTL for this role.
+     * @return Specifies the TTL for this role, in seconds.
      * 
      */
     public Optional<Output<Integer>> ttl() {
@@ -218,7 +218,7 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl Specifies the TTL for this role.
+         * @param ttl Specifies the TTL for this role, in seconds.
          * 
          * @return builder
          * 
@@ -229,7 +229,7 @@ public final class SecretRoleState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl Specifies the TTL for this role.
+         * @param ttl Specifies the TTL for this role, in seconds.
          * 
          * @return builder
          * 

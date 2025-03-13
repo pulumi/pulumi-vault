@@ -17,6 +17,8 @@ import * as utilities from "../utilities";
  *     identityTokenTtl: 1800,
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
  *     serviceAccountEmail: "<SERVICE_ACCOUNT_EMAIL>",
+ *     rotationSchedule: "0 * * * SAT",
+ *     rotationWindow: 3600,
  * });
  * ```
  *
@@ -25,9 +27,13 @@ import * as utilities from "../utilities";
  * import * as std from "@pulumi/std";
  * import * as vault from "@pulumi/vault";
  *
- * const gcp = new vault.gcp.SecretBackend("gcp", {credentials: std.file({
- *     input: "credentials.json",
- * }).then(invoke => invoke.result)});
+ * const gcp = new vault.gcp.SecretBackend("gcp", {
+ *     credentials: std.file({
+ *         input: "credentials.json",
+ *     }).then(invoke => invoke.result),
+ *     rotationSchedule: "0 * * * SAT",
+ *     rotationWindow: 3600,
+ * });
  * ```
  */
 export class SecretBackend extends pulumi.CustomResource {
@@ -76,6 +82,11 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly disableAutomatedRotation!: pulumi.Output<boolean | undefined>;
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
@@ -117,6 +128,23 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     public readonly path!: pulumi.Output<string | undefined>;
     /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*.
+     */
+    public readonly rotationPeriod!: pulumi.Output<number | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+     */
+    public readonly rotationSchedule!: pulumi.Output<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+     */
+    public readonly rotationWindow!: pulumi.Output<number | undefined>;
+    /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
@@ -139,6 +167,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["credentials"] = state ? state.credentials : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = state ? state.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["disableAutomatedRotation"] = state ? state.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = state ? state.disableRemount : undefined;
             resourceInputs["identityTokenAudience"] = state ? state.identityTokenAudience : undefined;
             resourceInputs["identityTokenKey"] = state ? state.identityTokenKey : undefined;
@@ -147,12 +176,16 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["maxLeaseTtlSeconds"] = state ? state.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["rotationPeriod"] = state ? state.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = state ? state.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = state ? state.rotationWindow : undefined;
             resourceInputs["serviceAccountEmail"] = state ? state.serviceAccountEmail : undefined;
         } else {
             const args = argsOrState as SecretBackendArgs | undefined;
             resourceInputs["credentials"] = args?.credentials ? pulumi.secret(args.credentials) : undefined;
             resourceInputs["defaultLeaseTtlSeconds"] = args ? args.defaultLeaseTtlSeconds : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["disableAutomatedRotation"] = args ? args.disableAutomatedRotation : undefined;
             resourceInputs["disableRemount"] = args ? args.disableRemount : undefined;
             resourceInputs["identityTokenAudience"] = args ? args.identityTokenAudience : undefined;
             resourceInputs["identityTokenKey"] = args ? args.identityTokenKey : undefined;
@@ -161,6 +194,9 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["maxLeaseTtlSeconds"] = args ? args.maxLeaseTtlSeconds : undefined;
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["rotationPeriod"] = args ? args.rotationPeriod : undefined;
+            resourceInputs["rotationSchedule"] = args ? args.rotationSchedule : undefined;
+            resourceInputs["rotationWindow"] = args ? args.rotationWindow : undefined;
             resourceInputs["serviceAccountEmail"] = args ? args.serviceAccountEmail : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
         }
@@ -193,6 +229,11 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
@@ -233,6 +274,23 @@ export interface SecretBackendState {
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -258,6 +316,11 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean>;
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
@@ -298,6 +361,23 @@ export interface SecretBackendArgs {
      * not begin or end with a `/`. Defaults to `gcp`.
      */
     path?: pulumi.Input<string>;
+    /**
+     * The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * *Available only for Vault Enterprise*.
+     */
+    rotationPeriod?: pulumi.Input<number>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+     */
+    rotationSchedule?: pulumi.Input<string>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*.
+     */
+    rotationWindow?: pulumi.Input<number>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.

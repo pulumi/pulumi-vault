@@ -30,10 +30,15 @@ public final class SecretsMountRedi {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
+     */
+    private @Nullable Map<String,String> data;
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
      * Supported list of database secrets engines that can be configured:
      * 
      */
-    private @Nullable Map<String,String> data;
+    private @Nullable Boolean disableAutomatedRotation;
     /**
      * @return Specifies the host to connect to
      * 
@@ -70,6 +75,25 @@ public final class SecretsMountRedi {
      */
     private @Nullable List<String> rootRotationStatements;
     /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Integer rotationPeriod;
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable String rotationSchedule;
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    private @Nullable Integer rotationWindow;
+    /**
      * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
@@ -105,11 +129,18 @@ public final class SecretsMountRedi {
     /**
      * @return A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      * 
-     * Supported list of database secrets engines that can be configured:
-     * 
      */
     public Map<String,String> data() {
         return this.data == null ? Map.of() : this.data;
+    }
+    /**
+     * @return Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
+     * 
+     * Supported list of database secrets engines that can be configured:
+     * 
+     */
+    public Optional<Boolean> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
     }
     /**
      * @return Specifies the host to connect to
@@ -161,6 +192,31 @@ public final class SecretsMountRedi {
         return this.rootRotationStatements == null ? List.of() : this.rootRotationStatements;
     }
     /**
+     * @return The amount of time in seconds Vault should wait before rotating the root credential.
+     * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Integer> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<String> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+     * 
+     */
+    public Optional<Integer> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
+    }
+    /**
      * @return Specifies whether to use TLS when connecting to Redis.
      * 
      */
@@ -195,6 +251,7 @@ public final class SecretsMountRedi {
         private @Nullable List<String> allowedRoles;
         private @Nullable String caCert;
         private @Nullable Map<String,String> data;
+        private @Nullable Boolean disableAutomatedRotation;
         private String host;
         private @Nullable Boolean insecureTls;
         private String name;
@@ -202,6 +259,9 @@ public final class SecretsMountRedi {
         private @Nullable String pluginName;
         private @Nullable Integer port;
         private @Nullable List<String> rootRotationStatements;
+        private @Nullable Integer rotationPeriod;
+        private @Nullable String rotationSchedule;
+        private @Nullable Integer rotationWindow;
         private @Nullable Boolean tls;
         private String username;
         private @Nullable Boolean verifyConnection;
@@ -211,6 +271,7 @@ public final class SecretsMountRedi {
     	      this.allowedRoles = defaults.allowedRoles;
     	      this.caCert = defaults.caCert;
     	      this.data = defaults.data;
+    	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
     	      this.host = defaults.host;
     	      this.insecureTls = defaults.insecureTls;
     	      this.name = defaults.name;
@@ -218,6 +279,9 @@ public final class SecretsMountRedi {
     	      this.pluginName = defaults.pluginName;
     	      this.port = defaults.port;
     	      this.rootRotationStatements = defaults.rootRotationStatements;
+    	      this.rotationPeriod = defaults.rotationPeriod;
+    	      this.rotationSchedule = defaults.rotationSchedule;
+    	      this.rotationWindow = defaults.rotationWindow;
     	      this.tls = defaults.tls;
     	      this.username = defaults.username;
     	      this.verifyConnection = defaults.verifyConnection;
@@ -242,6 +306,12 @@ public final class SecretsMountRedi {
         public Builder data(@Nullable Map<String,String> data) {
 
             this.data = data;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disableAutomatedRotation(@Nullable Boolean disableAutomatedRotation) {
+
+            this.disableAutomatedRotation = disableAutomatedRotation;
             return this;
         }
         @CustomType.Setter
@@ -296,6 +366,24 @@ public final class SecretsMountRedi {
             return rootRotationStatements(List.of(rootRotationStatements));
         }
         @CustomType.Setter
+        public Builder rotationPeriod(@Nullable Integer rotationPeriod) {
+
+            this.rotationPeriod = rotationPeriod;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder rotationSchedule(@Nullable String rotationSchedule) {
+
+            this.rotationSchedule = rotationSchedule;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder rotationWindow(@Nullable Integer rotationWindow) {
+
+            this.rotationWindow = rotationWindow;
+            return this;
+        }
+        @CustomType.Setter
         public Builder tls(@Nullable Boolean tls) {
 
             this.tls = tls;
@@ -320,6 +408,7 @@ public final class SecretsMountRedi {
             _resultValue.allowedRoles = allowedRoles;
             _resultValue.caCert = caCert;
             _resultValue.data = data;
+            _resultValue.disableAutomatedRotation = disableAutomatedRotation;
             _resultValue.host = host;
             _resultValue.insecureTls = insecureTls;
             _resultValue.name = name;
@@ -327,6 +416,9 @@ public final class SecretsMountRedi {
             _resultValue.pluginName = pluginName;
             _resultValue.port = port;
             _resultValue.rootRotationStatements = rootRotationStatements;
+            _resultValue.rotationPeriod = rotationPeriod;
+            _resultValue.rotationSchedule = rotationSchedule;
+            _resultValue.rotationWindow = rotationWindow;
             _resultValue.tls = tls;
             _resultValue.username = username;
             _resultValue.verifyConnection = verifyConnection;

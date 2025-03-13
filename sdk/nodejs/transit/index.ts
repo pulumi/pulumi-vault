@@ -15,6 +15,16 @@ export const getEncrypt: typeof import("./getEncrypt").getEncrypt = null as any;
 export const getEncryptOutput: typeof import("./getEncrypt").getEncryptOutput = null as any;
 utilities.lazyLoad(exports, ["getEncrypt","getEncryptOutput"], () => require("./getEncrypt"));
 
+export { GetSignArgs, GetSignResult, GetSignOutputArgs } from "./getSign";
+export const getSign: typeof import("./getSign").getSign = null as any;
+export const getSignOutput: typeof import("./getSign").getSignOutput = null as any;
+utilities.lazyLoad(exports, ["getSign","getSignOutput"], () => require("./getSign"));
+
+export { GetVerifyArgs, GetVerifyResult, GetVerifyOutputArgs } from "./getVerify";
+export const getVerify: typeof import("./getVerify").getVerify = null as any;
+export const getVerifyOutput: typeof import("./getVerify").getVerifyOutput = null as any;
+utilities.lazyLoad(exports, ["getVerify","getVerifyOutput"], () => require("./getVerify"));
+
 export { SecretBackendKeyArgs, SecretBackendKeyState } from "./secretBackendKey";
 export type SecretBackendKey = import("./secretBackendKey").SecretBackendKey;
 export const SecretBackendKey: typeof import("./secretBackendKey").SecretBackendKey = null as any;

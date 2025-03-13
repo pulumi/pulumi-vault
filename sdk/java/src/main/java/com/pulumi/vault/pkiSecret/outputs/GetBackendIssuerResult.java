@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiSecret.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,37 @@ public final class GetBackendIssuerResult {
      * 
      */
     private String certificate;
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * issued certificate) contain critical extensions not processed by Vault.
+     * 
+     */
+    private @Nullable Boolean disableCriticalExtensionChecks;
+    /**
+     * @return This determines whether this issuer is able
+     * to issue certificates where the chain of trust (including the final issued
+     * certificate) contains a link in which the subject of the issuing certificate
+     * does not match the named issuer of the certificate it signed.
+     * 
+     */
+    private @Nullable Boolean disableNameChecks;
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * final issued certificate) violates the name constraints critical extension of
+     * one of the issuer certificates in the chain.
+     * 
+     */
+    private @Nullable Boolean disableNameConstraintChecks;
+    /**
+     * @return This determines whether this issuer
+     * is able to issue certificates where the chain of trust (including the final
+     * issued certificate) is longer than allowed by a certificate authority in that
+     * chain.
+     * 
+     */
+    private @Nullable Boolean disablePathLengthChecks;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -80,6 +112,45 @@ public final class GetBackendIssuerResult {
      */
     public String certificate() {
         return this.certificate;
+    }
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * issued certificate) contain critical extensions not processed by Vault.
+     * 
+     */
+    public Optional<Boolean> disableCriticalExtensionChecks() {
+        return Optional.ofNullable(this.disableCriticalExtensionChecks);
+    }
+    /**
+     * @return This determines whether this issuer is able
+     * to issue certificates where the chain of trust (including the final issued
+     * certificate) contains a link in which the subject of the issuing certificate
+     * does not match the named issuer of the certificate it signed.
+     * 
+     */
+    public Optional<Boolean> disableNameChecks() {
+        return Optional.ofNullable(this.disableNameChecks);
+    }
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * final issued certificate) violates the name constraints critical extension of
+     * one of the issuer certificates in the chain.
+     * 
+     */
+    public Optional<Boolean> disableNameConstraintChecks() {
+        return Optional.ofNullable(this.disableNameConstraintChecks);
+    }
+    /**
+     * @return This determines whether this issuer
+     * is able to issue certificates where the chain of trust (including the final
+     * issued certificate) is longer than allowed by a certificate authority in that
+     * chain.
+     * 
+     */
+    public Optional<Boolean> disablePathLengthChecks() {
+        return Optional.ofNullable(this.disablePathLengthChecks);
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -150,6 +221,10 @@ public final class GetBackendIssuerResult {
         private String backend;
         private List<String> caChains;
         private String certificate;
+        private @Nullable Boolean disableCriticalExtensionChecks;
+        private @Nullable Boolean disableNameChecks;
+        private @Nullable Boolean disableNameConstraintChecks;
+        private @Nullable Boolean disablePathLengthChecks;
         private String id;
         private String issuerId;
         private String issuerName;
@@ -165,6 +240,10 @@ public final class GetBackendIssuerResult {
     	      this.backend = defaults.backend;
     	      this.caChains = defaults.caChains;
     	      this.certificate = defaults.certificate;
+    	      this.disableCriticalExtensionChecks = defaults.disableCriticalExtensionChecks;
+    	      this.disableNameChecks = defaults.disableNameChecks;
+    	      this.disableNameConstraintChecks = defaults.disableNameConstraintChecks;
+    	      this.disablePathLengthChecks = defaults.disablePathLengthChecks;
     	      this.id = defaults.id;
     	      this.issuerId = defaults.issuerId;
     	      this.issuerName = defaults.issuerName;
@@ -201,6 +280,30 @@ public final class GetBackendIssuerResult {
               throw new MissingRequiredPropertyException("GetBackendIssuerResult", "certificate");
             }
             this.certificate = certificate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disableCriticalExtensionChecks(@Nullable Boolean disableCriticalExtensionChecks) {
+
+            this.disableCriticalExtensionChecks = disableCriticalExtensionChecks;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disableNameChecks(@Nullable Boolean disableNameChecks) {
+
+            this.disableNameChecks = disableNameChecks;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disableNameConstraintChecks(@Nullable Boolean disableNameConstraintChecks) {
+
+            this.disableNameConstraintChecks = disableNameConstraintChecks;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder disablePathLengthChecks(@Nullable Boolean disablePathLengthChecks) {
+
+            this.disablePathLengthChecks = disablePathLengthChecks;
             return this;
         }
         @CustomType.Setter
@@ -281,6 +384,10 @@ public final class GetBackendIssuerResult {
             _resultValue.backend = backend;
             _resultValue.caChains = caChains;
             _resultValue.certificate = certificate;
+            _resultValue.disableCriticalExtensionChecks = disableCriticalExtensionChecks;
+            _resultValue.disableNameChecks = disableNameChecks;
+            _resultValue.disableNameConstraintChecks = disableNameConstraintChecks;
+            _resultValue.disablePathLengthChecks = disablePathLengthChecks;
             _resultValue.id = id;
             _resultValue.issuerId = issuerId;
             _resultValue.issuerName = issuerName;

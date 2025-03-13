@@ -6,6 +6,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -37,6 +38,21 @@ public final class GetBackendConfigCmpv2PlainArgs extends com.pulumi.resources.I
     }
 
     /**
+     * A comma-separated list of validations not to perform on CMPv2 messages.
+     * 
+     */
+    @Import(name="disabledValidations")
+    private @Nullable List<String> disabledValidations;
+
+    /**
+     * @return A comma-separated list of validations not to perform on CMPv2 messages.
+     * 
+     */
+    public Optional<List<String>> disabledValidations() {
+        return Optional.ofNullable(this.disabledValidations);
+    }
+
+    /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider&#39;s configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -61,6 +77,7 @@ public final class GetBackendConfigCmpv2PlainArgs extends com.pulumi.resources.I
 
     private GetBackendConfigCmpv2PlainArgs(GetBackendConfigCmpv2PlainArgs $) {
         this.backend = $.backend;
+        this.disabledValidations = $.disabledValidations;
         this.namespace = $.namespace;
     }
 
@@ -94,6 +111,27 @@ public final class GetBackendConfigCmpv2PlainArgs extends com.pulumi.resources.I
         public Builder backend(String backend) {
             $.backend = backend;
             return this;
+        }
+
+        /**
+         * @param disabledValidations A comma-separated list of validations not to perform on CMPv2 messages.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledValidations(@Nullable List<String> disabledValidations) {
+            $.disabledValidations = disabledValidations;
+            return this;
+        }
+
+        /**
+         * @param disabledValidations A comma-separated list of validations not to perform on CMPv2 messages.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledValidations(String... disabledValidations) {
+            return disabledValidations(List.of(disabledValidations));
         }
 
         /**

@@ -116,6 +116,84 @@ public class SecretBackendIssuer extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.crlDistributionPoints);
     }
     /**
+     * This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * issued certificate) contain critical extensions not processed by Vault.
+     * 
+     */
+    @Export(name="disableCriticalExtensionChecks", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableCriticalExtensionChecks;
+
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * issued certificate) contain critical extensions not processed by Vault.
+     * 
+     */
+    public Output<Optional<Boolean>> disableCriticalExtensionChecks() {
+        return Codegen.optional(this.disableCriticalExtensionChecks);
+    }
+    /**
+     * This determines whether this issuer is able
+     * to issue certificates where the chain of trust (including the final issued
+     * certificate) contains a link in which the subject of the issuing certificate
+     * does not match the named issuer of the certificate it signed.
+     * 
+     */
+    @Export(name="disableNameChecks", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableNameChecks;
+
+    /**
+     * @return This determines whether this issuer is able
+     * to issue certificates where the chain of trust (including the final issued
+     * certificate) contains a link in which the subject of the issuing certificate
+     * does not match the named issuer of the certificate it signed.
+     * 
+     */
+    public Output<Optional<Boolean>> disableNameChecks() {
+        return Codegen.optional(this.disableNameChecks);
+    }
+    /**
+     * This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * final issued certificate) violates the name constraints critical extension of
+     * one of the issuer certificates in the chain.
+     * 
+     */
+    @Export(name="disableNameConstraintChecks", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableNameConstraintChecks;
+
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * final issued certificate) violates the name constraints critical extension of
+     * one of the issuer certificates in the chain.
+     * 
+     */
+    public Output<Optional<Boolean>> disableNameConstraintChecks() {
+        return Codegen.optional(this.disableNameConstraintChecks);
+    }
+    /**
+     * This determines whether this issuer
+     * is able to issue certificates where the chain of trust (including the final
+     * issued certificate) is longer than allowed by a certificate authority in that
+     * chain.
+     * 
+     */
+    @Export(name="disablePathLengthChecks", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disablePathLengthChecks;
+
+    /**
+     * @return This determines whether this issuer
+     * is able to issue certificates where the chain of trust (including the final
+     * issued certificate) is longer than allowed by a certificate authority in that
+     * chain.
+     * 
+     */
+    public Output<Optional<Boolean>> disablePathLengthChecks() {
+        return Codegen.optional(this.disablePathLengthChecks);
+    }
+    /**
      * Specifies that the AIA URL values should
      * be templated.
      * 

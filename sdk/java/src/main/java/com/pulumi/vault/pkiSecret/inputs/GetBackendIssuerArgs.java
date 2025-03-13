@@ -6,6 +6,7 @@ package com.pulumi.vault.pkiSecret.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,6 +32,88 @@ public final class GetBackendIssuerArgs extends com.pulumi.resources.InvokeArgs 
      */
     public Output<String> backend() {
         return this.backend;
+    }
+
+    /**
+     * This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * issued certificate) contain critical extensions not processed by Vault.
+     * 
+     */
+    @Import(name="disableCriticalExtensionChecks")
+    private @Nullable Output<Boolean> disableCriticalExtensionChecks;
+
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * issued certificate) contain critical extensions not processed by Vault.
+     * 
+     */
+    public Optional<Output<Boolean>> disableCriticalExtensionChecks() {
+        return Optional.ofNullable(this.disableCriticalExtensionChecks);
+    }
+
+    /**
+     * This determines whether this issuer is able
+     * to issue certificates where the chain of trust (including the final issued
+     * certificate) contains a link in which the subject of the issuing certificate
+     * does not match the named issuer of the certificate it signed.
+     * 
+     */
+    @Import(name="disableNameChecks")
+    private @Nullable Output<Boolean> disableNameChecks;
+
+    /**
+     * @return This determines whether this issuer is able
+     * to issue certificates where the chain of trust (including the final issued
+     * certificate) contains a link in which the subject of the issuing certificate
+     * does not match the named issuer of the certificate it signed.
+     * 
+     */
+    public Optional<Output<Boolean>> disableNameChecks() {
+        return Optional.ofNullable(this.disableNameChecks);
+    }
+
+    /**
+     * This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * final issued certificate) violates the name constraints critical extension of
+     * one of the issuer certificates in the chain.
+     * 
+     */
+    @Import(name="disableNameConstraintChecks")
+    private @Nullable Output<Boolean> disableNameConstraintChecks;
+
+    /**
+     * @return This determines whether this
+     * issuer is able to issue certificates where the chain of trust (including the
+     * final issued certificate) violates the name constraints critical extension of
+     * one of the issuer certificates in the chain.
+     * 
+     */
+    public Optional<Output<Boolean>> disableNameConstraintChecks() {
+        return Optional.ofNullable(this.disableNameConstraintChecks);
+    }
+
+    /**
+     * This determines whether this issuer
+     * is able to issue certificates where the chain of trust (including the final
+     * issued certificate) is longer than allowed by a certificate authority in that
+     * chain.
+     * 
+     */
+    @Import(name="disablePathLengthChecks")
+    private @Nullable Output<Boolean> disablePathLengthChecks;
+
+    /**
+     * @return This determines whether this issuer
+     * is able to issue certificates where the chain of trust (including the final
+     * issued certificate) is longer than allowed by a certificate authority in that
+     * chain.
+     * 
+     */
+    public Optional<Output<Boolean>> disablePathLengthChecks() {
+        return Optional.ofNullable(this.disablePathLengthChecks);
     }
 
     /**
@@ -73,6 +156,10 @@ public final class GetBackendIssuerArgs extends com.pulumi.resources.InvokeArgs 
 
     private GetBackendIssuerArgs(GetBackendIssuerArgs $) {
         this.backend = $.backend;
+        this.disableCriticalExtensionChecks = $.disableCriticalExtensionChecks;
+        this.disableNameChecks = $.disableNameChecks;
+        this.disableNameConstraintChecks = $.disableNameConstraintChecks;
+        this.disablePathLengthChecks = $.disablePathLengthChecks;
         this.issuerRef = $.issuerRef;
         this.namespace = $.namespace;
     }
@@ -116,6 +203,112 @@ public final class GetBackendIssuerArgs extends com.pulumi.resources.InvokeArgs 
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param disableCriticalExtensionChecks This determines whether this
+         * issuer is able to issue certificates where the chain of trust (including the
+         * issued certificate) contain critical extensions not processed by Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableCriticalExtensionChecks(@Nullable Output<Boolean> disableCriticalExtensionChecks) {
+            $.disableCriticalExtensionChecks = disableCriticalExtensionChecks;
+            return this;
+        }
+
+        /**
+         * @param disableCriticalExtensionChecks This determines whether this
+         * issuer is able to issue certificates where the chain of trust (including the
+         * issued certificate) contain critical extensions not processed by Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableCriticalExtensionChecks(Boolean disableCriticalExtensionChecks) {
+            return disableCriticalExtensionChecks(Output.of(disableCriticalExtensionChecks));
+        }
+
+        /**
+         * @param disableNameChecks This determines whether this issuer is able
+         * to issue certificates where the chain of trust (including the final issued
+         * certificate) contains a link in which the subject of the issuing certificate
+         * does not match the named issuer of the certificate it signed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableNameChecks(@Nullable Output<Boolean> disableNameChecks) {
+            $.disableNameChecks = disableNameChecks;
+            return this;
+        }
+
+        /**
+         * @param disableNameChecks This determines whether this issuer is able
+         * to issue certificates where the chain of trust (including the final issued
+         * certificate) contains a link in which the subject of the issuing certificate
+         * does not match the named issuer of the certificate it signed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableNameChecks(Boolean disableNameChecks) {
+            return disableNameChecks(Output.of(disableNameChecks));
+        }
+
+        /**
+         * @param disableNameConstraintChecks This determines whether this
+         * issuer is able to issue certificates where the chain of trust (including the
+         * final issued certificate) violates the name constraints critical extension of
+         * one of the issuer certificates in the chain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableNameConstraintChecks(@Nullable Output<Boolean> disableNameConstraintChecks) {
+            $.disableNameConstraintChecks = disableNameConstraintChecks;
+            return this;
+        }
+
+        /**
+         * @param disableNameConstraintChecks This determines whether this
+         * issuer is able to issue certificates where the chain of trust (including the
+         * final issued certificate) violates the name constraints critical extension of
+         * one of the issuer certificates in the chain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableNameConstraintChecks(Boolean disableNameConstraintChecks) {
+            return disableNameConstraintChecks(Output.of(disableNameConstraintChecks));
+        }
+
+        /**
+         * @param disablePathLengthChecks This determines whether this issuer
+         * is able to issue certificates where the chain of trust (including the final
+         * issued certificate) is longer than allowed by a certificate authority in that
+         * chain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disablePathLengthChecks(@Nullable Output<Boolean> disablePathLengthChecks) {
+            $.disablePathLengthChecks = disablePathLengthChecks;
+            return this;
+        }
+
+        /**
+         * @param disablePathLengthChecks This determines whether this issuer
+         * is able to issue certificates where the chain of trust (including the final
+         * issued certificate) is longer than allowed by a certificate authority in that
+         * chain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disablePathLengthChecks(Boolean disablePathLengthChecks) {
+            return disablePathLengthChecks(Output.of(disablePathLengthChecks));
         }
 
         /**
